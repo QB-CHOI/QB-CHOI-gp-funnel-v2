@@ -185,6 +185,7 @@ def tab_dashboard():
     st.caption(f"기준: {latest_date}")
 
     df_today = df[df['date'] == latest_date].copy()
+    campaigns = get_current_campaigns()
 
     # ── 요약 지표 ──────────────────────────────────────────────
     total = int(df_today['members'].sum())
@@ -230,7 +231,6 @@ def tab_dashboard():
     display['전일'] = display['전일'].apply(lambda x: f"{int(x):,}" if not pd.isna(x) else '-')
 
     # 캠페인 정보 컬럼 추가
-    campaigns = get_current_campaigns()
     display['진행 중인 강의'] = display['방 번호'].apply(
         lambda n: campaigns.get(int(n), {}).get('campaign_name', '-')
     )
