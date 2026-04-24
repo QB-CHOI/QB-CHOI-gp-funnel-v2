@@ -5,6 +5,14 @@ from datetime import date
 from rooms_config import ROOMS, ROOM_NUMBERS
 from data_store import load_all, save_daily, delete_date
 from charts import trend_line_chart, change_bar_chart, total_trend_bar
+from campaign_store import (
+    load_all as load_campaigns,
+    get_current_campaigns,
+    save_campaign,
+    end_campaign,
+    get_history,
+    PRODUCT_OPTIONS,
+)
 
 st.set_page_config(
     page_title="채팅방 인원 분석",
@@ -33,7 +41,9 @@ def load_ocr_reader():
 def main():
     st.title("💬 황금후추 채팅방 인원 분석")
 
-    tab1, tab2, tab3, tab4 = st.tabs(["📸 오늘 입력", "📊 현황", "📈 추이 그래프", "🗂️ 데이터 관리"])
+    tab1, tab2, tab3, tab4, tab5 = st.tabs([
+        "📸 오늘 입력", "📊 현황", "📈 추이 그래프", "⚙️ 채팅방 설정", "🗂️ 데이터 관리"
+    ])
 
     with tab1:
         tab_input()
@@ -42,6 +52,8 @@ def main():
     with tab3:
         tab_trend()
     with tab4:
+        tab_campaign()
+    with tab5:
         tab_data()
 
 
@@ -85,6 +97,10 @@ def tab_input():
 
                         st.session_state.ocr_results = {r['room_num']: r['members'] for r in extracted}
                         st.session_state.ocr_done = True
+
+                        # 입력 칸에 OCR 결과를 직접 반영 (Streamlit key 우선 덮어쓰기)
+                        for r in extracted:
+                            st.session_state[f"inp_{r['room_num']}"] = r['members']
 
                         st.success(f"✅ {len(extracted)}개 채팅방 인식 완료")
                     except Exception as e:
@@ -205,6 +221,15 @@ def tab_dashboard():
     display['총원'] = display['총원'].apply(lambda x: f"{int(x):,}")
     display['전일'] = display['전일'].apply(lambda x: f"{int(x):,}" if not pd.isna(x) else '-')
 
+    # 캠페인 정보 컬럼 추가
+    campaigns = get_current_campaigns()
+    display['진행 중인 강의'] = display['방 번호'].apply(
+        lambda n: campaigns.get(int(n), {}).get('campaign_name', '-')
+    )
+    display['상품'] = display['방 번호'].apply(
+        lambda n: campaigns.get(int(n), {}).get('product', '-')
+    )
+
     st.dataframe(display, use_container_width=True, hide_index=True)
 
     # ── 텍스트 요약 ────────────────────────────────────────────
@@ -219,12 +244,32 @@ def tab_dashboard():
             st.markdown("**인원 증가 TOP 3**")
             for _, row in top_up.iterrows():
                 if row['change'] > 0:
-                    st.markdown(f"- {row['room_name']}: **+{int(row['change'])}명** (총 {int(row['members']):,}명)")
+                    camp = campaigns.get(int(row['room_num']), {}).get('campaign_name', '')
+                    camp_str = f" · {camp}" if camp else ""
+                    st.markdown(f"- {row['room_name']}{camp_str}: **+{int(row['change'])}명** (총 {int(row['members']):,}명)")
         with col_r:
             st.markdown("**인원 감소 TOP 3**")
             for _, row in top_down.iterrows():
                 if row['change'] < 0:
-                    st.markdown(f"- {row['room_name']}: **{int(row['change'])}명** (총 {int(row['members']):,}명)")
+                    camp = campaigns.get(int(row['room_num']), {}).get('campaign_name', '')
+                    camp_str = f" · {camp}" if camp else ""
+                    st.markdown(f"- {row['room_name']}{camp_str}: **{int(row['change'])}명** (총 {int(row['members']):,}명)")
+
+    # ── 현재 진행 중인 강의 목록 ───────────────────────────────
+    if campaigns:
+        st.subheader("현재 진행 중인 강의")
+        camp_rows = []
+        for room_num, info in sorted(campaigns.items()):
+            camp_rows.append({
+                '방 번호': room_num,
+                '채팅방': ROOMS.get(room_num, f'채팅방 {room_num}'),
+                '강의명': info.get('campaign_name', '-'),
+                '상품': info.get('product', '-'),
+                '기수': info.get('cohort', '-'),
+                '시작일': info.get('start_date', '-'),
+                '메모': info.get('memo', '-'),
+            })
+        st.dataframe(pd.DataFrame(camp_rows), use_container_width=True, hide_index=True)
 
 
 # ── 탭 3: 추이 그래프 ─────────────────────────────────────────────
@@ -258,7 +303,118 @@ def tab_trend():
         st.plotly_chart(fig_total, use_container_width=True)
 
 
-# ── 탭 4: 데이터 관리 ─────────────────────────────────────────────
+# ── 탭 4: 채팅방 설정 ────────────────────────────────────────────
+
+def tab_campaign():
+    st.header("채팅방 설정")
+    st.caption("각 채팅방이 어떤 강의 모객을 위해 운영되는지 입력하고 이력을 관리해요.")
+
+    # ── 신규 캠페인 등록 ───────────────────────────────────────
+    st.subheader("강의 정보 등록 / 변경")
+
+    campaigns = get_current_campaigns()
+
+    with st.form("campaign_form"):
+        col1, col2 = st.columns(2)
+
+        with col1:
+            room_num = st.selectbox(
+                "채팅방",
+                options=ROOM_NUMBERS,
+                format_func=lambda x: f"{ROOMS.get(x, f'채팅방 {x}')} (현재: {campaigns.get(x, {}).get('campaign_name', '미등록')})",
+            )
+            campaign_name = st.text_input(
+                "강의명",
+                placeholder="예) 돈타공 5기",
+            )
+            product = st.selectbox("상품 구분", options=PRODUCT_OPTIONS)
+
+        with col2:
+            cohort = st.text_input(
+                "기수 / 회차",
+                placeholder="예) 5기, 3회차",
+            )
+            start_date = st.date_input("모객 시작일", value=date.today())
+            memo = st.text_area(
+                "메모",
+                placeholder="목표 인원, 특이사항 등 자유롭게 입력",
+                height=100,
+            )
+
+        submitted = st.form_submit_button("💾 저장하기", type="primary", use_container_width=True)
+
+        if submitted:
+            if not campaign_name.strip():
+                st.error("강의명을 입력해주세요.")
+            else:
+                save_campaign(
+                    room_num=room_num,
+                    campaign_name=campaign_name.strip(),
+                    product=product,
+                    cohort=cohort.strip(),
+                    start_date=str(start_date),
+                    memo=memo.strip(),
+                )
+                st.success(f"✅ {ROOMS.get(room_num)} — '{campaign_name}' 저장 완료")
+                st.rerun()
+
+    st.divider()
+
+    # ── 현재 진행 중인 캠페인 목록 ────────────────────────────
+    st.subheader("현재 진행 중인 강의 목록")
+    campaigns = get_current_campaigns()
+
+    if not campaigns:
+        st.info("등록된 강의가 없습니다. 위 양식에서 등록해주세요.")
+    else:
+        camp_rows = []
+        for rn, info in sorted(campaigns.items()):
+            camp_rows.append({
+                '방 번호': rn,
+                '채팅방': ROOMS.get(rn, f'채팅방 {rn}'),
+                '강의명': info.get('campaign_name', '-'),
+                '상품': info.get('product', '-'),
+                '기수': info.get('cohort', '-'),
+                '시작일': info.get('start_date', '-'),
+                '메모': info.get('memo', '-'),
+            })
+        st.dataframe(pd.DataFrame(camp_rows), use_container_width=True, hide_index=True)
+
+        # 종료 처리
+        with st.expander("강의 종료 처리"):
+            end_room = st.selectbox(
+                "종료할 채팅방",
+                options=list(sorted(campaigns.keys())),
+                format_func=lambda x: f"{ROOMS.get(x, f'채팅방 {x}')} — {campaigns[x].get('campaign_name', '')}",
+                key="end_room_select",
+            )
+            if st.button("종료 처리", key="end_btn"):
+                end_campaign(end_room)
+                st.success(f"'{campaigns[end_room].get('campaign_name')}' 종료 처리 완료")
+                st.rerun()
+
+    st.divider()
+
+    # ── 전체 이력 조회 ─────────────────────────────────────────
+    st.subheader("모객 이력 전체 조회")
+
+    history_room = st.selectbox(
+        "채팅방 선택",
+        options=ROOM_NUMBERS,
+        format_func=lambda x: ROOMS.get(x, f"채팅방 {x}"),
+        key="history_room_select",
+    )
+
+    history_df = get_history(history_room)
+    if history_df.empty:
+        st.info("이력이 없습니다.")
+    else:
+        history_df['is_current'] = history_df['is_current'].apply(lambda x: '✅ 진행 중' if x else '종료')
+        history_df.columns = ['방 번호', '강의명', '상품', '기수', '시작일', '종료일', '상태', '메모']
+        st.dataframe(history_df, use_container_width=True, hide_index=True)
+
+
+# ── 탭 5: 데이터 관리 ─────────────────────────────────────────────
 
 def tab_data():
     st.header("데이터 관리")
