@@ -12,6 +12,10 @@ def extract_from_image(image) -> list:
     PIL Image를 받아 채팅방 번호 + 인원 수 목록을 반환.
     Returns: [{'room_num': int, 'members': int}, ...]
     """
+    from image_processor import preprocess_for_ocr, crop_chat_list_area
+    image = crop_chat_list_area(image)
+    image = preprocess_for_ocr(image)
+
     reader = _get_reader()
     img_array = np.array(image.convert('RGB'))
     ocr_results = reader.readtext(img_array)

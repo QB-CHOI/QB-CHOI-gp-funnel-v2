@@ -88,3 +88,86 @@ def total_trend_bar(df: pd.DataFrame):
     fig.update_traces(texttemplate='%{text:,}', textposition='outside')
     fig.update_layout(height=320, margin=dict(t=50, b=30))
     return fig
+
+
+def product_bar_chart(df: pd.DataFrame, campaigns: dict):
+    """상품별(사주·타로·부동산·빌딩) 총원 합계 비교 막대 차트."""
+    if df.empty or not campaigns:
+        return None
+
+    latest_date = df['date'].max()
+    df_today = df[df['date'] == latest_date].copy()
+
+    df_today['product'] = df_today['room_num'].apply(
+        lambda rn: campaigns.get(int(rn), {}).get('product', '미분류')
+    )
+
+    by_product = df_today.groupby('product')['members'].sum().reset_index()
+    by_product.columns = ['상품', '총원']
+    by_product = by_product.sort_values('총원', ascending=False)
+
+    color_map = {
+        '사주':   '#5c6bc0',
+        '타로':   '#ec407a',
+        '부동산': '#26a69a',
+        '빌딩':   '#ff7043',
+        '기타':   '#9e9e9e',
+        '미분류': '#bdbdbd',
+    }
+    colors = [color_map.get(p, '#90a4ae') for p in by_product['상품']]
+
+    fig = go.Figure(go.Bar(
+        x=by_product['상품'],
+        y=by_product['총원'],
+        marker_color=colors,
+        text=by_product['총원'].apply(lambda x: f'{int(x):,}'),
+        textposition='outside',
+    ))
+    fig.update_layout(
+        title=f'상품별 총원 현황 ({latest_date})',
+        xaxis_title='상품',
+        yaxis_title='총원',
+        height=320,
+        margin=dict(t=50, b=30),
+        showlegend=False,
+    )
+    return fig
+
+
+def weekly_comparison_chart(df: pd.DataFrame):
+    """이번 주 vs 지난 주 채팅방별 인원 비교 막대 차트."""
+    if df.empty:
+        return None
+
+    import datetime
+    df = df.copy()
+    df['date'] = pd.to_datetime(df['date'])
+    latest = df['date'].max()
+    week_ago = latest - datetime.timedelta(days=7)
+
+    df_now = df[df['date'] == latest][['room_num', 'members']].rename(columns={'members': '이번'})
+    df_prev = df[df['date'] == week_ago][['room_num', 'members']].rename(columns={'members': '지난주'})
+
+    merged = pd.merge(df_now, df_prev, on='room_num', how='inner')
+    if merged.empty:
+        return None
+
+    merged['diff'] = merged['이번'] - merged['지난주']
+    merged = merged.sort_values('room_num')
+    x_labels = merged['room_num'].astype(str)
+
+    fig = go.Figure()
+    fig.add_trace(go.Bar(name='지난주', x=x_labels, y=merged['지난주'],
+                         marker_color='#b0bec5'))
+    fig.add_trace(go.Bar(name='이번주', x=x_labels, y=merged['이번'],
+                         marker_color='#1565c0'))
+    fig.update_layout(
+        title=f'주간 비교 ({week_ago.date()} vs {latest.date()})',
+        barmode='group',
+        xaxis_title='채팅방',
+        yaxis_title='인원 수',
+        height=360,
+        margin=dict(t=50, b=30),
+        legend=dict(orientation='h', yanchor='bottom', y=1.02),
+    )
+    return fig

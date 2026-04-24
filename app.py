@@ -4,7 +4,7 @@ from datetime import date
 
 from rooms_config import ROOMS, ROOM_NUMBERS
 from data_store import load_all, save_daily, delete_date
-from charts import trend_line_chart, change_bar_chart, total_trend_bar
+from charts import trend_line_chart, change_bar_chart, total_trend_bar, product_bar_chart, weekly_comparison_chart
 from campaign_store import (
     load_all as load_campaigns,
     get_current_campaigns,
@@ -199,10 +199,18 @@ def tab_dashboard():
     c3.metric("인원 증가 채팅방", f"{up}개")
     c4.metric("인원 감소 채팅방", f"{down}개")
 
-    # ── 증감 차트 ──────────────────────────────────────────────
-    fig_bar = change_bar_chart(df_today)
-    if fig_bar:
-        st.plotly_chart(fig_bar, use_container_width=True)
+    # ── 증감 차트 + 상품별 분석 ───────────────────────────────
+    col_c1, col_c2 = st.columns(2)
+    with col_c1:
+        fig_bar = change_bar_chart(df_today)
+        if fig_bar:
+            st.plotly_chart(fig_bar, use_container_width=True)
+    with col_c2:
+        fig_prod = product_bar_chart(df, campaigns)
+        if fig_prod:
+            st.plotly_chart(fig_prod, use_container_width=True)
+        elif not campaigns:
+            st.info("⚙️ 채팅방 설정 탭에서 상품 정보를 등록하면 상품별 분석이 표시돼요.")
 
     # ── 채팅방별 상세 표 ───────────────────────────────────────
     st.subheader("채팅방별 상세")
@@ -301,6 +309,13 @@ def tab_trend():
     fig_total = total_trend_bar(df)
     if fig_total:
         st.plotly_chart(fig_total, use_container_width=True)
+
+    # ── 주간 비교 차트 ──────────────────────────────────────────
+    fig_week = weekly_comparison_chart(df)
+    if fig_week:
+        st.plotly_chart(fig_week, use_container_width=True)
+    else:
+        st.info("주간 비교는 7일 이상의 데이터가 있으면 자동으로 표시돼요.")
 
 
 # ── 탭 4: 채팅방 설정 ────────────────────────────────────────────
@@ -429,15 +444,27 @@ def tab_data():
     show = df.sort_values(['date', 'room_num'], ascending=[False, True]).reset_index(drop=True)
     st.dataframe(show, use_container_width=True, hide_index=True)
 
-    col_dl, col_del = st.columns([2, 1])
+    col_csv, col_excel, col_del = st.columns([2, 2, 1])
 
-    with col_dl:
+    with col_csv:
         csv_bytes = df.to_csv(index=False).encode('utf-8-sig')
         st.download_button(
-            "📥 CSV 전체 다운로드",
+            "📥 CSV 다운로드",
             data=csv_bytes,
             file_name=f"채팅방_인원_{date.today()}.csv",
             mime='text/csv',
+            use_container_width=True,
+        )
+
+    with col_excel:
+        from excel_export import generate_excel
+        campaigns = get_current_campaigns()
+        excel_bytes = generate_excel(df, campaigns)
+        st.download_button(
+            "📊 Excel 보고서 다운로드",
+            data=excel_bytes,
+            file_name=f"채팅방_인원_보고서_{date.today()}.xlsx",
+            mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
             use_container_width=True,
         )
 
