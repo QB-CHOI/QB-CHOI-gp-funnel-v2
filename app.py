@@ -3,7 +3,7 @@ import pandas as pd
 from datetime import date
 
 from rooms_config import ROOMS, ROOM_NUMBERS
-from sheets_store import (
+from github_store import (
     load_all, save_daily, delete_date,
     load_campaigns, get_current_campaigns,
     save_campaign, end_campaign, get_history,
