@@ -3,16 +3,13 @@ import pandas as pd
 from datetime import date
 
 from rooms_config import ROOMS, ROOM_NUMBERS
-from data_store import load_all, save_daily, delete_date
-from charts import trend_line_chart, change_bar_chart, total_trend_bar, product_bar_chart, weekly_comparison_chart
-from campaign_store import (
-    load_all as load_campaigns,
-    get_current_campaigns,
-    save_campaign,
-    end_campaign,
-    get_history,
+from sheets_store import (
+    load_all, save_daily, delete_date,
+    load_campaigns, get_current_campaigns,
+    save_campaign, end_campaign, get_history,
     PRODUCT_OPTIONS,
 )
+from charts import trend_line_chart, change_bar_chart, total_trend_bar, product_bar_chart, weekly_comparison_chart
 
 st.set_page_config(
     page_title="채팅방 인원 분석",
@@ -156,7 +153,8 @@ def tab_input():
                 if v > 0
             ]
             if room_data:
-                save_daily(str(input_date), room_data)
+                with st.spinner("Google Sheets에 저장 중..."):
+                    save_daily(str(input_date), room_data)
                 st.success(f"✅ {input_date} 데이터 저장 완료 — {len(room_data)}개 채팅방")
                 st.session_state.ocr_done = False
                 st.session_state.ocr_results = {}
