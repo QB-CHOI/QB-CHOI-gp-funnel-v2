@@ -2,11 +2,11 @@ import streamlit as st
 import pandas as pd
 from datetime import date
 
-from rooms_config import ROOMS, ROOM_NUMBERS
 from github_store import (
     load_all, save_daily, delete_date,
     load_campaigns, get_current_campaigns,
     save_campaign, end_campaign, get_history,
+    load_rooms, save_room, delete_room,
     PRODUCT_OPTIONS,
 )
 from charts import trend_line_chart, change_bar_chart, total_trend_bar, product_bar_chart, weekly_comparison_chart
@@ -57,6 +57,11 @@ def main():
 # ── 탭 1: 오늘 입력 ───────────────────────────────────────────────
 
 def tab_input():
+    ROOMS = load_rooms()
+    ROOM_NUMBERS = sorted(ROOMS.keys())
+    if not ROOMS:
+        st.warning("채팅방이 등록되어 있지 않습니다. ⚙️ 채팅방 설정 탭에서 먼저 채팅방을 추가해주세요.")
+        return
     st.header("오늘의 인원 입력")
 
     input_date = st.date_input("📅 날짜", value=date.today())
@@ -172,6 +177,7 @@ def tab_input():
 # ── 탭 2: 현황 대시보드 ───────────────────────────────────────────
 
 def tab_dashboard():
+    ROOMS = load_rooms()
     st.header("현황 대시보드")
     df = load_all()
 
@@ -281,6 +287,7 @@ def tab_dashboard():
 # ── 탭 3: 추이 그래프 ─────────────────────────────────────────────
 
 def tab_trend():
+    ROOMS = load_rooms()
     st.header("인원 추이 그래프")
     df = load_all()
 
@@ -319,7 +326,52 @@ def tab_trend():
 # ── 탭 4: 채팅방 설정 ────────────────────────────────────────────
 
 def tab_campaign():
+    ROOMS = load_rooms()
+    ROOM_NUMBERS = sorted(ROOMS.keys())
     st.header("채팅방 설정")
+
+    # ── 채팅방 관리 ────────────────────────────────────────────
+    with st.expander("➕ 채팅방 추가 / 수정 / 삭제", expanded=not bool(ROOMS)):
+        st.caption("채팅방 번호와 이름을 등록하세요. 번호가 같으면 이름이 수정됩니다.")
+
+        with st.form("room_form"):
+            col_a, col_b = st.columns(2)
+            with col_a:
+                new_room_num = st.number_input("채팅방 번호", min_value=1, step=1, value=1)
+            with col_b:
+                new_room_name = st.text_input("채팅방 이름", placeholder="예) 황금후추 돈버는 사주방 1기")
+            if st.form_submit_button("저장", type="primary", use_container_width=True):
+                if not new_room_name.strip():
+                    st.error("채팅방 이름을 입력해주세요.")
+                else:
+                    save_room(int(new_room_num), new_room_name.strip())
+                    st.success(f"채팅방 {int(new_room_num)} — '{new_room_name.strip()}' 저장 완료")
+                    st.rerun()
+
+        if ROOMS:
+            st.divider()
+            st.markdown("**현재 등록된 채팅방**")
+            rooms_df = pd.DataFrame(
+                [{"번호": k, "이름": v} for k, v in sorted(ROOMS.items())]
+            )
+            st.dataframe(rooms_df, use_container_width=True, hide_index=True)
+
+            with st.form("room_delete_form"):
+                del_room = st.selectbox(
+                    "삭제할 채팅방",
+                    options=ROOM_NUMBERS,
+                    format_func=lambda x: f"{x} — {ROOMS.get(x, '')}",
+                )
+                if st.form_submit_button("삭제", type="secondary", use_container_width=True):
+                    delete_room(del_room)
+                    st.success(f"채팅방 {del_room} 삭제 완료")
+                    st.rerun()
+
+    if not ROOMS:
+        st.info("위에서 채팅방을 먼저 추가해주세요.")
+        return
+
+    st.divider()
     st.caption("각 채팅방이 어떤 강의 모객을 위해 운영되는지 입력하고 이력을 관리해요.")
 
     # ── 신규 캠페인 등록 ───────────────────────────────────────

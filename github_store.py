@@ -12,6 +12,8 @@ CAMPAIGNS_PATH = "data/campaigns.csv"
 MEMBERS_COLS   = ['date', 'room_num', 'room_name', 'members', 'prev_members', 'change']
 CAMPAIGNS_COLS = ['room_num', 'campaign_name', 'product', 'cohort',
                   'start_date', 'end_date', 'is_current', 'memo']
+ROOMS_PATH     = "data/rooms.csv"
+ROOMS_COLS     = ['room_num', 'room_name']
 
 PRODUCT_OPTIONS = ['사주', '타로', '부동산', '빌딩', '기타']
 
@@ -158,6 +160,38 @@ def end_campaign(room_num: int):
     df.loc[mask, "end_date"]   = str(date.today())
     _write_csv(CAMPAIGNS_PATH, df, f"캠페인 종료: 채팅방 {room_num}")
     load_campaigns.clear()
+
+
+# ── 채팅방 목록 ───────────────────────────────────────────────────
+
+@st.cache_data(ttl=300)
+def load_rooms() -> dict:
+    df = _read_csv(ROOMS_PATH, ROOMS_COLS)
+    if df.empty:
+        return {}
+    df['room_num'] = pd.to_numeric(df['room_num'], errors='coerce').astype('Int64')
+    return {int(row['room_num']): row['room_name'] for _, row in df.iterrows()}
+
+
+def save_room(room_num: int, room_name: str):
+    df = _read_csv(ROOMS_PATH, ROOMS_COLS)
+    if not df.empty:
+        df['room_num'] = pd.to_numeric(df['room_num'], errors='coerce').astype('Int64')
+        df = df[df['room_num'] != room_num]
+    new_row = pd.DataFrame([{'room_num': room_num, 'room_name': room_name}])
+    combined = pd.concat([df, new_row], ignore_index=True).sort_values('room_num')
+    _write_csv(ROOMS_PATH, combined, f"채팅방 {room_num} 추가/수정")
+    load_rooms.clear()
+
+
+def delete_room(room_num: int):
+    df = _read_csv(ROOMS_PATH, ROOMS_COLS)
+    if df.empty:
+        return
+    df['room_num'] = pd.to_numeric(df['room_num'], errors='coerce').astype('Int64')
+    df = df[df['room_num'] != room_num]
+    _write_csv(ROOMS_PATH, df, f"채팅방 {room_num} 삭제")
+    load_rooms.clear()
 
 
 def get_history(room_num: int) -> pd.DataFrame:
