@@ -68,51 +68,58 @@ def tab_input():
 
     # ── OCR 업로드 ─────────────────────────────────────────────
     st.subheader("1단계 — 스크린샷 업로드")
-    st.caption("카카오톡에서 '황금후추 돈버는'으로 검색한 채팅방 목록 화면을 캡처해서 올려주세요.")
+    st.caption("채팅방 목록 화면을 캡처해서 올려주세요. 스크롤이 필요하면 여러 장을 한 번에 올려도 됩니다.")
 
-    uploaded = st.file_uploader(
-        "이미지 파일 선택 (PNG / JPG)",
+    uploaded_files = st.file_uploader(
+        "이미지 파일 선택 (PNG / JPG) — 여러 장 동시 선택 가능",
         type=['png', 'jpg', 'jpeg'],
+        accept_multiple_files=True,
         key='screenshot_upload',
     )
 
-    if uploaded:
+    if uploaded_files:
         from PIL import Image
-        img = Image.open(uploaded)
+        import numpy as np
+        from ocr_parser import _group_by_row, _parse_rows
+        from image_processor import preprocess_for_ocr
 
-        col_img, col_status = st.columns([1, 1])
-        with col_img:
-            st.image(img, caption="업로드된 스크린샷", use_container_width=True)
+        # 업로드된 이미지 미리보기
+        img_cols = st.columns(min(len(uploaded_files), 3))
+        for i, f in enumerate(uploaded_files):
+            with img_cols[i % 3]:
+                st.image(Image.open(f), caption=f.name, use_container_width=True)
 
-        with col_status:
-            if not st.session_state.ocr_done:
-                with st.spinner("텍스트 인식 중...\n처음 실행 시 AI 모델 다운로드로 1~2분 소요될 수 있어요."):
-                    try:
-                        import numpy as np
-                        reader = load_ocr_reader()
+        if not st.session_state.ocr_done:
+            with st.spinner(f"{len(uploaded_files)}장 인식 중... 처음 실행 시 1~2분 소요될 수 있어요."):
+                try:
+                    reader = load_ocr_reader()
+                    merged = {}
+
+                    for f in uploaded_files:
+                        img = Image.open(f)
+                        img = preprocess_for_ocr(img)
                         img_array = np.array(img.convert('RGB'))
                         raw = reader.readtext(img_array)
-
-                        from ocr_parser import _group_by_row, _parse_rows
                         rows = _group_by_row(raw, y_threshold=25)
                         extracted = _parse_rows(rows)
-
-                        st.session_state.ocr_results = {r['room_num']: r['members'] for r in extracted}
-                        st.session_state.ocr_done = True
-
-                        # 입력 칸에 OCR 결과를 직접 반영 (Streamlit key 우선 덮어쓰기)
                         for r in extracted:
-                            st.session_state[f"inp_{r['room_num']}"] = r['members']
+                            merged[r['room_num']] = r['members']
 
-                        st.success(f"✅ {len(extracted)}개 채팅방 인식 완료")
-                    except Exception as e:
-                        st.error(f"OCR 오류: {e}")
-                        st.info("아래 표에서 직접 숫자를 입력해도 됩니다.")
-            else:
-                st.success(f"✅ {len(st.session_state.ocr_results)}개 채팅방 인식 완료")
-                if st.button("🔄 다시 인식"):
-                    st.session_state.ocr_done = False
-                    st.rerun()
+                    st.session_state.ocr_results = merged
+                    st.session_state.ocr_done = True
+
+                    for rn, val in merged.items():
+                        st.session_state[f"inp_{rn}"] = val
+
+                    st.success(f"✅ {len(merged)}개 채팅방 인식 완료 ({len(uploaded_files)}장 처리)")
+                except Exception as e:
+                    st.error(f"OCR 오류: {e}")
+                    st.info("아래 표에서 직접 숫자를 입력해도 됩니다.")
+        else:
+            st.success(f"✅ {len(st.session_state.ocr_results)}개 채팅방 인식 완료 ({len(uploaded_files)}장)")
+            if st.button("🔄 다시 인식"):
+                st.session_state.ocr_done = False
+                st.rerun()
 
     # ── 인원 확인 및 수정 ──────────────────────────────────────
     st.subheader("2단계 — 인원 확인 및 수정")
