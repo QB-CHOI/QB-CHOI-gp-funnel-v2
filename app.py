@@ -158,7 +158,7 @@ def tab_input():
                 if v > 0
             ]
             if room_data:
-                with st.spinner("Google Sheets에 저장 중..."):
+                with st.spinner("GitHub에 저장 중..."):
                     save_daily(str(input_date), room_data)
                 st.success(f"✅ {input_date} 데이터 저장 완료 — {len(room_data)}개 채팅방")
                 st.session_state.ocr_done = False
