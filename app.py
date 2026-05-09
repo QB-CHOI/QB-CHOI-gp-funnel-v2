@@ -27,13 +27,6 @@ if 'uploaded_file_names' not in st.session_state:
     st.session_state.uploaded_file_names = []
 
 
-# ── OCR 리더 캐싱 (앱 생명주기 동안 1회 로드) ─────────────────────
-
-@st.cache_resource(show_spinner=False)
-def load_ocr_reader():
-    import easyocr
-    return easyocr.Reader(['ko', 'en'], verbose=False)
-
 
 # ── 메인 ─────────────────────────────────────────────────────────
 
@@ -88,9 +81,7 @@ def tab_input():
 
     if uploaded_files:
         from PIL import Image
-        import numpy as np
-        from ocr_parser import _group_by_row, _parse_rows
-        from image_processor import preprocess_for_ocr
+        from ocr_parser import extract_from_image
 
         # 파일을 한 번만 읽어서 재사용 (파일 포인터 소진 방지)
         images = []
@@ -105,17 +96,11 @@ def tab_input():
                 st.image(img, caption=name, use_container_width=True)
 
         if not st.session_state.ocr_done:
-            with st.spinner(f"{len(images)}장 인식 중... 처음 실행 시 1~2분 소요될 수 있어요."):
+            with st.spinner(f"{len(images)}장 인식 중..."):
                 try:
-                    reader = load_ocr_reader()
                     merged = {}
-
                     for _, img in images:
-                        processed = preprocess_for_ocr(img)
-                        img_array = np.array(processed.convert('RGB'))
-                        raw = reader.readtext(img_array)
-                        rows = _group_by_row(raw, y_threshold=25)
-                        extracted = _parse_rows(rows)
+                        extracted = extract_from_image(img)
                         for r in extracted:
                             merged[r['room_num']] = r['members']
 
