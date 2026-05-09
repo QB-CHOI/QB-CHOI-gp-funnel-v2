@@ -23,6 +23,8 @@ if 'ocr_results' not in st.session_state:
     st.session_state.ocr_results = {}
 if 'ocr_done' not in st.session_state:
     st.session_state.ocr_done = False
+if 'uploaded_file_names' not in st.session_state:
+    st.session_state.uploaded_file_names = []
 
 
 # ── OCR 리더 캐싱 (앱 생명주기 동안 1회 로드) ─────────────────────
@@ -77,28 +79,40 @@ def tab_input():
         key='screenshot_upload',
     )
 
+    # 파일 목록이 바뀌면 OCR 상태 초기화
+    current_names = [f.name for f in uploaded_files] if uploaded_files else []
+    if current_names != st.session_state.uploaded_file_names:
+        st.session_state.ocr_done = False
+        st.session_state.ocr_results = {}
+        st.session_state.uploaded_file_names = current_names
+
     if uploaded_files:
         from PIL import Image
         import numpy as np
         from ocr_parser import _group_by_row, _parse_rows
         from image_processor import preprocess_for_ocr
 
-        # 업로드된 이미지 미리보기
-        img_cols = st.columns(min(len(uploaded_files), 3))
-        for i, f in enumerate(uploaded_files):
+        # 파일을 한 번만 읽어서 재사용 (파일 포인터 소진 방지)
+        images = []
+        for f in uploaded_files:
+            f.seek(0)
+            images.append((f.name, Image.open(f).copy()))
+
+        # 미리보기
+        img_cols = st.columns(min(len(images), 3))
+        for i, (name, img) in enumerate(images):
             with img_cols[i % 3]:
-                st.image(Image.open(f), caption=f.name, use_container_width=True)
+                st.image(img, caption=name, use_container_width=True)
 
         if not st.session_state.ocr_done:
-            with st.spinner(f"{len(uploaded_files)}장 인식 중... 처음 실행 시 1~2분 소요될 수 있어요."):
+            with st.spinner(f"{len(images)}장 인식 중... 처음 실행 시 1~2분 소요될 수 있어요."):
                 try:
                     reader = load_ocr_reader()
                     merged = {}
 
-                    for f in uploaded_files:
-                        img = Image.open(f)
-                        img = preprocess_for_ocr(img)
-                        img_array = np.array(img.convert('RGB'))
+                    for _, img in images:
+                        processed = preprocess_for_ocr(img)
+                        img_array = np.array(processed.convert('RGB'))
                         raw = reader.readtext(img_array)
                         rows = _group_by_row(raw, y_threshold=25)
                         extracted = _parse_rows(rows)
@@ -111,12 +125,12 @@ def tab_input():
                     for rn, val in merged.items():
                         st.session_state[f"inp_{rn}"] = val
 
-                    st.success(f"✅ {len(merged)}개 채팅방 인식 완료 ({len(uploaded_files)}장 처리)")
+                    st.success(f"✅ {len(merged)}개 채팅방 인식 완료 ({len(images)}장 처리)")
                 except Exception as e:
                     st.error(f"OCR 오류: {e}")
                     st.info("아래 표에서 직접 숫자를 입력해도 됩니다.")
         else:
-            st.success(f"✅ {len(st.session_state.ocr_results)}개 채팅방 인식 완료 ({len(uploaded_files)}장)")
+            st.success(f"✅ {len(st.session_state.ocr_results)}개 채팅방 인식 완료 ({len(images)}장)")
             if st.button("🔄 다시 인식"):
                 st.session_state.ocr_done = False
                 st.rerun()
