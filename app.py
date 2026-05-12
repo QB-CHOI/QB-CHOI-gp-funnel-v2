@@ -120,6 +120,30 @@ def tab_input():
                 st.session_state.ocr_done = False
                 st.rerun()
 
+    # ── 채팅방 이름 수정 ───────────────────────────────────────
+    with st.expander("✏️ 채팅방 이름 수정"):
+        st.caption("이름을 바꾸면 GitHub에 바로 저장됩니다.")
+        with st.form("room_name_edit_form"):
+            name_inputs = {}
+            name_cols = st.columns(3)
+            for idx, rn in enumerate(ROOM_NUMBERS):
+                with name_cols[idx % 3]:
+                    name_inputs[rn] = st.text_input(
+                        f"채팅방 {rn}",
+                        value=ROOMS[rn],
+                        key=f"name_edit_{rn}",
+                    )
+            if st.form_submit_button("이름 저장", type="primary", use_container_width=True):
+                changed = [(rn, name_inputs[rn].strip()) for rn in ROOM_NUMBERS
+                           if name_inputs[rn].strip() and name_inputs[rn].strip() != ROOMS[rn]]
+                if changed:
+                    for rn, new_name in changed:
+                        save_room(rn, new_name)
+                    st.success(f"✅ {len(changed)}개 채팅방 이름 저장 완료")
+                    st.rerun()
+                else:
+                    st.info("변경된 이름이 없습니다.")
+
     # ── 인원 확인 및 수정 ──────────────────────────────────────
     st.subheader("2단계 — 인원 확인 및 수정")
     st.caption("OCR이 잘못 읽은 숫자가 있으면 직접 수정하세요. 0은 미입력으로 처리됩니다.")
