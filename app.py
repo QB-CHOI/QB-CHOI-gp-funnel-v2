@@ -512,14 +512,71 @@ def tab_campaign():
 # ── 탭 5: 데이터 관리 ─────────────────────────────────────────────
 
 def tab_data():
+    ROOMS = load_rooms()
+    ROOM_NUMBERS = sorted(ROOMS.keys())
     st.header("데이터 관리")
     df = load_all()
+
+    # ── 날짜별 데이터 수정 ─────────────────────────────────────
+    st.subheader("날짜별 데이터 수정")
+    st.caption("OCR 오류 등으로 잘못 저장된 데이터를 날짜를 선택해 직접 수정할 수 있습니다.")
+
+    existing_dates = sorted(df['date'].astype(str).unique().tolist(), reverse=True) if not df.empty else []
+
+    edit_mode = st.radio(
+        "날짜 선택 방식",
+        ["기존 날짜 수정", "새 날짜 직접 입력"],
+        horizontal=True,
+        key="edit_mode_radio",
+    )
+
+    if edit_mode == "기존 날짜 수정" and existing_dates:
+        edit_date_str = st.selectbox("수정할 날짜", options=existing_dates, key="edit_date_select")
+    else:
+        edit_date_input = st.date_input("날짜 입력", value=date.today(), key="edit_date_new")
+        edit_date_str = str(edit_date_input)
+
+    # 해당 날짜의 현재 데이터 로드
+    if not df.empty:
+        df_edit = df[df['date'].astype(str) == edit_date_str]
+        current = {int(row['room_num']): int(row['members']) for _, row in df_edit.iterrows()}
+    else:
+        current = {}
+
+    with st.form("data_edit_form"):
+        st.markdown(f"**{edit_date_str} 인원 수정** — 0은 미입력으로 처리")
+        edit_cols = st.columns(3)
+        edit_vals = {}
+        for idx, rn in enumerate(ROOM_NUMBERS):
+            with edit_cols[idx % 3]:
+                edit_vals[rn] = st.number_input(
+                    ROOMS.get(rn, f"채팅방 {rn}"),
+                    min_value=0,
+                    value=current.get(rn, 0),
+                    step=1,
+                    key=f"edit_{rn}",
+                )
+
+        if st.form_submit_button("💾 수정 저장", type="primary", use_container_width=True):
+            room_data = [
+                {'room_num': rn, 'room_name': ROOMS.get(rn, f'채팅방 {rn}'), 'members': v}
+                for rn, v in edit_vals.items() if v > 0
+            ]
+            if room_data:
+                with st.spinner("저장 중..."):
+                    save_daily(edit_date_str, room_data)
+                st.success(f"✅ {edit_date_str} 데이터 수정 완료 — {len(room_data)}개 채팅방")
+                st.rerun()
+            else:
+                st.warning("입력된 인원이 없습니다.")
+
+    st.divider()
 
     if df.empty:
         st.info("데이터가 없습니다.")
         return
 
-    # 전체 데이터 표시
+    # ── 전체 데이터 표시 ───────────────────────────────────────
     st.subheader("전체 데이터")
     show = df.sort_values(['date', 'room_num'], ascending=[False, True]).reset_index(drop=True)
     st.dataframe(show, use_container_width=True, hide_index=True)
@@ -551,7 +608,7 @@ def tab_data():
     with col_del:
         st.subheader("날짜 데이터 삭제")
         dates = sorted(df['date'].astype(str).unique().tolist(), reverse=True)
-        del_date = st.selectbox("삭제할 날짜", options=dates)
+        del_date = st.selectbox("삭제할 날짜", options=dates, key="del_date_select")
         if st.button("🗑️ 삭제", type="secondary", use_container_width=True):
             delete_date(del_date)
             st.success(f"{del_date} 데이터 삭제 완료")
