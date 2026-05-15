@@ -68,11 +68,17 @@ def change_bar_chart(df_today: pd.DataFrame):
 
 
 def total_trend_bar(df: pd.DataFrame):
-    """날짜별 전체 총원 합계 막대 차트."""
+    """날짜별 전체 총원 합계 막대 차트 — carry-forward 적용."""
     if df.empty:
         return None
 
-    daily = df.groupby('date')['members'].sum().reset_index()
+    # 날짜 × 방 전체 조합으로 pivot 후 누락된 방은 직전값으로 채움
+    df_pivot = (
+        df.pivot_table(index='date', columns='room_num', values='members', aggfunc='last')
+          .sort_index()
+          .ffill()
+    )
+    daily = df_pivot.sum(axis=1).reset_index()
     daily.columns = ['date', 'total']
     daily = daily.sort_values('date')
 

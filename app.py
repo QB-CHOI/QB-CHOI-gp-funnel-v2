@@ -187,10 +187,16 @@ def tab_input():
                 for rn, v in edited.items()
                 if v > 0
             ]
+            missing_rooms = [ROOMS[rn] for rn, v in edited.items() if v == 0]
             if room_data:
                 with st.spinner("GitHub에 저장 중..."):
                     save_daily(str(input_date), room_data)
                 st.success(f"✅ {input_date} 데이터 저장 완료 — {len(room_data)}개 채팅방")
+                if missing_rooms:
+                    st.warning(
+                        f"⚠️ {len(missing_rooms)}개 채팅방이 입력되지 않았습니다:\n" +
+                        "  |  ".join(missing_rooms)
+                    )
                 st.session_state.ocr_done = False
                 st.session_state.ocr_results = {}
                 st.balloons()
@@ -220,6 +226,18 @@ def tab_dashboard():
 
     df_today = df[df['date'] == latest_date].copy()
     campaigns = get_current_campaigns()
+
+    # ── 입력 완성도 경고 ───────────────────────────────────────
+    ROOMS = load_rooms()
+    total_rooms = len(ROOMS)
+    entered_rooms = len(df_today)
+    if entered_rooms < total_rooms:
+        missing_names = [ROOMS[rn] for rn in sorted(ROOMS.keys())
+                         if rn not in df_today['room_num'].values]
+        st.warning(
+            f"⚠️ 오늘({latest_date}) {total_rooms - entered_rooms}개 채팅방 미입력: " +
+            "  |  ".join(missing_names)
+        )
 
     # ── 요약 지표 ──────────────────────────────────────────────
     total = int(df_today['members'].sum())
