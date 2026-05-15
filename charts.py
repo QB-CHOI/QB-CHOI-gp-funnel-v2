@@ -3,8 +3,8 @@ import plotly.express as px
 import pandas as pd
 
 
-def trend_line_chart(df: pd.DataFrame, room_nums: list = None):
-    """방별 인원 추이 라인 차트."""
+def trend_line_chart(df: pd.DataFrame, room_nums: list = None, targets: dict = None):
+    """방별 인원 추이 라인 차트. targets: {room_num: target_count}"""
     if df.empty:
         return None
 
@@ -13,7 +13,9 @@ def trend_line_chart(df: pd.DataFrame, room_nums: list = None):
         plot_df = plot_df[plot_df['room_num'].isin(room_nums)]
 
     plot_df = plot_df.sort_values('date')
-    plot_df['label'] = plot_df['room_num'].astype(str)
+    plot_df['label'] = plot_df['room_num'].apply(
+        lambda x: str(x)
+    )
 
     fig = px.line(
         plot_df,
@@ -24,11 +26,25 @@ def trend_line_chart(df: pd.DataFrame, room_nums: list = None):
         labels={'date': '날짜', 'members': '인원 수', 'label': '채팅방'},
         title='채팅방별 인원 추이',
     )
+
+    # 목표 인원 점선 추가
+    if targets:
+        for room_num, target in targets.items():
+            if target and target > 0:
+                fig.add_hline(
+                    y=target,
+                    line_dash='dot',
+                    line_color='#e53935',
+                    opacity=0.6,
+                    annotation_text=f"목표 {target:,}명",
+                    annotation_position='right',
+                )
+
     fig.update_layout(
         hovermode='x unified',
         height=420,
         legend_title='채팅방',
-        margin=dict(t=50, b=30),
+        margin=dict(t=50, b=30, r=100),
     )
     return fig
 

@@ -11,7 +11,7 @@ CAMPAIGNS_PATH = "data/campaigns.csv"
 
 MEMBERS_COLS   = ['date', 'room_num', 'room_name', 'members', 'prev_members', 'change']
 CAMPAIGNS_COLS = ['room_num', 'campaign_name', 'product', 'cohort',
-                  'start_date', 'end_date', 'is_current', 'memo']
+                  'start_date', 'end_date', 'is_current', 'memo', 'target_count']
 ROOMS_PATH     = "data/rooms.csv"
 ROOMS_COLS     = ['room_num', 'room_name']
 
@@ -133,7 +133,7 @@ def get_current_campaigns() -> dict:
 
 
 def save_campaign(room_num: int, campaign_name: str, product: str,
-                  cohort: str, start_date: str, memo: str):
+                  cohort: str, start_date: str, memo: str, target_count: int = 0):
     df = load_campaigns()
     if not df.empty:
         mask = (df["room_num"] == room_num) & (df["is_current"] == True)
@@ -145,6 +145,7 @@ def save_campaign(room_num: int, campaign_name: str, product: str,
         "product": product, "cohort": cohort,
         "start_date": start_date, "end_date": "",
         "is_current": True, "memo": memo,
+        "target_count": int(target_count),
     }])
     combined = pd.concat([df, new_row], ignore_index=True)
     _write_csv(CAMPAIGNS_PATH, combined, f"캠페인 등록: 채팅방 {room_num} — {campaign_name}")

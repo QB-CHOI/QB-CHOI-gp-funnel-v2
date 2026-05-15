@@ -265,6 +265,27 @@ def tab_dashboard():
         elif not campaigns:
             st.info("⚙️ 채팅방 설정 탭에서 상품 정보를 등록하면 상품별 분석이 표시돼요.")
 
+    # ── 목표 달성률 ────────────────────────────────────────────
+    target_rows = [
+        (rn, info)
+        for rn, info in campaigns.items()
+        if int(info.get('target_count', 0) or 0) > 0
+    ]
+    if target_rows:
+        st.subheader("목표 달성 현황")
+        goal_cols = st.columns(min(len(target_rows), 4))
+        for i, (rn, info) in enumerate(sorted(target_rows)):
+            target = int(info.get('target_count', 0))
+            current_row = df_today[df_today['room_num'] == rn]
+            current = int(current_row['members'].values[0]) if not current_row.empty else 0
+            pct = round(current / target * 100, 1) if target else 0
+            with goal_cols[i % 4]:
+                st.metric(
+                    label=f"{ROOMS.get(rn, f'채팅방 {rn}')}",
+                    value=f"{current:,}명",
+                    delta=f"목표 {pct}% ({target:,}명)",
+                )
+
     # ── 채팅방별 상세 표 ───────────────────────────────────────
     st.subheader("채팅방별 상세")
 
@@ -344,27 +365,47 @@ def tab_trend():
         return
 
     all_rooms = sorted(df['room_num'].unique().tolist())
+    min_date = df['date'].min()
+    max_date = df['date'].max()
 
-    selected = st.multiselect(
-        "채팅방 선택 (비워두면 전체 표시)",
-        options=all_rooms,
-        format_func=lambda x: ROOMS.get(x, f"채팅방 {x}"),
-    )
+    # ── 필터 바 ────────────────────────────────────────────────
+    col_f1, col_f2, col_f3 = st.columns([2, 1, 1])
+    with col_f1:
+        selected = st.multiselect(
+            "채팅방 선택 (비워두면 전체)",
+            options=all_rooms,
+            format_func=lambda x: ROOMS.get(x, f"채팅방 {x}"),
+        )
+    with col_f2:
+        date_from = st.date_input("시작일", value=min_date, min_value=min_date, max_value=max_date)
+    with col_f3:
+        date_to = st.date_input("종료일", value=max_date, min_value=min_date, max_value=max_date)
 
+    # 필터 적용
+    df_filtered = df[(df['date'] >= date_from) & (df['date'] <= date_to)]
     filter_rooms = selected if selected else all_rooms
+    df_filtered = df_filtered[df_filtered['room_num'].isin(filter_rooms)]
 
-    # 라인 차트
-    fig_line = trend_line_chart(df, filter_rooms)
+    # 선택 방의 목표 인원 조회
+    campaigns = get_current_campaigns()
+    targets = {
+        rn: int(info.get('target_count', 0) or 0)
+        for rn, info in campaigns.items()
+        if rn in filter_rooms
+    }
+
+    # 라인 차트 (목표 인원 점선 포함)
+    fig_line = trend_line_chart(df_filtered, filter_rooms, targets=targets)
     if fig_line:
         st.plotly_chart(fig_line, use_container_width=True)
 
     # 전체 합계 막대 차트
-    fig_total = total_trend_bar(df)
+    fig_total = total_trend_bar(df_filtered)
     if fig_total:
         st.plotly_chart(fig_total, use_container_width=True)
 
     # ── 주간 비교 차트 ──────────────────────────────────────────
-    fig_week = weekly_comparison_chart(df)
+    fig_week = weekly_comparison_chart(df_filtered)
     if fig_week:
         st.plotly_chart(fig_week, use_container_width=True)
     else:
@@ -448,10 +489,17 @@ def tab_campaign():
                 placeholder="예) 5기, 3회차",
             )
             start_date = st.date_input("모객 시작일", value=date.today())
+            target_count = st.number_input(
+                "목표 인원",
+                min_value=0,
+                value=0,
+                step=100,
+                help="0이면 목표 미설정. 추이 그래프에 점선으로 표시됩니다.",
+            )
             memo = st.text_area(
                 "메모",
-                placeholder="목표 인원, 특이사항 등 자유롭게 입력",
-                height=100,
+                placeholder="특이사항 등 자유롭게 입력",
+                height=80,
             )
 
         submitted = st.form_submit_button("💾 저장하기", type="primary", use_container_width=True)
@@ -467,6 +515,7 @@ def tab_campaign():
                     cohort=cohort.strip(),
                     start_date=str(start_date),
                     memo=memo.strip(),
+                    target_count=int(target_count),
                 )
                 st.success(f"✅ {ROOMS.get(room_num)} — '{campaign_name}' 저장 완료")
                 st.rerun()
