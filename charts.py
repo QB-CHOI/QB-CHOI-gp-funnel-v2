@@ -193,3 +193,67 @@ def weekly_comparison_chart(df: pd.DataFrame):
         legend=dict(orientation='h', yanchor='bottom', y=1.02),
     )
     return fig
+
+
+def cohort_trend_chart(df: pd.DataFrame, campaigns: dict, rooms: dict = None, mode: str = '절대값'):
+    """강의 시작일(D+0) 기준 모객 곡선 비교 차트.
+    mode: '절대값' | '순증감' — D+0 대비 증감 인원
+    """
+    if df.empty or not campaigns:
+        return None
+
+    import datetime
+    df = df.copy()
+    df['date'] = pd.to_datetime(df['date']).dt.date
+
+    traces = []
+    for room_num, info in sorted(campaigns.items()):
+        start_str = info.get('start_date', '')
+        if not start_str:
+            continue
+        try:
+            start = pd.to_datetime(start_str).date()
+        except Exception:
+            continue
+
+        room_df = df[df['room_num'] == room_num].copy()
+        room_df = room_df[room_df['date'] >= start].sort_values('date')
+        if room_df.empty:
+            continue
+
+        room_df['day'] = room_df['date'].apply(lambda d: (d - start).days)
+
+        label = info.get('campaign_name', f'채팅방 {room_num}')
+        if rooms:
+            label = f"{rooms.get(room_num, f'채팅방 {room_num}')} · {info.get('campaign_name', '')}"
+
+        if mode == '순증감':
+            base = room_df['members'].iloc[0]
+            room_df['y'] = room_df['members'] - base
+        else:
+            room_df['y'] = room_df['members']
+
+        traces.append(go.Scatter(
+            x=room_df['day'],
+            y=room_df['y'],
+            mode='lines+markers',
+            name=label,
+            hovertemplate=f'<b>{label}</b><br>D+%{{x}}일<br>{"인원" if mode == "절대값" else "증감"}: %{{y:,}}명<extra></extra>',
+        ))
+
+    if not traces:
+        return None
+
+    y_title = '인원 수' if mode == '절대값' else 'D+0 대비 증감 인원'
+    fig = go.Figure(traces)
+    fig.update_layout(
+        title=f'강의별 모객 곡선 비교 (D+N일 기준) — {mode}',
+        xaxis_title='모객 시작 후 경과일 (D+N)',
+        yaxis_title=y_title,
+        hovermode='x unified',
+        height=420,
+        margin=dict(t=50, b=30),
+        legend=dict(orientation='h', yanchor='bottom', y=1.02),
+    )
+    fig.add_vline(x=0, line_dash='dash', line_color='#bdbdbd', line_width=1)
+    return fig

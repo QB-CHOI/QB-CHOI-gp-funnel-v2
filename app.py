@@ -9,7 +9,7 @@ from github_store import (
     load_rooms, save_room, delete_room,
     PRODUCT_OPTIONS,
 )
-from charts import trend_line_chart, change_bar_chart, total_trend_bar, product_bar_chart, weekly_comparison_chart
+from charts import trend_line_chart, change_bar_chart, total_trend_bar, product_bar_chart, weekly_comparison_chart, cohort_trend_chart
 
 st.set_page_config(
     page_title="채팅방 인원 분석",
@@ -340,7 +340,15 @@ def tab_dashboard():
     if campaigns:
         st.subheader("현재 진행 중인 강의")
         camp_rows = []
+        today = date.today()
         for room_num, info in sorted(campaigns.items()):
+            start_str = info.get('start_date', '')
+            try:
+                start_dt = pd.to_datetime(start_str).date()
+                day_n = (today - start_dt).days
+                day_label = f"D+{day_n}"
+            except Exception:
+                day_label = '-'
             camp_rows.append({
                 '방 번호': room_num,
                 '채팅방': ROOMS.get(room_num, f'채팅방 {room_num}'),
@@ -348,6 +356,7 @@ def tab_dashboard():
                 '상품': info.get('product', '-'),
                 '기수': info.get('cohort', '-'),
                 '시작일': info.get('start_date', '-'),
+                'D+N': day_label,
                 '메모': info.get('memo', '-'),
             })
         st.dataframe(pd.DataFrame(camp_rows), use_container_width=True, hide_index=True)
@@ -410,6 +419,15 @@ def tab_trend():
         st.plotly_chart(fig_week, use_container_width=True)
     else:
         st.info("주간 비교는 7일 이상의 데이터가 있으면 자동으로 표시돼요.")
+
+    # ── D+N 모객 곡선 ───────────────────────────────────────────
+    st.subheader("강의별 모객 곡선 비교 (D+N일 기준)")
+    cohort_mode = st.radio("표시 방식", ["절대값", "순증감"], horizontal=True, key="cohort_mode")
+    fig_cohort = cohort_trend_chart(df, campaigns, rooms=ROOMS, mode=cohort_mode)
+    if fig_cohort:
+        st.plotly_chart(fig_cohort, use_container_width=True)
+    else:
+        st.info("⚙️ 채팅방 설정 탭에서 강의를 등록하면 모객 곡선이 표시됩니다.")
 
 
 # ── 탭 4: 채팅방 설정 ────────────────────────────────────────────
