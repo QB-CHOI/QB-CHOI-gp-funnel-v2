@@ -118,17 +118,17 @@ def tab_input():
                                 rn = r['room_num']
                                 if rn in ROOMS:
                                     merged[rn] = r['members']
-                        # Claude가 인식 못한 방은 Tesseract로 보완
+                        # Claude가 인식 못한 방은 EasyOCR로 보완
                         missing_rooms = set(ROOMS.keys()) - set(merged.keys())
                         if missing_rooms:
                             for _, img in images:
-                                fallback = extract_from_image(img)
+                                fallback = extract_from_image(img, ROOMS)
                                 for r in fallback:
                                     if r['room_num'] in missing_rooms:
                                         merged[r['room_num']] = r['members']
                     else:
                         for _, img in images:
-                            extracted = extract_from_image(img)
+                            extracted = extract_from_image(img, ROOMS)
                             for r in extracted:
                                 merged[r['room_num']] = r['members']
 
