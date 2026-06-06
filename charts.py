@@ -195,6 +195,119 @@ def weekly_comparison_chart(df: pd.DataFrame):
     return fig
 
 
+def funnel_chart(df_members: pd.DataFrame, df_conv: pd.DataFrame,
+                 campaigns: dict, rooms: dict = None):
+    """강의별 모객 퍼널 — 채팅방 인원 → 신청자 → 수강 확정."""
+    if df_members.empty or not campaigns:
+        return None
+
+    latest_date = df_members['date'].max()
+    df_today = df_members[df_members['date'] == latest_date]
+
+    rows = []
+    for room_num, info in sorted(campaigns.items()):
+        label = (rooms or {}).get(room_num, f"채팅방 {room_num}")
+        members_row = df_today[df_today['room_num'] == room_num]
+        members = int(members_row['members'].values[0]) if not members_row.empty else 0
+
+        if not df_conv.empty:
+            conv_row = df_conv[df_conv['room_num'] == room_num].sort_values('date')
+            applicants = int(conv_row['applicants'].values[-1]) if not conv_row.empty else 0
+            confirmed  = int(conv_row['confirmed'].values[-1])  if not conv_row.empty else 0
+        else:
+            applicants, confirmed = 0, 0
+
+        if members == 0 and applicants == 0:
+            continue
+        rows.append({'label': label, 'members': members,
+                     'applicants': applicants, 'confirmed': confirmed})
+
+    if not rows:
+        return None
+
+    colors = ['#1565c0', '#2e7d32', '#e65100']
+    stages = [('채팅방 인원', 'members'), ('신청자', 'applicants'), ('수강 확정', 'confirmed')]
+
+    fig = go.Figure()
+    for (stage_name, key), color in zip(stages, colors):
+        fig.add_trace(go.Bar(
+            name=stage_name,
+            x=[r['label'] for r in rows],
+            y=[r[key] for r in rows],
+            marker_color=color,
+            text=[f"{r[key]:,}" if r[key] > 0 else '-' for r in rows],
+            textposition='outside',
+        ))
+
+    fig.update_layout(
+        title='강의별 모객 퍼널 (채팅방 인원 → 신청 → 수강)',
+        barmode='group',
+        xaxis_title='채팅방',
+        yaxis_title='인원',
+        height=400,
+        margin=dict(t=50, b=30),
+        legend=dict(orientation='h', yanchor='bottom', y=1.02),
+    )
+    return fig
+
+
+def conversion_rate_chart(df_conv: pd.DataFrame, campaigns: dict, rooms: dict = None):
+    """강의별 수강 전환율 비교 차트 (신청자 vs 수강확정 + 전환율%)."""
+    if df_conv.empty or not campaigns:
+        return None
+
+    rows = []
+    for room_num in sorted(campaigns.keys()):
+        label = (rooms or {}).get(room_num, f"채팅방 {room_num}")
+        conv_row = df_conv[df_conv['room_num'] == room_num]
+        if conv_row.empty:
+            continue
+        last = conv_row.sort_values('date').iloc[-1]
+        applicants = int(last['applicants'])
+        confirmed  = int(last['confirmed'])
+        conv_rate  = round(confirmed / applicants * 100, 1) if applicants > 0 else 0
+        rows.append({'label': label, '신청자': applicants,
+                     '수강확정': confirmed, '수강전환율(%)': conv_rate})
+
+    if not rows:
+        return None
+
+    df = pd.DataFrame(rows)
+    fig = go.Figure()
+    fig.add_trace(go.Bar(
+        name='신청자', x=df['label'], y=df['신청자'],
+        marker_color='#1976d2',
+        text=df['신청자'].apply(lambda x: f"{x:,}"),
+        textposition='outside',
+    ))
+    fig.add_trace(go.Bar(
+        name='수강 확정', x=df['label'], y=df['수강확정'],
+        marker_color='#388e3c',
+        text=df['수강확정'].apply(lambda x: f"{x:,}"),
+        textposition='outside',
+    ))
+    fig.add_trace(go.Scatter(
+        name='수강전환율(%)', x=df['label'], y=df['수강전환율(%)'],
+        mode='lines+markers+text',
+        text=df['수강전환율(%)'].apply(lambda x: f"{x}%"),
+        textposition='top center',
+        yaxis='y2',
+        line=dict(color='#e65100', width=2),
+        marker=dict(size=8),
+    ))
+    fig.update_layout(
+        title='강의별 신청·수강 전환 현황',
+        barmode='group',
+        height=380,
+        margin=dict(t=50, b=30),
+        legend=dict(orientation='h', yanchor='bottom', y=1.02),
+        yaxis=dict(title='인원'),
+        yaxis2=dict(title='수강전환율(%)', overlaying='y', side='right',
+                    range=[0, 100], showgrid=False),
+    )
+    return fig
+
+
 def cohort_trend_chart(df: pd.DataFrame, campaigns: dict, rooms: dict = None, mode: str = '절대값'):
     """강의 시작일(D+0) 기준 모객 곡선 비교 차트.
     mode: '절대값' | '순증감' — D+0 대비 증감 인원

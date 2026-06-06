@@ -12,8 +12,10 @@ CAMPAIGNS_PATH = "data/campaigns.csv"
 MEMBERS_COLS   = ['date', 'room_num', 'room_name', 'members', 'prev_members', 'change']
 CAMPAIGNS_COLS = ['room_num', 'campaign_name', 'product', 'cohort',
                   'start_date', 'end_date', 'is_current', 'memo', 'target_count']
-ROOMS_PATH     = "data/rooms.csv"
-ROOMS_COLS     = ['room_num', 'room_name']
+ROOMS_PATH       = "data/rooms.csv"
+ROOMS_COLS       = ['room_num', 'room_name']
+CONVERSIONS_PATH = "data/conversions.csv"
+CONVERSIONS_COLS = ['date', 'room_num', 'applicants', 'confirmed', 'revenue', 'memo']
 
 PRODUCT_OPTIONS = ['사주', '타로', '부동산', '빌딩', '기타']
 
@@ -203,4 +205,45 @@ def get_history(room_num: int) -> pd.DataFrame:
         df[df["room_num"] == room_num]
         .sort_values("start_date", ascending=False)
         .reset_index(drop=True)
+    )
+
+
+# ── 전환 데이터 ───────────────────────────────────────────────────
+
+@st.cache_data(ttl=300)
+def load_conversions() -> pd.DataFrame:
+    df = _read_csv(CONVERSIONS_PATH, CONVERSIONS_COLS)
+    if df.empty:
+        return df
+    df['date']     = pd.to_datetime(df['date']).dt.date
+    df['room_num'] = pd.to_numeric(df['room_num'], errors='coerce').astype('Int64')
+    for col in ['applicants', 'confirmed', 'revenue']:
+        df[col] = pd.to_numeric(df[col], errors='coerce').fillna(0)
+    return df
+
+
+def save_conversion(room_num: int, date_str: str, applicants: int,
+                    confirmed: int, revenue: int, memo: str):
+    df = load_conversions()
+    if not df.empty:
+        df = df[~((df['room_num'] == room_num) & (df['date'].astype(str) == date_str))]
+    new_row = pd.DataFrame([{
+        'date': date_str, 'room_num': room_num,
+        'applicants': applicants, 'confirmed': confirmed,
+        'revenue': revenue, 'memo': memo,
+    }])
+    combined = pd.concat([df, new_row], ignore_index=True).sort_values(['date', 'room_num'])
+    _write_csv(CONVERSIONS_PATH, combined, f"전환 데이터 저장: 채팅방 {room_num} {date_str}")
+    load_conversions.clear()
+
+
+def get_latest_conversions() -> pd.DataFrame:
+    """방별 가장 최근 전환 데이터 1행씩 반환."""
+    df = load_conversions()
+    if df.empty:
+        return df
+    return (
+        df.sort_values('date')
+          .groupby('room_num', as_index=False)
+          .last()
     )

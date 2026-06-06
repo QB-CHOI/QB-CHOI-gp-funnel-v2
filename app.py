@@ -7,9 +7,14 @@ from github_store import (
     load_campaigns, get_current_campaigns,
     save_campaign, end_campaign, get_history,
     load_rooms, save_room, delete_room,
+    load_conversions, save_conversion, get_latest_conversions,
     PRODUCT_OPTIONS,
 )
-from charts import trend_line_chart, change_bar_chart, total_trend_bar, product_bar_chart, weekly_comparison_chart, cohort_trend_chart
+from charts import (
+    trend_line_chart, change_bar_chart, total_trend_bar,
+    product_bar_chart, weekly_comparison_chart, cohort_trend_chart,
+    funnel_chart, conversion_rate_chart,
+)
 
 st.set_page_config(
     page_title="채팅방 인원 분석",
@@ -83,8 +88,8 @@ def _show_ocr_review(ocr_results: dict, rooms: dict, prev: dict):
 def main():
     st.title("💬 황금후추 채팅방 인원 분석")
 
-    tab1, tab2, tab3, tab4, tab5 = st.tabs([
-        "📸 오늘 입력", "📊 현황", "📈 추이 그래프", "⚙️ 채팅방 설정", "🗂️ 데이터 관리"
+    tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
+        "📸 오늘 입력", "📊 현황", "📋 전환 분석", "📈 추이 그래프", "⚙️ 채팅방 설정", "🗂️ 데이터 관리"
     ])
 
     with tab1:
@@ -92,10 +97,12 @@ def main():
     with tab2:
         tab_dashboard()
     with tab3:
-        tab_trend()
+        tab_conversion()
     with tab4:
-        tab_campaign()
+        tab_trend()
     with tab5:
+        tab_campaign()
+    with tab6:
         tab_data()
 
 
@@ -445,6 +452,95 @@ def tab_dashboard():
                 '메모': info.get('memo', '-'),
             })
         st.dataframe(pd.DataFrame(camp_rows), use_container_width=True, hide_index=True)
+
+
+# ── 탭 3: 전환 분석 ──────────────────────────────────────────────
+
+def tab_conversion():
+    ROOMS = load_rooms()
+    st.header("전환 분석")
+    st.caption("채팅방 인원 → 강의 신청 → 수강 확정까지 전환 흐름을 기록하고 분석합니다.")
+
+    campaigns = get_current_campaigns()
+    if not campaigns:
+        st.info("⚙️ 채팅방 설정 탭에서 진행 중인 강의를 먼저 등록해주세요.")
+        return
+
+    df_members = load_all()
+    df_conv    = load_conversions()
+
+    # ── 요약 지표 ──────────────────────────────────────────────
+    latest_conv = get_latest_conversions()
+    if not latest_conv.empty:
+        total_applicants = int(latest_conv['applicants'].sum())
+        total_confirmed  = int(latest_conv['confirmed'].sum())
+        total_revenue    = int(latest_conv['revenue'].sum())
+        conv_rate = round(total_confirmed / total_applicants * 100, 1) if total_applicants > 0 else 0
+
+        c1, c2, c3, c4 = st.columns(4)
+        c1.metric("총 신청자", f"{total_applicants:,}명")
+        c2.metric("총 수강 확정", f"{total_confirmed:,}명")
+        c3.metric("수강 전환율", f"{conv_rate}%")
+        c4.metric("총 매출", f"{total_revenue:,}원")
+
+        st.divider()
+
+    # ── 퍼널 차트 ──────────────────────────────────────────────
+    fig_funnel = funnel_chart(df_members, df_conv, campaigns, rooms=ROOMS)
+    if fig_funnel:
+        st.plotly_chart(fig_funnel, use_container_width=True)
+
+    # ── 전환율 차트 ────────────────────────────────────────────
+    fig_conv = conversion_rate_chart(df_conv, campaigns, rooms=ROOMS)
+    if fig_conv:
+        st.plotly_chart(fig_conv, use_container_width=True)
+
+    # ── 전환 데이터 입력 ───────────────────────────────────────
+    st.subheader("전환 데이터 입력")
+    st.caption("강의별 신청자·수강 확정·매출을 기록합니다. 같은 방+날짜로 다시 저장하면 덮어씁니다.")
+
+    with st.form("conversion_form"):
+        col1, col2 = st.columns(2)
+        with col1:
+            conv_room = st.selectbox(
+                "채팅방 (강의)",
+                options=sorted(campaigns.keys()),
+                format_func=lambda x: f"{ROOMS.get(x, f'채팅방 {x}')} — {campaigns[x].get('campaign_name', '')}",
+            )
+            conv_date = st.date_input("기준 날짜", value=date.today())
+            applicants = st.number_input("신청자 수", min_value=0, step=1, value=0)
+        with col2:
+            confirmed = st.number_input("수강 확정자 수", min_value=0, step=1, value=0)
+            revenue   = st.number_input("매출 (원)", min_value=0, step=10000, value=0,
+                                        help="수강료 합계. 0이면 미입력.")
+            conv_memo = st.text_input("메모", placeholder="특이사항 등")
+
+        if st.form_submit_button("💾 저장", type="primary", use_container_width=True):
+            save_conversion(
+                room_num=conv_room,
+                date_str=str(conv_date),
+                applicants=int(applicants),
+                confirmed=int(confirmed),
+                revenue=int(revenue),
+                memo=conv_memo.strip(),
+            )
+            st.success(f"✅ {ROOMS.get(conv_room, f'채팅방 {conv_room}')} 전환 데이터 저장 완료")
+            st.rerun()
+
+    # ── 전환 이력 테이블 ───────────────────────────────────────
+    if not df_conv.empty:
+        st.subheader("전환 이력")
+        disp = df_conv.copy()
+        disp['채팅방'] = disp['room_num'].apply(lambda x: ROOMS.get(int(x), f"채팅방 {x}"))
+        disp['강의명'] = disp['room_num'].apply(lambda x: campaigns.get(int(x), {}).get('campaign_name', '-'))
+        disp['신청전환율'] = disp.apply(
+            lambda r: f"{round(r['confirmed']/r['applicants']*100,1)}%"
+            if r['applicants'] > 0 else '-', axis=1
+        )
+        disp = disp[['date', '채팅방', '강의명', 'applicants', 'confirmed', '신청전환율', 'revenue', 'memo']]
+        disp.columns = ['날짜', '채팅방', '강의명', '신청자', '수강확정', '전환율', '매출(원)', '메모']
+        disp = disp.sort_values('날짜', ascending=False).reset_index(drop=True)
+        st.dataframe(disp, use_container_width=True, hide_index=True)
 
 
 # ── 탭 3: 추이 그래프 ─────────────────────────────────────────────
