@@ -28,6 +28,56 @@ if 'uploaded_file_names' not in st.session_state:
 
 
 
+# ── OCR 검토 테이블 ───────────────────────────────────────────────
+
+def _show_ocr_review(ocr_results: dict, rooms: dict, prev: dict):
+    """OCR 인식 결과를 전일 대비로 보여주는 검토 테이블."""
+    rows = []
+    has_warning = False
+
+    for rn, ocr_val in sorted(ocr_results.items()):
+        name = rooms.get(rn, f"채팅방 {rn}")
+        prev_val = prev.get(rn)
+        if prev_val is not None:
+            diff = ocr_val - int(prev_val)
+            pct = abs(diff / prev_val * 100) if prev_val else 0
+            diff_str = f"+{diff:,}" if diff > 0 else f"{diff:,}"
+            if pct > 50 or abs(diff) > 500:
+                status = "🚨 확인 필요"
+                has_warning = True
+            elif pct > 20 or abs(diff) > 200:
+                status = "⚠️ 변동 큼"
+                has_warning = True
+            else:
+                status = "✅ 정상"
+        else:
+            diff_str = "-"
+            status = "➕ 신규"
+
+        rows.append({
+            "채팅방": name,
+            "인식값": f"{ocr_val:,}",
+            "전일": f"{int(prev_val):,}" if prev_val is not None else "-",
+            "증감": diff_str,
+            "상태": status,
+        })
+
+    if not rows:
+        return
+
+    st.subheader("인식 결과 검토")
+    if has_warning:
+        st.warning("⚠️ 이상값이 감지되었습니다. 아래 표를 확인하고 필요시 2단계에서 수정하세요.")
+    else:
+        st.info("인식된 값이 모두 정상 범위입니다. 이상 있으면 아래에서 직접 수정하세요.")
+
+    st.dataframe(
+        pd.DataFrame(rows),
+        use_container_width=True,
+        hide_index=True,
+    )
+
+
 # ── 메인 ─────────────────────────────────────────────────────────
 
 def main():
@@ -60,6 +110,15 @@ def tab_input():
     st.header("오늘의 인원 입력")
 
     input_date = st.date_input("📅 날짜", value=date.today())
+
+    # 전일 인원 사전 로드 (OCR 검토 테이블과 입력 폼에서 공용)
+    df_all = load_all()
+    prev = {}
+    if not df_all.empty:
+        today_str = str(input_date)
+        df_prev = df_all[df_all['date'].astype(str) != today_str]
+        if not df_prev.empty:
+            prev = df_prev.sort_values('date').groupby('room_num').last()['members'].to_dict()
 
     # ── OCR 업로드 ─────────────────────────────────────────────
     st.subheader("1단계 — 스크린샷 업로드")
@@ -102,10 +161,10 @@ def tab_input():
         if _use_claude:
             st.caption("인식 방식: **Claude Vision** (고정밀)")
         else:
-            st.caption("인식 방식: Tesseract OCR — `anthropic_api_key` 설정 시 Claude Vision으로 자동 전환됩니다.")
+            st.caption("인식 방식: **EasyOCR** (방 이름 기반 공간 매칭)")
 
         if not st.session_state.ocr_done:
-            with st.spinner(f"{len(images)}장 인식 중..."):
+            with st.spinner(f"{len(images)}장 인식 중... (최초 실행 시 모델 로딩으로 1~2분 소요될 수 있습니다)"):
                 try:
                     merged = {}
 
@@ -138,17 +197,21 @@ def tab_input():
                     for rn, val in merged.items():
                         st.session_state[f"inp_{rn}"] = val
 
-                    method = "Claude Vision" if _use_claude else "Tesseract"
+                    method = "Claude Vision" if _use_claude else "EasyOCR"
                     st.success(f"✅ {len(merged)}개 채팅방 인식 완료 ({len(images)}장 · {method})")
                 except Exception as e:
                     st.error(f"OCR 오류: {e}")
                     st.info("아래 표에서 직접 숫자를 입력해도 됩니다.")
         else:
-            method = "Claude Vision" if _use_claude else "Tesseract"
+            method = "Claude Vision" if _use_claude else "EasyOCR"
             st.success(f"✅ {len(st.session_state.ocr_results)}개 채팅방 인식 완료 ({len(images)}장 · {method})")
             if st.button("🔄 다시 인식"):
                 st.session_state.ocr_done = False
                 st.rerun()
+
+        # ── 인식 결과 검토 테이블 ──────────────────────────────
+        if st.session_state.ocr_done and st.session_state.ocr_results:
+            _show_ocr_review(st.session_state.ocr_results, ROOMS, prev)
 
     # ── 채팅방 이름 수정 ───────────────────────────────────────
     with st.expander("✏️ 채팅방 이름 수정"):
@@ -177,14 +240,6 @@ def tab_input():
     # ── 인원 확인 및 수정 ──────────────────────────────────────
     st.subheader("2단계 — 인원 확인 및 수정")
     st.caption("OCR이 잘못 읽은 숫자가 있으면 직접 수정하세요. 0은 미입력으로 처리됩니다.")
-
-    df_all = load_all()
-    prev = {}
-    if not df_all.empty:
-        today_str = str(input_date)
-        df_prev = df_all[df_all['date'].astype(str) != today_str]
-        if not df_prev.empty:
-            prev = df_prev.sort_values('date').groupby('room_num').last()['members'].to_dict()
 
     edited = {}
     cols = st.columns(3)
