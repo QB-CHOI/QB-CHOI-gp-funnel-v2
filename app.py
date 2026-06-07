@@ -8,12 +8,14 @@ from github_store import (
     save_campaign, end_campaign, get_history,
     load_rooms, save_room, delete_room,
     load_conversions, save_conversion, get_latest_conversions,
-    PRODUCT_OPTIONS,
+    load_adspend, save_adspend,
+    PRODUCT_OPTIONS, CHANNEL_OPTIONS,
 )
 from charts import (
     trend_line_chart, change_bar_chart, total_trend_bar,
     product_bar_chart, weekly_comparison_chart, cohort_trend_chart,
     funnel_chart, conversion_rate_chart,
+    churn_rate_chart, roi_chart,
 )
 
 st.set_page_config(
@@ -428,6 +430,37 @@ def tab_dashboard():
                     camp_str = f" · {camp}" if camp else ""
                     st.markdown(f"- {row['room_name']}{camp_str}: **{int(row['change'])}명** (총 {int(row['members']):,}명)")
 
+    # ── 이탈률 경고 + 차트 ────────────────────────────────────
+    if len(df) >= 2:
+        # 최근 7일 데이터로 이탈률 계산
+        dates_sorted = sorted(df['date'].unique())
+        if len(dates_sorted) >= 2:
+            prev_date = dates_sorted[-2]
+            df_prev_week = df[df['date'] == prev_date]
+            churn_warnings = []
+            for rn in df_today['room_num'].dropna().unique():
+                cur_row  = df_today[df_today['room_num'] == rn]
+                prev_row = df_prev_week[df_prev_week['room_num'] == rn]
+                if cur_row.empty or prev_row.empty:
+                    continue
+                cur_m  = int(cur_row['members'].values[0])
+                prev_m = int(prev_row['members'].values[0])
+                if prev_m > 0 and prev_m > cur_m:
+                    churn = round((prev_m - cur_m) / prev_m * 100, 1)
+                    if churn >= 5:
+                        room_label = ROOMS.get(int(rn), f'채팅방 {rn}')
+                        churn_warnings.append(f"{room_label} ({churn}%↓)")
+            if churn_warnings:
+                st.error(
+                    "🚨 **이탈률 경고 (≥5%):** " + "  |  ".join(churn_warnings) +
+                    "\n\n전일 대비 5% 이상 인원이 감소한 채팅방입니다. 콘텐츠 또는 광고 전략을 점검하세요."
+                )
+
+        fig_churn = churn_rate_chart(df, ROOMS)
+        if fig_churn:
+            with st.expander("📉 이탈률 추이 차트", expanded=False):
+                st.plotly_chart(fig_churn, use_container_width=True)
+
     # ── 현재 진행 중인 강의 목록 ───────────────────────────────
     if campaigns:
         st.subheader("현재 진행 중인 강의")
@@ -541,6 +574,75 @@ def tab_conversion():
         disp.columns = ['날짜', '채팅방', '강의명', '신청자', '수강확정', '전환율', '매출(원)', '메모']
         disp = disp.sort_values('날짜', ascending=False).reset_index(drop=True)
         st.dataframe(disp, use_container_width=True, hide_index=True)
+
+    st.divider()
+
+    # ── 광고비 ROI 분석 ────────────────────────────────────────
+    st.subheader("광고비 ROI 분석")
+    st.caption("채널별 광고비를 입력하면 ROAS·CPA를 자동 계산합니다.")
+
+    df_adspend = load_adspend()
+
+    # ROI 요약 지표
+    if not df_adspend.empty and not df_conv.empty:
+        total_spend = int(df_adspend['spend'].sum())
+        latest_rev  = get_latest_conversions()
+        total_rev   = int(latest_rev['revenue'].sum()) if not latest_rev.empty else 0
+        total_conf  = int(latest_rev['confirmed'].sum()) if not latest_rev.empty else 0
+        roas = round(total_rev / total_spend, 2) if total_spend > 0 else 0
+        cpa  = round(total_spend / total_conf) if total_conf > 0 else 0
+
+        r1, r2, r3 = st.columns(3)
+        r1.metric("총 광고비", f"{total_spend:,}원")
+        r2.metric("ROAS", f"{roas}x", help="매출 ÷ 광고비")
+        r3.metric("CPA", f"{cpa:,}원", help="광고비 ÷ 수강 확정자")
+
+    # ROI 차트
+    fig_roi = roi_chart(df_adspend, df_conv, campaigns, ROOMS)
+    if fig_roi:
+        st.plotly_chart(fig_roi, use_container_width=True)
+
+    # 광고비 입력 폼
+    with st.expander("📝 광고비 입력", expanded=df_adspend.empty):
+        with st.form("adspend_form"):
+            col1, col2 = st.columns(2)
+            with col1:
+                ad_room = st.selectbox(
+                    "채팅방 (강의)",
+                    options=sorted(campaigns.keys()),
+                    format_func=lambda x: f"{ROOMS.get(x, f'채팅방 {x}')} — {campaigns[x].get('campaign_name', '')}",
+                    key="ad_room",
+                )
+                ad_date    = st.date_input("집행 날짜", value=date.today(), key="ad_date")
+                ad_channel = st.selectbox("광고 채널", options=CHANNEL_OPTIONS, key="ad_channel")
+            with col2:
+                ad_spend = st.number_input("광고비 (원)", min_value=0, step=10000, value=0, key="ad_spend")
+                ad_imps  = st.number_input("노출수", min_value=0, step=100, value=0, key="ad_imps")
+                ad_clicks = st.number_input("클릭수", min_value=0, step=10, value=0, key="ad_clicks")
+                ad_memo  = st.text_input("메모", placeholder="캠페인명 등", key="ad_memo")
+
+            if st.form_submit_button("💾 광고비 저장", type="primary", use_container_width=True):
+                save_adspend(
+                    room_num=ad_room, date_str=str(ad_date),
+                    channel=ad_channel, spend=int(ad_spend),
+                    impressions=int(ad_imps), clicks=int(ad_clicks),
+                    memo=ad_memo.strip(),
+                )
+                st.success(f"✅ 광고비 저장 완료: {ad_channel} {int(ad_spend):,}원")
+                st.rerun()
+
+    # 광고비 이력 테이블
+    if not df_adspend.empty:
+        with st.expander("광고비 이력", expanded=False):
+            ad_disp = df_adspend.copy()
+            ad_disp['채팅방'] = ad_disp['room_num'].apply(lambda x: ROOMS.get(int(x), f"채팅방 {x}"))
+            ad_disp['강의명'] = ad_disp['room_num'].apply(
+                lambda x: campaigns.get(int(x), {}).get('campaign_name', '-')
+            )
+            ad_disp = ad_disp[['date', '채팅방', '강의명', 'channel', 'spend', 'impressions', 'clicks', 'memo']]
+            ad_disp.columns = ['날짜', '채팅방', '강의명', '채널', '광고비(원)', '노출수', '클릭수', '메모']
+            ad_disp = ad_disp.sort_values('날짜', ascending=False).reset_index(drop=True)
+            st.dataframe(ad_disp, use_container_width=True, hide_index=True)
 
 
 # ── 탭 3: 추이 그래프 ─────────────────────────────────────────────

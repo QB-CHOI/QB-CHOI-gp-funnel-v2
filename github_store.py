@@ -17,7 +17,11 @@ ROOMS_COLS       = ['room_num', 'room_name']
 CONVERSIONS_PATH = "data/conversions.csv"
 CONVERSIONS_COLS = ['date', 'room_num', 'applicants', 'confirmed', 'revenue', 'memo']
 
+ADSPEND_PATH = "data/adspend.csv"
+ADSPEND_COLS = ['date', 'room_num', 'channel', 'spend', 'impressions', 'clicks', 'memo']
+
 PRODUCT_OPTIONS = ['사주', '타로', '부동산', '빌딩', '기타']
+CHANNEL_OPTIONS = ['카카오모먼트', '네이버GFA', '메타(인스타)', '유튜브', '기타']
 
 
 def _token() -> str:
@@ -247,3 +251,35 @@ def get_latest_conversions() -> pd.DataFrame:
           .groupby('room_num', as_index=False)
           .last()
     )
+
+
+# ── 광고비 데이터 ─────────────────────────────────────────────────
+
+@st.cache_data(ttl=300)
+def load_adspend() -> pd.DataFrame:
+    df = _read_csv(ADSPEND_PATH, ADSPEND_COLS)
+    if df.empty:
+        return df
+    df['date']     = pd.to_datetime(df['date']).dt.date
+    df['room_num'] = pd.to_numeric(df['room_num'], errors='coerce').astype('Int64')
+    for col in ['spend', 'impressions', 'clicks']:
+        df[col] = pd.to_numeric(df[col], errors='coerce').fillna(0)
+    return df
+
+
+def save_adspend(room_num: int, date_str: str, channel: str,
+                 spend: int, impressions: int, clicks: int, memo: str):
+    df = load_adspend()
+    if not df.empty:
+        df = df[~(
+            (df['room_num'] == room_num) &
+            (df['date'].astype(str) == date_str) &
+            (df['channel'] == channel)
+        )]
+    new_row = pd.DataFrame([{
+        'date': date_str, 'room_num': room_num, 'channel': channel,
+        'spend': spend, 'impressions': impressions, 'clicks': clicks, 'memo': memo,
+    }])
+    combined = pd.concat([df, new_row], ignore_index=True).sort_values(['date', 'room_num'])
+    _write_csv(ADSPEND_PATH, combined, f"광고비 저장: 채팅방 {room_num} {channel} {date_str}")
+    load_adspend.clear()

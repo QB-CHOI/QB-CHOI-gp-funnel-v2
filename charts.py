@@ -195,6 +195,111 @@ def weekly_comparison_chart(df: pd.DataFrame):
     return fig
 
 
+def churn_rate_chart(df: pd.DataFrame, rooms: dict = None):
+    """주간 채팅방별 이탈률 막대 차트. 5% 이상은 빨간색."""
+    if df.empty:
+        return None
+
+    df = df.copy()
+    df['date'] = pd.to_datetime(df['date'])
+    latest   = df['date'].max()
+    week_ago = latest - pd.Timedelta(days=7)
+
+    df_now  = df[df['date'] == latest][['room_num', 'members']].rename(columns={'members': 'now'})
+    df_prev = df[df['date'] == week_ago][['room_num', 'members']].rename(columns={'members': 'prev'})
+    merged  = pd.merge(df_now, df_prev, on='room_num', how='inner')
+    if merged.empty:
+        return None
+
+    merged['churn'] = (merged['prev'] - merged['now']) / merged['prev'] * 100
+    merged = merged[merged['churn'] > 0].sort_values('churn', ascending=False)
+    if merged.empty:
+        return None
+
+    merged['label'] = merged['room_num'].apply(
+        lambda x: (rooms or {}).get(int(x), f"채팅방 {x}")
+    )
+    colors = merged['churn'].apply(lambda x: '#c62828' if x >= 5 else '#ef6c00')
+
+    fig = go.Figure(go.Bar(
+        x=merged['label'],
+        y=merged['churn'].round(1),
+        marker_color=colors,
+        text=merged['churn'].apply(lambda x: f"{x:.1f}%"),
+        textposition='outside',
+    ))
+    fig.update_layout(
+        title=f'주간 이탈률 ({week_ago.date()} → {latest.date()})',
+        yaxis_title='이탈률 (%)',
+        height=320,
+        margin=dict(t=50, b=30),
+        showlegend=False,
+    )
+    fig.add_hline(y=5, line_dash='dash', line_color='#c62828', opacity=0.5,
+                  annotation_text='경고 기준 5%', annotation_position='right')
+    return fig
+
+
+def roi_chart(df_adspend: pd.DataFrame, df_conv: pd.DataFrame,
+              campaigns: dict, rooms: dict = None):
+    """채널별 ROAS·CPA 비교 차트."""
+    if df_adspend.empty:
+        return None
+
+    # 채널별 광고비 합산
+    by_channel = df_adspend.groupby('channel')['spend'].sum().reset_index()
+
+    # 총 매출·수강확정 합산 (전환 데이터)
+    total_revenue   = int(df_conv['revenue'].sum())   if not df_conv.empty else 0
+    total_confirmed = int(df_conv['confirmed'].sum()) if not df_conv.empty else 0
+
+    rows = []
+    for _, row in by_channel.iterrows():
+        spend = int(row['spend'])
+        if spend == 0:
+            continue
+        # 채널별 매출 분리가 없으므로 전체 매출을 광고비 비율로 배분
+        total_spend = int(by_channel['spend'].sum())
+        alloc_rev   = round(total_revenue * spend / total_spend) if total_spend else 0
+        alloc_conf  = round(total_confirmed * spend / total_spend) if total_spend else 0
+        roas = round(alloc_rev / spend, 2) if spend else 0
+        cpa  = round(spend / alloc_conf)   if alloc_conf else 0
+        rows.append({'채널': row['channel'], '광고비': spend,
+                     'ROAS': roas, 'CPA(원)': cpa})
+
+    if not rows:
+        return None
+
+    df_r = pd.DataFrame(rows)
+    fig = go.Figure()
+    fig.add_trace(go.Bar(
+        name='광고비(원)', x=df_r['채널'], y=df_r['광고비'],
+        marker_color='#78909c',
+        text=df_r['광고비'].apply(lambda x: f"{x:,}"),
+        textposition='outside',
+        yaxis='y',
+    ))
+    fig.add_trace(go.Scatter(
+        name='ROAS', x=df_r['채널'], y=df_r['ROAS'],
+        mode='lines+markers+text',
+        text=df_r['ROAS'].apply(lambda x: f"{x:.2f}x"),
+        textposition='top center',
+        yaxis='y2',
+        line=dict(color='#1565c0', width=2),
+        marker=dict(size=9),
+    ))
+    fig.update_layout(
+        title='채널별 광고비 및 ROAS',
+        barmode='group',
+        height=360,
+        margin=dict(t=50, b=30),
+        legend=dict(orientation='h', yanchor='bottom', y=1.02),
+        yaxis=dict(title='광고비(원)'),
+        yaxis2=dict(title='ROAS', overlaying='y', side='right', showgrid=False),
+    )
+    return fig
+
+
 def funnel_chart(df_members: pd.DataFrame, df_conv: pd.DataFrame,
                  campaigns: dict, rooms: dict = None):
     """강의별 모객 퍼널 — 채팅방 인원 → 신청자 → 수강 확정."""
