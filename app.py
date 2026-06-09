@@ -207,7 +207,16 @@ def tab_input():
                         st.session_state[f"inp_{rn}"] = val
 
                     method = "Claude Vision" if _use_claude else "EasyOCR"
-                    st.success(f"✅ {len(merged)}개 채팅방 인식 완료 ({len(images)}장 · {method})")
+                    if merged:
+                        st.success(f"✅ {len(merged)}개 채팅방 인식 완료 ({len(images)}장 · {method})")
+                    else:
+                        st.warning(
+                            f"⚠️ 채팅방 인원을 인식하지 못했습니다. ({method})\n\n"
+                            "**원인 및 해결법:**\n"
+                            "1. 채팅방 목록 화면이 선명하게 찍혔는지 확인하세요.\n"
+                            "2. ⚙️ 채팅방 설정 탭에서 채팅방 이름이 스크린샷과 일치하는지 확인하세요.\n"
+                            "3. 아래 2단계 표에서 직접 숫자를 입력할 수 있습니다."
+                        )
                 except Exception as e:
                     st.error(f"OCR 오류: {e}")
                     st.info("아래 표에서 직접 숫자를 입력해도 됩니다.")
