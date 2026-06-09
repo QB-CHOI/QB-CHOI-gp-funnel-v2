@@ -151,9 +151,6 @@ def tab_input():
         from PIL import Image
         from ocr_parser import extract_from_image
 
-        # Claude Vision 사용 가능 여부 확인
-        _use_claude = "anthropic_api_key" in st.secrets
-
         # 파일을 한 번만 읽어서 재사용 (파일 포인터 소진 방지)
         images = []
         for f in uploaded_files:
@@ -166,39 +163,16 @@ def tab_input():
             with img_cols[i % 3]:
                 st.image(img, caption=name, use_container_width=True)
 
-        # OCR 방식 표시
-        if _use_claude:
-            st.caption("인식 방식: **Claude Vision** (고정밀)")
-        else:
-            st.caption("인식 방식: **EasyOCR** (방 이름 기반 공간 매칭)")
+        st.caption("인식 방식: **Tesseract OCR** (방 이름 기반 공간 매칭)")
 
         if not st.session_state.ocr_done:
-            with st.spinner(f"{len(images)}장 인식 중... (최초 실행 시 모델 로딩으로 1~2분 소요될 수 있습니다)"):
+            with st.spinner(f"{len(images)}장 인식 중..."):
                 try:
                     merged = {}
-
-                    if _use_claude:
-                        from claude_vision import extract_members as claude_extract
-                        api_key = st.secrets["anthropic_api_key"]
-                        for _, img in images:
-                            extracted = claude_extract(img, api_key, ROOMS)
-                            for r in extracted:
-                                rn = r['room_num']
-                                if rn in ROOMS:
-                                    merged[rn] = r['members']
-                        # Claude가 인식 못한 방은 EasyOCR로 보완
-                        missing_rooms = set(ROOMS.keys()) - set(merged.keys())
-                        if missing_rooms:
-                            for _, img in images:
-                                fallback = extract_from_image(img, ROOMS)
-                                for r in fallback:
-                                    if r['room_num'] in missing_rooms:
-                                        merged[r['room_num']] = r['members']
-                    else:
-                        for _, img in images:
-                            extracted = extract_from_image(img, ROOMS)
-                            for r in extracted:
-                                merged[r['room_num']] = r['members']
+                    for _, img in images:
+                        extracted = extract_from_image(img, ROOMS)
+                        for r in extracted:
+                            merged[r['room_num']] = r['members']
 
                     st.session_state.ocr_results = merged
                     st.session_state.ocr_done = True
@@ -206,13 +180,12 @@ def tab_input():
                     for rn, val in merged.items():
                         st.session_state[f"inp_{rn}"] = val
 
-                    method = "Claude Vision" if _use_claude else "EasyOCR"
                     if merged:
-                        st.success(f"✅ {len(merged)}개 채팅방 인식 완료 ({len(images)}장 · {method})")
+                        st.success(f"✅ {len(merged)}개 채팅방 인식 완료 ({len(images)}장)")
                     else:
                         st.warning(
-                            f"⚠️ 채팅방 인원을 인식하지 못했습니다. ({method})\n\n"
-                            "**원인 및 해결법:**\n"
+                            "⚠️ 채팅방 인원을 인식하지 못했습니다.\n\n"
+                            "**확인 사항:**\n"
                             "1. 채팅방 목록 화면이 선명하게 찍혔는지 확인하세요.\n"
                             "2. ⚙️ 채팅방 설정 탭에서 채팅방 이름이 스크린샷과 일치하는지 확인하세요.\n"
                             "3. 아래 2단계 표에서 직접 숫자를 입력할 수 있습니다."
@@ -221,8 +194,7 @@ def tab_input():
                     st.error(f"OCR 오류: {e}")
                     st.info("아래 표에서 직접 숫자를 입력해도 됩니다.")
         else:
-            method = "Claude Vision" if _use_claude else "EasyOCR"
-            st.success(f"✅ {len(st.session_state.ocr_results)}개 채팅방 인식 완료 ({len(images)}장 · {method})")
+            st.success(f"✅ {len(st.session_state.ocr_results)}개 채팅방 인식 완료 ({len(images)}장)")
             if st.button("🔄 다시 인식"):
                 st.session_state.ocr_done = False
                 st.rerun()
