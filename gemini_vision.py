@@ -1,91 +1,96 @@
 """
-Gemini Vision OCR — 카카오톡 오픈채팅방 스크린샷에서 인원 추출
-사용 가능한 모델을 순서대로 시도하여 404 오류 방지
+Gemini Vision OCR — REST API 직접 호출 방식 (SDK 미사용)
+google-generativeai 패키지 버전과 무관하게 동작
 """
 import base64
 import io
 import json
 import re
+import requests
 from PIL import Image
 
-# 우선순위 순서로 시도할 모델 목록
-_CANDIDATE_MODELS = [
-    'gemini-1.5-flash',
-    'gemini-1.5-flash-latest',
-    'gemini-1.5-flash-001',
-    'gemini-1.0-pro-vision',
-    'gemini-pro-vision',
+_BASE = "https://generativelanguage.googleapis.com"
+
+# (api_version, model_name) 순서대로 시도
+_ENDPOINTS = [
+    ("v1",     "gemini-1.5-flash"),
+    ("v1",     "gemini-2.0-flash"),
+    ("v1",     "gemini-1.5-flash-latest"),
+    ("v1",     "gemini-1.5-pro"),
+    ("v1beta", "gemini-1.5-flash"),
+    ("v1beta", "gemini-2.0-flash-exp"),
+    ("v1beta", "gemini-1.5-flash-latest"),
+    ("v1beta", "gemini-pro-vision"),
 ]
 
 
 def extract_members(image: Image.Image, api_key: str, rooms: dict) -> list:
     """
-    Gemini Vision으로 카카오톡 스크린샷에서 채팅방 인원 추출.
-    모델을 순서대로 시도해 404 오류 시 다음 모델로 자동 전환.
+    Gemini REST API로 카카오톡 스크린샷에서 채팅방 인원 추출.
     rooms: {room_num: room_name}
     반환: [{'room_num': int, 'members': int}, ...]
     """
-    import google.generativeai as genai
-
-    genai.configure(api_key=api_key)
-
-    # 이미지 → bytes
     buf = io.BytesIO()
     image.convert('RGB').save(buf, format='PNG')
-    img_bytes = buf.getvalue()
-    img_b64 = base64.b64encode(img_bytes).decode()
+    img_b64 = base64.b64encode(buf.getvalue()).decode()
 
-    room_list = "\n".join(f"- room_num={num}, name=\"{name}\"" for num, name in rooms.items())
-    prompt = f"""이 이미지는 카카오톡 오픈채팅방 목록 스크린샷입니다.
-아래 등록된 채팅방들의 현재 인원 수(숫자)를 찾아서 JSON으로 반환해주세요.
+    room_list = "\n".join(
+        f"- room_num={num}, name=\"{name}\"" for num, name in rooms.items()
+    )
+    prompt = (
+        "이 이미지는 카카오톡 오픈채팅방 목록 스크린샷입니다.\n"
+        "아래 등록된 채팅방들의 현재 인원 수를 찾아서 JSON으로 반환해주세요.\n\n"
+        f"등록된 채팅방:\n{room_list}\n\n"
+        "규칙:\n"
+        "- 각 채팅방 이름 옆에 표시된 인원 수(예: 1,234 또는 1234)를 읽어주세요\n"
+        "- 인원이 보이지 않는 방은 결과에서 제외하세요\n"
+        "- 숫자만 반환 (쉼표 없이 정수)\n\n"
+        "반드시 아래 JSON 형식으로만 응답:\n"
+        "{\"results\": [{\"room_num\": 1, \"members\": 1234}, {\"room_num\": 2, \"members\": 567}]}"
+    )
 
-등록된 채팅방:
-{room_list}
-
-규칙:
-- 각 채팅방 이름 옆에 표시된 인원 수(예: 1,234 또는 1234)를 읽어주세요
-- 인원이 보이지 않는 방은 결과에서 제외하세요
-- 숫자만 반환 (쉼표 없이 정수)
-
-반드시 아래 JSON 형식으로만 응답:
-{{"results": [{{"room_num": 1, "members": 1234}}, {{"room_num": 2, "members": 567}}]}}"""
+    body = {
+        "contents": [{
+            "parts": [
+                {"inline_data": {"mime_type": "image/png", "data": img_b64}},
+                {"text": prompt},
+            ]
+        }],
+        "generationConfig": {"temperature": 0.1, "maxOutputTokens": 512},
+    }
 
     last_error = None
-    for model_name in _CANDIDATE_MODELS:
+    for api_ver, model_name in _ENDPOINTS:
+        url = f"{_BASE}/{api_ver}/models/{model_name}:generateContent?key={api_key}"
         try:
-            model = genai.GenerativeModel(model_name)
-            response = model.generate_content([
-                {'mime_type': 'image/png', 'data': img_b64},
-                prompt,
-            ])
-            return _parse_response(response.text, rooms)
-        except Exception as e:
-            err_str = str(e)
-            # 404(모델 없음) / 400(지원 안 함) 이면 다음 모델 시도
-            if any(code in err_str for code in ['404', '400', 'not found', 'not supported', 'INVALID_ARGUMENT']):
-                last_error = e
+            resp = requests.post(url, json=body, timeout=30)
+            if resp.status_code in (400, 404):
+                last_error = f"{model_name} [{resp.status_code}]"
                 continue
-            # 그 외(401 인증 실패, 네트워크 등)는 즉시 올려보냄
-            raise
+            resp.raise_for_status()
+            data = resp.json()
+            text = data["candidates"][0]["content"]["parts"][0]["text"]
+            return _parse_response(text, rooms)
+        except (requests.RequestException, KeyError, IndexError) as e:
+            last_error = f"{model_name}: {e}"
+            continue
 
     raise RuntimeError(
-        f"사용 가능한 Gemini 모델을 찾을 수 없습니다. "
+        f"Gemini API 호출 실패 — 시도한 모든 모델/버전에서 응답 없음.\n"
         f"마지막 오류: {last_error}\n"
-        f"시도한 모델: {', '.join(_CANDIDATE_MODELS)}"
+        "Google AI Studio(aistudio.google.com)에서 API 키를 다시 확인해주세요."
     )
 
 
 def _parse_response(text: str, rooms: dict) -> list:
-    """Gemini 응답 텍스트에서 JSON 파싱."""
     text = re.sub(r'```(?:json)?', '', text).strip()
     match = re.search(r'\{.*\}', text, re.DOTALL)
     if not match:
         return []
     try:
         data = json.loads(match.group())
-        results = data.get('results', [])
         valid = []
-        for r in results:
+        for r in data.get('results', []):
             rn = int(r.get('room_num', 0))
             m  = int(r.get('members', 0))
             if rn in rooms and 1 <= m <= 99999:
