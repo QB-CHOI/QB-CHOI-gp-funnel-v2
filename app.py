@@ -785,6 +785,47 @@ def tab_campaign():
     ROOM_NUMBERS = sorted(ROOMS.keys())
     st.header("채팅방 설정")
 
+    # ── Gemini API 진단 (항상 표시) ────────────────────────────
+    with st.expander("🔍 Gemini API 진단", expanded=True):
+        import requests as _req2
+        _key = st.secrets.get("gemini_api_key", "")
+
+        if not _key:
+            st.error("❌ gemini_api_key 가 Streamlit Secrets에 없습니다.")
+            st.markdown(
+                "**설정 방법:**\n"
+                "1. [share.streamlit.io](https://share.streamlit.io) → 앱 → ⋮ → Settings → Secrets\n"
+                "2. 아래를 정확히 입력 후 **Save**:\n"
+                "```toml\ngemini_api_key = \"AIzaSy...\"\n```"
+            )
+        else:
+            masked = _key[:8] + "..." + _key[-4:] if len(_key) > 12 else "***"
+            st.info(f"등록된 키: `{masked}` (길이: {len(_key)}자)")
+
+            if st.button("🔍 API 연결 테스트 실행", key="diag_test"):
+                with st.spinner("테스트 중..."):
+                    try:
+                        r = _req2.get(
+                            f"https://generativelanguage.googleapis.com/v1beta/models?key={_key}",
+                            timeout=15
+                        )
+                        st.write(f"HTTP 상태 코드: **{r.status_code}**")
+                        if r.status_code == 200:
+                            models = [m["name"] for m in r.json().get("models", [])]
+                            vision = [m for m in models if "flash" in m or "pro" in m]
+                            st.success(f"✅ 키 정상 — 전체 모델 {len(models)}개, 비전 모델 {len(vision)}개")
+                            st.write("사용 가능한 모델:", vision[:8])
+                        elif r.status_code == 400:
+                            st.error(f"❌ 키 오류 (400): {r.json().get('error',{}).get('message','')}")
+                            st.warning("→ Streamlit Secrets에서 키를 삭제하고 새 키로 교체하세요.")
+                        elif r.status_code == 403:
+                            st.error("❌ 권한 오류 (403): Generative Language API가 비활성화 상태")
+                            st.warning("→ console.cloud.google.com에서 'Generative Language API' 활성화")
+                        else:
+                            st.error(f"❌ 오류 {r.status_code}: {r.text[:300]}")
+                    except Exception as e:
+                        st.error(f"연결 실패: {e}")
+
     # ── 채팅방 관리 ────────────────────────────────────────────
     with st.expander("➕ 채팅방 추가 / 수정 / 삭제", expanded=not bool(ROOMS)):
         st.caption("채팅방 번호와 이름을 등록하세요. 번호가 같으면 이름이 수정됩니다.")
