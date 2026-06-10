@@ -48,8 +48,9 @@ def _extract_right_column(image: Image.Image, rooms: dict = None) -> list:
 
     w, h = image.size
 
-    # 오른쪽 30% + 전처리
-    right = image.crop((int(w * 0.70), 0, w, h))
+    # 오른쪽 40% 크롭 (카카오톡 인원수는 방이름 뒤~타임스탬프 앞에 위치)
+    # 배지(왼쪽 10%)는 완전히 제외됨
+    right = image.crop((int(w * 0.60), 0, w, h))
     right_proc = preprocess_for_ocr(right)
 
     # 숫자 전용 설정으로 추출

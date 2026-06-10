@@ -80,15 +80,21 @@ def extract_members(image: Image.Image, api_key: str, rooms: dict) -> list:
         f"- room_num={num}, name=\"{name}\"" for num, name in rooms.items()
     )
     prompt = (
-        "이 이미지는 카카오톡 오픈채팅방 목록 스크린샷입니다.\n"
-        "아래 등록된 채팅방들의 현재 인원 수를 찾아서 JSON으로 반환해주세요.\n\n"
-        f"등록된 채팅방:\n{room_list}\n\n"
+        "이 이미지는 카카오톡 오픈채팅방 목록 스크린샷입니다.\n\n"
+        "【중요 구분】\n"
+        "- 왼쪽 원형 배지 안의 숫자(예: 32, 35)는 채팅방 식별 번호입니다. 인원 수가 아닙니다.\n"
+        "- 인원 수는 채팅방 이름 텍스트 끝 부분에 공백으로 구분되어 나타나는 숫자입니다.\n"
+        "  예시: '황금후수 돈버는 채팅방35(사주3) 545' → 인원=545, '황금후수 돈버는 채팅방32 1252' → 인원=1252\n\n"
+        "아래 등록된 채팅방들의 인원 수를 이미지에서 찾아 JSON으로 반환해주세요.\n\n"
+        f"등록된 채팅방 (room_num=채팅방 번호):\n{room_list}\n\n"
         "규칙:\n"
-        "- 각 채팅방 이름 옆에 표시된 인원 수(예: 1,234 또는 1234)를 읽어주세요\n"
-        "- 인원이 보이지 않는 방은 결과에서 제외하세요\n"
-        "- 숫자만 반환 (쉼표 없이 정수)\n\n"
-        "반드시 아래 JSON 형식으로만 응답:\n"
-        "{\"results\": [{\"room_num\": 1, \"members\": 1234}, {\"room_num\": 2, \"members\": 567}]}"
+        "1. 채팅방 이름에 포함된 숫자(채팅방N)로 room_num을 매칭하세요\n"
+        "2. 인원 수는 채팅방 이름 바로 뒤에 오는 숫자입니다 (보통 50~9999 범위)\n"
+        "3. 왼쪽 원형 배지 숫자는 절대 인원 수로 사용하지 마세요\n"
+        "4. 이미지에서 명확히 보이지 않는 방은 결과에서 완전히 제외하세요\n"
+        "5. 쉼표 제거 후 정수로 반환 (1,234 → 1234)\n\n"
+        "JSON 형식으로만 응답:\n"
+        "{\"results\": [{\"room_num\": 35, \"members\": 545}, {\"room_num\": 34, \"members\": 152}]}"
     )
 
     body = {
@@ -122,7 +128,8 @@ def _parse_response(text: str, rooms: dict) -> list:
         for r in data.get("results", []):
             rn = int(r.get("room_num", 0))
             m  = int(r.get("members", 0))
-            if rn in rooms and 1 <= m <= 99999:
+            # m == rn 이면 배지 번호를 인원으로 오인식한 것 → 제외
+            if rn in rooms and 1 <= m <= 99999 and m != rn:
                 valid.append({"room_num": rn, "members": m})
         return valid
     except (json.JSONDecodeError, ValueError, TypeError):

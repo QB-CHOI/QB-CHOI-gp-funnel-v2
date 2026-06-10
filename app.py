@@ -231,6 +231,9 @@ def tab_input():
                     except Exception:
                         pass
 
+                # 이전 세션 값 완전 초기화 (stale 데이터 오염 방지)
+                for rn in ROOMS:
+                    st.session_state[f"inp_{rn}"] = 0
                 st.session_state.ocr_results = merged
                 st.session_state.ocr_done = True
                 for rn, val in merged.items():
