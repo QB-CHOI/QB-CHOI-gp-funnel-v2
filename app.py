@@ -133,6 +133,35 @@ def tab_input():
     st.subheader("1단계 — 스크린샷 업로드")
     st.caption("채팅방 목록 화면을 캡처해서 올려주세요. 스크롤이 필요하면 여러 장을 한 번에 올려도 됩니다.")
 
+    # ── Gemini API 키 상태 표시 ────────────────────────────────
+    _gemini_key = st.secrets.get("gemini_api_key", "")
+    if _gemini_key:
+        c_key, c_test = st.columns([3, 1])
+        with c_key:
+            st.success("Gemini Vision API 키 등록됨 ✅")
+        with c_test:
+            if st.button("키 테스트", key="test_gemini_key"):
+                with st.spinner("API 키 확인 중..."):
+                    try:
+                        import requests as _req
+                        r = _req.get(
+                            f"https://generativelanguage.googleapis.com/v1beta/models?key={_gemini_key}",
+                            timeout=10
+                        )
+                        if r.status_code == 200:
+                            models = [m["name"] for m in r.json().get("models", [])]
+                            st.success(f"키 정상 ✅ — 사용 가능한 모델 {len(models)}개")
+                        elif r.status_code == 400:
+                            st.error(f"키 오류 ❌ — {r.json().get('error',{}).get('message','잘못된 키')}")
+                        elif r.status_code == 403:
+                            st.error("권한 오류 ❌ — Generative Language API가 비활성화 상태입니다.")
+                        else:
+                            st.error(f"오류 {r.status_code}: {r.text[:200]}")
+                    except Exception as e:
+                        st.error(f"테스트 실패: {e}")
+    else:
+        st.info("Gemini Vision API 키 미등록 — Tesseract OCR 사용 중 (정확도 낮음)")
+
     uploaded_files = st.file_uploader(
         "이미지 파일 선택 (PNG / JPG) — 여러 장 동시 선택 가능",
         type=['png', 'jpg', 'jpeg'],
@@ -262,6 +291,25 @@ def tab_input():
                     st.rerun()
                 else:
                     st.info("변경된 이름이 없습니다.")
+
+    # ── 빠른 숫자 입력 ─────────────────────────────────────────
+    with st.expander("⚡ 빠른 입력 — 숫자 목록 붙여넣기", expanded=False):
+        st.caption(
+            f"스크린샷 순서대로 인원 수를 입력하면 채팅방 {min(ROOM_NUMBERS)}~{max(ROOM_NUMBERS)} 순서로 자동 할당됩니다.\n"
+            "공백 또는 쉼표로 구분하세요. (예: 1234 567 2100 890)"
+        )
+        import re as _re
+        quick_text = st.text_input("인원 수 목록", placeholder="1234 567 2100 890 ...", key="quick_nums")
+        if st.button("⚡ 자동 입력", key="quick_apply"):
+            nums = [int(n) for n in _re.findall(r'\d+', quick_text) if 1 <= int(n) <= 99999]
+            if nums:
+                room_keys = sorted(ROOMS.keys())
+                for i, n in enumerate(nums[:len(room_keys)]):
+                    st.session_state[f"inp_{room_keys[i]}"] = n
+                st.success(f"✅ {min(len(nums), len(room_keys))}개 방에 인원 입력 완료")
+                st.rerun()
+            else:
+                st.warning("숫자를 입력해주세요.")
 
     # ── 인원 확인 및 수정 ──────────────────────────────────────
     st.subheader("2단계 — 인원 확인 및 수정")
