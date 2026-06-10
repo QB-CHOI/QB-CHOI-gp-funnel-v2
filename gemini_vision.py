@@ -1,6 +1,7 @@
 """
-Gemini Vision OCR — REST API 직접 호출 방식 (SDK 미사용)
-google-generativeai 패키지 버전과 무관하게 동작
+Gemini Vision OCR — REST API 직접 호출
+1단계: 키 유효성 + 사용 가능한 모델 목록 확인
+2단계: 비전 지원 모델로 인원 추출
 """
 import base64
 import io
@@ -11,27 +12,68 @@ from PIL import Image
 
 _BASE = "https://generativelanguage.googleapis.com"
 
-# (api_version, model_name) 순서대로 시도
-_ENDPOINTS = [
-    ("v1",     "gemini-1.5-flash"),
-    ("v1",     "gemini-2.0-flash"),
-    ("v1",     "gemini-1.5-flash-latest"),
-    ("v1",     "gemini-1.5-pro"),
-    ("v1beta", "gemini-1.5-flash"),
-    ("v1beta", "gemini-2.0-flash-exp"),
-    ("v1beta", "gemini-1.5-flash-latest"),
-    ("v1beta", "gemini-pro-vision"),
+# 선호 순서 (앞에 있을수록 먼저 시도)
+_PREFERRED = [
+    "gemini-2.0-flash",
+    "gemini-2.0-flash-lite",
+    "gemini-1.5-flash",
+    "gemini-1.5-flash-latest",
+    "gemini-1.5-flash-8b",
+    "gemini-1.5-pro",
 ]
 
 
+def _list_models(api_key: str) -> list:
+    """사용 가능한 모델 목록 반환. 키 오류 시 예외 발생."""
+    url = f"{_BASE}/v1beta/models?key={api_key}"
+    resp = requests.get(url, timeout=15)
+
+    if resp.status_code == 400:
+        body = resp.json()
+        msg = body.get("error", {}).get("message", "알 수 없는 오류")
+        raise ValueError(f"API 키 오류: {msg}")
+    if resp.status_code == 403:
+        raise ValueError("API 키 권한 오류 (403). Generative Language API가 활성화되어 있는지 확인하세요.")
+
+    resp.raise_for_status()
+    return [m["name"] for m in resp.json().get("models", [])]
+
+
+def _pick_vision_model(model_names: list) -> str | None:
+    """generateContent + 비전 지원 모델 선택."""
+    # "models/gemini-xxx" → "gemini-xxx"
+    short = {m.split("/")[-1] for m in model_names}
+
+    for preferred in _PREFERRED:
+        if preferred in short:
+            return preferred
+    # 선호 목록에 없으면 flash 계열 아무거나
+    for name in short:
+        if "flash" in name or "pro" in name:
+            return name
+    return None
+
+
 def extract_members(image: Image.Image, api_key: str, rooms: dict) -> list:
-    """
-    Gemini REST API로 카카오톡 스크린샷에서 채팅방 인원 추출.
-    rooms: {room_num: room_name}
-    반환: [{'room_num': int, 'members': int}, ...]
-    """
+    """Gemini Vision으로 카카오톡 스크린샷에서 채팅방 인원 추출."""
+
+    # 1단계: 키 검증 + 모델 자동 선택
+    try:
+        available = _list_models(api_key)
+    except ValueError as e:
+        raise RuntimeError(str(e))
+
+    model = _pick_vision_model(available)
+    if model is None:
+        avail_str = ", ".join(available[:10])
+        raise RuntimeError(
+            f"비전 지원 Gemini 모델을 찾을 수 없습니다.\n"
+            f"사용 가능한 모델: {avail_str}"
+        )
+
+    # 2단계: 이미지 인코딩
     buf = io.BytesIO()
-    image.convert('RGB').save(buf, format='PNG')
+    image.convert("RGB").save(buf, format="PNG")
     img_b64 = base64.b64encode(buf.getvalue()).decode()
 
     room_list = "\n".join(
@@ -50,51 +92,38 @@ def extract_members(image: Image.Image, api_key: str, rooms: dict) -> list:
     )
 
     body = {
-        "contents": [{
-            "parts": [
-                {"inline_data": {"mime_type": "image/png", "data": img_b64}},
-                {"text": prompt},
-            ]
-        }],
+        "contents": [{"parts": [
+            {"inline_data": {"mime_type": "image/png", "data": img_b64}},
+            {"text": prompt},
+        ]}],
         "generationConfig": {"temperature": 0.1, "maxOutputTokens": 512},
     }
 
-    last_error = None
-    for api_ver, model_name in _ENDPOINTS:
-        url = f"{_BASE}/{api_ver}/models/{model_name}:generateContent?key={api_key}"
-        try:
-            resp = requests.post(url, json=body, timeout=30)
-            if resp.status_code in (400, 404):
-                last_error = f"{model_name} [{resp.status_code}]"
-                continue
-            resp.raise_for_status()
-            data = resp.json()
-            text = data["candidates"][0]["content"]["parts"][0]["text"]
-            return _parse_response(text, rooms)
-        except (requests.RequestException, KeyError, IndexError) as e:
-            last_error = f"{model_name}: {e}"
-            continue
+    url = f"{_BASE}/v1beta/models/{model}:generateContent?key={api_key}"
+    resp = requests.post(url, json=body, timeout=30)
 
-    raise RuntimeError(
-        f"Gemini API 호출 실패 — 시도한 모든 모델/버전에서 응답 없음.\n"
-        f"마지막 오류: {last_error}\n"
-        "Google AI Studio(aistudio.google.com)에서 API 키를 다시 확인해주세요."
-    )
+    if resp.status_code != 200:
+        err = resp.json().get("error", {}).get("message", resp.text[:200])
+        raise RuntimeError(f"Gemini 호출 실패 [{resp.status_code}] 모델={model}: {err}")
+
+    data = resp.json()
+    text = data["candidates"][0]["content"]["parts"][0]["text"]
+    return _parse_response(text, rooms)
 
 
 def _parse_response(text: str, rooms: dict) -> list:
-    text = re.sub(r'```(?:json)?', '', text).strip()
-    match = re.search(r'\{.*\}', text, re.DOTALL)
+    text = re.sub(r"```(?:json)?", "", text).strip()
+    match = re.search(r"\{.*\}", text, re.DOTALL)
     if not match:
         return []
     try:
         data = json.loads(match.group())
         valid = []
-        for r in data.get('results', []):
-            rn = int(r.get('room_num', 0))
-            m  = int(r.get('members', 0))
+        for r in data.get("results", []):
+            rn = int(r.get("room_num", 0))
+            m  = int(r.get("members", 0))
             if rn in rooms and 1 <= m <= 99999:
-                valid.append({'room_num': rn, 'members': m})
+                valid.append({"room_num": rn, "members": m})
         return valid
     except (json.JSONDecodeError, ValueError, TypeError):
         return []
