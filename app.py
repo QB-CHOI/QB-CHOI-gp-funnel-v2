@@ -174,50 +174,60 @@ def tab_input():
 
         if not st.session_state.ocr_done:
             with st.spinner(f"{len(images)}장 인식 중..."):
-                try:
-                    merged = {}
+                merged = {}
+                method_used = "Tesseract"
+                gemini_error = None
 
-                    if _use_gemini:
+                # ── Gemini Vision 시도 ─────────────────────────
+                if _use_gemini:
+                    try:
                         from gemini_vision import extract_members as gemini_extract
                         for _, img in images:
-                            extracted = gemini_extract(img, _gemini_key, ROOMS)
-                            for r in extracted:
+                            for r in gemini_extract(img, _gemini_key, ROOMS):
                                 if r['room_num'] in ROOMS:
                                     merged[r['room_num']] = r['members']
-                        # Gemini가 인식 못한 방은 Tesseract로 보완
-                        missing = set(ROOMS.keys()) - set(merged.keys())
-                        if missing:
-                            for _, img in images:
-                                fallback = extract_from_image(img, {k: v for k, v in ROOMS.items() if k in missing})
-                                for r in fallback:
-                                    if r['room_num'] in missing:
-                                        merged[r['room_num']] = r['members']
-                    else:
+                        method_used = "Gemini Vision"
+                    except Exception as e:
+                        gemini_error = str(e)
+
+                # ── Tesseract 폴백 (Gemini 실패 또는 미사용) ──
+                if not merged:
+                    try:
                         for _, img in images:
-                            extracted = extract_from_image(img, ROOMS)
-                            for r in extracted:
-                                merged[r['room_num']] = r['members']
+                            for r in extract_from_image(img, ROOMS):
+                                if r['room_num'] not in merged:
+                                    merged[r['room_num']] = r['members']
+                        if merged:
+                            method_used = "Tesseract"
+                    except Exception:
+                        pass
 
-                    st.session_state.ocr_results = merged
-                    st.session_state.ocr_done = True
+                st.session_state.ocr_results = merged
+                st.session_state.ocr_done = True
+                for rn, val in merged.items():
+                    st.session_state[f"inp_{rn}"] = val
 
-                    for rn, val in merged.items():
-                        st.session_state[f"inp_{rn}"] = val
-
-                    method = "Gemini Vision" if _use_gemini else "Tesseract"
-                    if merged:
-                        st.success(f"✅ {len(merged)}개 채팅방 인식 완료 ({len(images)}장 · {method})")
-                    else:
-                        st.warning(
-                            f"⚠️ 채팅방 인원을 인식하지 못했습니다. ({method})\n\n"
-                            "**확인 사항:**\n"
-                            "1. 채팅방 목록 화면이 선명하게 찍혔는지 확인하세요.\n"
-                            "2. ⚙️ 채팅방 설정 탭에서 채팅방 이름이 스크린샷과 동일한지 확인하세요.\n"
-                            "3. 아래 2단계 표에서 직접 숫자를 입력할 수 있습니다."
+                # ── 결과 메시지 ────────────────────────────────
+                if gemini_error:
+                    with st.expander("⚠️ Gemini API 오류 (상세)", expanded=False):
+                        st.error(gemini_error)
+                        st.markdown(
+                            "**API 키 확인 방법:**\n"
+                            "1. [aistudio.google.com/apikey](https://aistudio.google.com/apikey) 접속\n"
+                            "2. 기존 키 삭제 후 새 키 생성\n"
+                            "3. Streamlit Cloud → Settings → Secrets에서 `gemini_api_key` 값 업데이트"
                         )
-                except Exception as e:
-                    st.error(f"OCR 오류: {e}")
-                    st.info("아래 표에서 직접 숫자를 입력해도 됩니다.")
+
+                if merged:
+                    note = " (순서 확인 필요)" if method_used == "Tesseract" else ""
+                    st.success(f"✅ {len(merged)}개 채팅방 인식 완료 ({len(images)}장 · {method_used}{note})")
+                    if method_used == "Tesseract":
+                        st.info("Tesseract로 인식했습니다. 숫자가 맞는 방에 할당되었는지 아래 표에서 확인해주세요.")
+                else:
+                    st.warning(
+                        "⚠️ 인원을 인식하지 못했습니다. 아래 표에서 직접 입력해주세요.\n\n"
+                        "Gemini API 키가 정상 등록되면 자동 인식이 가능합니다."
+                    )
         else:
             method = "Gemini Vision" if _use_gemini else "Tesseract"
             st.success(f"✅ {len(st.session_state.ocr_results)}개 채팅방 인식 완료 ({len(images)}장 · {method})")
