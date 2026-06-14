@@ -3,7 +3,8 @@ import plotly.express as px
 import pandas as pd
 
 
-def trend_line_chart(df: pd.DataFrame, room_nums: list = None, targets: dict = None):
+def trend_line_chart(df: pd.DataFrame, room_nums: list = None, targets: dict = None,
+                     rooms: dict = None):
     """방별 인원 추이 라인 차트. targets: {room_num: target_count}"""
     if df.empty:
         return None
@@ -14,7 +15,7 @@ def trend_line_chart(df: pd.DataFrame, room_nums: list = None, targets: dict = N
 
     plot_df = plot_df.sort_values('date')
     plot_df['label'] = plot_df['room_num'].apply(
-        lambda x: str(x)
+        lambda x: (rooms or {}).get(int(x), f"채팅방 {x}")
     )
 
     fig = px.line(
@@ -49,7 +50,7 @@ def trend_line_chart(df: pd.DataFrame, room_nums: list = None, targets: dict = N
     return fig
 
 
-def change_bar_chart(df_today: pd.DataFrame):
+def change_bar_chart(df_today: pd.DataFrame, rooms: dict = None):
     """전일 대비 증감 막대 차트."""
     if df_today.empty:
         return None
@@ -63,9 +64,10 @@ def change_bar_chart(df_today: pd.DataFrame):
         lambda x: '#2e7d32' if x > 0 else ('#c62828' if x < 0 else '#9e9e9e')
     )
     text_labels = df['change'].apply(lambda x: f'+{int(x)}' if x > 0 else str(int(x)))
+    x_labels = df['room_num'].apply(lambda x: (rooms or {}).get(int(x), f"채팅방 {x}"))
 
     fig = go.Figure(go.Bar(
-        x=df['room_num'].astype(str),
+        x=x_labels,
         y=df['change'],
         marker_color=colors,
         text=text_labels,

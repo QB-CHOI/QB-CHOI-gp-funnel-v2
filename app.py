@@ -464,7 +464,7 @@ def tab_dashboard():
     # ── 증감 차트 + 상품별 분석 ───────────────────────────────
     col_c1, col_c2 = st.columns(2)
     with col_c1:
-        fig_bar = change_bar_chart(df_today)
+        fig_bar = change_bar_chart(df_today, rooms=ROOMS)
         if fig_bar:
             st.plotly_chart(fig_bar, use_container_width=True)
     with col_c2:
@@ -895,7 +895,7 @@ def tab_trend():
     }
 
     # 라인 차트 (목표 인원 점선 포함)
-    fig_line = trend_line_chart(df_filtered, filter_rooms, targets=targets)
+    fig_line = trend_line_chart(df_filtered, filter_rooms, targets=targets, rooms=ROOMS)
     if fig_line:
         st.plotly_chart(fig_line, use_container_width=True)
 
