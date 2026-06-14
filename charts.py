@@ -157,17 +157,24 @@ def product_bar_chart(df: pd.DataFrame, campaigns: dict):
 
 
 def weekly_comparison_chart(df: pd.DataFrame):
-    """이번 주 vs 지난 주 채팅방별 인원 비교 막대 차트."""
+    """이번 주 vs 지난 주 채팅방별 인원 비교 막대 차트.
+    정확히 7일 전 데이터가 없어도 5~9일 범위 내 가장 가까운 날짜를 사용한다."""
     if df.empty:
         return None
 
-    import datetime
     df = df.copy()
     df['date'] = pd.to_datetime(df['date'])
     latest = df['date'].max()
-    week_ago = latest - datetime.timedelta(days=7)
 
-    df_now = df[df['date'] == latest][['room_num', 'members']].rename(columns={'members': '이번'})
+    # 5~9일 전 범위에서 가장 최근 날짜를 기준일로 사용
+    candidates = df['date'].unique()
+    week_cands = [d for d in candidates
+                  if pd.Timedelta('5 days') <= (latest - d) <= pd.Timedelta('9 days')]
+    if not week_cands:
+        return None
+    week_ago = max(week_cands)
+
+    df_now  = df[df['date'] == latest][['room_num', 'members']].rename(columns={'members': '이번'})
     df_prev = df[df['date'] == week_ago][['room_num', 'members']].rename(columns={'members': '지난주'})
 
     merged = pd.merge(df_now, df_prev, on='room_num', how='inner')
@@ -195,8 +202,8 @@ def weekly_comparison_chart(df: pd.DataFrame):
     return fig
 
 
-def churn_rate_chart(df: pd.DataFrame, rooms: dict = None):
-    """주간 채팅방별 이탈률 막대 차트. 5% 이상은 빨간색."""
+def churn_rate_chart(df: pd.DataFrame, rooms: dict = None, threshold: int = 5):
+    """주간 채팅방별 이탈률 막대 차트. threshold 이상이면 빨간색."""
     if df.empty:
         return None
 
@@ -219,7 +226,7 @@ def churn_rate_chart(df: pd.DataFrame, rooms: dict = None):
     merged['label'] = merged['room_num'].apply(
         lambda x: (rooms or {}).get(int(x), f"채팅방 {x}")
     )
-    colors = merged['churn'].apply(lambda x: '#c62828' if x >= 5 else '#ef6c00')
+    colors = merged['churn'].apply(lambda x: '#c62828' if x >= threshold else '#ef6c00')
 
     fig = go.Figure(go.Bar(
         x=merged['label'],
@@ -235,8 +242,8 @@ def churn_rate_chart(df: pd.DataFrame, rooms: dict = None):
         margin=dict(t=50, b=30),
         showlegend=False,
     )
-    fig.add_hline(y=5, line_dash='dash', line_color='#c62828', opacity=0.5,
-                  annotation_text='경고 기준 5%', annotation_position='right')
+    fig.add_hline(y=threshold, line_dash='dash', line_color='#c62828', opacity=0.5,
+                  annotation_text=f'경고 기준 {threshold}%', annotation_position='right')
     return fig
 
 
@@ -296,6 +303,78 @@ def roi_chart(df_adspend: pd.DataFrame, df_conv: pd.DataFrame,
         legend=dict(orientation='h', yanchor='bottom', y=1.02),
         yaxis=dict(title='광고비(원)'),
         yaxis2=dict(title='ROAS', overlaying='y', side='right', showgrid=False),
+    )
+    return fig
+
+
+def cohort_conversion_chart(df_conv: pd.DataFrame, campaigns: dict, rooms: dict = None):
+    """강의별(기수별) 신청자·수강확정·전환율 비교 차트.
+    데이터가 있는 강의만 표시하며, 같은 상품끼리 정렬한다."""
+    if df_conv.empty or not campaigns:
+        return None
+
+    rows = []
+    for room_num, info in campaigns.items():
+        sub = df_conv[df_conv['room_num'] == room_num]
+        if sub.empty:
+            continue
+        latest = sub.sort_values('date').iloc[-1]
+        applicants = int(latest['applicants'])
+        confirmed  = int(latest['confirmed'])
+        conv_rate  = round(confirmed / applicants * 100, 1) if applicants > 0 else 0
+        product = info.get('product', '기타')
+        cohort  = info.get('cohort', '-')
+        label   = f"{product} {cohort}" if cohort not in ('-', '', None) \
+                  else info.get('campaign_name', f'채팅방 {room_num}')
+        rows.append({
+            'label': label,
+            'sort_key': f"{product}_{cohort}",
+            '신청자': applicants,
+            '수강확정': confirmed,
+            '전환율': conv_rate,
+        })
+
+    if not rows:
+        return None
+
+    df_r = (pd.DataFrame(rows)
+            .sort_values('sort_key')
+            .drop(columns='sort_key')
+            .reset_index(drop=True))
+
+    fig = go.Figure()
+    fig.add_trace(go.Bar(
+        name='신청자', x=df_r['label'], y=df_r['신청자'],
+        marker_color='#b0bec5',
+        text=df_r['신청자'], textposition='outside',
+    ))
+    fig.add_trace(go.Bar(
+        name='수강확정', x=df_r['label'], y=df_r['수강확정'],
+        marker_color='#1565c0',
+        text=df_r['수강확정'], textposition='outside',
+    ))
+    fig.add_trace(go.Scatter(
+        name='전환율(%)',
+        x=df_r['label'], y=df_r['전환율'],
+        mode='lines+markers+text',
+        text=df_r['전환율'].apply(lambda v: f"{v:.1f}%"),
+        textposition='top center',
+        marker=dict(size=10, color='#e65100'),
+        line=dict(color='#e65100', width=2, dash='dot'),
+        yaxis='y2',
+    ))
+    fig.update_layout(
+        title='강의별 신청·수강확정·전환율 비교',
+        barmode='group',
+        xaxis_title='강의',
+        yaxis=dict(title='인원 수'),
+        yaxis2=dict(
+            title='전환율 (%)', overlaying='y', side='right',
+            showgrid=False, range=[0, 115],
+        ),
+        height=380,
+        margin=dict(t=50, b=30),
+        legend=dict(orientation='h', yanchor='bottom', y=1.02),
     )
     return fig
 

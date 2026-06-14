@@ -14,7 +14,7 @@ from github_store import (
 from charts import (
     trend_line_chart, change_bar_chart, total_trend_bar,
     product_bar_chart, weekly_comparison_chart, cohort_trend_chart,
-    funnel_chart, conversion_rate_chart,
+    funnel_chart, conversion_rate_chart, cohort_conversion_chart,
     churn_rate_chart, roi_chart,
 )
 
@@ -542,18 +542,16 @@ def tab_dashboard():
                     st.markdown(f"- {row['room_name']}{camp_str}: **{int(row['change'])}명** (총 {int(row['members']):,}명)")
 
     # ── 이탈률 경고 + 차트 ────────────────────────────────────
+    # session_state에서 현재 임계값 읽기 (슬라이더 렌더 전에 계산에 사용)
+    churn_threshold = st.session_state.get("churn_threshold", 5)
+    churn_warnings: list = []
+
     if len(df) >= 2:
         dates_sorted = sorted(df['date'].unique())
         if len(dates_sorted) >= 2:
-            churn_threshold = st.slider(
-                "이탈률 경고 기준 (%)", min_value=1, max_value=20, value=5, step=1,
-                key="churn_threshold",
-                help="전일 대비 인원 감소율이 이 값 이상이면 경고를 표시합니다."
-            )
-
+            # 경고 먼저 계산 (현재 threshold 기준)
             prev_date = dates_sorted[-2]
             df_prev_day = df[df['date'] == prev_date]
-            churn_warnings = []
             for rn in df_today['room_num'].dropna().unique():
                 cur_row  = df_today[df_today['room_num'] == rn]
                 prev_row = df_prev_day[df_prev_day['room_num'] == rn]
@@ -564,15 +562,23 @@ def tab_dashboard():
                 if prev_m > 0 and prev_m > cur_m:
                     churn = round((prev_m - cur_m) / prev_m * 100, 1)
                     if churn >= churn_threshold:
-                        room_label = ROOMS.get(int(rn), f'채팅방 {rn}')
-                        churn_warnings.append(f"{room_label} ({churn}%↓)")
+                        churn_warnings.append(
+                            f"{ROOMS.get(int(rn), f'채팅방 {rn}')} ({churn}%↓)"
+                        )
+
+            # 슬라이더 렌더 (다음 rerun부터 새 threshold 반영)
+            churn_threshold = st.slider(
+                "이탈률 경고 기준 (%)", min_value=1, max_value=20,
+                value=churn_threshold, step=1, key="churn_threshold",
+                help="전일 대비 인원 감소율이 이 값 이상이면 경고를 표시합니다."
+            )
             if churn_warnings:
                 st.error(
                     f"🚨 **이탈률 경고 (≥{churn_threshold}%):** " + "  |  ".join(churn_warnings) +
                     "\n\n전일 대비 인원이 기준치 이상 감소한 채팅방입니다. 콘텐츠 또는 광고 전략을 점검하세요."
                 )
 
-        fig_churn = churn_rate_chart(df, ROOMS)
+        fig_churn = churn_rate_chart(df, ROOMS, threshold=churn_threshold)
         if fig_churn:
             with st.expander("📉 이탈률 추이 차트", expanded=False):
                 st.plotly_chart(fig_churn, use_container_width=True)
@@ -601,6 +607,76 @@ def tab_dashboard():
                 '메모': info.get('memo', '-'),
             })
         st.dataframe(pd.DataFrame(camp_rows), use_container_width=True, hide_index=True)
+
+    # ── 주간 요약 리포트 ──────────────────────────────────────
+    with st.expander("📋 주간 요약 리포트", expanded=False):
+        st.caption("클릭 후 Ctrl+A → Ctrl+C 로 전체 복사하여 공유하세요.")
+
+        df_dt = df.copy()
+        df_dt['date'] = pd.to_datetime(df_dt['date'])
+        latest_dt = pd.to_datetime(latest_date)
+        latest_total = int(df_today['members'].sum())
+
+        # 5~9일 전 범위에서 가장 가까운 날짜 탐색
+        week_cands = [d for d in df_dt['date'].unique()
+                      if pd.Timedelta('5 days') <= (latest_dt - d) <= pd.Timedelta('9 days')]
+
+        lines = []
+        if week_cands:
+            wa_dt   = max(week_cands)
+            wa_str  = str(wa_dt.date())
+            wa_total = int(df_dt[df_dt['date'] == wa_dt]['members'].sum())
+            diff     = latest_total - wa_total
+            diff_s   = f"+{diff:,}" if diff >= 0 else f"{diff:,}"
+            lines.append(f"📊 주간 요약  {wa_str} → {latest_date}")
+            lines.append(f"전체 총원: {latest_total:,}명  ({diff_s}명 전주 대비)")
+        else:
+            lines.append(f"📊 현황 요약  {latest_date}")
+            lines.append(f"전체 총원: {latest_total:,}명")
+
+        lines.append("")
+
+        df_chg = df_today.dropna(subset=['change'])
+        top_up = df_chg[df_chg['change'] > 0].sort_values('change', ascending=False).head(3)
+        top_dn = df_chg[df_chg['change'] < 0].sort_values('change').head(3)
+
+        if not top_up.empty:
+            lines.append("▲ 인원 증가 TOP 3")
+            for _, r in top_up.iterrows():
+                nm = ROOMS.get(int(r['room_num']), f"채팅방 {r['room_num']}")
+                lines.append(f"  {nm}  +{int(r['change']):,}명 → {int(r['members']):,}명")
+            lines.append("")
+
+        if not top_dn.empty:
+            lines.append("▼ 인원 감소 TOP 3")
+            for _, r in top_dn.iterrows():
+                nm = ROOMS.get(int(r['room_num']), f"채팅방 {r['room_num']}")
+                lines.append(f"  {nm}  {int(r['change']):,}명 → {int(r['members']):,}명")
+            lines.append("")
+
+        if churn_warnings:
+            lines.append(f"⚠️ 이탈률 경고 (기준 ≥{churn_threshold}%)")
+            for w in churn_warnings:
+                lines.append(f"  {w}")
+        else:
+            lines.append(f"✅ 이탈률 경고 없음 (기준 ≥{churn_threshold}%)")
+
+        if campaigns:
+            lines.append("")
+            lines.append("📚 진행 중인 강의")
+            for rn, info in sorted(campaigns.items()):
+                nm    = ROOMS.get(rn, f"채팅방 {rn}")
+                cname = info.get('campaign_name', '-')
+                mem_row = df_today[df_today['room_num'] == rn]
+                mem = f"{int(mem_row['members'].values[0]):,}명" if not mem_row.empty else "-"
+                lines.append(f"  {nm} ({cname}): {mem}")
+
+        st.text_area(
+            "요약 텍스트",
+            value="\n".join(lines),
+            height=300,
+            key="weekly_summary_ta",
+        )
 
 
 # ── 탭 3: 전환 분석 ──────────────────────────────────────────────
@@ -643,6 +719,13 @@ def tab_conversion():
     fig_conv = conversion_rate_chart(df_conv, campaigns, rooms=ROOMS)
     if fig_conv:
         st.plotly_chart(fig_conv, use_container_width=True)
+
+    # ── 기수별 전환율 비교 ─────────────────────────────────────
+    fig_cohort_conv = cohort_conversion_chart(df_conv, campaigns, rooms=ROOMS)
+    if fig_cohort_conv:
+        st.plotly_chart(fig_cohort_conv, use_container_width=True)
+    elif not df_conv.empty:
+        st.info("전환 데이터를 입력하면 강의별 신청·수강확정·전환율 비교 차트가 표시됩니다.")
 
     # ── 전환 데이터 입력 ───────────────────────────────────────
     st.subheader("전환 데이터 입력")
