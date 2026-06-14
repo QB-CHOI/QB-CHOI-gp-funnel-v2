@@ -38,17 +38,31 @@ if 'uploaded_file_names' not in st.session_state:
 # ── OCR 검토 테이블 ───────────────────────────────────────────────
 
 def _show_ocr_review(ocr_results: dict, rooms: dict, prev: dict):
-    """OCR 인식 결과를 전일 대비로 보여주는 검토 테이블."""
+    """OCR 인식 결과를 전체 채팅방 기준으로 보여주는 검토 테이블.
+    인식되지 않은 방도 '미인식' 상태로 표시한다."""
     rows = []
     has_warning = False
+    recognized = 0
 
-    for rn, ocr_val in sorted(ocr_results.items()):
+    for rn in sorted(rooms.keys()):
         name = rooms.get(rn, f"채팅방 {rn}")
+        ocr_val = ocr_results.get(rn)
         prev_val = prev.get(rn)
+
+        if ocr_val is None:
+            rows.append({
+                "채팅방": name,
+                "인식값": None,
+                "전일": int(prev_val) if prev_val is not None else None,
+                "증감": None,
+                "상태": "❌ 미인식",
+            })
+            continue
+
+        recognized += 1
         if prev_val is not None:
             diff = ocr_val - int(prev_val)
             pct = abs(diff / prev_val * 100) if prev_val else 0
-            diff_str = f"+{diff:,}" if diff > 0 else f"{diff:,}"
             if pct > 50 or abs(diff) > 500:
                 status = "🚨 확인 필요"
                 has_warning = True
@@ -58,30 +72,54 @@ def _show_ocr_review(ocr_results: dict, rooms: dict, prev: dict):
             else:
                 status = "✅ 정상"
         else:
-            diff_str = "-"
+            diff = None
             status = "➕ 신규"
 
         rows.append({
             "채팅방": name,
-            "인식값": f"{ocr_val:,}",
-            "전일": f"{int(prev_val):,}" if prev_val is not None else "-",
-            "증감": diff_str,
+            "인식값": ocr_val,
+            "전일": int(prev_val) if prev_val is not None else None,
+            "증감": diff,
             "상태": status,
         })
 
     if not rows:
         return
 
-    st.subheader("인식 결과 검토")
+    total = len(rooms)
+    unrecognized = total - recognized
+
+    st.subheader(f"인식 결과 검토 ({recognized} / {total}개 인식)")
+
+    if unrecognized > 0:
+        miss_names = [rooms.get(rn, f"채팅방 {rn}") for rn in sorted(rooms.keys()) if rn not in ocr_results]
+        st.error(f"❌ {unrecognized}개 미인식 — 2단계에서 직접 입력하세요: " + "  |  ".join(miss_names))
     if has_warning:
-        st.warning("⚠️ 이상값이 감지되었습니다. 아래 표를 확인하고 필요시 2단계에서 수정하세요.")
-    else:
-        st.info("인식된 값이 모두 정상 범위입니다. 이상 있으면 아래에서 직접 수정하세요.")
+        st.warning("⚠️ 이상값 감지 — 아래 표를 확인하고 2단계에서 수정하세요.")
+    if recognized == total and not has_warning:
+        st.success("모든 채팅방 인식 완료. 값이 맞으면 3단계에서 저장하세요.")
+
+    df_review = pd.DataFrame(rows)
+
+    def _row_color(row):
+        s = row.get("상태", "")
+        if s == "❌ 미인식":
+            return ["background-color: #ffebee"] * len(row)
+        if s == "🚨 확인 필요":
+            return ["background-color: #fff3e0"] * len(row)
+        if s == "⚠️ 변동 큼":
+            return ["background-color: #fffde7"] * len(row)
+        return [""] * len(row)
 
     st.dataframe(
-        pd.DataFrame(rows),
+        df_review.style.apply(_row_color, axis=1),
         use_container_width=True,
         hide_index=True,
+        column_config={
+            "인식값": st.column_config.NumberColumn(format="%d명"),
+            "전일": st.column_config.NumberColumn(format="%d명"),
+            "증감": st.column_config.NumberColumn(format="%+d명"),
+        },
     )
 
 
@@ -267,8 +305,8 @@ def tab_input():
                 st.session_state.ocr_done = False
                 st.rerun()
 
-        # ── 인식 결과 검토 테이블 ──────────────────────────────
-        if st.session_state.ocr_done and st.session_state.ocr_results:
+        # ── 인식 결과 검토 테이블 (미인식 방 포함 전체 표시) ─────
+        if st.session_state.ocr_done:
             _show_ocr_review(st.session_state.ocr_results, ROOMS, prev)
 
     # ── 채팅방 이름 수정 ───────────────────────────────────────
@@ -453,27 +491,32 @@ def tab_dashboard():
 
     display = df_today[['room_num', 'room_name', 'members', 'prev_members', 'change']].copy()
     display.columns = ['방 번호', '채팅방', '총원', '전일', '증감']
-    display = display.sort_values('방 번호').reset_index(drop=True)
-
-    # 증감 컬럼 포맷
-    def fmt_change(val):
-        if pd.isna(val):
-            return '-'
-        return f'+{int(val)}' if val > 0 else str(int(val))
-
-    display['증감'] = display['증감'].apply(fmt_change)
-    display['총원'] = display['총원'].apply(lambda x: f"{int(x):,}")
-    display['전일'] = display['전일'].apply(lambda x: f"{int(x):,}" if not pd.isna(x) else '-')
-
-    # 캠페인 정보 컬럼 추가
     display['진행 중인 강의'] = display['방 번호'].apply(
         lambda n: campaigns.get(int(n), {}).get('campaign_name', '-')
     )
     display['상품'] = display['방 번호'].apply(
         lambda n: campaigns.get(int(n), {}).get('product', '-')
     )
+    display = display.sort_values('방 번호').reset_index(drop=True)
 
-    st.dataframe(display, use_container_width=True, hide_index=True)
+    def _style_change(series):
+        return [
+            'color: #2E7D32; font-weight: bold' if (not pd.isna(v) and v > 0)
+            else 'color: #C62828; font-weight: bold' if (not pd.isna(v) and v < 0)
+            else ''
+            for v in series
+        ]
+
+    st.dataframe(
+        display.style.apply(_style_change, subset=['증감']),
+        use_container_width=True,
+        hide_index=True,
+        column_config={
+            '총원': st.column_config.NumberColumn(format="%d명"),
+            '전일': st.column_config.NumberColumn(format="%d명"),
+            '증감': st.column_config.NumberColumn(format="%+d명"),
+        },
+    )
 
     # ── 텍스트 요약 ────────────────────────────────────────────
     st.subheader("요약")
@@ -500,28 +543,33 @@ def tab_dashboard():
 
     # ── 이탈률 경고 + 차트 ────────────────────────────────────
     if len(df) >= 2:
-        # 최근 7일 데이터로 이탈률 계산
         dates_sorted = sorted(df['date'].unique())
         if len(dates_sorted) >= 2:
+            churn_threshold = st.slider(
+                "이탈률 경고 기준 (%)", min_value=1, max_value=20, value=5, step=1,
+                key="churn_threshold",
+                help="전일 대비 인원 감소율이 이 값 이상이면 경고를 표시합니다."
+            )
+
             prev_date = dates_sorted[-2]
-            df_prev_week = df[df['date'] == prev_date]
+            df_prev_day = df[df['date'] == prev_date]
             churn_warnings = []
             for rn in df_today['room_num'].dropna().unique():
                 cur_row  = df_today[df_today['room_num'] == rn]
-                prev_row = df_prev_week[df_prev_week['room_num'] == rn]
+                prev_row = df_prev_day[df_prev_day['room_num'] == rn]
                 if cur_row.empty or prev_row.empty:
                     continue
                 cur_m  = int(cur_row['members'].values[0])
                 prev_m = int(prev_row['members'].values[0])
                 if prev_m > 0 and prev_m > cur_m:
                     churn = round((prev_m - cur_m) / prev_m * 100, 1)
-                    if churn >= 5:
+                    if churn >= churn_threshold:
                         room_label = ROOMS.get(int(rn), f'채팅방 {rn}')
                         churn_warnings.append(f"{room_label} ({churn}%↓)")
             if churn_warnings:
                 st.error(
-                    "🚨 **이탈률 경고 (≥5%):** " + "  |  ".join(churn_warnings) +
-                    "\n\n전일 대비 5% 이상 인원이 감소한 채팅방입니다. 콘텐츠 또는 광고 전략을 점검하세요."
+                    f"🚨 **이탈률 경고 (≥{churn_threshold}%):** " + "  |  ".join(churn_warnings) +
+                    "\n\n전일 대비 인원이 기준치 이상 감소한 채팅방입니다. 콘텐츠 또는 광고 전략을 점검하세요."
                 )
 
         fig_churn = churn_rate_chart(df, ROOMS)
