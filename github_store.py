@@ -104,7 +104,9 @@ def save_daily(date_str: str, room_data: list):
             "change": change,
         })
 
-    combined = pd.concat([df, pd.DataFrame(new_rows)], ignore_index=True)
+    combined = (pd.concat([df, pd.DataFrame(new_rows)], ignore_index=True)
+                .sort_values(['date', 'room_num'])
+                .reset_index(drop=True))
     _write_csv(MEMBERS_PATH, combined, f"{date_str} 인원 업데이트")
     load_all.clear()
 
