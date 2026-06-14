@@ -32,6 +32,8 @@ if 'ocr_done' not in st.session_state:
     st.session_state.ocr_done = False
 if 'uploaded_file_names' not in st.session_state:
     st.session_state.uploaded_file_names = []
+if 'pending_delete_date' not in st.session_state:
+    st.session_state.pending_delete_date = None
 
 
 
@@ -378,6 +380,14 @@ def tab_input():
 
     # ── 저장 ──────────────────────────────────────────────────
     st.subheader("3단계 — 저장")
+    # 해당 날짜 데이터가 이미 존재하면 덮어쓰기 안내
+    if not df_all.empty:
+        _existing = df_all[df_all['date'].astype(str) == str(input_date)]
+        if not _existing.empty:
+            st.info(
+                f"ℹ️ {input_date} 데이터가 이미 {len(_existing)}개 채팅방 저장되어 있습니다. "
+                "저장하면 기존 데이터를 덮어씁니다."
+            )
     col_save, col_reset = st.columns([3, 1])
 
     with col_save:
@@ -428,7 +438,6 @@ def tab_dashboard():
     campaigns = get_current_campaigns()
 
     # ── 입력 완성도 경고 ───────────────────────────────────────
-    ROOMS = load_rooms()
     total_rooms = len(ROOMS)
     entered_rooms = len(df_today)
     if entered_rooms < total_rooms:
@@ -1189,7 +1198,7 @@ def tab_data():
     show = df.sort_values(['date', 'room_num'], ascending=[False, True]).reset_index(drop=True)
     st.dataframe(show, use_container_width=True, hide_index=True)
 
-    col_csv, col_excel, col_del = st.columns([2, 2, 1])
+    col_csv, col_excel = st.columns(2)
 
     with col_csv:
         csv_bytes = df.to_csv(index=False).encode('utf-8-sig')
@@ -1203,8 +1212,14 @@ def tab_data():
 
     with col_excel:
         from excel_export import generate_excel
-        campaigns = get_current_campaigns()
-        excel_bytes = generate_excel(df, campaigns)
+        _campaigns = get_current_campaigns()
+        _df_conv    = load_conversions()
+        _df_adspend = load_adspend()
+        excel_bytes = generate_excel(
+            df, _campaigns,
+            df_conv=_df_conv,
+            df_adspend=_df_adspend,
+        )
         st.download_button(
             "📊 Excel 보고서 다운로드",
             data=excel_bytes,
@@ -1213,13 +1228,27 @@ def tab_data():
             use_container_width=True,
         )
 
-    with col_del:
-        st.subheader("날짜 데이터 삭제")
-        dates = sorted(df['date'].astype(str).unique().tolist(), reverse=True)
-        del_date = st.selectbox("삭제할 날짜", options=dates, key="del_date_select")
-        if st.button("🗑️ 삭제", type="secondary", use_container_width=True):
+    # ── 날짜 데이터 삭제 (2단계 확인) ─────────────────────────
+    st.divider()
+    st.subheader("날짜 데이터 삭제")
+    dates = sorted(df['date'].astype(str).unique().tolist(), reverse=True)
+    del_date = st.selectbox("삭제할 날짜", options=dates, key="del_date_select")
+
+    if st.button("🗑️ 삭제 요청", type="secondary"):
+        st.session_state.pending_delete_date = del_date
+
+    if st.session_state.pending_delete_date == del_date:
+        st.error(
+            f"'{del_date}' 데이터를 영구 삭제합니다. 되돌릴 수 없습니다. 계속하시겠습니까?"
+        )
+        col_yes, col_no = st.columns(2)
+        if col_yes.button("✅ 확인 삭제", type="primary", use_container_width=True):
             delete_date(del_date)
-            st.success(f"{del_date} 데이터 삭제 완료")
+            st.session_state.pending_delete_date = None
+            st.success(f"✅ {del_date} 데이터 삭제 완료")
+            st.rerun()
+        if col_no.button("❌ 취소", use_container_width=True):
+            st.session_state.pending_delete_date = None
             st.rerun()
 
 

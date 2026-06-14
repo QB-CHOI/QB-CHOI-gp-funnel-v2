@@ -52,16 +52,19 @@ def _change_style(cell, value):
         cell.font = Font(color=COLOR['neutral'])
 
 
-def generate_excel(df: pd.DataFrame, campaigns: dict = None) -> bytes:
-    """
-    전체 인원 데이터를 받아 포맷된 Excel 파일을 bytes로 반환.
-    campaigns: get_current_campaigns() 결과 dict (선택)
-    """
+def generate_excel(df: pd.DataFrame, campaigns: dict = None,
+                   df_conv: pd.DataFrame = None,
+                   df_adspend: pd.DataFrame = None) -> bytes:
+    """전체 인원 데이터를 받아 포맷된 Excel 파일을 bytes로 반환."""
     wb = Workbook()
 
     _build_daily_sheet(wb, df, campaigns)
     _build_summary_sheet(wb, df, campaigns)
     _build_trend_sheet(wb, df)
+    if df_conv is not None and not df_conv.empty:
+        _build_conversion_sheet(wb, df_conv, campaigns or {})
+    if df_adspend is not None and not df_adspend.empty:
+        _build_adspend_sheet(wb, df_adspend, campaigns or {})
 
     buf = io.BytesIO()
     wb.save(buf)
@@ -190,3 +193,98 @@ def _build_trend_sheet(wb, df):
 
     for i in range(1, len(pivot.columns) + 1):
         ws.column_dimensions[get_column_letter(i)].width = 12
+
+
+# ── 시트 4: 전환 분석 ─────────────────────────────────────────────
+
+def _build_conversion_sheet(wb, df_conv: pd.DataFrame, campaigns: dict):
+    ws = wb.create_sheet('전환 분석')
+
+    if df_conv.empty:
+        ws.cell(row=1, column=1).value = '전환 데이터 없음'
+        return
+
+    headers = ['날짜', '강의명', '상품', '기수', '신청자', '수강확정', '전환율(%)', '매출(원)', '메모']
+    for col, h in enumerate(headers, 1):
+        _header_style(ws.cell(row=1, column=col), h)
+    ws.row_dimensions[1].height = 22
+    ws.freeze_panes = 'A2'
+
+    sorted_df = df_conv.sort_values(['date', 'room_num'], ascending=[False, True])
+
+    for r_idx, (_, row) in enumerate(sorted_df.iterrows(), 2):
+        rn   = int(row['room_num'])
+        camp = campaigns.get(rn, {})
+        appl = int(row['applicants'])
+        conf = int(row['confirmed'])
+        conv_pct = round(conf / appl * 100, 1) if appl > 0 else 0
+        fill = PatternFill('solid', fgColor=COLOR['row_even'] if r_idx % 2 == 0 else COLOR['row_odd'])
+
+        def cell(col):
+            c = ws.cell(row=r_idx, column=col)
+            c.fill = fill
+            c.border = _border
+            return c
+
+        c = cell(1); c.value = str(row['date']); c.alignment = Alignment(horizontal='center')
+        c = cell(2); c.value = camp.get('campaign_name', f'채팅방 {rn}'); c.alignment = Alignment(horizontal='left')
+        c = cell(3); c.value = camp.get('product', '-'); c.alignment = Alignment(horizontal='center')
+        c = cell(4); c.value = camp.get('cohort', '-'); c.alignment = Alignment(horizontal='center')
+        _num_fmt(cell(5), appl)
+        _num_fmt(cell(6), conf)
+        c7 = cell(7)
+        c7.value = conv_pct
+        c7.number_format = '0.0'
+        c7.alignment = Alignment(horizontal='center')
+        if conv_pct >= 80:
+            c7.font = Font(bold=True, color=COLOR['pos'])
+        _num_fmt(cell(8), int(row['revenue']))
+        c = cell(9); c.value = str(row.get('memo', '') or ''); c.alignment = Alignment(horizontal='left')
+
+    for i, w in enumerate([12, 22, 10, 8, 10, 10, 12, 14, 20], 1):
+        ws.column_dimensions[get_column_letter(i)].width = w
+
+
+# ── 시트 5: 광고비 ────────────────────────────────────────────────
+
+def _build_adspend_sheet(wb, df_adspend: pd.DataFrame, campaigns: dict = None):
+    ws = wb.create_sheet('광고비')
+
+    if df_adspend.empty:
+        ws.cell(row=1, column=1).value = '광고비 데이터 없음'
+        return
+
+    headers = ['날짜', '강의명', '채널', '광고비(원)', '노출수', '클릭수', 'CPC(원)', '메모']
+    for col, h in enumerate(headers, 1):
+        _header_style(ws.cell(row=1, column=col), h)
+    ws.row_dimensions[1].height = 22
+    ws.freeze_panes = 'A2'
+
+    sorted_df = df_adspend.sort_values(['date', 'room_num'], ascending=[False, True])
+
+    for r_idx, (_, row) in enumerate(sorted_df.iterrows(), 2):
+        rn     = int(row['room_num'])
+        camp   = (campaigns or {}).get(rn, {})
+        spend  = int(row['spend'])
+        clicks = int(row.get('clicks', 0) or 0)
+        imps   = int(row.get('impressions', 0) or 0)
+        cpc    = round(spend / clicks) if clicks > 0 else 0
+        fill = PatternFill('solid', fgColor=COLOR['row_even'] if r_idx % 2 == 0 else COLOR['row_odd'])
+
+        def cell(col):
+            c = ws.cell(row=r_idx, column=col)
+            c.fill = fill
+            c.border = _border
+            return c
+
+        c = cell(1); c.value = str(row['date']); c.alignment = Alignment(horizontal='center')
+        c = cell(2); c.value = camp.get('campaign_name', f'채팅방 {rn}'); c.alignment = Alignment(horizontal='left')
+        c = cell(3); c.value = str(row.get('channel', '-')); c.alignment = Alignment(horizontal='center')
+        _num_fmt(cell(4), spend)
+        _num_fmt(cell(5), imps)
+        _num_fmt(cell(6), clicks)
+        _num_fmt(cell(7), cpc)
+        c = cell(8); c.value = str(row.get('memo', '') or ''); c.alignment = Alignment(horizontal='left')
+
+    for i, w in enumerate([12, 22, 14, 14, 12, 10, 12, 20], 1):
+        ws.column_dimensions[get_column_letter(i)].width = w
