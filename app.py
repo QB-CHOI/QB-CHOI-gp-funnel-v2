@@ -1122,6 +1122,9 @@ def tab_campaign():
         st.info("이력이 없습니다.")
     else:
         history_df['is_current'] = history_df['is_current'].apply(lambda x: '✅ 진행 중' if x else '종료')
+        disp_cols = ['room_num', 'campaign_name', 'product', 'cohort',
+                     'start_date', 'end_date', 'is_current', 'memo']
+        history_df = history_df[[c for c in disp_cols if c in history_df.columns]]
         history_df.columns = ['방 번호', '강의명', '상품', '기수', '시작일', '종료일', '상태', '메모']
         st.dataframe(history_df, use_container_width=True, hide_index=True)
 
