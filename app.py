@@ -905,11 +905,11 @@ def tab_trend():
         st.plotly_chart(fig_total, use_container_width=True)
 
     # ── 주간 비교 차트 ──────────────────────────────────────────
-    fig_week = weekly_comparison_chart(df_filtered)
+    fig_week = weekly_comparison_chart(df_filtered, rooms=ROOMS)
     if fig_week:
         st.plotly_chart(fig_week, use_container_width=True)
     else:
-        st.info("주간 비교는 7일 이상의 데이터가 있으면 자동으로 표시돼요.")
+        st.info("주간 비교는 5일 이상 간격의 데이터가 있으면 자동으로 표시됩니다.")
 
     # ── D+N 모객 곡선 ───────────────────────────────────────────
     st.subheader("강의별 모객 곡선 비교 (D+N일 기준)")

@@ -156,7 +156,7 @@ def product_bar_chart(df: pd.DataFrame, campaigns: dict):
     return fig
 
 
-def weekly_comparison_chart(df: pd.DataFrame):
+def weekly_comparison_chart(df: pd.DataFrame, rooms: dict = None):
     """이번 주 vs 지난 주 채팅방별 인원 비교 막대 차트.
     정확히 7일 전 데이터가 없어도 5~9일 범위 내 가장 가까운 날짜를 사용한다."""
     if df.empty:
@@ -183,7 +183,9 @@ def weekly_comparison_chart(df: pd.DataFrame):
 
     merged['diff'] = merged['이번'] - merged['지난주']
     merged = merged.sort_values('room_num')
-    x_labels = merged['room_num'].astype(str)
+    x_labels = merged['room_num'].apply(
+        lambda x: (rooms or {}).get(int(x), f"채팅방 {x}")
+    )
 
     fig = go.Figure()
     fig.add_trace(go.Bar(name='지난주', x=x_labels, y=merged['지난주'],
@@ -203,14 +205,21 @@ def weekly_comparison_chart(df: pd.DataFrame):
 
 
 def churn_rate_chart(df: pd.DataFrame, rooms: dict = None, threshold: int = 5):
-    """주간 채팅방별 이탈률 막대 차트. threshold 이상이면 빨간색."""
+    """주간 채팅방별 이탈률 막대 차트. threshold 이상이면 빨간색.
+    정확히 7일 전 데이터가 없어도 5~9일 범위 내 가장 가까운 날짜를 사용한다."""
     if df.empty:
         return None
 
     df = df.copy()
     df['date'] = pd.to_datetime(df['date'])
-    latest   = df['date'].max()
-    week_ago = latest - pd.Timedelta(days=7)
+    latest = df['date'].max()
+
+    candidates = df['date'].unique()
+    week_cands = [d for d in candidates
+                  if pd.Timedelta('5 days') <= (latest - d) <= pd.Timedelta('9 days')]
+    if not week_cands:
+        return None
+    week_ago = max(week_cands)
 
     df_now  = df[df['date'] == latest][['room_num', 'members']].rename(columns={'members': 'now'})
     df_prev = df[df['date'] == week_ago][['room_num', 'members']].rename(columns={'members': 'prev'})
