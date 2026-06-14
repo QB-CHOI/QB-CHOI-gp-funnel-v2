@@ -32,7 +32,7 @@ JSON 형식으로만 답변하세요 (다른 설명 없이):
 {{"results": [{{"room_num": 37, "members": 1817}}, ...]}}"""
 
     msg = client.messages.create(
-        model="claude-haiku-4-5-20251001",
+        model="claude-sonnet-4-6",
         max_tokens=1024,
         messages=[{
             "role": "user",
