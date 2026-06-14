@@ -23,6 +23,10 @@ ADSPEND_COLS = ['date', 'room_num', 'channel', 'spend', 'impressions', 'clicks',
 PRODUCT_OPTIONS = ['사주', '타로', '부동산', '빌딩', '기타']
 CHANNEL_OPTIONS = ['카카오모먼트', '네이버GFA', '메타(인스타)', '유튜브', '기타']
 
+CONTENT_PATH = "data/content_logs.csv"
+CONTENT_COLS = ['date', 'channel', 'content_type', 'title', 'url', 'memo']
+CONTENT_TYPE_OPTIONS = ['영상(유튜브/릴스)', '카드뉴스', '블로그', '라이브', '광고소재', '기타']
+
 
 def _token() -> str:
     return st.secrets["github_token"]
@@ -285,3 +289,36 @@ def save_adspend(room_num: int, date_str: str, channel: str,
     combined = pd.concat([df, new_row], ignore_index=True).sort_values(['date', 'room_num'])
     _write_csv(ADSPEND_PATH, combined, f"광고비 저장: 채팅방 {room_num} {channel} {date_str}")
     load_adspend.clear()
+
+
+# ── 콘텐츠 기록 ───────────────────────────────────────────────────
+
+@st.cache_data(ttl=300)
+def load_content() -> pd.DataFrame:
+    df = _read_csv(CONTENT_PATH, CONTENT_COLS)
+    if df.empty:
+        return df
+    df['date'] = pd.to_datetime(df['date']).dt.date
+    return df
+
+
+def save_content(date_str: str, channel: str, content_type: str,
+                 title: str, url: str, memo: str):
+    df = load_content()
+    new_row = pd.DataFrame([{
+        'date': date_str, 'channel': channel, 'content_type': content_type,
+        'title': title, 'url': url, 'memo': memo,
+    }])
+    combined = pd.concat([df, new_row], ignore_index=True).sort_values('date').reset_index(drop=True)
+    _write_csv(CONTENT_PATH, combined, f"콘텐츠 기록: {channel} {date_str}")
+    load_content.clear()
+
+
+def delete_content_row(row_idx: int):
+    """정렬 기준 인덱스로 콘텐츠 행 삭제."""
+    df = load_content()
+    if df.empty or row_idx < 0 or row_idx >= len(df):
+        return
+    df = df.drop(index=row_idx).reset_index(drop=True)
+    _write_csv(CONTENT_PATH, df, f"콘텐츠 기록 삭제 (row {row_idx})")
+    load_content.clear()

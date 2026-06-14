@@ -9,7 +9,8 @@ from github_store import (
     load_rooms, save_room, delete_room,
     load_conversions, save_conversion, get_latest_conversions,
     load_adspend, save_adspend,
-    PRODUCT_OPTIONS, CHANNEL_OPTIONS,
+    load_content, save_content, delete_content_row,
+    PRODUCT_OPTIONS, CHANNEL_OPTIONS, CONTENT_TYPE_OPTIONS,
 )
 from charts import (
     trend_line_chart, change_bar_chart, total_trend_bar,
@@ -23,6 +24,23 @@ st.set_page_config(
     page_icon="💬",
     layout="wide",
 )
+
+# ── 사이드바 — 캐시 새로고침 ─────────────────────────────────────
+
+with st.sidebar:
+    st.markdown("### 💬 채팅방 인원 분석")
+    st.divider()
+    if st.button("🔄 데이터 새로고침", use_container_width=True,
+                 help="GitHub에서 최신 데이터를 강제로 다시 불러옵니다 (3분 캐시 초기화)"):
+        load_all.clear()
+        load_campaigns.clear()
+        load_rooms.clear()
+        load_conversions.clear()
+        load_adspend.clear()
+        load_content.clear()
+        st.toast("✅ 데이터를 새로고침했습니다", icon="🔄")
+        st.rerun()
+    st.caption(f"마지막 갱신: {pd.Timestamp.now().strftime('%H:%M:%S')}")
 
 # ── 세션 상태 초기화 ──────────────────────────────────────────────
 
@@ -455,11 +473,18 @@ def tab_dashboard():
     up = int((df_changed['change'] > 0).sum()) if not df_changed.empty else 0
     down = int((df_changed['change'] < 0).sum()) if not df_changed.empty else 0
 
-    c1, c2, c3, c4 = st.columns(4)
+    # 입력 완수율: 첫 기록일 ~ 오늘 사이 데이터가 있는 날 비율
+    first_date = df['date'].min()
+    days_since = (date.today() - first_date).days + 1
+    days_entered = df['date'].nunique()
+    comp_rate = round(days_entered / days_since * 100, 1)
+
+    c1, c2, c3, c4, c5 = st.columns(5)
     c1.metric("전체 총원", f"{total:,}명")
     c2.metric("전일 대비 순증감", f"{net:+,}명")
     c3.metric("인원 증가 채팅방", f"{up}개")
     c4.metric("인원 감소 채팅방", f"{down}개")
+    c5.metric("입력 완수율", f"{comp_rate}%", f"{days_entered}/{days_since}일")
 
     # ── 증감 차트 + 상품별 분석 ───────────────────────────────
     col_c1, col_c2 = st.columns(2)
@@ -852,6 +877,61 @@ def tab_conversion():
             ad_disp = ad_disp.sort_values('날짜', ascending=False).reset_index(drop=True)
             st.dataframe(ad_disp, use_container_width=True, hide_index=True)
 
+    # ── 콘텐츠 기록 ────────────────────────────────────────────────
+    st.divider()
+    st.subheader("콘텐츠 기록")
+    st.caption("발행한 콘텐츠(영상·카드뉴스·블로그 등)를 날짜별로 기록합니다. 추이 그래프에 발행일이 오버레이로 표시됩니다.")
+
+    df_content = load_content()
+
+    with st.expander("📝 콘텐츠 입력", expanded=df_content.empty):
+        with st.form("content_form"):
+            col1, col2 = st.columns(2)
+            with col1:
+                c_date    = st.date_input("발행 날짜", value=date.today(), key="c_date")
+                c_channel = st.selectbox("채널", options=CHANNEL_OPTIONS, key="c_channel")
+                c_type    = st.selectbox("콘텐츠 유형", options=CONTENT_TYPE_OPTIONS, key="c_type")
+            with col2:
+                c_title = st.text_input("제목", placeholder="영상·게시물 제목", key="c_title")
+                c_url   = st.text_input("URL", placeholder="https://...", key="c_url")
+                c_memo  = st.text_input("메모", placeholder="특이사항", key="c_memo")
+
+            if st.form_submit_button("💾 콘텐츠 저장", type="primary", use_container_width=True):
+                if not c_title.strip():
+                    st.error("제목을 입력해주세요.")
+                else:
+                    save_content(
+                        date_str=str(c_date), channel=c_channel,
+                        content_type=c_type, title=c_title.strip(),
+                        url=c_url.strip(), memo=c_memo.strip(),
+                    )
+                    st.success(f"✅ 콘텐츠 기록 저장 완료 — {c_channel} '{c_title.strip()}'")
+                    st.rerun()
+
+    if not df_content.empty:
+        with st.expander("📋 콘텐츠 이력", expanded=False):
+            c_disp = df_content.sort_values('date', ascending=False).reset_index()
+            c_disp.columns = ['원본idx', '날짜', '채널', '유형', '제목', 'URL', '메모']
+            st.dataframe(
+                c_disp[['날짜', '채널', '유형', '제목', 'URL', '메모']],
+                use_container_width=True, hide_index=True,
+            )
+            st.caption(f"총 {len(df_content)}건 기록됨")
+
+            # 개별 삭제
+            del_idx = st.number_input(
+                "삭제할 행 번호 (0부터 시작, 최신순 정렬 기준)",
+                min_value=0, max_value=max(0, len(df_content) - 1),
+                step=1, key="content_del_idx",
+            )
+            if st.button("🗑️ 해당 행 삭제", key="content_del_btn", type="secondary"):
+                # 최신순 정렬 후 del_idx번째 행의 원래 인덱스 추출
+                sorted_df = df_content.sort_values('date', ascending=False).reset_index()
+                real_idx = int(sorted_df.iloc[del_idx]['index'])
+                delete_content_row(real_idx)
+                st.success("삭제 완료")
+                st.rerun()
+
 
 # ── 탭 3: 추이 그래프 ─────────────────────────────────────────────
 
@@ -894,8 +974,26 @@ def tab_trend():
         if rn in filter_rooms
     }
 
-    # 라인 차트 (목표 인원 점선 포함)
-    fig_line = trend_line_chart(df_filtered, filter_rooms, targets=targets, rooms=ROOMS)
+    # 광고·콘텐츠 오버레이 날짜 준비 (선택된 날짜 범위 내)
+    df_adspend_trend = load_adspend()
+    df_content_trend = load_content()
+    ad_dates: list = []
+    content_dates: list = []
+    if not df_adspend_trend.empty:
+        ad_dates = [
+            d for d in df_adspend_trend['date'].unique()
+            if date_from <= d <= date_to
+        ]
+    if not df_content_trend.empty:
+        content_dates = [
+            d for d in df_content_trend['date'].unique()
+            if date_from <= d <= date_to
+        ]
+
+    # 라인 차트 (목표 인원 점선 + 광고·콘텐츠 발행일 오버레이)
+    fig_line = trend_line_chart(df_filtered, filter_rooms, targets=targets,
+                                rooms=ROOMS, ad_dates=ad_dates,
+                                content_dates=content_dates)
     if fig_line:
         st.plotly_chart(fig_line, use_container_width=True)
 

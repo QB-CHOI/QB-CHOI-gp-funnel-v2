@@ -4,8 +4,11 @@ import pandas as pd
 
 
 def trend_line_chart(df: pd.DataFrame, room_nums: list = None, targets: dict = None,
-                     rooms: dict = None):
-    """방별 인원 추이 라인 차트. targets: {room_num: target_count}"""
+                     rooms: dict = None, ad_dates=None, content_dates=None):
+    """방별 인원 추이 라인 차트.
+    ad_dates: 광고 집행일 리스트 → 주황 점선 수직 오버레이
+    content_dates: 콘텐츠 발행일 리스트 → 보라 점선 수직 오버레이
+    """
     if df.empty:
         return None
 
@@ -28,7 +31,7 @@ def trend_line_chart(df: pd.DataFrame, room_nums: list = None, targets: dict = N
         title='채팅방별 인원 추이',
     )
 
-    # 목표 인원 점선 추가
+    # 목표 인원 점선
     if targets:
         for room_num, target in targets.items():
             if target and target > 0:
@@ -40,6 +43,37 @@ def trend_line_chart(df: pd.DataFrame, room_nums: list = None, targets: dict = N
                     annotation_text=f"목표 {target:,}명",
                     annotation_position='right',
                 )
+
+    # 광고 집행일 수직선 (주황)
+    if ad_dates:
+        for d in sorted(set(str(d) for d in ad_dates)):
+            fig.add_shape(
+                type='line',
+                x0=d, x1=d, y0=0, y1=1, yref='paper',
+                line=dict(color='#ef6c00', dash='dash', width=1.2),
+                opacity=0.45,
+            )
+        # 범례용 더미 트레이스
+        fig.add_trace(go.Scatter(
+            x=[None], y=[None], mode='lines', name='광고 집행일',
+            line=dict(color='#ef6c00', dash='dash', width=1.5),
+            showlegend=True,
+        ))
+
+    # 콘텐츠 발행일 수직선 (보라)
+    if content_dates:
+        for d in sorted(set(str(d) for d in content_dates)):
+            fig.add_shape(
+                type='line',
+                x0=d, x1=d, y0=0, y1=1, yref='paper',
+                line=dict(color='#7b1fa2', dash='dot', width=1.2),
+                opacity=0.45,
+            )
+        fig.add_trace(go.Scatter(
+            x=[None], y=[None], mode='lines', name='콘텐츠 발행일',
+            line=dict(color='#7b1fa2', dash='dot', width=1.5),
+            showlegend=True,
+        ))
 
     fig.update_layout(
         hovermode='x unified',
