@@ -322,3 +322,32 @@ def delete_content_row(row_idx: int):
     df = df.drop(index=row_idx).reset_index(drop=True)
     _write_csv(CONTENT_PATH, df, f"콘텐츠 기록 삭제 (row {row_idx})")
     load_content.clear()
+
+
+# ── 날짜별 메모 ───────────────────────────────────────────────────
+
+DATE_NOTES_PATH = "data/date_notes.csv"
+DATE_NOTES_COLS = ['date', 'memo']
+
+
+@st.cache_data(ttl=300)
+def load_date_notes() -> pd.DataFrame:
+    df = _read_csv(DATE_NOTES_PATH, DATE_NOTES_COLS)
+    if df.empty:
+        return df
+    df['date'] = pd.to_datetime(df['date']).dt.date
+    return df
+
+
+def save_date_note(date_str: str, memo: str):
+    """날짜별 메모 저장(upsert). 빈 문자열이면 해당 날짜 메모 삭제."""
+    df = load_date_notes()
+    if not df.empty:
+        df = df[df['date'].astype(str) != date_str]
+    if memo.strip():
+        new_row = pd.DataFrame([{'date': date_str, 'memo': memo.strip()}])
+        combined = pd.concat([df, new_row], ignore_index=True).sort_values('date').reset_index(drop=True)
+    else:
+        combined = df
+    _write_csv(DATE_NOTES_PATH, combined, f"날짜 메모: {date_str}")
+    load_date_notes.clear()

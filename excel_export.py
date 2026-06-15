@@ -54,7 +54,8 @@ def _change_style(cell, value):
 
 def generate_excel(df: pd.DataFrame, campaigns: dict = None,
                    df_conv: pd.DataFrame = None,
-                   df_adspend: pd.DataFrame = None) -> bytes:
+                   df_adspend: pd.DataFrame = None,
+                   df_content: pd.DataFrame = None) -> bytes:
     """전체 인원 데이터를 받아 포맷된 Excel 파일을 bytes로 반환."""
     wb = Workbook()
 
@@ -65,6 +66,8 @@ def generate_excel(df: pd.DataFrame, campaigns: dict = None,
         _build_conversion_sheet(wb, df_conv, campaigns or {})
     if df_adspend is not None and not df_adspend.empty:
         _build_adspend_sheet(wb, df_adspend, campaigns or {})
+    if df_content is not None and not df_content.empty:
+        _build_content_sheet(wb, df_content)
 
     buf = io.BytesIO()
     wb.save(buf)
@@ -287,4 +290,39 @@ def _build_adspend_sheet(wb, df_adspend: pd.DataFrame, campaigns: dict = None):
         c = cell(8); c.value = str(row.get('memo', '') or ''); c.alignment = Alignment(horizontal='left')
 
     for i, w in enumerate([12, 22, 14, 14, 12, 10, 12, 20], 1):
+        ws.column_dimensions[get_column_letter(i)].width = w
+
+
+# ── 시트 6: 콘텐츠 기록 ──────────────────────────────────────────
+
+def _build_content_sheet(wb, df_content: pd.DataFrame):
+    ws = wb.create_sheet('콘텐츠 기록')
+
+    if df_content.empty:
+        ws.cell(row=1, column=1).value = '콘텐츠 데이터 없음'
+        return
+
+    headers = ['날짜', '채널', '유형', '제목', 'URL', '메모']
+    for col, h in enumerate(headers, 1):
+        _header_style(ws.cell(row=1, column=col), h)
+    ws.row_dimensions[1].height = 22
+    ws.freeze_panes = 'A2'
+
+    for r_idx, (_, row) in enumerate(df_content.sort_values('date', ascending=False).iterrows(), 2):
+        fill = PatternFill('solid', fgColor=COLOR['row_even'] if r_idx % 2 == 0 else COLOR['row_odd'])
+
+        def cell(col):
+            c = ws.cell(row=r_idx, column=col)
+            c.fill = fill
+            c.border = _border
+            return c
+
+        c = cell(1); c.value = str(row['date']); c.alignment = Alignment(horizontal='center')
+        c = cell(2); c.value = str(row.get('channel', '-')); c.alignment = Alignment(horizontal='center')
+        c = cell(3); c.value = str(row.get('content_type', '-')); c.alignment = Alignment(horizontal='center')
+        c = cell(4); c.value = str(row.get('title', '-')); c.alignment = Alignment(horizontal='left')
+        c = cell(5); c.value = str(row.get('url', '') or ''); c.alignment = Alignment(horizontal='left')
+        c = cell(6); c.value = str(row.get('memo', '') or ''); c.alignment = Alignment(horizontal='left')
+
+    for i, w in enumerate([12, 14, 14, 30, 40, 20], 1):
         ws.column_dimensions[get_column_letter(i)].width = w

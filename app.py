@@ -10,6 +10,7 @@ from github_store import (
     load_conversions, save_conversion, get_latest_conversions,
     load_adspend, save_adspend,
     load_content, save_content, delete_content_row,
+    load_date_notes, save_date_note,
     PRODUCT_OPTIONS, CHANNEL_OPTIONS, CONTENT_TYPE_OPTIONS,
 )
 from charts import (
@@ -30,6 +31,17 @@ st.set_page_config(
 with st.sidebar:
     st.markdown("### 💬 채팅방 인원 분석")
     st.divider()
+
+    # 오늘 입력 상태
+    _df_check = load_all()
+    _today_str = str(date.today())
+    if _df_check.empty or _today_str not in _df_check['date'].astype(str).values:
+        st.error(f"⚠️ 오늘({_today_str}) 데이터 미입력", icon="🚨")
+    else:
+        _n_today = len(_df_check[_df_check['date'].astype(str) == _today_str])
+        st.success(f"✅ 오늘 {_n_today}개 방 입력 완료")
+
+    st.divider()
     if st.button("🔄 데이터 새로고침", use_container_width=True,
                  help="GitHub에서 최신 데이터를 강제로 다시 불러옵니다 (3분 캐시 초기화)"):
         load_all.clear()
@@ -38,6 +50,7 @@ with st.sidebar:
         load_conversions.clear()
         load_adspend.clear()
         load_content.clear()
+        load_date_notes.clear()
         st.toast("✅ 데이터를 새로고침했습니다", icon="🔄")
         st.rerun()
     st.caption(f"마지막 갱신: {pd.Timestamp.now().strftime('%H:%M:%S')}")
@@ -406,6 +419,21 @@ def tab_input():
                 f"ℹ️ {input_date} 데이터가 이미 {len(_existing)}개 채팅방 저장되어 있습니다. "
                 "저장하면 기존 데이터를 덮어씁니다."
             )
+
+    # 날짜 메모 — 기존 메모 pre-fill
+    _notes_all = load_date_notes()
+    _existing_note = ""
+    if not _notes_all.empty:
+        _nr = _notes_all[_notes_all['date'].astype(str) == str(input_date)]
+        if not _nr.empty:
+            _existing_note = _nr['memo'].values[0]
+    date_memo = st.text_input(
+        "📝 오늘 메모 (선택)",
+        value=_existing_note,
+        placeholder="특이사항 기록 — 예: 광고 집행 시작, 이벤트 진행, 대규모 이탈 발생",
+        key="date_memo_input",
+    )
+
     col_save, col_reset = st.columns([3, 1])
 
     with col_save:
@@ -419,6 +447,8 @@ def tab_input():
             if room_data:
                 with st.spinner("GitHub에 저장 중..."):
                     save_daily(str(input_date), room_data)
+                    if date_memo.strip() or _existing_note:
+                        save_date_note(str(input_date), date_memo.strip())
                 st.success(f"✅ {input_date} 데이터 저장 완료 — {len(room_data)}개 채팅방")
                 if missing_rooms:
                     st.warning(
@@ -485,6 +515,13 @@ def tab_dashboard():
     c3.metric("인원 증가 채팅방", f"{up}개")
     c4.metric("인원 감소 채팅방", f"{down}개")
     c5.metric("입력 완수율", f"{comp_rate}%", f"{days_entered}/{days_since}일")
+
+    # 날짜 메모 표시
+    _dash_notes = load_date_notes()
+    if not _dash_notes.empty:
+        _dn = _dash_notes[_dash_notes['date'].astype(str) == str(latest_date)]
+        if not _dn.empty:
+            st.info(f"📝 **{latest_date} 메모:** {_dn['memo'].values[0]}")
 
     # ── 증감 차트 + 상품별 분석 ───────────────────────────────
     col_c1, col_c2 = st.columns(2)
@@ -612,10 +649,58 @@ def tab_dashboard():
                     "\n\n전일 대비 인원이 기준치 이상 감소한 채팅방입니다. 콘텐츠 또는 광고 전략을 점검하세요."
                 )
 
+            # 3일 연속 이탈 경고
+            if len(dates_sorted) >= 3:
+                recent_3 = dates_sorted[-3:]
+                declining = []
+                for rn in ROOMS:
+                    vals = []
+                    for d in recent_3:
+                        r = df[(df['date'] == d) & (df['room_num'] == rn)]
+                        if not r.empty:
+                            vals.append(int(r['members'].values[0]))
+                    if len(vals) == 3 and vals[0] > vals[1] > vals[2]:
+                        drop = vals[0] - vals[2]
+                        pct = round(drop / vals[0] * 100, 1) if vals[0] > 0 else 0
+                        declining.append(f"{ROOMS.get(rn, f'채팅방 {rn}')} (3일간 -{drop}명, -{pct}%)")
+                if declining:
+                    st.warning(
+                        "📉 **3일 연속 이탈 감지:** " + "  |  ".join(declining) +
+                        "\n\n최근 3일 연속으로 인원이 감소하고 있습니다. 원인을 점검하세요."
+                    )
+
         fig_churn = churn_rate_chart(df, ROOMS, threshold=churn_threshold)
         if fig_churn:
             with st.expander("📉 이탈률 추이 차트", expanded=False):
                 st.plotly_chart(fig_churn, use_container_width=True)
+
+    # ── 채팅방별 주간 성장률 ──────────────────────────────────
+    _df_dt = df.copy()
+    _df_dt['date'] = pd.to_datetime(_df_dt['date'])
+    _latest_dt = pd.to_datetime(latest_date)
+    _week_cands = [d for d in _df_dt['date'].unique()
+                   if pd.Timedelta('5 days') <= (_latest_dt - d) <= pd.Timedelta('9 days')]
+    if _week_cands:
+        _week_ago = max(_week_cands)
+        _df_week = _df_dt[_df_dt['date'] == _week_ago]
+        _growth = []
+        for rn in ROOMS:
+            _t = df_today[df_today['room_num'] == rn]
+            _w = _df_week[_df_week['room_num'] == rn]
+            if _t.empty or _w.empty:
+                continue
+            _cur = int(_t['members'].values[0])
+            _prv = int(_w['members'].values[0])
+            _rate = round((_cur - _prv) / _prv * 100, 1) if _prv > 0 else 0
+            _growth.append({'name': ROOMS[rn], 'cur': _cur, 'rate': _rate})
+
+        if _growth:
+            with st.expander("📈 채팅방별 주간 성장률", expanded=False):
+                st.caption(f"기준: {_week_ago.date()} → {latest_date}")
+                _gcols = st.columns(min(4, len(_growth)))
+                for i, g in enumerate(sorted(_growth, key=lambda x: x['rate'], reverse=True)):
+                    _delta = f"+{g['rate']}%" if g['rate'] >= 0 else f"{g['rate']}%"
+                    _gcols[i % 4].metric(g['name'], f"{g['cur']:,}명", _delta)
 
     # ── 현재 진행 중인 강의 목록 ───────────────────────────────
     if campaigns:
@@ -932,6 +1017,48 @@ def tab_conversion():
                 st.success("삭제 완료")
                 st.rerun()
 
+    # ── 콘텐츠 효과 분석 ──────────────────────────────────────────
+    if not df_content.empty and not df_members.empty:
+        st.divider()
+        st.subheader("📊 콘텐츠 효과 분석")
+        st.caption("콘텐츠 발행일 기준 전후 3일 평균 인원을 비교합니다. (데이터가 없는 날짜는 제외)")
+
+        df_m = df_members.copy()
+        df_m['date'] = pd.to_datetime(df_m['date'])
+
+        effect_rows = []
+        for _, crow in df_content.sort_values('date', ascending=False).iterrows():
+            pub_dt = pd.to_datetime(crow['date'])
+            before_mask = (df_m['date'] >= pub_dt - pd.Timedelta(days=3)) & (df_m['date'] < pub_dt)
+            after_mask  = (df_m['date'] > pub_dt) & (df_m['date'] <= pub_dt + pd.Timedelta(days=3))
+
+            before_total = df_m[before_mask].groupby('date')['members'].sum()
+            after_total  = df_m[after_mask].groupby('date')['members'].sum()
+
+            if before_total.empty or after_total.empty:
+                continue
+
+            avg_before = round(before_total.mean())
+            avg_after  = round(after_total.mean())
+            diff       = avg_after - avg_before
+            pct        = round(diff / avg_before * 100, 1) if avg_before > 0 else 0
+
+            effect_rows.append({
+                '날짜':       str(crow['date']),
+                '채널':       crow.get('channel', '-'),
+                '유형':       crow.get('content_type', '-'),
+                '제목':       crow.get('title', '-'),
+                '발행전 평균': f"{int(avg_before):,}명",
+                '발행후 평균': f"{int(avg_after):,}명",
+                '변화량':     f"+{int(diff):,}" if diff >= 0 else f"{int(diff):,}",
+                '변화율':     f"+{pct}%" if pct >= 0 else f"{pct}%",
+            })
+
+        if effect_rows:
+            st.dataframe(pd.DataFrame(effect_rows), use_container_width=True, hide_index=True)
+        else:
+            st.info("발행일 전후 3일 내 인원 데이터가 충분하지 않아 분석할 수 없습니다.")
+
 
 # ── 탭 3: 추이 그래프 ─────────────────────────────────────────────
 
@@ -1017,6 +1144,20 @@ def tab_trend():
         st.plotly_chart(fig_cohort, use_container_width=True)
     else:
         st.info("⚙️ 채팅방 설정 탭에서 강의를 등록하면 모객 곡선이 표시됩니다.")
+
+    # ── 날짜 메모 ───────────────────────────────────────────────
+    _trend_notes = load_date_notes()
+    if not _trend_notes.empty:
+        _tn_filtered = _trend_notes[
+            (_trend_notes['date'] >= date_from) &
+            (_trend_notes['date'] <= date_to)
+        ].sort_values('date', ascending=False)
+        if not _tn_filtered.empty:
+            with st.expander(f"📝 날짜 메모 ({len(_tn_filtered)}건, 선택 기간 내)", expanded=False):
+                _tn_disp = _tn_filtered.copy()
+                _tn_disp['date'] = _tn_disp['date'].astype(str)
+                _tn_disp.columns = ['날짜', '메모']
+                st.dataframe(_tn_disp, use_container_width=True, hide_index=True)
 
 
 # ── 탭 4: 채팅방 설정 ────────────────────────────────────────────
@@ -1294,12 +1435,27 @@ def tab_data():
         st.info("데이터가 없습니다.")
         return
 
-    # ── 전체 데이터 표시 ───────────────────────────────────────
+    # ── 전체 데이터 표시 (필터 포함) ──────────────────────────
     st.subheader("전체 데이터")
-    show = df.sort_values(['date', 'room_num'], ascending=[False, True]).reset_index(drop=True)
-    st.dataframe(show, use_container_width=True, hide_index=True)
+    _fcol1, _fcol2 = st.columns(2)
+    with _fcol1:
+        _date_opts = ['전체'] + sorted(df['date'].astype(str).unique().tolist(), reverse=True)
+        _sel_date = st.selectbox("날짜 필터", options=_date_opts, key="data_filter_date")
+    with _fcol2:
+        _room_opts = ['전체'] + [f"{rn} — {nm}" for rn, nm in sorted(ROOMS.items())]
+        _sel_room = st.selectbox("채팅방 필터", options=_room_opts, key="data_filter_room")
 
-    col_csv, col_excel = st.columns(2)
+    show = df.copy()
+    if _sel_date != '전체':
+        show = show[show['date'].astype(str) == _sel_date]
+    if _sel_room != '전체':
+        _rn = int(_sel_room.split(' — ')[0])
+        show = show[show['room_num'] == _rn]
+    show = show.sort_values(['date', 'room_num'], ascending=[False, True]).reset_index(drop=True)
+    st.dataframe(show, use_container_width=True, hide_index=True)
+    st.caption(f"{len(show)}행 표시 중 (전체 {len(df)}행)")
+
+    col_csv, col_excel, col_zip = st.columns(3)
 
     with col_csv:
         csv_bytes = df.to_csv(index=False).encode('utf-8-sig')
@@ -1313,13 +1469,15 @@ def tab_data():
 
     with col_excel:
         from excel_export import generate_excel
-        _campaigns = get_current_campaigns()
+        _campaigns  = get_current_campaigns()
         _df_conv    = load_conversions()
         _df_adspend = load_adspend()
+        _df_content = load_content()
         excel_bytes = generate_excel(
             df, _campaigns,
             df_conv=_df_conv,
             df_adspend=_df_adspend,
+            df_content=_df_content,
         )
         st.download_button(
             "📊 Excel 보고서 다운로드",
@@ -1327,6 +1485,30 @@ def tab_data():
             file_name=f"채팅방_인원_보고서_{date.today()}.xlsx",
             mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
             use_container_width=True,
+        )
+
+    with col_zip:
+        import zipfile, io as _io
+        _zip_buf = _io.BytesIO()
+        with zipfile.ZipFile(_zip_buf, 'w', zipfile.ZIP_DEFLATED) as _zf:
+            _zip_data = {
+                '인원_members.csv':     df,
+                '강의_campaigns.csv':   load_campaigns(),
+                '전환_conversions.csv': _df_conv,
+                '광고비_adspend.csv':   _df_adspend,
+                '콘텐츠_content.csv':  _df_content,
+                '날짜메모_notes.csv':   load_date_notes(),
+            }
+            for _fname, _ddf in _zip_data.items():
+                if _ddf is not None and not _ddf.empty:
+                    _zf.writestr(_fname, _ddf.to_csv(index=False, encoding='utf-8-sig'))
+        st.download_button(
+            "📦 전체 백업 ZIP",
+            data=_zip_buf.getvalue(),
+            file_name=f"채팅방_전체백업_{date.today()}.zip",
+            mime='application/zip',
+            use_container_width=True,
+            help="모든 CSV 데이터를 하나의 ZIP 파일로 다운로드합니다",
         )
 
     # ── 날짜 데이터 삭제 (2단계 확인) ─────────────────────────
