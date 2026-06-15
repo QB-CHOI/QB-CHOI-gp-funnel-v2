@@ -29,7 +29,16 @@ CONTENT_TYPE_OPTIONS = ['영상(유튜브/릴스)', '카드뉴스', '블로그',
 
 
 def _token() -> str:
-    return st.secrets["github_token"]
+    token = st.secrets.get("github_token", "")
+    if not token:
+        st.error(
+            "❌ **GitHub 토큰 미설정**\n\n"
+            "Streamlit Cloud → 앱 우하단 ⋮ → Settings → Secrets 에서\n"
+            "`github_token = \"ghp_...\"` 을 추가하세요.",
+            icon="🔑",
+        )
+        st.stop()
+    return token
 
 
 def _headers() -> dict:
