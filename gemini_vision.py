@@ -86,7 +86,8 @@ def extract_members(image: Image.Image, api_key: str, rooms: dict) -> list:
     w, h = img_rgb.size
     if max(w, h) > max_side:
         ratio = max_side / max(w, h)
-        img_rgb = img_rgb.resize((int(w * ratio), int(h * ratio)), Image.LANCZOS)
+        _resample = getattr(Image, "Resampling", Image).LANCZOS
+        img_rgb = img_rgb.resize((int(w * ratio), int(h * ratio)), _resample)
     buf = io.BytesIO()
     img_rgb.save(buf, format="JPEG", quality=88, optimize=True)
     img_b64 = base64.b64encode(buf.getvalue()).decode()

@@ -312,14 +312,7 @@ def tab_input():
 
                 # ── 결과 메시지 ────────────────────────────────
                 if gemini_error:
-                    with st.expander("⚠️ Gemini API 오류 (상세)", expanded=False):
-                        st.error(gemini_error)
-                        st.markdown(
-                            "**API 키 확인 방법:**\n"
-                            "1. [aistudio.google.com/apikey](https://aistudio.google.com/apikey) 접속\n"
-                            "2. 기존 키 삭제 후 새 키 생성\n"
-                            "3. Streamlit Cloud → Settings → Secrets에서 `gemini_api_key` 값 업데이트"
-                        )
+                    st.error(f"❌ Gemini 오류 (Tesseract로 대체 인식):\n\n```\n{gemini_error}\n```", icon="🤖")
 
                 if merged:
                     note = " (순서 확인 필요)" if method_used == "Tesseract" else ""
