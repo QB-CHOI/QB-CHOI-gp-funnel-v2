@@ -5,7 +5,7 @@ import pandas as pd
 import streamlit as st
 from datetime import date
 
-REPO           = "QB-CHOI/gp-funnel-v2"
+REPO           = "QB-CHOI/QB-CHOI-gp-funnel-v2"
 MEMBERS_PATH   = "data/members.csv"
 CAMPAIGNS_PATH = "data/campaigns.csv"
 
@@ -40,17 +40,41 @@ def _headers() -> dict:
 
 def _read_csv(path: str, columns: list) -> pd.DataFrame:
     url = f"https://api.github.com/repos/{REPO}/contents/{path}"
-    res = requests.get(url, headers=_headers())
+    try:
+        res = requests.get(url, headers=_headers(), timeout=20)
+    except requests.exceptions.RequestException as e:
+        st.error(f"⚠️ GitHub 연결 오류: {e}", icon="🔌")
+        return pd.DataFrame(columns=columns)
+
     if res.status_code == 404:
         return pd.DataFrame(columns=columns)
-    res.raise_for_status()
+
+    if res.status_code == 401:
+        st.error(
+            "❌ GitHub 토큰 인증 실패 (401). 토큰이 만료되었을 수 있습니다.\n\n"
+            "**해결 방법:** Streamlit Cloud → Settings → Secrets에서 `github_token` 값을 새 토큰으로 교체하세요.",
+            icon="🔑",
+        )
+        return pd.DataFrame(columns=columns)
+
+    if res.status_code == 403:
+        st.error(
+            "❌ GitHub API 권한 오류 (403). 토큰 권한 또는 API 호출 한도를 확인하세요.",
+            icon="🚫",
+        )
+        return pd.DataFrame(columns=columns)
+
+    if not res.ok:
+        st.warning(f"⚠️ GitHub API 오류 [{res.status_code}] — 경로: {path}", icon="⚠️")
+        return pd.DataFrame(columns=columns)
+
     content = base64.b64decode(res.json()["content"]).decode("utf-8")
     return pd.read_csv(io.StringIO(content))
 
 
 def _write_csv(path: str, df: pd.DataFrame, message: str):
     url = f"https://api.github.com/repos/{REPO}/contents/{path}"
-    res = requests.get(url, headers=_headers())
+    res = requests.get(url, headers=_headers(), timeout=20)
     sha = res.json().get("sha", "") if res.status_code == 200 else ""
 
     csv_bytes = df.to_csv(index=False).encode("utf-8")
@@ -60,8 +84,10 @@ def _write_csv(path: str, df: pd.DataFrame, message: str):
     if sha:
         payload["sha"] = sha
 
-    res = requests.put(url, headers=_headers(), json=payload)
-    res.raise_for_status()
+    res = requests.put(url, headers=_headers(), json=payload, timeout=20)
+    if not res.ok:
+        err = res.json().get("error", {}).get("message", "") if res.content else ""
+        raise RuntimeError(f"GitHub 저장 실패 [{res.status_code}]: {err or res.text[:200]}")
 
 
 # ── 인원 데이터 ───────────────────────────────────────────────────
