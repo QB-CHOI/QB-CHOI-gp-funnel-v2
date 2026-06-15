@@ -42,14 +42,23 @@ def _list_models(api_key: str) -> list:
 def _pick_vision_model(model_names: list) -> str | None:
     """generateContent + 비전 지원 모델 선택."""
     # "models/gemini-xxx" → "gemini-xxx"
-    short = {m.split("/")[-1] for m in model_names}
+    short = [m.split("/")[-1] for m in model_names]
+    short_set = set(short)
 
+    # 1순위: 정확한 이름 매칭
     for preferred in _PREFERRED:
-        if preferred in short:
+        if preferred in short_set:
             return preferred
-    # 선호 목록에 없으면 flash 계열 아무거나
+
+    # 2순위: prefix 매칭 (버전 suffix 대응, 예: gemini-2.0-flash-001)
+    for preferred in _PREFERRED:
+        for name in short:
+            if name.startswith(preferred):
+                return name
+
+    # 3순위: flash 또는 pro 계열 아무거나
     for name in short:
-        if "flash" in name or "pro" in name:
+        if ("flash" in name or "pro" in name) and "vision" not in name:
             return name
     return None
 
@@ -71,10 +80,17 @@ def extract_members(image: Image.Image, api_key: str, rooms: dict) -> list:
             f"사용 가능한 모델: {avail_str}"
         )
 
-    # 2단계: 이미지 인코딩
+    # 2단계: 이미지 인코딩 (최대 1600px로 리사이즈 후 JPEG 압축)
+    img_rgb = image.convert("RGB")
+    max_side = 1600
+    w, h = img_rgb.size
+    if max(w, h) > max_side:
+        ratio = max_side / max(w, h)
+        img_rgb = img_rgb.resize((int(w * ratio), int(h * ratio)), Image.LANCZOS)
     buf = io.BytesIO()
-    image.convert("RGB").save(buf, format="PNG")
+    img_rgb.save(buf, format="JPEG", quality=88, optimize=True)
     img_b64 = base64.b64encode(buf.getvalue()).decode()
+    mime_type = "image/jpeg"
 
     room_list = "\n".join(
         f"- room_num={num}, name=\"{name}\"" for num, name in rooms.items()
@@ -99,18 +115,29 @@ def extract_members(image: Image.Image, api_key: str, rooms: dict) -> list:
 
     body = {
         "contents": [{"parts": [
-            {"inline_data": {"mime_type": "image/png", "data": img_b64}},
+            {"inline_data": {"mime_type": mime_type, "data": img_b64}},
             {"text": prompt},
         ]}],
         "generationConfig": {"temperature": 0.1, "maxOutputTokens": 512},
     }
 
     url = f"{_BASE}/v1beta/models/{model}:generateContent?key={api_key}"
-    resp = requests.post(url, json=body, timeout=30)
+    resp = requests.post(url, json=body, timeout=60)
 
     if resp.status_code != 200:
-        err = resp.json().get("error", {}).get("message", resp.text[:200])
-        raise RuntimeError(f"Gemini 호출 실패 [{resp.status_code}] 모델={model}: {err}")
+        try:
+            err = resp.json().get("error", {}).get("message", resp.text[:300])
+        except Exception:
+            err = resp.text[:300]
+        code = resp.status_code
+        hint = ""
+        if code == 429:
+            hint = " (할당량 초과 — 잠시 후 다시 시도하세요)"
+        elif code == 400:
+            hint = " (잘못된 요청 — 이미지 형식 또는 API 키 확인)"
+        elif code == 403:
+            hint = " (권한 오류 — Generative Language API 활성화 여부 확인)"
+        raise RuntimeError(f"Gemini 호출 실패 [{code}]{hint}\n모델={model}\n{err}")
 
     data = resp.json()
     text = data["candidates"][0]["content"]["parts"][0]["text"]
