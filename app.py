@@ -204,35 +204,6 @@ def tab_input():
     st.subheader("1단계 — 스크린샷 업로드 (선택)")
     st.caption("📌 스크린샷 없이 아래 2단계에서 직접 입력해도 됩니다. 어제 값이 기본으로 채워져 있으니 바뀐 숫자만 수정하세요.")
 
-    # ── Gemini API 키 상태 표시 ────────────────────────────────
-    _gemini_key = st.secrets.get("gemini_api_key", "")
-    if _gemini_key:
-        c_key, c_test = st.columns([3, 1])
-        with c_key:
-            st.success("Gemini Vision API 키 등록됨 ✅")
-        with c_test:
-            if st.button("키 테스트", key="test_gemini_key"):
-                with st.spinner("API 키 확인 중..."):
-                    try:
-                        import requests as _req
-                        r = _req.get(
-                            f"https://generativelanguage.googleapis.com/v1beta/models?key={_gemini_key}",
-                            timeout=10
-                        )
-                        if r.status_code == 200:
-                            models = [m["name"] for m in r.json().get("models", [])]
-                            st.success(f"키 정상 ✅ — 사용 가능한 모델 {len(models)}개")
-                        elif r.status_code == 400:
-                            st.error(f"키 오류 ❌ — {r.json().get('error',{}).get('message','잘못된 키')}")
-                        elif r.status_code == 403:
-                            st.error("권한 오류 ❌ — Generative Language API가 비활성화 상태입니다.")
-                        else:
-                            st.error(f"오류 {r.status_code}: {r.text[:200]}")
-                    except Exception as e:
-                        st.error(f"테스트 실패: {e}")
-    else:
-        st.info("Gemini Vision API 키 미등록 — Tesseract OCR 사용 중 (정확도 낮음)")
-
     uploaded_files = st.file_uploader(
         "이미지 파일 선택 (PNG / JPG) — 여러 장 동시 선택 가능",
         type=['png', 'jpg', 'jpeg'],
@@ -251,58 +222,27 @@ def tab_input():
         from PIL import Image
         from ocr_parser import extract_from_image
 
-        # Gemini Vision 사용 가능 여부
-        _gemini_key = st.secrets.get("gemini_api_key", "")
-        _use_gemini = bool(_gemini_key)
-
-        # 파일을 한 번만 읽어서 재사용
         images = []
         for f in uploaded_files:
             f.seek(0)
             images.append((f.name, Image.open(f).copy()))
 
-        # 미리보기
         img_cols = st.columns(min(len(images), 3))
         for i, (name, img) in enumerate(images):
             with img_cols[i % 3]:
                 st.image(img, caption=name, use_container_width=True)
 
-        if _use_gemini:
-            st.caption("인식 방식: **Gemini Vision** (AI 고정밀 인식)")
-        else:
-            st.caption("인식 방식: **Tesseract OCR** (기본) — Gemini API 키 등록 시 정확도 대폭 향상")
-
         if not st.session_state.ocr_done:
             with st.spinner(f"{len(images)}장 인식 중..."):
                 merged = {}
-                method_used = "Tesseract"
-                gemini_error = None
+                try:
+                    for _, img in images:
+                        for r in extract_from_image(img, ROOMS):
+                            if r['room_num'] not in merged:
+                                merged[r['room_num']] = r['members']
+                except Exception:
+                    pass
 
-                # ── Gemini Vision 시도 ─────────────────────────
-                if _use_gemini:
-                    try:
-                        from gemini_vision import extract_members as gemini_extract
-                        for _, img in images:
-                            for r in gemini_extract(img, _gemini_key, ROOMS):
-                                if r['room_num'] in ROOMS:
-                                    merged[r['room_num']] = r['members']
-                        method_used = "Gemini Vision"
-                    except Exception as e:
-                        gemini_error = str(e)
-
-                # ── Tesseract 폴백 (Gemini 실패 또는 미사용) ──
-                if not merged:
-                    try:
-                        for _, img in images:
-                            for r in extract_from_image(img, ROOMS):
-                                if r['room_num'] not in merged:
-                                    merged[r['room_num']] = r['members']
-                        if merged:
-                            method_used = "Tesseract"
-                    except Exception:
-                        pass
-
-                # OCR 결과로 입력값 세팅 (미인식 방은 어제 값 유지)
                 st.session_state.ocr_results = merged
                 st.session_state.ocr_done = True
                 for rn in ROOMS:
@@ -313,23 +253,12 @@ def tab_input():
                     else:
                         st.session_state[f"inp_{rn}"] = 0
 
-                # ── 결과 메시지 ────────────────────────────────
-                if gemini_error:
-                    st.error(f"❌ Gemini 오류 (Tesseract로 대체 인식):\n\n```\n{gemini_error}\n```", icon="🤖")
-
                 if merged:
-                    note = " (순서 확인 필요)" if method_used == "Tesseract" else ""
-                    st.success(f"✅ {len(merged)}개 채팅방 인식 완료 ({len(images)}장 · {method_used}{note})")
-                    if method_used == "Tesseract":
-                        st.info("Tesseract로 인식했습니다. 숫자가 맞는 방에 할당되었는지 아래 표에서 확인해주세요.")
+                    st.success(f"✅ {len(merged)}개 채팅방 인식 — 아래에서 숫자 확인 후 저장하세요.")
                 else:
-                    st.warning(
-                        "⚠️ 인원을 인식하지 못했습니다. 아래 표에서 직접 입력해주세요.\n\n"
-                        "Gemini API 키가 정상 등록되면 자동 인식이 가능합니다."
-                    )
+                    st.info("자동 인식에 실패했습니다. 아래 2단계에서 어제 값을 확인하고 수정해 저장하세요.")
         else:
-            method = "Gemini Vision" if _use_gemini else "Tesseract"
-            st.success(f"✅ {len(st.session_state.ocr_results)}개 채팅방 인식 완료 ({len(images)}장 · {method})")
+            st.success(f"✅ {len(st.session_state.ocr_results)}개 채팅방 인식 완료")
             if st.button("🔄 다시 인식"):
                 st.session_state.ocr_done = False
                 st.rerun()
