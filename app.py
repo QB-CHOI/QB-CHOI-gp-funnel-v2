@@ -200,9 +200,9 @@ def tab_input():
         if not df_prev.empty:
             prev = df_prev.sort_values('date').groupby('room_num').last()['members'].to_dict()
 
-    # ── OCR 업로드 ─────────────────────────────────────────────
-    st.subheader("1단계 — 스크린샷 업로드")
-    st.caption("채팅방 목록 화면을 캡처해서 올려주세요. 스크롤이 필요하면 여러 장을 한 번에 올려도 됩니다.")
+    # ── OCR 업로드 (선택) ──────────────────────────────────────
+    st.subheader("1단계 — 스크린샷 업로드 (선택)")
+    st.caption("📌 스크린샷 없이 아래 2단계에서 직접 입력해도 됩니다. 어제 값이 기본으로 채워져 있으니 바뀐 숫자만 수정하세요.")
 
     # ── Gemini API 키 상태 표시 ────────────────────────────────
     _gemini_key = st.secrets.get("gemini_api_key", "")
@@ -302,13 +302,16 @@ def tab_input():
                     except Exception:
                         pass
 
-                # 이전 세션 값 완전 초기화 (stale 데이터 오염 방지)
-                for rn in ROOMS:
-                    st.session_state[f"inp_{rn}"] = 0
+                # OCR 결과로 입력값 세팅 (미인식 방은 어제 값 유지)
                 st.session_state.ocr_results = merged
                 st.session_state.ocr_done = True
-                for rn, val in merged.items():
-                    st.session_state[f"inp_{rn}"] = val
+                for rn in ROOMS:
+                    if rn in merged:
+                        st.session_state[f"inp_{rn}"] = merged[rn]
+                    elif prev.get(rn) is not None:
+                        st.session_state[f"inp_{rn}"] = int(prev[rn])
+                    else:
+                        st.session_state[f"inp_{rn}"] = 0
 
                 # ── 결과 메시지 ────────────────────────────────
                 if gemini_error:
@@ -379,8 +382,17 @@ def tab_input():
                 st.warning("숫자를 입력해주세요.")
 
     # ── 인원 확인 및 수정 ──────────────────────────────────────
-    st.subheader("2단계 — 인원 확인 및 수정")
-    st.caption("OCR이 잘못 읽은 숫자가 있으면 직접 수정하세요. 0은 미입력으로 처리됩니다.")
+    st.subheader("2단계 — 인원 입력")
+
+    _ocr_ran = st.session_state.get('ocr_done', False) and bool(st.session_state.ocr_results)
+    if _ocr_ran:
+        st.caption("OCR 결과를 확인하고 잘못된 숫자를 수정하세요.")
+    else:
+        _filled = sum(1 for rn in ROOM_NUMBERS if prev.get(rn))
+        if _filled:
+            st.caption(f"✅ 어제 값 {_filled}개 자동 로드됨 — 바뀐 숫자만 수정 후 저장하세요.")
+        else:
+            st.caption("각 채팅방의 오늘 인원을 입력하세요.")
 
     edited = {}
     cols = st.columns(3)
@@ -388,14 +400,30 @@ def tab_input():
     for idx, room_num in enumerate(ROOM_NUMBERS):
         col = cols[idx % 3]
         with col:
-            default = st.session_state.ocr_results.get(room_num, 0)
+            ocr_val  = st.session_state.ocr_results.get(room_num)
             prev_val = prev.get(room_num)
-            help_msg = f"전일: {int(prev_val):,}명" if prev_val is not None else "이전 데이터 없음"
+
+            # OCR 값 우선, 없으면 어제 값, 없으면 0
+            if ocr_val is not None:
+                default = int(ocr_val)
+            elif prev_val is not None:
+                default = int(prev_val)
+            else:
+                default = 0
+
+            if ocr_val is not None and prev_val is not None:
+                diff = int(ocr_val) - int(prev_val)
+                sign = "+" if diff >= 0 else ""
+                help_msg = f"전일: {int(prev_val):,}명  ({sign}{diff:,})"
+            elif prev_val is not None:
+                help_msg = f"어제: {int(prev_val):,}명"
+            else:
+                help_msg = "이전 데이터 없음"
 
             val = st.number_input(
                 ROOMS[room_num],
                 min_value=0,
-                value=int(default),
+                value=int(st.session_state.get(f"inp_{room_num}", default)),
                 step=1,
                 help=help_msg,
                 key=f"inp_{room_num}",
