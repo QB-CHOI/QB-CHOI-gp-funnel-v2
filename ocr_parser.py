@@ -80,7 +80,7 @@ def _extract_right_column(image: Image.Image, rooms: dict = None) -> list:
             if not clean.isdigit():
                 continue
             n = int(clean)
-            if not (1 <= n <= 9999):
+            if not (50 <= n <= 99999):
                 continue
             cy = int(data['top'][i] + data['height'][i] / 2)
             # 같은 Y 위치(±15px) 중복 제거
@@ -167,7 +167,7 @@ def _match_spatial(blocks: list, rooms: dict) -> list:
         clean = re.sub(r'[,.\s]', '', text)
         if clean.isdigit():
             n = int(clean)
-            if 1 <= n <= 9999:
+            if 50 <= n <= 99999:
                 num_blocks.append((cy, cx, n))
 
     if not num_blocks:
@@ -222,7 +222,7 @@ def _parse_blocks_numbers(blocks: list) -> list:
         clean = re.sub(r'[,.\s]', '', text)
         if clean.isdigit():
             n = int(clean)
-            if 1 <= n <= 9999:
+            if 50 <= n <= 99999:
                 nums.append(n)
     return [{'room_num': i + 1, 'members': n} for i, n in enumerate(nums)]
 
