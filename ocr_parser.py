@@ -104,7 +104,8 @@ def _extract_by_text_pattern(image: Image.Image, rooms: dict = None) -> list:
 def _parse_chatroom_text(raw_text: str, rooms: dict = None) -> list:
     """
     텍스트에서 채팅방 번호와 인원 수를 추출.
-    패턴: '채팅방 N' 혹은 '채팅방N(...)' 뒤에 오는 숫자 중 인원 범위(50~99999)인 것.
+    카카오톡 행 구조: [채팅방명 + 인원] [타임스탬프]
+    → 인원은 채팅방 번호 직후 첫 번째 숫자, 타임스탬프는 마지막 숫자.
     """
     results = {}
     lines = raw_text.strip().splitlines()
@@ -122,18 +123,23 @@ def _parse_chatroom_text(raw_text: str, rooms: dict = None) -> list:
 
         # 채팅방 번호 뒤 텍스트
         after = line[m.end():]
-        # 괄호 안 숫자 제거 (예: "(사주2)" "(타로2)" "번" 같은 장식 제거)
+        # 괄호 안 제거: (사주2), (타로2), (부동산2) 등
         after_clean = re.sub(r'\([^)]*\)', ' ', after)
+        # '번' 제거: "37번" → "37 "
         after_clean = re.sub(r'번', ' ', after_clean)
+        # 한글 제거: "오전", "오후" 같은 타임스탬프 접두어 + 기타 한글 텍스트
+        # → "오전 12:21" 의 "오전"을 제거해 "12:21"만 남김
+        after_clean = re.sub(r'[가-힣]+', ' ', after_clean)
 
-        # 모든 숫자 추출 (쉼표 포함 숫자: 1,234 → 1234)
+        # 숫자 추출 (쉼표 포함: 1,234 → 1234)
         raw_nums = re.findall(r'\d{1,3}(?:,\d{3})+|\d+', after_clean)
         nums = [int(n.replace(',', '')) for n in raw_nums]
         valid = [n for n in nums if 50 <= n <= 99999]
 
         if valid:
-            # 인원 수는 보통 마지막(오른쪽) 숫자
-            results[rn] = valid[-1]
+            # 첫 번째 유효 숫자 = 인원 수
+            # (타임스탬프 "12:21"→"1221" 은 항상 인원 뒤에 위치)
+            results[rn] = valid[0]
 
     return [{'room_num': k, 'members': v} for k, v in sorted(results.items())]
 
@@ -352,11 +358,13 @@ def parse_from_text(raw_text: str) -> list:
         rn = int(m.group(1))
         if rn in results:
             continue
-        after = re.sub(r'^번', '', line[m.end():])
+        after = line[m.end():]
         after_clean = re.sub(r'\([^)]*\)', ' ', after)
+        after_clean = re.sub(r'번', ' ', after_clean)
+        after_clean = re.sub(r'[가-힣]+', ' ', after_clean)
         raw_nums = re.findall(r'\d{1,3}(?:,\d{3})+|\d+', after_clean)
         nums = [int(n.replace(',', '')) for n in raw_nums]
         valid = [n for n in nums if 50 <= n <= 99999]
         if valid:
-            results[rn] = valid[-1]
+            results[rn] = valid[0]
     return [{'room_num': k, 'members': v} for k, v in sorted(results.items())]
