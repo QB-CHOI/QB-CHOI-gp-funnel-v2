@@ -1,45 +1,74 @@
 """
-OCR 파서 — 전략 우선순위:
-1. 전체 이미지 텍스트 OCR → '채팅방 N' 패턴 매칭 (가장 신뢰도 높음)
-2. 오른쪽 영역 위치 기반 숫자 추출 (보조)
-3. 공간 매칭 (최후 수단)
+OCR 파서 — 전략 (병렬 실행 후 병합):
+A. 배지 Y 매칭 : 좌측 배지 번호 + 우측 인원(40~76%) Y좌표 매칭 — 한글 불필요
+B. 텍스트 패턴 : 전체 이미지 텍스트 OCR → '채팅방 N' 패턴
+→ 두 방법 병합: 배지 기반 우선, 텍스트가 합리적이면 텍스트로 교정
 """
 import re
+from collections import defaultdict
 from PIL import Image
 from difflib import SequenceMatcher
 
 _easyocr_reader = None
 
 
-def extract_from_image(image: Image.Image, rooms: dict = None) -> list:
-    results = {}
+# ── 메인 진입점 ────────────────────────────────────────────────────
 
-    # ── 1차: 텍스트 패턴 매칭 ─────────────────────────────────────
-    # "채팅방 34(사주2) 136" 같은 텍스트를 직접 파싱 → 방 번호 확실히 매핑
+def extract_from_image(image: Image.Image, rooms: dict = None) -> list:
+    badge_results = {}
+    text_results  = {}
+
+    # A. 배지 Y 매칭 (한글 인식 불필요)
     try:
-        r1 = _extract_by_text_pattern(image, rooms)
-        for item in r1:
-            results[item['room_num']] = item['members']
+        for item in _extract_by_badge_matching(image, rooms):
+            badge_results[item['room_num']] = item['members']
     except Exception:
         pass
 
-    # ── 2차: 오른쪽 영역 위치 기반 (1차에서 미인식 방 보완) ───────
+    # B. 텍스트 패턴
+    try:
+        for item in _extract_by_text_pattern(image, rooms):
+            text_results[item['room_num']] = item['members']
+    except Exception:
+        pass
+
+    # ── 병합 ──────────────────────────────────────────────────────
+    # 배지 매칭을 기본값으로, 텍스트가 50 이상이면 텍스트 우선
+    # (텍스트가 22 같은 서브카테고리 오염값이면 배지 값 사용)
+    results = {}
+    all_found = set(list(badge_results.keys()) + list(text_results.keys()))
+
+    for rn in all_found:
+        bv = badge_results.get(rn)
+        tv = text_results.get(rn)
+        if bv is None:
+            results[rn] = tv
+        elif tv is None:
+            results[rn] = bv
+        elif tv >= 50:
+            results[rn] = tv   # 텍스트 값이 충분히 크면 신뢰
+        elif bv > tv:
+            results[rn] = bv   # 텍스트가 작고 배지 값이 더 크면 배지 우선
+        else:
+            results[rn] = tv
+
+    # C. 오른쪽 크롭 위치 기반 (보완)
     if rooms and len(results) < len(rooms):
         try:
-            r2 = _extract_right_column(image, rooms, already_found=set(results.keys()))
-            for item in r2:
+            r3 = _extract_right_column(image, rooms, already_found=set(results.keys()))
+            for item in r3:
                 if item['room_num'] not in results:
                     results[item['room_num']] = item['members']
         except Exception:
             pass
 
-    # ── 3차: 공간 매칭 (블록 단위 텍스트 + 위치) ──────────────────
+    # D. 공간 매칭 (최후 수단)
     if rooms and len(results) < len(rooms):
         try:
             blocks = _blocks_from_tesseract(image)
             if blocks:
-                r3 = _match_spatial(blocks, rooms)
-                for item in r3:
+                r4 = _match_spatial(blocks, rooms)
+                for item in r4:
                     if item['room_num'] not in results:
                         results[item['room_num']] = item['members']
         except Exception:
@@ -47,51 +76,145 @@ def extract_from_image(image: Image.Image, rooms: dict = None) -> list:
 
     if results:
         return [{'room_num': k, 'members': v} for k, v in sorted(results.items())]
-
     return []
 
 
-# ── 1차: 텍스트 전체 파싱 ─────────────────────────────────────────
+# ── A. 배지 Y 매칭 ─────────────────────────────────────────────────
+
+def _extract_by_badge_matching(image: Image.Image, rooms: dict = None) -> list:
+    """
+    카카오톡 오픈채팅 목록 구조:
+      [배지 0~12%]  [방이름+인원 12~76%]  [타임스탬프 78~95%]
+
+    좌측 배지(0~15%)에서 채팅방 번호·Y위치를 읽고,
+    우측 인원 구역(40~76%)에서 각 Y행의 가장 오른쪽 숫자(인원)를 읽어 매칭.
+
+    - 타임스탬프는 78%+ 이므로 76% 크롭으로 완전 제외
+    - 서브카테고리 "(타로2)" 의 '2'는 인원 '1166' 보다 왼쪽 → 오른쪽 선택 시 배제
+    - 한글 전혀 불필요
+    """
+    import pytesseract
+    from pytesseract import Output
+    from image_processor import preprocess_for_ocr
+
+    w, h = image.size
+    cfg = '--oem 3 --psm 11 -c tessedit_char_whitelist=0123456789'
+
+    # ── 좌측 배지 영역 (0~15%) ─────────────────────────────────────
+    left = image.crop((0, 0, int(w * 0.15), h))
+    left_proc = preprocess_for_ocr(left)
+
+    badges = {}   # room_num → y_center (in upscaled left-crop coords)
+    seen_ys = []
+
+    for proc in [left_proc, left.convert('RGB')]:
+        data = pytesseract.image_to_data(proc, output_type=Output.DICT, config=cfg)
+        for i in range(len(data['text'])):
+            t = str(data['text'][i]).strip()
+            if not t or not t.isdigit():
+                continue
+            try:
+                conf = int(data['conf'][i])
+            except (ValueError, TypeError):
+                conf = 0
+            if conf < 25:
+                continue
+            n = int(t)
+            if not (1 <= n <= 99):
+                continue
+            if rooms and n not in rooms:
+                continue
+            cy = int(data['top'][i] + data['height'][i] / 2)
+            if any(abs(cy - sy) < 20 for sy in seen_ys):
+                continue
+            seen_ys.append(cy)
+            if n not in badges:
+                badges[n] = cy
+
+    if not badges:
+        return []
+
+    # ── 우측 인원 구역 (40~76%) ────────────────────────────────────
+    # 크롭 좌표는 원본 기준이지만, preprocess_for_ocr 2x 업스케일 후
+    # image_to_data 좌표는 업스케일 공간 기준 → 좌측과 동일 배율이므로 비교 가능
+    rx0 = int(w * 0.40)
+    rx1 = int(w * 0.76)
+    right = image.crop((rx0, 0, rx1, h))
+    right_proc = preprocess_for_ocr(right)
+
+    # Y행 그룹 → 해당 행에서 가장 오른쪽 숫자
+    # row_dict[y_bucket] = (cx_max, value)
+    row_dict = {}
+
+    for proc in [right_proc, right.convert('RGB')]:
+        data = pytesseract.image_to_data(proc, output_type=Output.DICT, config=cfg)
+        for i in range(len(data['text'])):
+            t = str(data['text'][i]).strip()
+            if not t or not t.isdigit():
+                continue
+            try:
+                conf = int(data['conf'][i])
+            except (ValueError, TypeError):
+                conf = 0
+            if conf < 20:
+                continue
+            n = int(t)
+            if not (1 <= n <= 99999):
+                continue
+            cy = int(data['top'][i] + data['height'][i] / 2)
+            cx = int(data['left'][i] + data['width'][i] / 2)
+            # 15px 단위 Y 버킷 (업스케일 좌표 기준)
+            y_bucket = round(cy / 15) * 15
+            if y_bucket not in row_dict or cx > row_dict[y_bucket][0]:
+                row_dict[y_bucket] = (cx, n)
+
+    if not row_dict:
+        return []
+
+    member_rows = [(yb, val) for yb, (_, val) in row_dict.items()]
+
+    # ── Y 위치 매칭 ────────────────────────────────────────────────
+    row_height = h / max(len(badges), 5)
+    # 업스케일 2x → 배지 Y도 업스케일 기준이므로 row_height도 2x
+    row_height_scaled = row_height * 2
+    results = []
+    used_ybs = set()
+
+    for room_num, badge_y in sorted(badges.items(), key=lambda x: x[1]):
+        cands = [(abs(yb - badge_y), yb, val)
+                 for yb, val in member_rows
+                 if abs(yb - badge_y) < row_height_scaled * 0.7
+                 and yb not in used_ybs]
+        if not cands:
+            continue
+        cands.sort()
+        _, yb, val = cands[0]
+        results.append({'room_num': room_num, 'members': val})
+        used_ybs.add(yb)
+
+    return results
+
+
+# ── B. 텍스트 패턴 ─────────────────────────────────────────────────
 
 def _extract_by_text_pattern(image: Image.Image, rooms: dict = None) -> list:
-    """
-    전체 이미지를 텍스트로 읽고 '채팅방 N ... 숫자' 패턴으로 인원 추출.
-    방 이름에 번호가 명시되어 있으므로 위치가 아닌 방 번호로 직접 매핑.
-    """
+    """전체 이미지 텍스트 OCR → '채팅방 N' 패턴으로 인원 추출."""
     import pytesseract
     from image_processor import preprocess_for_ocr
 
     texts = []
-    # 전처리 이미지
-    try:
-        proc = preprocess_for_ocr(image)
-        t = pytesseract.image_to_string(proc, lang='kor+eng', config='--oem 3 --psm 6')
-        if t.strip():
-            texts.append(t)
-    except Exception:
-        pass
-
-    # 원본 RGB (전처리가 오히려 방해될 경우)
-    try:
-        t2 = pytesseract.image_to_string(image.convert('RGB'), lang='kor+eng', config='--oem 3 --psm 6')
-        if t2.strip():
-            texts.append(t2)
-    except Exception:
-        pass
-
-    # psm 11 (단어 단위)
-    try:
-        proc = preprocess_for_ocr(image)
-        t3 = pytesseract.image_to_string(proc, lang='kor+eng', config='--oem 3 --psm 11')
-        if t3.strip():
-            texts.append(t3)
-    except Exception:
-        pass
+    for proc_img in [preprocess_for_ocr(image), image.convert('RGB')]:
+        for cfg in ['--oem 3 --psm 6', '--oem 3 --psm 11']:
+            try:
+                t = pytesseract.image_to_string(proc_img, lang='kor+eng', config=cfg)
+                if t.strip():
+                    texts.append(t)
+            except Exception:
+                pass
 
     results = {}
     for text in texts:
-        parsed = _parse_chatroom_text(text, rooms)
-        for item in parsed:
+        for item in _parse_chatroom_text(text, rooms):
             rn = item['room_num']
             if rn not in results:
                 results[rn] = item['members']
@@ -108,10 +231,7 @@ def _parse_chatroom_text(raw_text: str, rooms: dict = None) -> list:
     → 인원은 채팅방 번호 직후 첫 번째 숫자, 타임스탬프는 마지막 숫자.
     """
     results = {}
-    lines = raw_text.strip().splitlines()
-
-    for line in lines:
-        # '채팅방' 키워드가 있는 줄만 처리
+    for line in raw_text.strip().splitlines():
         m = re.search(r'채팅방\s*(\d{1,3})', line)
         if not m:
             continue
@@ -121,39 +241,26 @@ def _parse_chatroom_text(raw_text: str, rooms: dict = None) -> list:
         if rn in results:
             continue
 
-        # 채팅방 번호 뒤 텍스트
         after = line[m.end():]
-        # 괄호 안 제거: (사주2), (타로2), (부동산2) 등
-        after_clean = re.sub(r'\([^)]*\)', ' ', after)
-        # '번' 제거: "37번" → "37 "
-        after_clean = re.sub(r'번', ' ', after_clean)
-        # 한글 제거: "오전", "오후" 같은 타임스탬프 접두어 + 기타 한글 텍스트
-        # → "오전 12:21" 의 "오전"을 제거해 "12:21"만 남김
-        after_clean = re.sub(r'[가-힣]+', ' ', after_clean)
+        after_clean = re.sub(r'\([^)]*\)', ' ', after)   # (사주2) 제거
+        after_clean = re.sub(r'번', ' ', after_clean)     # '번' 제거
+        after_clean = re.sub(r'[가-힣]+', ' ', after_clean)  # 한글 제거 (오전/오후 등)
 
-        # 숫자 추출 (쉼표 포함: 1,234 → 1234)
         raw_nums = re.findall(r'\d{1,3}(?:,\d{3})+|\d+', after_clean)
         nums = [int(n.replace(',', '')) for n in raw_nums]
-        # 최소 1명부터 허용 — 배지 번호는 '채팅방 N' 패턴 앞에 위치하므로 after에 없음
         valid = [n for n in nums if 1 <= n <= 99999]
 
         if valid:
-            # 첫 번째 유효 숫자 = 인원 수
-            # (타임스탬프 "12:21"→"1221" 은 항상 인원 뒤에 위치)
-            results[rn] = valid[0]
+            results[rn] = valid[0]  # 첫 번째 = 인원 (타임스탬프는 뒤에 위치)
 
     return [{'room_num': k, 'members': v} for k, v in sorted(results.items())]
 
 
-# ── 2차: 오른쪽 영역 위치 기반 ───────────────────────────────────
+# ── C. 오른쪽 크롭 위치 기반 ──────────────────────────────────────
 
 def _extract_right_column(image: Image.Image, rooms: dict = None,
                            already_found: set = None) -> list:
-    """
-    이미지 오른쪽 영역에서 세로 순서로 숫자를 읽어 방에 매핑.
-    카카오톡 인원 숫자는 방이름 뒤~타임스탬프 앞에 위치.
-    이미 찾은 방(already_found)은 건너뜀.
-    """
+    """40%부터 크롭 후 Y 순서 기반 매핑 (보완용)."""
     import pytesseract
     from image_processor import preprocess_for_ocr
 
@@ -161,9 +268,6 @@ def _extract_right_column(image: Image.Image, rooms: dict = None,
         already_found = set()
 
     w, h = image.size
-
-    # 왼쪽 배지(~10%)를 제외하고 중간~오른쪽(40~100%) 크롭
-    # 인원 숫자가 방이름 바로 뒤에 있어서 50~80% x 위치에 주로 분포
     right = image.crop((int(w * 0.40), 0, w, h))
     right_proc = preprocess_for_ocr(right)
 
@@ -172,7 +276,7 @@ def _extract_right_column(image: Image.Image, rooms: dict = None,
         '--oem 3 --psm 6  -c tessedit_char_whitelist=0123456789,.',
     ]
 
-    numbers = []  # (center_y, value)
+    numbers = []
     seen_y = set()
 
     for cfg in configs:
@@ -193,7 +297,6 @@ def _extract_right_column(image: Image.Image, rooms: dict = None,
             if not clean.isdigit():
                 continue
             n = int(clean)
-            # 40% 크롭으로 배지 번호(좌측 10%) 제외됨 → 최소 5명부터 허용
             if not (5 <= n <= 99999):
                 continue
             cy = int(data['top'][i] + data['height'][i] / 2)
@@ -210,16 +313,12 @@ def _extract_right_column(image: Image.Image, rooms: dict = None,
     if not rooms:
         return [{'room_num': i + 1, 'members': v} for i, (_, v) in enumerate(numbers)]
 
-    # 미인식 방만 순서 매핑
     missing_keys = [k for k in sorted(rooms.keys()) if k not in already_found]
-    results = []
-    for idx, (_, val) in enumerate(numbers):
-        if idx < len(missing_keys):
-            results.append({'room_num': missing_keys[idx], 'members': val})
-    return results
+    return [{'room_num': missing_keys[idx], 'members': val}
+            for idx, (_, val) in enumerate(numbers) if idx < len(missing_keys)]
 
 
-# ── Tesseract 블록 추출 ────────────────────────────────────────
+# ── D. Tesseract 블록 추출 ─────────────────────────────────────────
 
 def _blocks_from_tesseract(image: Image.Image) -> list:
     import pytesseract
@@ -251,29 +350,7 @@ def _blocks_from_tesseract(image: Image.Image) -> list:
     return _deduplicate_blocks(results)
 
 
-# ── EasyOCR 블록 추출 (선택적) ────────────────────────────────
-
-def _blocks_from_easyocr(image: Image.Image) -> list:
-    global _easyocr_reader
-    import numpy as np
-    import easyocr
-
-    if _easyocr_reader is None:
-        _easyocr_reader = easyocr.Reader(['ko', 'en'], gpu=False, verbose=False)
-
-    img_np = np.array(image.convert('RGB'))
-    raw = _easyocr_reader.readtext(img_np, detail=1, paragraph=False)
-    blocks = []
-    for bbox, text, conf in raw:
-        if conf < 0.25 or not text.strip():
-            continue
-        cx = (bbox[0][0] + bbox[2][0]) / 2
-        cy = (bbox[0][1] + bbox[2][1]) / 2
-        blocks.append((cy, cx, text.strip()))
-    return blocks
-
-
-# ── 공간 매칭 ─────────────────────────────────────────────────
+# ── 공간 매칭 ─────────────────────────────────────────────────────
 
 def _match_spatial(blocks: list, rooms: dict) -> list:
     num_blocks = []
@@ -281,7 +358,7 @@ def _match_spatial(blocks: list, rooms: dict) -> list:
         clean = re.sub(r'[,.\s]', '', text)
         if clean.isdigit():
             n = int(clean)
-            if 50 <= n <= 99999:
+            if 1 <= n <= 99999:
                 num_blocks.append((cy, cx, n))
 
     if not num_blocks:
@@ -330,17 +407,6 @@ def _partial_ratio(a: str, b: str) -> float:
     return best
 
 
-def _parse_blocks_numbers(blocks: list) -> list:
-    nums = []
-    for _, _, text in blocks:
-        clean = re.sub(r'[,.\s]', '', text)
-        if clean.isdigit():
-            n = int(clean)
-            if 50 <= n <= 99999:
-                nums.append(n)
-    return [{'room_num': i + 1, 'members': n} for i, n in enumerate(nums)]
-
-
 def _deduplicate_blocks(blocks: list, tol: float = 5.0) -> list:
     seen = []
     for cy, cx, text in blocks:
@@ -351,7 +417,7 @@ def _deduplicate_blocks(blocks: list, tol: float = 5.0) -> list:
 
 
 def parse_from_text(raw_text: str) -> list:
-    """외부 호출용 텍스트 기반 파싱 (rooms 없이)."""
+    """외부 호출용 텍스트 기반 파싱."""
     results = {}
     for line in raw_text.strip().splitlines():
         m = re.search(r'채팅방\s*(\d{1,3})', line)
@@ -366,7 +432,7 @@ def parse_from_text(raw_text: str) -> list:
         after_clean = re.sub(r'[가-힣]+', ' ', after_clean)
         raw_nums = re.findall(r'\d{1,3}(?:,\d{3})+|\d+', after_clean)
         nums = [int(n.replace(',', '')) for n in raw_nums]
-        valid = [n for n in nums if 50 <= n <= 99999]
+        valid = [n for n in nums if 1 <= n <= 99999]
         if valid:
             results[rn] = valid[0]
     return [{'room_num': k, 'members': v} for k, v in sorted(results.items())]
