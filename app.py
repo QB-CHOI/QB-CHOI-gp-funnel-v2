@@ -6,7 +6,7 @@ from github_store import (
     load_all, save_daily, delete_date,
     load_campaigns, get_current_campaigns,
     save_campaign, end_campaign, get_history,
-    load_rooms, save_room, delete_room,
+    load_rooms, save_room, save_rooms_batch, delete_room,
     load_conversions, save_conversion, get_latest_conversions,
     load_adspend, save_adspend,
     load_content, save_content, delete_content_row,
@@ -65,6 +65,8 @@ if 'uploaded_file_names' not in st.session_state:
     st.session_state.uploaded_file_names = []
 if 'pending_delete_date' not in st.session_state:
     st.session_state.pending_delete_date = None
+if '_auto_registered' not in st.session_state:
+    st.session_state._auto_registered = []
 
 
 
@@ -234,18 +236,31 @@ def tab_input():
 
         if not st.session_state.ocr_done:
             with st.spinner(f"{len(images)}장 인식 중..."):
-                merged = {}
+                # rooms=None → 등록 여부 무관하게 스크린샷의 모든 채팅방 감지
+                all_found = {}
                 try:
                     for _, img in images:
-                        for r in extract_from_image(img, ROOMS):
-                            if r['room_num'] not in merged:
-                                merged[r['room_num']] = r['members']
+                        for r in extract_from_image(img, None):
+                            if r['room_num'] not in all_found:
+                                all_found[r['room_num']] = r['members']
                 except Exception:
                     pass
 
+                # 미등록 신규 방 자동 등록 (API 1회 일괄 처리)
+                new_rooms = {rn: f"채팅방 {rn}"
+                             for rn in sorted(all_found.keys())
+                             if rn not in ROOMS}
+                if new_rooms:
+                    save_rooms_batch(new_rooms)
+                    st.session_state._auto_registered = sorted(new_rooms.keys())
+
+                # 등록 완료된 전체 방 목록으로 결과 필터링
+                current_rooms = load_rooms()
+                merged = {rn: v for rn, v in all_found.items() if rn in current_rooms}
+
                 st.session_state.ocr_results = merged
                 st.session_state.ocr_done = True
-                for rn in ROOMS:
+                for rn in current_rooms:
                     if rn in merged:
                         st.session_state[f"inp_{rn}"] = merged[rn]
                     elif prev.get(rn) is not None:
@@ -253,17 +268,24 @@ def tab_input():
                     else:
                         st.session_state[f"inp_{rn}"] = 0
 
-                if merged:
-                    st.success(f"✅ {len(merged)}개 채팅방 인식 — 아래에서 숫자 확인 후 저장하세요.")
-                else:
-                    st.info("자동 인식에 실패했습니다. 아래 2단계에서 어제 값을 확인하고 수정해 저장하세요.")
+            # 신규 방 등록 시 UI 전체 갱신 (ROOMS 목록 반영)
+            if new_rooms:
+                st.rerun()
+
         else:
-            st.success(f"✅ {len(st.session_state.ocr_results)}개 채팅방 인식 완료")
+            # 신규 방 자동 등록 알림
+            if st.session_state._auto_registered:
+                names = ", ".join(f"채팅방 {rn}" for rn in st.session_state._auto_registered)
+                st.info(f"🆕 신규 채팅방 자동 등록됨: **{names}** — 이름은 아래 '채팅방 이름 수정'에서 변경하세요.")
+                st.session_state._auto_registered = []
+
+            cnt = len(st.session_state.ocr_results)
+            st.success(f"✅ {cnt}개 채팅방 인식 완료")
             if st.button("🔄 다시 인식"):
                 st.session_state.ocr_done = False
                 st.rerun()
 
-        # ── 인식 결과 검토 테이블 (미인식 방 포함 전체 표시) ─────
+        # ── 인식 결과 검토 테이블 ─────────────────────────────────
         if st.session_state.ocr_done:
             _show_ocr_review(st.session_state.ocr_results, ROOMS, prev)
 

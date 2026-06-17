@@ -134,7 +134,8 @@ def _parse_chatroom_text(raw_text: str, rooms: dict = None) -> list:
         # 숫자 추출 (쉼표 포함: 1,234 → 1234)
         raw_nums = re.findall(r'\d{1,3}(?:,\d{3})+|\d+', after_clean)
         nums = [int(n.replace(',', '')) for n in raw_nums]
-        valid = [n for n in nums if 50 <= n <= 99999]
+        # 최소 1명부터 허용 — 배지 번호는 '채팅방 N' 패턴 앞에 위치하므로 after에 없음
+        valid = [n for n in nums if 1 <= n <= 99999]
 
         if valid:
             # 첫 번째 유효 숫자 = 인원 수
@@ -192,7 +193,8 @@ def _extract_right_column(image: Image.Image, rooms: dict = None,
             if not clean.isdigit():
                 continue
             n = int(clean)
-            if not (50 <= n <= 99999):
+            # 40% 크롭으로 배지 번호(좌측 10%) 제외됨 → 최소 5명부터 허용
+            if not (5 <= n <= 99999):
                 continue
             cy = int(data['top'][i] + data['height'][i] / 2)
             if any(abs(cy - sy) < 15 for sy in seen_y):

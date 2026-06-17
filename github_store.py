@@ -232,6 +232,20 @@ def save_room(room_num: int, room_name: str):
     load_rooms.clear()
 
 
+def save_rooms_batch(new_rooms: dict):
+    """신규 채팅방 여러 개를 API 1회 호출로 일괄 등록."""
+    df = _read_csv(ROOMS_PATH, ROOMS_COLS)
+    if not df.empty:
+        df['room_num'] = pd.to_numeric(df['room_num'], errors='coerce').astype('Int64')
+        df = df[~df['room_num'].isin(new_rooms.keys())]
+    new_rows = pd.DataFrame([{'room_num': rn, 'room_name': name}
+                              for rn, name in new_rooms.items()])
+    combined = pd.concat([df, new_rows], ignore_index=True).sort_values('room_num')
+    room_list = ", ".join(f"채팅방{rn}" for rn in sorted(new_rooms.keys()))
+    _write_csv(ROOMS_PATH, combined, f"신규 채팅방 자동 등록: {room_list}")
+    load_rooms.clear()
+
+
 def delete_room(room_num: int):
     df = _read_csv(ROOMS_PATH, ROOMS_COLS)
     if df.empty:
