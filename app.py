@@ -67,6 +67,8 @@ if 'pending_delete_date' not in st.session_state:
     st.session_state.pending_delete_date = None
 if '_pending_new_rooms' not in st.session_state:
     st.session_state._pending_new_rooms = {}
+if '_editing_room' not in st.session_state:
+    st.session_state._editing_room = None
 
 
 
@@ -1245,19 +1247,70 @@ def tab_campaign():
 
         if ROOMS:
             st.divider()
-            st.markdown("**현재 등록된 채팅방** — 잘못 등록된 방은 우측 🗑️ 버튼으로 즉시 삭제")
+            st.markdown("**현재 등록된 채팅방**")
+            st.caption("✏️ 수정 — 번호·이름 모두 변경 가능 / 🗑️ — 즉시 삭제")
+
             for rn in sorted(ROOMS.keys()):
-                col_num, col_name, col_del = st.columns([1, 5, 1])
-                with col_num:
-                    st.write(f"**{rn}**")
-                with col_name:
-                    st.write(ROOMS[rn])
-                with col_del:
-                    if st.button("🗑️", key=f"del_{rn}",
-                                 help=f"채팅방 {rn} 삭제"):
-                        delete_room(rn)
-                        st.toast(f"채팅방 {rn} 삭제 완료", icon="🗑️")
-                        st.rerun()
+                editing = (st.session_state._editing_room == rn)
+
+                if editing:
+                    # ── 인라인 수정 폼 ────────────────────────────────
+                    with st.container(border=True):
+                        ec1, ec2, ec3, ec4 = st.columns([1, 1, 4, 2])
+                        with ec1:
+                            new_rn = st.number_input(
+                                "번호", min_value=1, step=1, value=rn,
+                                key=f"edit_num_{rn}", label_visibility="collapsed"
+                            )
+                        with ec2:
+                            st.markdown(f"<small style='color:grey'>현재: {rn}</small>",
+                                        unsafe_allow_html=True)
+                        with ec3:
+                            new_name = st.text_input(
+                                "이름", value=ROOMS[rn],
+                                key=f"edit_name_{rn}", label_visibility="collapsed"
+                            )
+                        with ec4:
+                            cs, cc = st.columns(2)
+                            with cs:
+                                if st.button("✅", key=f"save_{rn}",
+                                             help="저장", use_container_width=True):
+                                    name_to_save = new_name.strip() or ROOMS[rn]
+                                    if int(new_rn) != rn:
+                                        # 번호 변경: 기존 삭제 후 새 번호로 등록
+                                        delete_room(rn)
+                                        save_room(int(new_rn), name_to_save)
+                                        st.toast(f"채팅방 {rn} → {int(new_rn)} 변경 완료",
+                                                 icon="✅")
+                                    else:
+                                        save_room(rn, name_to_save)
+                                        st.toast(f"채팅방 {rn} 이름 수정 완료", icon="✅")
+                                    st.session_state._editing_room = None
+                                    load_rooms.clear()
+                                    st.rerun()
+                            with cc:
+                                if st.button("❌", key=f"cancel_{rn}",
+                                             help="취소", use_container_width=True):
+                                    st.session_state._editing_room = None
+                                    st.rerun()
+                else:
+                    # ── 일반 행 ───────────────────────────────────────
+                    col_num, col_name, col_edit, col_del = st.columns([1, 5, 1, 1])
+                    with col_num:
+                        st.write(f"**{rn}**")
+                    with col_name:
+                        st.write(ROOMS[rn])
+                    with col_edit:
+                        if st.button("✏️", key=f"edit_{rn}",
+                                     help=f"채팅방 {rn} 수정"):
+                            st.session_state._editing_room = rn
+                            st.rerun()
+                    with col_del:
+                        if st.button("🗑️", key=f"del_{rn}",
+                                     help=f"채팅방 {rn} 삭제"):
+                            delete_room(rn)
+                            st.toast(f"채팅방 {rn} 삭제 완료", icon="🗑️")
+                            st.rerun()
 
     if not ROOMS:
         st.info("위에서 채팅방을 먼저 추가해주세요.")
