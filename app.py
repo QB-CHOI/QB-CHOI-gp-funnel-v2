@@ -65,8 +65,8 @@ if 'uploaded_file_names' not in st.session_state:
     st.session_state.uploaded_file_names = []
 if 'pending_delete_date' not in st.session_state:
     st.session_state.pending_delete_date = None
-if '_auto_registered' not in st.session_state:
-    st.session_state._auto_registered = []
+if '_pending_new_rooms' not in st.session_state:
+    st.session_state._pending_new_rooms = {}
 
 
 
@@ -222,7 +222,7 @@ def tab_input():
 
     if uploaded_files:
         from PIL import Image
-        from ocr_parser import extract_from_image
+        from ocr_parser import extract_from_image, get_badge_rooms
 
         images = []
         for f in uploaded_files:
@@ -236,31 +236,33 @@ def tab_input():
 
         if not st.session_state.ocr_done:
             with st.spinner(f"{len(images)}장 인식 중..."):
-                # rooms=None → 등록 여부 무관하게 스크린샷의 모든 채팅방 감지
-                all_found = {}
+                # ── 등록된 방 인원 인식 (ROOMS 필터 적용, 오인식 방지) ────
+                merged = {}
                 try:
                     for _, img in images:
-                        for r in extract_from_image(img, None):
-                            if r['room_num'] not in all_found:
-                                all_found[r['room_num']] = r['members']
+                        for r in extract_from_image(img, ROOMS):
+                            if r['room_num'] not in merged:
+                                merged[r['room_num']] = r['members']
                 except Exception:
                     pass
 
-                # 미등록 신규 방 자동 등록 (API 1회 일괄 처리)
-                new_rooms = {rn: f"채팅방 {rn}"
-                             for rn in sorted(all_found.keys())
-                             if rn not in ROOMS}
-                if new_rooms:
-                    save_rooms_batch(new_rooms)
-                    st.session_state._auto_registered = sorted(new_rooms.keys())
-
-                # 등록 완료된 전체 방 목록으로 결과 필터링
-                current_rooms = load_rooms()
-                merged = {rn: v for rn, v in all_found.items() if rn in current_rooms}
+                # ── 신규 방 후보 탐지: 배지 영역만 사용 (텍스트 오인식 차단) ──
+                badge_new = {}
+                try:
+                    for _, img in images:
+                        for rn, cnt_val in get_badge_rooms(img).items():
+                            if rn not in ROOMS and rn not in badge_new:
+                                badge_new[rn] = cnt_val
+                except Exception:
+                    pass
 
                 st.session_state.ocr_results = merged
                 st.session_state.ocr_done = True
-                for rn in current_rooms:
+                # 신규 방 후보 → 사용자 확인 대기 (자동 등록 안 함)
+                if badge_new:
+                    st.session_state._pending_new_rooms = badge_new
+
+                for rn in ROOMS:
                     if rn in merged:
                         st.session_state[f"inp_{rn}"] = merged[rn]
                     elif prev.get(rn) is not None:
@@ -268,22 +270,65 @@ def tab_input():
                     else:
                         st.session_state[f"inp_{rn}"] = 0
 
-            # 신규 방 등록 시 UI 전체 갱신 (ROOMS 목록 반영)
-            if new_rooms:
-                st.rerun()
-
         else:
-            # 신규 방 자동 등록 알림
-            if st.session_state._auto_registered:
-                names = ", ".join(f"채팅방 {rn}" for rn in st.session_state._auto_registered)
-                st.info(f"🆕 신규 채팅방 자동 등록됨: **{names}** — 이름은 아래 '채팅방 이름 수정'에서 변경하세요.")
-                st.session_state._auto_registered = []
-
             cnt = len(st.session_state.ocr_results)
             st.success(f"✅ {cnt}개 채팅방 인식 완료")
             if st.button("🔄 다시 인식"):
                 st.session_state.ocr_done = False
+                st.session_state._pending_new_rooms = {}
                 st.rerun()
+
+        # ── 신규 채팅방 등록 확인 UI ──────────────────────────────────
+        if st.session_state.get('_pending_new_rooms'):
+            pending = st.session_state._pending_new_rooms
+            with st.container(border=True):
+                st.markdown(f"#### 🆕 새 채팅방 {len(pending)}개 감지")
+                st.caption(
+                    "이미지 배지에서 발견된 방입니다. **등록할 방만 체크하세요.** "
+                    "OCR 오인식으로 잘못 감지된 방은 체크 해제 후 무시하세요."
+                )
+                selected_new = {}
+                new_room_name_inputs = {}
+                for rn in sorted(pending.keys()):
+                    col_chk, col_cnt, col_nm = st.columns([1, 1, 3])
+                    with col_chk:
+                        checked = st.checkbox(f"채팅방 {rn}", key=f"chk_new_{rn}",
+                                              value=True)
+                        if checked:
+                            selected_new[rn] = True
+                    with col_cnt:
+                        st.caption(f"인식 인원: {pending[rn]:,}명")
+                    with col_nm:
+                        new_room_name_inputs[rn] = st.text_input(
+                            "방 이름",
+                            value=f"채팅방 {rn}",
+                            key=f"new_nm_{rn}",
+                            label_visibility="collapsed",
+                        )
+
+                col_reg, col_skip = st.columns(2)
+                with col_reg:
+                    if st.button("✅ 선택한 방 등록", type="primary",
+                                 use_container_width=True, key="btn_reg_new"):
+                        rooms_to_add = {
+                            rn: (new_room_name_inputs[rn].strip() or f"채팅방 {rn}")
+                            for rn in selected_new
+                        }
+                        if rooms_to_add:
+                            save_rooms_batch(rooms_to_add)
+                            load_rooms.clear()
+                            # 인식된 인원 수도 OCR 결과에 반영
+                            for rn in rooms_to_add:
+                                if rn in pending:
+                                    st.session_state.ocr_results[rn] = pending[rn]
+                                    st.session_state[f"inp_{rn}"] = pending[rn]
+                        st.session_state._pending_new_rooms = {}
+                        st.rerun()
+                with col_skip:
+                    if st.button("❌ 무시 (등록 안 함)",
+                                 use_container_width=True, key="btn_skip_new"):
+                        st.session_state._pending_new_rooms = {}
+                        st.rerun()
 
         # ── 인식 결과 검토 테이블 ─────────────────────────────────
         if st.session_state.ocr_done:
@@ -1200,22 +1245,19 @@ def tab_campaign():
 
         if ROOMS:
             st.divider()
-            st.markdown("**현재 등록된 채팅방**")
-            rooms_df = pd.DataFrame(
-                [{"번호": k, "이름": v} for k, v in sorted(ROOMS.items())]
-            )
-            st.dataframe(rooms_df, use_container_width=True, hide_index=True)
-
-            with st.form("room_delete_form"):
-                del_room = st.selectbox(
-                    "삭제할 채팅방",
-                    options=ROOM_NUMBERS,
-                    format_func=lambda x: f"{x} — {ROOMS.get(x, '')}",
-                )
-                if st.form_submit_button("삭제", type="secondary", use_container_width=True):
-                    delete_room(del_room)
-                    st.success(f"채팅방 {del_room} 삭제 완료")
-                    st.rerun()
+            st.markdown("**현재 등록된 채팅방** — 잘못 등록된 방은 우측 🗑️ 버튼으로 즉시 삭제")
+            for rn in sorted(ROOMS.keys()):
+                col_num, col_name, col_del = st.columns([1, 5, 1])
+                with col_num:
+                    st.write(f"**{rn}**")
+                with col_name:
+                    st.write(ROOMS[rn])
+                with col_del:
+                    if st.button("🗑️", key=f"del_{rn}",
+                                 help=f"채팅방 {rn} 삭제"):
+                        delete_room(rn)
+                        st.toast(f"채팅방 {rn} 삭제 완료", icon="🗑️")
+                        st.rerun()
 
     if not ROOMS:
         st.info("위에서 채팅방을 먼저 추가해주세요.")

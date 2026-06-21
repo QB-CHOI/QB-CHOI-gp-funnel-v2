@@ -120,7 +120,9 @@ def _extract_by_badge_matching(image: Image.Image, rooms: dict = None) -> list:
             if conf < 25:
                 continue
             n = int(t)
-            if not (1 <= n <= 99):
+            # rooms 없이 신규 방 탐지 시: 10 미만은 배지 분리읽기 오인식으로 간주
+            min_n = min(rooms.keys()) - 5 if rooms else 10
+            if not (min_n <= n <= 99):
                 continue
             if rooms and n not in rooms:
                 continue
@@ -414,6 +416,18 @@ def _deduplicate_blocks(blocks: list, tol: float = 5.0) -> list:
         if not dup:
             seen.append((cy, cx, text))
     return seen
+
+
+def get_badge_rooms(image: Image.Image) -> dict:
+    """
+    배지 영역(0~15%)에서만 채팅방을 탐지 → {room_num: members} 반환.
+    한글·미리보기 텍스트와 무관하므로 신규 방 탐지 시 오인식 최소화.
+    """
+    try:
+        results = _extract_by_badge_matching(image, None)
+        return {item['room_num']: item['members'] for item in results}
+    except Exception:
+        return {}
 
 
 def parse_from_text(raw_text: str) -> list:
