@@ -81,22 +81,35 @@ def _read_csv(path: str, columns: list) -> pd.DataFrame:
     return pd.read_csv(io.StringIO(content))
 
 
-def _write_csv(path: str, df: pd.DataFrame, message: str):
-    url = f"https://api.github.com/repos/{REPO}/contents/{path}"
-    res = requests.get(url, headers=_headers(), timeout=20)
-    sha = res.json().get("sha", "") if res.status_code == 200 else ""
-
+def _write_csv(path: str, df: pd.DataFrame, message: str, _retries: int = 3):
+    """CSV를 GitHub에 저장. SHA 충돌(409) 시 최대 3회 자동 재시도."""
+    import time
+    url       = f"https://api.github.com/repos/{REPO}/contents/{path}"
     csv_bytes = df.to_csv(index=False).encode("utf-8")
     content   = base64.b64encode(csv_bytes).decode("utf-8")
 
-    payload = {"message": message, "content": content}
-    if sha:
-        payload["sha"] = sha
+    for attempt in range(_retries):
+        # 매 시도마다 최신 SHA를 가져와야 409 충돌을 피할 수 있음
+        res_get = requests.get(url, headers=_headers(), timeout=20)
+        sha = res_get.json().get("sha", "") if res_get.status_code == 200 else ""
 
-    res = requests.put(url, headers=_headers(), json=payload, timeout=20)
-    if not res.ok:
-        err = res.json().get("error", {}).get("message", "") if res.content else ""
-        raise RuntimeError(f"GitHub 저장 실패 [{res.status_code}]: {err or res.text[:200]}")
+        payload = {"message": message, "content": content}
+        if sha:
+            payload["sha"] = sha
+
+        res = requests.put(url, headers=_headers(), json=payload, timeout=30)
+        if res.ok:
+            return
+
+        if res.status_code == 409 and attempt < _retries - 1:
+            time.sleep(1.5 * (attempt + 1))  # 점진적 대기 후 재시도
+            continue
+
+        try:
+            err_msg = res.json().get("message", res.text[:200])
+        except Exception:
+            err_msg = res.text[:200]
+        raise RuntimeError(f"GitHub 저장 실패 [{res.status_code}]: {err_msg}")
 
 
 # ── 인원 데이터 ───────────────────────────────────────────────────

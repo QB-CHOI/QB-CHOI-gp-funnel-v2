@@ -69,6 +69,8 @@ if '_pending_new_rooms' not in st.session_state:
     st.session_state._pending_new_rooms = {}
 if '_editing_room' not in st.session_state:
     st.session_state._editing_room = None
+if '_ocr_error' not in st.session_state:
+    st.session_state._ocr_error = None
 
 
 
@@ -240,13 +242,14 @@ def tab_input():
             with st.spinner(f"{len(images)}장 인식 중..."):
                 # ── 등록된 방 인원 인식 (ROOMS 필터 적용, 오인식 방지) ────
                 merged = {}
+                ocr_error = None
                 try:
                     for _, img in images:
                         for r in extract_from_image(img, ROOMS):
                             if r['room_num'] not in merged:
                                 merged[r['room_num']] = r['members']
-                except Exception:
-                    pass
+                except Exception as e:
+                    ocr_error = str(e)
 
                 # ── 신규 방 후보 탐지: 배지 영역만 사용 (텍스트 오인식 차단) ──
                 badge_new = {}
@@ -260,7 +263,7 @@ def tab_input():
 
                 st.session_state.ocr_results = merged
                 st.session_state.ocr_done = True
-                # 신규 방 후보 → 사용자 확인 대기 (자동 등록 안 함)
+                st.session_state._ocr_error = ocr_error
                 if badge_new:
                     st.session_state._pending_new_rooms = badge_new
 
@@ -273,8 +276,17 @@ def tab_input():
                         st.session_state[f"inp_{rn}"] = 0
 
         else:
-            cnt = len(st.session_state.ocr_results)
-            st.success(f"✅ {cnt}개 채팅방 인식 완료")
+            cnt      = len(st.session_state.ocr_results)
+            total_rn = len(ROOMS)
+            if cnt == total_rn:
+                st.success(f"✅ {cnt}/{total_rn}개 채팅방 전체 인식 완료")
+            elif cnt > 0:
+                st.warning(f"⚠️ {cnt}/{total_rn}개 인식 — 미인식 방은 전일 데이터로 채워집니다. 확인 후 수정하세요.")
+            else:
+                st.error("❌ 채팅방을 하나도 인식하지 못했습니다. 이미지 품질을 확인하거나 직접 입력하세요.")
+            if st.session_state.get('_ocr_error'):
+                with st.expander("🔧 OCR 오류 상세"):
+                    st.code(st.session_state._ocr_error)
             if st.button("🔄 다시 인식"):
                 st.session_state.ocr_done = False
                 st.session_state._pending_new_rooms = {}
@@ -336,30 +348,6 @@ def tab_input():
         if st.session_state.ocr_done:
             _show_ocr_review(st.session_state.ocr_results, ROOMS, prev)
 
-    # ── 채팅방 이름 수정 ───────────────────────────────────────
-    with st.expander("✏️ 채팅방 이름 수정"):
-        st.caption("이름을 바꾸면 GitHub에 바로 저장됩니다.")
-        with st.form("room_name_edit_form"):
-            name_inputs = {}
-            name_cols = st.columns(3)
-            for idx, rn in enumerate(ROOM_NUMBERS):
-                with name_cols[idx % 3]:
-                    name_inputs[rn] = st.text_input(
-                        f"채팅방 {rn}",
-                        value=ROOMS[rn],
-                        key=f"name_edit_{rn}",
-                    )
-            if st.form_submit_button("이름 저장", type="primary", use_container_width=True):
-                changed = [(rn, name_inputs[rn].strip()) for rn in ROOM_NUMBERS
-                           if name_inputs[rn].strip() and name_inputs[rn].strip() != ROOMS[rn]]
-                if changed:
-                    for rn, new_name in changed:
-                        save_room(rn, new_name)
-                    st.success(f"✅ {len(changed)}개 채팅방 이름 저장 완료")
-                    st.rerun()
-                else:
-                    st.info("변경된 이름이 없습니다.")
-
     # ── 빠른 숫자 입력 ─────────────────────────────────────────
     with st.expander("⚡ 빠른 입력 — 숫자 목록 붙여넣기", expanded=False):
         st.caption(
@@ -409,14 +397,18 @@ def tab_input():
             else:
                 default = 0
 
-            if ocr_val is not None and prev_val is not None:
-                diff = int(ocr_val) - int(prev_val)
-                sign = "+" if diff >= 0 else ""
-                help_msg = f"전일: {int(prev_val):,}명  ({sign}{diff:,})"
+            # help 텍스트: 값 출처 명시
+            if ocr_val is not None:
+                if prev_val is not None:
+                    diff = int(ocr_val) - int(prev_val)
+                    sign = "+" if diff >= 0 else ""
+                    help_msg = f"📷 OCR 인식 | 전일: {int(prev_val):,}명 ({sign}{diff:,})"
+                else:
+                    help_msg = "📷 OCR 인식 | 전일 데이터 없음"
             elif prev_val is not None:
-                help_msg = f"어제: {int(prev_val):,}명"
+                help_msg = f"📅 전일 데이터 자동 입력 (OCR 미인식) | {int(prev_val):,}명"
             else:
-                help_msg = "이전 데이터 없음"
+                help_msg = "⚠️ 데이터 없음 — 직접 입력하세요"
 
             val = st.number_input(
                 ROOMS[room_num],
@@ -464,19 +456,25 @@ def tab_input():
             ]
             missing_rooms = [ROOMS[rn] for rn, v in edited.items() if v == 0]
             if room_data:
-                with st.spinner("GitHub에 저장 중..."):
-                    save_daily(str(input_date), room_data)
-                    if date_memo.strip() or _existing_note:
-                        save_date_note(str(input_date), date_memo.strip())
-                st.success(f"✅ {input_date} 데이터 저장 완료 — {len(room_data)}개 채팅방")
-                if missing_rooms:
-                    st.warning(
-                        f"⚠️ {len(missing_rooms)}개 채팅방이 입력되지 않았습니다:\n" +
-                        "  |  ".join(missing_rooms)
+                try:
+                    with st.spinner("GitHub에 저장 중..."):
+                        save_daily(str(input_date), room_data)
+                        if date_memo.strip() or _existing_note:
+                            save_date_note(str(input_date), date_memo.strip())
+                    st.success(f"✅ {input_date} 데이터 저장 완료 — {len(room_data)}개 채팅방")
+                    if missing_rooms:
+                        st.warning(
+                            f"⚠️ {len(missing_rooms)}개 채팅방이 입력되지 않았습니다:\n" +
+                            "  |  ".join(missing_rooms)
+                        )
+                    st.session_state.ocr_done = False
+                    st.session_state.ocr_results = {}
+                    st.balloons()
+                except RuntimeError as e:
+                    st.error(
+                        f"❌ 저장 실패: {e}\n\n"
+                        "잠시 후 다시 시도하거나, 사이드바 '🔄 데이터 새로고침' 후 재시도하세요."
                     )
-                st.session_state.ocr_done = False
-                st.session_state.ocr_results = {}
-                st.balloons()
             else:
                 st.warning("입력된 인원이 없습니다. 숫자를 확인해주세요.")
 
