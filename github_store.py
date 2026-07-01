@@ -114,7 +114,7 @@ def _write_csv(path: str, df: pd.DataFrame, message: str, _retries: int = 3):
 
 # ── 인원 데이터 ───────────────────────────────────────────────────
 
-@st.cache_data(ttl=180)
+@st.cache_data(ttl=120)
 def load_all() -> pd.DataFrame:
     df = _read_csv(MEMBERS_PATH, MEMBERS_COLS)
     if df.empty:
@@ -172,7 +172,7 @@ def delete_date(date_str: str):
 
 # ── 캠페인 데이터 ─────────────────────────────────────────────────
 
-@st.cache_data(ttl=300)
+@st.cache_data(ttl=3600)
 def load_campaigns() -> pd.DataFrame:
     df = _read_csv(CAMPAIGNS_PATH, CAMPAIGNS_COLS)
     if df.empty:
@@ -225,7 +225,7 @@ def end_campaign(room_num: int):
 
 # ── 채팅방 목록 ───────────────────────────────────────────────────
 
-@st.cache_data(ttl=300)
+@st.cache_data(ttl=3600)
 def load_rooms() -> dict:
     df = _read_csv(ROOMS_PATH, ROOMS_COLS)
     if df.empty:
@@ -282,7 +282,7 @@ def get_history(room_num: int) -> pd.DataFrame:
 
 # ── 전환 데이터 ───────────────────────────────────────────────────
 
-@st.cache_data(ttl=300)
+@st.cache_data(ttl=600)
 def load_conversions() -> pd.DataFrame:
     df = _read_csv(CONVERSIONS_PATH, CONVERSIONS_COLS)
     if df.empty:
@@ -323,7 +323,7 @@ def get_latest_conversions() -> pd.DataFrame:
 
 # ── 광고비 데이터 ─────────────────────────────────────────────────
 
-@st.cache_data(ttl=300)
+@st.cache_data(ttl=600)
 def load_adspend() -> pd.DataFrame:
     df = _read_csv(ADSPEND_PATH, ADSPEND_COLS)
     if df.empty:
@@ -355,7 +355,7 @@ def save_adspend(room_num: int, date_str: str, channel: str,
 
 # ── 콘텐츠 기록 ───────────────────────────────────────────────────
 
-@st.cache_data(ttl=300)
+@st.cache_data(ttl=600)
 def load_content() -> pd.DataFrame:
     df = _read_csv(CONTENT_PATH, CONTENT_COLS)
     if df.empty:
@@ -392,7 +392,7 @@ DATE_NOTES_PATH = "data/date_notes.csv"
 DATE_NOTES_COLS = ['date', 'memo']
 
 
-@st.cache_data(ttl=300)
+@st.cache_data(ttl=300)  # 당일 메모 수정 가능성 고려
 def load_date_notes() -> pd.DataFrame:
     df = _read_csv(DATE_NOTES_PATH, DATE_NOTES_COLS)
     if df.empty:

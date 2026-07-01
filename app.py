@@ -26,6 +26,23 @@ st.set_page_config(
     layout="wide",
 )
 
+# ── 모바일 반응형 CSS ─────────────────────────────────────────────
+st.markdown("""
+<style>
+/* 모바일(768px 이하): 3컬럼 → 1컬럼 스택 */
+@media (max-width: 768px) {
+    div[data-testid="column"] { min-width: 100% !important; }
+    div[data-testid="stHorizontalBlock"] { flex-wrap: wrap !important; }
+    /* 버튼 전체 너비 */
+    div[data-testid="stButton"] button { width: 100% !important; }
+    /* 숫자 입력 폰트 확대 */
+    input[type="number"] { font-size: 16px !important; }
+}
+/* 검토 테이블 텍스트 줄 바꿈 방지 */
+div[data-testid="stDataFrame"] td { white-space: nowrap; }
+</style>
+""", unsafe_allow_html=True)
+
 # ── 사이드바 — 캐시 새로고침 ─────────────────────────────────────
 
 with st.sidebar:
@@ -365,6 +382,19 @@ def tab_input():
         # ── 인식 결과 검토 테이블 ─────────────────────────────────
         if st.session_state.ocr_done:
             _show_ocr_review(st.session_state.ocr_results, ROOMS, prev)
+
+    # ── 채팅방 빠른 관리 (잘못 등록된 방 삭제) ────────────────────
+    with st.expander("🗂️ 채팅방 빠른 관리 — 잘못 등록된 방 삭제", expanded=False):
+        st.caption("OCR 오인식으로 잘못 등록된 방을 여기서 바로 삭제할 수 있습니다. 이름·번호 수정은 ⚙️ 채팅방 설정 탭을 이용하세요.")
+        del_cols = st.columns(3)
+        for idx, rn in enumerate(ROOM_NUMBERS):
+            with del_cols[idx % 3]:
+                if st.button(f"🗑️ {rn} — {ROOMS[rn]}", key=f"quick_del_{rn}",
+                             use_container_width=True):
+                    delete_room(rn)
+                    load_rooms.clear()
+                    st.toast(f"채팅방 {rn} 삭제 완료", icon="🗑️")
+                    st.rerun()
 
     # ── 빠른 숫자 입력 ─────────────────────────────────────────
     with st.expander("⚡ 빠른 입력 — 숫자 목록 붙여넣기", expanded=False):
