@@ -55,7 +55,8 @@ def _change_style(cell, value):
 def generate_excel(df: pd.DataFrame, campaigns: dict = None,
                    df_conv: pd.DataFrame = None,
                    df_adspend: pd.DataFrame = None,
-                   df_content: pd.DataFrame = None) -> bytes:
+                   df_content: pd.DataFrame = None,
+                   rooms: dict = None) -> bytes:
     """전체 인원 데이터를 받아 포맷된 Excel 파일을 bytes로 반환."""
     wb = Workbook()
 
@@ -68,6 +69,10 @@ def generate_excel(df: pd.DataFrame, campaigns: dict = None,
         _build_adspend_sheet(wb, df_adspend, campaigns or {})
     if df_content is not None and not df_content.empty:
         _build_content_sheet(wb, df_content)
+    if not df.empty:
+        _build_ranking_sheet(wb, df, rooms or {})
+    if df_adspend is not None and not df_adspend.empty and not df.empty:
+        _build_cpm_sheet(wb, df, df_adspend, rooms or {})
 
     buf = io.BytesIO()
     wb.save(buf)
@@ -325,4 +330,114 @@ def _build_content_sheet(wb, df_content: pd.DataFrame):
         c = cell(6); c.value = str(row.get('memo', '') or ''); c.alignment = Alignment(horizontal='left')
 
     for i, w in enumerate([12, 14, 14, 30, 40, 20], 1):
+        ws.column_dimensions[get_column_letter(i)].width = w
+
+
+# ── 시트 7: 주간 랭킹 ────────────────────────────────────────────
+
+def _build_ranking_sheet(wb, df: pd.DataFrame, rooms: dict):
+    ws = wb.create_sheet('주간 랭킹')
+    ws.cell(row=1, column=1).value = f'기준일: {date.today()}'
+    ws.cell(row=1, column=1).font = Font(bold=True)
+
+    dates = sorted(df['date'].unique())
+    if len(dates) < 2:
+        ws.cell(row=2, column=1).value = '데이터 부족 (2일 이상 필요)'
+        return
+
+    # 5~9일 전 vs 최근 비교
+    recent_end = dates[-1]
+    lookback = min(9, len(dates) - 1)
+    lookback = max(5, lookback)
+    past_start = dates[-(lookback + 1)]
+
+    recent = df[df['date'] == recent_end].set_index('room_num')['members']
+    past   = df[df['date'] == past_start].set_index('room_num')['members']
+    common = set(recent.index) & set(past.index)
+
+    rows = []
+    for rn in common:
+        diff = int(recent[rn]) - int(past[rn])
+        rows.append({'방 번호': rn, '채팅방': rooms.get(rn, f'채팅방 {rn}'),
+                     f'{past_start} 인원': int(past[rn]),
+                     f'{recent_end} 인원': int(recent[rn]),
+                     '증감': diff})
+    if not rows:
+        ws.cell(row=2, column=1).value = '비교 가능한 데이터 없음'
+        return
+
+    result_df = pd.DataFrame(rows).sort_values('증감', ascending=False)
+    headers = list(result_df.columns)
+    for col, h in enumerate(headers, 1):
+        _header_style(ws.cell(row=2, column=col), h)
+
+    for r_idx, (_, row) in enumerate(result_df.iterrows(), 3):
+        fill = PatternFill('solid', fgColor=COLOR['row_even'] if r_idx % 2 == 0 else COLOR['row_odd'])
+        for col, key in enumerate(headers, 1):
+            c = ws.cell(row=r_idx, column=col)
+            c.fill = fill
+            c.border = _border
+            if key in ('증감',):
+                _change_style(c, row[key])
+            elif isinstance(row[key], (int, float)):
+                _num_fmt(c, row[key])
+            else:
+                c.value = row[key]
+                c.alignment = Alignment(horizontal='left')
+
+    for i, w in enumerate([8, 22, 14, 14, 12], 1):
+        ws.column_dimensions[get_column_letter(i)].width = w
+
+
+# ── 시트 8: CPM 분석 ─────────────────────────────────────────────
+
+def _build_cpm_sheet(wb, df: pd.DataFrame, df_adspend: pd.DataFrame, rooms: dict):
+    ws = wb.create_sheet('CPM 분석')
+    ws.cell(row=1, column=1).value = f'광고비 ÷ 인원증가 분석 (기준일: {date.today()})'
+    ws.cell(row=1, column=1).font = Font(bold=True)
+
+    dates = sorted(df['date'].unique())
+    if len(dates) < 2:
+        ws.cell(row=2, column=1).value = '데이터 부족'
+        return
+
+    first_date = dates[0]
+    last_date  = dates[-1]
+    first = df[df['date'] == first_date].set_index('room_num')['members']
+    last  = df[df['date'] == last_date].set_index('room_num')['members']
+
+    total_spend_by_room = df_adspend.groupby('room_num')['spend'].sum()
+
+    rows = []
+    for rn in set(last.index) & set(first.index):
+        spend = int(total_spend_by_room.get(rn, 0))
+        increase = int(last[rn]) - int(first[rn])
+        if increase <= 0 or spend <= 0:
+            continue
+        cpm = round(spend / increase)
+        rows.append({'방 번호': rn, '채팅방': rooms.get(rn, f'채팅방 {rn}'),
+                     '총 광고비': spend, '인원 증가': increase, 'CPM(원/명)': cpm})
+
+    if not rows:
+        ws.cell(row=2, column=1).value = '광고비 + 인원 증가 데이터 없음'
+        return
+
+    result_df = pd.DataFrame(rows).sort_values('CPM(원/명)')
+    headers = list(result_df.columns)
+    for col, h in enumerate(headers, 1):
+        _header_style(ws.cell(row=2, column=col), h)
+
+    for r_idx, (_, row) in enumerate(result_df.iterrows(), 3):
+        fill = PatternFill('solid', fgColor=COLOR['row_even'] if r_idx % 2 == 0 else COLOR['row_odd'])
+        for col, key in enumerate(headers, 1):
+            c = ws.cell(row=r_idx, column=col)
+            c.fill = fill
+            c.border = _border
+            if isinstance(row[key], (int, float)):
+                _num_fmt(c, row[key])
+            else:
+                c.value = row[key]
+                c.alignment = Alignment(horizontal='left')
+
+    for i, w in enumerate([8, 22, 14, 12, 14], 1):
         ws.column_dimensions[get_column_letter(i)].width = w

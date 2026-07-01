@@ -7,10 +7,11 @@ from github_store import (
     load_campaigns, get_current_campaigns,
     save_campaign, end_campaign, get_history,
     load_rooms, save_room, save_rooms_batch, delete_room,
-    load_conversions, save_conversion, get_latest_conversions,
-    load_adspend, save_adspend,
+    load_conversions, save_conversion, get_latest_conversions, delete_conversion_row,
+    load_adspend, save_adspend, delete_adspend_row,
     load_content, save_content, delete_content_row,
     load_date_notes, save_date_note,
+    send_slack_alert,
     PRODUCT_OPTIONS, CHANNEL_OPTIONS, CONTENT_TYPE_OPTIONS,
 )
 from charts import (
@@ -199,9 +200,37 @@ def _show_ocr_review(ocr_results: dict, rooms: dict, prev: dict):
                delta_color="inverse" if n_warn else "off")
 
 
+# ── 로그인 인증 ──────────────────────────────────────────────────
+
+def _run_auth() -> bool:
+    """Secrets에 app_password 가 있으면 비밀번호 게이트를 실행.
+    없으면 즉시 True(통과) 반환 — 로컬 개발 시 자동 우회."""
+    pw_secret = st.secrets.get("app_password", "")
+    if not pw_secret:
+        return True
+
+    if st.session_state.get("_authenticated"):
+        return True
+
+    st.title("💬 황금후추 채팅방 인원 분석")
+    st.subheader("🔒 로그인")
+    with st.form("login_form"):
+        entered = st.text_input("비밀번호", type="password", placeholder="비밀번호를 입력하세요")
+        if st.form_submit_button("로그인", type="primary", use_container_width=True):
+            if entered == pw_secret:
+                st.session_state["_authenticated"] = True
+                st.rerun()
+            else:
+                st.error("비밀번호가 올바르지 않습니다.")
+    return False
+
+
 # ── 메인 ─────────────────────────────────────────────────────────
 
 def main():
+    if not _run_auth():
+        return
+
     st.title("💬 황금후추 채팅방 인원 분석")
 
     tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
@@ -520,6 +549,26 @@ def tab_input():
                     st.session_state.ocr_done = False
                     st.session_state.ocr_results = {}
                     st.balloons()
+                    # ── Slack 급감 알림 ──────────────────────────────
+                    _slack_url = st.secrets.get("slack_webhook_url", "")
+                    if _slack_url and prev:
+                        _alerts = []
+                        for _rn, _v in edited.items():
+                            if _v > 0 and prev.get(_rn) is not None:
+                                _pv = int(prev[_rn])
+                                _diff = _v - _pv
+                                _pct = abs(_diff / _pv * 100) if _pv > 0 else 0
+                                if _diff < 0 and (_pct >= 10 or abs(_diff) >= 50):
+                                    _alerts.append(
+                                        f"• {ROOMS.get(_rn, f'채팅방{_rn}')}: "
+                                        f"{_pv:,}명 → {_v:,}명 "
+                                        f"({_diff:,}명, {round(_pct, 1)}% 감소)"
+                                    )
+                        if _alerts:
+                            send_slack_alert(
+                                _slack_url,
+                                f"🚨 *인원 급감 알림* ({input_date})\n" + "\n".join(_alerts),
+                            )
                 except RuntimeError as e:
                     st.error(
                         f"❌ 저장 실패: {e}\n\n"
@@ -977,6 +1026,15 @@ def tab_conversion():
         disp.columns = ['날짜', '채팅방', '강의명', '신청자', '수강확정', '전환율', '매출(원)', '메모']
         disp = disp.sort_values('날짜', ascending=False).reset_index(drop=True)
         st.dataframe(disp, use_container_width=True, hide_index=True)
+        conv_del_idx = st.number_input(
+            "삭제할 행 번호 (0부터, 최신순 기준)",
+            min_value=0, max_value=max(0, len(df_conv) - 1),
+            step=1, key="conv_del_idx",
+        )
+        if st.button("🗑️ 전환 데이터 삭제", key="conv_del_btn", type="secondary"):
+            delete_conversion_row(int(conv_del_idx))
+            st.success("삭제 완료")
+            st.rerun()
 
     st.divider()
 
@@ -1054,6 +1112,15 @@ def tab_conversion():
             ad_disp.columns = ['날짜', '채팅방', '강의명', '채널', '광고비(원)', '노출수', '클릭수', '메모']
             ad_disp = ad_disp.sort_values('날짜', ascending=False).reset_index(drop=True)
             st.dataframe(ad_disp, use_container_width=True, hide_index=True)
+            ad_del_idx = st.number_input(
+                "삭제할 행 번호 (0부터, 최신순 기준)",
+                min_value=0, max_value=max(0, len(df_adspend) - 1),
+                step=1, key="ad_del_idx",
+            )
+            if st.button("🗑️ 광고비 데이터 삭제", key="ad_del_btn", type="secondary"):
+                delete_adspend_row(int(ad_del_idx))
+                st.success("삭제 완료")
+                st.rerun()
 
     # ── 콘텐츠 기록 ────────────────────────────────────────────────
     st.divider()
@@ -1301,47 +1368,6 @@ def tab_campaign():
     ROOMS = load_rooms()
     ROOM_NUMBERS = sorted(ROOMS.keys())
     st.header("채팅방 설정")
-
-    # ── Gemini API 진단 (항상 표시) ────────────────────────────
-    with st.expander("🔍 Gemini API 진단", expanded=True):
-        import requests as _req2
-        _key = st.secrets.get("gemini_api_key", "")
-
-        if not _key:
-            st.error("❌ gemini_api_key 가 Streamlit Secrets에 없습니다.")
-            st.markdown(
-                "**설정 방법:**\n"
-                "1. [share.streamlit.io](https://share.streamlit.io) → 앱 → ⋮ → Settings → Secrets\n"
-                "2. 아래를 정확히 입력 후 **Save**:\n"
-                "```toml\ngemini_api_key = \"AIzaSy...\"\n```"
-            )
-        else:
-            masked = _key[:8] + "..." + _key[-4:] if len(_key) > 12 else "***"
-            st.info(f"등록된 키: `{masked}` (길이: {len(_key)}자)")
-
-            if st.button("🔍 API 연결 테스트 실행", key="diag_test"):
-                with st.spinner("테스트 중..."):
-                    try:
-                        r = _req2.get(
-                            f"https://generativelanguage.googleapis.com/v1beta/models?key={_key}",
-                            timeout=15
-                        )
-                        st.write(f"HTTP 상태 코드: **{r.status_code}**")
-                        if r.status_code == 200:
-                            models = [m["name"] for m in r.json().get("models", [])]
-                            vision = [m for m in models if "flash" in m or "pro" in m]
-                            st.success(f"✅ 키 정상 — 전체 모델 {len(models)}개, 비전 모델 {len(vision)}개")
-                            st.write("사용 가능한 모델:", vision[:8])
-                        elif r.status_code == 400:
-                            st.error(f"❌ 키 오류 (400): {r.json().get('error',{}).get('message','')}")
-                            st.warning("→ Streamlit Secrets에서 키를 삭제하고 새 키로 교체하세요.")
-                        elif r.status_code == 403:
-                            st.error("❌ 권한 오류 (403): Generative Language API가 비활성화 상태")
-                            st.warning("→ console.cloud.google.com에서 'Generative Language API' 활성화")
-                        else:
-                            st.error(f"❌ 오류 {r.status_code}: {r.text[:300]}")
-                    except Exception as e:
-                        st.error(f"연결 실패: {e}")
 
     # ── 채팅방 관리 ────────────────────────────────────────────
     with st.expander("➕ 채팅방 추가 / 수정 / 삭제", expanded=not bool(ROOMS)):
@@ -1665,6 +1691,7 @@ def tab_data():
             df_conv=_df_conv,
             df_adspend=_df_adspend,
             df_content=_df_content,
+            rooms=ROOMS,
         )
         st.download_button(
             "📊 Excel 보고서 다운로드",

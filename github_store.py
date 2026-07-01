@@ -309,6 +309,19 @@ def save_conversion(room_num: int, date_str: str, applicants: int,
     load_conversions.clear()
 
 
+def delete_conversion_row(row_idx: int):
+    """최신순 정렬 기준 인덱스로 전환 데이터 행 삭제."""
+    df = load_conversions()
+    sorted_df = df.sort_values('date', ascending=False).reset_index()
+    if row_idx < 0 or row_idx >= len(sorted_df):
+        return
+    real_idx = int(sorted_df.iloc[row_idx]['index'])
+    df = df.drop(index=real_idx).reset_index(drop=True)
+    _write_csv(CONVERSIONS_PATH, df, f"전환 데이터 삭제 (row {row_idx})")
+    load_conversions.clear()
+    get_latest_conversions.clear()
+
+
 def get_latest_conversions() -> pd.DataFrame:
     """방별 가장 최근 전환 데이터 1행씩 반환."""
     df = load_conversions()
@@ -350,6 +363,18 @@ def save_adspend(room_num: int, date_str: str, channel: str,
     }])
     combined = pd.concat([df, new_row], ignore_index=True).sort_values(['date', 'room_num'])
     _write_csv(ADSPEND_PATH, combined, f"광고비 저장: 채팅방 {room_num} {channel} {date_str}")
+    load_adspend.clear()
+
+
+def delete_adspend_row(row_idx: int):
+    """최신순 정렬 기준 인덱스로 광고비 데이터 행 삭제."""
+    df = load_adspend()
+    sorted_df = df.sort_values('date', ascending=False).reset_index()
+    if row_idx < 0 or row_idx >= len(sorted_df):
+        return
+    real_idx = int(sorted_df.iloc[row_idx]['index'])
+    df = df.drop(index=real_idx).reset_index(drop=True)
+    _write_csv(ADSPEND_PATH, df, f"광고비 데이터 삭제 (row {row_idx})")
     load_adspend.clear()
 
 
@@ -399,6 +424,16 @@ def load_date_notes() -> pd.DataFrame:
         return df
     df['date'] = pd.to_datetime(df['date']).dt.date
     return df
+
+
+def send_slack_alert(webhook_url: str, message: str):
+    """Slack Incoming Webhook 알림 전송. 실패해도 조용히 무시."""
+    if not webhook_url:
+        return
+    try:
+        requests.post(webhook_url, json={"text": message}, timeout=5)
+    except Exception:
+        pass
 
 
 def save_date_note(date_str: str, memo: str):

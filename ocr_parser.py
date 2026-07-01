@@ -95,14 +95,14 @@ def _extract_by_badge_matching(image: Image.Image, rooms: dict = None) -> list:
     """
     import pytesseract
     from pytesseract import Output
-    from image_processor import preprocess_for_ocr
+    from image_processor import preprocess_for_ocr, preprocess_badge_region
 
     w, h = image.size
     cfg = '--oem 3 --psm 11 -c tessedit_char_whitelist=0123456789'
 
-    # ── 좌측 배지 영역 (0~15%) ─────────────────────────────────────
+    # ── 좌측 배지 영역 (0~15%) — 3× 업스케일로 작은 배지 숫자 인식률 향상 ──
     left = image.crop((0, 0, int(w * 0.15), h))
-    left_proc = preprocess_for_ocr(left)
+    left_proc = preprocess_badge_region(left)
 
     badges = {}   # room_num → y_center (in upscaled left-crop coords)
     seen_ys = []
