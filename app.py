@@ -18,6 +18,8 @@ from charts import (
     product_bar_chart, weekly_comparison_chart, cohort_trend_chart,
     funnel_chart, conversion_rate_chart, cohort_conversion_chart,
     churn_rate_chart, roi_chart,
+    ranking_chart, weekly_aggregate_chart, monthly_aggregate_chart,
+    cpm_chart, content_impact_table, trend_forecast_chart,
 )
 
 st.set_page_config(
@@ -622,6 +624,24 @@ def tab_dashboard():
                     delta=f"목표 {pct}% ({target:,}명)",
                 )
 
+    # ── 주간 성과 랭킹 ────────────────────────────────────────────
+    st.subheader("주간 성과 랭킹")
+    fig_rank_top, fig_rank_bot = ranking_chart(df, rooms=ROOMS)
+    if fig_rank_top or fig_rank_bot:
+        rank_c1, rank_c2 = st.columns(2)
+        with rank_c1:
+            if fig_rank_top:
+                st.plotly_chart(fig_rank_top, use_container_width=True)
+            else:
+                st.info("증가한 채팅방이 없습니다.")
+        with rank_c2:
+            if fig_rank_bot:
+                st.plotly_chart(fig_rank_bot, use_container_width=True)
+            else:
+                st.success("감소한 채팅방이 없습니다.")
+    else:
+        st.info("주간 랭킹은 5일 이상 간격의 데이터가 있으면 자동으로 표시됩니다.")
+
     # ── 채팅방별 상세 표 ───────────────────────────────────────
     st.subheader("채팅방별 상세")
 
@@ -985,6 +1005,14 @@ def tab_conversion():
     if fig_roi:
         st.plotly_chart(fig_roi, use_container_width=True)
 
+    # ── CPM 분석 ──────────────────────────────────────────────────
+    if not df_adspend.empty and not df_members.empty:
+        st.subheader("CPM 분석 (광고비 ÷ 인원증가)")
+        st.caption("채팅방별 광고비 대비 인원 증가 효율을 비교합니다. 낮을수록 효율적입니다.")
+        fig_cpm = cpm_chart(df_members, df_adspend, ROOMS)
+        if fig_cpm:
+            st.plotly_chart(fig_cpm, use_container_width=True)
+
     # 광고비 입력 폼
     with st.expander("📝 광고비 입력", expanded=df_adspend.empty):
         with st.form("adspend_form"):
@@ -1124,6 +1152,17 @@ def tab_conversion():
         else:
             st.info("발행일 전후 3일 내 인원 데이터가 충분하지 않아 분석할 수 없습니다.")
 
+    # ── 콘텐츠 상관 분석표 ────────────────────────────────────────
+    if not df_content.empty and not df_members.empty:
+        st.divider()
+        st.subheader("📈 콘텐츠 발행 후 인원 변화 (+1일/+3일/+7일)")
+        st.caption("콘텐츠 발행일 기준으로 전체 채팅방 합산 인원 변화량을 보여줍니다.")
+        df_impact = content_impact_table(df_members, df_content)
+        if df_impact is not None and not df_impact.empty:
+            st.dataframe(df_impact, use_container_width=True, hide_index=True)
+        else:
+            st.info("발행일 기준 +1/+3/+7일 인원 데이터가 충분하지 않습니다.")
+
 
 # ── 탭 3: 추이 그래프 ─────────────────────────────────────────────
 
@@ -1209,6 +1248,37 @@ def tab_trend():
         st.plotly_chart(fig_cohort, use_container_width=True)
     else:
         st.info("⚙️ 채팅방 설정 탭에서 강의를 등록하면 모객 곡선이 표시됩니다.")
+
+    # ── 주간 집계 ────────────────────────────────────────────────
+    st.subheader("주간 평균 인원 추이")
+    fig_weekly = weekly_aggregate_chart(df_filtered, rooms=ROOMS)
+    if fig_weekly:
+        st.plotly_chart(fig_weekly, use_container_width=True)
+    else:
+        st.info("주간 집계는 7일 이상의 데이터가 있으면 자동으로 표시됩니다.")
+
+    # ── 월간 집계 ────────────────────────────────────────────────
+    st.subheader("월간 순증감 현황")
+    fig_monthly = monthly_aggregate_chart(df_filtered, rooms=ROOMS)
+    if fig_monthly:
+        st.plotly_chart(fig_monthly, use_container_width=True)
+    else:
+        st.info("월간 집계는 30일 이상의 데이터가 있으면 자동으로 표시됩니다.")
+
+    # ── 인원 예측 ────────────────────────────────────────────────
+    st.subheader("인원 추이 예측 (7일)")
+    forecast_rooms = st.multiselect(
+        "예측할 채팅방 선택 (비워두면 전체)",
+        options=filter_rooms,
+        format_func=lambda x: ROOMS.get(x, f"채팅방 {x}"),
+        key="forecast_rooms",
+    )
+    forecast_targets = forecast_rooms if forecast_rooms else filter_rooms
+    fig_forecast = trend_forecast_chart(df, forecast_targets, rooms=ROOMS, forecast_days=7)
+    if fig_forecast:
+        st.plotly_chart(fig_forecast, use_container_width=True)
+    else:
+        st.info("예측 차트는 채팅방별 21일 이상의 데이터가 있으면 자동으로 표시됩니다.")
 
     # ── 날짜 메모 ───────────────────────────────────────────────
     _trend_notes = load_date_notes()
@@ -1515,32 +1585,36 @@ def tab_data():
     else:
         current = {}
 
-    with st.form("data_edit_form"):
-        st.markdown(f"**{edit_date_str} 인원 수정** — 0은 미입력으로 처리")
-        edit_cols = st.columns(3)
-        edit_vals = {}
-        for idx, rn in enumerate(ROOM_NUMBERS):
-            with edit_cols[idx % 3]:
-                edit_vals[rn] = st.number_input(
-                    ROOMS.get(rn, f"채팅방 {rn}"),
-                    min_value=0,
-                    value=current.get(rn, 0),
-                    step=1,
-                    key=f"edit_{rn}",
-                )
-
-        if st.form_submit_button("💾 수정 저장", type="primary", use_container_width=True):
-            room_data = [
-                {'room_num': rn, 'room_name': ROOMS.get(rn, f'채팅방 {rn}'), 'members': v}
-                for rn, v in edit_vals.items() if v > 0
-            ]
-            if room_data:
-                with st.spinner("저장 중..."):
-                    save_daily(edit_date_str, room_data)
-                st.success(f"✅ {edit_date_str} 데이터 수정 완료 — {len(room_data)}개 채팅방")
-                st.rerun()
-            else:
-                st.warning("입력된 인원이 없습니다.")
+    # st.data_editor 기반 인라인 편집
+    st.markdown(f"**{edit_date_str} 인원 수정** — 셀을 직접 클릭해 수정 후 저장 버튼을 누르세요.")
+    editor_rows = [
+        {'채팅방번호': rn, '채팅방명': ROOMS.get(rn, f"채팅방 {rn}"), '인원수': current.get(rn, 0)}
+        for rn in ROOM_NUMBERS
+    ]
+    editor_df = pd.DataFrame(editor_rows)
+    edited = st.data_editor(
+        editor_df,
+        column_config={
+            '채팅방번호': st.column_config.NumberColumn(disabled=True),
+            '채팅방명':   st.column_config.TextColumn(disabled=True),
+            '인원수':     st.column_config.NumberColumn(min_value=0, step=1, required=True),
+        },
+        use_container_width=True,
+        hide_index=True,
+        key=f"data_editor_{edit_date_str}",
+    )
+    if st.button("💾 수정 저장", type="primary", key="data_editor_save"):
+        room_data = [
+            {'room_num': int(row['채팅방번호']), 'room_name': str(row['채팅방명']), 'members': int(row['인원수'])}
+            for _, row in edited.iterrows() if int(row['인원수']) > 0
+        ]
+        if room_data:
+            with st.spinner("저장 중..."):
+                save_daily(edit_date_str, room_data)
+            st.success(f"✅ {edit_date_str} 데이터 수정 완료 — {len(room_data)}개 채팅방")
+            st.rerun()
+        else:
+            st.warning("입력된 인원이 없습니다.")
 
     st.divider()
 
