@@ -101,11 +101,18 @@ def _show_ocr_review(ocr_results: dict, rooms: dict, prev: dict):
         recognized += 1
         if prev_val is not None:
             diff = ocr_val - int(prev_val)
-            pct = abs(diff / prev_val * 100) if prev_val else 0
-            if pct > 50 or abs(diff) > 500:
+            pct  = abs(diff / prev_val * 100) if prev_val else 0
+            # 방 규모에 비례한 임계값 (작은 방엔 느슨, 큰 방엔 엄격)
+            if prev_val >= 500:
+                warn_pct, alert_pct = 15, 30
+            elif prev_val >= 100:
+                warn_pct, alert_pct = 20, 40
+            else:
+                warn_pct, alert_pct = 25, 50
+            if pct > alert_pct or abs(diff) > 1000:
                 status = "🚨 확인 필요"
                 has_warning = True
-            elif pct > 20 or abs(diff) > 200:
+            elif pct > warn_pct or abs(diff) > 500:
                 status = "⚠️ 변동 큼"
                 has_warning = True
             else:
@@ -160,6 +167,17 @@ def _show_ocr_review(ocr_results: dict, rooms: dict, prev: dict):
             "증감": st.column_config.NumberColumn(format="%+d명"),
         },
     )
+
+    # 하단 요약: OCR 인식 / 전일 데이터 / 미입력
+    n_ocr   = sum(1 for r in rows if r["상태"] not in ("❌ 미인식",) and r["인식값"] is not None)
+    n_miss  = sum(1 for r in rows if r["상태"] == "❌ 미인식")
+    n_warn  = sum(1 for r in rows if r["상태"] in ("🚨 확인 필요", "⚠️ 변동 큼"))
+    sc1, sc2, sc3 = st.columns(3)
+    sc1.metric("📷 OCR 인식", f"{n_ocr}개")
+    sc2.metric("❌ 미인식", f"{n_miss}개", delta=f"-{n_miss}" if n_miss else None,
+               delta_color="inverse")
+    sc3.metric("⚠️ 이상값", f"{n_warn}개", delta=f"{n_warn}건 확인 필요" if n_warn else "이상 없음",
+               delta_color="inverse" if n_warn else "off")
 
 
 # ── 메인 ─────────────────────────────────────────────────────────

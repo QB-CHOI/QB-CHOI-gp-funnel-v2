@@ -270,7 +270,8 @@ def _extract_right_column(image: Image.Image, rooms: dict = None,
         already_found = set()
 
     w, h = image.size
-    right = image.crop((int(w * 0.40), 0, w, h))
+    # 76% 우측 경계 — 배지 매칭과 동일하게 타임스탬프 구역(78%~) 제외
+    right = image.crop((int(w * 0.40), 0, int(w * 0.76), h))
     right_proc = preprocess_for_ocr(right)
 
     configs = [
