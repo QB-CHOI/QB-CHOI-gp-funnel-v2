@@ -929,3 +929,90 @@ def trend_forecast_chart(df: pd.DataFrame, room_nums: list = None,
         legend=dict(orientation='v'),
     )
     return fig
+
+
+# ── 경영진 보고: 채팅방별 현재 인원 가로 바 ─────────────────────────
+
+def room_snapshot_chart(df: pd.DataFrame, rooms: dict = None):
+    """최신일 기준 채팅방별 인원을 내림차순 가로 막대로 표시."""
+    if df is None or df.empty:
+        return None
+    latest = df['date'].max()
+    snap = df[df['date'] == latest].copy()
+    if snap.empty:
+        return None
+    snap['name'] = snap['room_num'].apply(lambda x: (rooms or {}).get(int(x), f"채팅방 {x}"))
+    snap = snap.sort_values('members', ascending=True)
+
+    colors = ['#1565C0' if c >= 0 else '#C62828'
+              for c in snap.get('change', pd.Series([0] * len(snap))).fillna(0)]
+
+    fig = go.Figure(go.Bar(
+        x=snap['members'],
+        y=snap['name'],
+        orientation='h',
+        marker_color=colors,
+        text=[f"{int(v):,}명" for v in snap['members']],
+        textposition='outside',
+        cliponaxis=False,
+    ))
+    fig.update_layout(
+        title=dict(text=f"채팅방별 현재 인원 ({latest})", font_size=14),
+        xaxis_title="인원 (명)",
+        yaxis=dict(automargin=True),
+        height=max(280, len(snap) * 36 + 80),
+        margin=dict(t=50, b=40, l=10, r=80),
+        plot_bgcolor='rgba(0,0,0,0)',
+        paper_bgcolor='rgba(0,0,0,0)',
+    )
+    fig.update_xaxes(showgrid=True, gridcolor='rgba(200,200,200,0.3)')
+    return fig
+
+
+# ── 경영진 보고: 기간 총원 합계 추이 라인 ────────────────────────────
+
+def period_total_trend(df: pd.DataFrame, date_from=None, date_to=None):
+    """기간 내 일별 전체 채팅방 총원 합계 라인 차트."""
+    if df is None or df.empty:
+        return None
+    dff = df.copy()
+    if date_from:
+        dff = dff[dff['date'] >= date_from]
+    if date_to:
+        dff = dff[dff['date'] <= date_to]
+    if dff.empty:
+        return None
+
+    daily = dff.groupby('date')['members'].sum().reset_index()
+    daily.columns = ['date', 'total']
+    daily = daily.sort_values('date')
+
+    # 추세선 (3일 이동평균)
+    daily['ma'] = daily['total'].rolling(3, min_periods=1).mean()
+
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(
+        x=daily['date'], y=daily['total'],
+        name='총원',
+        mode='lines+markers',
+        line=dict(color='#1565C0', width=2.5),
+        marker=dict(size=5),
+    ))
+    fig.add_trace(go.Scatter(
+        x=daily['date'], y=daily['ma'],
+        name='3일 이동평균',
+        mode='lines',
+        line=dict(color='#FF7043', width=1.5, dash='dot'),
+    ))
+    fig.update_layout(
+        title=dict(text="전체 채팅방 총원 추이", font_size=14),
+        yaxis_title="인원 (명)",
+        height=320,
+        margin=dict(t=50, b=40, l=10, r=20),
+        legend=dict(orientation='h', y=1.12),
+        plot_bgcolor='rgba(0,0,0,0)',
+        paper_bgcolor='rgba(0,0,0,0)',
+        hovermode='x unified',
+    )
+    fig.update_yaxes(showgrid=True, gridcolor='rgba(200,200,200,0.3)')
+    return fig

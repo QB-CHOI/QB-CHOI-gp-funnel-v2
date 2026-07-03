@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from datetime import date
+from datetime import date, timedelta
 
 from github_store import (
     load_all, save_daily, delete_date,
@@ -21,6 +21,7 @@ from charts import (
     churn_rate_chart, roi_chart,
     ranking_chart, weekly_aggregate_chart, monthly_aggregate_chart,
     cpm_chart, content_impact_table, trend_forecast_chart,
+    room_snapshot_chart, period_total_trend,
 )
 
 st.set_page_config(
@@ -233,8 +234,9 @@ def main():
 
     st.title("💬 황금후추 채팅방 인원 분석")
 
-    tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
-        "📸 오늘 입력", "📊 현황", "📋 전환 분석", "📈 추이 그래프", "⚙️ 채팅방 설정", "🗂️ 데이터 관리"
+    tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs([
+        "📸 오늘 입력", "📊 현황", "📋 전환 분석", "📈 추이 그래프",
+        "📑 경영진 보고", "⚙️ 채팅방 설정", "🗂️ 데이터 관리",
     ])
 
     with tab1:
@@ -246,8 +248,10 @@ def main():
     with tab4:
         tab_trend()
     with tab5:
-        tab_campaign()
+        tab_report()
     with tab6:
+        tab_campaign()
+    with tab7:
         tab_data()
 
 
@@ -1360,6 +1364,274 @@ def tab_trend():
                 _tn_disp['date'] = _tn_disp['date'].astype(str)
                 _tn_disp.columns = ['날짜', '메모']
                 st.dataframe(_tn_disp, use_container_width=True, hide_index=True)
+
+
+# ── 경영진 보고: 자동 인사이트 생성 ─────────────────────────────────
+
+def _generate_insight(df_period, rooms, period_label,
+                      df_adspend=None, df_conv=None) -> list[str]:
+    """기간 데이터를 분석해 한국어 인사이트 문장 리스트를 반환."""
+    if df_period.empty:
+        return ["해당 기간의 데이터가 없습니다."]
+
+    dates = sorted(df_period['date'].unique())
+    if len(dates) < 2:
+        return [f"{period_label} 기간 내 데이터가 1일뿐이라 비교 인사이트를 생성하기 어렵습니다."]
+
+    first_date, last_date = dates[0], dates[-1]
+    first_total = int(df_period[df_period['date'] == first_date]['members'].sum())
+    last_total  = int(df_period[df_period['date'] == last_date]['members'].sum())
+    diff = last_total - first_total
+    pct  = round(diff / first_total * 100, 1) if first_total > 0 else 0
+    sign = "+" if diff >= 0 else ""
+    trend_word = "증가" if diff > 0 else ("감소" if diff < 0 else "유지")
+
+    lines = []
+    lines.append(
+        f"**{period_label}** 전체 채팅방 총원은 **{last_total:,}명**으로, "
+        f"시작일({first_date}) 대비 **{sign}{diff:,}명({sign}{pct}%) {trend_word}**했습니다."
+    )
+
+    # 방별 증감 분석
+    room_changes = {}
+    for rn in df_period['room_num'].unique():
+        rdf = df_period[df_period['room_num'] == rn].sort_values('date')
+        if len(rdf) >= 2:
+            room_changes[int(rn)] = int(rdf.iloc[-1]['members']) - int(rdf.iloc[0]['members'])
+
+    if room_changes:
+        top_rn  = max(room_changes, key=room_changes.get)
+        top_val = room_changes[top_rn]
+        bot_rn  = min(room_changes, key=room_changes.get)
+        bot_val = room_changes[bot_rn]
+        if top_val > 0:
+            lines.append(
+                f"가장 성장한 채팅방은 **{rooms.get(top_rn, f'채팅방 {top_rn}')}** ("
+                f"**+{top_val:,}명**)입니다."
+            )
+        if bot_val < 0:
+            lines.append(
+                f"인원이 가장 감소한 채팅방은 **{rooms.get(bot_rn, f'채팅방 {bot_rn}')}** ("
+                f"**{bot_val:,}명**)입니다."
+            )
+
+        # 전체 성장/감소 방 수
+        n_up   = sum(1 for v in room_changes.values() if v > 0)
+        n_down = sum(1 for v in room_changes.values() if v < 0)
+        n_flat = len(room_changes) - n_up - n_down
+        lines.append(
+            f"채팅방 {n_up}개 증가 · {n_down}개 감소 · {n_flat}개 유지."
+        )
+
+    # 광고비
+    if df_adspend is not None and not df_adspend.empty:
+        pa = df_adspend[
+            (df_adspend['date'] >= first_date) & (df_adspend['date'] <= last_date)
+        ]
+        if not pa.empty:
+            spend = int(pa['spend'].sum())
+            if spend > 0:
+                if diff > 0:
+                    cpm = round(spend / diff)
+                    lines.append(
+                        f"기간 중 광고비 **{spend:,}원** 집행 → "
+                        f"인원 증가 기준 CPM **{cpm:,}원/명**."
+                    )
+                else:
+                    lines.append(f"기간 중 광고비 **{spend:,}원** 집행.")
+
+    # 전환
+    if df_conv is not None and not df_conv.empty:
+        pc = df_conv[
+            (df_conv['date'] >= first_date) & (df_conv['date'] <= last_date)
+        ]
+        if not pc.empty:
+            app_total  = int(pc['applicants'].sum())
+            conf_total = int(pc['confirmed'].sum())
+            rev_total  = int(pc['revenue'].sum())
+            cr = round(conf_total / app_total * 100, 1) if app_total > 0 else 0
+            lines.append(
+                f"강의 신청 **{app_total:,}명** 중 **{conf_total:,}명** 수강 확정 "
+                f"(전환율 **{cr}%**), 매출 **{rev_total:,}원**."
+            )
+
+    return lines
+
+
+# ── 탭: 경영진 보고 ───────────────────────────────────────────────
+
+def tab_report():
+    ROOMS = load_rooms()
+    st.header("📋 경영진 보고")
+    st.caption("핵심 지표를 한눈에 파악하기 위한 요약 대시보드입니다.")
+
+    df = load_all()
+    if df.empty:
+        st.info("데이터가 없습니다. '오늘 입력' 탭에서 먼저 데이터를 입력해주세요.")
+        return
+
+    max_date = df['date'].max()
+    min_date = df['date'].min()
+    today    = date.today()
+
+    # ── 기간 선택 ───────────────────────────────────────────────
+    period = st.radio(
+        "보고 기간",
+        ["이번 주", "이번 달", "최근 3개월", "전체", "직접 설정"],
+        horizontal=True,
+        key="report_period",
+    )
+
+    if period == "이번 주":
+        date_from = today - timedelta(days=today.weekday())
+        date_to   = max_date
+        period_label = "이번 주"
+    elif period == "이번 달":
+        date_from = date(today.year, today.month, 1)
+        date_to   = max_date
+        period_label = "이번 달"
+    elif period == "최근 3개월":
+        date_from = today - timedelta(days=90)
+        date_to   = max_date
+        period_label = "최근 3개월"
+    elif period == "전체":
+        date_from = min_date
+        date_to   = max_date
+        period_label = "전체 기간"
+    else:
+        rc1, rc2 = st.columns(2)
+        with rc1:
+            date_from = st.date_input("시작일", value=min_date,
+                                      min_value=min_date, max_value=max_date,
+                                      key="report_from")
+        with rc2:
+            date_to = st.date_input("종료일", value=max_date,
+                                    min_value=min_date, max_value=max_date,
+                                    key="report_to")
+        period_label = f"{date_from} ~ {date_to}"
+
+    df_period = df[(df['date'] >= date_from) & (df['date'] <= date_to)]
+
+    if df_period.empty:
+        st.warning("선택한 기간에 데이터가 없습니다.")
+        return
+
+    period_dates = sorted(df_period['date'].unique())
+    first_date   = period_dates[0]
+    last_date    = period_dates[-1]
+
+    # ── KPI 4개 ─────────────────────────────────────────────────
+    st.divider()
+    last_snap  = df_period[df_period['date'] == last_date]
+    first_snap = df_period[df_period['date'] == first_date]
+    total_now  = int(last_snap['members'].sum())
+    total_past = int(first_snap['members'].sum()) if len(period_dates) > 1 else total_now
+    diff       = total_now - total_past
+    pct        = round(diff / total_past * 100, 1) if total_past > 0 else 0
+
+    df_adspend = load_adspend()
+    df_conv    = load_conversions()
+
+    period_spend = 0
+    if not df_adspend.empty:
+        period_spend = int(df_adspend[
+            (df_adspend['date'] >= first_date) & (df_adspend['date'] <= last_date)
+        ]['spend'].sum())
+
+    conv_rate = 0
+    if not df_conv.empty:
+        pc = df_conv[(df_conv['date'] >= first_date) & (df_conv['date'] <= last_date)]
+        if not pc.empty:
+            app_t  = int(pc['applicants'].sum())
+            conf_t = int(pc['confirmed'].sum())
+            conv_rate = round(conf_t / app_t * 100, 1) if app_t > 0 else 0
+
+    k1, k2, k3, k4 = st.columns(4)
+    k1.metric(
+        "현재 총 인원",
+        f"{total_now:,}명",
+        f"{diff:+,}명 ({pct:+.1f}%)" if len(period_dates) > 1 else None,
+    )
+    k2.metric(
+        "기간 순증감",
+        f"{diff:+,}명",
+        f"{first_date} 기준" if len(period_dates) > 1 else "단일 날짜",
+        delta_color="normal",
+    )
+    k3.metric(
+        "광고비 집행",
+        f"{period_spend:,}원" if period_spend > 0 else "없음",
+        f"CPM {round(period_spend/diff):,}원/명" if period_spend > 0 and diff > 0 else None,
+    )
+    k4.metric(
+        "수강 전환율",
+        f"{conv_rate}%" if conv_rate > 0 else "데이터 없음",
+    )
+
+    # ── 자동 인사이트 ────────────────────────────────────────────
+    st.divider()
+    insight_lines = _generate_insight(
+        df_period, ROOMS, period_label,
+        df_adspend=df_adspend if not df_adspend.empty else None,
+        df_conv=df_conv if not df_conv.empty else None,
+    )
+    with st.container(border=True):
+        st.markdown("#### 💡 자동 분석 인사이트")
+        for line in insight_lines:
+            st.markdown(f"- {line}")
+
+    # ── 차트: 기간 총원 추이 + 채팅방별 현황 ────────────────────
+    st.divider()
+    col_l, col_r = st.columns([3, 2])
+
+    with col_l:
+        fig_trend = period_total_trend(df_period, date_from, date_to)
+        if fig_trend:
+            st.plotly_chart(fig_trend, use_container_width=True)
+
+    with col_r:
+        fig_snap = room_snapshot_chart(df_period, ROOMS)
+        if fig_snap:
+            st.plotly_chart(fig_snap, use_container_width=True)
+
+    # ── 채팅방별 증감 성과표 ─────────────────────────────────────
+    st.divider()
+    st.markdown("#### 채팅방별 성과 요약")
+
+    perf_rows = []
+    for rn in sorted(ROOMS.keys()):
+        rdf = df_period[df_period['room_num'] == rn].sort_values('date')
+        if rdf.empty:
+            continue
+        cur = int(rdf.iloc[-1]['members'])
+        prev = int(rdf.iloc[0]['members']) if len(rdf) > 1 else cur
+        chg = cur - prev
+        pct_r = round(chg / prev * 100, 1) if prev > 0 else 0
+        perf_rows.append({
+            '채팅방':   ROOMS.get(rn, f"채팅방 {rn}"),
+            '현재 인원': f"{cur:,}명",
+            '증감':     f"{chg:+,}명",
+            '증감률':   f"{pct_r:+.1f}%",
+            '평가':     "📈" if chg > 0 else ("📉" if chg < 0 else "➡️"),
+        })
+
+    if perf_rows:
+        perf_df = pd.DataFrame(perf_rows)
+        st.dataframe(perf_df, use_container_width=True, hide_index=True)
+
+    # ── 광고비 요약 (데이터 있을 때만) ──────────────────────────
+    if period_spend > 0 and not df_adspend.empty:
+        st.divider()
+        st.markdown("#### 광고비 집행 내역")
+        pa = df_adspend[
+            (df_adspend['date'] >= first_date) & (df_adspend['date'] <= last_date)
+        ].copy()
+        if not pa.empty:
+            by_ch = pa.groupby('channel')['spend'].sum().reset_index()
+            by_ch.columns = ['채널', '집행 금액(원)']
+            by_ch['비중'] = (by_ch['집행 금액(원)'] / by_ch['집행 금액(원)'].sum() * 100).round(1).astype(str) + '%'
+            by_ch['집행 금액(원)'] = by_ch['집행 금액(원)'].apply(lambda x: f"{int(x):,}")
+            st.dataframe(by_ch, use_container_width=True, hide_index=True)
 
 
 # ── 탭 4: 채팅방 설정 ────────────────────────────────────────────
