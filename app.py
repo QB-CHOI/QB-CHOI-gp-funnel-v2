@@ -62,6 +62,18 @@ with st.sidebar:
         _n_today = len(_df_check[_df_check['date'].astype(str) == _today_str])
         st.success(f"✅ 오늘 {_n_today}개 방 입력 완료")
 
+    # 최근 7일 완성도 및 누락 날짜 경고
+    if not _df_check.empty:
+        _recent_7 = [str(date.today() - timedelta(days=i)) for i in range(7)]
+        _entered_7 = set(_df_check['date'].astype(str).unique())
+        _missing_7 = [d for d in _recent_7 if d not in _entered_7]
+        _comp_7 = round((7 - len(_missing_7)) / 7 * 100)
+        st.caption(f"최근 7일 입력률 **{_comp_7}%**")
+        if _missing_7:
+            st.warning("누락: " + ", ".join(sorted(_missing_7, reverse=True)[:3]) +
+                       (f" 외 {len(_missing_7)-3}일" if len(_missing_7) > 3 else ""),
+                       icon="📅")
+
     st.divider()
     if st.button("🔄 데이터 새로고침", use_container_width=True,
                  help="GitHub에서 최신 데이터를 강제로 다시 불러옵니다 (3분 캐시 초기화)"):
@@ -199,6 +211,8 @@ def _show_ocr_review(ocr_results: dict, rooms: dict, prev: dict):
                delta_color="inverse")
     sc3.metric("⚠️ 이상값", f"{n_warn}개", delta=f"{n_warn}건 확인 필요" if n_warn else "이상 없음",
                delta_color="inverse" if n_warn else "off")
+    if n_warn > 0:
+        st.caption("💡 이상값이 광고·이벤트 등 특수 상황이면 3단계 저장 후 메모를 남기세요. 메모는 추이 그래프에 오버레이로 표시됩니다.")
 
 
 # ── 로그인 인증 ──────────────────────────────────────────────────
@@ -642,6 +656,22 @@ def tab_dashboard():
         _dn = _dash_notes[_dash_notes['date'].astype(str) == str(latest_date)]
         if not _dn.empty:
             st.info(f"📝 **{latest_date} 메모:** {_dn['memo'].values[0]}")
+
+    # ── 데이터 신뢰도: 누락 날짜 감지 ──────────────────────────
+    if days_since > 1:
+        from datetime import timedelta as _td
+        all_dates_in_range = set(
+            str(first_date + _td(days=i)) for i in range(days_since)
+        )
+        entered_dates = set(df['date'].astype(str).unique())
+        missing_dates = sorted(all_dates_in_range - entered_dates, reverse=True)
+        if missing_dates:
+            with st.expander(f"📅 누락 날짜 {len(missing_dates)}일 감지 — 클릭하여 확인", expanded=False):
+                st.caption("아래 날짜는 데이터가 입력되지 않았습니다. 데이터 관리 탭에서 소급 입력할 수 있습니다.")
+                # 최근 10개만 표시
+                shown = missing_dates[:10]
+                st.markdown("  ".join(f"`{d}`" for d in shown) +
+                            (f"  _(외 {len(missing_dates)-10}일)_" if len(missing_dates) > 10 else ""))
 
     # ── 증감 차트 + 상품별 분석 ───────────────────────────────
     col_c1, col_c2 = st.columns(2)
@@ -1463,7 +1493,19 @@ def _generate_insight(df_period, rooms, period_label,
 def tab_report():
     ROOMS = load_rooms()
     st.header("📋 경영진 보고")
-    st.caption("핵심 지표를 한눈에 파악하기 위한 요약 대시보드입니다.")
+
+    # 데이터 완성도 뱃지
+    _df_all = load_all()
+    if not _df_all.empty:
+        _first = _df_all['date'].min()
+        _days_total = (date.today() - _first).days + 1
+        _days_in    = _df_all['date'].nunique()
+        _comp_pct   = round(_days_in / _days_total * 100, 1)
+        _color = "green" if _comp_pct >= 90 else ("orange" if _comp_pct >= 70 else "red")
+        st.caption(
+            f"데이터 완성도 :{_color}[**{_comp_pct}%**] "
+            f"({_days_in}/{_days_total}일 입력) — 기준일: {_df_all['date'].max()}"
+        )
 
     df = load_all()
     if df.empty:
@@ -1608,18 +1650,21 @@ def tab_report():
         chg = cur - prev
         pct_r = round(chg / prev * 100, 1) if prev > 0 else 0
         perf_rows.append({
-            '채팅방':   ROOMS.get(rn, f"채팅방 {rn}"),
+            '채팅방':    ROOMS.get(rn, f"채팅방 {rn}"),
             '현재 인원': f"{cur:,}명",
-            '증감':     f"{chg:+,}명",
-            '증감률':   f"{pct_r:+.1f}%",
-            '평가':     "📈" if chg > 0 else ("📉" if chg < 0 else "➡️"),
+            '증감':      f"{chg:+,}명",
+            '증감률':    f"{pct_r:+.1f}%",
+            '평가':      "📈" if chg > 0 else ("📉" if chg < 0 else "➡️"),
+            '_members':  cur,
+            '_change':   chg,
         })
 
     if perf_rows:
-        perf_df = pd.DataFrame(perf_rows)
+        perf_df = pd.DataFrame([{k: v for k, v in r.items() if not k.startswith('_')} for r in perf_rows])
         st.dataframe(perf_df, use_container_width=True, hide_index=True)
 
     # ── 광고비 요약 (데이터 있을 때만) ──────────────────────────
+    ad_rows = []
     if period_spend > 0 and not df_adspend.empty:
         st.divider()
         st.markdown("#### 광고비 집행 내역")
@@ -1630,8 +1675,36 @@ def tab_report():
             by_ch = pa.groupby('channel')['spend'].sum().reset_index()
             by_ch.columns = ['채널', '집행 금액(원)']
             by_ch['비중'] = (by_ch['집행 금액(원)'] / by_ch['집행 금액(원)'].sum() * 100).round(1).astype(str) + '%'
-            by_ch['집행 금액(원)'] = by_ch['집행 금액(원)'].apply(lambda x: f"{int(x):,}")
-            st.dataframe(by_ch, use_container_width=True, hide_index=True)
+            for _, row in by_ch.iterrows():
+                ad_rows.append({'채널': row['채널'], '집행 금액(원)': f"{int(row['집행 금액(원)']):,}", '비중': row['비중']})
+            by_ch_disp = by_ch.copy()
+            by_ch_disp['집행 금액(원)'] = by_ch_disp['집행 금액(원)'].apply(lambda x: f"{int(x):,}")
+            st.dataframe(by_ch_disp, use_container_width=True, hide_index=True)
+
+    # ── HTML 보고서 다운로드 ─────────────────────────────────────
+    st.divider()
+    from report_generator import generate_html_report
+    report_html = generate_html_report(
+        period_label=period_label,
+        first_date=first_date,
+        last_date=last_date,
+        total_now=total_now,
+        diff=diff,
+        pct=pct,
+        period_spend=period_spend,
+        conv_rate=conv_rate,
+        insight_lines=insight_lines,
+        perf_rows=perf_rows,
+        ad_rows=ad_rows if ad_rows else None,
+    )
+    st.download_button(
+        label="🖨️ 보고서 다운로드 (HTML → 브라우저에서 Ctrl+P로 PDF 저장)",
+        data=report_html.encode("utf-8"),
+        file_name=f"채팅방_인원_보고서_{period_label.replace(' ', '_').replace('~', '-')}_{date.today()}.html",
+        mime="text/html",
+        use_container_width=True,
+        type="primary",
+    )
 
 
 # ── 탭 4: 채팅방 설정 ────────────────────────────────────────────
