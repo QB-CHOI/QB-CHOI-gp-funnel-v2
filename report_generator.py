@@ -17,6 +17,8 @@ def generate_html_report(
     insight_lines: list,
     perf_rows: list,          # [{'채팅방', '현재 인원', '증감', '증감률', '평가', '_members', '_change'}]
     ad_rows: list = None,     # [{'채널', '집행 금액(원)', '비중'}]
+    chart_trend_html: str = None,   # plotly to_html fragment (추이 차트)
+    chart_snap_html: str = None,    # plotly to_html fragment (현황 스냅샷)
 ) -> str:
     today_str = str(_date.today())
 
@@ -95,12 +97,19 @@ def generate_html_report(
     /* 푸터 */
     .footer { font-size: 11px; color: #9E9E9E; text-align: center; margin-top: 32px; padding-top: 12px; border-top: 1px solid #E0E0E0; }
 
+    /* 차트 컨테이너 */
+    .chart-section { margin-bottom: 28px; }
+    .chart-section .section-title { margin-bottom: 10px; }
+    .chart-wrap { border: 1px solid #E0E0E0; border-radius: 8px; overflow: hidden; }
+    .chart-wrap .plotly-graph-div { width: 100% !important; }
+
     /* 인쇄 */
     @media print {
         body { font-size: 11px; }
         .page { padding: 0; }
         .kpi-card { break-inside: avoid; }
         .insight-box { break-inside: avoid; }
+        .chart-section { break-inside: avoid; }
     }
     """
 
@@ -206,6 +215,20 @@ def generate_html_report(
         </table>
         """
 
+    # ── Plotly 차트 섹션 ─────────────────────────────────────────────
+    plotly_js_tag = '<script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>'
+    has_charts = bool(chart_trend_html or chart_snap_html)
+
+    def _chart_section(title: str, fragment: str) -> str:
+        return f"""
+        <div class="chart-section">
+            <div class="section-title">{title}</div>
+            <div class="chart-wrap">{fragment}</div>
+        </div>"""
+
+    chart_snap_section  = _chart_section("채팅방별 현재 인원 현황", chart_snap_html)  if chart_snap_html  else ""
+    chart_trend_section = _chart_section("인원 추이 및 예측",       chart_trend_html) if chart_trend_html else ""
+
     # ── 조립 ────────────────────────────────────────────────────────
     html = f"""<!DOCTYPE html>
 <html lang="ko">
@@ -213,6 +236,7 @@ def generate_html_report(
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>채팅방 인원 분석 보고서 — {period_label}</title>
+{plotly_js_tag if has_charts else ""}
 <style>{css}</style>
 </head>
 <body>
@@ -223,6 +247,8 @@ def generate_html_report(
     </div>
     {kpi_html}
     {insight_html}
+    {chart_snap_section}
+    {chart_trend_section}
     {perf_html}
     {ad_html}
     <div class="footer">본 보고서는 채팅방 인원 분석 시스템에서 자동 생성되었습니다.</div>

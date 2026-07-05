@@ -1624,15 +1624,14 @@ def tab_report():
 
     # ── 차트: 기간 총원 추이 + 채팅방별 현황 ────────────────────
     st.divider()
-    col_l, col_r = st.columns([3, 2])
+    fig_trend = period_total_trend(df_period, date_from, date_to)
+    fig_snap  = room_snapshot_chart(df_period, ROOMS)
 
+    col_l, col_r = st.columns([3, 2])
     with col_l:
-        fig_trend = period_total_trend(df_period, date_from, date_to)
         if fig_trend:
             st.plotly_chart(fig_trend, use_container_width=True)
-
     with col_r:
-        fig_snap = room_snapshot_chart(df_period, ROOMS)
         if fig_snap:
             st.plotly_chart(fig_snap, use_container_width=True)
 
@@ -1684,6 +1683,25 @@ def tab_report():
     # ── HTML 보고서 다운로드 ─────────────────────────────────────
     st.divider()
     from report_generator import generate_html_report
+    import plotly.io as _pio
+
+    def _fig_to_fragment(fig) -> str:
+        """Plotly figure → HTML 조각 (plotly.js 외부 참조, div만 반환)."""
+        if fig is None:
+            return ""
+        try:
+            return _pio.to_html(
+                fig,
+                include_plotlyjs=False,
+                full_html=False,
+                config={"displayModeBar": False, "responsive": True},
+            )
+        except Exception:
+            return ""
+
+    _snap_fragment  = _fig_to_fragment(fig_snap)
+    _trend_fragment = _fig_to_fragment(fig_trend)
+
     report_html = generate_html_report(
         period_label=period_label,
         first_date=first_date,
@@ -1696,6 +1714,8 @@ def tab_report():
         insight_lines=insight_lines,
         perf_rows=perf_rows,
         ad_rows=ad_rows if ad_rows else None,
+        chart_snap_html=_snap_fragment  or None,
+        chart_trend_html=_trend_fragment or None,
     )
     st.download_button(
         label="🖨️ 보고서 다운로드 (HTML → 브라우저에서 Ctrl+P로 PDF 저장)",

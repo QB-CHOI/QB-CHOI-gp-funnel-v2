@@ -855,7 +855,7 @@ def content_impact_table(df_members: pd.DataFrame,
 
 def trend_forecast_chart(df: pd.DataFrame, room_nums: list = None,
                           rooms: dict = None, forecast_days: int = 7):
-    """최근 21일 데이터 기반 선형 회귀 인원 예측 차트."""
+    """최근 21일 기반 예측 차트 — 7일 MA 스무딩 후 선형 회귀, ±1σ 신뢰 구간 표시."""
     import numpy as np
 
     if df.empty:
@@ -876,36 +876,75 @@ def trend_forecast_chart(df: pd.DataFrame, room_nums: list = None,
         if len(room_df) < 5:
             continue
 
-        label = (rooms or {}).get(int(rn), f"채팅방 {rn}")
-        color = colors[idx % len(colors)]
+        label     = (rooms or {}).get(int(rn), f"채팅방 {rn}")
+        color     = colors[idx % len(colors)]
+        last_date = room_df['date'].max()
 
         dates   = room_df['date'].values
         members = room_df['members'].values.astype(float)
         x_num   = np.arange(len(dates))
 
+        # 7일 이동평균으로 노이즈 제거 (데이터 부족 시 확장 평균 사용)
+        series    = pd.Series(members)
+        ma        = series.rolling(7, min_periods=3).mean()
+        ma        = ma.fillna(series.expanding().mean())
+        smooth    = ma.values
+
         try:
-            coeffs = np.polyfit(x_num, members, 1)
+            coeffs = np.polyfit(x_num, smooth, 1)
         except Exception:
             continue
 
-        future_x     = np.arange(len(dates), len(dates) + forecast_days)
-        last_date    = room_df['date'].max()
-        future_dates = [last_date + pd.Timedelta(days=i + 1) for i in range(forecast_days)]
-        future_y     = np.polyval(coeffs, future_x).clip(0).round(0).astype(int)
+        # 잔차 기반 표준편차 → 신뢰 구간
+        residuals = members - np.polyval(coeffs, x_num)
+        sigma     = float(np.std(residuals))
 
+        future_x     = np.arange(len(dates), len(dates) + forecast_days)
+        future_dates = [last_date + pd.Timedelta(days=i + 1) for i in range(forecast_days)]
+        future_y     = np.polyval(coeffs, future_x).clip(0)
+        upper_y      = (future_y + sigma).clip(0)
+        lower_y      = (future_y - sigma).clip(0)
+
+        # 실제 인원 라인
         fig.add_trace(go.Scatter(
-            x=room_df['date'], y=room_df['members'].astype(int),
+            x=room_df['date'], y=members.astype(int),
             name=label, mode='lines+markers',
-            line=dict(color=color),
+            line=dict(color=color, width=2),
+            marker=dict(size=4),
             hovertemplate=f'<b>{label}</b><br>%{{x|%Y-%m-%d}}<br>%{{y:,}}명<extra></extra>',
         ))
+
+        # 스무딩 라인 (점선)
+        fig.add_trace(go.Scatter(
+            x=room_df['date'], y=smooth.round(0).astype(int),
+            name=f'{label} MA',
+            mode='lines',
+            line=dict(color=color, dash='dash', width=1.2),
+            opacity=0.55,
+            showlegend=False,
+            hovertemplate=f'<b>{label} MA</b><br>%{{x|%Y-%m-%d}}<br>%{{y:,}}명<extra></extra>',
+        ))
+
+        # 신뢰 구간 (채운 영역)
+        ci_x = [last_date] + future_dates + list(reversed([last_date] + future_dates))
+        ci_y = [float(members[-1])] + list(upper_y) + list(reversed([float(members[-1])] + list(lower_y)))
+        fig.add_trace(go.Scatter(
+            x=ci_x, y=[max(0, v) for v in ci_y],
+            fill='toself',
+            fillcolor=color.replace('rgb', 'rgba').replace(')', ', 0.10)') if color.startswith('rgb') else color,
+            line=dict(width=0),
+            showlegend=False,
+            hoverinfo='skip',
+            name=f'{label} CI',
+        ))
+
+        # 예측 중앙값 라인
         fig.add_trace(go.Scatter(
             x=[last_date] + future_dates,
-            y=[int(members[-1])] + list(future_y),
+            y=[int(members[-1])] + list(future_y.round(0).astype(int)),
             name=f'{label} 예측',
             mode='lines',
-            line=dict(color=color, dash='dot', width=2),
-            showlegend=True,
+            line=dict(color=color, dash='dot', width=2.5),
             hovertemplate=f'<b>{label} 예측</b><br>%{{x|%Y-%m-%d}}<br>%{{y:,}}명<extra></extra>',
         ))
         has_data = True
@@ -919,14 +958,11 @@ def trend_forecast_chart(df: pd.DataFrame, room_nums: list = None,
         annotation_text='오늘', annotation_position='top left',
     )
     fig.update_layout(
-        title=f'인원 예측 — 최근 21일 추세 기반 {forecast_days}일 예측 (선형 회귀)',
-        xaxis_title='날짜',
-        yaxis_title='인원 수',
-        hovermode='x unified',
-        height=440,
+        title=f'인원 예측 — 7일 MA 스무딩 + 선형 회귀 ({forecast_days}일 예측, ±1σ 구간)',
+        xaxis_title='날짜', yaxis_title='인원 수',
+        hovermode='x unified', height=460,
         margin=dict(t=55, b=30, r=120),
-        legend_title='채팅방',
-        legend=dict(orientation='v'),
+        legend_title='채팅방', legend=dict(orientation='v'),
     )
     return fig
 
