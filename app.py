@@ -21,7 +21,7 @@ from charts import (
     churn_rate_chart, roi_chart,
     ranking_chart, weekly_aggregate_chart, monthly_aggregate_chart,
     cpm_chart, content_impact_table, trend_forecast_chart,
-    room_snapshot_chart, period_total_trend,
+    room_snapshot_chart, period_total_trend, calendar_heatmap_chart,
 )
 
 st.set_page_config(
@@ -672,6 +672,15 @@ def tab_dashboard():
                 shown = missing_dates[:10]
                 st.markdown("  ".join(f"`{d}`" for d in shown) +
                             (f"  _(외 {len(missing_dates)-10}일)_" if len(missing_dates) > 10 else ""))
+
+    # ── 입력 현황 달력 ────────────────────────────────────────
+    with st.expander("📅 입력 현황 달력 (최근 16주)", expanded=False):
+        _fig_cal = calendar_heatmap_chart(df)
+        if _fig_cal:
+            st.plotly_chart(_fig_cal, use_container_width=True)
+            _total_days = (date.today() - df['date'].min()).days + 1
+            _entered_days = df['date'].nunique()
+            st.caption(f"초록: 입력 완료 · 빨강: 데이터 없음 · 총 {_total_days}일 중 {_entered_days}일 입력 ({round(_entered_days/_total_days*100,1)}%)")
 
     # ── 증감 차트 + 상품별 분석 ───────────────────────────────
     col_c1, col_c2 = st.columns(2)
@@ -1399,7 +1408,8 @@ def tab_trend():
 # ── 경영진 보고: 자동 인사이트 생성 ─────────────────────────────────
 
 def _generate_insight(df_period, rooms, period_label,
-                      df_adspend=None, df_conv=None) -> list[str]:
+                      df_adspend=None, df_conv=None,
+                      df_all=None) -> list[str]:
     """기간 데이터를 분석해 한국어 인사이트 문장 리스트를 반환."""
     if df_period.empty:
         return ["해당 기간의 데이터가 없습니다."]
@@ -1421,6 +1431,36 @@ def _generate_insight(df_period, rooms, period_label,
         f"**{period_label}** 전체 채팅방 총원은 **{last_total:,}명**으로, "
         f"시작일({first_date}) 대비 **{sign}{diff:,}명({sign}{pct}%) {trend_word}**했습니다."
     )
+
+    # 전주/전월 비교 (df_all 있을 때만)
+    if df_all is not None and not df_all.empty:
+        def _ref_total(delta_days: int):
+            ref = pd.Timestamp(last_date) - pd.Timedelta(days=delta_days)
+            cands = df_all[df_all['date'] <= ref.date()]
+            if cands.empty:
+                return None, None
+            nearest = cands['date'].max()
+            return int(df_all[df_all['date'] == nearest]['members'].sum()), nearest
+
+        _wow_total, _wow_ref = _ref_total(7)
+        if _wow_total and _wow_total > 0:
+            _d = last_total - _wow_total
+            _p = round(_d / _wow_total * 100, 1)
+            _s = "+" if _d >= 0 else ""
+            lines.append(
+                f"전주 대비({_wow_ref}): **{_s}{_d:,}명({_s}{_p}%)** "
+                f"{'▲' if _d > 0 else ('▼' if _d < 0 else '➡')}"
+            )
+
+        _mom_total, _mom_ref = _ref_total(30)
+        if _mom_total and _mom_total > 0:
+            _d = last_total - _mom_total
+            _p = round(_d / _mom_total * 100, 1)
+            _s = "+" if _d >= 0 else ""
+            lines.append(
+                f"전월 대비({_mom_ref}): **{_s}{_d:,}명({_s}{_p}%)** "
+                f"{'▲' if _d > 0 else ('▼' if _d < 0 else '➡')}"
+            )
 
     # 방별 증감 분석
     room_changes = {}
@@ -1610,12 +1650,71 @@ def tab_report():
         f"{conv_rate}%" if conv_rate > 0 else "데이터 없음",
     )
 
+    # ── 전주/전월 비교 KPI ───────────────────────────────────────
+    _period_len = (last_date - first_date).days if hasattr(last_date, '__sub__') else 0
+    try:
+        _period_len = int((pd.Timestamp(last_date) - pd.Timestamp(first_date)).days)
+    except Exception:
+        _period_len = 0
+
+    # 직전 동일 길이 구간 총원 (가장 가까운 기록 날짜 사용)
+    def _nearest_total(target_date):
+        """target_date에 가장 가까운 실제 기록일의 총원 합계."""
+        d = pd.Timestamp(target_date)
+        cands = df[df['date'] <= d.date()].copy()
+        if cands.empty:
+            return None
+        nearest = cands['date'].max()
+        return int(df[df['date'] == nearest]['members'].sum()), nearest
+
+    _wow_col, _mom_col, _qoq_col = st.columns(3)
+
+    # WoW (전주 대비): 7일 전 같은 총원
+    _wow_date = pd.Timestamp(last_date) - pd.Timedelta(days=7)
+    _wow = _nearest_total(_wow_date.date())
+    with _wow_col:
+        if _wow and _wow[0] > 0:
+            _wow_diff = total_now - _wow[0]
+            _wow_pct  = round(_wow_diff / _wow[0] * 100, 1)
+            st.metric("전주 대비 (7일)", f"{_wow_diff:+,}명",
+                      f"{_wow_pct:+.1f}% · 기준 {_wow[1]}",
+                      delta_color="normal")
+        else:
+            st.metric("전주 대비 (7일)", "—", "데이터 부족")
+
+    # MoM (전월 대비): 30일 전
+    _mom_date = pd.Timestamp(last_date) - pd.Timedelta(days=30)
+    _mom = _nearest_total(_mom_date.date())
+    with _mom_col:
+        if _mom and _mom[0] > 0:
+            _mom_diff = total_now - _mom[0]
+            _mom_pct  = round(_mom_diff / _mom[0] * 100, 1)
+            st.metric("전월 대비 (30일)", f"{_mom_diff:+,}명",
+                      f"{_mom_pct:+.1f}% · 기준 {_mom[1]}",
+                      delta_color="normal")
+        else:
+            st.metric("전월 대비 (30일)", "—", "데이터 부족")
+
+    # QoQ (전분기 대비): 90일 전
+    _qoq_date = pd.Timestamp(last_date) - pd.Timedelta(days=90)
+    _qoq = _nearest_total(_qoq_date.date())
+    with _qoq_col:
+        if _qoq and _qoq[0] > 0:
+            _qoq_diff = total_now - _qoq[0]
+            _qoq_pct  = round(_qoq_diff / _qoq[0] * 100, 1)
+            st.metric("전분기 대비 (90일)", f"{_qoq_diff:+,}명",
+                      f"{_qoq_pct:+.1f}% · 기준 {_qoq[1]}",
+                      delta_color="normal")
+        else:
+            st.metric("전분기 대비 (90일)", "—", "데이터 부족")
+
     # ── 자동 인사이트 ────────────────────────────────────────────
     st.divider()
     insight_lines = _generate_insight(
         df_period, ROOMS, period_label,
         df_adspend=df_adspend if not df_adspend.empty else None,
         df_conv=df_conv if not df_conv.empty else None,
+        df_all=df,
     )
     with st.container(border=True):
         st.markdown("#### 💡 자동 분석 인사이트")

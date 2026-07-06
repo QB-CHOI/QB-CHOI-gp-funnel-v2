@@ -1052,3 +1052,79 @@ def period_total_trend(df: pd.DataFrame, date_from=None, date_to=None):
     )
     fig.update_yaxes(showgrid=True, gridcolor='rgba(200,200,200,0.3)')
     return fig
+
+
+def calendar_heatmap_chart(df: pd.DataFrame, weeks: int = 16) -> go.Figure:
+    """입력 현황을 달력 히트맵으로 시각화 — 최근 N주, 요일×주차 그리드."""
+    import numpy as np
+    from datetime import date as _date, timedelta as _td
+
+    today = _date.today()
+    # 그리드 시작일: 오늘로부터 weeks*7일 전의 가장 가까운 월요일
+    start_day = today - _td(days=today.weekday() + weeks * 7)
+
+    entered_dates = set()
+    if not df.empty:
+        entered_dates = set(df['date'].astype(str).unique())
+
+    # 날짜별 z값: 1=입력완료, 0=누락(과거), -1=미래
+    dow_labels = ['월', '화', '수', '목', '금', '토', '일']
+
+    # weeks 행 × 7열 배열
+    z = []       # z[week][dow]
+    text = []    # hover text
+    week_labels = []
+
+    for w in range(weeks):
+        row_z, row_t = [], []
+        for d in range(7):
+            day = start_day + _td(days=w * 7 + d)
+            day_str = str(day)
+            if day > today:
+                row_z.append(None)
+                row_t.append(f"{day_str}<br>미래")
+            elif day_str in entered_dates:
+                row_z.append(1)
+                row_t.append(f"{day_str}<br>✅ 입력 완료")
+            else:
+                row_z.append(0)
+                row_t.append(f"{day_str}<br>❌ 데이터 없음")
+        z.append(row_z)
+        text.append(row_t)
+        # 주 레이블: 해당 주 월요일 날짜 (월/일)
+        monday = start_day + _td(weeks=w)
+        week_labels.append(monday.strftime("%-m/%-d"))
+
+    # 행 역전: 최신 주가 위쪽
+    z_arr    = list(reversed(z))
+    text_arr = list(reversed(text))
+    wl_arr   = list(reversed(week_labels))
+
+    colorscale = [
+        [0.0, '#EF5350'],   # 0 = 누락 (빨강)
+        [0.5, '#BDBDBD'],   # 중간 (회색, None용 근사)
+        [1.0, '#43A047'],   # 1 = 입력 완료 (초록)
+    ]
+
+    fig = go.Figure(go.Heatmap(
+        z=z_arr,
+        x=dow_labels,
+        y=wl_arr,
+        text=text_arr,
+        hovertemplate='%{text}<extra></extra>',
+        colorscale=colorscale,
+        zmin=0, zmax=1,
+        showscale=False,
+        xgap=3, ygap=3,
+    ))
+
+    fig.update_layout(
+        title=dict(text=f"입력 현황 달력 (최근 {weeks}주)", font_size=14),
+        height=max(200, weeks * 20 + 80),
+        margin=dict(t=50, b=10, l=50, r=10),
+        xaxis=dict(side='top', tickfont_size=11, fixedrange=True),
+        yaxis=dict(tickfont_size=10, fixedrange=True),
+        plot_bgcolor='rgba(0,0,0,0)',
+        paper_bgcolor='rgba(0,0,0,0)',
+    )
+    return fig
