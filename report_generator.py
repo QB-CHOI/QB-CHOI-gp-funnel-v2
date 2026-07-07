@@ -19,6 +19,7 @@ def generate_html_report(
     ad_rows: list = None,     # [{'채널', '집행 금액(원)', '비중'}]
     chart_trend_html: str = None,   # plotly to_html fragment (추이 차트)
     chart_snap_html: str = None,    # plotly to_html fragment (현황 스냅샷)
+    comparison_rows: list = None,   # [{'label': '전주 대비', 'diff': int, 'pct': float, 'ref_date': str}]
 ) -> str:
     today_str = str(_date.today())
 
@@ -90,6 +91,21 @@ def generate_html_report(
     .bar-bg { flex: 1; background: #EEEEEE; border-radius: 3px; height: 12px; overflow: hidden; }
     .bar-fill { height: 100%; border-radius: 3px; }
     .bar-label { font-size: 11px; white-space: nowrap; min-width: 60px; text-align: right; }
+
+    /* 기간 비교 */
+    .compare-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 24px; }
+    .compare-card {
+        border: 1px solid #E0E0E0;
+        border-radius: 8px;
+        padding: 12px 14px;
+        background: #FAFAFA;
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+    }
+    .compare-label { font-size: 11px; color: #757575; }
+    .compare-value { font-size: 17px; font-weight: 700; }
+    .compare-sub { font-size: 10px; color: #9E9E9E; }
 
     /* 광고비 */
     .ad-table th { background: #455A64; }
@@ -215,6 +231,27 @@ def generate_html_report(
         </table>
         """
 
+    # ── 기간 비교 KPI ────────────────────────────────────────────────
+    compare_html = ""
+    if comparison_rows:
+        cards = ""
+        for cr in comparison_rows:
+            d   = cr.get('diff', 0)
+            p   = cr.get('pct', 0.0)
+            s   = "+" if d >= 0 else ""
+            col = "#2E7D32" if d > 0 else ("#C62828" if d < 0 else "#757575")
+            arrow = "▲" if d > 0 else ("▼" if d < 0 else "➡")
+            cards += f"""
+            <div class="compare-card">
+                <div class="compare-label">{cr.get('label', '')}</div>
+                <div class="compare-value" style="color:{col}">{arrow} {s}{d:,}명</div>
+                <div class="compare-sub">{s}{p:.1f}% · 기준 {cr.get('ref_date', '')}</div>
+            </div>"""
+        compare_html = f"""
+        <div class="section-title">기간 비교</div>
+        <div class="compare-grid">{cards}</div>
+        """
+
     # ── Plotly 차트 섹션 ─────────────────────────────────────────────
     plotly_js_tag = '<script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>'
     has_charts = bool(chart_trend_html or chart_snap_html)
@@ -246,6 +283,7 @@ def generate_html_report(
         <div class="report-meta">보고 기간: {period_label} ({first_date} ~ {last_date}) &nbsp;|&nbsp; 작성일: {today_str}</div>
     </div>
     {kpi_html}
+    {compare_html}
     {insight_html}
     {chart_snap_section}
     {chart_trend_section}

@@ -614,19 +614,29 @@ def tab_dashboard():
         return
 
     latest_date = df['date'].max()
+    _today_str = str(date.today())
+
+    # ── 오늘 미입력 강조 배너 ─────────────────────────────────
+    if str(latest_date) < _today_str:
+        st.error(
+            f"📢 **오늘({_today_str}) 인원을 아직 입력하지 않았습니다!** "
+            f"← '📸 오늘 입력' 탭으로 이동하여 데이터를 입력해주세요. "
+            f"(최근 기록: {latest_date})"
+        )
+
     st.caption(f"기준: {latest_date}")
 
     df_today = df[df['date'] == latest_date].copy()
     campaigns = get_current_campaigns()
 
-    # ── 입력 완성도 경고 ───────────────────────────────────────
+    # ── 입력 완성도 경고 (일부 채팅방 누락) ──────────────────
     total_rooms = len(ROOMS)
     entered_rooms = len(df_today)
     if entered_rooms < total_rooms:
         missing_names = [ROOMS[rn] for rn in sorted(ROOMS.keys())
                          if rn not in df_today['room_num'].values]
         st.warning(
-            f"⚠️ 오늘({latest_date}) {total_rooms - entered_rooms}개 채팅방 미입력: " +
+            f"⚠️ {latest_date} — {total_rooms - entered_rooms}개 채팅방 미입력: " +
             "  |  ".join(missing_names)
         )
 
@@ -1801,6 +1811,23 @@ def tab_report():
     _snap_fragment  = _fig_to_fragment(fig_snap)
     _trend_fragment = _fig_to_fragment(fig_trend)
 
+    # 전주/전월/전분기 비교 데이터 (보고서용)
+    def _ref_snap(delta_days: int):
+        ref = pd.Timestamp(last_date) - pd.Timedelta(days=delta_days)
+        cands = df[df['date'] <= ref.date()]
+        if cands.empty:
+            return None, None
+        nearest = cands['date'].max()
+        return int(df[df['date'] == nearest]['members'].sum()), str(nearest)
+
+    _comparison_rows = []
+    for _label, _days in [("전주 대비 (7일)", 7), ("전월 대비 (30일)", 30), ("전분기 대비 (90일)", 90)]:
+        _ref_total, _ref_date = _ref_snap(_days)
+        if _ref_total and _ref_total > 0:
+            _cd = total_now - _ref_total
+            _cp = round(_cd / _ref_total * 100, 1)
+            _comparison_rows.append({'label': _label, 'diff': _cd, 'pct': _cp, 'ref_date': _ref_date})
+
     report_html = generate_html_report(
         period_label=period_label,
         first_date=first_date,
@@ -1815,6 +1842,7 @@ def tab_report():
         ad_rows=ad_rows if ad_rows else None,
         chart_snap_html=_snap_fragment  or None,
         chart_trend_html=_trend_fragment or None,
+        comparison_rows=_comparison_rows or None,
     )
     st.download_button(
         label="🖨️ 보고서 다운로드 (HTML → 브라우저에서 Ctrl+P로 PDF 저장)",
@@ -2048,6 +2076,67 @@ def tab_data():
     ROOM_NUMBERS = sorted(ROOMS.keys())
     st.header("데이터 관리")
     df = load_all()
+
+    # ── 누락 날짜 소급 입력 ───────────────────────────────────
+    if not df.empty:
+        from datetime import timedelta as _td2
+        _first = df['date'].min()
+        _days_total = (date.today() - _first).days + 1
+        _all_range  = set(str(_first + _td2(days=i)) for i in range(_days_total))
+        _entered    = set(df['date'].astype(str).unique())
+        _missing    = sorted(_all_range - _entered, reverse=True)
+
+        if _missing:
+            with st.expander(f"📅 누락 날짜 소급 입력 ({len(_missing)}일 누락)", expanded=True):
+                st.caption("아래 날짜는 데이터가 입력되지 않았습니다. 날짜를 선택하여 바로 소급 입력하세요.")
+
+                _sel_missing = st.selectbox(
+                    "소급 입력할 날짜 선택",
+                    options=_missing,
+                    key="missing_date_select",
+                )
+
+                # 해당 날짜 전일의 인원을 기본값으로
+                _prev_date_cands = df[df['date'].astype(str) < _sel_missing]
+                _backfill_prev = {}
+                if not _prev_date_cands.empty:
+                    _prev_nearest = _prev_date_cands['date'].max()
+                    _bp = _prev_date_cands[_prev_date_cands['date'] == _prev_nearest]
+                    _backfill_prev = {int(r['room_num']): int(r['members']) for _, r in _bp.iterrows()}
+
+                st.markdown(f"**{_sel_missing} 인원 입력** — 전일({_backfill_prev and _prev_date_cands['date'].max() or '없음'}) 값으로 초기화됨")
+                _bf_rows = [
+                    {'채팅방번호': rn, '채팅방명': ROOMS.get(rn, f"채팅방 {rn}"), '인원수': _backfill_prev.get(rn, 0)}
+                    for rn in ROOM_NUMBERS
+                ]
+                _bf_edited = st.data_editor(
+                    pd.DataFrame(_bf_rows),
+                    column_config={
+                        '채팅방번호': st.column_config.NumberColumn(disabled=True),
+                        '채팅방명':   st.column_config.TextColumn(disabled=True),
+                        '인원수':     st.column_config.NumberColumn(min_value=0, step=1, required=True),
+                    },
+                    use_container_width=True,
+                    hide_index=True,
+                    key=f"backfill_editor_{_sel_missing}",
+                )
+                if st.button("💾 소급 입력 저장", type="primary", key="backfill_save"):
+                    _bf_data = [
+                        {'room_num': int(r['채팅방번호']), 'room_name': str(r['채팅방명']), 'members': int(r['인원수'])}
+                        for _, r in _bf_edited.iterrows() if int(r['인원수']) > 0
+                    ]
+                    if _bf_data:
+                        with st.spinner("저장 중..."):
+                            save_daily(_sel_missing, _bf_data)
+                        load_all.clear()
+                        st.success(f"✅ {_sel_missing} 소급 입력 완료 — {len(_bf_data)}개 채팅방")
+                        st.rerun()
+                    else:
+                        st.warning("입력된 인원이 없습니다.")
+        else:
+            st.success(f"✅ 누락 날짜 없음 — {_first}부터 오늘까지 모든 날짜 입력 완료")
+
+    st.divider()
 
     # ── 날짜별 데이터 수정 ─────────────────────────────────────
     st.subheader("날짜별 데이터 수정")
