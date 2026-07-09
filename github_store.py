@@ -323,6 +323,17 @@ def archive_room(room_num: int, room_name: str, final_members: int,
     load_archived_rooms.clear()
 
 
+def update_actual_close_date(room_num: int, actual_close_date: str):
+    """운영 종료된 채팅방의 실제 종료일을 수정."""
+    df = _read_csv(ARCHIVED_ROOMS_PATH, ARCHIVED_ROOMS_COLS)
+    if df.empty:
+        return
+    df['room_num'] = pd.to_numeric(df['room_num'], errors='coerce').astype('Int64')
+    df.loc[df['room_num'] == room_num, 'actual_close_date'] = actual_close_date
+    _write_csv(ARCHIVED_ROOMS_PATH, df, f"채팅방 {room_num} 실제 종료일 수정 → {actual_close_date}")
+    load_archived_rooms.clear()
+
+
 def restore_room(room_num: int):
     """종료된 채팅방을 활성 목록으로 복원."""
     df_arch = _read_csv(ARCHIVED_ROOMS_PATH, ARCHIVED_ROOMS_COLS)

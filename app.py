@@ -8,6 +8,7 @@ from github_store import (
     save_campaign, end_campaign, get_history, update_lecture_start_date,
     load_rooms, save_room, save_rooms_batch, delete_room,
     load_archived_rooms, archive_room, restore_room, load_all_room_names,
+    update_actual_close_date,
     load_conversions, save_conversion, get_latest_conversions, delete_conversion_row,
     load_adspend, save_adspend, delete_adspend_row,
     load_content, save_content, delete_content_row,
@@ -1511,11 +1512,12 @@ def tab_lecture_analysis():
         st.info("운영 종료 처리된 채팅방이 없습니다.")
     else:
         for _, ar in df_arch.sort_values('archived_date', ascending=False).iterrows():
-            rn       = int(ar['room_num'])
-            rname    = ar['room_name']
-            arch_dt  = ar['archived_date']
-            final_m  = int(ar['final_members'])
-            reason   = ar['archive_reason']
+            rn        = int(ar['room_num'])
+            rname     = ar['room_name']
+            arch_dt   = ar['archived_date']
+            actual_dt = str(ar.get('actual_close_date', '') or '')
+            final_m   = int(ar['final_members'])
+            reason    = ar['archive_reason']
 
             # 해당 방의 전체 인원 이력
             rdf = df_all[df_all['room_num'] == rn].sort_values('date')
@@ -1528,24 +1530,80 @@ def tab_lecture_analysis():
             # 캠페인 이력
             camp_hist = df_camps[df_camps['room_num'] == rn]
 
-            with st.expander(f"**{rname}** (채팅방 {rn}) — 종료일: {arch_dt}", expanded=False):
+            close_label = actual_dt if actual_dt else arch_dt
+            exp_title = f"**{rname}** (채팅방 {rn}) — 종료일: {close_label}"
+            if not camp_hist.empty:
+                exp_title += " ✅"
+            else:
+                exp_title += " ⚠️ 강의 미등록"
+
+            with st.expander(exp_title, expanded=camp_hist.empty):
                 mc1, mc2, mc3, mc4 = st.columns(4)
                 mc1.metric("최종 인원", f"{final_m:,}명")
                 mc2.metric("최고 인원", f"{peak_m:,}명")
                 mc3.metric("전체 순증감", f"{net_s}명")
                 mc4.metric("운영 기간", f"{days}일")
 
+                # ── 실제 종료일 수정 ──────────────────────────────
+                st.divider()
+                with st.expander("📅 실제 종료일 수정", expanded=not bool(actual_dt)):
+                    try:
+                        _init_date = date.fromisoformat(actual_dt) if actual_dt else date.fromisoformat(arch_dt)
+                    except ValueError:
+                        _init_date = date.today()
+                    new_close = st.date_input(
+                        "실제 종료일",
+                        value=_init_date,
+                        key=f"close_dt_{rn}",
+                        help="채팅방을 실제로 나간 날짜를 입력하세요.",
+                    )
+                    if st.button("💾 저장", key=f"save_close_{rn}", type="primary"):
+                        update_actual_close_date(rn, str(new_close))
+                        st.success(f"실제 종료일 저장 완료: {new_close}")
+                        st.rerun()
+
+                # ── 강의 이력 / 누락 경고 ─────────────────────────
+                st.divider()
                 if not camp_hist.empty:
                     st.markdown("**강의 이력**")
                     disp = camp_hist[['campaign_name', 'product', 'cohort',
                                       'start_date', 'lecture_start_date', 'end_date', 'memo']].copy()
                     disp.columns = ['강의명', '상품', '기수', '모객 시작', '개강일', '종료일', '메모']
                     st.dataframe(disp, use_container_width=True, hide_index=True)
+                else:
+                    st.warning("강의(캠페인) 이력이 없습니다. 등록하면 강의 분석 탭 모객 곡선에 포함됩니다.")
+                    with st.expander("➕ 강의 빠른 등록"):
+                        with st.form(key=f"quick_camp_{rn}"):
+                            qc1, qc2 = st.columns(2)
+                            q_name   = qc1.text_input("강의명", placeholder="예) 황금사주 무료특강")
+                            q_prod   = qc2.selectbox("상품", PRODUCT_OPTIONS, key=f"qprod_{rn}")
+                            qc3, qc4 = st.columns(2)
+                            q_cohort = qc3.text_input("기수", placeholder="예) 11기")
+                            q_target = qc4.number_input("목표 인원", min_value=0, step=50, value=0)
+                            qc5, qc6 = st.columns(2)
+                            q_start  = qc5.date_input("모객 시작일", key=f"qstart_{rn}")
+                            q_lstart = qc6.date_input("개강일 (선택)", value=None, key=f"qlstart_{rn}")
+                            if st.form_submit_button("강의 등록", type="primary", use_container_width=True):
+                                if q_name.strip():
+                                    save_campaign(
+                                        room_num=rn,
+                                        campaign_name=q_name.strip(),
+                                        product=q_prod,
+                                        cohort=q_cohort.strip(),
+                                        start_date=str(q_start),
+                                        memo="",
+                                        target_count=int(q_target),
+                                        lecture_start_date=str(q_lstart) if q_lstart else "",
+                                    )
+                                    st.success("강의 등록 완료!")
+                                    st.rerun()
+                                else:
+                                    st.error("강의명을 입력해주세요.")
 
-                st.caption(f"종료 사유: {reason}")
+                st.caption(f"종료 사유: {reason} | 처리일: {arch_dt}")
 
-                # 복원 버튼
-                if st.button(f"↩️ 활성 채팅방으로 복원", key=f"restore_{rn}"):
+                # ── 복원 버튼 ──────────────────────────────────────
+                if st.button("↩️ 활성 채팅방으로 복원", key=f"restore_{rn}"):
                     restore_room(rn)
                     st.success(f"채팅방 {rn} — '{rname}' 복원 완료")
                     st.rerun()
