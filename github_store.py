@@ -16,7 +16,7 @@ CAMPAIGNS_COLS = ['room_num', 'campaign_name', 'product', 'cohort',
 ROOMS_PATH          = "data/rooms.csv"
 ROOMS_COLS          = ['room_num', 'room_name']
 ARCHIVED_ROOMS_PATH = "data/rooms_archived.csv"
-ARCHIVED_ROOMS_COLS = ['room_num', 'room_name', 'archived_date', 'final_members', 'archive_reason']
+ARCHIVED_ROOMS_COLS = ['room_num', 'room_name', 'archived_date', 'actual_close_date', 'final_members', 'archive_reason']
 CONVERSIONS_PATH = "data/conversions.csv"
 CONVERSIONS_COLS = ['date', 'room_num', 'applicants', 'confirmed', 'revenue', 'memo']
 
@@ -294,7 +294,8 @@ def load_archived_rooms() -> pd.DataFrame:
     return df
 
 
-def archive_room(room_num: int, room_name: str, final_members: int, reason: str = "운영 종료"):
+def archive_room(room_num: int, room_name: str, final_members: int,
+                 reason: str = "운영 종료", actual_close_date: str = ""):
     """채팅방을 운영 종료 처리: rooms.csv에서 제거 → rooms_archived.csv에 기록."""
     # 1) 보관 파일에 추가
     df_arch = _read_csv(ARCHIVED_ROOMS_PATH, ARCHIVED_ROOMS_COLS)
@@ -304,6 +305,7 @@ def archive_room(room_num: int, room_name: str, final_members: int, reason: str 
     new_row = pd.DataFrame([{
         'room_num': room_num, 'room_name': room_name,
         'archived_date': str(date.today()),
+        'actual_close_date': actual_close_date or "",
         'final_members': int(final_members),
         'archive_reason': reason,
     }])

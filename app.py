@@ -1925,6 +1925,56 @@ def tab_report():
             by_ch_disp['집행 금액(원)'] = by_ch_disp['집행 금액(원)'].apply(lambda x: f"{int(x):,}")
             st.dataframe(by_ch_disp, use_container_width=True, hide_index=True)
 
+    # ── 운영 종료 채팅방 현황 ────────────────────────────────────
+    st.divider()
+    df_arch_rep = load_archived_rooms()
+    archived_report_rows = []
+    if not df_arch_rep.empty:
+        st.markdown("#### 🗂️ 운영 종료 채팅방 현황")
+        st.caption("채팅방 운영을 종료한 이력입니다. 인원 데이터는 보존됩니다.")
+
+        for _, ar in df_arch_rep.sort_values('room_num').iterrows():
+            rn = int(ar['room_num'])
+            rname = ar['room_name']
+            arch_dt = ar.get('archived_date', '')
+            actual_dt = ar.get('actual_close_date', '')
+            final_m = int(ar.get('final_members', 0))
+            reason = ar.get('archive_reason', '운영 종료')
+
+            # 전체 인원 이력에서 운영 통계 계산
+            rdf = df[df['room_num'] == rn].sort_values('date')
+            first_m = int(rdf.iloc[0]['members']) if not rdf.empty else 0
+            peak_m  = int(rdf['members'].max())   if not rdf.empty else final_m
+            op_days = int((rdf['date'].max() - rdf['date'].min()).days) + 1 if len(rdf) > 1 else 1
+            net     = final_m - first_m
+
+            close_display = actual_dt if actual_dt else arch_dt
+
+            archived_report_rows.append({
+                '채팅방':     rname,
+                '실제 종료일': close_display,
+                '처리일':     arch_dt,
+                '최종 인원':  final_m,
+                '최고 인원':  peak_m,
+                '순증감':     net,
+                '운영 기간':  op_days,
+                '종료 사유':  reason,
+                '_net': net,
+            })
+
+        if archived_report_rows:
+            arch_disp_df = pd.DataFrame([
+                {k: v for k, v in r.items() if not k.startswith('_')}
+                for r in archived_report_rows
+            ])
+            arch_disp_df['최종 인원'] = arch_disp_df['최종 인원'].apply(lambda x: f"{x:,}명")
+            arch_disp_df['최고 인원'] = arch_disp_df['최고 인원'].apply(lambda x: f"{x:,}명")
+            arch_disp_df['순증감']    = arch_disp_df['순증감'].apply(lambda x: f"{x:+,}명")
+            arch_disp_df['운영 기간'] = arch_disp_df['운영 기간'].apply(lambda x: f"{x:,}일")
+            st.dataframe(arch_disp_df, use_container_width=True, hide_index=True)
+    else:
+        archived_report_rows = []
+
     # ── HTML 보고서 다운로드 ─────────────────────────────────────
     st.divider()
     from report_generator import generate_html_report
@@ -1979,6 +2029,7 @@ def tab_report():
         chart_snap_html=_snap_fragment  or None,
         chart_trend_html=_trend_fragment or None,
         comparison_rows=_comparison_rows or None,
+        archived_rows=archived_report_rows or None,
     )
     st.download_button(
         label="🖨️ 보고서 다운로드 (HTML → 브라우저에서 Ctrl+P로 PDF 저장)",
@@ -2228,6 +2279,12 @@ def tab_campaign():
             placeholder="예) 강의 완료, 채팅방 통합, 운영 중단",
             key="arch_reason_input",
         )
+        arch_actual_close = st.date_input(
+            "실제 종료일 (선택) — 처리일과 다를 경우 입력",
+            value=None,
+            key="arch_actual_close_input",
+            help="채팅방을 실제로 나간 날짜. 비워두면 오늘(처리일)이 기준이 됩니다.",
+        )
 
         # 최종 인원 자동 조회
         _final_m = 0
@@ -2252,6 +2309,7 @@ def tab_campaign():
                     room_name=ROOMS.get(arch_room, f"채팅방 {arch_room}"),
                     final_members=_final_m,
                     reason=arch_reason.strip() or "운영 종료",
+                    actual_close_date=str(arch_actual_close) if arch_actual_close else "",
                 )
                 st.session_state['_pending_archive'] = None
                 st.success(f"✅ {ROOMS.get(arch_room)} 운영 종료 처리 완료. 이력은 🎓 강의 분석 탭에서 확인하세요.")

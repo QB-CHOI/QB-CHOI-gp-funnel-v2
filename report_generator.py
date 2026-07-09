@@ -20,6 +20,7 @@ def generate_html_report(
     chart_trend_html: str = None,   # plotly to_html fragment (추이 차트)
     chart_snap_html: str = None,    # plotly to_html fragment (현황 스냅샷)
     comparison_rows: list = None,   # [{'label': '전주 대비', 'diff': int, 'pct': float, 'ref_date': str}]
+    archived_rows: list = None,     # [{'채팅방', '실제 종료일', '처리일', '최종 인원', '최고 인원', '순증감', '운영 기간', '종료 사유', '_net'}]
 ) -> str:
     today_str = str(_date.today())
 
@@ -109,6 +110,19 @@ def generate_html_report(
 
     /* 광고비 */
     .ad-table th { background: #455A64; }
+
+    /* 종료 채팅방 */
+    .closed-table th { background: #6D4C41; }
+    .closed-badge {
+        display: inline-block;
+        background: #EFEBE9;
+        color: #6D4C41;
+        font-size: 10px;
+        font-weight: 600;
+        padding: 2px 6px;
+        border-radius: 4px;
+        margin-left: 6px;
+    }
 
     /* 푸터 */
     .footer { font-size: 11px; color: #9E9E9E; text-align: center; margin-top: 32px; padding-top: 12px; border-top: 1px solid #E0E0E0; }
@@ -252,6 +266,46 @@ def generate_html_report(
         <div class="compare-grid">{cards}</div>
         """
 
+    # ── 운영 종료 채팅방 ────────────────────────────────────────────
+    archived_html = ""
+    if archived_rows:
+        arch_rows_html = ""
+        for r in archived_rows:
+            net = r.get('_net', 0)
+            net_color = '#2E7D32' if net > 0 else ('#C62828' if net < 0 else '#757575')
+            close_label = r.get('실제 종료일', '') or r.get('처리일', '')
+            processed = r.get('처리일', '')
+            close_note = ""
+            if r.get('실제 종료일') and r.get('실제 종료일') != processed:
+                close_note = f'<span class="closed-badge">처리: {processed}</span>'
+            arch_rows_html += f"""
+            <tr>
+                <td>{r['채팅방']}</td>
+                <td>{close_label}{close_note}</td>
+                <td style="text-align:right">{r['최종 인원']:,}명</td>
+                <td style="text-align:right">{r['최고 인원']:,}명</td>
+                <td style="text-align:right;color:{net_color};font-weight:600">{net:+,}명</td>
+                <td style="text-align:right">{r['운영 기간']:,}일</td>
+                <td style="color:#757575">{r['종료 사유']}</td>
+            </tr>"""
+        archived_html = f"""
+        <div class="section-title">🗂️ 운영 종료 채팅방 현황</div>
+        <table class="closed-table">
+            <thead>
+                <tr>
+                    <th>채팅방</th>
+                    <th>실제 종료일</th>
+                    <th style="text-align:right">최종 인원</th>
+                    <th style="text-align:right">최고 인원</th>
+                    <th style="text-align:right">순증감</th>
+                    <th style="text-align:right">운영 기간</th>
+                    <th>종료 사유</th>
+                </tr>
+            </thead>
+            <tbody>{arch_rows_html}</tbody>
+        </table>
+        """
+
     # ── Plotly 차트 섹션 ─────────────────────────────────────────────
     plotly_js_tag = '<script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>'
     has_charts = bool(chart_trend_html or chart_snap_html)
@@ -288,6 +342,7 @@ def generate_html_report(
     {chart_snap_section}
     {chart_trend_section}
     {perf_html}
+    {archived_html}
     {ad_html}
     <div class="footer">본 보고서는 채팅방 인원 분석 시스템에서 자동 생성되었습니다.</div>
 </div>
