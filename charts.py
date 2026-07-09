@@ -1128,3 +1128,243 @@ def calendar_heatmap_chart(df: pd.DataFrame, weeks: int = 16) -> go.Figure:
         paper_bgcolor='rgba(0,0,0,0)',
     )
     return fig
+
+
+# ── 강의 분석 차트 ────────────────────────────────────────────────
+
+def recruitment_curve_chart(df: pd.DataFrame, campaigns_df: pd.DataFrame,
+                             product_filter: str = None, rooms: dict = None) -> go.Figure:
+    """기수별 모객 곡선 — D+N일 기준 인원 추이 (같은 상품 여러 기수 비교)."""
+    import numpy as np
+
+    if df.empty or campaigns_df.empty:
+        return None
+
+    df = df.copy()
+    df['date'] = pd.to_datetime(df['date'])
+
+    camp = campaigns_df.copy()
+    if product_filter:
+        camp = camp[camp['product'] == product_filter]
+    if camp.empty:
+        return None
+
+    fig = go.Figure()
+    colors = px.colors.qualitative.Plotly
+    has_data = False
+
+    for idx, (_, c) in enumerate(camp.iterrows()):
+        rn = int(c['room_num'])
+        start = pd.to_datetime(c['start_date'])
+        if pd.isna(start):
+            continue
+
+        end_raw = c.get('end_date', '')
+        end = pd.to_datetime(end_raw) if end_raw and str(end_raw).strip() else df['date'].max()
+
+        rdf = df[(df['room_num'] == rn) &
+                 (df['date'] >= start) &
+                 (df['date'] <= end)].sort_values('date')
+        if rdf.empty:
+            continue
+
+        rdf = rdf.copy()
+        rdf['day_n'] = (rdf['date'] - start).dt.days
+        label_parts = [c.get('campaign_name', f'채팅방{rn}')]
+        cohort = str(c.get('cohort', '')).strip()
+        if cohort:
+            label_parts.append(cohort)
+        label = ' · '.join(label_parts)
+
+        color = colors[idx % len(colors)]
+        fig.add_trace(go.Scatter(
+            x=rdf['day_n'],
+            y=rdf['members'].astype(int),
+            name=label,
+            mode='lines+markers',
+            marker=dict(size=4),
+            line=dict(color=color, width=2),
+            hovertemplate=f'<b>{label}</b><br>D+%{{x}}일<br>%{{y:,}}명<extra></extra>',
+        ))
+
+        # 목표 인원 점선
+        target = int(c.get('target_count', 0) or 0)
+        if target > 0:
+            max_day = int(rdf['day_n'].max())
+            fig.add_trace(go.Scatter(
+                x=[0, max_day],
+                y=[target, target],
+                name=f'{label} 목표',
+                mode='lines',
+                line=dict(color=color, dash='dot', width=1),
+                opacity=0.5,
+                showlegend=False,
+                hoverinfo='skip',
+            ))
+        has_data = True
+
+    if not has_data:
+        return None
+
+    fig.update_layout(
+        title=f'기수별 모객 곡선{f" — {product_filter}" if product_filter else ""}',
+        xaxis_title='모객 시작 후 경과일 (D+N)',
+        yaxis_title='인원 수',
+        hovermode='x unified',
+        height=440,
+        margin=dict(t=55, b=30, r=20),
+        legend_title='강의',
+    )
+    return fig
+
+
+def retention_after_opening_chart(df: pd.DataFrame, campaigns_df: pd.DataFrame,
+                                   product_filter: str = None) -> go.Figure:
+    """개강 후 잔류율 차트 — 개강일 인원 = 100% 기준 이후 잔류 비율."""
+    if df.empty or campaigns_df.empty:
+        return None
+
+    df = df.copy()
+    df['date'] = pd.to_datetime(df['date'])
+
+    camp = campaigns_df.copy()
+    if product_filter:
+        camp = camp[camp['product'] == product_filter]
+
+    # lecture_start_date가 있는 강의만
+    camp = camp[camp['lecture_start_date'].astype(str).str.strip().ne('') &
+                camp['lecture_start_date'].notna()]
+    if camp.empty:
+        return None
+
+    fig = go.Figure()
+    colors = px.colors.qualitative.Plotly
+    has_data = False
+
+    for idx, (_, c) in enumerate(camp.iterrows()):
+        rn = int(c['room_num'])
+        lecture_start = pd.to_datetime(c['lecture_start_date'])
+
+        end_raw = c.get('end_date', '')
+        end = pd.to_datetime(end_raw) if end_raw and str(end_raw).strip() else df['date'].max()
+
+        rdf = df[(df['room_num'] == rn) &
+                 (df['date'] >= lecture_start) &
+                 (df['date'] <= end)].sort_values('date')
+        if rdf.empty or len(rdf) < 2:
+            continue
+
+        base = int(rdf.iloc[0]['members'])
+        if base == 0:
+            continue
+
+        rdf = rdf.copy()
+        rdf['day_n']    = (rdf['date'] - lecture_start).dt.days
+        rdf['retention'] = (rdf['members'] / base * 100).round(1)
+
+        label_parts = [c.get('campaign_name', f'채팅방{rn}')]
+        cohort = str(c.get('cohort', '')).strip()
+        if cohort:
+            label_parts.append(cohort)
+        label = ' · '.join(label_parts)
+
+        color = colors[idx % len(colors)]
+        fig.add_trace(go.Scatter(
+            x=rdf['day_n'],
+            y=rdf['retention'],
+            name=label,
+            mode='lines+markers',
+            marker=dict(size=4),
+            line=dict(color=color, width=2),
+            hovertemplate=f'<b>{label}</b><br>개강 후 %{{x}}일<br>잔류율 %{{y:.1f}}%<extra></extra>',
+        ))
+        has_data = True
+
+    if not has_data:
+        return None
+
+    fig.add_hline(y=100, line_dash='dash', line_color='#9E9E9E',
+                  annotation_text='개강 시 기준(100%)', annotation_position='top right')
+
+    fig.update_layout(
+        title=f'개강 후 잔류율{f" — {product_filter}" if product_filter else ""}',
+        xaxis_title='개강 후 경과일',
+        yaxis_title='잔류율 (%)',
+        yaxis=dict(ticksuffix='%'),
+        hovermode='x unified',
+        height=400,
+        margin=dict(t=55, b=30, r=20),
+        legend_title='강의',
+    )
+    return fig
+
+
+def cohort_efficiency_df(df: pd.DataFrame, campaigns_df: pd.DataFrame,
+                          rooms: dict = None) -> pd.DataFrame:
+    """기수별 모객 효율 요약 테이블 반환 (회의 자료용)."""
+    if df.empty or campaigns_df.empty:
+        return pd.DataFrame()
+
+    df = df.copy()
+    df['date'] = pd.to_datetime(df['date'])
+    rows = []
+
+    for _, c in campaigns_df.iterrows():
+        rn = int(c['room_num'])
+        start = pd.to_datetime(c.get('start_date', ''))
+        if pd.isna(start):
+            continue
+
+        end_raw = c.get('end_date', '')
+        end = pd.to_datetime(end_raw) if end_raw and str(end_raw).strip() else df['date'].max()
+
+        rdf = df[(df['room_num'] == rn) &
+                 (df['date'] >= start) &
+                 (df['date'] <= end)].sort_values('date')
+        if rdf.empty:
+            continue
+
+        members_series = rdf['members'].astype(int)
+        days = int((rdf['date'].max() - start).days) + 1
+        start_m  = int(members_series.iloc[0])
+        peak_m   = int(members_series.max())
+        last_m   = int(members_series.iloc[-1])
+        net_gain = peak_m - start_m
+        speed    = round(net_gain / days, 1) if days > 0 else 0
+        target   = int(c.get('target_count', 0) or 0)
+        achieve  = f"{round(peak_m / target * 100, 1)}%" if target > 0 else "—"
+
+        # 개강 후 이탈률
+        lsd = c.get('lecture_start_date', '')
+        retention_str = "—"
+        if lsd and str(lsd).strip():
+            ls_dt = pd.to_datetime(lsd)
+            rdf_after = rdf[rdf['date'] >= ls_dt]
+            if len(rdf_after) >= 2:
+                base = int(rdf_after.iloc[0]['members'])
+                final = int(rdf_after.iloc[-1]['members'])
+                if base > 0:
+                    churn = round((base - final) / base * 100, 1)
+                    retention_str = f"-{churn}%"
+
+        room_label = (rooms or {}).get(rn, f"채팅방 {rn}")
+        status = "진행 중" if str(c.get('is_current', '')).upper() in ("TRUE", "1", "YES") else "종료"
+
+        rows.append({
+            '채팅방':     room_label,
+            '강의명':     c.get('campaign_name', '-'),
+            '상품':       c.get('product', '-'),
+            '기수':       c.get('cohort', '-'),
+            '상태':       status,
+            '모객 시작일': str(c['start_date'])[:10],
+            '개강일':     str(lsd)[:10] if lsd and str(lsd).strip() else '—',
+            '모객 기간':  f"{days}일",
+            '시작 인원':  f"{start_m:,}명",
+            '최고 인원':  f"{peak_m:,}명",
+            '순증가':     f"+{net_gain:,}명",
+            '모객 속도':  f"{speed}명/일",
+            '목표 달성':  achieve,
+            '개강 후 이탈': retention_str,
+        })
+
+    return pd.DataFrame(rows)

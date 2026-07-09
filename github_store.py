@@ -11,9 +11,12 @@ CAMPAIGNS_PATH = "data/campaigns.csv"
 
 MEMBERS_COLS   = ['date', 'room_num', 'room_name', 'members', 'prev_members', 'change']
 CAMPAIGNS_COLS = ['room_num', 'campaign_name', 'product', 'cohort',
-                  'start_date', 'end_date', 'is_current', 'memo', 'target_count']
-ROOMS_PATH       = "data/rooms.csv"
-ROOMS_COLS       = ['room_num', 'room_name']
+                  'start_date', 'lecture_start_date', 'end_date',
+                  'is_current', 'memo', 'target_count']
+ROOMS_PATH          = "data/rooms.csv"
+ROOMS_COLS          = ['room_num', 'room_name']
+ARCHIVED_ROOMS_PATH = "data/rooms_archived.csv"
+ARCHIVED_ROOMS_COLS = ['room_num', 'room_name', 'archived_date', 'final_members', 'archive_reason']
 CONVERSIONS_PATH = "data/conversions.csv"
 CONVERSIONS_COLS = ['date', 'room_num', 'applicants', 'confirmed', 'revenue', 'memo']
 
@@ -193,7 +196,8 @@ def get_current_campaigns() -> dict:
 
 
 def save_campaign(room_num: int, campaign_name: str, product: str,
-                  cohort: str, start_date: str, memo: str, target_count: int = 0):
+                  cohort: str, start_date: str, memo: str,
+                  target_count: int = 0, lecture_start_date: str = ""):
     df = load_campaigns()
     if not df.empty:
         mask = (df["room_num"] == room_num) & (df["is_current"] == True)
@@ -203,12 +207,22 @@ def save_campaign(room_num: int, campaign_name: str, product: str,
     new_row = pd.DataFrame([{
         "room_num": room_num, "campaign_name": campaign_name,
         "product": product, "cohort": cohort,
-        "start_date": start_date, "end_date": "",
-        "is_current": True, "memo": memo,
-        "target_count": int(target_count),
+        "start_date": start_date, "lecture_start_date": lecture_start_date,
+        "end_date": "", "is_current": True,
+        "memo": memo, "target_count": int(target_count),
     }])
     combined = pd.concat([df, new_row], ignore_index=True)
     _write_csv(CAMPAIGNS_PATH, combined, f"캠페인 등록: 채팅방 {room_num} — {campaign_name}")
+    load_campaigns.clear()
+
+
+def update_lecture_start_date(room_num: int, lecture_start_date: str):
+    df = load_campaigns()
+    if df.empty:
+        return
+    mask = (df["room_num"] == room_num) & (df["is_current"] == True)
+    df.loc[mask, "lecture_start_date"] = lecture_start_date
+    _write_csv(CAMPAIGNS_PATH, df, f"개강일 업데이트: 채팅방 {room_num} → {lecture_start_date}")
     load_campaigns.clear()
 
 
@@ -267,6 +281,73 @@ def delete_room(room_num: int):
     df = df[df['room_num'] != room_num]
     _write_csv(ROOMS_PATH, df, f"채팅방 {room_num} 삭제")
     load_rooms.clear()
+
+
+@st.cache_data(ttl=3600)
+def load_archived_rooms() -> pd.DataFrame:
+    """운영 종료된 채팅방 목록 반환."""
+    df = _read_csv(ARCHIVED_ROOMS_PATH, ARCHIVED_ROOMS_COLS)
+    if df.empty:
+        return df
+    df['room_num']      = pd.to_numeric(df['room_num'], errors='coerce').astype('Int64')
+    df['final_members'] = pd.to_numeric(df['final_members'], errors='coerce').fillna(0).astype(int)
+    return df
+
+
+def archive_room(room_num: int, room_name: str, final_members: int, reason: str = "운영 종료"):
+    """채팅방을 운영 종료 처리: rooms.csv에서 제거 → rooms_archived.csv에 기록."""
+    # 1) 보관 파일에 추가
+    df_arch = _read_csv(ARCHIVED_ROOMS_PATH, ARCHIVED_ROOMS_COLS)
+    if not df_arch.empty:
+        df_arch['room_num'] = pd.to_numeric(df_arch['room_num'], errors='coerce').astype('Int64')
+        df_arch = df_arch[df_arch['room_num'] != room_num]
+    new_row = pd.DataFrame([{
+        'room_num': room_num, 'room_name': room_name,
+        'archived_date': str(date.today()),
+        'final_members': int(final_members),
+        'archive_reason': reason,
+    }])
+    combined = pd.concat([df_arch, new_row], ignore_index=True).sort_values('room_num')
+    _write_csv(ARCHIVED_ROOMS_PATH, combined, f"채팅방 {room_num} 운영 종료 보관")
+
+    # 2) 활성 목록에서 제거
+    df_rooms = _read_csv(ROOMS_PATH, ROOMS_COLS)
+    if not df_rooms.empty:
+        df_rooms['room_num'] = pd.to_numeric(df_rooms['room_num'], errors='coerce').astype('Int64')
+        df_rooms = df_rooms[df_rooms['room_num'] != room_num]
+        _write_csv(ROOMS_PATH, df_rooms, f"채팅방 {room_num} 활성 목록 제거")
+
+    load_rooms.clear()
+    load_archived_rooms.clear()
+
+
+def restore_room(room_num: int):
+    """종료된 채팅방을 활성 목록으로 복원."""
+    df_arch = _read_csv(ARCHIVED_ROOMS_PATH, ARCHIVED_ROOMS_COLS)
+    if df_arch.empty:
+        return
+    df_arch['room_num'] = pd.to_numeric(df_arch['room_num'], errors='coerce').astype('Int64')
+    row = df_arch[df_arch['room_num'] == room_num]
+    if row.empty:
+        return
+    room_name = str(row.iloc[0]['room_name'])
+    save_room(int(room_num), room_name)
+    df_arch = df_arch[df_arch['room_num'] != room_num]
+    _write_csv(ARCHIVED_ROOMS_PATH, df_arch, f"채팅방 {room_num} 복원")
+    load_rooms.clear()
+    load_archived_rooms.clear()
+
+
+def load_all_room_names() -> dict:
+    """활성 + 종료 채팅방 이름 통합 반환 (이력 조회·차트 레이블용)."""
+    names = load_rooms().copy()
+    df_arch = load_archived_rooms()
+    if not df_arch.empty:
+        for _, r in df_arch.iterrows():
+            rn = int(r['room_num'])
+            if rn not in names:
+                names[rn] = f"{r['room_name']} (종료)"
+    return names
 
 
 def get_history(room_num: int) -> pd.DataFrame:

@@ -5,8 +5,9 @@ from datetime import date, timedelta
 from github_store import (
     load_all, save_daily, delete_date,
     load_campaigns, get_current_campaigns,
-    save_campaign, end_campaign, get_history,
+    save_campaign, end_campaign, get_history, update_lecture_start_date,
     load_rooms, save_room, save_rooms_batch, delete_room,
+    load_archived_rooms, archive_room, restore_room, load_all_room_names,
     load_conversions, save_conversion, get_latest_conversions, delete_conversion_row,
     load_adspend, save_adspend, delete_adspend_row,
     load_content, save_content, delete_content_row,
@@ -22,6 +23,7 @@ from charts import (
     ranking_chart, weekly_aggregate_chart, monthly_aggregate_chart,
     cpm_chart, content_impact_table, trend_forecast_chart,
     room_snapshot_chart, period_total_trend, calendar_heatmap_chart,
+    recruitment_curve_chart, retention_after_opening_chart, cohort_efficiency_df,
 )
 
 st.set_page_config(
@@ -104,6 +106,8 @@ if '_editing_room' not in st.session_state:
     st.session_state._editing_room = None
 if '_ocr_error' not in st.session_state:
     st.session_state._ocr_error = None
+if '_pending_archive' not in st.session_state:
+    st.session_state['_pending_archive'] = None
 
 
 
@@ -248,9 +252,9 @@ def main():
 
     st.title("💬 황금후추 채팅방 인원 분석")
 
-    tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs([
+    tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs([
         "📸 오늘 입력", "📊 현황", "📋 전환 분석", "📈 추이 그래프",
-        "📑 경영진 보고", "⚙️ 채팅방 설정", "🗂️ 데이터 관리",
+        "🎓 강의 분석", "📑 경영진 보고", "⚙️ 채팅방 설정", "🗂️ 데이터 관리",
     ])
 
     with tab1:
@@ -262,10 +266,12 @@ def main():
     with tab4:
         tab_trend()
     with tab5:
-        tab_report()
+        tab_lecture_analysis()
     with tab6:
-        tab_campaign()
+        tab_report()
     with tab7:
+        tab_campaign()
+    with tab8:
         tab_data()
 
 
@@ -1415,6 +1421,136 @@ def tab_trend():
                 st.dataframe(_tn_disp, use_container_width=True, hide_index=True)
 
 
+# ── 탭: 강의 분석 ────────────────────────────────────────────────
+
+def tab_lecture_analysis():
+    ROOMS    = load_all_room_names()   # 활성 + 종료 방 통합 이름
+    df_all   = load_all()
+    df_camps = load_campaigns()
+    df_arch  = load_archived_rooms()
+
+    st.header("🎓 강의 분석")
+    st.caption("기수별 모객 효율·개강 후 잔류율·채팅방 운영 이력을 한눈에 비교합니다.")
+
+    if df_all.empty or df_camps.empty:
+        st.info("데이터가 없습니다. 강의 정보를 등록하고 인원 데이터를 입력해주세요.")
+        return
+
+    # ── 상품 필터 ─────────────────────────────────────────────
+    products = sorted(df_camps['product'].dropna().unique().tolist())
+    sel_product = st.selectbox(
+        "상품 선택 (전체 비교 또는 특정 상품)",
+        options=["전체"] + products,
+        key="lecture_product_filter",
+    )
+    product_arg = None if sel_product == "전체" else sel_product
+
+    # 활성 + 종료 캠페인 모두 포함
+    df_camps_all = df_camps.copy()
+
+    # ── 1. 기수별 모객 곡선 ───────────────────────────────────
+    st.divider()
+    st.subheader("📈 기수별 모객 곡선 비교")
+    st.caption("모객 시작일(D+0) 기준 각 기수의 인원 증가 궤적을 비교합니다.")
+
+    fig_recruit = recruitment_curve_chart(df_all, df_camps_all, product_arg, rooms=ROOMS)
+    if fig_recruit:
+        st.plotly_chart(fig_recruit, use_container_width=True)
+    else:
+        st.info("강의 정보가 등록된 채팅방의 인원 데이터가 필요합니다.")
+
+    # ── 2. 개강 후 잔류율 ─────────────────────────────────────
+    st.divider()
+    st.subheader("📉 개강 후 잔류율")
+    st.caption("개강일 인원 = 100% 기준, 이후 날짜별 남아 있는 비율입니다.")
+
+    has_lecture_date = df_camps_all['lecture_start_date'].astype(str).str.strip().ne('').any()
+    if has_lecture_date:
+        fig_ret = retention_after_opening_chart(df_all, df_camps_all, product_arg)
+        if fig_ret:
+            st.plotly_chart(fig_ret, use_container_width=True)
+        else:
+            st.info("개강일이 설정된 강의의 데이터가 필요합니다.")
+    else:
+        st.info("⚙️ 채팅방 설정 탭에서 각 강의의 **개강일**을 입력하면 잔류율 분석이 활성화됩니다.")
+
+    # ── 3. 기수 효율 요약 표 ──────────────────────────────────
+    st.divider()
+    st.subheader("📊 기수별 모객 효율 요약")
+    st.caption("회의 자료로 활용하세요. 표를 클릭하면 정렬 가능합니다.")
+
+    eff_df = cohort_efficiency_df(df_all, df_camps_all, rooms=ROOMS)
+    if product_arg and not eff_df.empty:
+        eff_df = eff_df[eff_df['상품'] == product_arg]
+
+    if not eff_df.empty:
+        # 컬럼 색상 스타일링
+        def _style_status(series):
+            return ['color:#2E7D32;font-weight:bold' if v == '진행 중'
+                    else 'color:#9E9E9E' for v in series]
+
+        styled = eff_df.style.apply(_style_status, subset=['상태'])
+        st.dataframe(styled, use_container_width=True, hide_index=True)
+
+        # CSV 다운로드
+        csv_bytes = eff_df.to_csv(index=False).encode('utf-8-sig')
+        st.download_button(
+            "📥 효율 요약 CSV 다운로드",
+            data=csv_bytes,
+            file_name=f"강의_모객_효율_{date.today()}.csv",
+            mime='text/csv',
+        )
+    else:
+        st.info("표시할 데이터가 없습니다.")
+
+    # ── 4. 종료된 채팅방 이력 ─────────────────────────────────
+    st.divider()
+    st.subheader("🗂️ 운영 종료된 채팅방 이력")
+
+    if df_arch.empty:
+        st.info("운영 종료 처리된 채팅방이 없습니다.")
+    else:
+        for _, ar in df_arch.sort_values('archived_date', ascending=False).iterrows():
+            rn       = int(ar['room_num'])
+            rname    = ar['room_name']
+            arch_dt  = ar['archived_date']
+            final_m  = int(ar['final_members'])
+            reason   = ar['archive_reason']
+
+            # 해당 방의 전체 인원 이력
+            rdf = df_all[df_all['room_num'] == rn].sort_values('date')
+            first_m = int(rdf.iloc[0]['members']) if not rdf.empty else 0
+            peak_m  = int(rdf['members'].max())   if not rdf.empty else 0
+            days    = int((rdf['date'].max() - rdf['date'].min()).days) + 1 if len(rdf) > 1 else 1
+            net     = final_m - first_m
+            net_s   = f"+{net:,}" if net >= 0 else f"{net:,}"
+
+            # 캠페인 이력
+            camp_hist = df_camps[df_camps['room_num'] == rn]
+
+            with st.expander(f"**{rname}** (채팅방 {rn}) — 종료일: {arch_dt}", expanded=False):
+                mc1, mc2, mc3, mc4 = st.columns(4)
+                mc1.metric("최종 인원", f"{final_m:,}명")
+                mc2.metric("최고 인원", f"{peak_m:,}명")
+                mc3.metric("전체 순증감", f"{net_s}명")
+                mc4.metric("운영 기간", f"{days}일")
+
+                if not camp_hist.empty:
+                    st.markdown("**강의 이력**")
+                    disp = camp_hist[['campaign_name', 'product', 'cohort',
+                                      'start_date', 'lecture_start_date', 'end_date', 'memo']].copy()
+                    disp.columns = ['강의명', '상품', '기수', '모객 시작', '개강일', '종료일', '메모']
+                    st.dataframe(disp, use_container_width=True, hide_index=True)
+
+                st.caption(f"종료 사유: {reason}")
+
+                # 복원 버튼
+                if st.button(f"↩️ 활성 채팅방으로 복원", key=f"restore_{rn}"):
+                    restore_room(rn)
+                    st.success(f"채팅방 {rn} — '{rname}' 복원 완료")
+                    st.rerun()
+
+
 # ── 경영진 보고: 자동 인사이트 생성 ─────────────────────────────────
 
 def _generate_insight(df_period, rooms, period_label,
@@ -1979,6 +2115,11 @@ def tab_campaign():
                 placeholder="예) 5기, 3회차",
             )
             start_date = st.date_input("모객 시작일", value=date.today())
+            lecture_start_input = st.date_input(
+                "개강일 (선택)",
+                value=None,
+                help="개강일을 입력하면 🎓 강의 분석 탭에서 잔류율 분석이 활성화됩니다.",
+            )
             target_count = st.number_input(
                 "목표 인원",
                 min_value=0,
@@ -2006,6 +2147,7 @@ def tab_campaign():
                     start_date=str(start_date),
                     memo=memo.strip(),
                     target_count=int(target_count),
+                    lecture_start_date=str(lecture_start_input) if lecture_start_input else "",
                 )
                 st.success(f"✅ {ROOMS.get(room_num)} — '{campaign_name}' 저장 완료")
                 st.rerun()
@@ -2032,28 +2174,105 @@ def tab_campaign():
             })
         st.dataframe(pd.DataFrame(camp_rows), use_container_width=True, hide_index=True)
 
-        # 종료 처리
-        with st.expander("강의 종료 처리"):
+        # ── 개강일 빠른 업데이트 ─────────────────────────────────
+        with st.expander("📅 개강일 설정 (강의 분석 잔류율 활성화)", expanded=False):
+            st.caption("개강일을 등록하면 🎓 강의 분석 탭에서 개강 후 잔류율 차트가 표시됩니다.")
+            upd_room = st.selectbox(
+                "채팅방 선택",
+                options=list(sorted(campaigns.keys())),
+                format_func=lambda x: f"{ROOMS.get(x, f'채팅방 {x}')} — {campaigns[x].get('campaign_name', '')}",
+                key="upd_lsd_room",
+            )
+            _cur_lsd = campaigns.get(upd_room, {}).get('lecture_start_date', '')
+            _lsd_val = st.date_input(
+                "개강일",
+                value=pd.to_datetime(_cur_lsd).date() if _cur_lsd and str(_cur_lsd).strip() else None,
+                key="upd_lsd_date",
+            )
+            if st.button("개강일 저장", key="upd_lsd_btn", type="primary"):
+                update_lecture_start_date(upd_room, str(_lsd_val) if _lsd_val else "")
+                st.success(f"개강일 저장 완료: {_lsd_val}")
+                st.rerun()
+
+        # ── 강의 종료 처리 ────────────────────────────────────────
+        with st.expander("🏁 강의 종료 처리 (캠페인만 종료, 채팅방 유지)", expanded=False):
             end_room = st.selectbox(
                 "종료할 채팅방",
                 options=list(sorted(campaigns.keys())),
                 format_func=lambda x: f"{ROOMS.get(x, f'채팅방 {x}')} — {campaigns[x].get('campaign_name', '')}",
                 key="end_room_select",
             )
-            if st.button("종료 처리", key="end_btn"):
+            if st.button("강의 종료 처리", key="end_btn"):
                 end_campaign(end_room)
                 st.success(f"'{campaigns[end_room].get('campaign_name')}' 종료 처리 완료")
                 st.rerun()
+
+    # ── 채팅방 운영 종료 처리 ─────────────────────────────────
+    st.divider()
+    st.subheader("🚪 채팅방 운영 종료 처리")
+    st.caption(
+        "채팅방에서 나갈 때 사용하세요. 활성 목록에서 제거되지만 **인원 이력·강의 기록은 모두 보존**됩니다. "
+        "🎓 강의 분석 탭에서 이후에도 확인 가능합니다."
+    )
+
+    if ROOMS:
+        df_for_final = load_all()
+        arch_room = st.selectbox(
+            "운영 종료할 채팅방",
+            options=sorted(ROOMS.keys()),
+            format_func=lambda x: f"{ROOMS.get(x, f'채팅방 {x}')} (채팅방 {x})",
+            key="arch_room_select",
+        )
+        arch_reason = st.text_input(
+            "종료 사유 (선택)",
+            placeholder="예) 강의 완료, 채팅방 통합, 운영 중단",
+            key="arch_reason_input",
+        )
+
+        # 최종 인원 자동 조회
+        _final_m = 0
+        if not df_for_final.empty:
+            _rdf = df_for_final[df_for_final['room_num'] == arch_room].sort_values('date')
+            if not _rdf.empty:
+                _final_m = int(_rdf.iloc[-1]['members'])
+        st.caption(f"마지막 기록 인원: **{_final_m:,}명** (자동 저장됩니다)")
+
+        if st.button("🚪 운영 종료 처리", type="primary", key="arch_btn"):
+            st.session_state['_pending_archive'] = arch_room
+
+        if st.session_state.get('_pending_archive') == arch_room:
+            st.error(
+                f"**{ROOMS.get(arch_room)} (채팅방 {arch_room})** 를 운영 종료 처리합니다. "
+                "활성 채팅방 목록에서 제거되며 인원 입력 폼에서 사라집니다. 계속하시겠습니까?"
+            )
+            ca, cb = st.columns(2)
+            if ca.button("✅ 확인", type="primary", use_container_width=True, key="arch_confirm"):
+                archive_room(
+                    room_num=arch_room,
+                    room_name=ROOMS.get(arch_room, f"채팅방 {arch_room}"),
+                    final_members=_final_m,
+                    reason=arch_reason.strip() or "운영 종료",
+                )
+                st.session_state['_pending_archive'] = None
+                st.success(f"✅ {ROOMS.get(arch_room)} 운영 종료 처리 완료. 이력은 🎓 강의 분석 탭에서 확인하세요.")
+                st.rerun()
+            if cb.button("❌ 취소", use_container_width=True, key="arch_cancel"):
+                st.session_state['_pending_archive'] = None
+                st.rerun()
+    else:
+        st.info("등록된 채팅방이 없습니다.")
 
     st.divider()
 
     # ── 전체 이력 조회 ─────────────────────────────────────────
     st.subheader("모객 이력 전체 조회")
 
+    all_rooms_for_hist = load_all_room_names()
+    _hist_options = sorted(all_rooms_for_hist.keys())
     history_room = st.selectbox(
-        "채팅방 선택",
-        options=ROOM_NUMBERS,
-        format_func=lambda x: ROOMS.get(x, f"채팅방 {x}"),
+        "채팅방 선택 (종료 채팅방 포함)",
+        options=_hist_options,
+        format_func=lambda x: all_rooms_for_hist.get(x, f"채팅방 {x}"),
         key="history_room_select",
     )
 
@@ -2063,9 +2282,12 @@ def tab_campaign():
     else:
         history_df['is_current'] = history_df['is_current'].apply(lambda x: '✅ 진행 중' if x else '종료')
         disp_cols = ['room_num', 'campaign_name', 'product', 'cohort',
-                     'start_date', 'end_date', 'is_current', 'memo']
+                     'start_date', 'lecture_start_date', 'end_date', 'is_current', 'memo']
         history_df = history_df[[c for c in disp_cols if c in history_df.columns]]
-        history_df.columns = ['방 번호', '강의명', '상품', '기수', '시작일', '종료일', '상태', '메모']
+        col_map = {'room_num': '방 번호', 'campaign_name': '강의명', 'product': '상품',
+                   'cohort': '기수', 'start_date': '모객 시작', 'lecture_start_date': '개강일',
+                   'end_date': '종료일', 'is_current': '상태', 'memo': '메모'}
+        history_df = history_df.rename(columns=col_map)
         st.dataframe(history_df, use_container_width=True, hide_index=True)
 
 
