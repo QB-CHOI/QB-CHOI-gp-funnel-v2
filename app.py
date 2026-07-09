@@ -1925,44 +1925,47 @@ def tab_report():
             by_ch_disp['집행 금액(원)'] = by_ch_disp['집행 금액(원)'].apply(lambda x: f"{int(x):,}")
             st.dataframe(by_ch_disp, use_container_width=True, hide_index=True)
 
-    # ── 운영 종료 채팅방 현황 ────────────────────────────────────
+    # ── 운영 종료 채팅방 비교 (선택) ────────────────────────────
     st.divider()
     df_arch_rep = load_archived_rooms()
     archived_report_rows = []
+
     if not df_arch_rep.empty:
-        st.markdown("#### 🗂️ 운영 종료 채팅방 현황")
-        st.caption("채팅방 운영을 종료한 이력입니다. 인원 데이터는 보존됩니다.")
+        include_archived = st.checkbox(
+            "🗂️ 종료 채팅방 비교 데이터 보고서에 포함",
+            value=False,
+            help="비교 분석이 필요할 때만 체크하세요. 기본적으로는 현재 운영 중인 채팅방만 표시됩니다.",
+            key="report_include_archived",
+        )
+        if include_archived:
+            st.caption(f"종료 채팅방 {len(df_arch_rep)}개가 아래 보고서에 포함됩니다.")
+            for _, ar in df_arch_rep.sort_values('room_num').iterrows():
+                rn = int(ar['room_num'])
+                rname = ar['room_name']
+                arch_dt = ar.get('archived_date', '')
+                actual_dt = ar.get('actual_close_date', '')
+                final_m = int(ar.get('final_members', 0))
+                reason = ar.get('archive_reason', '운영 종료')
 
-        for _, ar in df_arch_rep.sort_values('room_num').iterrows():
-            rn = int(ar['room_num'])
-            rname = ar['room_name']
-            arch_dt = ar.get('archived_date', '')
-            actual_dt = ar.get('actual_close_date', '')
-            final_m = int(ar.get('final_members', 0))
-            reason = ar.get('archive_reason', '운영 종료')
+                rdf = df[df['room_num'] == rn].sort_values('date')
+                first_m = int(rdf.iloc[0]['members']) if not rdf.empty else 0
+                peak_m  = int(rdf['members'].max())   if not rdf.empty else final_m
+                op_days = int((rdf['date'].max() - rdf['date'].min()).days) + 1 if len(rdf) > 1 else 1
+                net     = final_m - first_m
+                close_display = actual_dt if actual_dt else arch_dt
 
-            # 전체 인원 이력에서 운영 통계 계산
-            rdf = df[df['room_num'] == rn].sort_values('date')
-            first_m = int(rdf.iloc[0]['members']) if not rdf.empty else 0
-            peak_m  = int(rdf['members'].max())   if not rdf.empty else final_m
-            op_days = int((rdf['date'].max() - rdf['date'].min()).days) + 1 if len(rdf) > 1 else 1
-            net     = final_m - first_m
+                archived_report_rows.append({
+                    '채팅방':     rname,
+                    '실제 종료일': close_display,
+                    '처리일':     arch_dt,
+                    '최종 인원':  final_m,
+                    '최고 인원':  peak_m,
+                    '순증감':     net,
+                    '운영 기간':  op_days,
+                    '종료 사유':  reason,
+                    '_net': net,
+                })
 
-            close_display = actual_dt if actual_dt else arch_dt
-
-            archived_report_rows.append({
-                '채팅방':     rname,
-                '실제 종료일': close_display,
-                '처리일':     arch_dt,
-                '최종 인원':  final_m,
-                '최고 인원':  peak_m,
-                '순증감':     net,
-                '운영 기간':  op_days,
-                '종료 사유':  reason,
-                '_net': net,
-            })
-
-        if archived_report_rows:
             arch_disp_df = pd.DataFrame([
                 {k: v for k, v in r.items() if not k.startswith('_')}
                 for r in archived_report_rows
@@ -1972,8 +1975,6 @@ def tab_report():
             arch_disp_df['순증감']    = arch_disp_df['순증감'].apply(lambda x: f"{x:+,}명")
             arch_disp_df['운영 기간'] = arch_disp_df['운영 기간'].apply(lambda x: f"{x:,}일")
             st.dataframe(arch_disp_df, use_container_width=True, hide_index=True)
-    else:
-        archived_report_rows = []
 
     # ── HTML 보고서 다운로드 ─────────────────────────────────────
     st.divider()
