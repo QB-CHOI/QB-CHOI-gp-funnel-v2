@@ -952,10 +952,19 @@ def trend_forecast_chart(df: pd.DataFrame, room_nums: list = None,
     if not has_data:
         return None
 
-    fig.add_vline(
-        x=str(df['date'].max().date()),
-        line_dash='dash', line_color='#9e9e9e', line_width=1.5,
-        annotation_text='오늘', annotation_position='top left',
+    # add_vline은 annotation과 함께 쓰면 x축 문자열/Timestamp 모두에서 터지므로
+    # shape·annotation을 분리해 추가한다.
+    _today_x = pd.Timestamp(df['date'].max())
+    fig.add_shape(
+        type='line', x0=_today_x, x1=_today_x, xref='x',
+        y0=0, y1=1, yref='paper',
+        line=dict(dash='dash', color='#9e9e9e', width=1.5),
+    )
+    fig.add_annotation(
+        x=_today_x, y=1, xref='x', yref='paper',
+        text='오늘', showarrow=False,
+        xanchor='right', yanchor='bottom',
+        font=dict(size=11, color='#9e9e9e'),
     )
     fig.update_layout(
         title=f'인원 예측 — 7일 MA 스무딩 + 선형 회귀 ({forecast_days}일 예측, ±1σ 구간)',
