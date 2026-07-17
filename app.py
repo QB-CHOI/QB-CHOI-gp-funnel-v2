@@ -78,7 +78,7 @@ with st.sidebar:
                        icon="📅")
 
     st.divider()
-    if st.button("🔄 데이터 새로고침", use_container_width=True,
+    if st.button("🔄 데이터 새로고침", width='stretch',
                  help="GitHub에서 최신 데이터를 강제로 다시 불러옵니다 (3분 캐시 초기화)"):
         load_all.clear()
         load_campaigns.clear()
@@ -197,7 +197,6 @@ def _show_ocr_review(ocr_results: dict, rooms: dict, prev: dict):
 
     st.dataframe(
         df_review.style.apply(_row_color, axis=1),
-        use_container_width=True,
         hide_index=True,
         column_config={
             "인식값": st.column_config.NumberColumn(format="%d명"),
@@ -236,7 +235,7 @@ def _run_auth() -> bool:
     st.subheader("🔒 로그인")
     with st.form("login_form"):
         entered = st.text_input("비밀번호", type="password", placeholder="비밀번호를 입력하세요")
-        if st.form_submit_button("로그인", type="primary", use_container_width=True):
+        if st.form_submit_button("로그인", type="primary", width='stretch'):
             if entered == pw_secret:
                 st.session_state["_authenticated"] = True
                 st.rerun()
@@ -327,7 +326,7 @@ def tab_input():
         img_cols = st.columns(min(len(images), 3))
         for i, (name, img) in enumerate(images):
             with img_cols[i % 3]:
-                st.image(img, caption=name, use_container_width=True)
+                st.image(img, caption=name, width='stretch')
 
         if not st.session_state.ocr_done:
             with st.spinner(f"{len(images)}장 인식 중..."):
@@ -414,7 +413,7 @@ def tab_input():
                 col_reg, col_skip = st.columns(2)
                 with col_reg:
                     if st.button("✅ 선택한 방 등록", type="primary",
-                                 use_container_width=True, key="btn_reg_new"):
+                                 width='stretch', key="btn_reg_new"):
                         rooms_to_add = {
                             rn: (new_room_name_inputs[rn].strip() or f"채팅방 {rn}")
                             for rn in selected_new
@@ -431,7 +430,7 @@ def tab_input():
                         st.rerun()
                 with col_skip:
                     if st.button("❌ 무시 (등록 안 함)",
-                                 use_container_width=True, key="btn_skip_new"):
+                                 width='stretch', key="btn_skip_new"):
                         st.session_state._pending_new_rooms = {}
                         st.rerun()
 
@@ -446,7 +445,7 @@ def tab_input():
         for idx, rn in enumerate(ROOM_NUMBERS):
             with del_cols[idx % 3]:
                 if st.button(f"🗑️ {rn} — {ROOMS[rn]}", key=f"quick_del_{rn}",
-                             use_container_width=True):
+                             width='stretch'):
                     delete_room(rn)
                     load_rooms.clear()
                     st.toast(f"채팅방 {rn} 삭제 완료", icon="🗑️")
@@ -552,7 +551,7 @@ def tab_input():
     col_save, col_reset = st.columns([3, 1])
 
     with col_save:
-        if st.button("💾 저장하기", type="primary", use_container_width=True):
+        if st.button("💾 저장하기", type="primary", width='stretch'):
             room_data = [
                 {'room_num': rn, 'room_name': ROOMS[rn], 'members': v}
                 for rn, v in edited.items()
@@ -603,7 +602,7 @@ def tab_input():
                 st.warning("입력된 인원이 없습니다. 숫자를 확인해주세요.")
 
     with col_reset:
-        if st.button("초기화", use_container_width=True):
+        if st.button("초기화", width='stretch'):
             st.session_state.ocr_done = False
             st.session_state.ocr_results = {}
             st.rerun()
@@ -694,7 +693,7 @@ def tab_dashboard():
     with st.expander("📅 입력 현황 달력 (최근 16주)", expanded=False):
         _fig_cal = calendar_heatmap_chart(df)
         if _fig_cal:
-            st.plotly_chart(_fig_cal, use_container_width=True)
+            st.plotly_chart(_fig_cal)
             _total_days = (date.today() - df['date'].min()).days + 1
             _entered_days = df['date'].nunique()
             st.caption(f"초록: 입력 완료 · 빨강: 데이터 없음 · 총 {_total_days}일 중 {_entered_days}일 입력 ({round(_entered_days/_total_days*100,1)}%)")
@@ -704,11 +703,11 @@ def tab_dashboard():
     with col_c1:
         fig_bar = change_bar_chart(df_today, rooms=ROOMS)
         if fig_bar:
-            st.plotly_chart(fig_bar, use_container_width=True)
+            st.plotly_chart(fig_bar)
     with col_c2:
         fig_prod = product_bar_chart(df, campaigns)
         if fig_prod:
-            st.plotly_chart(fig_prod, use_container_width=True)
+            st.plotly_chart(fig_prod)
         elif not campaigns:
             st.info("⚙️ 채팅방 설정 탭에서 상품 정보를 등록하면 상품별 분석이 표시돼요.")
 
@@ -740,12 +739,12 @@ def tab_dashboard():
         rank_c1, rank_c2 = st.columns(2)
         with rank_c1:
             if fig_rank_top:
-                st.plotly_chart(fig_rank_top, use_container_width=True)
+                st.plotly_chart(fig_rank_top)
             else:
                 st.info("증가한 채팅방이 없습니다.")
         with rank_c2:
             if fig_rank_bot:
-                st.plotly_chart(fig_rank_bot, use_container_width=True)
+                st.plotly_chart(fig_rank_bot)
             else:
                 st.success("감소한 채팅방이 없습니다.")
     else:
@@ -774,7 +773,6 @@ def tab_dashboard():
 
     st.dataframe(
         display.style.apply(_style_change, subset=['증감']),
-        use_container_width=True,
         hide_index=True,
         column_config={
             '총원': st.column_config.NumberColumn(format="%d명"),
@@ -866,7 +864,7 @@ def tab_dashboard():
         fig_churn = churn_rate_chart(df, ROOMS, threshold=churn_threshold)
         if fig_churn:
             with st.expander("📉 이탈률 추이 차트", expanded=False):
-                st.plotly_chart(fig_churn, use_container_width=True)
+                st.plotly_chart(fig_churn)
 
     # ── 채팅방별 주간 성장률 ──────────────────────────────────
     _df_dt = df.copy()
@@ -919,7 +917,7 @@ def tab_dashboard():
                 'D+N': day_label,
                 '메모': info.get('memo', '-'),
             })
-        st.dataframe(pd.DataFrame(camp_rows), use_container_width=True, hide_index=True)
+        st.dataframe(pd.DataFrame(camp_rows), hide_index=True)
 
     # ── 주간 요약 리포트 ──────────────────────────────────────
     with st.expander("📋 주간 요약 리포트", expanded=False):
@@ -1026,17 +1024,17 @@ def tab_conversion():
     # ── 퍼널 차트 ──────────────────────────────────────────────
     fig_funnel = funnel_chart(df_members, df_conv, campaigns, rooms=ROOMS)
     if fig_funnel:
-        st.plotly_chart(fig_funnel, use_container_width=True)
+        st.plotly_chart(fig_funnel)
 
     # ── 전환율 차트 ────────────────────────────────────────────
     fig_conv = conversion_rate_chart(df_conv, campaigns, rooms=ROOMS)
     if fig_conv:
-        st.plotly_chart(fig_conv, use_container_width=True)
+        st.plotly_chart(fig_conv)
 
     # ── 기수별 전환율 비교 ─────────────────────────────────────
     fig_cohort_conv = cohort_conversion_chart(df_conv, campaigns, rooms=ROOMS)
     if fig_cohort_conv:
-        st.plotly_chart(fig_cohort_conv, use_container_width=True)
+        st.plotly_chart(fig_cohort_conv)
     elif not df_conv.empty:
         st.info("전환 데이터를 입력하면 강의별 신청·수강확정·전환율 비교 차트가 표시됩니다.")
 
@@ -1060,7 +1058,7 @@ def tab_conversion():
                                         help="수강료 합계. 0이면 미입력.")
             conv_memo = st.text_input("메모", placeholder="특이사항 등")
 
-        if st.form_submit_button("💾 저장", type="primary", use_container_width=True):
+        if st.form_submit_button("💾 저장", type="primary", width='stretch'):
             save_conversion(
                 room_num=conv_room,
                 date_str=str(conv_date),
@@ -1085,7 +1083,7 @@ def tab_conversion():
         disp = disp[['date', '채팅방', '강의명', 'applicants', 'confirmed', '신청전환율', 'revenue', 'memo']]
         disp.columns = ['날짜', '채팅방', '강의명', '신청자', '수강확정', '전환율', '매출(원)', '메모']
         disp = disp.sort_values('날짜', ascending=False).reset_index(drop=True)
-        st.dataframe(disp, use_container_width=True, hide_index=True)
+        st.dataframe(disp, hide_index=True)
         conv_del_idx = st.number_input(
             "삭제할 행 번호 (0부터, 최신순 기준)",
             min_value=0, max_value=max(0, len(df_conv) - 1),
@@ -1121,7 +1119,7 @@ def tab_conversion():
     # ROI 차트
     fig_roi = roi_chart(df_adspend, df_conv, campaigns, ROOMS)
     if fig_roi:
-        st.plotly_chart(fig_roi, use_container_width=True)
+        st.plotly_chart(fig_roi)
 
     # ── CPM 분석 ──────────────────────────────────────────────────
     if not df_adspend.empty and not df_members.empty:
@@ -1129,7 +1127,7 @@ def tab_conversion():
         st.caption("채팅방별 광고비 대비 인원 증가 효율을 비교합니다. 낮을수록 효율적입니다.")
         fig_cpm = cpm_chart(df_members, df_adspend, ROOMS)
         if fig_cpm:
-            st.plotly_chart(fig_cpm, use_container_width=True)
+            st.plotly_chart(fig_cpm)
 
     # 광고비 입력 폼
     with st.expander("📝 광고비 입력", expanded=df_adspend.empty):
@@ -1150,7 +1148,7 @@ def tab_conversion():
                 ad_clicks = st.number_input("클릭수", min_value=0, step=10, value=0, key="ad_clicks")
                 ad_memo  = st.text_input("메모", placeholder="캠페인명 등", key="ad_memo")
 
-            if st.form_submit_button("💾 광고비 저장", type="primary", use_container_width=True):
+            if st.form_submit_button("💾 광고비 저장", type="primary", width='stretch'):
                 save_adspend(
                     room_num=ad_room, date_str=str(ad_date),
                     channel=ad_channel, spend=int(ad_spend),
@@ -1171,7 +1169,7 @@ def tab_conversion():
             ad_disp = ad_disp[['date', '채팅방', '강의명', 'channel', 'spend', 'impressions', 'clicks', 'memo']]
             ad_disp.columns = ['날짜', '채팅방', '강의명', '채널', '광고비(원)', '노출수', '클릭수', '메모']
             ad_disp = ad_disp.sort_values('날짜', ascending=False).reset_index(drop=True)
-            st.dataframe(ad_disp, use_container_width=True, hide_index=True)
+            st.dataframe(ad_disp, hide_index=True)
             ad_del_idx = st.number_input(
                 "삭제할 행 번호 (0부터, 최신순 기준)",
                 min_value=0, max_value=max(0, len(df_adspend) - 1),
@@ -1201,7 +1199,7 @@ def tab_conversion():
                 c_url   = st.text_input("URL", placeholder="https://...", key="c_url")
                 c_memo  = st.text_input("메모", placeholder="특이사항", key="c_memo")
 
-            if st.form_submit_button("💾 콘텐츠 저장", type="primary", use_container_width=True):
+            if st.form_submit_button("💾 콘텐츠 저장", type="primary", width='stretch'):
                 if not c_title.strip():
                     st.error("제목을 입력해주세요.")
                 else:
@@ -1219,7 +1217,7 @@ def tab_conversion():
             c_disp.columns = ['원본idx', '날짜', '채널', '유형', '제목', 'URL', '메모']
             st.dataframe(
                 c_disp[['날짜', '채널', '유형', '제목', 'URL', '메모']],
-                use_container_width=True, hide_index=True,
+                hide_index=True,
             )
             st.caption(f"총 {len(df_content)}건 기록됨")
 
@@ -1275,7 +1273,7 @@ def tab_conversion():
             })
 
         if effect_rows:
-            st.dataframe(pd.DataFrame(effect_rows), use_container_width=True, hide_index=True)
+            st.dataframe(pd.DataFrame(effect_rows), hide_index=True)
         else:
             st.info("발행일 전후 3일 내 인원 데이터가 충분하지 않아 분석할 수 없습니다.")
 
@@ -1286,7 +1284,7 @@ def tab_conversion():
         st.caption("콘텐츠 발행일 기준으로 전체 채팅방 합산 인원 변화량을 보여줍니다.")
         df_impact = content_impact_table(df_members, df_content)
         if df_impact is not None and not df_impact.empty:
-            st.dataframe(df_impact, use_container_width=True, hide_index=True)
+            st.dataframe(df_impact, hide_index=True)
         else:
             st.info("발행일 기준 +1/+3/+7일 인원 데이터가 충분하지 않습니다.")
 
@@ -1353,17 +1351,17 @@ def tab_trend():
                                 rooms=ROOMS, ad_dates=ad_dates,
                                 content_dates=content_dates)
     if fig_line:
-        st.plotly_chart(fig_line, use_container_width=True)
+        st.plotly_chart(fig_line)
 
     # 전체 합계 막대 차트
     fig_total = total_trend_bar(df_filtered)
     if fig_total:
-        st.plotly_chart(fig_total, use_container_width=True)
+        st.plotly_chart(fig_total)
 
     # ── 주간 비교 차트 ──────────────────────────────────────────
     fig_week = weekly_comparison_chart(df_filtered, rooms=ROOMS)
     if fig_week:
-        st.plotly_chart(fig_week, use_container_width=True)
+        st.plotly_chart(fig_week)
     else:
         st.info("주간 비교는 5일 이상 간격의 데이터가 있으면 자동으로 표시됩니다.")
 
@@ -1372,7 +1370,7 @@ def tab_trend():
     cohort_mode = st.radio("표시 방식", ["절대값", "순증감"], horizontal=True, key="cohort_mode")
     fig_cohort = cohort_trend_chart(df, campaigns, rooms=ROOMS, mode=cohort_mode)
     if fig_cohort:
-        st.plotly_chart(fig_cohort, use_container_width=True)
+        st.plotly_chart(fig_cohort)
     else:
         st.info("⚙️ 채팅방 설정 탭에서 강의를 등록하면 모객 곡선이 표시됩니다.")
 
@@ -1380,7 +1378,7 @@ def tab_trend():
     st.subheader("주간 평균 인원 추이")
     fig_weekly = weekly_aggregate_chart(df_filtered, rooms=ROOMS)
     if fig_weekly:
-        st.plotly_chart(fig_weekly, use_container_width=True)
+        st.plotly_chart(fig_weekly)
     else:
         st.info("주간 집계는 7일 이상의 데이터가 있으면 자동으로 표시됩니다.")
 
@@ -1388,7 +1386,7 @@ def tab_trend():
     st.subheader("월간 순증감 현황")
     fig_monthly = monthly_aggregate_chart(df_filtered, rooms=ROOMS)
     if fig_monthly:
-        st.plotly_chart(fig_monthly, use_container_width=True)
+        st.plotly_chart(fig_monthly)
     else:
         st.info("월간 집계는 30일 이상의 데이터가 있으면 자동으로 표시됩니다.")
 
@@ -1403,7 +1401,7 @@ def tab_trend():
     forecast_targets = forecast_rooms if forecast_rooms else filter_rooms
     fig_forecast = trend_forecast_chart(df, forecast_targets, rooms=ROOMS, forecast_days=7)
     if fig_forecast:
-        st.plotly_chart(fig_forecast, use_container_width=True)
+        st.plotly_chart(fig_forecast)
     else:
         st.info("예측 차트는 채팅방별 21일 이상의 데이터가 있으면 자동으로 표시됩니다.")
 
@@ -1419,7 +1417,7 @@ def tab_trend():
                 _tn_disp = _tn_filtered.copy()
                 _tn_disp['date'] = _tn_disp['date'].astype(str)
                 _tn_disp.columns = ['날짜', '메모']
-                st.dataframe(_tn_disp, use_container_width=True, hide_index=True)
+                st.dataframe(_tn_disp, hide_index=True)
 
 
 # ── 탭: 강의 분석 ────────────────────────────────────────────────
@@ -1456,7 +1454,7 @@ def tab_lecture_analysis():
 
     fig_recruit = recruitment_curve_chart(df_all, df_camps_all, product_arg, rooms=ROOMS)
     if fig_recruit:
-        st.plotly_chart(fig_recruit, use_container_width=True)
+        st.plotly_chart(fig_recruit)
     else:
         st.info("강의 정보가 등록된 채팅방의 인원 데이터가 필요합니다.")
 
@@ -1469,7 +1467,7 @@ def tab_lecture_analysis():
     if has_lecture_date:
         fig_ret = retention_after_opening_chart(df_all, df_camps_all, product_arg)
         if fig_ret:
-            st.plotly_chart(fig_ret, use_container_width=True)
+            st.plotly_chart(fig_ret)
         else:
             st.info("개강일이 설정된 강의의 데이터가 필요합니다.")
     else:
@@ -1491,7 +1489,7 @@ def tab_lecture_analysis():
                     else 'color:#9E9E9E' for v in series]
 
         styled = eff_df.style.apply(_style_status, subset=['상태'])
-        st.dataframe(styled, use_container_width=True, hide_index=True)
+        st.dataframe(styled, hide_index=True)
 
         # CSV 다운로드
         csv_bytes = eff_df.to_csv(index=False).encode('utf-8-sig')
@@ -1573,7 +1571,7 @@ def tab_lecture_analysis():
                     disp = camp_hist[['campaign_name', 'product', 'cohort',
                                       'start_date', 'lecture_start_date', 'end_date', 'memo']].copy()
                     disp.columns = ['강의명', '상품', '기수', '모객 시작', '개강일', '종료일', '메모']
-                    st.dataframe(disp, use_container_width=True, hide_index=True)
+                    st.dataframe(disp, hide_index=True)
                 else:
                     st.warning("강의(캠페인) 이력이 없습니다. 등록하면 강의 분석 탭 모객 곡선에 포함됩니다.")
                     with st.container(border=True):
@@ -1588,7 +1586,7 @@ def tab_lecture_analysis():
                             qc5, qc6 = st.columns(2)
                             q_start  = qc5.date_input("모객 시작일", key=f"qstart_{rn}")
                             q_lstart = qc6.date_input("개강일 (선택)", value=None, key=f"qlstart_{rn}")
-                            if st.form_submit_button("강의 등록", type="primary", use_container_width=True):
+                            if st.form_submit_button("강의 등록", type="primary", width='stretch'):
                                 if q_name.strip():
                                     save_campaign(
                                         room_num=rn,
@@ -1940,10 +1938,10 @@ def tab_report():
     col_l, col_r = st.columns([3, 2])
     with col_l:
         if fig_trend:
-            st.plotly_chart(fig_trend, use_container_width=True)
+            st.plotly_chart(fig_trend)
     with col_r:
         if fig_snap:
-            st.plotly_chart(fig_snap, use_container_width=True)
+            st.plotly_chart(fig_snap)
 
     # ── 채팅방별 증감 성과표 ─────────────────────────────────────
     st.divider()
@@ -1970,7 +1968,7 @@ def tab_report():
 
     if perf_rows:
         perf_df = pd.DataFrame([{k: v for k, v in r.items() if not k.startswith('_')} for r in perf_rows])
-        st.dataframe(perf_df, use_container_width=True, hide_index=True)
+        st.dataframe(perf_df, hide_index=True)
 
     # ── 광고비 요약 (데이터 있을 때만) ──────────────────────────
     ad_rows = []
@@ -1988,7 +1986,7 @@ def tab_report():
                 ad_rows.append({'채널': row['채널'], '집행 금액(원)': f"{int(row['집행 금액(원)']):,}", '비중': row['비중']})
             by_ch_disp = by_ch.copy()
             by_ch_disp['집행 금액(원)'] = by_ch_disp['집행 금액(원)'].apply(lambda x: f"{int(x):,}")
-            st.dataframe(by_ch_disp, use_container_width=True, hide_index=True)
+            st.dataframe(by_ch_disp, hide_index=True)
 
     # ── 운영 종료 채팅방 비교 (선택) ────────────────────────────
     st.divider()
@@ -2041,7 +2039,7 @@ def tab_report():
             arch_disp_df['최고 인원'] = arch_disp_df['최고 인원'].apply(lambda x: f"{x:,}명")
             arch_disp_df['순증감']    = arch_disp_df['순증감'].apply(lambda x: f"{x:+,}명")
             arch_disp_df['운영 기간'] = arch_disp_df['운영 기간'].apply(lambda x: f"{x:,}일")
-            st.dataframe(arch_disp_df, use_container_width=True, hide_index=True)
+            st.dataframe(arch_disp_df, hide_index=True)
 
     # ── HTML 보고서 다운로드 ─────────────────────────────────────
     st.divider()
@@ -2104,7 +2102,7 @@ def tab_report():
         data=report_html.encode("utf-8"),
         file_name=f"채팅방_인원_보고서_{period_label.replace(' ', '_').replace('~', '-')}_{date.today()}.html",
         mime="text/html",
-        use_container_width=True,
+        width='stretch',
         type="primary",
     )
 
@@ -2126,7 +2124,7 @@ def tab_campaign():
                 new_room_num = st.number_input("채팅방 번호", min_value=1, step=1, value=1)
             with col_b:
                 new_room_name = st.text_input("채팅방 이름", placeholder="예) 황금후추 돈버는 사주방 1기")
-            if st.form_submit_button("저장", type="primary", use_container_width=True):
+            if st.form_submit_button("저장", type="primary", width='stretch'):
                 if not new_room_name.strip():
                     st.error("채팅방 이름을 입력해주세요.")
                 else:
@@ -2163,7 +2161,7 @@ def tab_campaign():
                             cs, cc = st.columns(2)
                             with cs:
                                 if st.button("✅", key=f"save_{rn}",
-                                             help="저장", use_container_width=True):
+                                             help="저장", width='stretch'):
                                     name_to_save = new_name.strip() or ROOMS[rn]
                                     if int(new_rn) != rn:
                                         # 번호 변경: 기존 삭제 후 새 번호로 등록
@@ -2179,7 +2177,7 @@ def tab_campaign():
                                     st.rerun()
                             with cc:
                                 if st.button("❌", key=f"cancel_{rn}",
-                                             help="취소", use_container_width=True):
+                                             help="취소", width='stretch'):
                                     st.session_state._editing_room = None
                                     st.rerun()
                 else:
@@ -2252,7 +2250,7 @@ def tab_campaign():
                 height=80,
             )
 
-        submitted = st.form_submit_button("💾 저장하기", type="primary", use_container_width=True)
+        submitted = st.form_submit_button("💾 저장하기", type="primary", width='stretch')
 
         if submitted:
             if not campaign_name.strip():
@@ -2291,7 +2289,7 @@ def tab_campaign():
                 '시작일': info.get('start_date', '-'),
                 '메모': info.get('memo', '-'),
             })
-        st.dataframe(pd.DataFrame(camp_rows), use_container_width=True, hide_index=True)
+        st.dataframe(pd.DataFrame(camp_rows), hide_index=True)
 
         # ── 개강일 빠른 업데이트 ─────────────────────────────────
         with st.expander("📅 개강일 설정 (강의 분석 잔류율 활성화)", expanded=False):
@@ -2371,7 +2369,7 @@ def tab_campaign():
                 "활성 채팅방 목록에서 제거되며 인원 입력 폼에서 사라집니다. 계속하시겠습니까?"
             )
             ca, cb = st.columns(2)
-            if ca.button("✅ 확인", type="primary", use_container_width=True, key="arch_confirm"):
+            if ca.button("✅ 확인", type="primary", width='stretch', key="arch_confirm"):
                 archive_room(
                     room_num=arch_room,
                     room_name=ROOMS.get(arch_room, f"채팅방 {arch_room}"),
@@ -2382,7 +2380,7 @@ def tab_campaign():
                 st.session_state['_pending_archive'] = None
                 st.success(f"✅ {ROOMS.get(arch_room)} 운영 종료 처리 완료. 이력은 🎓 강의 분석 탭에서 확인하세요.")
                 st.rerun()
-            if cb.button("❌ 취소", use_container_width=True, key="arch_cancel"):
+            if cb.button("❌ 취소", width='stretch', key="arch_cancel"):
                 st.session_state['_pending_archive'] = None
                 st.rerun()
     else:
@@ -2414,7 +2412,7 @@ def tab_campaign():
                    'cohort': '기수', 'start_date': '모객 시작', 'lecture_start_date': '개강일',
                    'end_date': '종료일', 'is_current': '상태', 'memo': '메모'}
         history_df = history_df.rename(columns=col_map)
-        st.dataframe(history_df, use_container_width=True, hide_index=True)
+        st.dataframe(history_df, hide_index=True)
 
 
 # ── 탭 5: 데이터 관리 ─────────────────────────────────────────────
@@ -2464,7 +2462,6 @@ def tab_data():
                         '채팅방명':   st.column_config.TextColumn(disabled=True),
                         '인원수':     st.column_config.NumberColumn(min_value=0, step=1, required=True),
                     },
-                    use_container_width=True,
                     hide_index=True,
                     key=f"backfill_editor_{_sel_missing}",
                 )
@@ -2526,7 +2523,6 @@ def tab_data():
             '채팅방명':   st.column_config.TextColumn(disabled=True),
             '인원수':     st.column_config.NumberColumn(min_value=0, step=1, required=True),
         },
-        use_container_width=True,
         hide_index=True,
         key=f"data_editor_{edit_date_str}",
     )
@@ -2566,7 +2562,7 @@ def tab_data():
         _rn = int(_sel_room.split(' — ')[0])
         show = show[show['room_num'] == _rn]
     show = show.sort_values(['date', 'room_num'], ascending=[False, True]).reset_index(drop=True)
-    st.dataframe(show, use_container_width=True, hide_index=True)
+    st.dataframe(show, hide_index=True)
     st.caption(f"{len(show)}행 표시 중 (전체 {len(df)}행)")
 
     col_csv, col_excel, col_zip = st.columns(3)
@@ -2578,7 +2574,7 @@ def tab_data():
             data=csv_bytes,
             file_name=f"채팅방_인원_{date.today()}.csv",
             mime='text/csv',
-            use_container_width=True,
+            width='stretch',
         )
 
     with col_excel:
@@ -2599,7 +2595,7 @@ def tab_data():
             data=excel_bytes,
             file_name=f"채팅방_인원_보고서_{date.today()}.xlsx",
             mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-            use_container_width=True,
+            width='stretch',
         )
 
     with col_zip:
@@ -2622,7 +2618,7 @@ def tab_data():
             data=_zip_buf.getvalue(),
             file_name=f"채팅방_전체백업_{date.today()}.zip",
             mime='application/zip',
-            use_container_width=True,
+            width='stretch',
             help="모든 CSV 데이터를 하나의 ZIP 파일로 다운로드합니다",
         )
 
@@ -2640,12 +2636,12 @@ def tab_data():
             f"'{del_date}' 데이터를 영구 삭제합니다. 되돌릴 수 없습니다. 계속하시겠습니까?"
         )
         col_yes, col_no = st.columns(2)
-        if col_yes.button("✅ 확인 삭제", type="primary", use_container_width=True):
+        if col_yes.button("✅ 확인 삭제", type="primary", width='stretch'):
             delete_date(del_date)
             st.session_state.pending_delete_date = None
             st.success(f"✅ {del_date} 데이터 삭제 완료")
             st.rerun()
-        if col_no.button("❌ 취소", use_container_width=True):
+        if col_no.button("❌ 취소", width='stretch'):
             st.session_state.pending_delete_date = None
             st.rerun()
 
