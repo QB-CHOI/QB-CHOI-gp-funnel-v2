@@ -271,7 +271,7 @@ def generate_html_report(
     if archived_rows:
         arch_rows_html = ""
         for r in archived_rows:
-            net = r.get('_net', 0)
+            net = r.get('순증감', 0)
             net_color = '#2E7D32' if net > 0 else ('#C62828' if net < 0 else '#757575')
             close_label = r.get('실제 종료일', '') or r.get('처리일', '')
             processed = r.get('처리일', '')

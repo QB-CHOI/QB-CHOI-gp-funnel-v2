@@ -1511,16 +1511,22 @@ def tab_lecture_analysis():
     if df_arch.empty:
         st.info("운영 종료 처리된 채팅방이 없습니다.")
     else:
+        # members 전체를 room_num으로 사전 그룹화 (O(N×M) → O(1) 조회)
+        _members_by_room = {
+            rn_: grp for rn_, grp in df_all.groupby('room_num')
+        } if not df_all.empty else {}
+
         for _, ar in df_arch.sort_values('archived_date', ascending=False).iterrows():
             rn        = int(ar['room_num'])
             rname     = ar['room_name']
             arch_dt   = ar['archived_date']
-            actual_dt = str(ar.get('actual_close_date', '') or '')
+            _raw_actual = ar.get('actual_close_date', '')
+            actual_dt = '' if pd.isna(_raw_actual) else str(_raw_actual).strip()
             final_m   = int(ar['final_members'])
             reason    = ar['archive_reason']
 
             # 해당 방의 전체 인원 이력
-            rdf = df_all[df_all['room_num'] == rn].sort_values('date')
+            rdf = _members_by_room.get(rn, pd.DataFrame()).sort_values('date') if rn in _members_by_room else pd.DataFrame()
             first_m = int(rdf.iloc[0]['members']) if not rdf.empty else 0
             peak_m  = int(rdf['members'].max())   if not rdf.empty else 0
             days    = int((rdf['date'].max() - rdf['date'].min()).days) + 1 if len(rdf) > 1 else 1
@@ -1532,10 +1538,7 @@ def tab_lecture_analysis():
 
             close_label = actual_dt if actual_dt else arch_dt
             exp_title = f"**{rname}** (채팅방 {rn}) — 종료일: {close_label}"
-            if not camp_hist.empty:
-                exp_title += " ✅"
-            else:
-                exp_title += " ⚠️ 강의 미등록"
+            exp_title += " ✅" if not camp_hist.empty else " ⚠️ 강의 미등록"
 
             with st.expander(exp_title, expanded=camp_hist.empty):
                 mc1, mc2, mc3, mc4 = st.columns(4)
@@ -1544,9 +1547,10 @@ def tab_lecture_analysis():
                 mc3.metric("전체 순증감", f"{net_s}명")
                 mc4.metric("운영 기간", f"{days}일")
 
-                # ── 실제 종료일 수정 ──────────────────────────────
+                # ── 실제 종료일 수정 (container로 대체 — 중첩 expander 금지) ──
                 st.divider()
-                with st.expander("📅 실제 종료일 수정", expanded=not bool(actual_dt)):
+                with st.container(border=True):
+                    st.markdown("**📅 실제 종료일 수정**")
                     try:
                         _init_date = date.fromisoformat(actual_dt) if actual_dt else date.fromisoformat(arch_dt)
                     except ValueError:
@@ -1572,7 +1576,8 @@ def tab_lecture_analysis():
                     st.dataframe(disp, use_container_width=True, hide_index=True)
                 else:
                     st.warning("강의(캠페인) 이력이 없습니다. 등록하면 강의 분석 탭 모객 곡선에 포함됩니다.")
-                    with st.expander("➕ 강의 빠른 등록"):
+                    with st.container(border=True):
+                        st.markdown("**➕ 강의 빠른 등록**")
                         with st.form(key=f"quick_camp_{rn}"):
                             qc1, qc2 = st.columns(2)
                             q_name   = qc1.text_input("강의명", placeholder="예) 황금사주 무료특강")
@@ -1595,6 +1600,8 @@ def tab_lecture_analysis():
                                         target_count=int(q_target),
                                         lecture_start_date=str(q_lstart) if q_lstart else "",
                                     )
+                                    # 종료된 방이므로 is_current=False로 즉시 변경
+                                    end_campaign(rn)
                                     st.success("강의 등록 완료!")
                                     st.rerun()
                                 else:
@@ -1997,19 +2004,25 @@ def tab_report():
         )
         if include_archived:
             st.caption(f"종료 채팅방 {len(df_arch_rep)}개가 아래 보고서에 포함됩니다.")
+            _rep_members_by_room = {
+                rn_: grp for rn_, grp in df.groupby('room_num')
+            } if not df.empty else {}
+
             for _, ar in df_arch_rep.sort_values('room_num').iterrows():
                 rn = int(ar['room_num'])
                 rname = ar['room_name']
-                arch_dt = ar.get('archived_date', '')
-                actual_dt = ar.get('actual_close_date', '')
+                arch_dt = str(ar.get('archived_date', '') or '')
+                _raw = ar.get('actual_close_date', '')
+                actual_dt = '' if pd.isna(_raw) else str(_raw).strip()
                 final_m = int(ar.get('final_members', 0))
-                reason = ar.get('archive_reason', '운영 종료')
+                reason = str(ar.get('archive_reason', '운영 종료') or '운영 종료')
 
-                rdf = df[df['room_num'] == rn].sort_values('date')
-                first_m = int(rdf.iloc[0]['members']) if not rdf.empty else 0
+                rdf = _rep_members_by_room.get(rn, pd.DataFrame())
+                if not rdf.empty:
+                    rdf = rdf.sort_values('date')
                 peak_m  = int(rdf['members'].max())   if not rdf.empty else final_m
                 op_days = int((rdf['date'].max() - rdf['date'].min()).days) + 1 if len(rdf) > 1 else 1
-                net     = final_m - first_m
+                net     = final_m - (int(rdf.iloc[0]['members']) if not rdf.empty else final_m)
                 close_display = actual_dt if actual_dt else arch_dt
 
                 archived_report_rows.append({
@@ -2021,13 +2034,9 @@ def tab_report():
                     '순증감':     net,
                     '운영 기간':  op_days,
                     '종료 사유':  reason,
-                    '_net': net,
                 })
 
-            arch_disp_df = pd.DataFrame([
-                {k: v for k, v in r.items() if not k.startswith('_')}
-                for r in archived_report_rows
-            ])
+            arch_disp_df = pd.DataFrame(archived_report_rows)
             arch_disp_df['최종 인원'] = arch_disp_df['최종 인원'].apply(lambda x: f"{x:,}명")
             arch_disp_df['최고 인원'] = arch_disp_df['최고 인원'].apply(lambda x: f"{x:,}명")
             arch_disp_df['순증감']    = arch_disp_df['순증감'].apply(lambda x: f"{x:+,}명")
