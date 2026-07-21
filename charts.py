@@ -174,17 +174,20 @@ def product_bar_chart(df: pd.DataFrame, campaigns: dict):
     }
     colors = [color_map.get(p, '#90a4ae') for p in by_product['상품']]
 
+    _mx = float(by_product['총원'].max()) if not by_product.empty else 0
     fig = go.Figure(go.Bar(
         x=by_product['상품'],
         y=by_product['총원'],
         marker_color=colors,
         text=by_product['총원'].apply(lambda x: f'{int(x):,}'),
         textposition='outside',
+        cliponaxis=False,
     ))
     fig.update_layout(
         title=f'상품별 총원 현황 ({latest_date})',
         xaxis_title='상품',
         yaxis_title='총원',
+        yaxis_range=[0, _mx * 1.15] if _mx else None,
         height=320,
         margin=dict(t=50, b=30),
         showlegend=False,
@@ -635,34 +638,40 @@ def ranking_chart(df: pd.DataFrame, rooms: dict = None):
     top3 = top3[top3['diff'] != 0]
     fig_top = None
     if not top3.empty:
+        _mx = float(top3['diff'].max())
         fig_top = go.Figure(go.Bar(
             x=top3['label'],
             y=top3['diff'],
             text=top3['diff'].apply(lambda x: f'+{int(x):,}명' if x > 0 else f'{int(x):,}명'),
             textposition='outside',
+            cliponaxis=False,
             marker_color='#2e7d32',
         ))
         fig_top.update_layout(
             title=f'📈 주간 인원 증가 TOP 3 ({week_ago.date()} → {latest.date()})',
             yaxis_title='증가 인원',
-            height=280, margin=dict(t=50, b=30), showlegend=False,
+            yaxis_range=[0, _mx * 1.2],   # 라벨 헤드룸 확보
+            height=300, margin=dict(t=55, b=30), showlegend=False,
         )
 
     bot3 = merged.nsmallest(3, 'diff')
     bot3 = bot3[bot3['diff'] < 0]
     fig_bot = None
     if not bot3.empty:
+        _mn = float(bot3['diff'].min())
         fig_bot = go.Figure(go.Bar(
             x=bot3['label'],
             y=bot3['diff'],
             text=bot3['diff'].apply(lambda x: f'{int(x):,}명'),
             textposition='outside',
+            cliponaxis=False,
             marker_color='#c62828',
         ))
         fig_bot.update_layout(
             title=f'📉 주간 인원 감소 TOP 3 ({week_ago.date()} → {latest.date()})',
             yaxis_title='감소 인원',
-            height=280, margin=dict(t=50, b=30), showlegend=False,
+            yaxis_range=[_mn * 1.2, 0],   # 아래쪽 라벨 헤드룸
+            height=300, margin=dict(t=55, b=30), showlegend=False,
         )
 
     return fig_top, fig_bot
@@ -1206,8 +1215,8 @@ def recruitment_curve_chart(df: pd.DataFrame, campaigns_df: pd.DataFrame,
             y=rdf['members'].astype(int),
             name=label,
             mode='lines+markers',
-            marker=dict(size=4),
-            line=dict(color=color, width=2),
+            marker=dict(size=3),
+            line=dict(color=color, width=1.5),
             hovertemplate=f'<b>{label}</b><br>D+%{{x}}일<br>%{{y:,}}명<extra></extra>',
         ))
 
@@ -1231,13 +1240,14 @@ def recruitment_curve_chart(df: pd.DataFrame, campaigns_df: pd.DataFrame,
         return None
 
     fig.update_layout(
-        title=f'기수별 모객 곡선{f" — {product_filter}" if product_filter else ""}',
+        title=f'기수별 모객 곡선{f" — {product_filter}" if product_filter else " (전체)"}',
         xaxis_title='모객 시작 후 경과일 (D+N)',
         yaxis_title='인원 수',
-        hovermode='x unified',
-        height=440,
+        hovermode='closest',
+        height=460,
         margin=dict(t=55, b=30, r=20),
-        legend_title='강의',
+        legend=dict(title='강의', font=dict(size=10),
+                    itemsizing='constant', itemwidth=30),
     )
     return fig
 
@@ -1443,24 +1453,37 @@ def cohort_funnel_data(members_df: pd.DataFrame, campaigns_df: pd.DataFrame,
 
 def conversion_funnel_chart(product: str, cohort: str, webinar_peak: int,
                             enrolled: int, revenue: int = 0):
-    """단일 기수 웨비나 → 유료 등록 2단계 퍼널."""
+    """단일 기수 웨비나 → 유료 전환 시각화.
+
+    웨비나→유료는 본래 이탈이 크므로(≈97%) 비례 세로 퍼널은 유료 단계가
+    얇은 조각으로 뭉개진다. 값이 또렷이 읽히는 가로 막대 + 전환율 강조로 표시.
+    """
     if webinar_peak <= 0:
         return None
-    fig = go.Figure(go.Funnel(
-        y=['무료 웨비나 최고인원', '유료 등록'],
+    conv = enrolled / webinar_peak * 100 if webinar_peak > 0 else 0
+
+    fig = go.Figure(go.Bar(
+        y=['① 무료 웨비나 최고인원', '② 유료 등록'],
         x=[webinar_peak, max(enrolled, 0)],
-        textinfo='value+percent initial',
-        texttemplate='%{value:,}명<br>(%{percentInitial:.1%})',
-        marker=dict(color=['#42a5f5', '#2e7d32']),
-        connector=dict(line=dict(color='#bdbdbd', dash='dot', width=1.5)),
+        orientation='h',
+        width=0.5,
+        marker_color=['#42a5f5', '#2e7d32'],
+        text=[f'{webinar_peak:,}명', f'{enrolled:,}명  ·  전환율 {conv:.1f}%'],
+        textposition='outside',
+        cliponaxis=False,
+        hovertemplate='%{y}<br>%{x:,}명<extra></extra>',
     ))
-    title = f'{product} {cohort} · 모객 → 유료 전환'
+    title = f'{product} {cohort} · 모객 → 유료 전환  |  전환율 {conv:.1f}%'
     if revenue and revenue > 0:
         arpu = round(revenue / enrolled) if enrolled > 0 else 0
-        title += f'  |  매출 {revenue:,}원 (객단가 {arpu:,}원)'
+        title += f'  ·  매출 {revenue:,}원 (객단가 {arpu:,}원)'
     fig.update_layout(
-        title=title, height=320,
-        margin=dict(t=55, b=20, l=150, r=40),
+        title=title, height=250,
+        xaxis_title='인원',
+        xaxis_range=[0, webinar_peak * 1.18],   # 라벨 헤드룸
+        yaxis=dict(autorange='reversed'),        # ① 웨비나가 위, ② 유료가 아래
+        margin=dict(t=55, b=35, l=170, r=60),
+        showlegend=False,
     )
     return fig
 

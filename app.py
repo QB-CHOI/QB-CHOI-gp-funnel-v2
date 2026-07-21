@@ -1525,9 +1525,17 @@ def tab_lecture_analysis():
     # ── 1. 기수별 모객 곡선 ───────────────────────────────────
     st.divider()
     st.subheader("📈 기수별 모객 곡선 비교")
-    st.caption("모객 시작일(D+0) 기준 각 기수의 인원 증가 궤적을 비교합니다.")
+    st.caption("모객 시작일(D+0) 기준 각 기수의 인원 증가 궤적입니다. "
+               "💡 위에서 **상품을 선택하면** 같은 상품의 기수끼리 선명하게 비교됩니다.")
 
-    fig_recruit = recruitment_curve_chart(df_all, df_camps_all, product_arg, rooms=ROOMS)
+    # '전체'는 곡선이 겹쳐 스파게티가 되므로 진행 중인 기수만 표시
+    if product_arg is None:
+        _recruit_camps = df_camps_all[df_camps_all['is_current'] == True]
+        st.caption("현재 **진행 중인 기수**만 표시 중입니다. 종료 기수까지 보려면 상품을 선택하세요.")
+    else:
+        _recruit_camps = df_camps_all
+
+    fig_recruit = recruitment_curve_chart(df_all, _recruit_camps, product_arg, rooms=ROOMS)
     if fig_recruit:
         st.plotly_chart(fig_recruit)
     else:
