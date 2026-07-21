@@ -10,6 +10,7 @@ from github_store import (
     load_archived_rooms, archive_room, restore_room, load_all_room_names,
     update_actual_close_date,
     load_conversions, save_conversion, get_latest_conversions, delete_conversion_row,
+    load_enrollments, save_enrollment, delete_enrollment,
     load_adspend, save_adspend, delete_adspend_row,
     load_content, save_content, delete_content_row,
     load_date_notes, save_date_note,
@@ -25,6 +26,7 @@ from charts import (
     cpm_chart, content_impact_table, trend_forecast_chart,
     room_snapshot_chart, period_total_trend, calendar_heatmap_chart,
     recruitment_curve_chart, retention_after_opening_chart, cohort_efficiency_df,
+    cohort_funnel_data, conversion_funnel_chart, cohort_conversion_bar_chart,
 )
 
 st.set_page_config(
@@ -1446,6 +1448,79 @@ def tab_lecture_analysis():
 
     # 활성 + 종료 캠페인 모두 포함
     df_camps_all = df_camps.copy()
+
+    # ── 0. 모객 → 유료 전환 퍼널 ──────────────────────────────
+    st.divider()
+    st.subheader("🔻 모객 → 유료 전환 퍼널")
+    st.caption("무료 웨비나 방 인원이 실제 유료 등록으로 이어진 비율입니다. "
+               "웨비나 최고인원은 자동 계산되고, 유료 등록·매출은 아래에서 입력합니다.")
+
+    df_enroll = load_enrollments()
+    funnel_df = cohort_funnel_data(df_all, df_camps_all, df_enroll, rooms=ROOMS)
+    if product_arg and not funnel_df.empty:
+        funnel_df = funnel_df[funnel_df['product'] == product_arg]
+
+    _has_conv = (not funnel_df.empty) and funnel_df['conversion'].notna().any()
+    if _has_conv:
+        # KPI 요약: 등록 데이터가 있는 기수 기준
+        _fd = funnel_df[funnel_df['conversion'].notna()]
+        _tot_peak = int(_fd['webinar_peak'].sum())
+        _tot_enr  = int(_fd['enrolled'].sum())
+        _tot_rev  = int(_fd['revenue'].sum())
+        _avg_conv = round(_tot_enr / _tot_peak * 100, 2) if _tot_peak > 0 else 0
+        fk1, fk2, fk3, fk4 = st.columns(4)
+        fk1.metric("웨비나 최고인원 합", f"{_tot_peak:,}명")
+        fk2.metric("유료 등록 합", f"{_tot_enr:,}명")
+        fk3.metric("평균 전환율", f"{_avg_conv:.2f}%")
+        fk4.metric("등록 매출 합", f"{_tot_rev:,}원" if _tot_rev > 0 else "—")
+
+        # 기수별 전환율 막대 비교
+        fig_conv_bar = cohort_conversion_bar_chart(funnel_df, product_arg)
+        if fig_conv_bar:
+            st.plotly_chart(fig_conv_bar)
+
+        # 개별 기수 퍼널 (등록 데이터 있는 기수만 선택지 제공)
+        _opts = [f"{r['product']} {r['cohort']}" for _, r in _fd.iterrows()]
+        _sel = st.selectbox("기수별 상세 퍼널", options=_opts, key="funnel_cohort_sel")
+        if _sel:
+            _row = _fd[(_fd['product'] + ' ' + _fd['cohort']) == _sel].iloc[0]
+            fig_funnel = conversion_funnel_chart(
+                _row['product'], _row['cohort'],
+                int(_row['webinar_peak']), int(_row['enrolled']), int(_row['revenue']),
+            )
+            if fig_funnel:
+                st.plotly_chart(fig_funnel)
+    else:
+        st.info("아직 유료 등록 데이터가 없습니다. 아래에서 기수별 등록 인원을 입력하면 "
+                "웨비나 최고인원과 자동 결합해 전환 퍼널이 표시됩니다.")
+
+    # 유료 등록 입력/수정 (개인정보 없이 집계만)
+    with st.expander("✏️ 유료 등록·매출 입력 / 수정", expanded=not _has_conv):
+        st.caption("수강생 명단의 **집계 숫자만** 입력하세요 (이름·연락처 등 개인정보 입력 금지).")
+        # 기수 목록: 캠페인 기준
+        _camp_keys = (df_camps_all[['product', 'cohort']]
+                      .drop_duplicates().sort_values(['product', 'cohort']))
+        _key_opts = [f"{r['product']} {r['cohort']}" for _, r in _camp_keys.iterrows()]
+        with st.form("enroll_form"):
+            ec1, ec2, ec3 = st.columns([2, 1, 1])
+            with ec1:
+                _sel_key = st.selectbox("상품·기수", options=_key_opts, key="enroll_key")
+            # 기존 값 자동 로드
+            _cur_enr, _cur_rev = 0, 0
+            if _sel_key and not df_enroll.empty:
+                _p, _c = _sel_key.rsplit(' ', 1)
+                _m = df_enroll[(df_enroll['product'] == _p) & (df_enroll['cohort'] == _c)]
+                if not _m.empty:
+                    _cur_enr = int(_m.iloc[0]['enrolled']); _cur_rev = int(_m.iloc[0]['revenue'])
+            with ec2:
+                _enr = st.number_input("유료 등록 인원", min_value=0, step=1, value=_cur_enr)
+            with ec3:
+                _rev = st.number_input("등록 매출(원)", min_value=0, step=100000, value=_cur_rev)
+            if st.form_submit_button("저장", type="primary", width='stretch'):
+                _p, _c = _sel_key.rsplit(' ', 1)
+                save_enrollment(_p, _c, int(_enr), int(_rev))
+                st.success(f"{_sel_key} — 등록 {_enr}명 저장 완료")
+                st.rerun()
 
     # ── 1. 기수별 모객 곡선 ───────────────────────────────────
     st.divider()

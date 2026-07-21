@@ -1390,3 +1390,108 @@ def cohort_efficiency_df(df: pd.DataFrame, campaigns_df: pd.DataFrame,
         })
 
     return pd.DataFrame(rows)
+
+
+# ── 모객 → 유료 전환 퍼널 ─────────────────────────────────────────
+
+def cohort_funnel_data(members_df: pd.DataFrame, campaigns_df: pd.DataFrame,
+                       enrollments_df: pd.DataFrame, rooms: dict = None) -> pd.DataFrame:
+    """상품·기수별 웨비나 최고인원 + 유료 등록 결합 테이블.
+
+    한 기수가 여러 방으로 나뉜 경우(예: 사주 11기=32·34·35) 웨비나
+    최고인원을 합산해 기수 단위로 집계한다.
+    """
+    if campaigns_df is None or campaigns_df.empty:
+        return pd.DataFrame()
+
+    m = members_df.copy() if members_df is not None else pd.DataFrame()
+    agg = {}
+    for _, c in campaigns_df.iterrows():
+        rn  = int(c['room_num'])
+        key = (str(c['product']), str(c['cohort']))
+        peak = 0
+        if not m.empty:
+            rdf = m[m['room_num'] == rn]
+            peak = int(rdf['members'].max()) if not rdf.empty else 0
+        r = agg.setdefault(key, {'product': key[0], 'cohort': key[1],
+                                 'rooms': [], 'webinar_peak': 0,
+                                 'enrolled': 0, 'revenue': 0,
+                                 'is_current': False})
+        r['rooms'].append(rn)
+        r['webinar_peak'] += peak
+        if str(c.get('is_current', '')).upper() in ('TRUE', '1', 'YES'):
+            r['is_current'] = True
+
+    if enrollments_df is not None and not enrollments_df.empty:
+        for _, e in enrollments_df.iterrows():
+            key = (str(e['product']), str(e['cohort']))
+            if key in agg:
+                agg[key]['enrolled'] = int(e['enrolled'])
+                agg[key]['revenue']  = int(e['revenue'])
+
+    out = []
+    for r in agg.values():
+        peak, enr = r['webinar_peak'], r['enrolled']
+        r['conversion'] = round(enr / peak * 100, 2) if peak > 0 and enr > 0 else None
+        r['arpu']       = round(r['revenue'] / enr) if enr > 0 and r['revenue'] > 0 else None
+        out.append(r)
+    df = pd.DataFrame(out)
+    if not df.empty:
+        df = df.sort_values(['product', 'cohort']).reset_index(drop=True)
+    return df
+
+
+def conversion_funnel_chart(product: str, cohort: str, webinar_peak: int,
+                            enrolled: int, revenue: int = 0):
+    """단일 기수 웨비나 → 유료 등록 2단계 퍼널."""
+    if webinar_peak <= 0:
+        return None
+    fig = go.Figure(go.Funnel(
+        y=['무료 웨비나 최고인원', '유료 등록'],
+        x=[webinar_peak, max(enrolled, 0)],
+        textinfo='value+percent initial',
+        texttemplate='%{value:,}명<br>(%{percentInitial:.1%})',
+        marker=dict(color=['#42a5f5', '#2e7d32']),
+        connector=dict(line=dict(color='#bdbdbd', dash='dot', width=1.5)),
+    ))
+    title = f'{product} {cohort} · 모객 → 유료 전환'
+    if revenue and revenue > 0:
+        arpu = round(revenue / enrolled) if enrolled > 0 else 0
+        title += f'  |  매출 {revenue:,}원 (객단가 {arpu:,}원)'
+    fig.update_layout(
+        title=title, height=320,
+        margin=dict(t=55, b=20, l=150, r=40),
+    )
+    return fig
+
+
+def cohort_conversion_bar_chart(funnel_df: pd.DataFrame, product_filter: str = None):
+    """기수별 웨비나→유료 전환율 가로 막대 비교."""
+    if funnel_df is None or funnel_df.empty:
+        return None
+    df = funnel_df[funnel_df['conversion'].notna()].copy()
+    if product_filter:
+        df = df[df['product'] == product_filter]
+    if df.empty:
+        return None
+
+    df['label'] = df['product'] + ' ' + df['cohort']
+    df = df.sort_values('conversion')
+    color_map = {'사주': '#5c6bc0', '타로': '#ec407a', '부동산': '#26a69a',
+                 '빌딩': '#ff7043', '기타': '#9e9e9e'}
+    colors = [color_map.get(p, '#90a4ae') for p in df['product']]
+
+    fig = go.Figure(go.Bar(
+        x=df['conversion'], y=df['label'], orientation='h',
+        marker_color=colors,
+        text=df['conversion'].apply(lambda v: f'{v:.1f}%'),
+        textposition='outside',
+        hovertemplate='%{y}<br>전환율 %{x:.2f}%<extra></extra>',
+    ))
+    fig.update_layout(
+        title=f'기수별 웨비나 → 유료 전환율{f" — {product_filter}" if product_filter else ""}',
+        xaxis_title='전환율 (%)', yaxis_title='',
+        height=max(280, 46 * len(df) + 90),
+        margin=dict(t=55, b=30, l=20, r=60),
+    )
+    return fig

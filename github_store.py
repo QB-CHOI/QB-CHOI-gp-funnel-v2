@@ -20,6 +20,10 @@ ARCHIVED_ROOMS_COLS = ['room_num', 'room_name', 'archived_date', 'actual_close_d
 CONVERSIONS_PATH = "data/conversions.csv"
 CONVERSIONS_COLS = ['date', 'room_num', 'applicants', 'confirmed', 'revenue', 'memo']
 
+# 기수별 유료 등록 (웨비나 → 유료 전환 퍼널용). 개인정보 없이 집계만 저장.
+ENROLLMENTS_PATH = "data/enrollments.csv"
+ENROLLMENTS_COLS = ['product', 'cohort', 'enrolled', 'revenue', 'memo']
+
 ADSPEND_PATH = "data/adspend.csv"
 ADSPEND_COLS = ['date', 'room_num', 'channel', 'spend', 'impressions', 'clicks', 'memo']
 
@@ -235,6 +239,47 @@ def end_campaign(room_num: int):
     df.loc[mask, "end_date"]   = str(date.today())
     _write_csv(CAMPAIGNS_PATH, df, f"캠페인 종료: 채팅방 {room_num}")
     load_campaigns.clear()
+
+
+# ── 기수별 유료 등록 (전환 퍼널) ─────────────────────────────────
+
+@st.cache_data(ttl=3600)
+def load_enrollments() -> pd.DataFrame:
+    """상품·기수별 유료 등록 집계 반환 (개인정보 없음)."""
+    df = _read_csv(ENROLLMENTS_PATH, ENROLLMENTS_COLS)
+    if df.empty:
+        return df
+    df['enrolled'] = pd.to_numeric(df['enrolled'], errors='coerce').fillna(0).astype(int)
+    df['revenue']  = pd.to_numeric(df['revenue'], errors='coerce').fillna(0).astype(int)
+    return df
+
+
+def save_enrollment(product: str, cohort: str, enrolled: int,
+                    revenue: int = 0, memo: str = ""):
+    """상품·기수 키로 유료 등록 수·매출 저장(있으면 갱신)."""
+    df = _read_csv(ENROLLMENTS_PATH, ENROLLMENTS_COLS)
+    if not df.empty:
+        mask = (df['product'].astype(str) == str(product)) & \
+               (df['cohort'].astype(str) == str(cohort))
+        df = df[~mask]
+    new_row = pd.DataFrame([{
+        'product': product, 'cohort': cohort,
+        'enrolled': int(enrolled), 'revenue': int(revenue), 'memo': memo,
+    }])
+    combined = pd.concat([df, new_row], ignore_index=True)
+    _write_csv(ENROLLMENTS_PATH, combined, f"유료 등록 저장: {product} {cohort} — {enrolled}명")
+    load_enrollments.clear()
+
+
+def delete_enrollment(product: str, cohort: str):
+    df = _read_csv(ENROLLMENTS_PATH, ENROLLMENTS_COLS)
+    if df.empty:
+        return
+    mask = (df['product'].astype(str) == str(product)) & \
+           (df['cohort'].astype(str) == str(cohort))
+    df = df[~mask]
+    _write_csv(ENROLLMENTS_PATH, df, f"유료 등록 삭제: {product} {cohort}")
+    load_enrollments.clear()
 
 
 # ── 채팅방 목록 ───────────────────────────────────────────────────
