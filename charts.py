@@ -1141,6 +1141,22 @@ def calendar_heatmap_chart(df: pd.DataFrame, weeks: int = 16) -> go.Figure:
 
 # ── 강의 분석 차트 ────────────────────────────────────────────────
 
+def _campaign_end_date(end_raw, fallback):
+    """캠페인 end_date를 안전하게 해석. 비어 있거나 NaN이면 fallback 반환.
+
+    빈 CSV 셀은 pandas가 float NaN으로 읽는데, NaN은 truthy라
+    `end_raw and ...` 가드를 통과해 pd.to_datetime(NaN)=NaT가 되면
+    이후 `date <= NaT` 비교가 전부 False가 되어 데이터가 통째로 걸러진다.
+    """
+    if end_raw is None or (isinstance(end_raw, float) and pd.isna(end_raw)):
+        return fallback
+    s = str(end_raw).strip()
+    if not s or s.lower() == 'nan':
+        return fallback
+    dt = pd.to_datetime(s, errors='coerce')
+    return fallback if pd.isna(dt) else dt
+
+
 def recruitment_curve_chart(df: pd.DataFrame, campaigns_df: pd.DataFrame,
                              product_filter: str = None, rooms: dict = None) -> go.Figure:
     """기수별 모객 곡선 — D+N일 기준 인원 추이 (같은 상품 여러 기수 비교)."""
@@ -1168,8 +1184,7 @@ def recruitment_curve_chart(df: pd.DataFrame, campaigns_df: pd.DataFrame,
         if pd.isna(start):
             continue
 
-        end_raw = c.get('end_date', '')
-        end = pd.to_datetime(end_raw) if end_raw and str(end_raw).strip() else df['date'].max()
+        end = _campaign_end_date(c.get('end_date', ''), df['date'].max())
 
         rdf = df[(df['room_num'] == rn) &
                  (df['date'] >= start) &
@@ -1254,8 +1269,7 @@ def retention_after_opening_chart(df: pd.DataFrame, campaigns_df: pd.DataFrame,
         rn = int(c['room_num'])
         lecture_start = pd.to_datetime(c['lecture_start_date'])
 
-        end_raw = c.get('end_date', '')
-        end = pd.to_datetime(end_raw) if end_raw and str(end_raw).strip() else df['date'].max()
+        end = _campaign_end_date(c.get('end_date', ''), df['date'].max())
 
         rdf = df[(df['room_num'] == rn) &
                  (df['date'] >= lecture_start) &
@@ -1324,8 +1338,7 @@ def cohort_efficiency_df(df: pd.DataFrame, campaigns_df: pd.DataFrame,
         if pd.isna(start):
             continue
 
-        end_raw = c.get('end_date', '')
-        end = pd.to_datetime(end_raw) if end_raw and str(end_raw).strip() else df['date'].max()
+        end = _campaign_end_date(c.get('end_date', ''), df['date'].max())
 
         rdf = df[(df['room_num'] == rn) &
                  (df['date'] >= start) &
