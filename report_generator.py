@@ -21,6 +21,7 @@ def generate_html_report(
     chart_snap_html: str = None,    # plotly to_html fragment (현황 스냅샷)
     comparison_rows: list = None,   # [{'label': '전주 대비', 'diff': int, 'pct': float, 'ref_date': str}]
     archived_rows: list = None,     # [{'채팅방', '실제 종료일', '처리일', '최종 인원', '최고 인원', '순증감', '운영 기간', '종료 사유', '_net'}]
+    funnel_rows: list = None,       # [{'label', 'webinar_peak', 'enrolled', 'conversion', 'revenue'}]
 ) -> str:
     today_str = str(_date.today())
 
@@ -306,6 +307,45 @@ def generate_html_report(
         </table>
         """
 
+    # ── 모객 → 유료 전환 퍼널 ────────────────────────────────────────
+    funnel_html = ""
+    if funnel_rows:
+        f_rows = ""
+        for r in funnel_rows:
+            peak = int(r.get('webinar_peak', 0))
+            enr  = int(r.get('enrolled', 0))
+            conv = r.get('conversion', None)
+            rev  = int(r.get('revenue', 0))
+            conv_s = f"{conv:.1f}%" if conv is not None else "—"
+            # CSS 비율 바 (전환율 시각화, 최소 폭 보장)
+            bar_w = max(2, min(100, (conv or 0) * 6))  # 전환율 1%≈6% 폭 (가독성용 확대)
+            f_rows += f"""
+            <tr>
+                <td>{r.get('label','')}</td>
+                <td style="text-align:right">{peak:,}명</td>
+                <td style="text-align:right;font-weight:600">{enr:,}명</td>
+                <td class="bar-cell">
+                    <div class="bar-wrap">
+                        <div class="bar-bg"><div class="bar-fill" style="width:{bar_w}%;background:#2E7D32"></div></div>
+                        <span class="bar-label" style="color:#2E7D32;font-weight:700">{conv_s}</span>
+                    </div>
+                </td>
+                <td style="text-align:right">{f"{rev:,}원" if rev > 0 else "—"}</td>
+            </tr>"""
+        funnel_html = f"""
+        <div class="section-title">🔻 모객 → 유료 전환 퍼널</div>
+        <table>
+            <thead><tr>
+                <th>상품·기수</th>
+                <th style="text-align:right">웨비나 최고인원</th>
+                <th style="text-align:right">유료 등록</th>
+                <th>전환율</th>
+                <th style="text-align:right">등록 매출</th>
+            </tr></thead>
+            <tbody>{f_rows}</tbody>
+        </table>
+        """
+
     # ── Plotly 차트 섹션 ─────────────────────────────────────────────
     plotly_js_tag = '<script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>'
     has_charts = bool(chart_trend_html or chart_snap_html)
@@ -342,6 +382,7 @@ def generate_html_report(
     {chart_snap_section}
     {chart_trend_section}
     {perf_html}
+    {funnel_html}
     {archived_html}
     {ad_html}
     <div class="footer">본 보고서는 채팅방 인원 분석 시스템에서 자동 생성되었습니다.</div>

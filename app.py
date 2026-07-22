@@ -2163,6 +2163,23 @@ def tab_report():
             _cp = round(_cd / _ref_total * 100, 1)
             _comparison_rows.append({'label': _label, 'diff': _cd, 'pct': _cp, 'ref_date': _ref_date})
 
+    # 전환 퍼널 (등록 데이터가 있는 기수만 보고서에 포함)
+    _funnel_rows = None
+    try:
+        _fdf = cohort_funnel_data(df, load_campaigns(), load_enrollments(), rooms=ROOMS)
+        if not _fdf.empty:
+            _fd = _fdf[_fdf['conversion'].notna()]
+            if not _fd.empty:
+                _funnel_rows = [{
+                    'label': f"{r['product']} {r['cohort']}",
+                    'webinar_peak': int(r['webinar_peak']),
+                    'enrolled': int(r['enrolled']),
+                    'conversion': float(r['conversion']),
+                    'revenue': int(r['revenue']),
+                } for _, r in _fd.iterrows()]
+    except Exception:
+        _funnel_rows = None
+
     report_html = generate_html_report(
         period_label=period_label,
         first_date=first_date,
@@ -2179,6 +2196,7 @@ def tab_report():
         chart_trend_html=_trend_fragment or None,
         comparison_rows=_comparison_rows or None,
         archived_rows=archived_report_rows or None,
+        funnel_rows=_funnel_rows,
     )
     st.download_button(
         label="🖨️ 보고서 다운로드 (HTML → 브라우저에서 Ctrl+P로 PDF 저장)",
