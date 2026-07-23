@@ -2198,14 +2198,47 @@ def tab_report():
         archived_rows=archived_report_rows or None,
         funnel_rows=_funnel_rows,
     )
-    st.download_button(
-        label="🖨️ 보고서 다운로드 (HTML → 브라우저에서 Ctrl+P로 PDF 저장)",
-        data=report_html.encode("utf-8"),
-        file_name=f"채팅방_인원_보고서_{period_label.replace(' ', '_').replace('~', '-')}_{date.today()}.html",
-        mime="text/html",
-        width='stretch',
-        type="primary",
-    )
+    # PDF 보고서 (대기업 업무 보고서 양식) — 서버에서 직접 생성
+    _pdf_bytes = None
+    try:
+        from pdf_report import generate_pdf_report
+        _pdf_bytes = generate_pdf_report(
+            period_label=period_label,
+            first_date=str(first_date), last_date=str(last_date),
+            total_now=total_now, diff=diff, pct=pct,
+            period_spend=period_spend, conv_rate=conv_rate,
+            insight_lines=insight_lines, perf_rows=perf_rows,
+            comparison_rows=_comparison_rows or None,
+            funnel_rows=_funnel_rows,
+            archived_rows=archived_report_rows or None,
+        )
+    except Exception as _e:
+        _pdf_bytes = None
+        _pdf_err = str(_e)
+
+    _fname = f"채팅방_모객전환_보고서_{period_label.replace(' ', '_').replace('~', '-')}_{date.today()}"
+    dc1, dc2 = st.columns(2)
+    with dc1:
+        if _pdf_bytes:
+            st.download_button(
+                label="📄 PDF 보고서 다운로드 (바로 출력용)",
+                data=_pdf_bytes,
+                file_name=f"{_fname}.pdf",
+                mime="application/pdf",
+                width='stretch',
+                type="primary",
+            )
+        else:
+            st.button("📄 PDF 생성 실패", disabled=True, width='stretch')
+            st.caption(f"PDF 엔진 오류: {_pdf_err if '_pdf_err' in dir() else '알 수 없음'}")
+    with dc2:
+        st.download_button(
+            label="🖨️ HTML 보고서 (인터랙티브 차트)",
+            data=report_html.encode("utf-8"),
+            file_name=f"{_fname}.html",
+            mime="text/html",
+            width='stretch',
+        )
 
 
 # ── 탭 4: 채팅방 설정 ────────────────────────────────────────────
