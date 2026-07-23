@@ -37,11 +37,12 @@ from charts import (
     cohort_revenue_chart, product_revenue_mix_chart, monthly_roas_chart,
     region_distribution_chart, region_capital_trend_chart, region_city_chart,
     product_ad_roi_chart,
+    overall_conversion_funnel, product_conversion_rate_chart,
 )
 
 st.set_page_config(
     page_title="황금후추 강의 분석",
-    page_icon="🌶️",
+    page_icon="📊",
     layout="wide",
 )
 
@@ -65,7 +66,7 @@ div[data-testid="stDataFrame"] td { white-space: nowrap; }
 # ── 사이드바 — 캐시 새로고침 ─────────────────────────────────────
 
 with st.sidebar:
-    st.markdown("### 🌶️ 황금후추 강의 분석")
+    st.markdown("### 📊 황금후추 강의 분석")
     st.divider()
 
     # 오늘 입력 상태
@@ -243,7 +244,7 @@ def _run_auth() -> bool:
     if st.session_state.get("_authenticated"):
         return True
 
-    st.title("🌶️ 황금후추 강의 분석")
+    st.title("📊 황금후추 강의 분석")
     st.subheader("🔒 로그인")
     with st.form("login_form"):
         entered = st.text_input("비밀번호", type="password", placeholder="비밀번호를 입력하세요")
@@ -262,14 +263,17 @@ def main():
     if not _run_auth():
         return
 
-    st.title("🌶️ 황금후추 강의 분석")
+    st.title("📊 황금후추 강의 분석")
 
-    tab1, tab2, tab3, tab4, tab5, tab9, tab10, tab6, tab7, tab8 = st.tabs([
-        "📸 오늘 입력", "📊 현황", "📋 전환 분석", "📈 추이 그래프",
+    (tab_ov, tab1, tab2, tab3, tab4, tab5, tab9, tab10,
+     tab6, tab7, tab8) = st.tabs([
+        "🧭 종합 보고", "📸 오늘 입력", "📊 현황", "📋 전환 분석", "📈 추이 그래프",
         "🎓 강의 분석", "📢 마케팅 분석", "📍 지역 분석",
         "📑 경영진 보고", "⚙️ 채팅방 설정", "🗂️ 데이터 관리",
     ])
 
+    with tab_ov:
+        tab_overview()
     with tab1:
         tab_input()
     with tab2:
@@ -290,6 +294,177 @@ def main():
         tab_campaign()
     with tab8:
         tab_data()
+
+
+# ── 탭: 종합 보고 (전략 대시보드) ─────────────────────────────────
+
+def _product_master_table():
+    """상품군 통합 요약: 매출·유료·무료·전환율·객단가 + 광고비·광고ROAS."""
+    cs = load_course_summary()
+    camp = load_campaign_adspend()
+    if cs.empty:
+        return pd.DataFrame()
+    m = cs.copy()
+    m['전환율'] = (m['paid'] / m['free'].replace(0, pd.NA) * 100).round(1).fillna(0)
+    m['객단가'] = (m['revenue'] / m['paid'].replace(0, pd.NA)).fillna(0).astype(int)
+    if not camp.empty:
+        ad = camp.groupby('product').agg(ad=('ad_spend', 'sum'),
+                                         lrev=('live_revenue', 'sum')).reset_index()
+        ad['광고ROAS'] = (ad['lrev'] / ad['ad'].replace(0, pd.NA)).round(1).fillna(0)
+        m = m.merge(ad[['product', 'ad', '광고ROAS']], on='product', how='left')
+    else:
+        m['ad'] = 0
+        m['광고ROAS'] = 0
+    m['ad'] = m['ad'].fillna(0)
+    m['광고ROAS'] = m['광고ROAS'].fillna(0)
+    return m.sort_values('revenue', ascending=False)
+
+
+def tab_overview():
+    st.header("🧭 종합 보고 — 전략 대시보드")
+    st.caption("모객 · 매출 · 전환 · 광고 ROI · 지역을 한 화면에 종합한 경영 전략 요약입니다. "
+               "모든 수치는 강의 집계·광고비·지역 실데이터에서 자동 계산됩니다.")
+
+    cs = load_course_summary()
+    if cs.empty:
+        st.info("강의 집계 데이터가 아직 없습니다. 데이터가 이관되면 종합 보고가 표시됩니다.")
+        return
+
+    camp = load_campaign_adspend()
+    region = load_region_signups()
+    rc = load_region_cohort()
+    perf = load_monthly_performance()
+    ad_m = load_ad_spend_monthly()
+
+    # ── 핵심 지표 ───────────────────────────────────────
+    tot_rev = int(cs['revenue'].sum())
+    tot_free = int(cs['free'].sum())
+    tot_paid = int(cs['paid'].sum())
+    conv = tot_paid / tot_free * 100 if tot_free else 0
+
+    roas_txt, _roas_help = "—", "월별 광고비 입력 시 표시"
+    if not perf.empty and not ad_m.empty:
+        _am = set(ad_m['month'].astype(str))
+        _sp = int(ad_m['spend'].sum())
+        _rv = int(perf[perf['month'].astype(str).isin(_am)]['revenue'].sum())
+        if _sp:
+            roas_txt = f"{_rv/_sp:.1f}배"
+            _roas_help = f"매출 {_rv/1e8:.1f}억 ÷ 광고비 {_sp/1e8:.1f}억 (집행 기간)"
+
+    cap_pct = 0.0
+    if not region.empty:
+        _t = int(region['signups'].sum())
+        _c = int(region[region['region'].isin(CAPITAL_REGIONS)]['signups'].sum())
+        cap_pct = _c / _t * 100 if _t else 0
+
+    # 광고 최고효율 상품
+    _best_ad = None
+    if not camp.empty:
+        _g = camp.groupby('product').agg(ad=('ad_spend', 'sum'),
+                                         rev=('live_revenue', 'sum')).reset_index()
+        _g = _g[_g['ad'] > 0]
+        if not _g.empty:
+            _g['roas'] = _g['rev'] / _g['ad']
+            _best_ad = _g.loc[_g['roas'].idxmax()]
+
+    st.markdown("#### 핵심 지표")
+    a, b, c, d = st.columns(4)
+    a.metric("누적 매출", f"{tot_rev/1e8:,.1f}억원")
+    b.metric("무료 모객", f"{tot_free:,}명")
+    c.metric("유료 수강", f"{tot_paid:,}건")
+    d.metric("무료→유료 전환", f"{conv:.1f}%")
+    e, f, g, h = st.columns(4)
+    e.metric("누적 ROAS", roas_txt, help=_roas_help)
+    f.metric("수도권 집중도", f"{cap_pct:.0f}%" if cap_pct else "—",
+             help="배송지 기준 서울·경기·인천 비중")
+    if _best_ad is not None:
+        g.metric("광고 최고효율", f"{_best_ad['product']} {_best_ad['roas']:.1f}배")
+    else:
+        g.metric("광고 최고효율", "—")
+    _top_rev = cs.sort_values('revenue', ascending=False).iloc[0]
+    h.metric("매출 1위 상품", f"{_top_rev['product']} {_top_rev['revenue']/1e8:.1f}억")
+
+    st.divider()
+
+    # ── 전략 브리핑 ─────────────────────────────────────
+    _brief = _strategy_briefing()
+    if _brief:
+        with st.container(border=True):
+            st.markdown("#### 🎯 전략 브리핑 — 지금 해야 할 것")
+            for _icon, _title, _body in _brief:
+                st.markdown(f"- **{_icon} {_title}** — {_body}")
+
+    st.divider()
+
+    # ── 도식 4종 (2×2) ──────────────────────────────────
+    st.markdown("#### 종합 도식")
+    o1, o2 = st.columns(2)
+    with o1:
+        _fig = product_revenue_mix_chart(cs)
+        if _fig:
+            st.plotly_chart(_fig, key="ov_mix")
+    with o2:
+        if not camp.empty:
+            _fig = product_ad_roi_chart(camp)
+            if _fig:
+                st.plotly_chart(_fig, key="ov_adroi")
+    o3, o4 = st.columns(2)
+    with o3:
+        _fig = product_conversion_rate_chart(cs)
+        if _fig:
+            st.plotly_chart(_fig, key="ov_conv")
+    with o4:
+        if not region.empty:
+            _fig = region_distribution_chart(region, capital=tuple(CAPITAL_REGIONS))
+            if _fig:
+                st.plotly_chart(_fig, key="ov_region")
+
+    # ── 상품군 통합 요약표 ──────────────────────────────
+    st.divider()
+    st.markdown("#### 상품군 통합 요약표")
+    m = _product_master_table()
+    if not m.empty:
+        disp = pd.DataFrame({
+            '상품군': m['product'],
+            '누적매출': m['revenue'].apply(lambda x: f"{x/1e8:,.2f}억"),
+            '유료': m['paid'].apply(lambda x: f"{x:,}"),
+            '무료모객': m['free'].apply(lambda x: f"{x:,}"),
+            '전환율': m['전환율'].apply(lambda x: f"{x}%"),
+            '객단가': m['객단가'].apply(lambda x: f"{x/1e4:,.0f}만"),
+            '광고비': m['ad'].apply(lambda x: f"{x/1e8:,.2f}억" if x else "—"),
+            '광고ROAS': m['광고ROAS'].apply(lambda x: f"{x:.1f}배" if x else "—"),
+        })
+        st.dataframe(disp, hide_index=True, width='stretch')
+        st.caption("매출·전환·객단가=강의 집계 / 광고비·광고ROAS=통합시트 캠페인별 귀속. "
+                   "광고ROAS의 매출은 라이브 첫전환 기준(누적매출과 별개).")
+
+    # ── 전략 결론 ───────────────────────────────────────
+    st.divider()
+    st.markdown("#### 📌 전략 결론")
+    _pts = []
+    if _best_ad is not None and not m.empty:
+        _low = m.sort_values('광고ROAS')
+        _low = _low[_low['광고ROAS'] > 0]
+        _worst_ad = _low.iloc[0] if not _low.empty else None
+        _pts.append(f"**광고 예산**: 광고 효율 1위 **{_best_ad['product']}({_best_ad['roas']:.1f}배)** 확대, "
+                    + (f"효율이 낮은 **{_worst_ad['product']}({_worst_ad['광고ROAS']:.1f}배)**는 소재·타깃 개선 후 재배분."
+                       if _worst_ad is not None else ""))
+    _cvbest = cs.copy()
+    _cvbest['cv'] = _cvbest['paid'] / _cvbest['free'].replace(0, pd.NA)
+    _cvbest = _cvbest.dropna(subset=['cv'])
+    if not _cvbest.empty:
+        _cb = _cvbest.loc[_cvbest['cv'].idxmax()]
+        _pts.append(f"**모객 확대**: 전환율 최고 **{_cb['product']}({_cb['cv']*100:.1f}%)**는 무료 모객을 늘릴수록 "
+                    "유료 성과 직결 — 무료 특강 물량 확대 1순위.")
+    if cap_pct:
+        _pts.append(f"**지역 타깃**: 수도권 집중도 **{cap_pct:.0f}%** — 광고 예산을 서울·경기·인천에 우선 배정, "
+                    "부산·경남 영남권을 보조 타깃으로.")
+    _hi_aov = m.sort_values('객단가', ascending=False).iloc[0] if not m.empty else None
+    if _hi_aov is not None:
+        _pts.append(f"**고가 라인**: 객단가 최고 **{_hi_aov['product']}({_hi_aov['객단가']/1e4:,.0f}만원)**는 "
+                    "패키지·업셀 강화로 매출 레버리지가 큼.")
+    for _p in _pts:
+        st.markdown(f"- {_p}")
 
 
 # ── 탭 1: 오늘 입력 ───────────────────────────────────────────────
@@ -1012,7 +1187,46 @@ def tab_dashboard():
 def tab_conversion():
     ROOMS = load_rooms()
     st.header("전환 분석")
-    st.caption("채팅방 인원 → 강의 신청 → 수강 확정까지 전환 흐름을 기록하고 분석합니다.")
+    st.caption("무료 특강 모객 → 유료 수강 전환을 강의 집계 실데이터로 분석하고, "
+               "일별 신청·수강확정도 함께 기록합니다.")
+
+    # ══ 실데이터 전환 (강의 집계: 무료 모객 → 유료 수강) ═══════════
+    _csum = load_course_summary()
+    if not _csum.empty:
+        st.subheader("🔻 무료 특강 → 유료 수강 전환 (전체 실적)")
+        st.caption("아임웹 강의 집계 기준. 무료 특강으로 모은 인원이 실제 유료 수강으로 "
+                   "이어진 비율입니다. (세트합계·멤버십 제외)")
+        _tf = int(_csum['free'].sum())
+        _tp = int(_csum['paid'].sum())
+        _tr = int(_csum['revenue'].sum())
+        _cv = (_tp / _tf * 100) if _tf else 0
+        kk1, kk2, kk3, kk4 = st.columns(4)
+        kk1.metric("무료 특강 모객", f"{_tf:,}명")
+        kk2.metric("유료 수강 전환", f"{_tp:,}건")
+        kk3.metric("종합 전환율", f"{_cv:.1f}%", help="유료 수강 ÷ 무료 모객")
+        kk4.metric("누적 매출", f"{_tr/1e8:,.1f}억원")
+
+        cvc1, cvc2 = st.columns([1, 1.25])
+        with cvc1:
+            _ff = overall_conversion_funnel(_tf, _tp)
+            if _ff:
+                st.plotly_chart(_ff, key="conv_overall_funnel")
+        with cvc2:
+            _fp = product_conversion_rate_chart(_csum)
+            if _fp:
+                st.plotly_chart(_fp, key="conv_prod_rate")
+        # 최고 전환 상품 인사이트
+        _cc = _csum.copy()
+        _cc['cv'] = _cc['paid'] / _cc['free'].replace(0, pd.NA)
+        _cc = _cc.dropna(subset=['cv'])
+        if not _cc.empty:
+            _bp = _cc.loc[_cc['cv'].idxmax()]
+            st.info(f"💡 **{_bp['product']}**의 무료→유료 전환율이 **{_bp['cv']*100:.1f}%**로 가장 높습니다 — "
+                    "무료 모객을 늘릴수록 유료 성과가 가장 잘 따라오는 상품군입니다.")
+        st.divider()
+        st.subheader("📋 일별 신청·수강 확정 기록")
+        st.caption("아래는 채팅방별로 **일 단위 신청자·수강확정**을 수기 입력해 추적하는 영역입니다. "
+                   "입력한 방만 그래프에 나타납니다.")
 
     campaigns = get_current_campaigns()
     if not campaigns:
@@ -2252,7 +2466,18 @@ def tab_region():
     # ── 기수별 수도권 비중 추이 ──────────────────────────
     if not rc.empty:
         st.divider()
-        st.subheader("기수별 모집 · 수도권 비중")
+        st.subheader("기수별 모집 현황")
+        # 기수별 카드 (모집기간·일수·총신청·수도권 비중)
+        _rcs = rc.sort_values('cohort')
+        _cards = st.columns(len(_rcs))
+        for _col, (_, _r) in zip(_cards, _rcs.iterrows()):
+            with _col:
+                st.markdown(f"**{_r['cohort']}**")
+                st.metric("총 신청", f"{int(_r['total'])}명",
+                          delta=f"수도권 {_r['capital_pct']:.0f}%", delta_color="off")
+                st.caption(f"📅 {_r['start']}\n~ {_r['end']}\n\n⏱️ {int(_r['days'])}일 모집")
+
+        st.markdown("**총 신청 · 수도권 비중 추이**")
         fig_t = region_capital_trend_chart(rc)
         if fig_t:
             st.plotly_chart(fig_t, key="rgn_trend")

@@ -3,6 +3,25 @@ import plotly.express as px
 import pandas as pd
 
 
+def _space_legend(fig, height: int = 400, title_size: int = 15, bottom: int = 45):
+    """제목·범례가 겹치지 않도록 상단 여백을 넉넉히 확보하고 범례를 상단에 배치.
+
+    대부분의 차트가 제목(상단) + 가로 범례(y=1.02)를 함께 쓰면서 상단 여백이
+    부족해 서로 딱 붙어 보였다. 상단 여백을 크게 주고 제목을 최상단에, 범례를
+    플롯 바로 위에 두어 시각적으로 분리한다. yaxis2 등 기존 축 설정은 보존.
+    """
+    fig.update_layout(
+        height=height,
+        margin=dict(t=92, b=bottom, l=28, r=28),
+        title=dict(y=0.98, yanchor='top', x=0.0, xanchor='left',
+                   font=dict(size=title_size)),
+        legend=dict(orientation='h', yanchor='bottom', y=1.02, x=0.0,
+                    font=dict(size=11), itemwidth=45,
+                    bgcolor='rgba(0,0,0,0)'),
+    )
+    return fig
+
+
 def trend_line_chart(df: pd.DataFrame, room_nums: list = None, targets: dict = None,
                      rooms: dict = None, ad_dates=None, content_dates=None):
     """방별 인원 추이 라인 차트.
@@ -233,14 +252,11 @@ def weekly_comparison_chart(df: pd.DataFrame, rooms: dict = None):
                          marker_color='#1565c0'))
     fig.update_layout(
         title=f'주간 비교 ({week_ago.date()} vs {latest.date()})',
-        barmode='group',
-        xaxis_title='채팅방',
-        yaxis_title='인원 수',
-        height=360,
-        margin=dict(t=50, b=30),
-        legend=dict(orientation='h', yanchor='bottom', y=1.02),
+        barmode='group', bargap=0.3, bargroupgap=0.1,
+        xaxis_title='', yaxis_title='인원 수',
+        xaxis=dict(tickangle=-12),
     )
-    return fig
+    return _space_legend(fig, height=390, bottom=55)
 
 
 def churn_rate_chart(df: pd.DataFrame, rooms: dict = None, threshold: int = 5):
@@ -345,14 +361,11 @@ def roi_chart(df_adspend: pd.DataFrame, df_conv: pd.DataFrame,
     ))
     fig.update_layout(
         title='채널별 광고비 및 ROAS',
-        barmode='group',
-        height=360,
-        margin=dict(t=50, b=30),
-        legend=dict(orientation='h', yanchor='bottom', y=1.02),
+        barmode='group', bargap=0.3,
         yaxis=dict(title='광고비(원)'),
         yaxis2=dict(title='ROAS', overlaying='y', side='right', showgrid=False),
     )
-    return fig
+    return _space_legend(fig, height=390)
 
 
 def cohort_conversion_chart(df_conv: pd.DataFrame, campaigns: dict, rooms: dict = None):
@@ -413,18 +426,15 @@ def cohort_conversion_chart(df_conv: pd.DataFrame, campaigns: dict, rooms: dict 
     ))
     fig.update_layout(
         title='강의별 신청·수강확정·전환율 비교',
-        barmode='group',
-        xaxis_title='강의',
+        barmode='group', bargap=0.32, bargroupgap=0.12,
+        xaxis_title='', xaxis=dict(tickangle=-12),
         yaxis=dict(title='인원 수'),
         yaxis2=dict(
             title='전환율 (%)', overlaying='y', side='right',
             showgrid=False, range=[0, 115],
         ),
-        height=380,
-        margin=dict(t=50, b=30),
-        legend=dict(orientation='h', yanchor='bottom', y=1.02),
     )
-    return fig
+    return _space_legend(fig, height=410, bottom=55)
 
 
 def funnel_chart(df_members: pd.DataFrame, df_conv: pd.DataFrame,
@@ -473,14 +483,11 @@ def funnel_chart(df_members: pd.DataFrame, df_conv: pd.DataFrame,
 
     fig.update_layout(
         title='강의별 모객 퍼널 (채팅방 인원 → 신청 → 수강)',
-        barmode='group',
-        xaxis_title='채팅방',
-        yaxis_title='인원',
-        height=400,
-        margin=dict(t=50, b=30),
-        legend=dict(orientation='h', yanchor='bottom', y=1.02),
+        barmode='group', bargap=0.32, bargroupgap=0.12,
+        xaxis_title='', yaxis_title='인원',
+        xaxis=dict(tickangle=-12),
     )
-    return fig
+    return _space_legend(fig, height=430, bottom=60)
 
 
 def conversion_rate_chart(df_conv: pd.DataFrame, campaigns: dict, rooms: dict = None):
@@ -529,15 +536,13 @@ def conversion_rate_chart(df_conv: pd.DataFrame, campaigns: dict, rooms: dict = 
     ))
     fig.update_layout(
         title='강의별 신청·수강 전환 현황',
-        barmode='group',
-        height=380,
-        margin=dict(t=50, b=30),
-        legend=dict(orientation='h', yanchor='bottom', y=1.02),
+        barmode='group', bargap=0.32, bargroupgap=0.12,
+        xaxis=dict(tickangle=-12),
         yaxis=dict(title='인원'),
         yaxis2=dict(title='수강전환율(%)', overlaying='y', side='right',
                     range=[0, 100], showgrid=False),
     )
-    return fig
+    return _space_legend(fig, height=410, bottom=55)
 
 
 def cohort_trend_chart(df: pd.DataFrame, campaigns: dict, rooms: dict = None, mode: str = '절대값'):
@@ -596,10 +601,8 @@ def cohort_trend_chart(df: pd.DataFrame, campaigns: dict, rooms: dict = None, mo
         xaxis_title='모객 시작 후 경과일 (D+N)',
         yaxis_title=y_title,
         hovermode='x unified',
-        height=420,
-        margin=dict(t=50, b=30),
-        legend=dict(orientation='h', yanchor='bottom', y=1.02),
     )
+    _space_legend(fig, height=440)
     fig.add_vline(x=0, line_dash='dash', line_color='#bdbdbd', line_width=1)
     return fig
 
@@ -735,12 +738,8 @@ def monthly_aggregate_chart(df: pd.DataFrame, rooms: dict = None):
         labels={'month': '월', '순증감': '인원 순증감'},
     )
     fig.add_hline(y=0, line_dash='dash', line_color='#bdbdbd', line_width=1)
-    fig.update_layout(
-        height=380,
-        legend_title='채팅방',
-        legend=dict(orientation='h', yanchor='bottom', y=1.02),
-        margin=dict(t=50, b=30),
-    )
+    fig.update_layout(legend_title='채팅방')
+    _space_legend(fig, height=400)
     return fig
 
 
@@ -1863,4 +1862,47 @@ def product_ad_roi_chart(camp_df: pd.DataFrame):
         yaxis2=dict(title='ROAS(배)', overlaying='y', side='right', showgrid=False,
                     range=[0, float(g['roas'].max()) * 1.25]),
         legend=dict(orientation='h', yanchor='bottom', y=1.02))
+    return fig
+
+
+# ══════════════ 무료 → 유료 전환 (강의 집계 기반 실데이터) ══════════════
+
+def overall_conversion_funnel(total_free: int, total_paid: int):
+    """총 무료 모객 → 유료 수강 퍼널(깔때기) — 전사 전환 한눈에."""
+    if total_free <= 0:
+        return None
+    fig = go.Figure(go.Funnel(
+        y=['무료 특강 모객', '유료 수강 전환'],
+        x=[total_free, total_paid],
+        textposition='inside',
+        texttemplate='%{label}<br>%{value:,}명',
+        marker=dict(color=['#7C9CBF', '#B0812A']),
+        connector=dict(line=dict(color='#c9d6e3', width=1)),
+        hovertemplate='%{label}<br>%{value:,}명<extra></extra>'))
+    fig.update_layout(
+        title='전사 무료 → 유료 전환 퍼널',
+        height=300, margin=dict(t=55, b=20, l=20, r=20))
+    return fig
+
+
+def product_conversion_rate_chart(course_sum: pd.DataFrame):
+    """상품군별 무료→유료 전환율 가로 막대 (전환 효율 비교)."""
+    if course_sum is None or course_sum.empty:
+        return None
+    d = course_sum.copy()
+    d['cv'] = (d['paid'] / d['free'].replace(0, pd.NA) * 100).fillna(0)
+    d = d.sort_values('cv')
+    colors = [_PRODUCT_COLOR.get(p, '#5B8FF9') for p in d['product']]
+    fig = go.Figure(go.Bar(
+        x=d['cv'], y=d['product'], orientation='h', marker_color=colors,
+        text=[f"{v:.1f}%  ({p:,}/{f:,})" for v, p, f in zip(d['cv'], d['paid'], d['free'])],
+        textposition='outside', cliponaxis=False,
+        hovertemplate='%{y}<br>전환율 %{x:.1f}%<extra></extra>'))
+    _mx = float(d['cv'].max()) if len(d) else 1
+    fig.update_layout(
+        title='상품군별 무료 → 유료 전환율',
+        xaxis_title='전환율(%)', yaxis_title='',
+        xaxis_range=[0, _mx * 1.35],
+        height=max(300, 46 * len(d) + 90),
+        margin=dict(t=55, b=35, l=20, r=40))
     return fig
