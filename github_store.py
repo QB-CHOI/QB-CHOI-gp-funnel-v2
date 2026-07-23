@@ -58,7 +58,8 @@ COMPETITOR_COLS = ['category', 'company', 'product', 'price_min', 'price_max', '
 COHORT_REV_PATH = "data/cohort_revenue.csv"
 COHORT_REV_COLS = ['product', 'cohort', 'students', 'revenue']
 COURSE_SUM_PATH = "data/course_summary.csv"
-COURSE_SUM_COLS = ['product', 'paid', 'free', 'revenue']
+# paid=유료 결제 건수(헤더), students=세트 수강생(멤버십 제외, 매출과 동일 기준)
+COURSE_SUM_COLS = ['product', 'paid', 'free', 'revenue', 'students']
 
 # 캠페인(라이브)별 광고비·매출 — 상품군별 광고 ROI 산출용 (통합시트 이관)
 CAMPAIGN_AD_PATH = "data/campaign_adspend.csv"
@@ -663,12 +664,21 @@ def load_cohort_revenue() -> pd.DataFrame:
 
 @st.cache_data(ttl=3600)
 def load_course_summary() -> pd.DataFrame:
-    """상품군 top-line (유료 건수·무료 신청·총매출)."""
+    """상품군 top-line (유료 건수·무료 신청·총매출·세트 수강생).
+
+    - paid: 유료 결제 건수(리포트 헤더, 거래 기준)
+    - students: 세트 수강생(기초+심화+패키지·멤버십 제외) = 매출과 동일 기준.
+      객단가·전환율은 매출과 정합을 위해 students를 분모로 사용한다.
+    """
     df = _read_csv(COURSE_SUM_PATH, COURSE_SUM_COLS)
     if df.empty:
         return df
-    for c in ['paid', 'free', 'revenue']:
-        df[c] = pd.to_numeric(df[c], errors='coerce').fillna(0).astype(int)
+    for c in ['paid', 'free', 'revenue', 'students']:
+        if c in df.columns:
+            df[c] = pd.to_numeric(df[c], errors='coerce').fillna(0).astype(int)
+    # students 누락(구버전 데이터) 시 paid로 대체
+    if 'students' not in df.columns or (df['students'] == 0).all():
+        df['students'] = df['paid']
     return df
 
 

@@ -306,8 +306,9 @@ def _product_master_table():
     if cs.empty:
         return pd.DataFrame()
     m = cs.copy()
-    m['전환율'] = (m['paid'] / m['free'].replace(0, pd.NA) * 100).round(1).fillna(0)
-    m['객단가'] = (m['revenue'] / m['paid'].replace(0, pd.NA)).fillna(0).astype(int)
+    # 전환율·객단가는 매출과 동일 기준인 '세트 수강생(students)'을 분모로 사용(기준 정합)
+    m['전환율'] = (m['students'] / m['free'].replace(0, pd.NA) * 100).round(1).fillna(0)
+    m['객단가'] = (m['revenue'] / m['students'].replace(0, pd.NA)).fillna(0).astype(int)
     if not camp.empty:
         ad = camp.groupby('product').agg(ad=('ad_spend', 'sum'),
                                          lrev=('live_revenue', 'sum')).reset_index()
@@ -340,8 +341,8 @@ def tab_overview():
     # ── 핵심 지표 ───────────────────────────────────────
     tot_rev = int(cs['revenue'].sum())
     tot_free = int(cs['free'].sum())
-    tot_paid = int(cs['paid'].sum())
-    conv = tot_paid / tot_free * 100 if tot_free else 0
+    tot_students = int(cs['students'].sum())   # 세트 수강생(매출과 동일 기준)
+    conv = tot_students / tot_free * 100 if tot_free else 0
 
     roas_txt, _roas_help = "—", "월별 광고비 입력 시 표시"
     if not perf.empty and not ad_m.empty:
@@ -371,9 +372,11 @@ def tab_overview():
     st.markdown("#### 핵심 지표")
     a, b, c, d = st.columns(4)
     a.metric("누적 매출", f"{tot_rev/1e8:,.1f}억원")
-    b.metric("무료 모객", f"{tot_free:,}명")
-    c.metric("유료 수강", f"{tot_paid:,}건")
-    d.metric("무료→유료 전환", f"{conv:.1f}%")
+    b.metric("무료 모객", f"{tot_free:,}명", help="무료 특강 신청 건수(중복 신청 포함)")
+    c.metric("유료 수강생", f"{tot_students:,}명",
+             help="세트 수강생(기초+심화+패키지·멤버십 제외). 유료 결제 건수는 "
+                  f"{int(cs['paid'].sum()):,}건")
+    d.metric("무료→유료 전환", f"{conv:.1f}%", help="세트 수강생 ÷ 무료 신청")
     e, f, g, h = st.columns(4)
     e.metric("누적 ROAS", roas_txt, help=_roas_help)
     f.metric("수도권 집중도", f"{cap_pct:.0f}%" if cap_pct else "—",
@@ -428,7 +431,7 @@ def tab_overview():
         disp = pd.DataFrame({
             '상품군': m['product'],
             '누적매출': m['revenue'].apply(lambda x: f"{x/1e8:,.2f}억"),
-            '유료': m['paid'].apply(lambda x: f"{x:,}"),
+            '수강생': m['students'].apply(lambda x: f"{x:,}명"),
             '무료모객': m['free'].apply(lambda x: f"{x:,}"),
             '전환율': m['전환율'].apply(lambda x: f"{x}%"),
             '객단가': m['객단가'].apply(lambda x: f"{x/1e4:,.0f}만"),
@@ -436,8 +439,10 @@ def tab_overview():
             '광고ROAS': m['광고ROAS'].apply(lambda x: f"{x:.1f}배" if x else "—"),
         })
         st.dataframe(disp, hide_index=True, width='stretch')
-        st.caption("매출·전환·객단가=강의 집계 / 광고비·광고ROAS=통합시트 캠페인별 귀속. "
-                   "광고ROAS의 매출은 라이브 첫전환 기준(누적매출과 별개).")
+        st.caption("수강생·전환율·객단가는 **세트 수강생**(멤버십 제외, 매출과 동일 기준). "
+                   "전환율=수강생÷무료신청, 객단가=매출÷수강생. "
+                   "광고비·광고ROAS=통합시트 캠페인별 귀속이며, **광고ROAS의 매출은 라이브 첫전환 기준**"
+                   "이라 누적매출을 광고비로 나눈 값과 다릅니다.")
 
     # ── 전략 결론 ───────────────────────────────────────
     st.divider()
@@ -451,7 +456,7 @@ def tab_overview():
                     + (f"효율이 낮은 **{_worst_ad['product']}({_worst_ad['광고ROAS']:.1f}배)**는 소재·타깃 개선 후 재배분."
                        if _worst_ad is not None else ""))
     _cvbest = cs.copy()
-    _cvbest['cv'] = _cvbest['paid'] / _cvbest['free'].replace(0, pd.NA)
+    _cvbest['cv'] = _cvbest['students'] / _cvbest['free'].replace(0, pd.NA)
     _cvbest = _cvbest.dropna(subset=['cv'])
     if not _cvbest.empty:
         _cb = _cvbest.loc[_cvbest['cv'].idxmax()]
@@ -1198,18 +1203,19 @@ def tab_conversion():
         st.caption("아임웹 강의 집계 기준. 무료 특강으로 모은 인원이 실제 유료 수강으로 "
                    "이어진 비율입니다. (세트합계·멤버십 제외)")
         _tf = int(_csum['free'].sum())
-        _tp = int(_csum['paid'].sum())
+        _ts = int(_csum['students'].sum())   # 세트 수강생(매출 기준과 정합)
         _tr = int(_csum['revenue'].sum())
-        _cv = (_tp / _tf * 100) if _tf else 0
+        _cv = (_ts / _tf * 100) if _tf else 0
         kk1, kk2, kk3, kk4 = st.columns(4)
-        kk1.metric("무료 특강 모객", f"{_tf:,}명")
-        kk2.metric("유료 수강 전환", f"{_tp:,}건")
-        kk3.metric("종합 전환율", f"{_cv:.1f}%", help="유료 수강 ÷ 무료 모객")
+        kk1.metric("무료 특강 모객", f"{_tf:,}명", help="무료 특강 신청 건수(중복 신청 포함)")
+        kk2.metric("유료 수강생", f"{_ts:,}명",
+                   help=f"세트 수강생(멤버십 제외). 유료 결제 건수는 {int(_csum['paid'].sum()):,}건")
+        kk3.metric("종합 전환율", f"{_cv:.1f}%", help="세트 수강생 ÷ 무료 신청")
         kk4.metric("누적 매출", f"{_tr/1e8:,.1f}억원")
 
         cvc1, cvc2 = st.columns([1, 1.25])
         with cvc1:
-            _ff = overall_conversion_funnel(_tf, _tp)
+            _ff = overall_conversion_funnel(_tf, _ts)
             if _ff:
                 st.plotly_chart(_ff, key="conv_overall_funnel")
         with cvc2:
@@ -1218,7 +1224,7 @@ def tab_conversion():
                 st.plotly_chart(_fp, key="conv_prod_rate")
         # 최고 전환 상품 인사이트
         _cc = _csum.copy()
-        _cc['cv'] = _cc['paid'] / _cc['free'].replace(0, pd.NA)
+        _cc['cv'] = _cc['students'] / _cc['free'].replace(0, pd.NA)
         _cc = _cc.dropna(subset=['cv'])
         if not _cc.empty:
             _bp = _cc.loc[_cc['cv'].idxmax()]
@@ -1966,10 +1972,10 @@ def _strategy_briefing() -> list:
                           f"최저 효율은 **{_w['product']}({_w['roas']:.1f}배)** — 집중 상품의 소재·타깃 "
                           "효율 점검 후 고효율 상품으로 분산을 검토하세요."))
 
-    # 3) 전환 강점 상품 + 고객단가
+    # 3) 전환 강점 상품 + 고객단가 (매출 기준과 정합: students 사용)
     if not cs.empty:
         cc = cs.copy()
-        cc['cv'] = cc['paid'] / cc['free'].replace(0, pd.NA)
+        cc['cv'] = cc['students'] / cc['free'].replace(0, pd.NA)
         cc = cc.dropna(subset=['cv'])
         if not cc.empty:
             _bv = cc.loc[cc['cv'].idxmax()]
@@ -1977,7 +1983,7 @@ def _strategy_briefing() -> list:
                           f"**{_bv['product']}** 무료→유료 전환 **{_bv['cv']*100:.1f}%**로 최고 → "
                           "무료 모객을 늘릴수록 유료 성과가 가장 잘 따라오는 상품입니다."))
         c2 = cs.copy()
-        c2['aov'] = c2['revenue'] / c2['paid'].replace(0, pd.NA)
+        c2['aov'] = c2['revenue'] / c2['students'].replace(0, pd.NA)
         c2 = c2.dropna(subset=['aov'])
         if not c2.empty:
             _hp = c2.loc[c2['aov'].idxmax()]
@@ -2090,17 +2096,18 @@ def tab_marketing():
                    "상품군·기수별로 비교합니다.")
 
         _tot_paid_rev = int(course_sum['revenue'].sum())
-        _tot_paid_cnt = int(course_sum['paid'].sum())
+        _tot_students = int(course_sum['students'].sum())
         _tot_free_cnt = int(course_sum['free'].sum())
         _ad_all = int(ad_m['spend'].sum()) if not ad_m.empty else 0
         r1, r2, r3, r4 = st.columns(4)
         r1.metric("강의 누적 매출", f"{_tot_paid_rev/1e8:,.1f}억원",
                   help="4개 상품군 세트합계 매출 총합")
-        r2.metric("누적 유료 수강", f"{_tot_paid_cnt:,}건")
-        r3.metric("누적 무료 모객", f"{_tot_free_cnt:,}명")
-        _free2paid = (_tot_paid_cnt / _tot_free_cnt * 100) if _tot_free_cnt else 0
+        r2.metric("누적 유료 수강생", f"{_tot_students:,}명",
+                  help=f"세트 수강생(멤버십 제외). 유료 결제 건수 {int(course_sum['paid'].sum()):,}건")
+        r3.metric("누적 무료 모객", f"{_tot_free_cnt:,}명", help="무료 신청 건수(중복 포함)")
+        _free2paid = (_tot_students / _tot_free_cnt * 100) if _tot_free_cnt else 0
         r4.metric("무료→유료 전환율", f"{_free2paid:.1f}%",
-                  help="유료 수강 건수 ÷ 무료 모객 인원")
+                  help="세트 수강생 ÷ 무료 신청 건수")
 
         cm1, cm2 = st.columns([1, 1.2])
         with cm1:
@@ -2108,20 +2115,21 @@ def tab_marketing():
             if fig_mix:
                 st.plotly_chart(fig_mix, key="roi_mix")
         with cm2:
-            # 상품군별 요약표 (매출·유료·무료·전환율·객단가) — 0 나눔 가드
+            # 상품군별 요약표 — 세트 수강생 기준(매출과 정합), 0 나눔 가드
             cs = course_sum.copy().sort_values('revenue', ascending=False)
-            cs['전환율'] = (cs['paid'] / cs['free'].replace(0, pd.NA) * 100).round(1).fillna(0)
-            cs['객단가'] = (cs['revenue'] / cs['paid'].replace(0, pd.NA)).round(0).fillna(0).astype(int)
+            cs['전환율'] = (cs['students'] / cs['free'].replace(0, pd.NA) * 100).round(1).fillna(0)
+            cs['객단가'] = (cs['revenue'] / cs['students'].replace(0, pd.NA)).round(0).fillna(0).astype(int)
             cs_disp = pd.DataFrame({
                 '상품군': cs['product'],
                 '누적매출': cs['revenue'].apply(lambda x: f"{x/1e8:,.2f}억"),
-                '유료': cs['paid'].apply(lambda x: f"{x:,}건"),
+                '수강생': cs['students'].apply(lambda x: f"{x:,}명"),
                 '무료모객': cs['free'].apply(lambda x: f"{x:,}명"),
                 '전환율': cs['전환율'].apply(lambda x: f"{x}%"),
                 '객단가': cs['객단가'].apply(lambda x: f"{x/1e4:,.0f}만원"),
             })
             st.dataframe(cs_disp, hide_index=True)
-            st.caption("객단가 = 누적매출 ÷ 유료 수강 건수 (패키지 포함이라 강의 정가보다 높게 나타남)")
+            st.caption("전환율=세트 수강생÷무료신청, 객단가=누적매출÷세트 수강생 "
+                       "(매출과 동일 기준인 세트 수강생으로 계산해 정합을 맞춤. 무료신청은 중복 포함).")
 
         # ── 상품군별 광고 ROI (캠페인별 광고비 귀속) ──────────
         camp_ad = load_campaign_adspend()

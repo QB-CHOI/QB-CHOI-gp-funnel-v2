@@ -528,13 +528,13 @@ def generate_pdf_report(
             block.append(Paragraph("상품군 통합 요약 (매출·전환·객단가·광고 효율)", styles["h3"]))
             block.append(Spacer(1, 4))
             hh = [Paragraph(h, styles["cell_h"]) for h in
-                  ["상품군", "누적매출", "유료", "전환율", "객단가", "광고비", "광고ROAS"]]
+                  ["상품군", "누적매출", "수강생", "전환율", "객단가", "광고비", "광고ROAS"]]
             rr = [hh]
             for r in product_master:
                 rr.append([
                     Paragraph(str(r.get("product", "")), styles["cell_b"]),
                     Paragraph(f"{r.get('revenue',0)/1e8:,.2f}억", styles["cell_r"]),
-                    Paragraph(f"{_fmt(r.get('paid',0))}", styles["cell_r"]),
+                    Paragraph(f"{_fmt(r.get('students', r.get('paid',0)))}명", styles["cell_r"]),
                     Paragraph(f"{r.get('전환율',0):.1f}%", styles["cell_r"]),
                     Paragraph(f"{r.get('객단가',0)/1e4:,.0f}만", styles["cell_r"]),
                     Paragraph(f"{r.get('ad',0)/1e8:,.2f}억" if r.get('ad',0) else "—", styles["cell_r"]),

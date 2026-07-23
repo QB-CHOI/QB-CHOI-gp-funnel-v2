@@ -1890,12 +1890,15 @@ def product_conversion_rate_chart(course_sum: pd.DataFrame):
     if course_sum is None or course_sum.empty:
         return None
     d = course_sum.copy()
-    d['cv'] = (d['paid'] / d['free'].replace(0, pd.NA) * 100).fillna(0)
+    # 매출과 동일 기준인 세트 수강생(students)으로 전환율 계산
+    _num = d['students'] if 'students' in d.columns else d['paid']
+    d['cv'] = (_num / d['free'].replace(0, pd.NA) * 100).fillna(0)
+    d['_num'] = _num
     d = d.sort_values('cv')
     colors = [_PRODUCT_COLOR.get(p, '#5B8FF9') for p in d['product']]
     fig = go.Figure(go.Bar(
         x=d['cv'], y=d['product'], orientation='h', marker_color=colors,
-        text=[f"{v:.1f}%  ({p:,}/{f:,})" for v, p, f in zip(d['cv'], d['paid'], d['free'])],
+        text=[f"{v:.1f}%  ({int(p):,}명/{int(f):,})" for v, p, f in zip(d['cv'], d['_num'], d['free'])],
         textposition='outside', cliponaxis=False,
         hovertemplate='%{y}<br>전환율 %{x:.1f}%<extra></extra>'))
     _mx = float(d['cv'].max()) if len(d) else 1
