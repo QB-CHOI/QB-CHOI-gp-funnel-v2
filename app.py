@@ -1714,8 +1714,88 @@ def tab_lecture_analysis():
 
 # ── 탭: 마케팅 분석 ──────────────────────────────────────────────
 
+def _strategy_briefing() -> list:
+    """모든 분석 데이터를 종합해 우선순위 전략 액션을 생성(데이터 기반·자동 갱신)."""
+    cs = load_course_summary()
+    camp = load_campaign_adspend()
+    region = load_region_signups()
+    perf = load_monthly_performance()
+    ad_m = load_ad_spend_monthly()
+    items = []  # (아이콘, 제목, 본문)
+
+    # 1) 전체 광고 효율 (누적 ROAS)
+    if not perf.empty and not ad_m.empty:
+        _am = set(ad_m['month'].astype(str))
+        _rev = int(perf[perf['month'].astype(str).isin(_am)]['revenue'].sum())
+        _sp = int(ad_m['spend'].sum())
+        if _sp > 0:
+            items.append(("📈", "전체 광고 효율",
+                          f"광고비 집행 기간 누적 **ROAS {_rev/_sp:.1f}배** "
+                          f"(매출 {_rev/1e8:.1f}억 ÷ 광고비 {_sp/1e8:.1f}억). "
+                          "업계 목표(2배)를 크게 상회 — 광고 확대 자체는 안전한 구간입니다."))
+
+    # 2) 상품군 광고 예산 재배분
+    if not camp.empty:
+        g = camp.groupby('product').agg(ad=('ad_spend', 'sum'),
+                                        rev=('live_revenue', 'sum')).reset_index()
+        g = g[g['ad'] > 0].copy()
+        if not g.empty:
+            g['roas'] = g['rev'] / g['ad']
+            _b = g.loc[g['roas'].idxmax()]
+            _w = g.loc[g['roas'].idxmin()]
+            _t = g.loc[g['ad'].idxmax()]
+            _share = _t['ad'] / g['ad'].sum() * 100
+            items.append(("💰", "광고 예산 재배분",
+                          f"**{_b['product']}** 광고 ROAS **{_b['roas']:.1f}배**로 최고 → **확대 1순위**. "
+                          f"광고비가 **{_t['product']}에 {_share:.0f}% 집중**(ROAS {_t['roas']:.1f}배)이고 "
+                          f"최저 효율은 **{_w['product']}({_w['roas']:.1f}배)** — 집중 상품의 소재·타깃 "
+                          "효율 점검 후 고효율 상품으로 분산을 검토하세요."))
+
+    # 3) 전환 강점 상품 + 고객단가
+    if not cs.empty:
+        cc = cs.copy()
+        cc['cv'] = cc['paid'] / cc['free'].replace(0, pd.NA)
+        cc = cc.dropna(subset=['cv'])
+        if not cc.empty:
+            _bv = cc.loc[cc['cv'].idxmax()]
+            items.append(("🎯", "전환 강점 상품",
+                          f"**{_bv['product']}** 무료→유료 전환 **{_bv['cv']*100:.1f}%**로 최고 → "
+                          "무료 모객을 늘릴수록 유료 성과가 가장 잘 따라오는 상품입니다."))
+        c2 = cs.copy()
+        c2['aov'] = c2['revenue'] / c2['paid'].replace(0, pd.NA)
+        c2 = c2.dropna(subset=['aov'])
+        if not c2.empty:
+            _hp = c2.loc[c2['aov'].idxmax()]
+            items.append(("💎", "고객단가 상품",
+                          f"**{_hp['product']}** 객단가 **{_hp['aov']/1e4:,.0f}만원**로 최고 → "
+                          "고가 패키지·업셀 여력이 큰 프리미엄 라인입니다."))
+
+    # 4) 지역 광고 집중
+    if not region.empty:
+        _tot = int(region['signups'].sum())
+        _cap = int(region[region['region'].isin(CAPITAL_REGIONS)]['signups'].sum())
+        _loc = region[~region['region'].isin(CAPITAL_REGIONS)].sort_values('signups', ascending=False)
+        _tl = _loc.iloc[0]['region'] if not _loc.empty else '—'
+        if _tot:
+            items.append(("📍", "지역 광고 집중",
+                          f"수도권 집중도 **{_cap/_tot*100:.0f}%**(서울·경기·인천). 광고 예산을 "
+                          f"수도권에 우선 배정하고, 비수도권은 **{_tl}** 등 영남권을 보조 타깃으로 운영하세요."))
+    return items
+
+
 def tab_marketing():
     st.header("📢 마케팅 분석")
+
+    # ══ 종합 전략 브리핑 (모든 분석 종합·데이터 자동 반영) ═══════════
+    _brief = _strategy_briefing()
+    if _brief:
+        with st.container(border=True):
+            st.markdown("### 🧭 종합 전략 브리핑")
+            st.caption("광고 ROI·전환·객단가·지역 분석을 종합한 **데이터 기반 액션 요약**. "
+                       "데이터가 갱신되면 문구도 자동으로 바뀝니다.")
+            for _icon, _title, _body in _brief:
+                st.markdown(f"- **{_icon} {_title}** — {_body}")
+        st.divider()
 
     # ══ 전 기간 성과 추이 (주문 명단 집계) ══════════════════════
     perf = load_monthly_performance()
@@ -1813,10 +1893,10 @@ def tab_marketing():
             if fig_mix:
                 st.plotly_chart(fig_mix, key="roi_mix")
         with cm2:
-            # 상품군별 요약표 (매출·유료·무료·전환율·객단가)
+            # 상품군별 요약표 (매출·유료·무료·전환율·객단가) — 0 나눔 가드
             cs = course_sum.copy().sort_values('revenue', ascending=False)
-            cs['전환율'] = (cs['paid'] / cs['free'] * 100).round(1)
-            cs['객단가'] = (cs['revenue'] / cs['paid']).round(0).astype(int)
+            cs['전환율'] = (cs['paid'] / cs['free'].replace(0, pd.NA) * 100).round(1).fillna(0)
+            cs['객단가'] = (cs['revenue'] / cs['paid'].replace(0, pd.NA)).round(0).fillna(0).astype(int)
             cs_disp = pd.DataFrame({
                 '상품군': cs['product'],
                 '누적매출': cs['revenue'].apply(lambda x: f"{x/1e8:,.2f}억"),
@@ -1830,7 +1910,12 @@ def tab_marketing():
 
         # ── 상품군별 광고 ROI (캠페인별 광고비 귀속) ──────────
         camp_ad = load_campaign_adspend()
+        g = pd.DataFrame()
         if not camp_ad.empty:
+            g = camp_ad.groupby('product').agg(
+                ad=('ad_spend', 'sum'), rev=('live_revenue', 'sum')).reset_index()
+            g = g[g['ad'] > 0].copy()
+        if not g.empty:
             st.markdown("**💰 상품군별 광고 효율 (광고비 대비 ROAS)**")
             st.caption("통합시트 라이브(캠페인)별 광고비를 상품군에 귀속한 결과. "
                        "여기 '광고 매출'은 해당 캠페인 라이브가 직접 만든 매출(첫 전환 기준)이라 "
@@ -1839,9 +1924,6 @@ def tab_marketing():
             if fig_ad:
                 st.plotly_chart(fig_ad, key="roi_prod_ad")
 
-            g = camp_ad.groupby('product').agg(
-                ad=('ad_spend', 'sum'), rev=('live_revenue', 'sum')).reset_index()
-            g = g[g['ad'] > 0].copy()
             g['roas'] = g['rev'] / g['ad']
             g = g.sort_values('roas', ascending=False)
             _best_p = g.iloc[0]
@@ -1863,12 +1945,15 @@ def tab_marketing():
                 '광고비 비중': (g['ad'] / g['ad'].sum() * 100).apply(lambda x: f"{x:.0f}%"),
             })
             st.dataframe(g_disp, hide_index=True)
+            _ad_sum = int(g['ad'].sum())
+            _top_spend = g.loc[g['ad'].idxmax()]           # 광고비 최다 집중 상품군
+            _top_share = _top_spend['ad'] / _ad_sum * 100 if _ad_sum else 0
+            _eff_names = " · ".join(g.sort_values('roas', ascending=False).head(2)['product'].tolist())
             st.info(f"💡 **광고 전략** — **{_best_p['product']}**가 광고비 대비 매출 **{_best_p['roas']:.1f}배**로 "
                     f"가장 효율적이라 광고 확대 여지가 큽니다. 반면 **{_worst_p['product']}**는 "
                     f"**{_worst_p['roas']:.1f}배**로, 광고비 비중이 높다면 소재·타깃 개선 또는 예산 재배분이 "
-                    f"필요합니다. 광고비의 "
-                    f"**{g[g['product']=='사주']['ad'].sum()/g['ad'].sum()*100:.0f}%**가 사주에 집중되어 있어, "
-                    "효율 높은 타로·빌딩으로의 분산도 검토할 만합니다.")
+                    f"필요합니다. 현재 광고비의 **{_top_share:.0f}%**가 **{_top_spend['product']}**에 집중되어 있어, "
+                    f"효율 높은 **{_eff_names}**로의 분산도 검토할 만합니다.")
 
         # 기수별 매출 곡선 (상품군 선택)
         if not cohort_rev.empty:
@@ -2125,15 +2210,18 @@ def tab_region():
     # ── 광고 집중 전략 추천 ──────────────────────────────
     st.divider()
     st.subheader("🎯 광고 집중 지역 추천")
-    _rank = region.sort_values('signups', ascending=False).reset_index(drop=True)
-    _top3 = _rank.head(3)
-    _busan_rank = _rank[_rank['region'] == '부산'].index[0] + 1 if '부산' in _rank['region'].values else None
+
+    def _rv(name):  # 지역 신청 수 안전 조회 (없으면 0)
+        _s = region[region['region'] == name]['signups']
+        return int(_s.iloc[0]) if not _s.empty else 0
+
+    _seoul, _gg = _rv('서울'), _rv('경기')
+    _sg_pct = (_seoul + _gg) / _tot * 100 if _tot else 0
     st.markdown(
         f"""
 - **1순위 — 수도권(서울·경기·인천)**: 전체의 **{_cap_pct:.0f}%**가 집중. 메타·구글 광고 예산의 대부분을
-  서울·경기 타깃으로 배정하는 것이 효율적입니다. 특히 서울({int(region[region['region']=='서울']['signups'].iloc[0])}건)·
-  경기({int(region[region['region']=='경기']['signups'].iloc[0])}건) 2개 시도만으로
-  **{int(region[region['region'].isin(['서울','경기'])]['signups'].sum())/_tot*100:.0f}%**를 차지합니다.
+  서울·경기 타깃으로 배정하는 것이 효율적입니다. 특히 서울({_seoul}건)·경기({_gg}건) 2개 시도만으로
+  **{_sg_pct:.0f}%**를 차지합니다.
 - **2순위 — 부산·경남권**: 비수도권 중 **부산({_busan}건)**이 가장 크고 경남·대구가 뒤를 이어,
   영남권 광역타깃(부산·경남·대구)을 별도 캠페인으로 운영할 가치가 있습니다.
 - **3순위 — 대전·충청권**: 대전·충남·충북 합산이 일정 규모를 형성해 중부권 보조 타깃으로 검토.
