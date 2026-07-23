@@ -13,6 +13,7 @@ from github_store import (
     load_enrollments, save_enrollment, delete_enrollment,
     load_marketing, load_monthly_performance,
     load_ad_spend_monthly, save_ad_spend_monthly, AD_CHANNEL_OPTIONS,
+    load_competitor_courses,
     load_adspend, save_adspend, delete_adspend_row,
     load_content, save_content, delete_content_row,
     load_date_notes, save_date_note,
@@ -30,7 +31,7 @@ from charts import (
     recruitment_curve_chart, retention_after_opening_chart, cohort_efficiency_df,
     cohort_funnel_data, conversion_funnel_chart, cohort_conversion_bar_chart,
     marketing_channel_summary, marketing_channel_chart, marketing_trend_chart,
-    marketing_channel_conv_chart, monthly_perf_chart,
+    marketing_channel_conv_chart, monthly_perf_chart, competitor_price_chart,
 )
 
 st.set_page_config(
@@ -1728,9 +1729,12 @@ def tab_marketing():
         else:
             m4.metric("평균 전환율", f"{_tot_paid/_tot_free*100:.2f}%" if _tot_free else "—")
 
-        fig_m = monthly_perf_chart(perf, ad_m if not ad_m.empty else None)
+        _camps_ov = load_campaigns()
+        fig_m = monthly_perf_chart(perf, ad_m if not ad_m.empty else None,
+                                   campaigns_df=_camps_ov if not _camps_ov.empty else None)
         if fig_m:
             st.plotly_chart(fig_m, key="mkt_monthly")
+            st.caption("🎓 세로 점선 = 강의 모객 시작월 (개강 캠페인이 매출·유입에 미친 영향 확인용)")
 
         # 월별 광고비 입력
         with st.expander("✏️ 월별 광고비 입력 — ROAS·CPA 산출용", expanded=(ad_m.empty)):
@@ -1755,6 +1759,69 @@ def tab_marketing():
                 st.dataframe(_disp[['month', 'channel', 'spend']].rename(
                     columns={'month': '월', 'channel': '채널', 'spend': '광고비'}),
                     hide_index=True)
+        st.divider()
+
+    # ══ 경쟁사 가격 벤치마크 ════════════════════════════════════
+    comp = load_competitor_courses()
+    if not comp.empty:
+        st.subheader("🏷️ 경쟁사 가격 벤치마크")
+        st.caption("경쟁사 조사 시트 기반 — 상품군별 시장 가격대와 황금후추(자사) 포지셔닝. "
+                   "무료 웨비나 → 고가 전환 구조의 프리미엄 가격 전략을 시장과 비교합니다.")
+
+        _cats = [c for c in ['사주', '타로', '부동산', '빌딩']
+                 if c in comp['category'].unique()]
+        # 상품군별 포지셔닝 요약 카드
+        _own = comp[comp['company'].str.contains('황금후추', na=False)]
+        _mkt = comp[~comp['company'].str.contains('황금후추', na=False)]
+        pos_rows = []
+        for c in _cats:
+            o = _own[_own['category'] == c]
+            m = _mkt[_mkt['category'] == c]
+            if o.empty or m.empty:
+                continue
+            own_price = int(o['price_max'].iloc[0])
+            # 경쟁사 대표가 = (min+max)/2 의 중앙값
+            mids = ((m['price_min'] + m['price_max']) / 2)
+            mkt_med = int(mids.median())
+            ratio = own_price / mkt_med if mkt_med else 0
+            pos_rows.append((c, own_price, mkt_med, int(m['price_min'].min()),
+                             int(m['price_max'].max()), ratio))
+
+        if pos_rows:
+            cols = st.columns(len(pos_rows))
+            for col, (c, own_p, mkt_med, mn, mx, ratio) in zip(cols, pos_rows):
+                col.metric(
+                    f"{c} — 자사 대표가", f"{own_p/1e4:,.0f}만원",
+                    delta=f"시장 대비 {ratio:.1f}배",
+                    delta_color="off",
+                    help=f"경쟁사 대표가(중앙) {mkt_med/1e4:,.0f}만원 · "
+                         f"시장범위 {mn/1e4:,.0f}~{mx/1e4:,.0f}만원",
+                )
+
+        _sel = st.selectbox("상품군 선택", options=_cats, key="comp_cat")
+        fig_c = competitor_price_chart(comp, _sel)
+        if fig_c:
+            st.plotly_chart(fig_c, key="mkt_comp")
+
+        # 포지셔닝 인사이트
+        _sr = next((r for r in pos_rows if r[0] == _sel), None)
+        if _sr:
+            c, own_p, mkt_med, mn, mx, ratio = _sr
+            if ratio >= 1.5:
+                _pos = (f"황금후추 **{c}** 대표가는 **{own_p/1e4:,.0f}만원**으로 "
+                        f"시장 중앙값({mkt_med/1e4:,.0f}만원)의 **{ratio:.1f}배** — "
+                        f"명확한 **프리미엄 포지션**입니다. 무료 웨비나로 신뢰를 쌓아 "
+                        f"고가 전환하는 구조여서, 가격보다 **콘텐츠·브랜드 차별성**이 "
+                        f"핵심 경쟁력입니다.")
+            elif ratio >= 0.8:
+                _pos = (f"황금후추 **{c}** 대표가({own_p/1e4:,.0f}만원)는 시장 중앙값 "
+                        f"({mkt_med/1e4:,.0f}만원)과 **비슷한 수준**입니다. 가격 경쟁이 "
+                        f"치열한 구간이므로 차별화 포인트가 중요합니다.")
+            else:
+                _pos = (f"황금후추 **{c}** 대표가({own_p/1e4:,.0f}만원)는 시장 중앙값 "
+                        f"({mkt_med/1e4:,.0f}만원)보다 **낮은 편**으로, 가격 경쟁력이 있는 "
+                        f"포지션입니다.")
+            st.info("💡 " + _pos)
         st.divider()
 
     # ══ 채널별 상세 (외부 채널 metrics) ═════════════════════════
@@ -1797,6 +1864,50 @@ def tab_marketing():
     st.info("💡 **읽는 법** — 광고비는 주로 **메타**에, 매출은 **오픈채팅·유튜브·오가닉**에 잡힙니다"
             "(광고→방 유입→구매 구조). 그래서 전체 ROAS는 유료+오가닉이 섞인 값이며, "
             "채널별 효율은 아래 세션·구매·전환율로 비교하는 것이 정확합니다.")
+
+    # ── 🎯 목표 대비 평가 (업계 벤치마크 기준선) ──────────────
+    _conv_rate = (tot_buy / tot_sess * 100) if tot_sess else 0
+    _cps = (tot_spend / _paid_sess) if _paid_sess else 0
+    _bench = [
+        ("ROAS", roas, 2.0, f"{roas:.1f}배", "≥ 2.0배", roas >= 2.0),
+        ("구매 전환율", _conv_rate, 3.0, f"{_conv_rate:.2f}%", "≥ 3%", _conv_rate >= 3.0),
+        ("세션 단가(CPС)", _cps, 10000, f"{_cps:,.0f}원", "≤ 10,000원", 0 < _cps <= 10000),
+    ]
+    st.markdown("**🎯 목표 대비 (업계 벤치마크)**")
+    bc = st.columns(len(_bench))
+    for col, (name, _v, _t, cur, tgt, ok) in zip(bc, _bench):
+        mark = "🟢 달성" if ok else "🔴 미달"
+        col.metric(name, cur, delta=f"{mark} (목표 {tgt})", delta_color="off")
+
+    # ── 총 마케팅 비용 통합 (광고비 + 부대비용) ────────────────
+    with st.expander("💰 총 마케팅 비용 반영 — 친구톡·소재비 포함 보정 ROAS/CPA"):
+        st.caption(f"채널 metrics의 광고비는 **메타 실집행({tot_spend:,}원)**만 포함합니다. "
+                   "여기에 CRM 친구톡 발송비·소재 제작비를 더하면 **진짜 마케팅 비용** 기준 "
+                   "ROAS·CPA를 볼 수 있습니다. 아래 값은 추정 기본치이며 실제 청구서에 맞게 수정하세요.")
+        e1, e2 = st.columns(2)
+        with e1:
+            _kakao = st.number_input(
+                "친구톡/CRM 발송비(원)", min_value=0, step=100000, value=7_870_000,
+                help="발송 건수 × 단가(약 15원) 기준 추정. CRM 시트 발송 내역으로 보정 가능.")
+        with e2:
+            _asset = st.number_input(
+                "소재 제작비(원)", min_value=0, step=100000, value=1_300_000,
+                help="운영 실비 시트의 디자인·영상 소재 제작비 추정.")
+        _total_mkt = tot_spend + int(_kakao) + int(_asset)
+        _roas_adj = round(tot_rev / _total_mkt, 1) if _total_mkt else 0
+        _cpa_adj = round(_total_mkt / tot_buy) if tot_buy else 0
+        t1, t2, t3, t4 = st.columns(4)
+        t1.metric("총 마케팅 비용", f"{_total_mkt/1e4:,.0f}만원",
+                  delta=f"광고비 대비 +{(_total_mkt-tot_spend)/1e4:,.0f}만원", delta_color="off")
+        t2.metric("보정 ROAS", f"{_roas_adj:,.1f}배",
+                  delta=f"{_roas_adj-roas:+.1f}배", delta_color="off",
+                  help="총 매출 ÷ 총 마케팅 비용")
+        t3.metric("보정 CPA", f"{_cpa_adj:,}원",
+                  delta=f"{_cpa_adj-cpa:+,}원", delta_color="inverse",
+                  help="총 마케팅 비용 ÷ 구매 건수")
+        t4.metric("비용 구성", f"광고 {tot_spend/_total_mkt*100:.0f}%" if _total_mkt else "—",
+                  delta=f"부대 {(_kakao+_asset)/_total_mkt*100:.0f}%" if _total_mkt else None,
+                  delta_color="off")
 
     # ── 채널별 매출 + 전환율 ──────────────────────────────
     st.divider()

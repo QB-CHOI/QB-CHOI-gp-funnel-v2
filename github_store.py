@@ -50,6 +50,10 @@ AD_MONTHLY_PATH = "data/ad_spend_monthly.csv"
 AD_MONTHLY_COLS = ['month', 'channel', 'spend', 'memo']
 AD_CHANNEL_OPTIONS = ['전체', '메타', '구글', '네이버', '카카오', '유튜브', '기타']
 
+# 경쟁사 강의 가격/포지셔닝 (경쟁사 조사 시트 이관)
+COMPETITOR_PATH = "data/competitor_courses.csv"
+COMPETITOR_COLS = ['category', 'company', 'product', 'price_min', 'price_max', 'free']
+
 
 def _token() -> str:
     token = st.secrets.get("github_token", "")
@@ -612,6 +616,18 @@ def save_ad_spend_monthly(month: str, channel: str, spend: int, memo: str = ""):
     combined = pd.concat([df, new_row], ignore_index=True).sort_values(['month', 'channel'])
     _write_csv(AD_MONTHLY_PATH, combined, f"월별 광고비 저장: {month} {channel} {spend:,}원")
     load_ad_spend_monthly.clear()
+
+
+@st.cache_data(ttl=3600)
+def load_competitor_courses() -> pd.DataFrame:
+    """경쟁사 강의 가격/포지셔닝 (황금후추 자사 대표가 포함)."""
+    df = _read_csv(COMPETITOR_PATH, COMPETITOR_COLS)
+    if df.empty:
+        return df
+    for c in ['price_min', 'price_max']:
+        df[c] = pd.to_numeric(df[c], errors='coerce').fillna(0).astype(int)
+    df['free'] = pd.to_numeric(df['free'], errors='coerce').fillna(0).astype(int)
+    return df
 
 
 # ── 날짜별 메모 ───────────────────────────────────────────────────

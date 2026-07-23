@@ -1599,15 +1599,19 @@ def marketing_channel_conv_chart(df: pd.DataFrame):
         x=ch['전환율'], y=ch['channel'], orientation='h', marker_color=colors,
         text=ch['전환율'].apply(lambda v: f'{v:.1f}%'), textposition='outside', cliponaxis=False,
         hovertemplate='%{y}<br>전환율 %{x:.2f}%<extra></extra>'))
-    _mx = float(ch['전환율'].max()) or 1
-    fig.update_layout(title='채널별 세션→구매 전환율', xaxis_title='전환율(%)', yaxis_title='',
+    _mx = max(float(ch['전환율'].max()), 3.0)
+    # 업계 목표 기준선(전환율 3%)
+    fig.add_vline(x=3.0, line_dash='dash', line_color='#B0812A',
+                  annotation_text='목표 3%', annotation_position='top')
+    fig.update_layout(title='채널별 세션→구매 전환율 (목표선 3%)', xaxis_title='전환율(%)', yaxis_title='',
                       xaxis_range=[0, _mx * 1.2], height=max(280, 40 * len(ch) + 90),
                       margin=dict(t=55, b=30, l=20, r=60))
     return fig
 
 
-def monthly_perf_chart(perf_df: pd.DataFrame, ad_df: pd.DataFrame = None):
-    """월별 매출(막대) + 무료 신청(라인) + 광고비(있으면) — 전 기간 성과 추이."""
+def monthly_perf_chart(perf_df: pd.DataFrame, ad_df: pd.DataFrame = None,
+                       campaigns_df: pd.DataFrame = None):
+    """월별 매출(막대) + 무료 신청(라인) + 광고비(있으면) + 캠페인 개강 마커(있으면)."""
     if perf_df is None or perf_df.empty:
         return None
     p = perf_df.sort_values('month').copy()
@@ -1628,12 +1632,65 @@ def monthly_perf_chart(perf_df: pd.DataFrame, ad_df: pd.DataFrame = None):
                 x=spend['month'], y=spend['spend'], name='광고비', yaxis='y2',
                 mode='lines+markers', line=dict(color='#1877F2', width=2, dash='dot'), marker=dict(size=4),
                 hovertemplate='%{x}<br>광고비 %{y:,.0f}원<extra></extra>'))
+    # 캠페인 개강 마커 (모객 시작월 기준, perf 기간 내만)
+    if campaigns_df is not None and not campaigns_df.empty:
+        _months = set(p['month'].astype(str))
+        cd = campaigns_df.copy()
+        cd['sd'] = pd.to_datetime(cd['start_date'], errors='coerce')
+        cd = cd[cd['sd'].notna()]
+        cd['m'] = cd['sd'].dt.strftime('%Y-%m')
+        cd = cd[cd['m'].isin(_months)]
+        for mo, grp in cd.groupby('m'):
+            names = ' · '.join(grp['campaign_name'].astype(str).tolist())
+            fig.add_vline(x=mo, line_dash='dot', line_color='#B0812A', opacity=0.5)
+            fig.add_annotation(x=mo, yref='paper', y=1.0, text=f"🎓 {names}",
+                               showarrow=False, font=dict(size=9, color='#8A6A1F'),
+                               textangle=-90, xanchor='left', yanchor='top')
     fig.update_layout(
-        title='월별 성과 추이 (매출 · 무료 신청)', height=400, hovermode='x unified',
+        title='월별 성과 추이 (매출 · 무료 신청 · 개강)', height=400, hovermode='x unified',
         margin=dict(t=55, b=40, r=60),
         yaxis=dict(title='매출(원)'),
         yaxis2=dict(title='건수 / 광고비', overlaying='y', side='right', showgrid=False),
         legend=dict(orientation='h', yanchor='bottom', y=1.02),
         xaxis=dict(tickangle=-45),
+    )
+    return fig
+
+
+def competitor_price_chart(df: pd.DataFrame, category: str = None):
+    """상품군별 경쟁사 가격 분포 (범위 막대) + 황금후추 자사 강조."""
+    if df is None or df.empty:
+        return None
+    d = df.copy()
+    if category:
+        d = d[d['category'] == category]
+    if d.empty:
+        return None
+    d = d.sort_values(['category', 'price_max'])
+    fig = go.Figure()
+    for _, r in d.iterrows():
+        is_own = '황금후추' in str(r['company'])
+        color = '#B0812A' if is_own else '#9FB3C8'
+        label = f"{r['company']} · {r['product']}"
+        lo, hi = int(r['price_min']), int(r['price_max'])
+        # 가격 범위 막대 (lo~hi)
+        fig.add_trace(go.Scatter(
+            x=[lo/1e4, hi/1e4], y=[label, label], mode='lines',
+            line=dict(color=color, width=8 if is_own else 5),
+            showlegend=False,
+            hovertemplate=f"{label}<br>{lo:,}~{hi:,}원<extra></extra>"))
+        # 중간점 마커
+        mid = (lo + hi) / 2 / 1e4
+        fig.add_trace(go.Scatter(
+            x=[mid], y=[label], mode='markers',
+            marker=dict(color=color, size=11 if is_own else 7,
+                        line=dict(color='#fff', width=1)),
+            showlegend=False,
+            hovertemplate=f"{label}<br>{lo:,}~{hi:,}원<extra></extra>"))
+    fig.update_layout(
+        title=f"경쟁사 강의 가격 벤치마크{f' — {category}' if category else ''} (황금후추=골드)",
+        xaxis_title='판매가(만원)', yaxis_title='',
+        height=max(320, 26 * len(d) + 100), margin=dict(t=55, b=40, l=20, r=30),
+        showlegend=False,
     )
     return fig
