@@ -14,6 +14,8 @@ from github_store import (
     load_marketing, load_monthly_performance,
     load_ad_spend_monthly, save_ad_spend_monthly, AD_CHANNEL_OPTIONS,
     load_competitor_courses,
+    load_cohort_revenue, load_course_summary,
+    load_region_signups, load_region_cohort, load_region_city, CAPITAL_REGIONS,
     load_adspend, save_adspend, delete_adspend_row,
     load_content, save_content, delete_content_row,
     load_date_notes, save_date_note,
@@ -32,11 +34,13 @@ from charts import (
     cohort_funnel_data, conversion_funnel_chart, cohort_conversion_bar_chart,
     marketing_channel_summary, marketing_channel_chart, marketing_trend_chart,
     marketing_channel_conv_chart, monthly_perf_chart, competitor_price_chart,
+    cohort_revenue_chart, product_revenue_mix_chart, monthly_roas_chart,
+    region_distribution_chart, region_capital_trend_chart, region_city_chart,
 )
 
 st.set_page_config(
-    page_title="채팅방 인원 분석",
-    page_icon="💬",
+    page_title="황금후추 강의 분석",
+    page_icon="🌶️",
     layout="wide",
 )
 
@@ -60,7 +64,7 @@ div[data-testid="stDataFrame"] td { white-space: nowrap; }
 # ── 사이드바 — 캐시 새로고침 ─────────────────────────────────────
 
 with st.sidebar:
-    st.markdown("### 💬 채팅방 인원 분석")
+    st.markdown("### 🌶️ 황금후추 강의 분석")
     st.divider()
 
     # 오늘 입력 상태
@@ -238,7 +242,7 @@ def _run_auth() -> bool:
     if st.session_state.get("_authenticated"):
         return True
 
-    st.title("💬 황금후추 채팅방 인원 분석")
+    st.title("🌶️ 황금후추 강의 분석")
     st.subheader("🔒 로그인")
     with st.form("login_form"):
         entered = st.text_input("비밀번호", type="password", placeholder="비밀번호를 입력하세요")
@@ -257,11 +261,12 @@ def main():
     if not _run_auth():
         return
 
-    st.title("💬 황금후추 채팅방 인원 분석")
+    st.title("🌶️ 황금후추 강의 분석")
 
-    tab1, tab2, tab3, tab4, tab5, tab9, tab6, tab7, tab8 = st.tabs([
+    tab1, tab2, tab3, tab4, tab5, tab9, tab10, tab6, tab7, tab8 = st.tabs([
         "📸 오늘 입력", "📊 현황", "📋 전환 분석", "📈 추이 그래프",
-        "🎓 강의 분석", "📢 마케팅 분석", "📑 경영진 보고", "⚙️ 채팅방 설정", "🗂️ 데이터 관리",
+        "🎓 강의 분석", "📢 마케팅 분석", "📍 지역 분석",
+        "📑 경영진 보고", "⚙️ 채팅방 설정", "🗂️ 데이터 관리",
     ])
 
     with tab1:
@@ -276,6 +281,8 @@ def main():
         tab_lecture_analysis()
     with tab9:
         tab_marketing()
+    with tab10:
+        tab_region()
     with tab6:
         tab_report()
     with tab7:
@@ -1720,12 +1727,20 @@ def tab_marketing():
         _tot_free = int(perf['free_signups'].sum())
         _tot_paid = int(perf['paid_orders'].sum())
         _tot_spend_m = int(ad_m['spend'].sum()) if not ad_m.empty else 0
+        # ROAS는 광고비가 집행된 달의 매출로만 계산(기간 정합)
+        if not ad_m.empty:
+            _ad_months = set(ad_m['month'].astype(str))
+            _rev_ad = int(perf[perf['month'].astype(str).isin(_ad_months)]['revenue'].sum())
+        else:
+            _rev_ad = 0
         m1, m2, m3, m4 = st.columns(4)
         m1.metric("누적 매출", f"{_tot_rev/1e8:,.1f}억원")
         m2.metric("누적 무료 신청", f"{_tot_free:,}")
         m3.metric("누적 유료 구매", f"{_tot_paid:,}건")
         if _tot_spend_m > 0:
-            m4.metric("누적 ROAS", f"{_tot_rev/_tot_spend_m:,.1f}배", help="누적 매출 ÷ 입력된 광고비")
+            m4.metric("누적 ROAS", f"{_rev_ad/_tot_spend_m:,.1f}배",
+                      help=f"광고비 집행 기간({min(_ad_months)}~{max(_ad_months)}) 매출 "
+                           f"{_rev_ad/1e8:,.1f}억 ÷ 광고비 {_tot_spend_m/1e8:,.1f}억")
         else:
             m4.metric("평균 전환율", f"{_tot_paid/_tot_free*100:.2f}%" if _tot_free else "—")
 
@@ -1759,6 +1774,79 @@ def tab_marketing():
                 st.dataframe(_disp[['month', 'channel', 'spend']].rename(
                     columns={'month': '월', 'channel': '채널', 'spend': '광고비'}),
                     hide_index=True)
+
+        # ── 월별 광고비 vs 매출 ROAS ──────────────────────────
+        if not ad_m.empty:
+            fig_roas = monthly_roas_chart(perf, ad_m)
+            if fig_roas:
+                st.markdown("**📊 월별 광고비 대비 매출(ROAS)**")
+                st.plotly_chart(fig_roas, key="mkt_roas")
+                st.caption("광고비가 입력된 달만 표시. ROAS = 해당 월 매출 ÷ 광고비. "
+                           "광고 효율이 낮은 달(광고비↑ ROAS↓)을 찾아 예산 배분을 조정하세요.")
+        st.divider()
+
+    # ══ 강의 ROI 분석 (강의 집계 보고서 기반) ════════════════════
+    course_sum = load_course_summary()
+    cohort_rev = load_cohort_revenue()
+    if not course_sum.empty:
+        st.subheader("🎓 강의 ROI 분석")
+        st.caption("아임웹 강의별 집계(세트합계·멤버십 제외) 기준. 무료 특강 모객 → 유료 전환 성과를 "
+                   "상품군·기수별로 비교합니다. ※ 광고비는 전사 공통 집행이라 상품군별로 분리하지 않고 "
+                   "전체 ROAS로 해석합니다.")
+
+        _tot_paid_rev = int(course_sum['revenue'].sum())
+        _tot_paid_cnt = int(course_sum['paid'].sum())
+        _tot_free_cnt = int(course_sum['free'].sum())
+        _ad_all = int(ad_m['spend'].sum()) if not ad_m.empty else 0
+        r1, r2, r3, r4 = st.columns(4)
+        r1.metric("강의 누적 매출", f"{_tot_paid_rev/1e8:,.1f}억원",
+                  help="4개 상품군 세트합계 매출 총합")
+        r2.metric("누적 유료 수강", f"{_tot_paid_cnt:,}건")
+        r3.metric("누적 무료 모객", f"{_tot_free_cnt:,}명")
+        _free2paid = (_tot_paid_cnt / _tot_free_cnt * 100) if _tot_free_cnt else 0
+        r4.metric("무료→유료 전환율", f"{_free2paid:.1f}%",
+                  help="유료 수강 건수 ÷ 무료 모객 인원")
+
+        cm1, cm2 = st.columns([1, 1.2])
+        with cm1:
+            fig_mix = product_revenue_mix_chart(course_sum)
+            if fig_mix:
+                st.plotly_chart(fig_mix, key="roi_mix")
+        with cm2:
+            # 상품군별 요약표 (매출·유료·무료·전환율·객단가)
+            cs = course_sum.copy().sort_values('revenue', ascending=False)
+            cs['전환율'] = (cs['paid'] / cs['free'] * 100).round(1)
+            cs['객단가'] = (cs['revenue'] / cs['paid']).round(0).astype(int)
+            cs_disp = pd.DataFrame({
+                '상품군': cs['product'],
+                '누적매출': cs['revenue'].apply(lambda x: f"{x/1e8:,.2f}억"),
+                '유료': cs['paid'].apply(lambda x: f"{x:,}건"),
+                '무료모객': cs['free'].apply(lambda x: f"{x:,}명"),
+                '전환율': cs['전환율'].apply(lambda x: f"{x}%"),
+                '객단가': cs['객단가'].apply(lambda x: f"{x/1e4:,.0f}만원"),
+            })
+            st.dataframe(cs_disp, hide_index=True)
+            st.caption("객단가 = 누적매출 ÷ 유료 수강 건수 (패키지 포함이라 강의 정가보다 높게 나타남)")
+
+        # 기수별 매출 곡선 (상품군 선택)
+        if not cohort_rev.empty:
+            st.markdown("**기수별 매출 추이**")
+            _prods = [p for p in ['사주', '타로', '부동산', '빌딩']
+                      if p in cohort_rev['product'].unique()]
+            _psel = st.selectbox("상품군 선택", options=_prods, key="roi_prod")
+            fig_co = cohort_revenue_chart(cohort_rev, _psel)
+            if fig_co:
+                st.plotly_chart(fig_co, key="roi_cohort")
+            # 최고/최저 기수 인사이트
+            _pd = cohort_rev[cohort_rev['product'] == _psel]
+            _pd = _pd[_pd['students'] > 0]
+            if not _pd.empty:
+                _best = _pd.loc[_pd['revenue'].idxmax()]
+                _bestp = _pd.loc[(_pd['revenue'] / _pd['students']).idxmax()]
+                st.info(f"💡 **{_psel}** — 최대 매출 기수: **{_best['cohort']}** "
+                        f"({_best['revenue']/1e4:,.0f}만원, {_best['students']}명). "
+                        f"객단가 최고 기수: **{_bestp['cohort']}** "
+                        f"({_bestp['revenue']/_bestp['students']/1e4:,.0f}만원/명).")
         st.divider()
 
     # ══ 경쟁사 가격 벤치마크 ════════════════════════════════════
@@ -1948,6 +2036,110 @@ def tab_marketing():
     fc2.metric("② 유입 세션", f"{tot_sess:,}")
     fc3.metric("③ 구매", f"{tot_buy:,}건")
     fc4.metric("④ 매출", f"{tot_rev/1e8:,.2f}억원")
+
+
+# ── 탭: 지역 분석 ─────────────────────────────────────────────────
+
+def tab_region():
+    st.header("📍 지역 분석")
+    region = load_region_signups()
+    rc = load_region_cohort()
+    city = load_region_city()
+
+    if region.empty:
+        st.info("지역별 신청 데이터가 없습니다.")
+        return
+
+    st.caption("**돈사공 초급반 9~12기 배송지 주소** 기준 (국내 472건 · 개인정보 제외 지역 통계만). "
+               "실물 교재를 배송하는 강의라 배송지 = 실제 거주 지역으로, 광고 타깃 지역 판단의 대표 표본입니다.")
+
+    # ── 핵심 지표 ────────────────────────────────────────
+    _tot = int(region['signups'].sum())
+    _cap = int(region[region['region'].isin(CAPITAL_REGIONS)]['signups'].sum())
+    _cap_pct = _cap / _tot * 100 if _tot else 0
+    _busan = int(region[region['region'] == '부산']['signups'].sum())
+    _local_top = region[~region['region'].isin(CAPITAL_REGIONS)].sort_values('signups', ascending=False)
+    g1, g2, g3, g4 = st.columns(4)
+    g1.metric("총 신청(국내)", f"{_tot:,}건")
+    g2.metric("수도권 집중도", f"{_cap_pct:.1f}%", help="서울+경기+인천 비중")
+    g3.metric("서울+경기", f"{int(region[region['region'].isin(['서울','경기'])]['signups'].sum())/_tot*100:.1f}%")
+    g4.metric("최대 비수도권", f"{_local_top.iloc[0]['region']} {int(_local_top.iloc[0]['signups'])}건"
+              if not _local_top.empty else "—")
+
+    st.divider()
+
+    # ── 지역별 분포 ──────────────────────────────────────
+    st.subheader("지역별 신청 분포")
+    d_l, d_r = st.columns([1.1, 1])
+    with d_l:
+        fig_r = region_distribution_chart(region, capital=tuple(CAPITAL_REGIONS))
+        if fig_r:
+            st.plotly_chart(fig_r, key="rgn_dist")
+    with d_r:
+        rd = region.copy()
+        rd = rd.rename(columns={'region': '지역', 'signups': '신청', 'pct': '비율(%)'})
+        st.dataframe(rd, hide_index=True, height=430)
+
+    # ── 광고 집중 전략 추천 ──────────────────────────────
+    st.divider()
+    st.subheader("🎯 광고 집중 지역 추천")
+    _rank = region.sort_values('signups', ascending=False).reset_index(drop=True)
+    _top3 = _rank.head(3)
+    _busan_rank = _rank[_rank['region'] == '부산'].index[0] + 1 if '부산' in _rank['region'].values else None
+    st.markdown(
+        f"""
+- **1순위 — 수도권(서울·경기·인천)**: 전체의 **{_cap_pct:.0f}%**가 집중. 메타·구글 광고 예산의 대부분을
+  서울·경기 타깃으로 배정하는 것이 효율적입니다. 특히 서울({int(region[region['region']=='서울']['signups'].iloc[0])}건)·
+  경기({int(region[region['region']=='경기']['signups'].iloc[0])}건) 2개 시도만으로
+  **{int(region[region['region'].isin(['서울','경기'])]['signups'].sum())/_tot*100:.0f}%**를 차지합니다.
+- **2순위 — 부산·경남권**: 비수도권 중 **부산({_busan}건)**이 가장 크고 경남·대구가 뒤를 이어,
+  영남권 광역타깃(부산·경남·대구)을 별도 캠페인으로 운영할 가치가 있습니다.
+- **3순위 — 대전·충청권**: 대전·충남·충북 합산이 일정 규모를 형성해 중부권 보조 타깃으로 검토.
+- **저효율 경계**: 전남·전북·강원·제주는 신청이 적어(각 1% 안팎) 광역 타깃보다는
+  전환이 확인될 때만 리타깃팅 위주로 최소 집행을 권장합니다.
+"""
+    )
+    st.info("💡 다른 채널에서도 **수도권 > 부산·경기·인천 집중**이 효율적이라는 결과가 나왔던 것과 "
+            "이 배송지 데이터가 일치합니다. 수도권+부산에 광고를 집중하는 전략이 데이터로 뒷받침됩니다.")
+
+    # ── 도시/구 단위 ─────────────────────────────────────
+    if not city.empty:
+        st.divider()
+        st.subheader("상위 도시·구 단위")
+        cc_l, cc_r = st.columns([1.2, 1])
+        with cc_l:
+            fig_c = region_city_chart(city)
+            if fig_c:
+                st.plotly_chart(fig_c, key="rgn_city")
+        with cc_r:
+            st.markdown("**세부 타깃 인사이트**")
+            st.markdown(
+                "- 서울 내 **강남·서초·송파(강남 3구)**가 압도적 — 고관여·고소득 타깃과 일치.\n"
+                "- 동작·영등포·양천·용산 등 서울 서남권도 꾸준.\n"
+                "- 경기권은 **하남·성남 분당**이 상위 — 신도시 고소득층 공략 유효.\n\n"
+                "→ 메타 상세 타깃을 **강남 3구 + 분당·하남** 반경으로 좁히면 CPA 개선 여지가 있습니다.")
+
+    # ── 기수별 수도권 비중 추이 ──────────────────────────
+    if not rc.empty:
+        st.divider()
+        st.subheader("기수별 모집 · 수도권 비중")
+        fig_t = region_capital_trend_chart(rc)
+        if fig_t:
+            st.plotly_chart(fig_t, key="rgn_trend")
+        rc_disp = pd.DataFrame({
+            '기수': rc['cohort'],
+            '모집기간': rc['start'] + ' ~ ' + rc['end'],
+            '모집일수': rc['days'].apply(lambda x: f"{x}일"),
+            '총신청': rc['total'].apply(lambda x: f"{x}명"),
+            '수도권': rc['capital'].apply(lambda x: f"{x}명"),
+            '수도권비중': rc['capital_pct'].apply(lambda x: f"{x}%"),
+        })
+        st.dataframe(rc_disp, hide_index=True)
+        _avg_days = rc['days'].mean()
+        _corr_hint = ("모집 기간이 길수록 총신청이 느는 경향" if rc['days'].corr(rc['total']) > 0.3
+                      else "모집 기간과 총신청의 상관은 뚜렷하지 않음")
+        st.caption(f"평균 모집 {_avg_days:.0f}일. {_corr_hint}. "
+                   "수도권 비중은 기수별 59~73%로 항상 과반 — 수도권 우선 전략의 근거.")
 
 
 # ── 경영진 보고: 자동 인사이트 생성 ─────────────────────────────────

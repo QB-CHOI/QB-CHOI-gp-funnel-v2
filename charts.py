@@ -1694,3 +1694,137 @@ def competitor_price_chart(df: pd.DataFrame, category: str = None):
         showlegend=False,
     )
     return fig
+
+
+# ══════════════ 강의 ROI · 지역 분석 차트 ══════════════
+
+_PRODUCT_COLOR = {'사주': '#7C4DBC', '타로': '#9C6ADE', '부동산': '#2E8B7A',
+                  '빌딩': '#1E6FD9', '기타': '#90A4AE'}
+
+
+def cohort_revenue_chart(df: pd.DataFrame, product: str):
+    """상품군의 기수별 매출 막대(수강생 표기)."""
+    if df is None or df.empty:
+        return None
+    d = df[df['product'] == product].copy()
+    if d.empty:
+        return None
+    d['man'] = (d['revenue'] / 1e4).round(0)
+    color = _PRODUCT_COLOR.get(product, '#5B8FF9')
+    fig = go.Figure(go.Bar(
+        x=d['cohort'], y=d['man'], marker_color=color,
+        text=[f"{int(m):,}만<br>{s}명" for m, s in zip(d['man'], d['students'])],
+        textposition='outside', cliponaxis=False,
+        hovertemplate='%{x}<br>매출 %{y:,.0f}만원<extra></extra>'))
+    fig.update_layout(
+        title=f'{product} 기수별 매출 · 수강생', xaxis_title='', yaxis_title='매출(만원)',
+        height=380, margin=dict(t=50, b=60, l=20, r=20), xaxis=dict(tickangle=-30))
+    return fig
+
+
+def product_revenue_mix_chart(summary: pd.DataFrame):
+    """상품군별 매출 비중 (도넛)."""
+    if summary is None or summary.empty:
+        return None
+    d = summary.sort_values('revenue', ascending=False)
+    colors = [_PRODUCT_COLOR.get(p, '#90A4AE') for p in d['product']]
+    fig = go.Figure(go.Pie(
+        labels=d['product'], values=d['revenue'], hole=0.5,
+        marker=dict(colors=colors), sort=False,
+        texttemplate='%{label}<br>%{percent}',
+        hovertemplate='%{label}<br>%{value:,.0f}원 (%{percent})<extra></extra>'))
+    fig.update_layout(title='상품군별 누적 매출 비중', height=360,
+                      margin=dict(t=50, b=20, l=20, r=20))
+    return fig
+
+
+def region_distribution_chart(df: pd.DataFrame, capital=('서울', '경기', '인천')):
+    """지역별 신청 가로 막대 (수도권 강조)."""
+    if df is None or df.empty:
+        return None
+    d = df.sort_values('signups')
+    colors = ['#B0812A' if r in capital else '#9FB3C8' for r in d['region']]
+    fig = go.Figure(go.Bar(
+        x=d['signups'], y=d['region'], orientation='h', marker_color=colors,
+        text=[f"{s}명 ({p}%)" for s, p in zip(d['signups'], d['pct'])],
+        textposition='outside', cliponaxis=False,
+        hovertemplate='%{y}<br>%{x}명<extra></extra>'))
+    _mx = float(d['signups'].max())
+    fig.update_layout(
+        title='지역별 신청 분포 (수도권=골드)', xaxis_title='신청 수', yaxis_title='',
+        xaxis_range=[0, _mx * 1.18], height=max(360, 24 * len(d) + 90),
+        margin=dict(t=50, b=30, l=20, r=60))
+    return fig
+
+
+def region_capital_trend_chart(cohort_df: pd.DataFrame):
+    """기수별 수도권 비중 추이 (막대+라인)."""
+    if cohort_df is None or cohort_df.empty:
+        return None
+    d = cohort_df.copy()
+    fig = go.Figure()
+    fig.add_trace(go.Bar(
+        x=d['cohort'], y=d['total'], name='총 신청', marker_color='#C9D6E3',
+        text=d['total'], textposition='outside', cliponaxis=False,
+        hovertemplate='%{x}<br>총 %{y}명<extra></extra>'))
+    fig.add_trace(go.Scatter(
+        x=d['cohort'], y=d['capital_pct'], name='수도권 비중(%)', yaxis='y2',
+        mode='lines+markers+text', line=dict(color='#B0812A', width=3),
+        marker=dict(size=9), text=[f"{v}%" for v in d['capital_pct']],
+        textposition='top center',
+        hovertemplate='%{x}<br>수도권 %{y}%<extra></extra>'))
+    fig.update_layout(
+        title='기수별 총 신청 · 수도권 비중', height=380,
+        margin=dict(t=50, b=40, r=60),
+        yaxis=dict(title='신청 수'),
+        yaxis2=dict(title='수도권 비중(%)', overlaying='y', side='right',
+                    range=[0, 100], showgrid=False),
+        legend=dict(orientation='h', yanchor='bottom', y=1.02))
+    return fig
+
+
+def region_city_chart(df: pd.DataFrame):
+    """도시/구 단위 상위 신청 막대."""
+    if df is None or df.empty:
+        return None
+    d = df.sort_values('count')
+    fig = go.Figure(go.Bar(
+        x=d['count'], y=d['city'], orientation='h', marker_color='#5B8FF9',
+        text=d['count'], textposition='outside', cliponaxis=False,
+        hovertemplate='%{y}<br>%{x}건<extra></extra>'))
+    fig.update_layout(title='상위 도시/구 신청 분포', xaxis_title='건수', yaxis_title='',
+                      xaxis_range=[0, float(d['count'].max()) * 1.15],
+                      height=max(340, 26 * len(d) + 80), margin=dict(t=50, b=30, l=20, r=50))
+    return fig
+
+
+def monthly_roas_chart(perf_df: pd.DataFrame, ad_df: pd.DataFrame):
+    """월별 광고비 vs 매출 + ROAS(라인). 광고비 있는 달만."""
+    if perf_df is None or perf_df.empty or ad_df is None or ad_df.empty:
+        return None
+    spend = (ad_df[ad_df['channel'] == '전체'] if (ad_df['channel'] == '전체').any() else ad_df)
+    spend = spend.groupby('month', as_index=False)['spend'].sum()
+    p = perf_df[['month', 'revenue']].copy()
+    m = spend.merge(p, on='month', how='inner').sort_values('month')
+    if m.empty:
+        return None
+    m['roas'] = (m['revenue'] / m['spend']).replace([float('inf')], 0)
+    fig = go.Figure()
+    fig.add_trace(go.Bar(x=m['month'], y=m['spend'], name='광고비',
+                         marker_color='#1877F2', opacity=0.55,
+                         hovertemplate='%{x}<br>광고비 %{y:,.0f}원<extra></extra>'))
+    fig.add_trace(go.Bar(x=m['month'], y=m['revenue'], name='매출',
+                         marker_color='#26A69A', opacity=0.85,
+                         hovertemplate='%{x}<br>매출 %{y:,.0f}원<extra></extra>'))
+    fig.add_trace(go.Scatter(x=m['month'], y=m['roas'], name='ROAS(배)', yaxis='y2',
+                             mode='lines+markers', line=dict(color='#B0812A', width=3),
+                             marker=dict(size=7),
+                             hovertemplate='%{x}<br>ROAS %{y:.1f}배<extra></extra>'))
+    fig.update_layout(
+        title='월별 광고비 · 매출 · ROAS', height=400, hovermode='x unified',
+        barmode='group', margin=dict(t=55, b=40, r=60),
+        yaxis=dict(title='원'),
+        yaxis2=dict(title='ROAS(배)', overlaying='y', side='right', showgrid=False),
+        legend=dict(orientation='h', yanchor='bottom', y=1.02),
+        xaxis=dict(tickangle=-45))
+    return fig
