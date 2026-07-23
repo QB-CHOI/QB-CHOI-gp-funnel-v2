@@ -1518,3 +1518,89 @@ def cohort_conversion_bar_chart(funnel_df: pd.DataFrame, product_filter: str = N
         margin=dict(t=55, b=30, l=20, r=60),
     )
     return fig
+
+
+# ── 마케팅 분석 차트 ──────────────────────────────────────────────
+
+_MKT_CH_COLOR = {
+    '카카오_오픈채팅': '#F7C948', '오가닉': '#7C9CBF', '유튜브': '#E0455E',
+    '메타': '#1877F2', '인스타': '#C13584', '카카오_카플친': '#F5A623',
+    '카카오_채널': '#FBBF24', '문자': '#5C6BC0', '틱톡': '#111111',
+}
+
+
+def marketing_channel_summary(df: pd.DataFrame) -> pd.DataFrame:
+    """채널별 세션·구매·매출·전환율 요약 ('전체' 행 제외)."""
+    if df is None or df.empty:
+        return pd.DataFrame()
+    ch = df[df['channel'] != '전체'].groupby('channel', as_index=False).agg(
+        광고비=('ad_spend', 'sum'), 세션=('sessions', 'sum'),
+        구매=('purchases', 'sum'), 매출=('revenue', 'sum'))
+    ch['전환율'] = (ch['구매'] / ch['세션'] * 100).where(ch['세션'] > 0, 0).round(2)
+    return ch.sort_values('매출', ascending=False).reset_index(drop=True)
+
+
+def marketing_channel_chart(df: pd.DataFrame):
+    """채널별 매출 기여 가로 막대."""
+    ch = marketing_channel_summary(df)
+    ch = ch[ch['매출'] > 0]
+    if ch.empty:
+        return None
+    ch = ch.sort_values('매출')
+    colors = [_MKT_CH_COLOR.get(c, '#90A4AE') for c in ch['channel']]
+    fig = go.Figure(go.Bar(
+        x=ch['매출'], y=ch['channel'], orientation='h', marker_color=colors,
+        text=ch['매출'].apply(lambda v: f'{v/1e8:.2f}억' if v >= 1e8 else f'{v/1e4:,.0f}만'),
+        textposition='outside', cliponaxis=False,
+        hovertemplate='%{y}<br>매출 %{x:,.0f}원<extra></extra>',
+    ))
+    _mx = float(ch['매출'].max())
+    fig.update_layout(title='채널별 매출 기여', xaxis_title='매출(원)', yaxis_title='',
+                      xaxis_range=[0, _mx * 1.18], height=max(300, 44 * len(ch) + 90),
+                      margin=dict(t=55, b=30, l=20, r=70))
+    return fig
+
+
+def marketing_trend_chart(df: pd.DataFrame):
+    """일별 총매출(막대) + 광고비(라인, 보조축)."""
+    if df is None or df.empty:
+        return None
+    daily_rev = df[df['channel'] == '전체'].groupby('date', as_index=False)['revenue'].sum()
+    daily_spend = df.groupby('date', as_index=False)['ad_spend'].sum()
+    if daily_rev.empty:
+        return None
+    m = pd.merge(daily_rev, daily_spend, on='date', how='outer').fillna(0).sort_values('date')
+    fig = go.Figure()
+    fig.add_trace(go.Bar(x=m['date'], y=m['revenue'], name='매출',
+                         marker_color='#26A69A', opacity=0.85,
+                         hovertemplate='%{x}<br>매출 %{y:,.0f}원<extra></extra>'))
+    fig.add_trace(go.Scatter(x=m['date'], y=m['ad_spend'], name='광고비', yaxis='y2',
+                             mode='lines+markers', line=dict(color='#1877F2', width=2),
+                             marker=dict(size=4),
+                             hovertemplate='%{x}<br>광고비 %{y:,.0f}원<extra></extra>'))
+    fig.update_layout(
+        title='일별 매출 · 광고비 추이', height=380, hovermode='x unified',
+        margin=dict(t=55, b=30, r=60),
+        yaxis=dict(title='매출(원)'),
+        yaxis2=dict(title='광고비(원)', overlaying='y', side='right', showgrid=False),
+        legend=dict(orientation='h', yanchor='bottom', y=1.02),
+    )
+    return fig
+
+
+def marketing_channel_conv_chart(df: pd.DataFrame):
+    """채널별 세션→구매 전환율 가로 막대."""
+    ch = marketing_channel_summary(df)
+    ch = ch[ch['세션'] >= 100].sort_values('전환율')
+    if ch.empty:
+        return None
+    colors = [_MKT_CH_COLOR.get(c, '#90A4AE') for c in ch['channel']]
+    fig = go.Figure(go.Bar(
+        x=ch['전환율'], y=ch['channel'], orientation='h', marker_color=colors,
+        text=ch['전환율'].apply(lambda v: f'{v:.1f}%'), textposition='outside', cliponaxis=False,
+        hovertemplate='%{y}<br>전환율 %{x:.2f}%<extra></extra>'))
+    _mx = float(ch['전환율'].max()) or 1
+    fig.update_layout(title='채널별 세션→구매 전환율', xaxis_title='전환율(%)', yaxis_title='',
+                      xaxis_range=[0, _mx * 1.2], height=max(280, 40 * len(ch) + 90),
+                      margin=dict(t=55, b=30, l=20, r=60))
+    return fig

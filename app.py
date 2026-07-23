@@ -11,6 +11,7 @@ from github_store import (
     update_actual_close_date,
     load_conversions, save_conversion, get_latest_conversions, delete_conversion_row,
     load_enrollments, save_enrollment, delete_enrollment,
+    load_marketing,
     load_adspend, save_adspend, delete_adspend_row,
     load_content, save_content, delete_content_row,
     load_date_notes, save_date_note,
@@ -27,6 +28,8 @@ from charts import (
     room_snapshot_chart, period_total_trend, calendar_heatmap_chart,
     recruitment_curve_chart, retention_after_opening_chart, cohort_efficiency_df,
     cohort_funnel_data, conversion_funnel_chart, cohort_conversion_bar_chart,
+    marketing_channel_summary, marketing_channel_chart, marketing_trend_chart,
+    marketing_channel_conv_chart,
 )
 
 st.set_page_config(
@@ -254,9 +257,9 @@ def main():
 
     st.title("💬 황금후추 채팅방 인원 분석")
 
-    tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs([
+    tab1, tab2, tab3, tab4, tab5, tab9, tab6, tab7, tab8 = st.tabs([
         "📸 오늘 입력", "📊 현황", "📋 전환 분석", "📈 추이 그래프",
-        "🎓 강의 분석", "📑 경영진 보고", "⚙️ 채팅방 설정", "🗂️ 데이터 관리",
+        "🎓 강의 분석", "📢 마케팅 분석", "📑 경영진 보고", "⚙️ 채팅방 설정", "🗂️ 데이터 관리",
     ])
 
     with tab1:
@@ -269,6 +272,8 @@ def main():
         tab_trend()
     with tab5:
         tab_lecture_analysis()
+    with tab9:
+        tab_marketing()
     with tab6:
         tab_report()
     with tab7:
@@ -1695,6 +1700,92 @@ def tab_lecture_analysis():
                     restore_room(rn)
                     st.success(f"채팅방 {rn} — '{rname}' 복원 완료")
                     st.rerun()
+
+
+# ── 탭: 마케팅 분석 ──────────────────────────────────────────────
+
+def tab_marketing():
+    st.header("📢 마케팅 분석")
+    st.caption("채널별 광고비·유입·구매·매출을 분석합니다. (외부 마케팅 시트 이관 데이터)")
+
+    df = load_marketing()
+    if df.empty:
+        st.info("마케팅 데이터가 없습니다. 채널 metrics 데이터를 이관하면 분석이 표시됩니다.")
+        return
+
+    d0, d1 = df['date'].min(), df['date'].max()
+    st.caption(f"분석 기간: **{d0} ~ {d1}**")
+
+    # ── KPI ──────────────────────────────────────────────
+    # 총계는 '전체'(집계행)를 권위값으로, 광고비는 채널 실집행(메타)만 사용
+    ch = marketing_channel_summary(df)
+    _tot = df[df['channel'] == '전체']
+    tot_spend = int(ch['광고비'].sum())          # '전체'행 제외 = 실제 채널 광고비
+    if not _tot.empty:
+        tot_rev  = int(_tot['revenue'].sum())
+        tot_sess = int(_tot['sessions'].sum())
+        tot_buy  = int(_tot['purchases'].sum())
+    else:
+        tot_rev, tot_sess, tot_buy = int(ch['매출'].sum()), int(ch['세션'].sum()), int(ch['구매'].sum())
+    roas      = round(tot_rev / tot_spend, 1) if tot_spend else 0
+    cpa       = round(tot_spend / tot_buy) if tot_buy else 0
+
+    k1, k2, k3, k4 = st.columns(4)
+    k1.metric("총 광고비", f"{tot_spend:,}원")
+    k2.metric("총 매출", f"{tot_rev:,}원")
+    k3.metric("전체 ROAS", f"{roas:,.1f}배", help="총 매출 ÷ 총 광고비 (오가닉 매출 포함)")
+    k4.metric("구매 건수", f"{tot_buy:,}건")
+    k5, k6, k7, k8 = st.columns(4)
+    k5.metric("총 세션(유입)", f"{tot_sess:,}")
+    k6.metric("구매 전환율", f"{round(tot_buy/tot_sess*100,2)}%" if tot_sess else "—")
+    k7.metric("광고 CPA", f"{cpa:,}원", help="광고비 ÷ 전체 구매 건수")
+    _paid_sess = int(ch[ch['광고비'] > 0]['세션'].sum())
+    k8.metric("광고 CPС(세션)", f"{round(tot_spend/_paid_sess):,}원" if _paid_sess else "—",
+              help="광고비 ÷ 광고 유입 세션")
+
+    st.info("💡 **읽는 법** — 광고비는 주로 **메타**에, 매출은 **오픈채팅·유튜브·오가닉**에 잡힙니다"
+            "(광고→방 유입→구매 구조). 그래서 전체 ROAS는 유료+오가닉이 섞인 값이며, "
+            "채널별 효율은 아래 세션·구매·전환율로 비교하는 것이 정확합니다.")
+
+    # ── 채널별 매출 + 전환율 ──────────────────────────────
+    st.divider()
+    st.subheader("채널별 성과")
+    c_l, c_r = st.columns(2)
+    with c_l:
+        fig = marketing_channel_chart(df)
+        if fig:
+            st.plotly_chart(fig, key="mkt_ch_rev")
+    with c_r:
+        fig2 = marketing_channel_conv_chart(df)
+        if fig2:
+            st.plotly_chart(fig2, key="mkt_ch_conv")
+
+    # 채널 요약표
+    disp = ch.copy()
+    disp['광고비'] = disp['광고비'].apply(lambda x: f"{x:,}원" if x else "—")
+    disp['세션']   = disp['세션'].apply(lambda x: f"{x:,}")
+    disp['구매']   = disp['구매'].apply(lambda x: f"{x:,}건")
+    disp['매출']   = disp['매출'].apply(lambda x: f"{x:,}원" if x else "—")
+    disp['전환율'] = disp['전환율'].apply(lambda x: f"{x:.2f}%")
+    disp = disp.rename(columns={'channel': '채널'})
+    st.dataframe(disp, hide_index=True)
+
+    # ── 일별 추이 ────────────────────────────────────────
+    st.divider()
+    st.subheader("일별 매출 · 광고비 추이")
+    figt = marketing_trend_chart(df)
+    if figt:
+        st.plotly_chart(figt, key="mkt_trend")
+
+    # ── 마케팅 퍼널 ──────────────────────────────────────
+    st.divider()
+    st.subheader("마케팅 퍼널")
+    st.caption("광고비 투입 → 유입(세션) → 구매 → 매출")
+    fc1, fc2, fc3, fc4 = st.columns(4)
+    fc1.metric("① 광고비", f"{tot_spend/1e4:,.0f}만원")
+    fc2.metric("② 유입 세션", f"{tot_sess:,}")
+    fc3.metric("③ 구매", f"{tot_buy:,}건")
+    fc4.metric("④ 매출", f"{tot_rev/1e8:,.2f}억원")
 
 
 # ── 경영진 보고: 자동 인사이트 생성 ─────────────────────────────────

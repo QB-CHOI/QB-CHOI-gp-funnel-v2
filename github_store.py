@@ -37,6 +37,10 @@ CONTENT_PATH = "data/content_logs.csv"
 CONTENT_COLS = ['date', 'channel', 'content_type', 'title', 'url', 'memo']
 CONTENT_TYPE_OPTIONS = ['영상(유튜브/릴스)', '카드뉴스', '블로그', '라이브', '광고소재', '기타']
 
+# 마케팅 채널 metrics (일자별 채널별 광고비·세션·구매·매출) — 외부 시트 이관
+MARKETING_PATH = "data/marketing_metrics.csv"
+MARKETING_COLS = ['date', 'channel', 'ad_spend', 'sessions', 'purchases', 'revenue']
+
 
 def _token() -> str:
     token = st.secrets.get("github_token", "")
@@ -551,6 +555,20 @@ def delete_content_row(row_idx: int):
     df = df.drop(index=row_idx).reset_index(drop=True)
     _write_csv(CONTENT_PATH, df, f"콘텐츠 기록 삭제 (row {row_idx})")
     load_content.clear()
+
+
+# ── 마케팅 채널 metrics ───────────────────────────────────────────
+
+@st.cache_data(ttl=3600)
+def load_marketing() -> pd.DataFrame:
+    """일자별 채널별 광고비·세션·구매·매출 (외부 마케팅 시트 이관분)."""
+    df = _read_csv(MARKETING_PATH, MARKETING_COLS)
+    if df.empty:
+        return df
+    df['date'] = pd.to_datetime(df['date'], errors='coerce').dt.date
+    for c in ['ad_spend', 'sessions', 'purchases', 'revenue']:
+        df[c] = pd.to_numeric(df[c], errors='coerce').fillna(0).astype(int)
+    return df.dropna(subset=['date'])
 
 
 # ── 날짜별 메모 ───────────────────────────────────────────────────
