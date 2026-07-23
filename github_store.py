@@ -5,7 +5,10 @@ import pandas as pd
 import streamlit as st
 from datetime import date
 
-REPO           = "QB-CHOI/QB-CHOI-gp-funnel-v2"
+REPO           = "QB-CHOI/QB-CHOI-gp-funnel-v2"   # 코드 저장소 (public, 배포용)
+# 민감 데이터(매출·전환·인원)는 코드와 분리해 별도 private 저장소에 저장.
+# → 코드 저장소는 public 유지(Streamlit 배포 안정), 데이터는 외부 비공개.
+DATA_REPO      = "QB-CHOI/gp-funnel-data"
 MEMBERS_PATH   = "data/members.csv"
 CAMPAIGNS_PATH = "data/campaigns.csv"
 
@@ -55,7 +58,7 @@ def _headers() -> dict:
 # ── GitHub 파일 읽기/쓰기 ────────────────────────────────────────
 
 def _read_csv(path: str, columns: list) -> pd.DataFrame:
-    url = f"https://api.github.com/repos/{REPO}/contents/{path}"
+    url = f"https://api.github.com/repos/{DATA_REPO}/contents/{path}"
     try:
         res = requests.get(url, headers=_headers(), timeout=20)
     except requests.exceptions.RequestException as e:
@@ -91,7 +94,7 @@ def _read_csv(path: str, columns: list) -> pd.DataFrame:
 def _write_csv(path: str, df: pd.DataFrame, message: str, _retries: int = 3):
     """CSV를 GitHub에 저장. SHA 충돌(409) 시 최대 3회 자동 재시도."""
     import time
-    url       = f"https://api.github.com/repos/{REPO}/contents/{path}"
+    url       = f"https://api.github.com/repos/{DATA_REPO}/contents/{path}"
     csv_bytes = df.to_csv(index=False).encode("utf-8")
     content   = base64.b64encode(csv_bytes).decode("utf-8")
 
