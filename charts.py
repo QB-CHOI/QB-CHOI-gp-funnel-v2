@@ -1906,3 +1906,90 @@ def product_conversion_rate_chart(course_sum: pd.DataFrame):
         height=max(300, 46 * len(d) + 90),
         margin=dict(t=55, b=35, l=20, r=40))
     return fig
+
+
+def cohort_ad_roi_chart(camp_df: pd.DataFrame, product: str):
+    """상품군의 기수별 광고비·광고매출·ROAS (같은 기수 여러 라이브는 합산)."""
+    if camp_df is None or camp_df.empty:
+        return None
+    d = camp_df[camp_df['product'] == product].copy()
+    if d.empty:
+        return None
+    d = d.groupby('cohort', as_index=False).agg(
+        ad=('ad_spend', 'sum'), rev=('live_revenue', 'sum'))
+    d = d[d['ad'] > 0]
+    if d.empty:
+        return None
+    d['n'] = d['cohort'].str.extract(r'(\d+)').astype(float)
+    d = d.sort_values('n')
+    d['roas'] = d['rev'] / d['ad']
+    color = _PRODUCT_COLOR.get(product, '#5B8FF9')
+    fig = go.Figure()
+    fig.add_trace(go.Bar(x=d['cohort'], y=d['ad'], name='광고비',
+                         marker_color='#1877F2', opacity=0.55,
+                         text=[f"{v/1e4:,.0f}만" for v in d['ad']],
+                         textposition='outside', cliponaxis=False,
+                         hovertemplate='%{x}<br>광고비 %{y:,.0f}원<extra></extra>'))
+    fig.add_trace(go.Bar(x=d['cohort'], y=d['rev'], name='광고 매출',
+                         marker_color=color, opacity=0.85,
+                         text=[f"{v/1e4:,.0f}만" for v in d['rev']],
+                         textposition='outside', cliponaxis=False,
+                         hovertemplate='%{x}<br>광고매출 %{y:,.0f}원<extra></extra>'))
+    fig.add_trace(go.Scatter(x=d['cohort'], y=d['roas'], name='광고 ROAS(배)', yaxis='y2',
+                             mode='lines+markers+text', line=dict(color='#B0812A', width=3),
+                             marker=dict(size=9), text=[f"{v:.1f}배" for v in d['roas']],
+                             textposition='top center',
+                             hovertemplate='%{x}<br>ROAS %{y:.1f}배<extra></extra>'))
+    fig.update_layout(
+        title=f'{product} 기수별 광고 효율 진단', barmode='group', bargap=0.3,
+        yaxis=dict(title='원'),
+        yaxis2=dict(title='ROAS(배)', overlaying='y', side='right', showgrid=False,
+                    range=[0, float(d['roas'].max()) * 1.25]))
+    return _space_legend(fig, height=430)
+
+
+# 시도 대략 중심좌표 (버블 맵용, 외부 의존 없이 plotly 내장 지도 사용)
+_SIDO_LATLON = {
+    '서울': (37.56, 126.98), '경기': (37.41, 127.52), '인천': (37.46, 126.71),
+    '부산': (35.18, 129.08), '대구': (35.87, 128.60), '광주': (35.16, 126.85),
+    '대전': (36.35, 127.38), '울산': (35.54, 129.31), '세종': (36.48, 127.29),
+    '강원': (37.80, 128.20), '충북': (36.80, 127.70), '충남': (36.50, 126.80),
+    '전북': (35.70, 127.10), '전남': (34.90, 126.90), '경북': (36.30, 128.80),
+    '경남': (35.40, 128.20), '제주': (33.40, 126.55),
+}
+
+
+def region_bubble_map(region_df: pd.DataFrame, capital=('서울', '경기', '인천')):
+    """시도별 신청 버블 맵 (버블 크기=신청 수, 수도권=골드)."""
+    if region_df is None or region_df.empty:
+        return None
+    d = region_df.copy()
+    d['lat'] = d['region'].map(lambda r: _SIDO_LATLON.get(r, (None, None))[0])
+    d['lon'] = d['region'].map(lambda r: _SIDO_LATLON.get(r, (None, None))[1])
+    d = d.dropna(subset=['lat', 'lon'])
+    if d.empty:
+        return None
+    d['color'] = d['region'].map(lambda r: '#B0812A' if r in capital else '#5B8FF9')
+    _mx = float(d['signups'].max()) or 1
+    fig = go.Figure(go.Scattergeo(
+        lat=d['lat'], lon=d['lon'],
+        text=[f"{r}<br>{s}명" for r, s in zip(d['region'], d['signups'])],
+        mode='markers+text',
+        textposition='top center', textfont=dict(size=9),
+        marker=dict(
+            size=d['signups'], sizemode='area',
+            sizeref=2.0 * _mx / (55.0 ** 2), sizemin=4,
+            color=d['color'], opacity=0.8,
+            line=dict(width=0.5, color='#fff')),
+        hovertemplate='%{text}<extra></extra>'))
+    fig.update_geos(
+        scope='asia', resolution=50,
+        lataxis_range=[33, 39.2], lonaxis_range=[124.5, 131.5],
+        showland=True, landcolor='#f2f4f7',
+        showocean=True, oceancolor='#e8eef5',
+        showcountries=True, countrycolor='#c9d6e3',
+        showcoastlines=True, coastlinecolor='#c9d6e3')
+    fig.update_layout(
+        title='지역별 신청 분포 지도 (수도권=골드)',
+        height=460, margin=dict(t=50, b=10, l=10, r=10))
+    return fig

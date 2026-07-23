@@ -224,6 +224,7 @@ def generate_pdf_report(
     insight_lines, perf_rows,
     comparison_rows=None, funnel_rows=None, archived_rows=None,
     trend_series=None, change_breakdown=None, trend_mark=None,
+    strategy_rows=None, product_master=None,
     author="마케팅 총괄", report_to="경영진", org="황금후추",
 ) -> bytes:
     _register_fonts()
@@ -512,9 +513,43 @@ def generate_pdf_report(
         S.append(KeepTogether(block))
         S.append(Spacer(1, 8))
 
+    # ── 강의 사업 종합 전략 요약 ──
+    if strategy_rows or product_master:
+        block = [_section_header(6, "강의 사업 종합 전략 요약", styles, content_w), Spacer(1, 6)]
+        if strategy_rows:
+            for _title, _body in strategy_rows:
+                _b = _body
+                parts = _b.split("**")
+                _b = "".join(p if i % 2 == 0 else f"<b>{p}</b>" for i, p in enumerate(parts))
+                block.append(Paragraph(f"• <b>{_clean(_title)}</b> — {_b}", styles["bullet"]))
+                block.append(Spacer(1, 3))
+        if product_master:
+            block.append(Spacer(1, 5))
+            block.append(Paragraph("상품군 통합 요약 (매출·전환·객단가·광고 효율)", styles["h3"]))
+            block.append(Spacer(1, 4))
+            hh = [Paragraph(h, styles["cell_h"]) for h in
+                  ["상품군", "누적매출", "유료", "전환율", "객단가", "광고비", "광고ROAS"]]
+            rr = [hh]
+            for r in product_master:
+                rr.append([
+                    Paragraph(str(r.get("product", "")), styles["cell_b"]),
+                    Paragraph(f"{r.get('revenue',0)/1e8:,.2f}억", styles["cell_r"]),
+                    Paragraph(f"{_fmt(r.get('paid',0))}", styles["cell_r"]),
+                    Paragraph(f"{r.get('전환율',0):.1f}%", styles["cell_r"]),
+                    Paragraph(f"{r.get('객단가',0)/1e4:,.0f}만", styles["cell_r"]),
+                    Paragraph(f"{r.get('ad',0)/1e8:,.2f}억" if r.get('ad',0) else "—", styles["cell_r"]),
+                    Paragraph(f"{r.get('광고ROAS',0):.1f}배" if r.get('광고ROAS',0) else "—", styles["cell_r"]),
+                ])
+            tm = Table(rr, colWidths=[content_w*0.16, content_w*0.16, content_w*0.12,
+                                      content_w*0.12, content_w*0.14, content_w*0.15, content_w*0.15])
+            tm.setStyle(_table_style())
+            block.append(tm)
+        S.append(KeepTogether(block))
+        S.append(Spacer(1, 8))
+
     # ── 부록: 운영 종료 채팅방 ──
     if archived_rows:
-        S.append(_section_header(6, "[부록] 운영 종료 채팅방 현황", styles, content_w))
+        S.append(_section_header(7, "[부록] 운영 종료 채팅방 현황", styles, content_w))
         S.append(Spacer(1, 6))
         ha = [Paragraph(h, styles["cell_h"]) for h in ["채팅방", "종료일", "최종 인원", "최고 인원", "순증감", "운영기간"]]
         ra = [ha]

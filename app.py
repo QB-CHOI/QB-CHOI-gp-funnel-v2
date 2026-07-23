@@ -36,7 +36,8 @@ from charts import (
     marketing_channel_conv_chart, monthly_perf_chart, competitor_price_chart,
     cohort_revenue_chart, product_revenue_mix_chart, monthly_roas_chart,
     region_distribution_chart, region_capital_trend_chart, region_city_chart,
-    product_ad_roi_chart,
+    region_bubble_map,
+    product_ad_roi_chart, cohort_ad_roi_chart,
     overall_conversion_funnel, product_conversion_rate_chart,
 )
 
@@ -2169,6 +2170,43 @@ def tab_marketing():
                     f"필요합니다. 현재 광고비의 **{_top_share:.0f}%**가 **{_top_spend['product']}**에 집중되어 있어, "
                     f"효율 높은 **{_eff_names}**로의 분산도 검토할 만합니다.")
 
+            # ── 기수별 광고 효율 진단 (저효율 상품 심층 분석) ──
+            st.markdown("**🔬 기수별 광고 효율 진단**")
+            st.caption("상품군을 골라 기수별 광고비 대비 매출(ROAS)을 진단합니다. "
+                       "광고비를 많이 쓰고도 효율이 낮은 기수를 찾아 소재·타깃을 재점검하세요.")
+            _diag_prods = [p for p in ['사주', '부동산', '빌딩', '타로']
+                           if not camp_ad[camp_ad['product'] == p].empty]
+            # 저효율(광고비 대비 ROAS 낮은) 상품을 기본 선택
+            _default_idx = 0
+            if not g.empty:
+                _low_prod = g.sort_values('roas').iloc[0]['product']
+                if _low_prod in _diag_prods:
+                    _default_idx = _diag_prods.index(_low_prod)
+            _dp = st.selectbox("진단 상품군", options=_diag_prods,
+                               index=_default_idx, key="cohort_ad_diag")
+            _fig_diag = cohort_ad_roi_chart(camp_ad, _dp)
+            if _fig_diag:
+                st.plotly_chart(_fig_diag, key="roi_cohort_ad_diag")
+                # 기수별 진단 인사이트
+                _dd = camp_ad[camp_ad['product'] == _dp].groupby('cohort', as_index=False).agg(
+                    ad=('ad_spend', 'sum'), rev=('live_revenue', 'sum'))
+                _dd = _dd[_dd['ad'] > 0].copy()
+                if not _dd.empty:
+                    _dd['roas'] = _dd['rev'] / _dd['ad']
+                    _wc = _dd.loc[_dd['roas'].idxmin()]
+                    _mc = _dd.loc[_dd['ad'].idxmax()]
+                    _bc = _dd.loc[_dd['roas'].idxmax()]
+                    _msg = (f"💡 **{_dp} 진단** — 광고비 최다 투입 기수는 **{_mc['cohort']}"
+                            f"({_mc['ad']/1e8:.2f}억, ROAS {_mc['rev']/_mc['ad']:.1f}배)**, "
+                            f"효율 최저는 **{_wc['cohort']}({_wc['roas']:.1f}배)**, "
+                            f"최고는 **{_bc['cohort']}({_bc['roas']:.1f}배)**입니다. ")
+                    if _mc['rev'] / _mc['ad'] < 3:
+                        _msg += (f"광고비를 가장 많이 쓴 **{_mc['cohort']}의 효율이 낮아**, "
+                                 "해당 기수의 소재·타깃·랜딩을 최우선으로 점검해야 합니다.")
+                    else:
+                        _msg += "광고비 배분과 효율이 대체로 정렬되어 있습니다."
+                    st.info(_msg)
+
         # 기수별 매출 곡선 (상품군 선택)
         if not cohort_rev.empty:
             st.markdown("**기수별 매출 추이**")
@@ -2411,15 +2449,20 @@ def tab_region():
 
     # ── 지역별 분포 ──────────────────────────────────────
     st.subheader("지역별 신청 분포")
-    d_l, d_r = st.columns([1.1, 1])
-    with d_l:
+    # 지도(버블) + 지역 순위 막대 나란히
+    mp_l, mp_r = st.columns([1, 1])
+    with mp_l:
+        fig_map = region_bubble_map(region, capital=tuple(CAPITAL_REGIONS))
+        if fig_map:
+            st.plotly_chart(fig_map, key="rgn_map")
+    with mp_r:
         fig_r = region_distribution_chart(region, capital=tuple(CAPITAL_REGIONS))
         if fig_r:
             st.plotly_chart(fig_r, key="rgn_dist")
-    with d_r:
+    with st.expander("지역별 신청 수 표"):
         rd = region.copy()
         rd = rd.rename(columns={'region': '지역', 'signups': '신청', 'pct': '비율(%)'})
-        st.dataframe(rd, hide_index=True, height=430)
+        st.dataframe(rd, hide_index=True, width='stretch')
 
     # ── 광고 집중 전략 추천 ──────────────────────────────
     st.divider()
@@ -3069,6 +3112,10 @@ def tab_report():
         if _change_breakdown and _change_breakdown['archived_detail']:
             _md = _change_breakdown['archived_detail'][0]['date']
             _mark = (_md, "방 종료")
+        # 종합 전략 요약 (전략 브리핑 + 상품군 통합표) — PDF 자동 삽입
+        _strategy_rows = [(_t, _b) for _ic, _t, _b in _strategy_briefing()]
+        _pm = _product_master_table()
+        _product_master = _pm.to_dict('records') if not _pm.empty else None
         _pdf_bytes = generate_pdf_report(
             period_label=period_label,
             first_date=str(first_date), last_date=str(last_date),
@@ -3081,6 +3128,8 @@ def tab_report():
             trend_series=_trend_series,
             change_breakdown=_change_breakdown,
             trend_mark=_mark,
+            strategy_rows=_strategy_rows or None,
+            product_master=_product_master,
         )
     except Exception as _e:
         _pdf_bytes = None
