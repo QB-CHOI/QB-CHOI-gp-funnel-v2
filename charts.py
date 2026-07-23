@@ -1604,3 +1604,36 @@ def marketing_channel_conv_chart(df: pd.DataFrame):
                       xaxis_range=[0, _mx * 1.2], height=max(280, 40 * len(ch) + 90),
                       margin=dict(t=55, b=30, l=20, r=60))
     return fig
+
+
+def monthly_perf_chart(perf_df: pd.DataFrame, ad_df: pd.DataFrame = None):
+    """월별 매출(막대) + 무료 신청(라인) + 광고비(있으면) — 전 기간 성과 추이."""
+    if perf_df is None or perf_df.empty:
+        return None
+    p = perf_df.sort_values('month').copy()
+    fig = go.Figure()
+    fig.add_trace(go.Bar(
+        x=p['month'], y=p['revenue'], name='매출', marker_color='#26A69A', opacity=0.85,
+        hovertemplate='%{x}<br>매출 %{y:,.0f}원<extra></extra>'))
+    fig.add_trace(go.Scatter(
+        x=p['month'], y=p['free_signups'], name='무료 신청', yaxis='y2',
+        mode='lines+markers', line=dict(color='#7C9CBF', width=2), marker=dict(size=4),
+        hovertemplate='%{x}<br>무료 신청 %{y:,}<extra></extra>'))
+    # 광고비 (월별 합, 있으면)
+    if ad_df is not None and not ad_df.empty:
+        spend = (ad_df[ad_df['channel'] == '전체'] if (ad_df['channel'] == '전체').any() else ad_df)
+        spend = spend.groupby('month', as_index=False)['spend'].sum()
+        if not spend.empty:
+            fig.add_trace(go.Scatter(
+                x=spend['month'], y=spend['spend'], name='광고비', yaxis='y2',
+                mode='lines+markers', line=dict(color='#1877F2', width=2, dash='dot'), marker=dict(size=4),
+                hovertemplate='%{x}<br>광고비 %{y:,.0f}원<extra></extra>'))
+    fig.update_layout(
+        title='월별 성과 추이 (매출 · 무료 신청)', height=400, hovermode='x unified',
+        margin=dict(t=55, b=40, r=60),
+        yaxis=dict(title='매출(원)'),
+        yaxis2=dict(title='건수 / 광고비', overlaying='y', side='right', showgrid=False),
+        legend=dict(orientation='h', yanchor='bottom', y=1.02),
+        xaxis=dict(tickangle=-45),
+    )
+    return fig

@@ -41,6 +41,15 @@ CONTENT_TYPE_OPTIONS = ['영상(유튜브/릴스)', '카드뉴스', '블로그',
 MARKETING_PATH = "data/marketing_metrics.csv"
 MARKETING_COLS = ['date', 'channel', 'ad_spend', 'sessions', 'purchases', 'revenue']
 
+# 월별 성과 (주문 명단 집계: 무료 신청·유료 구매·매출) — 전 기간
+MONTHLY_PERF_PATH = "data/monthly_performance.csv"
+MONTHLY_PERF_COLS = ['month', 'free_signups', 'paid_orders', 'revenue', 'conv_rate']
+
+# 월별 광고비 입력 (전 기간 ROAS·CPA 산출용)
+AD_MONTHLY_PATH = "data/ad_spend_monthly.csv"
+AD_MONTHLY_COLS = ['month', 'channel', 'spend', 'memo']
+AD_CHANNEL_OPTIONS = ['전체', '메타', '구글', '네이버', '카카오', '유튜브', '기타']
+
 
 def _token() -> str:
     token = st.secrets.get("github_token", "")
@@ -569,6 +578,40 @@ def load_marketing() -> pd.DataFrame:
     for c in ['ad_spend', 'sessions', 'purchases', 'revenue']:
         df[c] = pd.to_numeric(df[c], errors='coerce').fillna(0).astype(int)
     return df.dropna(subset=['date'])
+
+
+@st.cache_data(ttl=3600)
+def load_monthly_performance() -> pd.DataFrame:
+    """월별 무료 신청·유료 구매·매출·전환율 (주문 명단 집계, 전 기간)."""
+    df = _read_csv(MONTHLY_PERF_PATH, MONTHLY_PERF_COLS)
+    if df.empty:
+        return df
+    for c in ['free_signups', 'paid_orders', 'revenue']:
+        df[c] = pd.to_numeric(df[c], errors='coerce').fillna(0).astype(int)
+    df['conv_rate'] = pd.to_numeric(df['conv_rate'], errors='coerce').fillna(0.0)
+    return df.sort_values('month').reset_index(drop=True)
+
+
+@st.cache_data(ttl=600)
+def load_ad_spend_monthly() -> pd.DataFrame:
+    """월별 광고비 입력값."""
+    df = _read_csv(AD_MONTHLY_PATH, AD_MONTHLY_COLS)
+    if df.empty:
+        return df
+    df['spend'] = pd.to_numeric(df['spend'], errors='coerce').fillna(0).astype(int)
+    return df
+
+
+def save_ad_spend_monthly(month: str, channel: str, spend: int, memo: str = ""):
+    """월별 광고비 저장(같은 월+채널이면 갱신)."""
+    df = _read_csv(AD_MONTHLY_PATH, AD_MONTHLY_COLS)
+    if not df.empty:
+        mask = (df['month'].astype(str) == str(month)) & (df['channel'].astype(str) == str(channel))
+        df = df[~mask]
+    new_row = pd.DataFrame([{'month': month, 'channel': channel, 'spend': int(spend), 'memo': memo}])
+    combined = pd.concat([df, new_row], ignore_index=True).sort_values(['month', 'channel'])
+    _write_csv(AD_MONTHLY_PATH, combined, f"월별 광고비 저장: {month} {channel} {spend:,}원")
+    load_ad_spend_monthly.clear()
 
 
 # ── 날짜별 메모 ───────────────────────────────────────────────────

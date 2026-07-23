@@ -11,7 +11,8 @@ from github_store import (
     update_actual_close_date,
     load_conversions, save_conversion, get_latest_conversions, delete_conversion_row,
     load_enrollments, save_enrollment, delete_enrollment,
-    load_marketing,
+    load_marketing, load_monthly_performance,
+    load_ad_spend_monthly, save_ad_spend_monthly, AD_CHANNEL_OPTIONS,
     load_adspend, save_adspend, delete_adspend_row,
     load_content, save_content, delete_content_row,
     load_date_notes, save_date_note,
@@ -29,7 +30,7 @@ from charts import (
     recruitment_curve_chart, retention_after_opening_chart, cohort_efficiency_df,
     cohort_funnel_data, conversion_funnel_chart, cohort_conversion_bar_chart,
     marketing_channel_summary, marketing_channel_chart, marketing_trend_chart,
-    marketing_channel_conv_chart,
+    marketing_channel_conv_chart, monthly_perf_chart,
 )
 
 st.set_page_config(
@@ -1706,15 +1707,65 @@ def tab_lecture_analysis():
 
 def tab_marketing():
     st.header("📢 마케팅 분석")
-    st.caption("채널별 광고비·유입·구매·매출을 분석합니다. (외부 마케팅 시트 이관 데이터)")
 
+    # ══ 전 기간 성과 추이 (주문 명단 집계) ══════════════════════
+    perf = load_monthly_performance()
+    ad_m = load_ad_spend_monthly()
+    if not perf.empty:
+        st.subheader("📈 전 기간 성과 추이")
+        st.caption(f"주문 데이터 기반 월별 성과 ({perf['month'].min()} ~ {perf['month'].max()}, "
+                   f"{len(perf)}개월). 개인정보 없는 집계.")
+        _tot_rev = int(perf['revenue'].sum())
+        _tot_free = int(perf['free_signups'].sum())
+        _tot_paid = int(perf['paid_orders'].sum())
+        _tot_spend_m = int(ad_m['spend'].sum()) if not ad_m.empty else 0
+        m1, m2, m3, m4 = st.columns(4)
+        m1.metric("누적 매출", f"{_tot_rev/1e8:,.1f}억원")
+        m2.metric("누적 무료 신청", f"{_tot_free:,}")
+        m3.metric("누적 유료 구매", f"{_tot_paid:,}건")
+        if _tot_spend_m > 0:
+            m4.metric("누적 ROAS", f"{_tot_rev/_tot_spend_m:,.1f}배", help="누적 매출 ÷ 입력된 광고비")
+        else:
+            m4.metric("평균 전환율", f"{_tot_paid/_tot_free*100:.2f}%" if _tot_free else "—")
+
+        fig_m = monthly_perf_chart(perf, ad_m if not ad_m.empty else None)
+        if fig_m:
+            st.plotly_chart(fig_m, key="mkt_monthly")
+
+        # 월별 광고비 입력
+        with st.expander("✏️ 월별 광고비 입력 — ROAS·CPA 산출용", expanded=(ad_m.empty)):
+            st.caption("광고 플랫폼(메타·구글 등)의 **월별 지출 총액**만 넣으면 전 기간 ROAS가 계산됩니다. "
+                       "채널을 나눠 넣어도 됩니다.")
+            _months = perf['month'].tolist()
+            with st.form("ad_spend_form"):
+                ac1, ac2, ac3 = st.columns([1.4, 1, 1.2])
+                with ac1:
+                    _am = st.selectbox("월", options=_months[::-1], key="ad_month")
+                with ac2:
+                    _ac = st.selectbox("채널", options=AD_CHANNEL_OPTIONS, key="ad_ch")
+                with ac3:
+                    _asp = st.number_input("광고비(원)", min_value=0, step=100000, value=0)
+                if st.form_submit_button("저장", type="primary", width='stretch'):
+                    save_ad_spend_monthly(_am, _ac, int(_asp))
+                    st.success(f"{_am} {_ac} 광고비 {_asp:,}원 저장 완료")
+                    st.rerun()
+            if not ad_m.empty:
+                _disp = ad_m.copy()
+                _disp['spend'] = _disp['spend'].apply(lambda x: f"{x:,}원")
+                st.dataframe(_disp[['month', 'channel', 'spend']].rename(
+                    columns={'month': '월', 'channel': '채널', 'spend': '광고비'}),
+                    hide_index=True)
+        st.divider()
+
+    # ══ 채널별 상세 (외부 채널 metrics) ═════════════════════════
+    st.subheader("🔬 채널별 상세 분석")
     df = load_marketing()
     if df.empty:
-        st.info("마케팅 데이터가 없습니다. 채널 metrics 데이터를 이관하면 분석이 표시됩니다.")
+        st.info("채널별 상세 데이터(채널 metrics)가 없습니다.")
         return
 
     d0, d1 = df['date'].min(), df['date'].max()
-    st.caption(f"분석 기간: **{d0} ~ {d1}**")
+    st.caption(f"채널 metrics 기간: **{d0} ~ {d1}** — 채널별 일 단위 상세 (외부 시트 이관)")
 
     # ── KPI ──────────────────────────────────────────────
     # 총계는 '전체'(집계행)를 권위값으로, 광고비는 채널 실집행(메타)만 사용
