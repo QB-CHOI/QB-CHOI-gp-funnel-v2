@@ -1828,3 +1828,39 @@ def monthly_roas_chart(perf_df: pd.DataFrame, ad_df: pd.DataFrame):
         legend=dict(orientation='h', yanchor='bottom', y=1.02),
         xaxis=dict(tickangle=-45))
     return fig
+
+
+def product_ad_roi_chart(camp_df: pd.DataFrame):
+    """상품군별 광고비 vs 광고매출 + 광고 ROAS(라인)."""
+    if camp_df is None or camp_df.empty:
+        return None
+    g = camp_df.groupby('product').agg(
+        ad_spend=('ad_spend', 'sum'), rev=('live_revenue', 'sum')).reset_index()
+    g = g[g['ad_spend'] > 0].sort_values('ad_spend', ascending=False)
+    if g.empty:
+        return None
+    g['roas'] = g['rev'] / g['ad_spend']
+    fig = go.Figure()
+    fig.add_trace(go.Bar(x=g['product'], y=g['ad_spend'], name='광고비',
+                         marker_color='#1877F2', opacity=0.85,
+                         text=[f"{v/1e8:.2f}억" for v in g['ad_spend']],
+                         textposition='outside', cliponaxis=False,
+                         hovertemplate='%{x}<br>광고비 %{y:,.0f}원<extra></extra>'))
+    fig.add_trace(go.Bar(x=g['product'], y=g['rev'], name='광고 매출',
+                         marker_color='#26A69A', opacity=0.85,
+                         text=[f"{v/1e8:.2f}억" for v in g['rev']],
+                         textposition='outside', cliponaxis=False,
+                         hovertemplate='%{x}<br>광고매출 %{y:,.0f}원<extra></extra>'))
+    fig.add_trace(go.Scatter(x=g['product'], y=g['roas'], name='광고 ROAS(배)', yaxis='y2',
+                             mode='lines+markers+text', line=dict(color='#B0812A', width=3),
+                             marker=dict(size=11), text=[f"{v:.1f}배" for v in g['roas']],
+                             textposition='top center',
+                             hovertemplate='%{x}<br>ROAS %{y:.1f}배<extra></extra>'))
+    fig.update_layout(
+        title='상품군별 광고비 · 광고매출 · ROAS', height=420, barmode='group',
+        margin=dict(t=55, b=40, r=60),
+        yaxis=dict(title='원'),
+        yaxis2=dict(title='ROAS(배)', overlaying='y', side='right', showgrid=False,
+                    range=[0, float(g['roas'].max()) * 1.25]),
+        legend=dict(orientation='h', yanchor='bottom', y=1.02))
+    return fig

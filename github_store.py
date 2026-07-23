@@ -60,6 +60,10 @@ COHORT_REV_COLS = ['product', 'cohort', 'students', 'revenue']
 COURSE_SUM_PATH = "data/course_summary.csv"
 COURSE_SUM_COLS = ['product', 'paid', 'free', 'revenue']
 
+# 캠페인(라이브)별 광고비·매출 — 상품군별 광고 ROI 산출용 (통합시트 이관)
+CAMPAIGN_AD_PATH = "data/campaign_adspend.csv"
+CAMPAIGN_AD_COLS = ['live_date', 'product', 'cohort', 'ad_spend', 'live_revenue']
+
 # 지역별 모객 (돈사공 초급반 9~12기 배송지 기준)
 REGION_PATH = "data/region_signups.csv"
 REGION_COLS = ['region', 'signups', 'pct']
@@ -664,6 +668,17 @@ def load_course_summary() -> pd.DataFrame:
     if df.empty:
         return df
     for c in ['paid', 'free', 'revenue']:
+        df[c] = pd.to_numeric(df[c], errors='coerce').fillna(0).astype(int)
+    return df
+
+
+@st.cache_data(ttl=3600)
+def load_campaign_adspend() -> pd.DataFrame:
+    """캠페인(라이브)별 광고비·매출 (상품군별 광고 ROI 산출용)."""
+    df = _read_csv(CAMPAIGN_AD_PATH, CAMPAIGN_AD_COLS)
+    if df.empty:
+        return df
+    for c in ['ad_spend', 'live_revenue']:
         df[c] = pd.to_numeric(df[c], errors='coerce').fillna(0).astype(int)
     return df
 

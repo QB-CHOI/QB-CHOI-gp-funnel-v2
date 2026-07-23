@@ -14,7 +14,7 @@ from github_store import (
     load_marketing, load_monthly_performance,
     load_ad_spend_monthly, save_ad_spend_monthly, AD_CHANNEL_OPTIONS,
     load_competitor_courses,
-    load_cohort_revenue, load_course_summary,
+    load_cohort_revenue, load_course_summary, load_campaign_adspend,
     load_region_signups, load_region_cohort, load_region_city, CAPITAL_REGIONS,
     load_adspend, save_adspend, delete_adspend_row,
     load_content, save_content, delete_content_row,
@@ -36,6 +36,7 @@ from charts import (
     marketing_channel_conv_chart, monthly_perf_chart, competitor_price_chart,
     cohort_revenue_chart, product_revenue_mix_chart, monthly_roas_chart,
     region_distribution_chart, region_capital_trend_chart, region_city_chart,
+    product_ad_roi_chart,
 )
 
 st.set_page_config(
@@ -1791,8 +1792,7 @@ def tab_marketing():
     if not course_sum.empty:
         st.subheader("🎓 강의 ROI 분석")
         st.caption("아임웹 강의별 집계(세트합계·멤버십 제외) 기준. 무료 특강 모객 → 유료 전환 성과를 "
-                   "상품군·기수별로 비교합니다. ※ 광고비는 전사 공통 집행이라 상품군별로 분리하지 않고 "
-                   "전체 ROAS로 해석합니다.")
+                   "상품군·기수별로 비교합니다.")
 
         _tot_paid_rev = int(course_sum['revenue'].sum())
         _tot_paid_cnt = int(course_sum['paid'].sum())
@@ -1827,6 +1827,48 @@ def tab_marketing():
             })
             st.dataframe(cs_disp, hide_index=True)
             st.caption("객단가 = 누적매출 ÷ 유료 수강 건수 (패키지 포함이라 강의 정가보다 높게 나타남)")
+
+        # ── 상품군별 광고 ROI (캠페인별 광고비 귀속) ──────────
+        camp_ad = load_campaign_adspend()
+        if not camp_ad.empty:
+            st.markdown("**💰 상품군별 광고 효율 (광고비 대비 ROAS)**")
+            st.caption("통합시트 라이브(캠페인)별 광고비를 상품군에 귀속한 결과. "
+                       "여기 '광고 매출'은 해당 캠페인 라이브가 직접 만든 매출(첫 전환 기준)이라 "
+                       "위 누적매출(패키지·재구매 포함)보다 작습니다. 광고 효율만 비교하는 값입니다.")
+            fig_ad = product_ad_roi_chart(camp_ad)
+            if fig_ad:
+                st.plotly_chart(fig_ad, key="roi_prod_ad")
+
+            g = camp_ad.groupby('product').agg(
+                ad=('ad_spend', 'sum'), rev=('live_revenue', 'sum')).reset_index()
+            g = g[g['ad'] > 0].copy()
+            g['roas'] = g['rev'] / g['ad']
+            g = g.sort_values('roas', ascending=False)
+            _best_p = g.iloc[0]
+            _worst_p = g.iloc[-1]
+            _tot_camp_ad = int(g['ad'].sum())
+            ga1, ga2, ga3 = st.columns(3)
+            ga1.metric("광고 최고효율", f"{_best_p['product']} {_best_p['roas']:.1f}배",
+                       help="광고비 대비 라이브 직접 매출")
+            ga2.metric("광고 최저효율", f"{_worst_p['product']} {_worst_p['roas']:.1f}배")
+            ga3.metric("캠페인 광고비 총계", f"{_tot_camp_ad/1e8:,.2f}억원",
+                       help=f"라이브별 광고비 합 (월별 집행 총액 {int(ad_m['spend'].sum())/1e8:.2f}억과 "
+                            "집계 방식 차이로 소폭 다름)" if not ad_m.empty else "라이브별 광고비 합")
+
+            g_disp = pd.DataFrame({
+                '상품군': g['product'],
+                '광고비': g['ad'].apply(lambda x: f"{x/1e8:,.2f}억"),
+                '광고매출': g['rev'].apply(lambda x: f"{x/1e8:,.2f}억"),
+                '광고 ROAS': g['roas'].apply(lambda x: f"{x:.1f}배"),
+                '광고비 비중': (g['ad'] / g['ad'].sum() * 100).apply(lambda x: f"{x:.0f}%"),
+            })
+            st.dataframe(g_disp, hide_index=True)
+            st.info(f"💡 **광고 전략** — **{_best_p['product']}**가 광고비 대비 매출 **{_best_p['roas']:.1f}배**로 "
+                    f"가장 효율적이라 광고 확대 여지가 큽니다. 반면 **{_worst_p['product']}**는 "
+                    f"**{_worst_p['roas']:.1f}배**로, 광고비 비중이 높다면 소재·타깃 개선 또는 예산 재배분이 "
+                    f"필요합니다. 광고비의 "
+                    f"**{g[g['product']=='사주']['ad'].sum()/g['ad'].sum()*100:.0f}%**가 사주에 집중되어 있어, "
+                    "효율 높은 타로·빌딩으로의 분산도 검토할 만합니다.")
 
         # 기수별 매출 곡선 (상품군 선택)
         if not cohort_rev.empty:
