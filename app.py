@@ -1903,6 +1903,40 @@ def tab_report():
     diff       = total_now - total_past
     pct        = round(diff / total_past * 100, 1) if total_past > 0 else 0
 
+    # ── 총원 변동 원인 분해 (활성 방 자연증감 vs 종료 방 제외) ──────
+    _active_nums = set(load_rooms().keys())
+    _arch_df = load_archived_rooms()
+    _arch_nums = {int(r['room_num']) for _, r in _arch_df.iterrows()} if not _arch_df.empty else set()
+    _sb = first_snap.set_index('room_num')['members']
+    _eb = last_snap.set_index('room_num')['members']
+    _active_start = int(_sb[[rn for rn in _sb.index if rn in _active_nums]].sum())
+    _active_end   = int(_eb[[rn for rn in _eb.index if rn in _active_nums]].sum())
+    _arch_start   = int(_sb[[rn for rn in _sb.index if rn in _arch_nums]].sum())
+    _active_change = _active_end - _active_start
+    _change_breakdown = None
+    _closed_in_period = []
+    if _arch_start > 0 and len(period_dates) > 1:
+        _closed_in_period = [
+            {'room': r['room_name'], 'final': int(r['final_members']),
+             'date': str(r.get('archived_date', '')), 'reason': str(r.get('archive_reason', '') or '운영 종료')}
+            for _, r in _arch_df.sort_values('room_num').iterrows()
+            if int(r['room_num']) in set(_sb.index)
+        ]
+        _active_pct = round(_active_change / _active_start * 100, 1) if _active_start else 0
+        _change_breakdown = {
+            'start_total': total_past, 'end_total': total_now,
+            'active_start': _active_start, 'active_end': _active_end,
+            'active_change': _active_change, 'active_pct': _active_pct,
+            'archived_removed': -_arch_start, 'archived_count': len(_closed_in_period),
+            'archived_detail': _closed_in_period,
+        }
+        # 화면 안내 배너
+        st.info(
+            f"📉 **총원 변동 원인** — 기간 총원 {diff:+,}명 중 **{-_arch_start:+,}명**은 "
+            f"강의를 마친 **{len(_closed_in_period)}개 방의 정상 종료**로 빠진 구조적 감소이며, "
+            f"계속 운영 중인 방은 **{_active_change:+,}명({_active_pct:+.1f}%)**으로 안정적입니다."
+        )
+
     df_adspend = load_adspend()
     df_conv    = load_conversions()
 
@@ -2008,6 +2042,30 @@ def tab_report():
         df_conv=df_conv if not df_conv.empty else None,
         df_all=df,
     )
+    # 총원 변동 원인 + 전략 시사점 (종료 방이 있을 때 맨 앞에 삽입)
+    if _change_breakdown:
+        _bd = _change_breakdown
+        _closed_names = ", ".join(d['room'].split('(')[-1].rstrip(')') if '(' in d['room'] else d['room']
+                                  for d in _bd['archived_detail'][:5])
+        insight_lines.insert(0,
+            f"**총원 변동 원인**: 기간 감소 {diff:+,}명 중 **{_bd['archived_removed']:+,}명**은 "
+            f"강의를 마친 {_bd['archived_count']}개 방({_closed_names})의 정상 종료에 따른 구조적 감소이며, "
+            f"**운영 중인 방은 {_bd['active_change']:+,}명({_bd['active_pct']:+.1f}%)**으로 안정적입니다. "
+            f"헤드라인 감소율({pct:.1f}%)을 실제 운영 부진으로 오해하지 않도록 유의가 필요합니다.")
+        # 전략 시사점 — 종료 기수 대비 신규 기수 전환 효율
+        try:
+            _fdf_i = cohort_funnel_data(df, load_campaigns(), load_enrollments())
+            _fdf_i = _fdf_i[_fdf_i['conversion'].notna()]
+            if not _fdf_i.empty:
+                _best = _fdf_i.loc[_fdf_i['conversion'].idxmax()]
+                _worst = _fdf_i.loc[_fdf_i['conversion'].idxmin()]
+                insight_lines.insert(1,
+                    f"**차기 전략 시사점**: 전환율은 **{_best['product']} {_best['cohort']} {_best['conversion']:.1f}%**로 최고, "
+                    f"{_worst['product']} {_worst['cohort']} {_worst['conversion']:.1f}%로 최저입니다. "
+                    f"방을 닫아 총원이 줄더라도 전환율 높은 상품(예: 타로)의 모객·연계를 강화하면 "
+                    f"인원 대비 매출 효율을 높일 수 있습니다.")
+        except Exception:
+            pass
     with st.container(border=True):
         st.markdown("#### 💡 자동 분석 인사이트")
         for line in insight_lines:
@@ -2207,6 +2265,10 @@ def tab_report():
             (str(d), int(df_period[df_period['date'] == d]['members'].sum()))
             for d in sorted(df_period['date'].unique())
         ]
+        _mark = None
+        if _change_breakdown and _change_breakdown['archived_detail']:
+            _md = _change_breakdown['archived_detail'][0]['date']
+            _mark = (_md, "방 종료")
         _pdf_bytes = generate_pdf_report(
             period_label=period_label,
             first_date=str(first_date), last_date=str(last_date),
@@ -2217,6 +2279,8 @@ def tab_report():
             funnel_rows=_funnel_rows,
             archived_rows=archived_report_rows or None,
             trend_series=_trend_series,
+            change_breakdown=_change_breakdown,
+            trend_mark=_mark,
         )
     except Exception as _e:
         _pdf_bytes = None

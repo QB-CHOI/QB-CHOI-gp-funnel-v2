@@ -129,19 +129,21 @@ class ConversionBars(Flowable):
 
 
 class TrendLine(Flowable):
-    """기간 총원 추이 라인 차트 (면적 채움 + 끝점 강조). series=[(date_str, value), ...]."""
-    def __init__(self, series, width, height=88):
+    """기간 총원 추이 라인 차트 (면적 채움 + 끝점 강조 + 이벤트 마커).
+    series=[(date_str, value), ...], mark=(date_str, label) 선택."""
+    def __init__(self, series, width, height=88, mark=None):
         super().__init__()
         self.series = [(str(d), int(v)) for d, v in series if v is not None]
         self.width = width
         self.height = height
+        self.mark = mark
 
     def draw(self):
         c = self.canv
         s = self.series
         if len(s) < 2:
             return
-        pad_l, pad_r, pad_t, pad_b = 8, 12, 12, 20
+        pad_l, pad_r, pad_t, pad_b = 8, 12, 14, 20
         gw = self.width - pad_l - pad_r
         gh = self.height - pad_t - pad_b
         vals = [v for _, v in s]
@@ -151,7 +153,6 @@ class TrendLine(Flowable):
         xs = [pad_l + gw * i / (n - 1) for i in range(n)]
         ys = [pad_b + gh * (v - vmin) / rng for v in vals]
 
-        # 기준선 (하단)
         c.setStrokeColor(LINE); c.setLineWidth(0.6)
         c.line(pad_l, pad_b, pad_l + gw, pad_b)
         # 면적
@@ -162,14 +163,24 @@ class TrendLine(Flowable):
         p.lineTo(xs[-1], pad_b); p.close()
         c.setFillColor(colors.HexColor("#E8EEF6"))
         c.drawPath(p, fill=1, stroke=0)
+        # 이벤트 마커 (방 종료 시점 수직 점선)
+        if self.mark:
+            dates = [d for d, _ in s]
+            md = str(self.mark[0])
+            if md in dates:
+                mi = dates.index(md)
+                mx = xs[mi]
+                c.setStrokeColor(CRIT); c.setLineWidth(0.9); c.setDash(2, 2)
+                c.line(mx, pad_b, mx, pad_b + gh)
+                c.setDash()
+                c.setFont(FB, 6.8); c.setFillColor(CRIT)
+                c.drawCentredString(mx, pad_b + gh + 3, f"↓ {self.mark[1]}")
         # 라인
         c.setStrokeColor(NAVY); c.setLineWidth(1.6)
         for i in range(n - 1):
             c.line(xs[i], ys[i], xs[i + 1], ys[i + 1])
-        # 끝점
         c.setFillColor(GOLD)
         c.circle(xs[-1], ys[-1], 2.6, fill=1, stroke=0)
-        # 라벨: 시작/끝 값 + 날짜
         c.setFont(F, 7); c.setFillColor(INK_SOFT)
         c.drawString(pad_l, pad_b - 12, s[0][0])
         c.drawRightString(pad_l + gw, pad_b - 12, s[-1][0])
@@ -212,7 +223,7 @@ def generate_pdf_report(
     total_now, diff, pct, period_spend, conv_rate,
     insight_lines, perf_rows,
     comparison_rows=None, funnel_rows=None, archived_rows=None,
-    trend_series=None,
+    trend_series=None, change_breakdown=None, trend_mark=None,
     author="마케팅 총괄", report_to="경영진", org="황금후추",
 ) -> bytes:
     _register_fonts()
@@ -303,13 +314,22 @@ def generate_pdf_report(
         f"보고 기간 종료일({last_date}) 기준 운영 채팅방 총원은 <b>{_fmt(total_now)}명</b>으로, "
         f"기간 시작 대비 <b>{sign}{_fmt(diff)}명({sign}{pct:.1f}%) {trend}</b>하였습니다. "
     )
+    if change_breakdown and change_breakdown.get("archived_removed", 0) < 0:
+        bd = change_breakdown
+        summary += (
+            f"<br/><br/>다만 이 감소분의 대부분(<b>{_fmt(bd['archived_removed'])}명</b>)은 "
+            f"강의를 마친 <b>{bd['archived_count']}개 채팅방의 정상 종료</b>로 총원에서 제외된 "
+            f"구조적 변동이며, 계속 운영 중인 채팅방은 <b>{bd['active_change']:+,}명"
+            f"({bd['active_pct']:+.1f}%)</b>으로 안정적입니다. 헤드라인 감소율을 운영 부진으로 "
+            f"해석하지 않도록 유의가 필요합니다."
+        )
     if funnel_rows:
         tot_e = sum(int(r.get("enrolled", 0)) for r in funnel_rows)
         tot_p = sum(int(r.get("webinar_peak", 0)) for r in funnel_rows)
         tot_r = sum(int(r.get("revenue", 0)) for r in funnel_rows)
         avg_c = (tot_e / tot_p * 100) if tot_p else 0
         summary += (
-            f"분석 대상 {len(funnel_rows)}개 기수의 무료 웨비나 누적 최고인원 {_fmt(tot_p)}명은 "
+            f"<br/><br/>분석 대상 {len(funnel_rows)}개 기수의 무료 웨비나 누적 최고인원 {_fmt(tot_p)}명은 "
             f"유료 등록 <b>{_fmt(tot_e)}명</b>으로 이어져 평균 전환율 <b>{avg_c:.1f}%</b>, "
             f"등록 매출 <b>{_fmt(tot_r)}원</b>을 기록하였습니다."
         )
@@ -378,13 +398,62 @@ def generate_pdf_report(
         tc.setStyle(_table_style())
         S.append(tc)
 
-    # 기간 총원 추이 (라인 차트)
+    # 기간 총원 추이 (라인 차트 + 방 종료 마커)
     if trend_series and len(trend_series) >= 2:
         S.append(Spacer(1, 10))
         S.append(Paragraph("기간 총원 추이", styles["h3"]))
         S.append(Spacer(1, 3))
-        S.append(TrendLine(trend_series, content_w))
+        S.append(TrendLine(trend_series, content_w, mark=trend_mark))
     S.append(Spacer(1, 14))
+
+    # ── 2-1. 총원 변동 원인 분석 (감소 사유 명시) ──
+    if change_breakdown and change_breakdown.get("archived_removed", 0) < 0:
+        bd = change_breakdown
+        blk = [_section_header("2-1", "총원 변동 원인 분석", styles, content_w), Spacer(1, 5),
+               Paragraph("헤드라인 총원 변동을 ‘운영 중 방의 자연 증감’과 ‘강의 완료에 따른 방 종료(구조적)’로 "
+                         "분해하여, 실제 운영 상태를 정확히 판단할 수 있도록 하였습니다.", styles["body_s"]),
+               Spacer(1, 7)]
+        # 분해 표 (워터폴 형식)
+        s_style = ParagraphStyle("wf", fontName=FB, fontSize=9, leading=13, textColor=INK)
+        rows_wf = [
+            [Paragraph("구분", styles["cell_h"]), Paragraph("증감", styles["cell_h"]), Paragraph("비고", styles["cell_h"])],
+            [Paragraph("기간 시작 총원", styles["cell"]), Paragraph(f"{_fmt(bd['start_total'])}명", styles["cell_r"]),
+             Paragraph("종료 방 포함 기준", styles["cell"])],
+            [Paragraph("① 운영 중 방 자연 증감", styles["cell"]),
+             Paragraph(f'<font color="#{(GOOD if bd["active_change"]>=0 else CRIT).hexval()[2:]}">{bd["active_change"]:+,}명 ({bd["active_pct"]:+.1f}%)</font>', styles["cell_r"]),
+             Paragraph("계속 운영 중 — 안정적", styles["cell"])],
+            [Paragraph("② 강의 완료 방 종료(구조적)", styles["cell"]),
+             Paragraph(f'<font color="#{CRIT.hexval()[2:]}">{bd["archived_removed"]:+,}명</font>', styles["cell_r"]),
+             Paragraph(f"{bd['archived_count']}개 방 정상 종료", styles["cell"])],
+            [Paragraph("기간 종료 총원", styles["cell_b"]), Paragraph(f"{_fmt(bd['end_total'])}명", styles["cell_r"]),
+             Paragraph("현재 운영 방 기준", styles["cell"])],
+        ]
+        twf = Table(rows_wf, colWidths=[content_w*0.40, content_w*0.30, content_w*0.30])
+        twf.setStyle(TableStyle([
+            ("BACKGROUND", (0, 0), (-1, 0), NAVY),
+            ("GRID", (0, 0), (-1, -1), 0.5, LINE),
+            ("BACKGROUND", (0, 4), (-1, 4), colors.HexColor("#EEF2F7")),
+            ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+            ("TOPPADDING", (0, 0), (-1, -1), 5), ("BOTTOMPADDING", (0, 0), (-1, -1), 5),
+            ("LEFTPADDING", (0, 0), (-1, -1), 7), ("RIGHTPADDING", (0, 0), (-1, -1), 7),
+            ("LINEABOVE", (0, 4), (-1, 4), 1.0, NAVY),
+        ]))
+        blk.append(twf)
+        # 종료 방 상세
+        if bd["archived_detail"]:
+            blk.append(Spacer(1, 6))
+            det = "종료 채팅방 : " + " · ".join(
+                f"{d['room']}({_fmt(d['final'])}명, {d['date']})" for d in bd["archived_detail"])
+            blk.append(Paragraph(det, styles["body_s"]))
+        # 시사점
+        blk.append(Spacer(1, 5))
+        note = ParagraphStyle("note", fontName=FB, fontSize=8.7, leading=13, textColor=NAVY_D)
+        blk.append(Paragraph(
+            "▪ 시사점 : 총원 감소의 대부분은 강의 사이클 완료에 따른 계획된 방 종료이며, "
+            "이는 오픈채팅 운영의 정상적 수명주기입니다. 다음 기수 모객 시에는 종료 방의 전환 "
+            "성과를 참고하여 전환율 높은 상품군을 우선 편성하는 전략이 유효합니다.", note))
+        blk.append(Spacer(1, 14))
+        S.append(KeepTogether(blk))
 
     # ── 3. 모객 → 유료 전환 분석 ──
     if funnel_rows:
