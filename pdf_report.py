@@ -128,6 +128,56 @@ class ConversionBars(Flowable):
             y -= self.row_h
 
 
+class TrendLine(Flowable):
+    """기간 총원 추이 라인 차트 (면적 채움 + 끝점 강조). series=[(date_str, value), ...]."""
+    def __init__(self, series, width, height=88):
+        super().__init__()
+        self.series = [(str(d), int(v)) for d, v in series if v is not None]
+        self.width = width
+        self.height = height
+
+    def draw(self):
+        c = self.canv
+        s = self.series
+        if len(s) < 2:
+            return
+        pad_l, pad_r, pad_t, pad_b = 8, 12, 12, 20
+        gw = self.width - pad_l - pad_r
+        gh = self.height - pad_t - pad_b
+        vals = [v for _, v in s]
+        vmin, vmax = min(vals), max(vals)
+        rng = (vmax - vmin) or 1
+        n = len(s)
+        xs = [pad_l + gw * i / (n - 1) for i in range(n)]
+        ys = [pad_b + gh * (v - vmin) / rng for v in vals]
+
+        # 기준선 (하단)
+        c.setStrokeColor(LINE); c.setLineWidth(0.6)
+        c.line(pad_l, pad_b, pad_l + gw, pad_b)
+        # 면적
+        p = c.beginPath()
+        p.moveTo(xs[0], pad_b)
+        for x, y in zip(xs, ys):
+            p.lineTo(x, y)
+        p.lineTo(xs[-1], pad_b); p.close()
+        c.setFillColor(colors.HexColor("#E8EEF6"))
+        c.drawPath(p, fill=1, stroke=0)
+        # 라인
+        c.setStrokeColor(NAVY); c.setLineWidth(1.6)
+        for i in range(n - 1):
+            c.line(xs[i], ys[i], xs[i + 1], ys[i + 1])
+        # 끝점
+        c.setFillColor(GOLD)
+        c.circle(xs[-1], ys[-1], 2.6, fill=1, stroke=0)
+        # 라벨: 시작/끝 값 + 날짜
+        c.setFont(F, 7); c.setFillColor(INK_SOFT)
+        c.drawString(pad_l, pad_b - 12, s[0][0])
+        c.drawRightString(pad_l + gw, pad_b - 12, s[-1][0])
+        c.setFont(FB, 7.5); c.setFillColor(NAVY)
+        c.drawString(pad_l, ys[0] + 4, f"{vals[0]:,}")
+        c.drawRightString(pad_l + gw, ys[-1] + 5, f"{vals[-1]:,}명")
+
+
 def _section_header(num, title, styles, width):
     """번호 붙은 섹션 헤더 (골드 좌측 바 + 제목). 중첩 없이 배경색 셀 사용."""
     t = Table([["", Paragraph(f"{num}. {title}", styles["sec"])]],
@@ -162,6 +212,7 @@ def generate_pdf_report(
     total_now, diff, pct, period_spend, conv_rate,
     insight_lines, perf_rows,
     comparison_rows=None, funnel_rows=None, archived_rows=None,
+    trend_series=None,
     author="마케팅 총괄", report_to="경영진", org="황금후추",
 ) -> bytes:
     _register_fonts()
@@ -326,6 +377,13 @@ def generate_pdf_report(
         tc = Table(rowsc, colWidths=[content_w*0.34, content_w*0.22, content_w*0.22, content_w*0.22])
         tc.setStyle(_table_style())
         S.append(tc)
+
+    # 기간 총원 추이 (라인 차트)
+    if trend_series and len(trend_series) >= 2:
+        S.append(Spacer(1, 10))
+        S.append(Paragraph("기간 총원 추이", styles["h3"]))
+        S.append(Spacer(1, 3))
+        S.append(TrendLine(trend_series, content_w))
     S.append(Spacer(1, 14))
 
     # ── 3. 모객 → 유료 전환 분석 ──

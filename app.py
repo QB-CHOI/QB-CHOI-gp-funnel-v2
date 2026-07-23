@@ -2202,6 +2202,11 @@ def tab_report():
     _pdf_bytes = None
     try:
         from pdf_report import generate_pdf_report
+        # 기간 총원 추이 시리즈 (일자별 총원)
+        _trend_series = [
+            (str(d), int(df_period[df_period['date'] == d]['members'].sum()))
+            for d in sorted(df_period['date'].unique())
+        ]
         _pdf_bytes = generate_pdf_report(
             period_label=period_label,
             first_date=str(first_date), last_date=str(last_date),
@@ -2211,6 +2216,7 @@ def tab_report():
             comparison_rows=_comparison_rows or None,
             funnel_rows=_funnel_rows,
             archived_rows=archived_report_rows or None,
+            trend_series=_trend_series,
         )
     except Exception as _e:
         _pdf_bytes = None
