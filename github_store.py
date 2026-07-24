@@ -658,6 +658,34 @@ def save_ad_spend_monthly(month: str, channel: str, spend: int, memo: str = ""):
     load_ad_spend_monthly.clear()
 
 
+# 월별 KPI 목표 (매출·모객) — 목표 대비 실적 추적
+TARGETS_PATH = "data/targets.csv"
+TARGETS_COLS = ['month', 'revenue_target', 'signup_target', 'memo']
+
+
+@st.cache_data(ttl=300)
+def load_targets() -> pd.DataFrame:
+    """월별 KPI 목표(매출·무료 모객)."""
+    df = _read_csv(TARGETS_PATH, TARGETS_COLS)
+    if df.empty:
+        return df
+    for c in ['revenue_target', 'signup_target']:
+        df[c] = pd.to_numeric(df[c], errors='coerce').fillna(0).astype(int)
+    return df
+
+
+def save_target(month: str, revenue_target: int, signup_target: int, memo: str = ""):
+    """월별 목표 저장(같은 월이면 갱신)."""
+    df = _read_csv(TARGETS_PATH, TARGETS_COLS)
+    if not df.empty:
+        df = df[df['month'].astype(str) != str(month)]
+    new_row = pd.DataFrame([{'month': month, 'revenue_target': int(revenue_target),
+                             'signup_target': int(signup_target), 'memo': memo}])
+    combined = pd.concat([df, new_row], ignore_index=True).sort_values('month')
+    _write_csv(TARGETS_PATH, combined, f"월별 목표 저장: {month}")
+    load_targets.clear()
+
+
 @st.cache_data(ttl=3600)
 def load_competitor_courses() -> pd.DataFrame:
     """경쟁사 강의 가격/포지셔닝 (황금후추 자사 대표가 포함)."""

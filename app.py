@@ -13,6 +13,7 @@ from github_store import (
     load_enrollments, save_enrollment, delete_enrollment,
     load_marketing, load_monthly_performance,
     load_ad_spend_monthly, save_ad_spend_monthly, AD_CHANNEL_OPTIONS,
+    load_targets, save_target,
     load_competitor_courses,
     load_cohort_revenue, load_course_summary, load_campaign_adspend,
     load_monthly_by_course, load_cohort_stage, STAGE_ORDER,
@@ -49,6 +50,7 @@ from charts import (
     cross_sell_heatmap, monthly_new_repeat_chart,
     runrate_forecast_chart,
     repeat_timing_chart, retention_curve_chart, retention_heatmap,
+    target_vs_actual_chart,
 )
 
 st.set_page_config(
@@ -531,6 +533,104 @@ def tab_period():
                 st.plotly_chart(_fr, width='stretch', key="prd_fc_rev")
         st.warning("⚠️ 전망은 **최근 추세 기준 참고치**입니다. 개강·프로모션이 있는 달은 크게 상회하고, "
                    "없는 달은 하회합니다. 확정 예측이 아니라 예산·목표 설정의 기준선으로 활용하세요.")
+
+        # ── 🎯 목표 관리 & 달성 추적 ─────────────────────
+        st.divider()
+        st.subheader("🎯 목표 관리 & 달성 추적")
+        st.caption("월별 매출·모객 목표를 설정하면 실적 대비 **달성률**을 자동 추적합니다. "
+                   "목표는 위 런레이트를 기준선으로 참고해 설정하세요.")
+        tgt = load_targets()
+        # 실적 결합 (monthly_performance)
+        _perf_idx = _p.set_index('month')
+        _this_month = date.today().strftime('%Y-%m')
+
+        # 목표 설정 폼 (런레이트 제안값 프리필)
+        with st.expander("✏️ 월별 목표 설정 / 수정", expanded=tgt.empty):
+            _sugg_rev = int(round(_rr_rev / 1e8, 1) * 10) / 10 if _rr_rev else 5.0
+            _sugg_free = int(round(_rr_free / 100) * 100) if _rr_free else 3000
+            with st.form("target_form"):
+                tc1, tc2, tc3 = st.columns(3)
+                with tc1:
+                    _fm = st.selectbox("월", options=_pm[::-1] + _future_months(_pm, 3),
+                                       key="tgt_month")
+                with tc2:
+                    _rev_t = st.number_input("매출 목표(억원)", min_value=0.0, step=0.5,
+                                             value=float(_sugg_rev),
+                                             help=f"런레이트 참고: {_rr_rev/1e8:.1f}억/월")
+                with tc3:
+                    _free_t = st.number_input("무료 모객 목표(명)", min_value=0, step=500,
+                                              value=int(_sugg_free),
+                                              help=f"런레이트 참고: {_rr_free:,.0f}명/월")
+                if st.form_submit_button("목표 저장", type="primary", width='stretch'):
+                    save_target(_fm, int(_rev_t * 1e8), int(_free_t))
+                    st.success(f"{_fm} 목표 저장: 매출 {_rev_t}억 · 모객 {int(_free_t):,}명")
+                    st.rerun()
+
+        if not tgt.empty:
+            # 이번 달(또는 최근 목표월) 달성 현황 카드
+            _rev_rows, _free_rows = [], []
+            for _, tr in tgt.iterrows():
+                _mn = str(tr['month'])
+                _act_rev = int(_perf_idx.loc[_mn, 'revenue']) if _mn in _perf_idx.index else 0
+                _act_free = int(_perf_idx.loc[_mn, 'free_signups']) if _mn in _perf_idx.index else 0
+                _rev_rows.append({'month': _mn, 'actual': _act_rev, 'target': int(tr['revenue_target'])})
+                _free_rows.append({'month': _mn, 'actual': _act_free, 'target': int(tr['signup_target'])})
+            _rev_df = pd.DataFrame(_rev_rows)
+            _free_df = pd.DataFrame(_free_rows)
+
+            # 이번 달 진행률 (있으면)
+            _tm = tgt[tgt['month'].astype(str) == _this_month]
+            if not _tm.empty:
+                _t = _tm.iloc[0]
+                _ar = int(_perf_idx.loc[_this_month, 'revenue']) if _this_month in _perf_idx.index else 0
+                _af = int(_perf_idx.loc[_this_month, 'free_signups']) if _this_month in _perf_idx.index else 0
+                st.markdown(f"**📌 이번 달({_this_month}) 진행** — 집계 진행 중")
+                pc1, pc2 = st.columns(2)
+                with pc1:
+                    _rr = _ar / int(_t['revenue_target']) if int(_t['revenue_target']) else 0
+                    st.metric("매출", f"{_ar/1e8:.2f}억 / {int(_t['revenue_target'])/1e8:.1f}억",
+                              delta=f"달성률 {_rr*100:.0f}%", delta_color="off")
+                    st.progress(min(_rr, 1.0))
+                with pc2:
+                    _fr2 = _af / int(_t['signup_target']) if int(_t['signup_target']) else 0
+                    st.metric("무료 모객", f"{_af:,} / {int(_t['signup_target']):,}명",
+                              delta=f"달성률 {_fr2*100:.0f}%", delta_color="off")
+                    st.progress(min(_fr2, 1.0))
+
+            # 목표 대비 실적 차트 (완료 월)
+            gg1, gg2 = st.columns(2)
+            with gg1:
+                _f = target_vs_actual_chart(_rev_df, '매출', as_eok=True)
+                if _f:
+                    st.plotly_chart(_f, width='stretch', key="tgt_rev")
+            with gg2:
+                _f = target_vs_actual_chart(_free_df, '무료 모객')
+                if _f:
+                    st.plotly_chart(_f, width='stretch', key="tgt_free")
+            # 달성 요약
+            _done = _rev_df[(_rev_df['month'] < _this_month) & (_rev_df['target'] > 0)]
+            if not _done.empty:
+                _hit = int((_done['actual'] >= _done['target']).sum())
+                st.info(f"💡 목표 설정된 완료 월 **{len(_done)}개월 중 {_hit}개월 달성**. "
+                        "미달 월은 개강 일정·광고 집행과 대조해 원인을 진단하세요.")
+        else:
+            st.info("아직 설정된 목표가 없습니다. 위 폼에서 월별 목표를 입력하면 달성 추적이 시작됩니다.")
+
+
+def _future_months(months, n):
+    """마지막 월 이후 n개월 라벨 생성 (목표 선입력용)."""
+    if not months:
+        return []
+    last = max(months)
+    y, mo = int(last[:4]), int(last[5:7])
+    out = []
+    for _ in range(n):
+        mo += 1
+        if mo > 12:
+            mo = 1
+            y += 1
+        out.append(f"{y:04d}-{mo:02d}")
+    return out
 
 
 # ── 탭: 강의별 상세 (드릴다운) ────────────────────────────────────

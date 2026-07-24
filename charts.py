@@ -2334,3 +2334,35 @@ def retention_heatmap(df: pd.DataFrame, months: int = 12):
                       margin=dict(t=55, b=40, l=55, r=20),
                       yaxis=dict(title='가입월', autorange='reversed'))
     return fig
+
+
+# ══════════════ KPI 목표 대비 실적 ══════════════
+
+def target_vs_actual_chart(df: pd.DataFrame, label: str, as_eok: bool = False):
+    """월별 목표 vs 실적 그룹 막대 + 달성률.
+
+    df: columns [month, actual, target] (target>0 인 행만).
+    """
+    if df is None or df.empty:
+        return None
+    d = df[df['target'] > 0].sort_values('month')
+    if d.empty:
+        return None
+    scale = 1e8 if as_eok else 1
+    suf = '억' if as_eok else ''
+    fig = go.Figure()
+    fig.add_trace(go.Bar(x=d['month'], y=d['target'], name='목표',
+                         marker_color='#C9D6E3',
+                         text=[f"{v/scale:,.1f}{suf}" if as_eok else f"{v/scale:,.0f}" for v in d['target']],
+                         textposition='outside', cliponaxis=False,
+                         hovertemplate='목표 %{y:,.0f}<extra></extra>'))
+    _colors = ['#26A69A' if a >= t else '#E4844A' for a, t in zip(d['actual'], d['target'])]
+    fig.add_trace(go.Bar(x=d['month'], y=d['actual'], name='실적',
+                         marker_color=_colors,
+                         text=[f"{a/t*100:.0f}%" if t else "" for a, t in zip(d['actual'], d['target'])],
+                         textposition='outside', cliponaxis=False,
+                         hovertemplate='실적 %{y:,.0f}<extra></extra>'))
+    fig.update_layout(title=f'{label} 목표 대비 실적 (막대 위 % = 달성률)',
+                      barmode='group', bargap=0.3,
+                      yaxis=dict(title=label), xaxis=dict(tickangle=-45))
+    return _space_legend(fig, height=380)
