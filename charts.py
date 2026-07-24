@@ -2113,3 +2113,108 @@ def cohort_stage_matrix_chart(stage_df: pd.DataFrame, product: str, stage_order)
     fig.update_layout(title=f'{product} 기수별 단계 인원', barmode='group',
                       bargap=0.3, yaxis=dict(title='인원'))
     return _space_legend(fig, height=380)
+
+
+# ══════════════ 고객 분석 (LTV·재구매·교차판매) ══════════════
+
+def cust_repeat_donut(df: pd.DataFrame):
+    """재구매 횟수 분포 도넛."""
+    if df is None or df.empty:
+        return None
+    order = ['1회', '2회', '3~4회', '5회+']
+    d = df.set_index('bucket').reindex(order).fillna(0).reset_index()
+    colors = ['#C9D6E3', '#7C9CBF', '#5B8FF9', '#B0812A']
+    fig = go.Figure(go.Pie(
+        labels=d['bucket'], values=d['customers'], hole=0.55, sort=False,
+        marker=dict(colors=colors),
+        texttemplate='%{label}<br>%{percent}',
+        hovertemplate='%{label}<br>%{value:,}명 (%{percent})<extra></extra>'))
+    _rep = d[d['bucket'] != '1회']['customers'].sum()
+    _tot = d['customers'].sum()
+    fig.update_layout(
+        title='재구매 횟수 분포', height=340, margin=dict(t=50, b=20, l=20, r=20),
+        annotations=[dict(text=f"재구매율<br><b>{_rep/_tot*100:.0f}%</b>" if _tot else "",
+                          x=0.5, y=0.5, font_size=15, showarrow=False)])
+    return fig
+
+
+def cust_ltv_bar(df: pd.DataFrame):
+    """고객 LTV 구간 분포 막대."""
+    if df is None or df.empty:
+        return None
+    order = ['~100만', '100~300만', '300~500만', '500~1000만', '1000만+']
+    d = df.set_index('bucket').reindex(order).fillna(0).reset_index()
+    fig = go.Figure(go.Bar(
+        x=d['bucket'], y=d['customers'], marker_color='#7C4DBC',
+        text=d['customers'].apply(lambda x: f"{int(x):,}명"),
+        textposition='outside', cliponaxis=False,
+        hovertemplate='%{x}<br>%{y:,}명<extra></extra>'))
+    fig.update_layout(title='고객 누적결제(LTV) 구간 분포', height=340,
+                      margin=dict(t=50, b=40, l=20, r=20),
+                      yaxis=dict(title='고객 수'), xaxis=dict(title='누적 결제액'))
+    return fig
+
+
+def cust_product_repeat_chart(df: pd.DataFrame):
+    """상품군별 재구매율 + 평균 LTV (이중축)."""
+    if df is None or df.empty:
+        return None
+    d = df.sort_values('repeat_rate', ascending=False)
+    colors = [_PRODUCT_COLOR.get(p, '#5B8FF9') for p in d['product']]
+    fig = go.Figure()
+    fig.add_trace(go.Bar(x=d['product'], y=d['repeat_rate'], name='재구매율(%)',
+                         marker_color=colors,
+                         text=d['repeat_rate'].apply(lambda x: f"{x:.1f}%"),
+                         textposition='outside', cliponaxis=False,
+                         hovertemplate='%{x}<br>재구매율 %{y:.1f}%<extra></extra>'))
+    fig.add_trace(go.Scatter(x=d['product'], y=d['avg_ltv'], name='평균 LTV', yaxis='y2',
+                             mode='lines+markers+text', line=dict(color='#B0812A', width=3),
+                             marker=dict(size=10),
+                             text=[f"{v/1e4:,.0f}만" for v in d['avg_ltv']],
+                             textposition='top center',
+                             hovertemplate='%{x}<br>평균 LTV %{y:,.0f}원<extra></extra>'))
+    fig.update_layout(title='상품군별 재구매율 · 평균 LTV', bargap=0.4,
+                      yaxis=dict(title='재구매율(%)'),
+                      yaxis2=dict(title='평균 LTV(원)', overlaying='y', side='right', showgrid=False))
+    return _space_legend(fig, height=380)
+
+
+def cross_sell_heatmap(df: pd.DataFrame):
+    """교차판매 매트릭스 히트맵 (A 구매자 중 B 구매 비율)."""
+    if df is None or df.empty:
+        return None
+    prods = ['사주', '타로', '부동산', '빌딩']
+    mat = pd.DataFrame(0.0, index=prods, columns=prods)
+    for _, r in df.iterrows():
+        if r['from'] in prods and r['to'] in prods:
+            mat.loc[r['from'], r['to']] = r['rate']
+    fig = go.Figure(go.Heatmap(
+        z=mat.values, x=prods, y=prods,
+        colorscale=[[0, '#f2f4f7'], [1, '#7C4DBC']],
+        text=[[f"{v:.0f}%" if i != j else "—" for j, v in enumerate(row)]
+              for i, row in enumerate(mat.values)],
+        texttemplate='%{text}', textfont=dict(size=12),
+        hovertemplate='%{y} 구매자 중 %{x} 구매 %{z:.1f}%<extra></extra>',
+        colorbar=dict(title='%')))
+    fig.update_layout(title='교차판매 매트릭스 (세로 구매자 중 가로 구매 비율)',
+                      height=380, margin=dict(t=55, b=40, l=50, r=20),
+                      yaxis=dict(title='산 강의', autorange='reversed'),
+                      xaxis=dict(title='추가 구매 강의'))
+    return fig
+
+
+def monthly_new_repeat_chart(df: pd.DataFrame, months: int = 18):
+    """월별 신규 vs 재구매 매출 스택."""
+    if df is None or df.empty:
+        return None
+    d = df.sort_values('month').tail(months)
+    fig = go.Figure()
+    fig.add_trace(go.Bar(x=d['month'], y=d['new_revenue'], name='신규 매출',
+                         marker_color='#5B8FF9',
+                         hovertemplate='신규 %{x}<br>%{y:,.0f}원<extra></extra>'))
+    fig.add_trace(go.Bar(x=d['month'], y=d['repeat_revenue'], name='재구매 매출',
+                         marker_color='#B0812A',
+                         hovertemplate='재구매 %{x}<br>%{y:,.0f}원<extra></extra>'))
+    fig.update_layout(title='월별 신규 vs 재구매 매출', barmode='stack',
+                      yaxis=dict(title='매출(원)'), xaxis=dict(tickangle=-45))
+    return _space_legend(fig, height=400)

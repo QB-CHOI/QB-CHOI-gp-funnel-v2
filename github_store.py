@@ -74,6 +74,13 @@ COHORT_STAGE_PATH = "data/cohort_stage.csv"
 COHORT_STAGE_COLS = ['product', 'cohort', '기초', '심화', '전문가', '해석창업']
 STAGE_ORDER = ['기초', '심화', '전문가', '해석창업']
 
+# 고객 분석 (LTV·재구매·교차판매) — 주문 원본 집계, 개인정보 미보관
+CUST_REPEAT_PATH = "data/cust_repeat_dist.csv"
+CUST_LTV_PATH = "data/cust_ltv_dist.csv"
+CUST_PRODUCT_PATH = "data/cust_product_repeat.csv"
+CUST_CROSS_PATH = "data/cust_cross_sell.csv"
+CUST_MONTHLY_PATH = "data/cust_monthly_new_repeat.csv"
+
 # 지역별 모객 (돈사공 초급반 9~12기 배송지 기준)
 REGION_PATH = "data/region_signups.csv"
 REGION_COLS = ['region', 'signups', 'pct']
@@ -722,6 +729,58 @@ def load_cohort_stage() -> pd.DataFrame:
     for c in STAGE_ORDER:
         if c in df.columns:
             df[c] = pd.to_numeric(df[c], errors='coerce').fillna(0).astype(int)
+    return df
+
+
+@st.cache_data(ttl=3600)
+def load_cust_repeat_dist() -> pd.DataFrame:
+    """고객 재구매 횟수 분포 (1회/2회/3~4회/5회+)."""
+    df = _read_csv(CUST_REPEAT_PATH, ['bucket', 'customers'])
+    if not df.empty:
+        df['customers'] = pd.to_numeric(df['customers'], errors='coerce').fillna(0).astype(int)
+    return df
+
+
+@st.cache_data(ttl=3600)
+def load_cust_ltv_dist() -> pd.DataFrame:
+    """고객 누적결제(LTV) 구간 분포."""
+    df = _read_csv(CUST_LTV_PATH, ['bucket', 'customers'])
+    if not df.empty:
+        df['customers'] = pd.to_numeric(df['customers'], errors='coerce').fillna(0).astype(int)
+    return df
+
+
+@st.cache_data(ttl=3600)
+def load_cust_product_repeat() -> pd.DataFrame:
+    """상품군별 구매자·재구매율·평균 LTV."""
+    df = _read_csv(CUST_PRODUCT_PATH, ['product', 'buyers', 'repeat_buyers', 'repeat_rate', 'avg_ltv'])
+    if df.empty:
+        return df
+    for c in ['buyers', 'repeat_buyers', 'avg_ltv']:
+        df[c] = pd.to_numeric(df[c], errors='coerce').fillna(0).astype(int)
+    df['repeat_rate'] = pd.to_numeric(df['repeat_rate'], errors='coerce').fillna(0.0)
+    return df
+
+
+@st.cache_data(ttl=3600)
+def load_cust_cross_sell() -> pd.DataFrame:
+    """교차판매 매트릭스 (from 구매자 중 to 구매 비율)."""
+    df = _read_csv(CUST_CROSS_PATH, ['from', 'to', 'rate', 'count'])
+    if df.empty:
+        return df
+    df['rate'] = pd.to_numeric(df['rate'], errors='coerce').fillna(0.0)
+    df['count'] = pd.to_numeric(df['count'], errors='coerce').fillna(0).astype(int)
+    return df
+
+
+@st.cache_data(ttl=3600)
+def load_cust_monthly_new_repeat() -> pd.DataFrame:
+    """월별 신규/재구매 고객·매출."""
+    df = _read_csv(CUST_MONTHLY_PATH, ['month', 'new_customers', 'repeat_orders', 'new_revenue', 'repeat_revenue'])
+    if df.empty:
+        return df
+    for c in ['new_customers', 'repeat_orders', 'new_revenue', 'repeat_revenue']:
+        df[c] = pd.to_numeric(df[c], errors='coerce').fillna(0).astype(int)
     return df
 
 

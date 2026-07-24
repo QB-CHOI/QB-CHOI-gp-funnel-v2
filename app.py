@@ -16,6 +16,8 @@ from github_store import (
     load_competitor_courses,
     load_cohort_revenue, load_course_summary, load_campaign_adspend,
     load_monthly_by_course, load_cohort_stage, STAGE_ORDER,
+    load_cust_repeat_dist, load_cust_ltv_dist, load_cust_product_repeat,
+    load_cust_cross_sell, load_cust_monthly_new_repeat,
     load_region_signups, load_region_cohort, load_region_city, CAPITAL_REGIONS,
     load_adspend, save_adspend, delete_adspend_row,
     load_content, save_content, delete_content_row,
@@ -42,6 +44,8 @@ from charts import (
     overall_conversion_funnel, product_conversion_rate_chart,
     monthly_course_heatmap, monthly_course_stack,
     stage_funnel_chart, cohort_stage_matrix_chart,
+    cust_repeat_donut, cust_ltv_bar, cust_product_repeat_chart,
+    cross_sell_heatmap, monthly_new_repeat_chart,
 )
 
 st.set_page_config(
@@ -269,10 +273,11 @@ def main():
 
     st.title("📊 황금후추 강의 분석")
 
-    (tab_ov, tab1, tab2, tab3, tab4, tab5, tab_drill, tab_prd, tab9, tab10,
+    (tab_ov, tab1, tab2, tab3, tab4, tab5, tab_drill, tab_prd, tab_cust, tab9, tab10,
      tab6, tab7, tab8) = st.tabs([
         "🧭 종합 보고", "📸 오늘 입력", "📊 현황", "📋 전환 분석", "📈 추이 그래프",
-        "🎓 강의 분석", "🔎 강의별 상세", "📅 기간별 분석", "📢 마케팅 분석", "📍 지역 분석",
+        "🎓 강의 분석", "🔎 강의별 상세", "📅 기간별 분석", "👥 고객 분석",
+        "📢 마케팅 분석", "📍 지역 분석",
         "📑 경영진 보고", "⚙️ 채팅방 설정", "🗂️ 데이터 관리",
     ])
 
@@ -292,6 +297,8 @@ def main():
         tab_course_detail()
     with tab_prd:
         tab_period()
+    with tab_cust:
+        tab_customer()
     with tab9:
         tab_marketing()
     with tab10:
@@ -302,6 +309,92 @@ def main():
         tab_campaign()
     with tab8:
         tab_data()
+
+
+# ── 탭: 고객 분석 (LTV·재구매·교차판매) ───────────────────────────
+
+def tab_customer():
+    st.header("👥 고객 분석")
+    st.caption("주문 원본에서 **고객 단위**로 집계한 재구매·생애가치(LTV)·교차판매 분석입니다. "
+               "개인정보는 저장하지 않고 집계 수치만 사용합니다.")
+
+    rep = load_cust_repeat_dist()
+    ltv = load_cust_ltv_dist()
+    pr = load_cust_product_repeat()
+    xs = load_cust_cross_sell()
+    mnr = load_cust_monthly_new_repeat()
+    if rep.empty and pr.empty:
+        st.info("고객 집계 데이터가 없습니다.")
+        return
+
+    # ── 핵심 지표 ───────────────────────────────────────
+    _tot_cust = int(rep['customers'].sum()) if not rep.empty else 0
+    _repeat = int(rep[rep['bucket'] != '1회']['customers'].sum()) if not rep.empty else 0
+    _repeat_rate = _repeat / _tot_cust * 100 if _tot_cust else 0
+    _new_rev = int(mnr['new_revenue'].sum()) if not mnr.empty else 0
+    _rep_rev = int(mnr['repeat_revenue'].sum()) if not mnr.empty else 0
+    _rep_rev_share = _rep_rev / (_new_rev + _rep_rev) * 100 if (_new_rev + _rep_rev) else 0
+    c1, c2, c3, c4 = st.columns(4)
+    c1.metric("총 고객", f"{_tot_cust:,}명")
+    c2.metric("재구매율", f"{_repeat_rate:.1f}%", help="2회 이상 결제 고객 비율")
+    c3.metric("재구매 매출 비중", f"{_rep_rev_share:.0f}%",
+              help=f"재구매 {_rep_rev/1e8:.1f}억 / 신규 {_new_rev/1e8:.1f}억")
+    if not pr.empty:
+        _hi = pr.loc[pr['avg_ltv'].idxmax()]
+        c4.metric("최고 LTV 상품", f"{_hi['product']} {_hi['avg_ltv']/1e4:,.0f}만")
+
+    if _rep_rev_share >= 40:
+        st.success(f"💡 **재구매 매출이 전체의 {_rep_rev_share:.0f}%** — 신규 유치만큼 "
+                   "**기존 고객 재구매·상위 과정 업셀**이 매출의 핵심 축입니다. "
+                   "CRM·재구매 유도에 투자할 근거가 명확합니다.")
+
+    # ── 재구매 분포 + LTV 분포 ──────────────────────────
+    st.divider()
+    d1, d2 = st.columns(2)
+    with d1:
+        _f = cust_repeat_donut(rep)
+        if _f:
+            st.plotly_chart(_f, width='stretch', key="cust_repeat")
+    with d2:
+        _f = cust_ltv_bar(ltv)
+        if _f:
+            st.plotly_chart(_f, width='stretch', key="cust_ltv")
+
+    # ── 상품군별 재구매율·LTV ───────────────────────────
+    st.divider()
+    st.subheader("상품군별 재구매율 · 평균 LTV")
+    _f = cust_product_repeat_chart(pr)
+    if _f:
+        st.plotly_chart(_f, width='stretch', key="cust_prod")
+    if not pr.empty:
+        _hr = pr.loc[pr['repeat_rate'].idxmax()]
+        _lr = pr.loc[pr['repeat_rate'].idxmin()]
+        st.info(f"💡 **{_hr['product']}**가 재구매율 **{_hr['repeat_rate']:.1f}%**로 최고 "
+                "(무료→유료 전환도 높은 상품 → 충성 고객층 형성). "
+                f"**{_lr['product']}**는 **{_lr['repeat_rate']:.1f}%**로 낮아 "
+                "(단일 고가 상품 특성) 후속 상품 라인업이 재구매 여지를 좌우합니다.")
+
+    # ── 교차판매 매트릭스 ───────────────────────────────
+    if not xs.empty:
+        st.divider()
+        st.subheader("교차판매 (강의 간 이동)")
+        _f = cross_sell_heatmap(xs)
+        if _f:
+            st.plotly_chart(_f, width='stretch', key="cust_cross")
+        _top = xs.sort_values('rate', ascending=False).iloc[0]
+        st.info(f"💡 **{_top['from']} 구매자의 {_top['rate']:.0f}%가 {_top['to']}도 구매** — "
+                f"가장 강한 교차판매 경로입니다. {_top['from']} 고객에게 {_top['to']}를 "
+                "우선 추천하는 CRM이 효과적입니다.")
+
+    # ── 월별 신규 vs 재구매 매출 ────────────────────────
+    if not mnr.empty:
+        st.divider()
+        st.subheader("월별 신규 vs 재구매 매출")
+        _f = monthly_new_repeat_chart(mnr)
+        if _f:
+            st.plotly_chart(_f, width='stretch', key="cust_monthly")
+        st.caption("파랑=신규 고객 첫 결제, 골드=기존 고객 재구매. 재구매 비중이 높아지는 달일수록 "
+                   "고객 자산이 축적되고 있다는 신호입니다.")
 
 
 # ── 탭: 기간별 분석 ───────────────────────────────────────────────
@@ -2183,6 +2276,22 @@ def _strategy_briefing() -> list:
             items.append(("📍", "지역 광고 집중",
                           f"수도권 집중도 **{_cap/_tot*100:.0f}%**(서울·경기·인천). 광고 예산을 "
                           f"수도권에 우선 배정하고, 비수도권은 **{_tl}** 등 영남권을 보조 타깃으로 운영하세요."))
+
+    # 5) 재구매·LTV (고객 자산)
+    _mnr = load_cust_monthly_new_repeat()
+    _pr = load_cust_product_repeat()
+    if not _mnr.empty:
+        _nr = int(_mnr['new_revenue'].sum())
+        _rr = int(_mnr['repeat_revenue'].sum())
+        _share = _rr / (_nr + _rr) * 100 if (_nr + _rr) else 0
+        _extra = ""
+        if not _pr.empty:
+            _hr = _pr.loc[_pr['repeat_rate'].idxmax()]
+            _extra = f" 재구매율은 **{_hr['product']}({_hr['repeat_rate']:.0f}%)**가 최고."
+        if _share >= 35:
+            items.append(("🔁", "재구매·LTV 강화",
+                          f"재구매 매출이 전체의 **{_share:.0f}%** — 신규 유치만큼 **기존 고객 업셀·"
+                          f"CRM**이 매출 핵심입니다.{_extra} 상위 과정 라인업과 재구매 유도에 투자하세요."))
     return items
 
 
