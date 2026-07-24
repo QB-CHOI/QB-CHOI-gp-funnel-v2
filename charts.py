@@ -2272,3 +2272,65 @@ def runrate_forecast_chart(months, values, label, unit='', color='#5B8FF9',
                       barmode='overlay', yaxis=dict(title=label),
                       xaxis=dict(tickangle=-45))
     return _space_legend(fig, height=400)
+
+
+# ══════════════ 고객 리텐션 (재구매 타이밍·잔존) ══════════════
+
+def repeat_timing_chart(df: pd.DataFrame):
+    """재구매 타이밍 막대 (첫→2번째 구매 간격)."""
+    if df is None or df.empty:
+        return None
+    order = ['1개월', '2~3개월', '4~6개월', '7개월+']
+    d = df.set_index('bucket').reindex(order).fillna(0).reset_index()
+    _tot = d['customers'].sum()
+    colors = ['#B0812A', '#5B8FF9', '#7C9CBF', '#C9D6E3']
+    fig = go.Figure(go.Bar(
+        x=d['bucket'], y=d['customers'], marker_color=colors,
+        text=[f"{int(v):,}명<br>{v/_tot*100:.0f}%" if _tot else "" for v in d['customers']],
+        textposition='outside', cliponaxis=False,
+        hovertemplate='%{x}<br>%{y:,}명<extra></extra>'))
+    fig.update_layout(title='재구매 타이밍 (첫 구매 → 2번째 구매까지)',
+                      height=350, margin=dict(t=50, b=40, l=20, r=20),
+                      yaxis=dict(title='고객 수'), xaxis=dict(title='경과 기간'))
+    return fig
+
+
+def retention_curve_chart(df: pd.DataFrame):
+    """평균 리텐션 커브 (첫 구매 후 k개월 재구매 비율)."""
+    if df is None or df.empty:
+        return None
+    d = df.sort_values('k')
+    fig = go.Figure(go.Scatter(
+        x=[f"M+{k}" for k in d['k']], y=d['pct'],
+        mode='lines+markers+text', line=dict(color='#7C4DBC', width=3),
+        marker=dict(size=9), fill='tozeroy', fillcolor='rgba(124,77,188,0.12)',
+        text=[f"{v:.1f}%" for v in d['pct']], textposition='top center',
+        hovertemplate='%{x}<br>재구매 %{y:.1f}%<extra></extra>'))
+    fig.update_layout(title='리텐션 커브 (첫 구매 후 N개월에 재구매한 비율)',
+                      height=350, margin=dict(t=50, b=40, l=20, r=20),
+                      yaxis=dict(title='재구매 비율(%)'), xaxis=dict(title='첫 구매 후 경과'))
+    return fig
+
+
+def retention_heatmap(df: pd.DataFrame, months: int = 12):
+    """코호트 리텐션 히트맵 (가입월 × 경과월 재구매 비율)."""
+    if df is None or df.empty:
+        return None
+    d = df.copy()
+    pv = d.pivot_table(index='acq', columns='k', values='pct', aggfunc='first')
+    acqs = sorted(pv.index)[-months:]
+    pv = pv.reindex(acqs)
+    kcols = sorted(pv.columns)
+    pv = pv[kcols]
+    fig = go.Figure(go.Heatmap(
+        z=pv.values, x=[f"M+{k}" for k in kcols], y=pv.index,
+        colorscale=[[0, '#f2f4f7'], [1, '#7C4DBC']],
+        text=[[f"{v:.0f}%" if pd.notna(v) else "" for v in row] for row in pv.values],
+        texttemplate='%{text}', textfont=dict(size=9),
+        hovertemplate='가입 %{y} · %{x}<br>재구매 %{z:.1f}%<extra></extra>',
+        colorbar=dict(title='재구매%')))
+    fig.update_layout(title='코호트 리텐션 (가입월별 × 경과월 재구매율)',
+                      height=max(300, 22 * len(pv.index) + 130),
+                      margin=dict(t=55, b=40, l=55, r=20),
+                      yaxis=dict(title='가입월', autorange='reversed'))
+    return fig

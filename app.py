@@ -18,6 +18,7 @@ from github_store import (
     load_monthly_by_course, load_cohort_stage, STAGE_ORDER,
     load_cust_repeat_dist, load_cust_ltv_dist, load_cust_product_repeat,
     load_cust_cross_sell, load_cust_monthly_new_repeat,
+    load_cust_repeat_timing, load_cust_retention_curve, load_cust_retention_matrix,
     load_region_signups, load_region_cohort, load_region_city, CAPITAL_REGIONS,
     load_adspend, save_adspend, delete_adspend_row,
     load_content, save_content, delete_content_row,
@@ -47,6 +48,7 @@ from charts import (
     cust_repeat_donut, cust_ltv_bar, cust_product_repeat_chart,
     cross_sell_heatmap, monthly_new_repeat_chart,
     runrate_forecast_chart,
+    repeat_timing_chart, retention_curve_chart, retention_heatmap,
 )
 
 st.set_page_config(
@@ -396,6 +398,39 @@ def tab_customer():
             st.plotly_chart(_f, width='stretch', key="cust_monthly")
         st.caption("파랑=신규 고객 첫 결제, 골드=기존 고객 재구매. 재구매 비중이 높아지는 달일수록 "
                    "고객 자산이 축적되고 있다는 신호입니다.")
+
+    # ── 리텐션 (재구매 타이밍·잔존) ──────────────────────
+    timing = load_cust_repeat_timing()
+    curve = load_cust_retention_curve()
+    matrix = load_cust_retention_matrix()
+    if not timing.empty or not curve.empty:
+        st.divider()
+        st.subheader("🔁 재구매 타이밍 · 리텐션")
+        st.caption("첫 구매 고객이 **언제** 다시 구매하는지 — CRM·리마케팅 시점 설계의 근거입니다.")
+        rt1, rt2 = st.columns(2)
+        with rt1:
+            _f = repeat_timing_chart(timing)
+            if _f:
+                st.plotly_chart(_f, width='stretch', key="cust_timing")
+        with rt2:
+            _f = retention_curve_chart(curve)
+            if _f:
+                st.plotly_chart(_f, width='stretch', key="cust_ret_curve")
+        # 타이밍 인사이트
+        if not timing.empty:
+            _tt = int(timing['customers'].sum())
+            _within3 = int(timing[timing['bucket'].isin(['1개월', '2~3개월'])]['customers'].sum())
+            if _tt:
+                st.info(f"💡 재구매 고객의 **{_within3/_tt*100:.0f}%가 첫 구매 후 3개월 이내**에 다시 "
+                        "구매합니다. → **첫 구매 후 1~3개월**에 상위 과정 안내·리마케팅을 집중하는 것이 "
+                        "가장 효율적입니다. 이 시기를 놓치면 재구매 확률이 급감합니다.")
+        # 코호트 히트맵
+        if not matrix.empty:
+            _f = retention_heatmap(matrix)
+            if _f:
+                st.plotly_chart(_f, width='stretch', key="cust_ret_heat")
+            st.caption("가입월(세로)별로 첫 구매 후 경과월(가로)에 재구매한 비율. "
+                       "진한 칸이 많은 가입월 = 충성도 높은 코호트.")
 
 
 # ── 탭: 기간별 분석 ───────────────────────────────────────────────
