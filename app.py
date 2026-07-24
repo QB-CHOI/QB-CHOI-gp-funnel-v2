@@ -21,6 +21,7 @@ from github_store import (
     load_cust_cross_sell, load_cust_monthly_new_repeat,
     load_cust_repeat_timing, load_cust_retention_curve, load_cust_retention_matrix,
     load_cust_product_timing, load_cust_product_retention, load_cust_product_nextbuy,
+    load_cust_crosssell_path,
     load_region_signups, load_region_cohort, load_region_city, CAPITAL_REGIONS,
     load_adspend, save_adspend, delete_adspend_row,
     load_content, save_content, delete_content_row,
@@ -52,7 +53,7 @@ from charts import (
     runrate_forecast_chart,
     repeat_timing_chart, retention_curve_chart, retention_heatmap,
     target_vs_actual_chart,
-    product_retention_curve_chart, nextbuy_chart,
+    product_retention_curve_chart, nextbuy_chart, crosssell_path_heatmap,
 )
 
 st.set_page_config(
@@ -478,6 +479,46 @@ def tab_customer():
                 _msg += (f"반면 **{' · '.join(_cr['product'])}**는 재구매의 **{_cr.iloc[0]['diff_pct']:.0f}%가 "
                          "다른 강의**로 이동 → 첫 구매자에게 **연관 강의 교차 추천**이 핵심입니다.")
             st.info(_msg)
+
+        # ── 교차판매 경로 (무엇을 추천할지) ──────────────
+        xpath = load_cust_crosssell_path()
+        if not xpath.empty:
+            st.markdown("**🔀 교차판매 경로 — 다음에 무엇을 추천할까**")
+            st.caption("첫 구매 강의(세로)의 고객이 교차판매로 **어느 강의(가로)를 사는지** 비중입니다. "
+                       "각 강의 첫 구매자에게 **가장 많이 이어지는 강의를 추천**하면 성공률이 높습니다.")
+            xc1, xc2 = st.columns([1.15, 1])
+            with xc1:
+                _f = crosssell_path_heatmap(xpath)
+                if _f:
+                    st.plotly_chart(_f, width='stretch', key="cust_xpath")
+            with xc2:
+                # 강의별 1순위 추천 표
+                _recs = []
+                for _hp in ['사주', '타로', '부동산', '빌딩']:
+                    _sub = xpath[xpath['home'] == _hp].sort_values('pct', ascending=False)
+                    if not _sub.empty and _sub.iloc[0]['pct'] > 0:
+                        _top = _sub.iloc[0]
+                        _recs.append({'첫 구매': _hp, '추천 강의': _top['dest'],
+                                      '교차 전환': f"{_top['pct']:.0f}%"})
+                if _recs:
+                    st.markdown("**강의별 1순위 추천**")
+                    st.dataframe(pd.DataFrame(_recs), hide_index=True, width='stretch')
+            # 허브 상품 인사이트 — 여러 강의의 '1순위 목적지'가 되는 강의
+            _top_dest = {}
+            for _hp in ['사주', '타로', '부동산', '빌딩']:
+                _sub = xpath[xpath['home'] == _hp].sort_values('pct', ascending=False)
+                if not _sub.empty and _sub.iloc[0]['pct'] > 0:
+                    _top_dest[_hp] = _sub.iloc[0]['dest']
+            if _top_dest:
+                from collections import Counter
+                _cnt = Counter(_top_dest.values())
+                _hub, _hub_n = _cnt.most_common(1)[0]
+                _sources = [h for h, d in _top_dest.items() if d == _hub]
+                if _hub_n >= 2:
+                    st.info(f"💡 **{_hub}가 교차판매 허브** — **{' · '.join(_sources)}** "
+                            f"({_hub_n}개 강의) 첫 구매자가 다음으로 가장 많이 사는 강의가 모두 "
+                            f"**{_hub}**입니다. 타 강의 첫 구매자 CRM에서 **{_hub}를 최우선 추천**하세요. "
+                            f"반대로 {_hub} 첫 구매자는 여러 강의로 분산되므로 관심사 기반 추천이 필요합니다.")
 
 
 # ── 탭: 기간별 분석 ───────────────────────────────────────────────

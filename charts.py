@@ -2409,3 +2409,26 @@ def nextbuy_chart(df: pd.DataFrame):
                       xaxis=dict(title='2번째 구매 구성(%)', range=[0, 100]),
                       yaxis=dict(autorange='reversed'))
     return _space_legend(fig, height=340)
+
+
+def crosssell_path_heatmap(df: pd.DataFrame):
+    """순차 교차판매 경로 히트맵 (홈 강의 → 다른 강의 비중)."""
+    if df is None or df.empty:
+        return None
+    prods = ['사주', '타로', '부동산', '빌딩']
+    mat = pd.DataFrame(float('nan'), index=prods, columns=prods)
+    for _, r in df.iterrows():
+        if r['home'] in prods and r['dest'] in prods:
+            mat.loc[r['home'], r['dest']] = r['pct']
+    fig = go.Figure(go.Heatmap(
+        z=mat.values, x=prods, y=prods,
+        colorscale=[[0, '#f2f4f7'], [1, '#7C4DBC']], zmin=0, zmax=70,
+        text=[[f"{v:.0f}%" if pd.notna(v) else "—" for v in row] for row in mat.values],
+        texttemplate='%{text}', textfont=dict(size=13),
+        hovertemplate='%{y} 첫 구매자의 교차판매 중 %{x} %{z:.0f}%<extra></extra>',
+        colorbar=dict(title='%')))
+    fig.update_layout(title='교차판매 경로 (세로 첫 강의 → 가로 다음 강의)',
+                      height=380, margin=dict(t=55, b=40, l=55, r=20),
+                      yaxis=dict(title='첫 구매 강의', autorange='reversed'),
+                      xaxis=dict(title='다음에 산 강의'))
+    return fig

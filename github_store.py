@@ -86,6 +86,7 @@ CUST_RET_MATRIX_PATH = "data/cust_retention_matrix.csv"
 CUST_P_TIMING_PATH = "data/cust_product_timing.csv"
 CUST_P_RET_PATH = "data/cust_product_retention.csv"
 CUST_P_NEXTBUY_PATH = "data/cust_product_nextbuy.csv"
+CUST_XSELL_PATH = "data/cust_crosssell_path.csv"
 
 # 지역별 모객 (돈사공 초급반 9~12기 배송지 기준)
 REGION_PATH = "data/region_signups.csv"
@@ -879,6 +880,17 @@ def load_cust_product_nextbuy() -> pd.DataFrame:
     df['home_customers'] = pd.to_numeric(df['home_customers'], errors='coerce').fillna(0).astype(int)
     for c in ['repeat_rate', 'same_pct', 'diff_pct']:
         df[c] = pd.to_numeric(df[c], errors='coerce').fillna(0.0)
+    return df
+
+
+@st.cache_data(ttl=3600)
+def load_cust_crosssell_path() -> pd.DataFrame:
+    """순차 교차판매 경로 (홈 강의 → 다른 강의 2번째 구매 분포)."""
+    df = _read_csv(CUST_XSELL_PATH, ['home', 'dest', 'customers', 'pct'])
+    if df.empty:
+        return df
+    df['customers'] = pd.to_numeric(df['customers'], errors='coerce').fillna(0).astype(int)
+    df['pct'] = pd.to_numeric(df['pct'], errors='coerce').fillna(0.0)
     return df
 
 
