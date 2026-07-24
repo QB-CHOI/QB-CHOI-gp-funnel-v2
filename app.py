@@ -739,6 +739,97 @@ def tab_course_detail():
 
 # ── 탭: 종합 보고 (전략 대시보드) ─────────────────────────────────
 
+def _generate_alerts() -> list:
+    """기존 데이터를 종합 판정해 이상 신호를 반환. {sev, title, msg}."""
+    import calendar
+    alerts = []
+    today = date.today()
+    this_m = today.strftime('%Y-%m')
+
+    # 1) 총원 급락 (동일 방 자연 감소, 방 종료 착시 제거)
+    df = load_all()
+    if not df.empty:
+        _dates = sorted(df['date'].astype(str).unique())
+        if len(_dates) >= 2:
+            _latest = _dates[-1]
+            _target = str((pd.Timestamp(_latest) - pd.Timedelta(days=7)).date())
+            _cand = [d for d in _dates if d <= _target]
+            if _cand:
+                _prev = _cand[-1]
+                _ls = df[df['date'].astype(str) == _latest].set_index('room_num')['members']
+                _ps = df[df['date'].astype(str) == _prev].set_index('room_num')['members']
+                _common = _ls.index.intersection(_ps.index)
+                if len(_common):
+                    _pv = int(_ps[_common].sum())
+                    _ch = int(_ls[_common].sum()) - _pv
+                    _pct = _ch / _pv * 100 if _pv else 0
+                    if _pct <= -10:
+                        alerts.append({'sev': 'critical', 'title': '총원 급락',
+                                       'msg': f"최근 7일 동일 방 총원이 **{_pct:.1f}%({_ch:,}명)** 감소. "
+                                              "콘텐츠·소통 점검과 이탈 원인 진단이 필요합니다."})
+                    elif _pct <= -5:
+                        alerts.append({'sev': 'warning', 'title': '총원 감소',
+                                       'msg': f"최근 7일 동일 방 총원 **{_pct:.1f}%({_ch:,}명)** 감소 추세."})
+
+    # 2) 매출 둔화 (최근 완료월 vs 직전 3개월 평균)
+    perf = load_monthly_performance()
+    _pidx = perf.set_index('month') if not perf.empty else pd.DataFrame()
+    if not perf.empty:
+        _p = perf.sort_values('month')
+        _comp = _p[_p['month'] < this_m]
+        if len(_comp) >= 4:
+            _last = _comp.iloc[-1]
+            _rr = _comp['revenue'].iloc[-4:-1].mean()
+            if _rr and int(_last['revenue']) < _rr * 0.6:
+                alerts.append({'sev': 'warning', 'title': '매출 둔화',
+                               'msg': f"최근 완료월({_last['month']}) 매출 **{_last['revenue']/1e8:.2f}억**이 "
+                                      f"직전 3개월 평균({_rr/1e8:.2f}억)의 60% 미만입니다. "
+                                      "개강 공백인지 실적 저하인지 확인하세요."})
+
+    # 3) 목표 진행 지연 (이번 달)
+    tgt = load_targets()
+    if not tgt.empty and not _pidx.empty:
+        _tm = tgt[tgt['month'].astype(str) == this_m]
+        if not _tm.empty and this_m in _pidx.index:
+            _t = _tm.iloc[0]
+            if int(_t['revenue_target']) > 0:
+                _act = int(_pidx.loc[this_m, 'revenue'])
+                _dim = calendar.monthrange(today.year, today.month)[1]
+                _elapsed = today.day / _dim
+                _prog = _act / int(_t['revenue_target'])
+                if _prog < _elapsed - 0.15:
+                    alerts.append({'sev': 'warning', 'title': '목표 진행 지연',
+                                   'msg': f"{this_m} 매출 목표 진행률 **{_prog*100:.0f}%**가 "
+                                          f"경과일({_elapsed*100:.0f}%)보다 뒤처집니다. "
+                                          "남은 기간 프로모션·광고 조정을 검토하세요."})
+
+    # 4) 광고 저효율 기수 (3천만+ 집행, ROAS<2)
+    camp = load_campaign_adspend()
+    if not camp.empty:
+        _g = camp.groupby(['product', 'cohort']).agg(
+            ad=('ad_spend', 'sum'), rev=('live_revenue', 'sum')).reset_index()
+        _g = _g[_g['ad'] >= 3e7].copy()
+        if not _g.empty:
+            _g['roas'] = _g['rev'] / _g['ad']
+            _low = _g[_g['roas'] < 2].sort_values('roas')
+            if not _low.empty:
+                _r = _low.iloc[0]
+                alerts.append({'sev': 'warning', 'title': '광고 저효율 기수',
+                               'msg': f"**{_r['product']} {_r['cohort']}** 광고 ROAS **{_r['roas']:.1f}배**"
+                                      f"(광고비 {_r['ad']/1e8:.2f}억)로 낮습니다. 소재·타깃·랜딩 재점검 대상."})
+
+    # 5) 데이터 미입력 (최근 3일)
+    if not df.empty:
+        _recent3 = [(today - timedelta(days=i)).strftime('%Y-%m-%d') for i in range(3)]
+        _entered = set(df['date'].astype(str))
+        _missing = [d for d in _recent3 if d not in _entered]
+        if len(_missing) >= 2:
+            alerts.append({'sev': 'info', 'title': '데이터 미입력',
+                           'msg': f"최근 3일 중 **{len(_missing)}일** 인원이 미입력입니다. "
+                                  "정확한 추세·전망을 위해 입력을 권장합니다."})
+    return alerts
+
+
 def _product_master_table():
     """상품군 통합 요약: 매출·유료·무료·전환율·객단가 + 광고비·광고ROAS."""
     cs = load_course_summary()
@@ -766,6 +857,26 @@ def tab_overview():
     st.header("🧭 종합 보고 — 전략 대시보드")
     st.caption("모객 · 매출 · 전환 · 광고 ROI · 지역을 한 화면에 종합한 경영 전략 요약입니다. "
                "모든 수치는 강의 집계·광고비·지역 실데이터에서 자동 계산됩니다.")
+
+    # ── 🚨 이상 탐지 알림 (능동 경고) ───────────────────
+    _alerts = _generate_alerts()
+    _crit = [a for a in _alerts if a['sev'] == 'critical']
+    _warn = [a for a in _alerts if a['sev'] == 'warning']
+    _info = [a for a in _alerts if a['sev'] == 'info']
+    with st.container(border=True):
+        if _crit or _warn:
+            st.markdown(f"#### 🚨 알림 — 위험 {len(_crit)} · 주의 {len(_warn)}")
+        else:
+            st.markdown("#### 🚨 알림")
+        if not _alerts:
+            st.success("🟢 특이 알림 없음 — 주요 지표(총원·매출·광고·목표)가 정상 범위입니다.")
+        else:
+            for a in _crit:
+                st.error(f"🔴 **{a['title']}** — {a['msg']}")
+            for a in _warn:
+                st.warning(f"🟡 **{a['title']}** — {a['msg']}")
+            for a in _info:
+                st.info(f"🔵 **{a['title']}** — {a['msg']}")
 
     cs = load_course_summary()
     if cs.empty:
