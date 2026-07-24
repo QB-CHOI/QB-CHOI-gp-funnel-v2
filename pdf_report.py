@@ -224,7 +224,7 @@ def generate_pdf_report(
     insight_lines, perf_rows,
     comparison_rows=None, funnel_rows=None, archived_rows=None,
     trend_series=None, change_breakdown=None, trend_mark=None,
-    strategy_rows=None, product_master=None,
+    strategy_rows=None, product_master=None, customer_forecast=None,
     author="마케팅 총괄", report_to="경영진", org="황금후추",
 ) -> bytes:
     _register_fonts()
@@ -544,6 +544,34 @@ def generate_pdf_report(
                                       content_w*0.12, content_w*0.14, content_w*0.15, content_w*0.15])
             tm.setStyle(_table_style())
             block.append(tm)
+        # 고객·전망 지표
+        if customer_forecast:
+            cf = customer_forecast
+            block.append(Spacer(1, 6))
+            block.append(Paragraph("고객 자산 · 다음 기간 전망", styles["h3"]))
+            block.append(Spacer(1, 4))
+            _cells = [
+                [Paragraph("재구매율", styles["cell_h"]),
+                 Paragraph(f"{cf.get('repeat_rate',0):.1f}%", styles["cell"]),
+                 Paragraph("재구매 매출 비중", styles["cell_h"]),
+                 Paragraph(f"{cf.get('repeat_rev_share',0):.0f}%", styles["cell"])],
+                [Paragraph("평균 LTV", styles["cell_h"]),
+                 Paragraph(f"{cf.get('avg_ltv',0)/1e4:,.0f}만원", styles["cell"]),
+                 Paragraph("교차판매율", styles["cell_h"]),
+                 Paragraph(f"{cf.get('cross_sell',0):.0f}%", styles["cell"])],
+                [Paragraph("매출 런레이트", styles["cell_h"]),
+                 Paragraph(f"{cf.get('runrate_month',0)/1e8:,.2f}억/월", styles["cell"]),
+                 Paragraph("연 환산 페이스", styles["cell_h"]),
+                 Paragraph(f"{cf.get('runrate_year',0)/1e8:,.0f}억/년", styles["cell"])],
+            ]
+            tcf = Table(_cells, colWidths=[content_w*0.2, content_w*0.3,
+                                           content_w*0.2, content_w*0.3])
+            tcf.setStyle(_table_style())
+            block.append(tcf)
+            block.append(Spacer(1, 3))
+            block.append(Paragraph(
+                "※ 전망은 개강 시점에 매출이 몰리는 특성상 최근 3개월 평균(런레이트) 기준 참고치입니다.",
+                styles["body_s"]))
         S.append(KeepTogether(block))
         S.append(Spacer(1, 8))
 

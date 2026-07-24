@@ -46,6 +46,7 @@ from charts import (
     stage_funnel_chart, cohort_stage_matrix_chart,
     cust_repeat_donut, cust_ltv_bar, cust_product_repeat_chart,
     cross_sell_heatmap, monthly_new_repeat_chart,
+    runrate_forecast_chart,
 )
 
 st.set_page_config(
@@ -458,6 +459,43 @@ def tab_period():
         _top = _cd.iloc[0]
         st.info(f"💡 **{_msel}**는 **{_top['product']}**가 매출 {_top['paid_revenue']/1e8:.2f}억으로 주도"
                 f"({_top['paid_revenue']/_tot_rev*100:.0f}%). 개강·프로모션 시점과 대조해 보세요.")
+
+    # ── 다음 기간 전망 (런레이트) ────────────────────────
+    perf = load_monthly_performance()
+    if not perf.empty and len(perf) >= 4:
+        st.divider()
+        st.subheader("📈 다음 기간 전망 (런레이트)")
+        st.caption("강의 사업은 **개강 시점에 매출이 몰려** 월별 편차가 큽니다. 특정 월을 콕 집어 "
+                   "예측하기보다 **최근 3개월 평균(런레이트)** 과 **최근 변동폭**으로 전망합니다. "
+                   "당월(집계 진행 중)은 계산에서 제외합니다.")
+        _p = perf.sort_values('month')
+        _pm = _p['month'].tolist()
+        _free = _p['free_signups'].tolist()
+        _rev = _p['revenue'].tolist()
+        # 런레이트(당월 제외 최근 3개월 평균)
+        _complete = _p[_p['month'] < date.today().strftime('%Y-%m')]
+        _rr_free = _complete['free_signups'].tail(3).mean() if len(_complete) >= 3 else 0
+        _rr_rev = _complete['revenue'].tail(3).mean() if len(_complete) >= 3 else 0
+        f1, f2, f3 = st.columns(3)
+        f1.metric("무료 모객 런레이트", f"{_rr_free:,.0f}명/월",
+                  help="당월 제외 최근 3개월 평균")
+        f2.metric("매출 런레이트", f"{_rr_rev/1e8:,.2f}억/월")
+        f3.metric("연 환산 페이스", f"{_rr_rev*12/1e8:,.0f}억/년",
+                  help="현재 런레이트가 유지될 경우의 연 매출 페이스(개강 일정에 따라 변동)")
+
+        fc1, fc2 = st.columns(2)
+        with fc1:
+            _ff = runrate_forecast_chart(_pm, _free, '무료 모객', unit='명',
+                                         color='#7C9CBF', periods=2)
+            if _ff:
+                st.plotly_chart(_ff, width='stretch', key="prd_fc_free")
+        with fc2:
+            _fr = runrate_forecast_chart(_pm, _rev, '매출', color='#26A69A',
+                                         periods=2, as_eok=True)
+            if _fr:
+                st.plotly_chart(_fr, width='stretch', key="prd_fc_rev")
+        st.warning("⚠️ 전망은 **최근 추세 기준 참고치**입니다. 개강·프로모션이 있는 달은 크게 상회하고, "
+                   "없는 달은 하회합니다. 확정 예측이 아니라 예산·목표 설정의 기준선으로 활용하세요.")
 
 
 # ── 탭: 강의별 상세 (드릴다운) ────────────────────────────────────
@@ -3415,6 +3453,33 @@ def tab_report():
         _strategy_rows = [(_t, _b) for _ic, _t, _b in _strategy_briefing()]
         _pm = _product_master_table()
         _product_master = _pm.to_dict('records') if not _pm.empty else None
+        # 고객·전망 지표
+        _customer_forecast = None
+        try:
+            _rp = load_cust_repeat_dist()
+            _prr = load_cust_product_repeat()
+            _mnr = load_cust_monthly_new_repeat()
+            _xs = load_cust_cross_sell()
+            _perf2 = load_monthly_performance()
+            if not _rp.empty:
+                _tc = int(_rp['customers'].sum())
+                _rc = int(_rp[_rp['bucket'] != '1회']['customers'].sum())
+                _nr = int(_mnr['new_revenue'].sum()) if not _mnr.empty else 0
+                _rr2 = int(_mnr['repeat_revenue'].sum()) if not _mnr.empty else 0
+                _rrm = 0
+                if not _perf2.empty:
+                    _cpl = _perf2[_perf2['month'] < date.today().strftime('%Y-%m')]
+                    _rrm = _cpl['revenue'].tail(3).mean() if len(_cpl) >= 3 else 0
+                _customer_forecast = {
+                    'repeat_rate': _rc / _tc * 100 if _tc else 0,
+                    'repeat_rev_share': _rr2 / (_nr + _rr2) * 100 if (_nr + _rr2) else 0,
+                    'avg_ltv': int(_prr['avg_ltv'].mean()) if not _prr.empty else 0,
+                    'cross_sell': float(_xs['rate'].max()) if not _xs.empty else 0,
+                    'runrate_month': _rrm,
+                    'runrate_year': _rrm * 12,
+                }
+        except Exception:
+            _customer_forecast = None
         _pdf_bytes = generate_pdf_report(
             period_label=period_label,
             first_date=str(first_date), last_date=str(last_date),
@@ -3429,6 +3494,7 @@ def tab_report():
             trend_mark=_mark,
             strategy_rows=_strategy_rows or None,
             product_master=_product_master,
+            customer_forecast=_customer_forecast,
         )
     except Exception as _e:
         _pdf_bytes = None

@@ -2218,3 +2218,57 @@ def monthly_new_repeat_chart(df: pd.DataFrame, months: int = 18):
     fig.update_layout(title='월별 신규 vs 재구매 매출', barmode='stack',
                       yaxis=dict(title='매출(원)'), xaxis=dict(tickangle=-45))
     return _space_legend(fig, height=400)
+
+
+# ══════════════ 런레이트 전망 (추세 밴드) ══════════════
+
+def runrate_forecast_chart(months, values, label, unit='', color='#5B8FF9',
+                           periods=2, exclude_last=True, as_eok=False):
+    """최근 실적(막대) + 3개월 평균 런레이트(점선) + 향후 변동 밴드.
+
+    개강 스파이크로 월 매출/모객이 들쭉날쭉하므로 특정 월 점추정 대신
+    '최근 평균 런레이트 ± 최근 변동폭' 밴드로 정직하게 표현한다.
+    exclude_last: 진행 중인 부분월(당월)을 fit에서 제외.
+    """
+    if not months or len(months) < 3:
+        return None
+    ms, vs = list(months), list(values)
+    if exclude_last and len(ms) > 3:
+        ms, vs = ms[:-1], vs[:-1]
+    recent_m, recent_v = ms[-6:], vs[-6:]
+    avg3 = sum(vs[-3:]) / 3
+    lo, hi = min(recent_v), max(recent_v)
+
+    def _mk_next(m, k):
+        y, mo = int(m[:4]), int(m[5:7])
+        for _ in range(k):
+            mo += 1
+            if mo > 12:
+                mo = 1; y += 1
+        return f"{y:04d}-{mo:02d}"
+    fut = [_mk_next(ms[-1], i + 1) for i in range(periods)]
+
+    scale = 1e8 if as_eok else 1
+    suf = '억' if as_eok else unit
+    fig = go.Figure()
+    fig.add_trace(go.Bar(x=recent_m, y=recent_v, name='실적', marker_color=color,
+                         text=[f"{v/scale:,.1f}{suf}" if as_eok else f"{v/scale:,.0f}{suf}"
+                               for v in recent_v],
+                         textposition='outside', cliponaxis=False,
+                         hovertemplate='%{x}<br>%{y:,.0f}<extra></extra>'))
+    # 런레이트 밴드 (향후)
+    fig.add_trace(go.Bar(x=fut, y=[hi - lo] * periods, base=[lo] * periods,
+                         name='전망 밴드(최근 변동폭)', marker_color=color, opacity=0.18,
+                         hovertemplate='전망 범위 %{base:,.0f} ~ %{y:,.0f}<extra></extra>',
+                         showlegend=True))
+    fig.add_trace(go.Scatter(x=recent_m + fut, y=[avg3] * (len(recent_m) + periods),
+                             name='3개월 평균 런레이트', mode='lines',
+                             line=dict(color='#B0812A', width=2, dash='dash'),
+                             hovertemplate=f'런레이트 {avg3/scale:,.1f}{suf}<extra></extra>'))
+    fig.add_trace(go.Scatter(x=fut, y=[avg3] * periods, name='전망(런레이트)',
+                             mode='markers', marker=dict(color='#B0812A', size=11, symbol='diamond'),
+                             hovertemplate='전망 %{y:,.0f}<extra></extra>'))
+    fig.update_layout(title=f'{label} — 최근 실적 · 런레이트 전망',
+                      barmode='overlay', yaxis=dict(title=label),
+                      xaxis=dict(tickangle=-45))
+    return _space_legend(fig, height=400)
