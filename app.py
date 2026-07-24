@@ -15,6 +15,7 @@ from github_store import (
     load_ad_spend_monthly, save_ad_spend_monthly, AD_CHANNEL_OPTIONS,
     load_competitor_courses,
     load_cohort_revenue, load_course_summary, load_campaign_adspend,
+    load_monthly_by_course, load_cohort_stage, STAGE_ORDER,
     load_region_signups, load_region_cohort, load_region_city, CAPITAL_REGIONS,
     load_adspend, save_adspend, delete_adspend_row,
     load_content, save_content, delete_content_row,
@@ -39,6 +40,8 @@ from charts import (
     region_bubble_map,
     product_ad_roi_chart, cohort_ad_roi_chart,
     overall_conversion_funnel, product_conversion_rate_chart,
+    monthly_course_heatmap, monthly_course_stack,
+    stage_funnel_chart, cohort_stage_matrix_chart,
 )
 
 st.set_page_config(
@@ -266,10 +269,10 @@ def main():
 
     st.title("📊 황금후추 강의 분석")
 
-    (tab_ov, tab1, tab2, tab3, tab4, tab5, tab9, tab10,
+    (tab_ov, tab1, tab2, tab3, tab4, tab5, tab_drill, tab_prd, tab9, tab10,
      tab6, tab7, tab8) = st.tabs([
         "🧭 종합 보고", "📸 오늘 입력", "📊 현황", "📋 전환 분석", "📈 추이 그래프",
-        "🎓 강의 분석", "📢 마케팅 분석", "📍 지역 분석",
+        "🎓 강의 분석", "🔎 강의별 상세", "📅 기간별 분석", "📢 마케팅 분석", "📍 지역 분석",
         "📑 경영진 보고", "⚙️ 채팅방 설정", "🗂️ 데이터 관리",
     ])
 
@@ -285,6 +288,10 @@ def main():
         tab_trend()
     with tab5:
         tab_lecture_analysis()
+    with tab_drill:
+        tab_course_detail()
+    with tab_prd:
+        tab_period()
     with tab9:
         tab_marketing()
     with tab10:
@@ -295,6 +302,173 @@ def main():
         tab_campaign()
     with tab8:
         tab_data()
+
+
+# ── 탭: 기간별 분석 ───────────────────────────────────────────────
+
+def tab_period():
+    st.header("📅 기간별 분석")
+    mbc = load_monthly_by_course()
+    ad_m = load_ad_spend_monthly()
+    if mbc.empty:
+        st.info("월별×강의별 집계 데이터가 없습니다.")
+        return
+    st.caption("주문 원본(개인정보 제외) 기준 월별×강의별 매출·유료건·무료신청. "
+               "각 강의가 **언제** 성과를 냈는지(개강 효과)를 시점축으로 봅니다.")
+
+    _months = sorted(mbc['month'].unique())
+    # ── 히트맵 ───────────────────────────────────────────
+    st.subheader("월별 × 강의별 매출 히트맵")
+    fig_h = monthly_course_heatmap(mbc)
+    if fig_h:
+        st.plotly_chart(fig_h, width='stretch', key="prd_heat")
+    st.caption("색이 진한 칸 = 그 달 그 강의 매출이 큼. 강의별 개강월에 매출이 집중되는 패턴을 확인하세요.")
+
+    # ── 월별 매출 구성 + 광고비 ──────────────────────────
+    st.divider()
+    st.subheader("월별 매출 구성 · 광고비 추이")
+    fig_s = monthly_course_stack(mbc, ad_m if not ad_m.empty else None)
+    if fig_s:
+        st.plotly_chart(fig_s, width='stretch', key="prd_stack")
+
+    # ── 특정 월 드릴다운 ─────────────────────────────────
+    st.divider()
+    st.subheader("월 선택 상세")
+    _msel = st.selectbox("월 선택", options=_months[::-1], key="prd_month")
+    _cur = mbc[mbc['month'] == _msel]
+    _prev_month = _months[_months.index(_msel) - 1] if _months.index(_msel) > 0 else None
+    _prev = mbc[mbc['month'] == _prev_month] if _prev_month else pd.DataFrame()
+
+    _tot_rev = int(_cur['paid_revenue'].sum())
+    _tot_ord = int(_cur['paid_orders'].sum())
+    _tot_free = int(_cur['free_signups'].sum())
+    _prev_rev = int(_prev['paid_revenue'].sum()) if not _prev.empty else 0
+    mm1, mm2, mm3, mm4 = st.columns(4)
+    mm1.metric(f"{_msel} 매출", f"{_tot_rev/1e8:,.2f}억",
+               delta=(f"{(_tot_rev-_prev_rev)/1e8:+.2f}억 vs {_prev_month}" if _prev_month else None))
+    mm2.metric("유료 주문", f"{_tot_ord:,}건")
+    mm3.metric("무료 신청", f"{_tot_free:,}명")
+    mm4.metric("월 객단가", f"{_tot_rev/_tot_ord/1e4:,.0f}만" if _tot_ord else "—")
+
+    # 그 달의 상품군 구성표
+    _cd = _cur.sort_values('paid_revenue', ascending=False)
+    _cd_disp = pd.DataFrame({
+        '상품군': _cd['product'],
+        '매출': _cd['paid_revenue'].apply(lambda x: f"{x/1e8:,.2f}억" if x >= 1e7 else f"{x/1e4:,.0f}만"),
+        '유료주문': _cd['paid_orders'].apply(lambda x: f"{x:,}건"),
+        '무료신청': _cd['free_signups'].apply(lambda x: f"{x:,}명"),
+        '객단가': (_cd['paid_revenue'] / _cd['paid_orders'].replace(0, pd.NA)).fillna(0).apply(
+            lambda x: f"{x/1e4:,.0f}만"),
+    })
+    st.dataframe(_cd_disp, hide_index=True, width='stretch')
+    if _tot_rev:
+        _top = _cd.iloc[0]
+        st.info(f"💡 **{_msel}**는 **{_top['product']}**가 매출 {_top['paid_revenue']/1e8:.2f}억으로 주도"
+                f"({_top['paid_revenue']/_tot_rev*100:.0f}%). 개강·프로모션 시점과 대조해 보세요.")
+
+
+# ── 탭: 강의별 상세 (드릴다운) ────────────────────────────────────
+
+def tab_course_detail():
+    st.header("🔎 강의별 상세")
+    st.caption("상품군을 선택하면 그 강의의 **모객·매출·유료 단계 전환·광고 효율·지역**을 "
+               "한 화면에 모아 정밀 진단합니다.")
+
+    cohort_rev = load_cohort_revenue()
+    camp = load_campaign_adspend()
+    stage = load_cohort_stage()
+    mbc = load_monthly_by_course()
+    cs = load_course_summary()
+    if cohort_rev.empty and cs.empty:
+        st.info("강의 데이터가 없습니다.")
+        return
+
+    _prods = [p for p in ['사주', '타로', '부동산', '빌딩']
+              if p in cohort_rev['product'].unique()] or ['사주', '타로', '부동산', '빌딩']
+    prod = st.selectbox("강의(상품군) 선택", options=_prods, key="drill_prod")
+
+    # ── 상단 요약 KPI ────────────────────────────────────
+    _cr = cohort_rev[cohort_rev['product'] == prod]
+    _csum = cs[cs['product'] == prod]
+    k1, k2, k3, k4 = st.columns(4)
+    if not _csum.empty:
+        _r = _csum.iloc[0]
+        k1.metric("누적 매출", f"{int(_r['revenue'])/1e8:,.1f}억")
+        k2.metric("수강생", f"{int(_r['students']):,}명")
+        _cv = int(_r['students']) / int(_r['free']) * 100 if int(_r['free']) else 0
+        k3.metric("무료→유료 전환", f"{_cv:.1f}%")
+        k4.metric("객단가", f"{int(_r['revenue'])/int(_r['students'])/1e4:,.0f}만"
+                  if int(_r['students']) else "—")
+
+    # ── 기수별 매출 추이 ─────────────────────────────────
+    st.divider()
+    st.subheader("기수별 매출 · 수강생")
+    fig_c = cohort_revenue_chart(cohort_rev, prod)
+    if fig_c:
+        st.plotly_chart(fig_c, width='stretch', key="drill_cohort")
+
+    # ── 유료 단계 전환 (사주/타로) ───────────────────────
+    _st = stage[stage['product'] == prod] if not stage.empty else pd.DataFrame()
+    if not _st.empty:
+        st.divider()
+        st.subheader("유료 단계 전환 (기초 → 심화 → 전문가)")
+        st.caption("무료→유료 이후 **상위 과정으로의 단계 전환**. 어느 단계에서 이탈하는지 봅니다.")
+        sc1, sc2 = st.columns([1, 1.3])
+        with sc1:
+            _cohs = _st.assign(n=_st['cohort'].str.extract(r'(\d+)').astype(float)) \
+                       .sort_values('n')['cohort'].tolist()
+            _csel = st.selectbox("기수 선택", options=_cohs[::-1], key="drill_stage_coh")
+            _sf = stage_funnel_chart(stage, prod, _csel, STAGE_ORDER)
+            if _sf:
+                st.plotly_chart(_sf, width='stretch', key="drill_stage_funnel")
+            else:
+                st.caption("이 기수는 단계 데이터가 1개뿐이라 퍼널을 표시하지 않습니다.")
+        with sc2:
+            _mx = cohort_stage_matrix_chart(stage, prod, STAGE_ORDER)
+            if _mx:
+                st.plotly_chart(_mx, width='stretch', key="drill_stage_matrix")
+        # 단계 전환 인사이트 (평균 이탈)
+        _rows = _st.copy()
+        _b2s = _rows[(_rows['기초'] > 0) & (_rows['심화'] > 0)]
+        _s2p = _rows[(_rows['심화'] > 0) & (_rows['전문가'] > 0)]
+        _parts = []
+        if not _b2s.empty:
+            _parts.append(f"기초→심화 평균 **{(_b2s['심화']/_b2s['기초']).mean()*100:.0f}%**")
+        if not _s2p.empty:
+            _parts.append(f"심화→전문가 평균 **{(_s2p['전문가']/_s2p['심화']).mean()*100:.0f}%**")
+        if _parts:
+            st.info("💡 " + " · ".join(_parts) +
+                    ". 심화→전문가 전환이 급락하는 구간이 업셀 개선 포인트입니다.")
+    elif prod in ('부동산', '빌딩'):
+        st.divider()
+        st.caption("ℹ️ 부동산·빌딩은 단일 트랙(기초·심화 위주)이라 단계 전환표가 제공되지 않습니다.")
+
+    # ── 광고 효율 추이 (기수/시점) ───────────────────────
+    _ca = camp[camp['product'] == prod] if not camp.empty else pd.DataFrame()
+    if not _ca.empty:
+        st.divider()
+        st.subheader("광고 효율 (기수별)")
+        fig_ad = cohort_ad_roi_chart(camp, prod)
+        if fig_ad:
+            st.plotly_chart(fig_ad, width='stretch', key="drill_ad")
+
+    # ── 월별 매출 시계열 (해당 강의) ─────────────────────
+    _mb = mbc[mbc['product'] == prod] if not mbc.empty else pd.DataFrame()
+    if not _mb.empty:
+        st.divider()
+        st.subheader("월별 매출 추이")
+        _mb2 = _mb.sort_values('month')
+        import plotly.graph_objects as _go
+        _pcolor = {'사주': '#7C4DBC', '타로': '#9C6ADE',
+                   '부동산': '#2E8B7A', '빌딩': '#1E6FD9'}.get(prod, '#5B8FF9')
+        _figm = _go.Figure(_go.Bar(
+            x=_mb2['month'], y=_mb2['paid_revenue'],
+            marker_color=_pcolor,
+            hovertemplate='%{x}<br>%{y:,.0f}원<extra></extra>'))
+        _figm.update_layout(title=f'{prod} 월별 매출 (주문 기준)', height=320,
+                            margin=dict(t=50, b=50, l=20, r=20),
+                            xaxis=dict(tickangle=-45), yaxis=dict(title='매출(원)'))
+        st.plotly_chart(_figm, width='stretch', key="drill_monthly")
 
 
 # ── 탭: 종합 보고 (전략 대시보드) ─────────────────────────────────
@@ -422,6 +596,14 @@ def tab_overview():
             _fig = region_distribution_chart(region, capital=tuple(CAPITAL_REGIONS))
             if _fig:
                 st.plotly_chart(_fig, key="ov_region")
+
+    # 기간 하이라이트 — 월별×강의별 매출 히트맵 (최근 12개월)
+    _mbc = load_monthly_by_course()
+    if not _mbc.empty:
+        _fh = monthly_course_heatmap(_mbc, months=12)
+        if _fh:
+            st.plotly_chart(_fh, width='stretch', key="ov_heat")
+            st.caption("최근 12개월 강의별 매출 집중 시점. 상세는 **📅 기간별 분석**·**🔎 강의별 상세** 탭 참고.")
 
     # ── 상품군 통합 요약표 ──────────────────────────────
     st.divider()

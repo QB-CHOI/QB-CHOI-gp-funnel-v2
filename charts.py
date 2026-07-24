@@ -1996,3 +1996,120 @@ def region_bubble_map(region_df: pd.DataFrame, capital=('서울', '경기', '인
         title='지역별 신청 분포 지도 (수도권=골드)',
         height=460, margin=dict(t=50, b=10, l=10, r=10))
     return fig
+
+
+# ══════════════ 기간별(월×강의) 분석 ══════════════
+
+def monthly_course_heatmap(df: pd.DataFrame, months: int = 18):
+    """월×강의 매출 히트맵 — 어느 강의가 언제 터졌나."""
+    if df is None or df.empty:
+        return None
+    d = df.copy()
+    pv = d.pivot_table(index='product', columns='month',
+                       values='paid_revenue', aggfunc='sum', fill_value=0)
+    order = [p for p in ['사주', '타로', '부동산', '빌딩'] if p in pv.index]
+    pv = pv.reindex(order)
+    cols = sorted(pv.columns)[-months:]
+    pv = pv[cols]
+    z = (pv.values / 1e4)  # 만원
+    fig = go.Figure(go.Heatmap(
+        z=z, x=cols, y=pv.index,
+        colorscale=[[0, '#f2f4f7'], [0.5, '#7C9CBF'], [1, '#B0812A']],
+        text=[[f"{v/1e4:,.1f}억" if v >= 1e4 else (f"{v:,.0f}만" if v > 0 else "")
+               for v in row] for row in pv.values],
+        texttemplate='%{text}', textfont=dict(size=9),
+        hovertemplate='%{y} · %{x}<br>%{z:,.0f}만원<extra></extra>',
+        colorbar=dict(title='매출(만원)')))
+    fig.update_layout(
+        title='월별 × 강의별 매출 히트맵 (주문 기준)',
+        height=max(280, 60 * len(pv.index) + 130),
+        margin=dict(t=55, b=60, l=50, r=20),
+        xaxis=dict(tickangle=-45))
+    return fig
+
+
+def monthly_course_stack(df: pd.DataFrame, ad_df: pd.DataFrame = None, months: int = 18):
+    """월별 상품군 매출 스택 막대 + 광고비(있으면) 라인."""
+    if df is None or df.empty:
+        return None
+    d = df.copy()
+    cols = sorted(d['month'].unique())[-months:]
+    d = d[d['month'].isin(cols)]
+    fig = go.Figure()
+    for p in [p for p in ['사주', '타로', '부동산', '빌딩'] if p in d['product'].unique()]:
+        sub = d[d['product'] == p].groupby('month', as_index=False)['paid_revenue'].sum()
+        sub = sub.set_index('month').reindex(cols, fill_value=0).reset_index()
+        fig.add_trace(go.Bar(x=sub['month'], y=sub['paid_revenue'], name=p,
+                             marker_color=_PRODUCT_COLOR.get(p, '#90A4AE'),
+                             hovertemplate=f'{p} %{{x}}<br>%{{y:,.0f}}원<extra></extra>'))
+    if ad_df is not None and not ad_df.empty:
+        sp = (ad_df[ad_df['channel'] == '전체'] if (ad_df['channel'] == '전체').any() else ad_df)
+        sp = sp.groupby('month', as_index=False)['spend'].sum()
+        sp = sp[sp['month'].isin(cols)]
+        if not sp.empty:
+            fig.add_trace(go.Scatter(x=sp['month'], y=sp['spend'], name='광고비',
+                                     yaxis='y2', mode='lines+markers',
+                                     line=dict(color='#37474F', width=2, dash='dot'),
+                                     marker=dict(size=5),
+                                     hovertemplate='광고비 %{x}<br>%{y:,.0f}원<extra></extra>'))
+        fig.update_layout(yaxis2=dict(title='광고비(원)', overlaying='y',
+                                      side='right', showgrid=False))
+    fig.update_layout(
+        title='월별 상품군 매출 구성 · 광고비', barmode='stack',
+        yaxis=dict(title='매출(원)'), xaxis=dict(tickangle=-45))
+    return _space_legend(fig, height=430)
+
+
+# ══════════════ 강의별 유료 단계 전환 퍼널 ══════════════
+
+_STAGE_LABEL = {'기초': '기초·초급', '심화': '심화·중급',
+                '전문가': '전문가·고급', '해석창업': '해석·창업'}
+
+
+def stage_funnel_chart(stage_df: pd.DataFrame, product: str, cohort: str, stage_order):
+    """한 기수의 유료 단계 전환 퍼널 (기초→심화→전문가→해석/창업)."""
+    if stage_df is None or stage_df.empty:
+        return None
+    row = stage_df[(stage_df['product'] == product) & (stage_df['cohort'] == cohort)]
+    if row.empty:
+        return None
+    r = row.iloc[0]
+    stages, vals = [], []
+    for s in stage_order:
+        v = int(r.get(s, 0))
+        if v > 0:
+            stages.append(_STAGE_LABEL.get(s, s))
+            vals.append(v)
+    if len(vals) < 2:
+        return None
+    fig = go.Figure(go.Funnel(
+        y=stages, x=vals, textposition='inside',
+        texttemplate='%{label}<br>%{value:,}명',
+        marker=dict(color=['#7C9CBF', '#5B8FF9', '#B0812A', '#8A6A1F'][:len(vals)]),
+        connector=dict(line=dict(color='#c9d6e3', width=1)),
+        hovertemplate='%{label}<br>%{value:,}명<extra></extra>'))
+    fig.update_layout(
+        title=f'{product} {cohort} 유료 단계 전환',
+        height=300, margin=dict(t=50, b=20, l=20, r=20))
+    return fig
+
+
+def cohort_stage_matrix_chart(stage_df: pd.DataFrame, product: str, stage_order):
+    """상품군의 기수별 단계 인원 그룹 막대 (전 기수 비교)."""
+    if stage_df is None or stage_df.empty:
+        return None
+    d = stage_df[stage_df['product'] == product].copy()
+    if d.empty:
+        return None
+    d['n'] = d['cohort'].str.extract(r'(\d+)').astype(float)
+    d = d.sort_values('n')
+    colors = {'기초': '#7C9CBF', '심화': '#5B8FF9', '전문가': '#B0812A', '해석창업': '#8A6A1F'}
+    fig = go.Figure()
+    for s in stage_order:
+        if s in d.columns and d[s].sum() > 0:
+            fig.add_trace(go.Bar(x=d['cohort'], y=d[s], name=_STAGE_LABEL.get(s, s),
+                                 marker_color=colors.get(s, '#90A4AE'),
+                                 hovertemplate=f'{_STAGE_LABEL.get(s,s)} %{{x}}<br>%{{y}}명<extra></extra>'))
+    fig.update_layout(title=f'{product} 기수별 단계 인원', barmode='group',
+                      bargap=0.3, yaxis=dict(title='인원'))
+    return _space_legend(fig, height=380)

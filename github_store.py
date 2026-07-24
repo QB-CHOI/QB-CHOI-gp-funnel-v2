@@ -65,6 +65,15 @@ COURSE_SUM_COLS = ['product', 'paid', 'free', 'revenue', 'students']
 CAMPAIGN_AD_PATH = "data/campaign_adspend.csv"
 CAMPAIGN_AD_COLS = ['live_date', 'product', 'cohort', 'ad_spend', 'live_revenue']
 
+# 월별×강의별 집계 (주문 원본 기준) — 기간별 시계열 분석용
+MONTHLY_COURSE_PATH = "data/monthly_by_course.csv"
+MONTHLY_COURSE_COLS = ['month', 'product', 'paid_revenue', 'paid_orders', 'free_signups']
+
+# 유료 단계 전환 (기초→심화→전문가→해석/창업) — 강의별 유료 퍼널 (사주/타로)
+COHORT_STAGE_PATH = "data/cohort_stage.csv"
+COHORT_STAGE_COLS = ['product', 'cohort', '기초', '심화', '전문가', '해석창업']
+STAGE_ORDER = ['기초', '심화', '전문가', '해석창업']
+
 # 지역별 모객 (돈사공 초급반 9~12기 배송지 기준)
 REGION_PATH = "data/region_signups.csv"
 REGION_COLS = ['region', 'signups', 'pct']
@@ -690,6 +699,29 @@ def load_campaign_adspend() -> pd.DataFrame:
         return df
     for c in ['ad_spend', 'live_revenue']:
         df[c] = pd.to_numeric(df[c], errors='coerce').fillna(0).astype(int)
+    return df
+
+
+@st.cache_data(ttl=3600)
+def load_monthly_by_course() -> pd.DataFrame:
+    """월별×강의별 집계 (주문 원본 기준: 매출·유료건·무료신청)."""
+    df = _read_csv(MONTHLY_COURSE_PATH, MONTHLY_COURSE_COLS)
+    if df.empty:
+        return df
+    for c in ['paid_revenue', 'paid_orders', 'free_signups']:
+        df[c] = pd.to_numeric(df[c], errors='coerce').fillna(0).astype(int)
+    return df
+
+
+@st.cache_data(ttl=3600)
+def load_cohort_stage() -> pd.DataFrame:
+    """유료 단계 전환 인원 (기초→심화→전문가→해석/창업, 사주·타로)."""
+    df = _read_csv(COHORT_STAGE_PATH, COHORT_STAGE_COLS)
+    if df.empty:
+        return df
+    for c in STAGE_ORDER:
+        if c in df.columns:
+            df[c] = pd.to_numeric(df[c], errors='coerce').fillna(0).astype(int)
     return df
 
 
