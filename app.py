@@ -20,6 +20,7 @@ from github_store import (
     load_cust_repeat_dist, load_cust_ltv_dist, load_cust_product_repeat,
     load_cust_cross_sell, load_cust_monthly_new_repeat,
     load_cust_repeat_timing, load_cust_retention_curve, load_cust_retention_matrix,
+    load_cust_product_timing, load_cust_product_retention, load_cust_product_nextbuy,
     load_region_signups, load_region_cohort, load_region_city, CAPITAL_REGIONS,
     load_adspend, save_adspend, delete_adspend_row,
     load_content, save_content, delete_content_row,
@@ -51,6 +52,7 @@ from charts import (
     runrate_forecast_chart,
     repeat_timing_chart, retention_curve_chart, retention_heatmap,
     target_vs_actual_chart,
+    product_retention_curve_chart, nextbuy_chart,
 )
 
 st.set_page_config(
@@ -433,6 +435,49 @@ def tab_customer():
                 st.plotly_chart(_f, width='stretch', key="cust_ret_heat")
             st.caption("가입월(세로)별로 첫 구매 후 경과월(가로)에 재구매한 비율. "
                        "진한 칸이 많은 가입월 = 충성도 높은 코호트.")
+
+    # ── 상품군별 리텐션 (강의별 재구매 패턴 차이) ────────
+    p_time = load_cust_product_timing()
+    p_ret = load_cust_product_retention()
+    p_nb = load_cust_product_nextbuy()
+    if not p_ret.empty or not p_nb.empty:
+        st.divider()
+        st.subheader("📚 강의별 재구매 패턴")
+        st.caption("상품군마다 재구매율·타이밍·재구매 방향이 다릅니다. 강의별로 CRM 전략을 다르게 짜야 합니다.")
+
+        pc1, pc2 = st.columns(2)
+        with pc1:
+            _f = product_retention_curve_chart(p_ret)
+            if _f:
+                st.plotly_chart(_f, width='stretch', key="cust_p_curve")
+        with pc2:
+            _f = nextbuy_chart(p_nb)
+            if _f:
+                st.plotly_chart(_f, width='stretch', key="cust_p_nextbuy")
+
+        # 강의 선택 → 타이밍 상세
+        if not p_time.empty:
+            _pp = [p for p in ['사주', '타로', '부동산', '빌딩']
+                   if p in p_time['product'].unique()]
+            _psel = st.selectbox("강의 선택 (재구매 타이밍 상세)", options=_pp, key="cust_p_sel")
+            _pt = p_time[p_time['product'] == _psel][['bucket', 'customers']]
+            _f = repeat_timing_chart(_pt)
+            if _f:
+                st.plotly_chart(_f, width='stretch', key="cust_p_timing")
+
+        # 업셀 vs 교차판매 전략 인사이트
+        if not p_nb.empty:
+            _up = p_nb[p_nb['same_pct'] >= 50].sort_values('same_pct', ascending=False)
+            _cr = p_nb[p_nb['diff_pct'] >= 60].sort_values('diff_pct', ascending=False)
+            _msg = "💡 **강의별 CRM 전략** — "
+            if not _up.empty:
+                _msg += (f"**{' · '.join(_up['product'])}**는 재구매가 주로 **같은 강의 상위과정**입니다"
+                         f"(예 {_up.iloc[0]['product']} 업셀 {_up.iloc[0]['same_pct']:.0f}%) → "
+                         "기초→심화→전문가 **단계 업셀 안내**가 효과적. ")
+            if not _cr.empty:
+                _msg += (f"반면 **{' · '.join(_cr['product'])}**는 재구매의 **{_cr.iloc[0]['diff_pct']:.0f}%가 "
+                         "다른 강의**로 이동 → 첫 구매자에게 **연관 강의 교차 추천**이 핵심입니다.")
+            st.info(_msg)
 
 
 # ── 탭: 기간별 분석 ───────────────────────────────────────────────

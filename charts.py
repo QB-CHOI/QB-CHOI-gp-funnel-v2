@@ -2366,3 +2366,46 @@ def target_vs_actual_chart(df: pd.DataFrame, label: str, as_eok: bool = False):
                       barmode='group', bargap=0.3,
                       yaxis=dict(title=label), xaxis=dict(tickangle=-45))
     return _space_legend(fig, height=380)
+
+
+# ══════════════ 상품군별 리텐션 ══════════════
+
+def product_retention_curve_chart(df: pd.DataFrame):
+    """상품군별 리텐션 커브 오버레이 (강의별 재구매 속도 비교)."""
+    if df is None or df.empty:
+        return None
+    fig = go.Figure()
+    for p in ['사주', '타로', '부동산', '빌딩']:
+        d = df[df['product'] == p].sort_values('k')
+        if d.empty:
+            continue
+        fig.add_trace(go.Scatter(
+            x=[f"M+{k}" for k in d['k']], y=d['pct'], name=p, mode='lines+markers',
+            line=dict(color=_PRODUCT_COLOR.get(p, '#5B8FF9'), width=2.5), marker=dict(size=7),
+            hovertemplate=f'{p} %{{x}}<br>재구매 %{{y:.1f}}%<extra></extra>'))
+    fig.update_layout(title='상품군별 리텐션 커브 (첫 구매 후 N개월 재구매율)',
+                      yaxis=dict(title='재구매 비율(%)'), xaxis=dict(title='첫 구매 후 경과'))
+    return _space_legend(fig, height=380)
+
+
+def nextbuy_chart(df: pd.DataFrame):
+    """상품군별 다음 구매 구성 (같은 상품 업셀 vs 다른 강의 교차판매)."""
+    if df is None or df.empty:
+        return None
+    d = df.copy()
+    order = {'사주': 0, '타로': 1, '부동산': 2, '빌딩': 3}
+    d['o'] = d['product'].map(lambda x: order.get(x, 9))
+    d = d.sort_values('o')
+    fig = go.Figure()
+    fig.add_trace(go.Bar(y=d['product'], x=d['same_pct'], name='같은 강의(상위과정 업셀)',
+                         orientation='h', marker_color='#B0812A',
+                         text=[f"{v:.0f}%" for v in d['same_pct']], textposition='inside',
+                         hovertemplate='%{y} 업셀 %{x:.0f}%<extra></extra>'))
+    fig.add_trace(go.Bar(y=d['product'], x=d['diff_pct'], name='다른 강의(교차판매)',
+                         orientation='h', marker_color='#7C9CBF',
+                         text=[f"{v:.0f}%" for v in d['diff_pct']], textposition='inside',
+                         hovertemplate='%{y} 교차판매 %{x:.0f}%<extra></extra>'))
+    fig.update_layout(title='재구매 방향 (업셀 vs 교차판매)', barmode='stack',
+                      xaxis=dict(title='2번째 구매 구성(%)', range=[0, 100]),
+                      yaxis=dict(autorange='reversed'))
+    return _space_legend(fig, height=340)

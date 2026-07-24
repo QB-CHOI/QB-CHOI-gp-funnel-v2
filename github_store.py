@@ -83,6 +83,9 @@ CUST_MONTHLY_PATH = "data/cust_monthly_new_repeat.csv"
 CUST_TIMING_PATH = "data/cust_repeat_timing.csv"
 CUST_RET_CURVE_PATH = "data/cust_retention_curve.csv"
 CUST_RET_MATRIX_PATH = "data/cust_retention_matrix.csv"
+CUST_P_TIMING_PATH = "data/cust_product_timing.csv"
+CUST_P_RET_PATH = "data/cust_product_retention.csv"
+CUST_P_NEXTBUY_PATH = "data/cust_product_nextbuy.csv"
 
 # 지역별 모객 (돈사공 초급반 9~12기 배송지 기준)
 REGION_PATH = "data/region_signups.csv"
@@ -844,6 +847,38 @@ def load_cust_retention_matrix() -> pd.DataFrame:
     for c in ['k', 'cohort_size']:
         df[c] = pd.to_numeric(df[c], errors='coerce').fillna(0).astype(int)
     df['pct'] = pd.to_numeric(df['pct'], errors='coerce').fillna(0.0)
+    return df
+
+
+@st.cache_data(ttl=3600)
+def load_cust_product_timing() -> pd.DataFrame:
+    """상품군별 재구매 타이밍 분포."""
+    df = _read_csv(CUST_P_TIMING_PATH, ['product', 'bucket', 'customers'])
+    if not df.empty:
+        df['customers'] = pd.to_numeric(df['customers'], errors='coerce').fillna(0).astype(int)
+    return df
+
+
+@st.cache_data(ttl=3600)
+def load_cust_product_retention() -> pd.DataFrame:
+    """상품군별 리텐션 커브 (홈고객 첫 구매 후 k개월 재구매율)."""
+    df = _read_csv(CUST_P_RET_PATH, ['product', 'k', 'pct'])
+    if df.empty:
+        return df
+    df['k'] = pd.to_numeric(df['k'], errors='coerce').fillna(0).astype(int)
+    df['pct'] = pd.to_numeric(df['pct'], errors='coerce').fillna(0.0)
+    return df
+
+
+@st.cache_data(ttl=3600)
+def load_cust_product_nextbuy() -> pd.DataFrame:
+    """상품군별 다음 구매 (같은 상품 업셀 vs 다른 강의 교차판매)."""
+    df = _read_csv(CUST_P_NEXTBUY_PATH, ['product', 'home_customers', 'repeat_rate', 'same_pct', 'diff_pct'])
+    if df.empty:
+        return df
+    df['home_customers'] = pd.to_numeric(df['home_customers'], errors='coerce').fillna(0).astype(int)
+    for c in ['repeat_rate', 'same_pct', 'diff_pct']:
+        df[c] = pd.to_numeric(df[c], errors='coerce').fillna(0.0)
     return df
 
 
