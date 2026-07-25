@@ -23,6 +23,7 @@ from github_store import (
     load_cust_product_timing, load_cust_product_retention, load_cust_product_nextbuy,
     load_cust_crosssell_path,
     load_region_signups, load_region_cohort, load_region_city, CAPITAL_REGIONS,
+    load_region_cohort_detail, load_region_cohort_topcity,
     load_adspend, save_adspend, delete_adspend_row,
     load_content, save_content, delete_content_row,
     load_date_notes, save_date_note,
@@ -76,6 +77,30 @@ st.markdown("""
 }
 /* 검토 테이블 텍스트 줄 바꿈 방지 */
 div[data-testid="stDataFrame"] td { white-space: nowrap; }
+
+/* ── 리포트형 카드 (지역 분석 등 도식화) ── */
+.gp-kpi-row{display:flex;gap:12px;flex-wrap:wrap;margin:6px 0 4px}
+.gp-kpi{flex:1;min-width:150px;background:rgba(128,128,128,.08);
+  border:1px solid rgba(128,128,128,.18);border-radius:14px;padding:14px 16px;position:relative;overflow:hidden}
+.gp-kpi::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:#B0812A}
+.gp-kpi .k{font-size:12px;opacity:.68;margin:0 0 4px;font-weight:600}
+.gp-kpi .v{font-size:26px;font-weight:800;line-height:1.05;letter-spacing:-.02em}
+.gp-kpi .v small{font-size:14px;font-weight:700;opacity:.7}
+.gp-kpi .s{font-size:11.5px;opacity:.6;margin-top:3px}
+.gp-card{background:rgba(128,128,128,.08);border:1px solid rgba(128,128,128,.18);
+  border-radius:14px;padding:14px 16px;height:100%}
+.gp-card .ch{display:flex;align-items:baseline;justify-content:space-between;gap:8px;
+  border-bottom:1px solid rgba(128,128,128,.2);padding-bottom:7px;margin-bottom:9px}
+.gp-card .ch b{font-size:15px;font-weight:800}
+.gp-card .ch .tot{font-size:12.5px;opacity:.65;font-weight:700}
+.gp-rank{display:flex;align-items:center;gap:8px;font-size:12.5px;padding:2.5px 0}
+.gp-rank .rn{width:15px;opacity:.5;font-weight:700;flex:none;text-align:right}
+.gp-rank .rr{width:42px;flex:none;font-weight:600}
+.gp-rank .rbar{flex:1;height:9px;background:rgba(128,128,128,.14);border-radius:5px;overflow:hidden}
+.gp-rank .rbar > i{display:block;height:100%;background:#5B8FF9;border-radius:5px}
+.gp-rank .rv{width:58px;flex:none;text-align:right;opacity:.8;font-variant-numeric:tabular-nums}
+.gp-city{font-size:12px;opacity:.85;margin-top:9px;padding-top:8px;border-top:1px dashed rgba(128,128,128,.25)}
+.gp-city b{color:#B0812A}
 </style>
 """, unsafe_allow_html=True)
 
@@ -3101,18 +3126,26 @@ def tab_region():
     st.caption("**돈사공 초급반 9~12기 배송지 주소** 기준 (국내 472건 · 개인정보 제외 지역 통계만). "
                "실물 교재를 배송하는 강의라 배송지 = 실제 거주 지역으로, 광고 타깃 지역 판단의 대표 표본입니다.")
 
-    # ── 핵심 지표 ────────────────────────────────────────
+    # ── 핵심 지표 (요약 KPI 밴드) ─────────────────────────
     _tot = int(region['signups'].sum())
     _cap = int(region[region['region'].isin(CAPITAL_REGIONS)]['signups'].sum())
     _cap_pct = _cap / _tot * 100 if _tot else 0
     _busan = int(region[region['region'] == '부산']['signups'].sum())
     _local_top = region[~region['region'].isin(CAPITAL_REGIONS)].sort_values('signups', ascending=False)
-    g1, g2, g3, g4 = st.columns(4)
-    g1.metric("총 신청(국내)", f"{_tot:,}건")
-    g2.metric("수도권 집중도", f"{_cap_pct:.1f}%", help="서울+경기+인천 비중")
-    g3.metric("서울+경기", f"{int(region[region['region'].isin(['서울','경기'])]['signups'].sum())/_tot*100:.1f}%")
-    g4.metric("최대 비수도권", f"{_local_top.iloc[0]['region']} {int(_local_top.iloc[0]['signups'])}건"
-              if not _local_top.empty else "—")
+    _n_sido = int((region['signups'] > 0).sum())
+    _overseas = 1  # 리포트 기준 해외 1건 별도
+    st.markdown(f"""
+    <div class="gp-kpi-row">
+      <div class="gp-kpi"><p class="k">📋 총 신청 건수</p><div class="v">{_tot + _overseas:,}<small> 건</small></div>
+        <p class="s">국내 {_tot:,}건 / 해외 {_overseas}건</p></div>
+      <div class="gp-kpi"><p class="k">👥 수도권(서울·경기·인천)</p><div class="v">{_cap:,}<small> 건</small></div>
+        <p class="s">전체의 {_cap_pct:.1f}%</p></div>
+      <div class="gp-kpi"><p class="k">🗺️ 국내 지역 커버리지</p><div class="v">{_n_sido}<small> 개 시도</small></div>
+        <p class="s">최대 비수도권 {_local_top.iloc[0]['region'] if not _local_top.empty else '—'} {int(_local_top.iloc[0]['signups']) if not _local_top.empty else 0}건</p></div>
+      <div class="gp-kpi"><p class="k">🌐 해외 신청</p><div class="v">{_overseas}<small> 건</small></div>
+        <p class="s">별도 집계</p></div>
+    </div>
+    """, unsafe_allow_html=True)
 
     st.divider()
 
@@ -3132,6 +3165,45 @@ def tab_region():
         rd = region.copy()
         rd = rd.rename(columns={'region': '지역', 'signups': '신청', 'pct': '비율(%)'})
         st.dataframe(rd, hide_index=True, width='stretch')
+
+    # ── 기수별 지역 분포 상세 (per-cohort 카드) ──────────
+    detail = load_region_cohort_detail()
+    topcity = load_region_cohort_topcity()
+    if not detail.empty:
+        st.divider()
+        st.subheader("기수별 지역 분포 상세")
+        st.caption("기수별 지역 랭킹과 주요 상위 도시. 기수마다 수도권 집중도·지역 분산이 어떻게 다른지 비교합니다.")
+        _cohs = sorted(detail['cohort'].unique(),
+                       key=lambda c: int(''.join(ch for ch in c if ch.isdigit()) or 0))
+        _rc_idx = rc.set_index('cohort') if not rc.empty else pd.DataFrame()
+        _cols = st.columns(len(_cohs))
+        for _col, _coh in zip(_cols, _cohs):
+            _d = detail[detail['cohort'] == _coh].sort_values('count', ascending=False)
+            _tot_c = int(_d['count'].sum())
+            _cap_c = int(_d[_d['region'].isin(CAPITAL_REGIONS)]['count'].sum())
+            _cap_pct_c = _cap_c / _tot_c * 100 if _tot_c else 0
+            _mx = int(_d['count'].max()) if not _d.empty else 1
+            _rows_html = ""
+            for _i, (_, _rr) in enumerate(_d.head(6).iterrows(), 1):
+                _w = _rr['count'] / _mx * 100
+                _rows_html += (
+                    f'<div class="gp-rank"><span class="rn">{_i}</span>'
+                    f'<span class="rr">{_rr["region"]}</span>'
+                    f'<span class="rbar"><i style="width:{_w:.0f}%"></i></span>'
+                    f'<span class="rv">{int(_rr["count"])}명·{_rr["pct"]:.0f}%</span></div>')
+            _tc = topcity[topcity['cohort'] == _coh].sort_values('count', ascending=False) \
+                if not topcity.empty else pd.DataFrame()
+            _city_html = ""
+            if not _tc.empty:
+                _cs = " · ".join(f"{r['city']} {int(r['count'])}" for _, r in _tc.head(3).iterrows())
+                _city_html = f'<div class="gp-city">🏙️ 주요 도시 &nbsp;<b>{_cs}</b></div>'
+            with _col:
+                st.markdown(
+                    f'<div class="gp-card"><div class="ch"><b>{_coh}</b>'
+                    f'<span class="tot">총 {_tot_c}명 · 수도권 {_cap_pct_c:.0f}%</span></div>'
+                    f'{_rows_html}{_city_html}</div>',
+                    unsafe_allow_html=True)
+        st.caption("막대 = 기수 내 최다 지역 대비 상대 크기. 상위 6개 지역만 표시.")
 
     # ── 광고 집중 전략 추천 ──────────────────────────────
     st.divider()

@@ -95,6 +95,8 @@ REGION_COHORT_PATH = "data/region_cohort.csv"
 REGION_COHORT_COLS = ['cohort', 'start', 'end', 'days', 'total', 'capital', 'capital_pct']
 REGION_CITY_PATH = "data/region_city.csv"
 REGION_CITY_COLS = ['city', 'count']
+REGION_COHORT_DETAIL_PATH = "data/region_cohort_detail.csv"
+REGION_COHORT_TOPCITY_PATH = "data/region_cohort_topcity.csv"
 # 수도권 3개 시도 (광고 집중 판단용)
 CAPITAL_REGIONS = ['서울', '경기', '인천']
 
@@ -921,6 +923,27 @@ def load_region_cohort() -> pd.DataFrame:
 def load_region_city() -> pd.DataFrame:
     """도시/구 단위 상위 신청 분포."""
     df = _read_csv(REGION_CITY_PATH, REGION_CITY_COLS)
+    if df.empty:
+        return df
+    df['count'] = pd.to_numeric(df['count'], errors='coerce').fillna(0).astype(int)
+    return df
+
+
+@st.cache_data(ttl=3600)
+def load_region_cohort_detail() -> pd.DataFrame:
+    """기수별 지역 분포 상세 (cohort×region 신청 수·비율)."""
+    df = _read_csv(REGION_COHORT_DETAIL_PATH, ['cohort', 'region', 'count', 'pct'])
+    if df.empty:
+        return df
+    df['count'] = pd.to_numeric(df['count'], errors='coerce').fillna(0).astype(int)
+    df['pct'] = pd.to_numeric(df['pct'], errors='coerce').fillna(0.0)
+    return df
+
+
+@st.cache_data(ttl=3600)
+def load_region_cohort_topcity() -> pd.DataFrame:
+    """기수별 주요 상위 도시/구."""
+    df = _read_csv(REGION_COHORT_TOPCITY_PATH, ['cohort', 'city', 'count'])
     if df.empty:
         return df
     df['count'] = pd.to_numeric(df['count'], errors='coerce').fillna(0).astype(int)
