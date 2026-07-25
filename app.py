@@ -645,12 +645,12 @@ def tab_period():
         _complete = _p[_p['month'] < date.today().strftime('%Y-%m')]
         _rr_free = _complete['free_signups'].tail(3).mean() if len(_complete) >= 3 else 0
         _rr_rev = _complete['revenue'].tail(3).mean() if len(_complete) >= 3 else 0
-        f1, f2, f3 = st.columns(3)
-        f1.metric("무료 모객 런레이트", f"{_rr_free:,.0f}명/월",
-                  help="당월 제외 최근 3개월 평균")
-        f2.metric("매출 런레이트", f"{_rr_rev/1e8:,.2f}억/월")
-        f3.metric("연 환산 페이스", f"{_rr_rev*12/1e8:,.0f}억/년",
-                  help="현재 런레이트가 유지될 경우의 연 매출 페이스(개강 일정에 따라 변동)")
+        _kpi_band([
+            ("🆓 무료 모객 런레이트", f"{_rr_free:,.0f}<small>명/월</small>", "최근 3개월 평균"),
+            ("💰 매출 런레이트", f"{_rr_rev/1e8:,.2f}<small>억/월</small>", "당월 제외 3개월"),
+            ("📅 연 환산 페이스", f"{_rr_rev*12/1e8:,.0f}<small>억/년</small>", "개강 일정에 따라 변동"),
+        ])
+        st.write("")
 
         fc1, fc2 = st.columns(2)
         with fc1:
@@ -2749,16 +2749,20 @@ def tab_marketing():
             _rev_ad = int(perf[perf['month'].astype(str).isin(_ad_months)]['revenue'].sum())
         else:
             _rev_ad = 0
-        m1, m2, m3, m4 = st.columns(4)
-        m1.metric("누적 매출", f"{_tot_rev/1e8:,.1f}억원")
-        m2.metric("누적 무료 신청", f"{_tot_free:,}")
-        m3.metric("누적 유료 구매", f"{_tot_paid:,}건")
         if _tot_spend_m > 0:
-            m4.metric("누적 ROAS", f"{_rev_ad/_tot_spend_m:,.1f}배",
-                      help=f"광고비 집행 기간({min(_ad_months)}~{max(_ad_months)}) 매출 "
-                           f"{_rev_ad/1e8:,.1f}억 ÷ 광고비 {_tot_spend_m/1e8:,.1f}억")
+            _m4 = ("📈 누적 ROAS", f"{_rev_ad/_tot_spend_m:,.1f}<small>배</small>",
+                   f"매출 {_rev_ad/1e8:,.1f}억 ÷ 광고비 {_tot_spend_m/1e8:,.1f}억")
         else:
-            m4.metric("평균 전환율", f"{_tot_paid/_tot_free*100:.2f}%" if _tot_free else "—")
+            _m4 = ("🔄 평균 전환율",
+                   (f"{_tot_paid/_tot_free*100:.2f}<small>%</small>" if _tot_free else "—"),
+                   "유료 ÷ 무료")
+        _kpi_band([
+            ("💰 누적 매출", f"{_tot_rev/1e8:,.1f}<small>억원</small>", "주문 기준"),
+            ("🆓 누적 무료 신청", f"{_tot_free:,}", "무료 신청 건"),
+            ("🎓 누적 유료 구매", f"{_tot_paid:,}<small>건</small>", "유료 결제"),
+            _m4,
+        ])
+        st.write("")
 
         _camps_ov = load_campaigns()
         fig_m = monthly_perf_chart(perf, ad_m if not ad_m.empty else None,
@@ -2813,15 +2817,15 @@ def tab_marketing():
         _tot_students = int(course_sum['students'].sum())
         _tot_free_cnt = int(course_sum['free'].sum())
         _ad_all = int(ad_m['spend'].sum()) if not ad_m.empty else 0
-        r1, r2, r3, r4 = st.columns(4)
-        r1.metric("강의 누적 매출", f"{_tot_paid_rev/1e8:,.1f}억원",
-                  help="4개 상품군 세트합계 매출 총합")
-        r2.metric("누적 유료 수강생", f"{_tot_students:,}명",
-                  help=f"세트 수강생(멤버십 제외). 유료 결제 건수 {int(course_sum['paid'].sum()):,}건")
-        r3.metric("누적 무료 모객", f"{_tot_free_cnt:,}명", help="무료 신청 건수(중복 포함)")
         _free2paid = (_tot_students / _tot_free_cnt * 100) if _tot_free_cnt else 0
-        r4.metric("무료→유료 전환율", f"{_free2paid:.1f}%",
-                  help="세트 수강생 ÷ 무료 신청 건수")
+        _kpi_band([
+            ("💰 강의 누적 매출", f"{_tot_paid_rev/1e8:,.1f}<small>억원</small>", "4개 상품군 세트합계"),
+            ("🎓 누적 유료 수강생", f"{_tot_students:,}<small>명</small>",
+             f"결제 {int(course_sum['paid'].sum()):,}건"),
+            ("🆓 누적 무료 모객", f"{_tot_free_cnt:,}<small>명</small>", "무료 신청(중복 포함)"),
+            ("🔄 무료→유료 전환율", f"{_free2paid:.1f}<small>%</small>", "수강생 ÷ 무료"),
+        ])
+        st.write("")
 
         cm1, cm2 = st.columns([1, 1.2])
         with cm1:
