@@ -101,6 +101,12 @@ div[data-testid="stDataFrame"] td { white-space: nowrap; }
 .gp-rank .rv{width:58px;flex:none;text-align:right;opacity:.8;font-variant-numeric:tabular-nums}
 .gp-city{font-size:12px;opacity:.85;margin-top:9px;padding-top:8px;border-top:1px dashed rgba(128,128,128,.25)}
 .gp-city b{color:#B0812A}
+.gp-brief{display:flex;gap:11px;padding:11px 2px;border-top:1px solid rgba(128,128,128,.15);align-items:flex-start}
+.gp-brief:first-of-type{border-top:none}
+.gp-brief .bi{font-size:18px;flex:none;line-height:1.35}
+.gp-brief .bt{font-size:14px;line-height:1.6}
+.gp-brief .bt .tt{font-weight:800}
+.gp-brief b{font-weight:800}
 </style>
 """, unsafe_allow_html=True)
 
@@ -367,14 +373,21 @@ def tab_customer():
     _new_rev = int(mnr['new_revenue'].sum()) if not mnr.empty else 0
     _rep_rev = int(mnr['repeat_revenue'].sum()) if not mnr.empty else 0
     _rep_rev_share = _rep_rev / (_new_rev + _rep_rev) * 100 if (_new_rev + _rep_rev) else 0
-    c1, c2, c3, c4 = st.columns(4)
-    c1.metric("총 고객", f"{_tot_cust:,}명")
-    c2.metric("재구매율", f"{_repeat_rate:.1f}%", help="2회 이상 결제 고객 비율")
-    c3.metric("재구매 매출 비중", f"{_rep_rev_share:.0f}%",
-              help=f"재구매 {_rep_rev/1e8:.1f}억 / 신규 {_new_rev/1e8:.1f}억")
+    _hi_ltv = "—"
     if not pr.empty:
         _hi = pr.loc[pr['avg_ltv'].idxmax()]
-        c4.metric("최고 LTV 상품", f"{_hi['product']} {_hi['avg_ltv']/1e4:,.0f}만")
+        _hi_ltv = f"{_hi['product']} {_hi['avg_ltv']/1e4:,.0f}<small>만</small>"
+    _ckpis = [
+        ("👥 총 고객", f"{_tot_cust:,}<small>명</small>", "유료 구매 고객"),
+        ("🔁 재구매율", f"{_repeat_rate:.1f}<small>%</small>", "2회 이상 결제"),
+        ("💵 재구매 매출 비중", f"{_rep_rev_share:.0f}<small>%</small>",
+         f"재구매 {_rep_rev/1e8:.1f}억 / 신규 {_new_rev/1e8:.1f}억"),
+        ("💎 최고 LTV 상품", _hi_ltv, "상품군 평균 LTV"),
+    ]
+    st.markdown('<div class="gp-kpi-row">' + ''.join(
+        f'<div class="gp-kpi"><p class="k">{_k}</p><div class="v">{_v}</div><p class="s">{_s}</p></div>'
+        for _k, _v, _s in _ckpis) + '</div>', unsafe_allow_html=True)
+    st.write("")
 
     if _rep_rev_share >= 40:
         st.success(f"💡 **재구매 매출이 전체의 {_rep_rev_share:.0f}%** — 신규 유치만큼 "
@@ -1031,34 +1044,39 @@ def tab_overview():
             _g['roas'] = _g['rev'] / _g['ad']
             _best_ad = _g.loc[_g['roas'].idxmax()]
 
-    st.markdown("#### 핵심 지표")
-    a, b, c, d = st.columns(4)
-    a.metric("누적 매출", f"{tot_rev/1e8:,.1f}억원")
-    b.metric("무료 모객", f"{tot_free:,}명", help="무료 특강 신청 건수(중복 신청 포함)")
-    c.metric("유료 수강생", f"{tot_students:,}명",
-             help="세트 수강생(기초+심화+패키지·멤버십 제외). 유료 결제 건수는 "
-                  f"{int(cs['paid'].sum()):,}건")
-    d.metric("무료→유료 전환", f"{conv:.1f}%", help="세트 수강생 ÷ 무료 신청")
-    e, f, g, h = st.columns(4)
-    e.metric("누적 ROAS", roas_txt, help=_roas_help)
-    f.metric("수도권 집중도", f"{cap_pct:.0f}%" if cap_pct else "—",
-             help="배송지 기준 서울·경기·인천 비중")
-    if _best_ad is not None:
-        g.metric("광고 최고효율", f"{_best_ad['product']} {_best_ad['roas']:.1f}배")
-    else:
-        g.metric("광고 최고효율", "—")
     _top_rev = cs.sort_values('revenue', ascending=False).iloc[0]
-    h.metric("매출 1위 상품", f"{_top_rev['product']} {_top_rev['revenue']/1e8:.1f}억")
+    _roas_v = roas_txt.replace('배', '<small>배</small>') if roas_txt != '—' else '—'
+    _ad_eff = (f"{_best_ad['product']} {_best_ad['roas']:.1f}<small>배</small>"
+               if _best_ad is not None else "—")
+    _kpis = [
+        ("💰 누적 매출", f"{tot_rev/1e8:,.1f}<small>억원</small>", "강의 집계 세트합계"),
+        ("🆓 무료 모객", f"{tot_free:,}<small>명</small>", "무료 신청(중복 포함)"),
+        ("🎓 유료 수강생", f"{tot_students:,}<small>명</small>", f"결제 {int(cs['paid'].sum()):,}건"),
+        ("🔄 무료→유료 전환", f"{conv:.1f}<small>%</small>", "수강생 ÷ 무료"),
+        ("📈 누적 ROAS", _roas_v, "매출 ÷ 광고비"),
+        ("📍 수도권 집중도", (f"{cap_pct:.0f}<small>%</small>" if cap_pct else "—"), "배송지 기준"),
+        ("🏆 광고 최고효율", _ad_eff, "라이브 첫전환 기준"),
+        ("👑 매출 1위 상품", f"{_top_rev['product']} {_top_rev['revenue']/1e8:.1f}<small>억</small>", "상품군 매출"),
+    ]
+    st.markdown("#### 핵심 지표")
+    st.markdown('<div class="gp-kpi-row">' + ''.join(
+        f'<div class="gp-kpi"><p class="k">{_k}</p><div class="v">{_v}</div><p class="s">{_s}</p></div>'
+        for _k, _v, _s in _kpis) + '</div>', unsafe_allow_html=True)
 
     st.divider()
 
-    # ── 전략 브리핑 ─────────────────────────────────────
+    # ── 전략 브리핑 (카드형) ────────────────────────────
     _brief = _strategy_briefing()
     if _brief:
         with st.container(border=True):
             st.markdown("#### 🎯 전략 브리핑 — 지금 해야 할 것")
-            for _icon, _title, _body in _brief:
-                st.markdown(f"- **{_icon} {_title}** — {_body}")
+            def _mdb(s):
+                _p = s.split('**')
+                return ''.join(x if i % 2 == 0 else f'<b>{x}</b>' for i, x in enumerate(_p))
+            st.markdown(''.join(
+                f'<div class="gp-brief"><span class="bi">{_ic}</span>'
+                f'<span class="bt"><span class="tt">{_t}</span> — {_mdb(_b)}</span></div>'
+                for _ic, _t, _b in _brief), unsafe_allow_html=True)
 
     st.divider()
 
