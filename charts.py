@@ -2432,3 +2432,25 @@ def crosssell_path_heatmap(df: pd.DataFrame):
                       yaxis=dict(title='첫 구매 강의', autorange='reversed'),
                       xaxis=dict(title='다음에 산 강의'))
     return fig
+
+
+def webinar_topic_chart(df: pd.DataFrame):
+    """무료특강 주제별 모객 가로 막대 (상품군 색상)."""
+    if df is None or df.empty:
+        return None
+    d = df.sort_values('signups')
+    colors = [_PRODUCT_COLOR.get(p, '#90A4AE') for p in d['product']]
+    fig = go.Figure(go.Bar(
+        x=d['signups'], y=[f"{r['topic']}" for _, r in d.iterrows()],
+        orientation='h', marker_color=colors,
+        text=[f"{int(v):,}명 · {p}" for v, p in zip(d['signups'], d['product'])],
+        textposition='outside', cliponaxis=False,
+        hovertemplate='%{y}<br>%{x:,}명<extra></extra>'))
+    _mx = float(d['signups'].max()) if len(d) else 1
+    fig.update_layout(
+        title='무료특강 주제별 모객 (후킹 효율)',
+        xaxis_title='무료 모객 수', yaxis_title='',
+        xaxis_range=[0, _mx * 1.28],
+        height=max(340, 30 * len(d) + 90),
+        margin=dict(t=55, b=40, l=20, r=40))
+    return fig

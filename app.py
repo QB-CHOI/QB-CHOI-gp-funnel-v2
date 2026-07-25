@@ -24,6 +24,7 @@ from github_store import (
     load_cust_crosssell_path,
     load_region_signups, load_region_cohort, load_region_city, CAPITAL_REGIONS,
     load_region_cohort_detail, load_region_cohort_topcity,
+    load_webinar_topics,
     load_adspend, save_adspend, delete_adspend_row,
     load_content, save_content, delete_content_row,
     load_date_notes, save_date_note,
@@ -48,7 +49,7 @@ from charts import (
     product_ad_roi_chart, cohort_ad_roi_chart,
     overall_conversion_funnel, product_conversion_rate_chart,
     monthly_course_heatmap, monthly_course_stack,
-    stage_funnel_chart, cohort_stage_matrix_chart,
+    stage_funnel_chart, cohort_stage_matrix_chart, webinar_topic_chart,
     cust_repeat_donut, cust_ltv_bar, cust_product_repeat_chart,
     cross_sell_heatmap, monthly_new_repeat_chart,
     runrate_forecast_chart,
@@ -2803,6 +2804,56 @@ def tab_marketing():
                 st.plotly_chart(fig_roas, key="mkt_roas")
                 st.caption("광고비가 입력된 달만 표시. ROAS = 해당 월 매출 ÷ 광고비. "
                            "광고 효율이 낮은 달(광고비↑ ROAS↓)을 찾아 예산 배분을 조정하세요.")
+        st.divider()
+
+    # ══ 무료특강 주제별 모객 효율 (콘텐츠 후킹) ════════════════════
+    wt = load_webinar_topics()
+    if not wt.empty:
+        st.subheader("🎣 무료특강 주제별 모객 효율")
+        st.caption("어떤 무료특강 주제(후킹)가 사람을 가장 많이 모으는지 — 모객 콘텐츠 전략의 핵심입니다. "
+                   "주문 원본의 무료 신청을 주제별로 집계(전자책·이벤트 제외, 개인정보 미보관).")
+        _wt = wt.copy()
+        _tot_w = int(_wt['signups'].sum())
+        # 상품군별 1위 후킹
+        _best_by_p = (_wt.sort_values('signups', ascending=False)
+                      .drop_duplicates('product'))
+        st.markdown('<div class="gp-kpi-row">' + ''.join(
+            f'<div class="gp-kpi"><p class="k">🏆 {p} 대표 후킹</p>'
+            f'<div class="v" style="font-size:18px">{t}</div>'
+            f'<p class="s">{int(s):,}명 모객</p></div>'
+            for p, t, s in zip(_best_by_p['product'], _best_by_p['topic'], _best_by_p['signups'])
+            if p in ['사주', '타로', '부동산', '빌딩']) + '</div>', unsafe_allow_html=True)
+        st.write("")
+
+        wc1, wc2 = st.columns([1.25, 1])
+        with wc1:
+            _fw = webinar_topic_chart(_wt)
+            if _fw:
+                st.plotly_chart(_fw, key="mkt_webinar")
+        with wc2:
+            st.markdown("**상품군별 후킹 효율 (모객 비중)**")
+            for _p in ['사주', '타로', '부동산', '빌딩']:
+                _ps = _wt[_wt['product'] == _p].sort_values('signups', ascending=False)
+                if _ps.empty:
+                    continue
+                _pt = int(_ps['signups'].sum())
+                _top = _ps.iloc[0]
+                st.markdown(f"- **{_p}** (총 {_pt:,}명) — 1위 **{_top['topic']}** "
+                            f"({_top['signups']/_pt*100:.0f}%)")
+
+        # 후킹 프레이밍 인사이트 (같은 상품 내 1위 vs 2위 격차)
+        _ins = []
+        for _p in ['사주', '타로', '부동산', '빌딩']:
+            _ps = _wt[_wt['product'] == _p].sort_values('signups', ascending=False)
+            if len(_ps) >= 2 and _ps.iloc[1]['signups'] > 0:
+                _r = _ps.iloc[0]['signups'] / _ps.iloc[1]['signups']
+                if _r >= 2:
+                    _ins.append(f"**{_p}**: ‘{_ps.iloc[0]['topic']}’이 ‘{_ps.iloc[1]['topic']}’보다 "
+                                f"**{_r:.1f}배** 모객")
+        if _ins:
+            st.info("💡 **후킹 프레이밍이 모객을 좌우** — " + " · ".join(_ins) +
+                    ". 성과가 검증된 후킹을 광고·랜딩 카피에 우선 활용하고, 신규 주제는 이 승자들과 "
+                    "A/B로 비교하세요.")
         st.divider()
 
     # ══ 강의 ROI 분석 (강의 집계 보고서 기반) ════════════════════
