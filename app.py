@@ -110,6 +110,16 @@ div[data-testid="stDataFrame"] td { white-space: nowrap; }
 </style>
 """, unsafe_allow_html=True)
 
+
+def _kpi_band(items):
+    """리포트형 KPI 밴드 렌더. items: [(label, value_html, sub), ...].
+    value_html는 <small> 등 HTML 허용. 카드 CSS(.gp-kpi)는 전역 정의."""
+    st.markdown('<div class="gp-kpi-row">' + ''.join(
+        f'<div class="gp-kpi"><p class="k">{k}</p><div class="v">{v}</div>'
+        f'<p class="s">{s}</p></div>' for k, v, s in items) + '</div>',
+        unsafe_allow_html=True)
+
+
 # ── 사이드바 — 캐시 새로고침 ─────────────────────────────────────
 
 with st.sidebar:
@@ -384,9 +394,7 @@ def tab_customer():
          f"재구매 {_rep_rev/1e8:.1f}억 / 신규 {_new_rev/1e8:.1f}억"),
         ("💎 최고 LTV 상품", _hi_ltv, "상품군 평균 LTV"),
     ]
-    st.markdown('<div class="gp-kpi-row">' + ''.join(
-        f'<div class="gp-kpi"><p class="k">{_k}</p><div class="v">{_v}</div><p class="s">{_s}</p></div>'
-        for _k, _v, _s in _ckpis) + '</div>', unsafe_allow_html=True)
+    _kpi_band(_ckpis)
     st.write("")
 
     if _rep_rev_share >= 40:
@@ -780,15 +788,18 @@ def tab_course_detail():
     # ── 상단 요약 KPI ────────────────────────────────────
     _cr = cohort_rev[cohort_rev['product'] == prod]
     _csum = cs[cs['product'] == prod]
-    k1, k2, k3, k4 = st.columns(4)
     if not _csum.empty:
         _r = _csum.iloc[0]
-        k1.metric("누적 매출", f"{int(_r['revenue'])/1e8:,.1f}억")
-        k2.metric("수강생", f"{int(_r['students']):,}명")
-        _cv = int(_r['students']) / int(_r['free']) * 100 if int(_r['free']) else 0
-        k3.metric("무료→유료 전환", f"{_cv:.1f}%")
-        k4.metric("객단가", f"{int(_r['revenue'])/int(_r['students'])/1e4:,.0f}만"
-                  if int(_r['students']) else "—")
+        _st_n = int(_r['students'])
+        _cv = _st_n / int(_r['free']) * 100 if int(_r['free']) else 0
+        _aov = f"{int(_r['revenue'])/_st_n/1e4:,.0f}<small>만</small>" if _st_n else "—"
+        _kpi_band([
+            (f"💰 {prod} 누적 매출", f"{int(_r['revenue'])/1e8:,.1f}<small>억</small>", "세트합계 매출"),
+            ("🎓 수강생", f"{_st_n:,}<small>명</small>", "세트 수강생"),
+            ("🔄 무료→유료 전환", f"{_cv:.1f}<small>%</small>", "수강생 ÷ 무료"),
+            ("💎 객단가", _aov, "매출 ÷ 수강생"),
+        ])
+        st.write("")
 
     # ── 기수별 매출 추이 ─────────────────────────────────
     st.divider()
@@ -1059,9 +1070,7 @@ def tab_overview():
         ("👑 매출 1위 상품", f"{_top_rev['product']} {_top_rev['revenue']/1e8:.1f}<small>억</small>", "상품군 매출"),
     ]
     st.markdown("#### 핵심 지표")
-    st.markdown('<div class="gp-kpi-row">' + ''.join(
-        f'<div class="gp-kpi"><p class="k">{_k}</p><div class="v">{_v}</div><p class="s">{_s}</p></div>'
-        for _k, _v, _s in _kpis) + '</div>', unsafe_allow_html=True)
+    _kpi_band(_kpis)
 
     st.divider()
 
@@ -1894,12 +1903,13 @@ def tab_conversion():
         _ts = int(_csum['students'].sum())   # 세트 수강생(매출 기준과 정합)
         _tr = int(_csum['revenue'].sum())
         _cv = (_ts / _tf * 100) if _tf else 0
-        kk1, kk2, kk3, kk4 = st.columns(4)
-        kk1.metric("무료 특강 모객", f"{_tf:,}명", help="무료 특강 신청 건수(중복 신청 포함)")
-        kk2.metric("유료 수강생", f"{_ts:,}명",
-                   help=f"세트 수강생(멤버십 제외). 유료 결제 건수는 {int(_csum['paid'].sum()):,}건")
-        kk3.metric("종합 전환율", f"{_cv:.1f}%", help="세트 수강생 ÷ 무료 신청")
-        kk4.metric("누적 매출", f"{_tr/1e8:,.1f}억원")
+        _kpi_band([
+            ("🆓 무료 특강 모객", f"{_tf:,}<small>명</small>", "무료 신청(중복 포함)"),
+            ("🎓 유료 수강생", f"{_ts:,}<small>명</small>", f"결제 {int(_csum['paid'].sum()):,}건"),
+            ("🔄 종합 전환율", f"{_cv:.1f}<small>%</small>", "수강생 ÷ 무료"),
+            ("💰 누적 매출", f"{_tr/1e8:,.1f}<small>억원</small>", "세트합계"),
+        ])
+        st.write("")
 
         cvc1, cvc2 = st.columns([1, 1.25])
         with cvc1:
