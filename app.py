@@ -24,7 +24,7 @@ from github_store import (
     load_cust_crosssell_path,
     load_region_signups, load_region_cohort, load_region_city, CAPITAL_REGIONS,
     load_region_cohort_detail, load_region_cohort_topcity,
-    load_webinar_topics,
+    load_webinar_topics, load_webinar_conversion,
     load_adspend, save_adspend, delete_adspend_row,
     load_content, save_content, delete_content_row,
     load_date_notes, save_date_note,
@@ -50,6 +50,7 @@ from charts import (
     overall_conversion_funnel, product_conversion_rate_chart,
     monthly_course_heatmap, monthly_course_stack,
     stage_funnel_chart, cohort_stage_matrix_chart, webinar_topic_chart,
+    webinar_quadrant_chart,
     cust_repeat_donut, cust_ltv_bar, cust_product_repeat_chart,
     cross_sell_heatmap, monthly_new_repeat_chart,
     runrate_forecast_chart,
@@ -2854,6 +2855,40 @@ def tab_marketing():
             st.info("💡 **후킹 프레이밍이 모객을 좌우** — " + " · ".join(_ins) +
                     ". 성과가 검증된 후킹을 광고·랜딩 카피에 우선 활용하고, 신규 주제는 이 승자들과 "
                     "A/B로 비교하세요.")
+
+        # ── 후킹 품질: 모객량 × 전환율 ────────────────────
+        wcv = load_webinar_conversion()
+        if not wcv.empty:
+            st.markdown("**🎯 후킹 품질 — 많이 모으는 후킹 ≠ 잘 파는 후킹**")
+            st.caption("가로=고유 모객 수, 세로=유료 전환율, 버블 크기=실제 전환 고객 수. "
+                       "무료 신청 고객이 이후 유료 구매까지 이어졌는지로 후킹의 '질'을 봅니다.")
+            st.plotly_chart(webinar_quadrant_chart(wcv), key="mkt_webinar_quad")
+            _w = wcv.copy()
+            _best_conv = _w.loc[_w['conv_rate'].idxmax()]
+            _best_vol = _w.loc[_w['unique_signups'].idxmax()]
+            _best_abs = _w.loc[_w['converters'].idxmax()]
+            # 볼륨자석(모객 상위인데 전환율 하위) 탐지
+            _mv = _w['unique_signups'].median()
+            _mc = _w['conv_rate'].median()
+            _vanity = _w[(_w['unique_signups'] >= _mv) & (_w['conv_rate'] < _mc)].sort_values(
+                'unique_signups', ascending=False)
+            _gem = _w[(_w['unique_signups'] < _mv) & (_w['conv_rate'] >= _mc)].sort_values(
+                'conv_rate', ascending=False)
+            msg = (f"💡 **후킹 품질 진단** — 전환율 최고는 **{_best_conv['product']} "
+                   f"{_best_conv['topic']}({_best_conv['conv_rate']:.0f}%)**, "
+                   f"실제 유료 고객을 가장 많이 만든 후킹은 **{_best_abs['product']} "
+                   f"{_best_abs['topic']}({int(_best_abs['converters']):,}명)**입니다. ")
+            if not _vanity.empty:
+                _v = _vanity.iloc[0]
+                msg += (f"**{_v['product']} {_v['topic']}**은 모객은 최대급이나 전환율 "
+                        f"**{_v['conv_rate']:.0f}%**로 낮은 **볼륨 자석형** — 리드는 많지만 질이 낮으니 "
+                        "후속 CRM 강화가 필요합니다. ")
+            if not _gem.empty:
+                _g2 = _gem.iloc[0]
+                msg += (f"반대로 **{_g2['product']} {_g2['topic']}**은 모객은 적어도 전환율 "
+                        f"**{_g2['conv_rate']:.0f}%**로 높은 **알짜형** — 타깃이 명확하니 "
+                        "유사 고관여 세그먼트로 확대할 가치가 있습니다.")
+            st.info(msg)
         st.divider()
 
     # ══ 강의 ROI 분석 (강의 집계 보고서 기반) ════════════════════

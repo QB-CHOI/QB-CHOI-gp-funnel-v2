@@ -100,6 +100,7 @@ REGION_COHORT_TOPCITY_PATH = "data/region_cohort_topcity.csv"
 
 # 무료특강 주제별 모객 (주문 원본 집계) — 모객 콘텐츠 효율
 WEBINAR_TOPICS_PATH = "data/webinar_topics.csv"
+WEBINAR_CONV_PATH = "data/webinar_conversion.csv"
 # 수도권 3개 시도 (광고 집중 판단용)
 CAPITAL_REGIONS = ['서울', '경기', '인천']
 
@@ -960,6 +961,18 @@ def load_webinar_topics() -> pd.DataFrame:
     if df.empty:
         return df
     df['signups'] = pd.to_numeric(df['signups'], errors='coerce').fillna(0).astype(int)
+    return df
+
+
+@st.cache_data(ttl=3600)
+def load_webinar_conversion() -> pd.DataFrame:
+    """후킹별 전환 (고유 모객·전환자·전환율)."""
+    df = _read_csv(WEBINAR_CONV_PATH, ['product', 'topic', 'unique_signups', 'converters', 'conv_rate'])
+    if df.empty:
+        return df
+    for c in ['unique_signups', 'converters']:
+        df[c] = pd.to_numeric(df[c], errors='coerce').fillna(0).astype(int)
+    df['conv_rate'] = pd.to_numeric(df['conv_rate'], errors='coerce').fillna(0.0)
     return df
 
 

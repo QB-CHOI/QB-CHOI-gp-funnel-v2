@@ -2454,3 +2454,33 @@ def webinar_topic_chart(df: pd.DataFrame):
         height=max(340, 30 * len(d) + 90),
         margin=dict(t=55, b=40, l=20, r=40))
     return fig
+
+
+def webinar_quadrant_chart(df: pd.DataFrame):
+    """후킹 모객량 × 전환율 버블 (사분면: 볼륨자석/스타/알짜/약함)."""
+    if df is None or df.empty:
+        return None
+    d = df.copy()
+    _mx_conv = float(d['converters'].max()) or 1
+    _mv = float(d['unique_signups'].median())
+    _mc = float(d['conv_rate'].median())
+    fig = go.Figure()
+    # 사분면 기준선
+    fig.add_vline(x=_mv, line_dash='dot', line_color='#c9d6e3')
+    fig.add_hline(y=_mc, line_dash='dot', line_color='#c9d6e3')
+    for p in ['사주', '타로', '부동산', '빌딩']:
+        s = d[d['product'] == p]
+        if s.empty:
+            continue
+        fig.add_trace(go.Scatter(
+            x=s['unique_signups'], y=s['conv_rate'], name=p, mode='markers+text',
+            text=s['topic'], textposition='top center', textfont=dict(size=9),
+            marker=dict(size=s['converters'] / _mx_conv * 46 + 9,
+                        color=_PRODUCT_COLOR.get(p, '#90A4AE'), opacity=0.75,
+                        line=dict(color='#fff', width=1)),
+            hovertemplate='%{text}<br>고유모객 %{x:,}명 · 전환율 %{y:.1f}%<extra></extra>'))
+    fig.update_layout(
+        title='후킹 효율 지도 — 모객량(가로) × 전환율(세로) · 버블=전환자수',
+        xaxis=dict(title='고유 모객 수'), yaxis=dict(title='유료 전환율(%)'),
+        height=460, margin=dict(t=55, b=45, r=20))
+    return _space_legend(fig, height=460)
