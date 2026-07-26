@@ -25,6 +25,7 @@ from github_store import (
     load_region_signups, load_region_cohort, load_region_city, CAPITAL_REGIONS,
     load_region_cohort_detail, load_region_cohort_topcity,
     load_webinar_topics, load_webinar_conversion,
+    load_data_sources,
     load_adspend, save_adspend, delete_adspend_row,
     load_content, save_content, delete_content_row,
     load_date_notes, save_date_note,
@@ -109,6 +110,8 @@ div[data-testid="stDataFrame"] td { white-space: nowrap; }
 .gp-brief .bt{font-size:14px;line-height:1.6}
 .gp-brief .bt .tt{font-weight:800}
 .gp-brief b{font-weight:800}
+.gp-dtbl th{padding:7px 8px;border-bottom:2px solid rgba(128,128,128,.3)}
+.gp-dtbl td{padding:7px 8px;border-bottom:1px solid rgba(128,128,128,.15);vertical-align:top}
 </style>
 """, unsafe_allow_html=True)
 
@@ -4385,6 +4388,62 @@ def tab_data():
     ROOM_NUMBERS = sorted(ROOMS.keys())
     st.header("데이터 관리")
     df = load_all()
+
+    # ── 📅 데이터 현황 (신선도) ───────────────────────────────
+    _ds = load_data_sources()
+    if not _ds.empty:
+        st.subheader("📅 데이터 현황 · 신선도")
+        st.caption("사이트가 쓰는 데이터별 **기준 시점·출처·갱신 방법**입니다. "
+                   "🟢 최신 · 🟡 스냅샷 · 🔴 갱신 권장 — 오래된 데이터를 제때 갱신하세요.")
+        _today = date.today()
+        _mem_last = str(df['date'].max()) if not df.empty else None
+
+        def _asof_days(a):
+            a = str(a).strip()
+            if a == 'auto':
+                if _mem_last:
+                    try:
+                        return (_today - pd.to_datetime(_mem_last).date()).days, _mem_last
+                    except Exception:
+                        return None, _mem_last
+                return None, '—'
+            try:
+                _d = pd.to_datetime(a).date()
+                return (_today - _d).days, a
+            except Exception:
+                return None, a
+
+        _rows_html = ""
+        _stale = 0
+        for _, r in _ds.iterrows():
+            _days, _disp = _asof_days(r['as_of'])
+            if _days is None:
+                _badge, _col = "—", "#8A93A3"
+            elif _days <= 45:
+                _badge, _col = "🟢 최신", "#2E7D5B"
+            elif _days <= 120:
+                _badge, _col = "🟡 스냅샷", "#B77A1B"
+            else:
+                _badge, _col = "🔴 갱신 권장", "#BC4A38"
+                _stale += 1
+            _age = f"{_days}일 전" if isinstance(_days, int) else ""
+            _rows_html += (
+                f'<tr><td style="opacity:.6">{r["category"]}</td>'
+                f'<td><b>{r["dataset"]}</b><div style="font-size:11px;opacity:.6">{r["source"]}</div></td>'
+                f'<td style="white-space:nowrap">{_disp}<div style="font-size:11px;opacity:.55">{_age}</div></td>'
+                f'<td style="color:{_col};font-weight:700;white-space:nowrap">{_badge}</td>'
+                f'<td style="font-size:12px;opacity:.75">{r["refresh"]}</td></tr>')
+        st.markdown(
+            '<table class="gp-dtbl" style="width:100%;border-collapse:collapse;font-size:13px">'
+            '<thead><tr style="text-align:left">'
+            '<th>구분</th><th>데이터 · 출처</th><th>기준 시점</th><th>상태</th><th>갱신 방법</th></tr></thead>'
+            f'<tbody>{_rows_html}</tbody></table>',
+            unsafe_allow_html=True)
+        if _stale:
+            st.warning(f"⚠️ 갱신 권장 데이터 **{_stale}종** — 특히 지역(2025-12)·채널 metrics(2025-06)는 "
+                       "오래됐습니다. 최신 자료 확보 시 갱신하면 분석 정확도가 올라갑니다.")
+        st.caption("주문 원본 집계 갱신: `python3 scripts/refresh_order_aggregates.py --write` (터미널).")
+        st.divider()
 
     # ── 누락 날짜 소급 입력 ───────────────────────────────────
     if not df.empty:

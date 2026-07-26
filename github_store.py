@@ -101,6 +101,9 @@ REGION_COHORT_TOPCITY_PATH = "data/region_cohort_topcity.csv"
 # 무료특강 주제별 모객 (주문 원본 집계) — 모객 콘텐츠 효율
 WEBINAR_TOPICS_PATH = "data/webinar_topics.csv"
 WEBINAR_CONV_PATH = "data/webinar_conversion.csv"
+
+# 데이터 소스 레지스트리 (신선도 추적)
+DATA_SOURCES_PATH = "data/data_sources.csv"
 # 수도권 3개 시도 (광고 집중 판단용)
 CAPITAL_REGIONS = ['서울', '경기', '인천']
 
@@ -962,6 +965,13 @@ def load_webinar_topics() -> pd.DataFrame:
         return df
     df['signups'] = pd.to_numeric(df['signups'], errors='coerce').fillna(0).astype(int)
     return df
+
+
+@st.cache_data(ttl=600)
+def load_data_sources() -> pd.DataFrame:
+    """데이터 소스 레지스트리 (데이터·출처·기준시점·갱신 방법)."""
+    return _read_csv(DATA_SOURCES_PATH,
+                     ['category', 'dataset', 'source', 'as_of', 'cadence', 'refresh'])
 
 
 @st.cache_data(ttl=3600)
