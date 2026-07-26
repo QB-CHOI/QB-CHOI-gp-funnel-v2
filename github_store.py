@@ -966,13 +966,20 @@ def load_webinar_topics() -> pd.DataFrame:
 
 @st.cache_data(ttl=3600)
 def load_webinar_conversion() -> pd.DataFrame:
-    """후킹별 전환 (고유 모객·전환자·전환율)."""
-    df = _read_csv(WEBINAR_CONV_PATH, ['product', 'topic', 'unique_signups', 'converters', 'conv_rate'])
+    """후킹별 전환 (고유 모객·전환자·전환율·자사 전환·self 비중)."""
+    df = _read_csv(WEBINAR_CONV_PATH, ['product', 'topic', 'unique_signups', 'converters',
+                                       'conv_rate', 'self_converters', 'self_rate', 'self_share'])
     if df.empty:
         return df
-    for c in ['unique_signups', 'converters']:
-        df[c] = pd.to_numeric(df[c], errors='coerce').fillna(0).astype(int)
-    df['conv_rate'] = pd.to_numeric(df['conv_rate'], errors='coerce').fillna(0.0)
+    for c in ['unique_signups', 'converters', 'self_converters']:
+        if c in df.columns:
+            df[c] = pd.to_numeric(df[c], errors='coerce').fillna(0).astype(int)
+    for c in ['conv_rate', 'self_rate', 'self_share']:
+        if c in df.columns:
+            df[c] = pd.to_numeric(df[c], errors='coerce').fillna(0.0)
+    # 구버전 데이터(자사 컬럼 없음) 대비
+    if 'self_share' not in df.columns:
+        df['self_share'] = 0.0
     return df
 
 

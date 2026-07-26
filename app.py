@@ -50,7 +50,7 @@ from charts import (
     overall_conversion_funnel, product_conversion_rate_chart,
     monthly_course_heatmap, monthly_course_stack,
     stage_funnel_chart, cohort_stage_matrix_chart, webinar_topic_chart,
-    webinar_quadrant_chart,
+    webinar_quadrant_chart, webinar_selfconv_chart,
     cust_repeat_donut, cust_ltv_bar, cust_product_repeat_chart,
     cross_sell_heatmap, monthly_new_repeat_chart,
     runrate_forecast_chart,
@@ -2889,6 +2889,29 @@ def tab_marketing():
                         f"**{_g2['conv_rate']:.0f}%**로 높은 **알짜형** — 타깃이 명확하니 "
                         "유사 고관여 세그먼트로 확대할 가치가 있습니다.")
             st.info(msg)
+
+            # ── 자기완결 vs 관문(다른 강의 유입) ──────────
+            if 'self_share' in wcv.columns:
+                st.markdown("**🚪 후킹 유형 — 자기완결(자사) vs 관문(다른 강의 유입)**")
+                st.caption("특강 참석자의 전환이 **같은 강의 구매**인지(자기완결), "
+                           "**다른 강의로 유입**인지(관문)로 나눕니다. 관문형은 자사 전환이 낮아도 "
+                           "생태계(특히 사주 허브)로 고객을 유입시키는 기여가 있습니다.")
+                st.plotly_chart(webinar_selfconv_chart(wcv), key="mkt_webinar_self")
+                _wself = wcv.copy()
+                _selfish = _wself[_wself['self_share'] >= 60].sort_values('self_share', ascending=False)
+                _gate = _wself[_wself['self_share'] < 45].sort_values('unique_signups', ascending=False)
+                _gmsg = "💡 **후킹 역할 구분** — "
+                if not _selfish.empty:
+                    _gmsg += (f"**{' · '.join(_selfish['product'].unique())}** 계열 후킹은 "
+                              f"전환의 60%+가 자기 강의(자기완결형, 예 {_selfish.iloc[0]['topic']} "
+                              f"self {_selfish.iloc[0]['self_share']:.0f}%) — 특강↔상품이 직결. ")
+                if not _gate.empty:
+                    _gt = _gate.iloc[0]
+                    _gmsg += (f"반면 **{_gt['product']} {_gt['topic']}** 등은 전환의 절반 이상이 "
+                              "**다른 강의로 유입되는 관문형** — 자사 전환율만으로 평가하면 저평가됩니다. "
+                              "모객 규모가 크므로 **생태계 유입 창구**로 계속 활용하되, 유입 후 "
+                              "교차판매(사주 허브) CRM을 연결하세요.")
+                st.info(_gmsg)
         st.divider()
 
     # ══ 강의 ROI 분석 (강의 집계 보고서 기반) ════════════════════

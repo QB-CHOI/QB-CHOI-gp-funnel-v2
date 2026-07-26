@@ -2484,3 +2484,28 @@ def webinar_quadrant_chart(df: pd.DataFrame):
         xaxis=dict(title='고유 모객 수'), yaxis=dict(title='유료 전환율(%)'),
         height=460, margin=dict(t=55, b=45, r=20))
     return _space_legend(fig, height=460)
+
+
+def webinar_selfconv_chart(df: pd.DataFrame):
+    """후킹별 전환을 자사(같은 강의) vs 관문(다른 강의)로 분해한 스택 막대."""
+    if df is None or df.empty or 'self_rate' not in df.columns:
+        return None
+    d = df.copy()
+    d['gate_rate'] = (d['conv_rate'] - d['self_rate']).clip(lower=0)
+    d = d.sort_values('conv_rate')
+    fig = go.Figure()
+    fig.add_trace(go.Bar(
+        y=d['topic'], x=d['self_rate'], name='자사 전환(같은 강의)', orientation='h',
+        marker_color='#B0812A',
+        text=[f"{v:.0f}%" if v >= 3 else "" for v in d['self_rate']], textposition='inside',
+        hovertemplate='%{y}<br>자사 전환 %{x:.1f}%<extra></extra>'))
+    fig.add_trace(go.Bar(
+        y=d['topic'], x=d['gate_rate'], name='관문 전환(다른 강의로)', orientation='h',
+        marker_color='#7C9CBF',
+        text=[f"{v:.0f}%" if v >= 3 else "" for v in d['gate_rate']], textposition='inside',
+        hovertemplate='%{y}<br>관문 전환 %{x:.1f}%<extra></extra>'))
+    fig.update_layout(
+        title='후킹 유형 — 자기완결(자사) vs 관문(다른 강의 유입)',
+        barmode='stack', xaxis=dict(title='유료 전환율(%)'), yaxis_title='',
+        height=max(360, 30 * len(d) + 90))
+    return _space_legend(fig, height=max(360, 30 * len(d) + 90))
