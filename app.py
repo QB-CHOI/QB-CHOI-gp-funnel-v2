@@ -2707,6 +2707,40 @@ def tab_lecture_analysis():
 
 # ── 탭: 마케팅 분석 ──────────────────────────────────────────────
 
+def _ad_budget_diagnosis(camp) -> list:
+    """상품군별 광고 예산 진단: 비중·ROAS·수확체감(광고비↔ROAS 상관)·권고."""
+    import math
+    if camp is None or camp.empty:
+        return []
+    tot = int(camp['ad_spend'].sum())
+    out = []
+    for p in ['사주', '타로', '부동산', '빌딩']:
+        d = camp[camp['product'] == p].groupby('cohort', as_index=False).agg(
+            ad=('ad_spend', 'sum'), rev=('live_revenue', 'sum'))
+        d = d[d['ad'] > 0]
+        if d.empty:
+            continue
+        ad = int(d['ad'].sum())
+        roas = d['rev'].sum() / ad if ad else 0
+        d = d.assign(roas=d['rev'] / d['ad'])
+        corr = float(d['ad'].corr(d['roas'])) if len(d) >= 3 else float('nan')
+        share = ad / tot * 100 if tot else 0
+        sat = (not math.isnan(corr)) and corr <= -0.5   # 수확체감
+        if roas >= 12 and share < 15:
+            rec, why = '확대', '최고 효율·최소 비중'
+        elif sat and share >= 20:
+            rec, why = '축소·재점검', '비중 높은데 수확체감'
+        elif sat:
+            rec, why = '적정 유지', '수확체감 확인'
+        elif roas >= 7:
+            rec, why = '유지·소폭 확대', '효율 양호'
+        else:
+            rec, why = '적정 유지', '효율 보통'
+        out.append({'product': p, 'ad': ad, 'share': share, 'roas': roas,
+                    'corr': corr, 'saturated': sat, 'rec': rec, 'why': why})
+    return out
+
+
 def _strategy_briefing() -> list:
     """모든 분석 데이터를 종합해 우선순위 전략 액션을 생성(데이터 기반·자동 갱신)."""
     cs = load_course_summary()
@@ -2727,22 +2761,20 @@ def _strategy_briefing() -> list:
                           f"(매출 {_rev/1e8:.1f}억 ÷ 광고비 {_sp/1e8:.1f}억). "
                           "업계 목표(2배)를 크게 상회 — 광고 확대 자체는 안전한 구간입니다."))
 
-    # 2) 상품군 광고 예산 재배분
-    if not camp.empty:
-        g = camp.groupby('product').agg(ad=('ad_spend', 'sum'),
-                                        rev=('live_revenue', 'sum')).reset_index()
-        g = g[g['ad'] > 0].copy()
-        if not g.empty:
-            g['roas'] = g['rev'] / g['ad']
-            _b = g.loc[g['roas'].idxmax()]
-            _w = g.loc[g['roas'].idxmin()]
-            _t = g.loc[g['ad'].idxmax()]
-            _share = _t['ad'] / g['ad'].sum() * 100
-            items.append(("💰", "광고 예산 재배분",
-                          f"**{_b['product']}** 광고 ROAS **{_b['roas']:.1f}배**로 최고 → **확대 1순위**. "
-                          f"광고비가 **{_t['product']}에 {_share:.0f}% 집중**(ROAS {_t['roas']:.1f}배)이고 "
-                          f"최저 효율은 **{_w['product']}({_w['roas']:.1f}배)** — 집중 상품의 소재·타깃 "
-                          "효율 점검 후 고효율 상품으로 분산을 검토하세요."))
+    # 2) 상품군 광고 예산 재배분 (수확체감 반영)
+    _bd = _ad_budget_diagnosis(camp)
+    if _bd:
+        _exp = [b for b in _bd if b['rec'] in ('확대', '유지·소폭 확대')]
+        _cut = [b for b in _bd if b['rec'] == '축소·재점검']
+        _best = max(_bd, key=lambda x: x['roas'])
+        _msg = (f"**{_best['product']}** 광고 ROAS **{_best['roas']:.1f}배**로 최고"
+                f"(비중 {_best['share']:.0f}%) → **확대 1순위**. ")
+        if _cut:
+            _cn = " · ".join(b['product'] for b in _cut)
+            _msg += (f"반면 **{_cn}**은 광고비를 늘려도 효율이 떨어지는 **수확체감** 구간이라 "
+                     "무리한 확대보다 **적정 규모로 축소·재점검**이 맞습니다. ")
+        _msg += "‘많이 쓸수록 좋다’가 아니라 상품별 적정 예산을 찾는 게 핵심입니다."
+        items.append(("💰", "광고 예산 재배분", _msg))
 
     # 3) 전환 강점 상품 + 고객단가 (매출 기준과 정합: students 사용)
     if not cs.empty:
@@ -3076,6 +3108,43 @@ def tab_marketing():
                     f"**{_worst_p['roas']:.1f}배**로, 광고비 비중이 높다면 소재·타깃 개선 또는 예산 재배분이 "
                     f"필요합니다. 현재 광고비의 **{_top_share:.0f}%**가 **{_top_spend['product']}**에 집중되어 있어, "
                     f"효율 높은 **{_eff_names}**로의 분산도 검토할 만합니다.")
+
+            # ── 광고 예산 최적화 진단 (수확체감 반영) ──────────
+            _bd = _ad_budget_diagnosis(camp_ad)
+            if _bd:
+                st.markdown("**⚖️ 광고 예산 최적화 진단 — 많이 쓴다고 좋은 게 아님**")
+                st.caption("광고비를 키울수록 효율이 떨어지는 **수확체감**(광고비↔ROAS 상관)을 반영해 "
+                           "상품군별로 확대·유지·축소를 권고합니다. 상관이 −0.5 이하면 수확체감 구간입니다.")
+                _rec_color = {'확대': '#2E7D5B', '유지·소폭 확대': '#2E7D5B',
+                              '적정 유지': '#B77A1B', '축소·재점검': '#BC4A38'}
+                _bh = ""
+                for _b in sorted(_bd, key=lambda x: -x['share']):
+                    _c = _rec_color.get(_b['rec'], '#8A93A3')
+                    _corr_txt = (f"{_b['corr']:+.2f}" if not (_b['corr'] != _b['corr']) else "—")
+                    _sat_txt = "🔻 수확체감" if _b['saturated'] else "—"
+                    _bh += (f'<tr><td><b>{_b["product"]}</b></td>'
+                            f'<td style="text-align:right">{_b["ad"]/1e8:,.2f}억 <span style="opacity:.55">({_b["share"]:.0f}%)</span></td>'
+                            f'<td style="text-align:right">{_b["roas"]:.1f}배</td>'
+                            f'<td style="text-align:center">{_corr_txt}<div style="font-size:11px;opacity:.6">{_sat_txt}</div></td>'
+                            f'<td style="color:{_c};font-weight:800;white-space:nowrap">{_b["rec"]}</td>'
+                            f'<td style="font-size:12px;opacity:.7">{_b["why"]}</td></tr>')
+                st.markdown(
+                    '<table class="gp-dtbl" style="width:100%;border-collapse:collapse;font-size:13px">'
+                    '<thead><tr style="text-align:left"><th>상품군</th><th style="text-align:right">광고비(비중)</th>'
+                    '<th style="text-align:right">ROAS</th><th style="text-align:center">수확체감</th>'
+                    '<th>권고</th><th>근거</th></tr></thead>'
+                    f'<tbody>{_bh}</tbody></table>', unsafe_allow_html=True)
+                _cut = [b for b in _bd if b['rec'] == '축소·재점검']
+                _exp = [b for b in _bd if b['rec'] in ('확대', '유지·소폭 확대')]
+                if _cut and _exp:
+                    _cut_names = " · ".join(b['product'] for b in _cut)
+                    _exp_top = max(_exp, key=lambda x: x['roas'])
+                    st.info(f"💡 **예산 재배분 방향** — **{_cut_names}**는 광고비를 늘려도 효율이 "
+                            f"떨어지는(수확체감) 구간이므로 **적정 규모로 축소**하고, 여유분을 **효율 최고 "
+                            f"{_exp_top['product']}(ROAS {_exp_top['roas']:.1f}배·비중 {_exp_top['share']:.0f}%)**로 "
+                            "옮기면 같은 예산으로 총 매출을 키울 수 있습니다. 단, 축소 상품도 최소 규모는 "
+                            "유지해 모객 파이프라인이 끊기지 않게 하세요.")
+                st.write("")
 
             # ── 기수별 광고 효율 진단 (저효율 상품 심층 분석) ──
             st.markdown("**🔬 기수별 광고 효율 진단**")
