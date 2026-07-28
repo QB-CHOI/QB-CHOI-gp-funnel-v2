@@ -2581,3 +2581,30 @@ def ad_efficiency_diagnosis(camp_df: pd.DataFrame, product: str):
     first, last = d.iloc[0], d.iloc[-1]
     return {'d': d, 'corr': corr, 'best': best, 'worst': worst,
             'top_spend': top_spend, 'first': first, 'last': last}
+
+
+def monthly_lead_cpa_chart(ad_df, perf_df, min_spend=5e6):
+    """월별 무료 모객(막대) + 리드 획득 단가 CPA(라인) — 광고=모객 엔진 관점."""
+    if ad_df is None or ad_df.empty or perf_df is None or perf_df.empty:
+        return None
+    sp = ad_df.groupby('month', as_index=False)['spend'].sum()
+    p = perf_df[['month', 'free_signups']].copy()
+    m = sp.merge(p, on='month', how='inner').sort_values('month')
+    m = m[m['spend'] >= min_spend]
+    if m.empty:
+        return None
+    m['cpa'] = m['spend'] / m['free_signups'].replace(0, pd.NA)
+    fig = go.Figure()
+    fig.add_trace(go.Bar(x=m['month'], y=m['free_signups'], name='무료 모객',
+                         marker_color='#7C9CBF', opacity=0.85,
+                         hovertemplate='%{x}<br>무료 모객 %{y:,}명<extra></extra>'))
+    fig.add_trace(go.Scatter(x=m['month'], y=m['cpa'], name='리드 획득 단가(원)', yaxis='y2',
+                             mode='lines+markers', line=dict(color='#B0812A', width=3),
+                             marker=dict(size=7),
+                             hovertemplate='%{x}<br>리드 CPA %{y:,.0f}원<extra></extra>'))
+    fig.update_layout(
+        title='월별 무료 모객 · 리드 획득 단가(CPA = 광고비 ÷ 무료 모객)',
+        yaxis=dict(title='무료 모객(명)'),
+        yaxis2=dict(title='리드 CPA(원)', overlaying='y', side='right', showgrid=False),
+        xaxis=dict(tickangle=-45))
+    return _space_legend(fig, height=400)

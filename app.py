@@ -45,6 +45,7 @@ from charts import (
     marketing_channel_summary, marketing_channel_chart, marketing_trend_chart,
     marketing_channel_conv_chart, monthly_perf_chart, competitor_price_chart,
     cohort_revenue_chart, product_revenue_mix_chart, monthly_roas_chart,
+    monthly_lead_cpa_chart,
     region_distribution_chart, region_capital_trend_chart, region_city_chart,
     region_bubble_map,
     product_ad_roi_chart, cohort_ad_roi_chart,
@@ -2908,7 +2909,37 @@ def tab_marketing():
                 st.markdown("**📊 월별 광고비 대비 매출(ROAS)**")
                 st.plotly_chart(fig_roas, key="mkt_roas")
                 st.caption("광고비가 입력된 달만 표시. ROAS = 해당 월 매출 ÷ 광고비. "
-                           "광고 효율이 낮은 달(광고비↑ ROAS↓)을 찾아 예산 배분을 조정하세요.")
+                           "※ 광고비는 다음 달 매출에 반영되는 **시차**가 있어 월 단위 ROAS는 편차가 큽니다 "
+                           "— 아래 리드 획득 단가를 함께 보세요.")
+
+            # ── 월별 리드 획득 단가 + 수확체감 진단 ──────────
+            fig_cpa = monthly_lead_cpa_chart(ad_m, perf)
+            if fig_cpa:
+                st.markdown("**🎣 월별 리드 획득 단가(CPA) — 광고는 '모객 엔진'**")
+                st.plotly_chart(fig_cpa, key="mkt_lead_cpa")
+                # 진단: 광고비↔모객(+), 광고비↔ROAS(-)
+                _sp = ad_m.groupby('month', as_index=False)['spend'].sum()
+                _mm = _sp.merge(perf[['month', 'free_signups', 'revenue']], on='month', how='inner')
+                _mm = _mm[_mm['spend'] >= 5e6].copy()
+                if len(_mm) >= 4:
+                    _mm['cpa'] = _mm['spend'] / _mm['free_signups'].replace(0, pd.NA)
+                    _mm['roas'] = _mm['revenue'] / _mm['spend']
+                    _corr_lead = _mm['spend'].corr(_mm['free_signups'])
+                    _corr_roas = _mm['spend'].corr(_mm['roas'])
+                    _best_cpa = _mm.loc[_mm['cpa'].idxmin()]
+                    _worst_cpa = _mm.loc[_mm['cpa'].idxmax()]
+                    st.info(
+                        f"💡 **광고비의 1차 성과는 '무료 모객'입니다** — 광고비↔모객 상관 "
+                        f"**{_corr_lead:+.2f}**(강한 양). 리드 획득 단가는 **{_best_cpa['month']} "
+                        f"{_best_cpa['cpa']:,.0f}원**(최저)에서 **{_worst_cpa['month']} "
+                        f"{_worst_cpa['cpa']:,.0f}원**(최고) 사이입니다. "
+                        f"다만 광고비↔ROAS 상관은 **{_corr_roas:+.2f}**(음) — "
+                        "**광고를 키우면 리드는 싸게 대량으로 오지만, 그 리드의 매출 전환 효율은 "
+                        "떨어집니다**(대량 유입=볼륨 자석 후킹의 낮은 전환과 일치). → 무작정 광고비를 "
+                        "늘리기보다 **리드 CPA가 낮게 유지되는 적정 규모**에서 운영하고, 유입 리드의 "
+                        "전환을 CRM으로 끌어올리는 게 핵심입니다.")
+                    st.caption("리드 CPA = 월 광고비 ÷ 월 무료 모객. 광고비 500만원 미만인 초기 달은 "
+                               "매출이 오가닉/이전 캠페인이라 제외했습니다.")
         st.divider()
 
     # ══ 무료특강 주제별 모객 효율 (콘텐츠 후킹) ════════════════════
