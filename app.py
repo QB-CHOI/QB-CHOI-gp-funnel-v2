@@ -1088,6 +1088,29 @@ def tab_overview():
             for a in _info:
                 st.info(f"🔵 **{a['title']}** — {a['msg']}")
 
+            # ── 슬랙 전송 (설정 시) ──────────────────────
+            _slack = ""
+            try:
+                _slack = st.secrets.get("slack_webhook_url", "")
+            except Exception:
+                _slack = ""
+            _sev_ic = {'critical': '🔴', 'warning': '🟡', 'info': '🔵'}
+            if _slack:
+                if st.button("🔔 이 알림 슬랙으로 전송", key="alert_slack",
+                             help="현재 알림을 팀 슬랙 채널로 보냅니다"):
+                    def _strip(t):
+                        return t.replace('**', '*')  # 슬랙 볼드
+                    _lines = [f"{_sev_ic.get(a['sev'], '•')} *{a['title']}* — {_strip(a['msg'])}"
+                              for a in _alerts]
+                    send_slack_alert(
+                        _slack,
+                        f"📊 *황금후추 강의 분석 — 이상 알림* ({date.today()})\n"
+                        + "\n".join(_lines))
+                    st.success("슬랙으로 전송했습니다.")
+            else:
+                st.caption("🔔 팀 슬랙으로 자동 전송하려면 Streamlit Secrets에 "
+                           "`slack_webhook_url`을 추가하세요(설정 후 버튼이 나타납니다).")
+
     cs = load_course_summary()
     if cs.empty:
         st.info("강의 집계 데이터가 아직 없습니다. 데이터가 이관되면 종합 보고가 표시됩니다.")
