@@ -2509,3 +2509,75 @@ def webinar_selfconv_chart(df: pd.DataFrame):
         barmode='stack', xaxis=dict(title='유료 전환율(%)'), yaxis_title='',
         height=max(360, 30 * len(d) + 90))
     return _space_legend(fig, height=max(360, 30 * len(d) + 90))
+
+
+# ══════════════ 단계-강의 타임라인 (기수 병합 가시화) ══════════════
+
+_STAGE_ORD = {'기초': 0, '심화': 1, '전문가': 2, '창업': 3, '해석': 4}
+_STAGE_COLOR2 = {'기초': '#7C9CBF', '심화': '#5B8FF9', '전문가': '#B0812A',
+                 '창업': '#8A6A1F', '해석': '#9C6ADE'}
+
+
+def stage_timeline_chart(df: pd.DataFrame, product: str):
+    """단계-강의를 실제 개강 기간(시작~종료)으로 배치한 타임라인(간트).
+
+    기초/심화/전문가/창업이 기수 번호대로 1:1 진행되지 않고, 전환 시점에
+    기수가 병합·이월된 경우를 시간축으로 드러낸다.
+    """
+    if df is None or df.empty:
+        return None
+    d = df[df['product'] == product].copy()
+    if d.empty:
+        return None
+    d['start'] = pd.to_datetime(d['start'], errors='coerce')
+    d['end'] = pd.to_datetime(d['end'], errors='coerce')
+    d = d.dropna(subset=['start', 'end'])
+    if d.empty:
+        return None
+    # 같은 날 시작·종료(단발)면 최소 길이 부여
+    d['end2'] = d.apply(lambda r: r['end'] if r['end'] > r['start']
+                        else r['end'] + pd.Timedelta(days=5), axis=1)
+    d['o'] = d['stage'].map(lambda s: _STAGE_ORD.get(s, 9))
+    d = d.sort_values(['o', 'start'])
+    _stages = [s for s in ['기초', '심화', '전문가', '창업', '해석'] if s in d['stage'].values]
+    fig = go.Figure()
+    for s in _stages:
+        sd = d[d['stage'] == s]
+        fig.add_trace(go.Bar(
+            base=sd['start'], x=(sd['end2'] - sd['start']).dt.days, y=sd['stage'],
+            orientation='h', name=s, marker_color=_STAGE_COLOR2.get(s, '#90A4AE'),
+            text=[f"{c} ({o})" for c, o in zip(sd['cohort'], sd['orders'])],
+            textposition='inside', insidetextanchor='middle', textfont=dict(size=10),
+            hovertemplate='%{y} %{text}<br>%{base|%Y-%m-%d} ~<extra></extra>',
+            width=0.5))
+    fig.update_layout(
+        title=f'{product} 단계-강의 타임라인 (실제 개강 기간 · 괄호=단품 수강)',
+        barmode='overlay', height=max(300, 62 * len(_stages) + 110),
+        xaxis=dict(type='date', title=''),
+        yaxis=dict(categoryorder='array',
+                   categoryarray=list(reversed(_stages)), title=''),
+        margin=dict(t=55, b=40, l=20, r=20), showlegend=False)
+    return fig
+
+
+def ad_efficiency_diagnosis(camp_df: pd.DataFrame, product: str):
+    """광고 효율(ROAS) 변동 원인 진단 결과 dict 반환.
+
+    광고비와 ROAS의 관계(수확체감 여부)와 상승·하락 구간을 데이터로 설명."""
+    if camp_df is None or camp_df.empty:
+        return None
+    d = camp_df[camp_df['product'] == product].copy()
+    d = d.groupby('cohort', as_index=False).agg(
+        ad=('ad_spend', 'sum'), rev=('live_revenue', 'sum'), date=('live_date', 'min'))
+    d = d[d['ad'] > 0]
+    if len(d) < 2:
+        return None
+    d['roas'] = d['rev'] / d['ad']
+    d = d.sort_values('date').reset_index(drop=True)
+    corr = float(d['ad'].corr(d['roas'])) if len(d) >= 3 else float('nan')
+    best = d.loc[d['roas'].idxmax()]
+    worst = d.loc[d['roas'].idxmin()]
+    top_spend = d.loc[d['ad'].idxmax()]
+    first, last = d.iloc[0], d.iloc[-1]
+    return {'d': d, 'corr': corr, 'best': best, 'worst': worst,
+            'top_spend': top_spend, 'first': first, 'last': last}

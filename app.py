@@ -25,7 +25,7 @@ from github_store import (
     load_region_signups, load_region_cohort, load_region_city, CAPITAL_REGIONS,
     load_region_cohort_detail, load_region_cohort_topcity,
     load_webinar_topics, load_webinar_conversion,
-    load_data_sources,
+    load_data_sources, load_stage_timeline,
     load_adspend, save_adspend, delete_adspend_row,
     load_content, save_content, delete_content_row,
     load_date_notes, save_date_note,
@@ -52,6 +52,7 @@ from charts import (
     monthly_course_heatmap, monthly_course_stack,
     stage_funnel_chart, cohort_stage_matrix_chart, webinar_topic_chart,
     webinar_quadrant_chart, webinar_selfconv_chart,
+    stage_timeline_chart, ad_efficiency_diagnosis,
     cust_repeat_donut, cust_ltv_bar, cust_product_repeat_chart,
     cross_sell_heatmap, monthly_new_repeat_chart,
     runrate_forecast_chart,
@@ -788,7 +789,8 @@ def tab_course_detail():
 
     _prods = [p for p in ['사주', '타로', '부동산', '빌딩']
               if p in cohort_rev['product'].unique()] or ['사주', '타로', '부동산', '빌딩']
-    prod = st.selectbox("강의(상품군) 선택", options=_prods, key="drill_prod")
+    prod = st.selectbox("강의(상품군) 선택 — 바꾸면 아래 매출·단계·광고효율·월별매출이 모두 해당 강의로 갱신됩니다",
+                        options=_prods, key="drill_prod")
 
     # ── 상단 요약 KPI ────────────────────────────────────
     _cr = cohort_rev[cohort_rev['product'] == prod]
@@ -813,12 +815,43 @@ def tab_course_detail():
     if fig_c:
         st.plotly_chart(fig_c, width='stretch', key="drill_cohort")
 
-    # ── 유료 단계 전환 (사주/타로) ───────────────────────
+    # ── 유료 단계 전환 (사주/타로/부동산) ─────────────────
     _st = stage[stage['product'] == prod] if not stage.empty else pd.DataFrame()
+    _stl = load_stage_timeline()
+    _stl_p = _stl[_stl['product'] == prod] if not _stl.empty else pd.DataFrame()
     if not _st.empty:
         st.divider()
         st.subheader("유료 단계 전환 (기초 → 심화 → 전문가)")
         st.caption("무료→유료 이후 **상위 과정으로의 단계 전환**. 어느 단계에서 이탈하는지 봅니다.")
+
+        # 단계-강의 타임라인 (기수 병합·이월 가시화) — 요청 1
+        if not _stl_p.empty and _stl_p['stage'].nunique() >= 2:
+            _ft = stage_timeline_chart(_stl_p, prod)
+            if _ft:
+                st.markdown("**🗓️ 단계-강의 타임라인 — 기수는 번호대로 1:1 진행되지 않습니다**")
+                st.plotly_chart(_ft, width='stretch', key="drill_stage_timeline")
+                # 병합/이월 자동 감지: 심화 기수 수 > 기초 기수 수 등, 시점 역전
+                _merge_note = []
+                _b = _stl_p[_stl_p['stage'] == '기초'].copy()
+                _s = _stl_p[_stl_p['stage'] == '심화'].copy()
+                if not _b.empty and not _s.empty:
+                    _b['n'] = _b['cohort'].str.extract(r'(\d+)').astype(float)
+                    _s['n'] = _s['cohort'].str.extract(r'(\d+)').astype(float)
+                    # 같은 기수번호인데 심화 시작이 기초 종료보다 한참 뒤 = 이월
+                    _mg = _b.merge(_s, on='n', suffixes=('_b', '_s'))
+                    _mg['gap'] = (pd.to_datetime(_mg['start_s']) - pd.to_datetime(_mg['end_b'])).dt.days
+                    _lag = _mg[_mg['gap'] >= 30]
+                    if not _lag.empty:
+                        _ex = _lag.sort_values('gap', ascending=False).iloc[0]
+                        _merge_note.append(
+                            f"예: **기초 {int(_ex['n'])}기** 종료 후 **{int(_ex['gap'])}일** 뒤에 "
+                            f"심화 {int(_ex['n'])}기 개강 — 별개 시점에 운영")
+                st.caption("막대=각 단계 강의의 실제 개강~마감 기간. 같은 기수 번호라도 **기초와 심화가 "
+                           "다른 시점에 열렸고**, 전환 시점에 기수가 병합·이월된 경우가 있어 단순 "
+                           "'기초N→심화N' 진행이 아닙니다." +
+                           (" " + _merge_note[0] + "." if _merge_note else ""))
+                st.write("")
+
         sc1, sc2 = st.columns([1, 1.3])
         with sc1:
             _cohs = _st.assign(n=_st['cohort'].str.extract(r'(\d+)').astype(float)) \
@@ -833,6 +866,9 @@ def tab_course_detail():
             _mx = cohort_stage_matrix_chart(stage, prod, STAGE_ORDER)
             if _mx:
                 st.plotly_chart(_mx, width='stretch', key="drill_stage_matrix")
+        st.caption("⚠️ 위 퍼널·매트릭스의 기수 라벨은 리포트 기준으로 정렬된 값입니다. 심화 인원이 "
+                   "기초보다 많은 기수(>100% 전환)는 **여러 기초 기수가 한 심화로 병합**된 경우입니다 "
+                   "— 정확한 개강 구분은 위 타임라인을 참고하세요.")
         # 단계 전환 인사이트 (평균 이탈)
         _rows = _st.copy()
         _b2s = _rows[(_rows['기초'] > 0) & (_rows['심화'] > 0)]
@@ -845,24 +881,57 @@ def tab_course_detail():
         if _parts:
             st.info("💡 " + " · ".join(_parts) +
                     ". 심화→전문가 전환이 급락하는 구간이 업셀 개선 포인트입니다.")
-    elif prod in ('부동산', '빌딩'):
+    elif prod == '빌딩':
         st.divider()
-        st.caption("ℹ️ 부동산·빌딩은 단일 트랙(기초·심화 위주)이라 단계 전환표가 제공되지 않습니다.")
+        st.caption("ℹ️ 빌딩은 단일 트랙이라 단계 전환(기초→심화→전문가)이 제공되지 않습니다.")
 
-    # ── 광고 효율 추이 (기수/시점) ───────────────────────
+    # ── 광고 효율 추이 + 변동 원인 (기수/시점) ───────────
     _ca = camp[camp['product'] == prod] if not camp.empty else pd.DataFrame()
     if not _ca.empty:
         st.divider()
-        st.subheader("광고 효율 (기수별)")
+        st.subheader(f"광고 효율 (기수별) — {prod}")
         fig_ad = cohort_ad_roi_chart(camp, prod)
         if fig_ad:
             st.plotly_chart(fig_ad, width='stretch', key="drill_ad")
+
+        # 광고 효율 변동 원인 분석 — 요청 3
+        _diag = ad_efficiency_diagnosis(camp, prod)
+        if _diag:
+            _dd = _diag['d']
+            _corr = _diag['corr']
+            _best, _worst, _tsp = _diag['best'], _diag['worst'], _diag['top_spend']
+            _first, _last = _diag['first'], _diag['last']
+            st.markdown("**🔍 왜 이렇게 나왔나 — 광고 효율 변동 원인**")
+            _msg = (f"**{prod}** 광고 ROAS는 **{_best['cohort']} {_best['roas']:.0f}배**(최고)에서 "
+                    f"**{_worst['cohort']} {_worst['roas']:.1f}배**(최저)까지 움직였습니다. ")
+            if not pd.isna(_corr) and _corr <= -0.4:
+                _msg += (f"광고비와 ROAS의 상관계수가 **{_corr:+.2f}**(강한 음의 관계) — "
+                         f"**광고비를 키울수록 효율이 떨어지는 수확체감**이 뚜렷합니다. "
+                         f"광고비 최다 투입 **{_tsp['cohort']}({_tsp['ad']/1e8:.2f}억)**의 ROAS가 "
+                         f"**{_tsp['rev']/_tsp['ad']:.1f}배**로 낮은 게 대표적입니다. ")
+                # 회복 구간 감지
+                if _last['roas'] > _worst['roas'] * 1.5 and _last['ad'] < _tsp['ad']:
+                    _msg += (f"최근 **{_last['cohort']}**은 광고비를 **{_last['ad']/1e8:.2f}억**으로 "
+                             f"줄이자 ROAS가 **{_last['roas']:.1f}배**로 회복됐습니다. → **적정 예산 구간**을 "
+                             "찾아 과다 집행을 피하는 것이 핵심입니다.")
+                else:
+                    _msg += "→ 무리한 예산 확대보다 **효율이 유지되는 적정 규모**로 운영하세요."
+            elif not pd.isna(_corr) and _corr >= 0.4:
+                _msg += (f"광고비와 ROAS가 함께 움직이며(상관 {_corr:+.2f}), 초기 {_first['cohort']}가 "
+                         f"가장 효율적이었고 시간이 지나며 완만히 하락하는 **시장 성숙/피로** 양상입니다. "
+                         "새 후킹·타깃으로 초기 효율을 재현할 여지를 검토하세요.")
+            else:
+                _msg += (f"초기 **{_first['cohort']}({_first['roas']:.0f}배)**가 소규모·고효율이었고, "
+                         "규모 확대 시 효율이 낮아지는 일반적 패턴입니다.")
+            st.info("💡 " + _msg)
+            st.caption("※ 여기 ROAS는 라이브 첫전환 매출÷광고비(기수별). 상관계수는 광고비와 ROAS의 "
+                       "선형 관계(−1~+1), 음수일수록 '광고비↑→효율↓' 경향.")
 
     # ── 월별 매출 시계열 (해당 강의) ─────────────────────
     _mb = mbc[mbc['product'] == prod] if not mbc.empty else pd.DataFrame()
     if not _mb.empty:
         st.divider()
-        st.subheader("월별 매출 추이")
+        st.subheader(f"월별 매출 추이 — {prod}")
         _mb2 = _mb.sort_values('month')
         import plotly.graph_objects as _go
         _pcolor = {'사주': '#7C4DBC', '타로': '#9C6ADE',

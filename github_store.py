@@ -104,6 +104,9 @@ WEBINAR_CONV_PATH = "data/webinar_conversion.csv"
 
 # 데이터 소스 레지스트리 (신선도 추적)
 DATA_SOURCES_PATH = "data/data_sources.csv"
+
+# 단계-강의 타임라인 (기초/심화/전문가/창업 강의별 시작·종료) — 기수 병합 가시화
+STAGE_TIMELINE_PATH = "data/stage_timeline.csv"
 # 수도권 3개 시도 (광고 집중 판단용)
 CAPITAL_REGIONS = ['서울', '경기', '인천']
 
@@ -964,6 +967,16 @@ def load_webinar_topics() -> pd.DataFrame:
     if df.empty:
         return df
     df['signups'] = pd.to_numeric(df['signups'], errors='coerce').fillna(0).astype(int)
+    return df
+
+
+@st.cache_data(ttl=3600)
+def load_stage_timeline() -> pd.DataFrame:
+    """단계-강의 타임라인 (product·stage·cohort·start·end·orders)."""
+    df = _read_csv(STAGE_TIMELINE_PATH, ['product', 'stage', 'cohort', 'start', 'end', 'orders'])
+    if df.empty:
+        return df
+    df['orders'] = pd.to_numeric(df['orders'], errors='coerce').fillna(0).astype(int)
     return df
 
 
