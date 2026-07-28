@@ -100,6 +100,7 @@ REGION_COHORT_TOPCITY_PATH = "data/region_cohort_topcity.csv"
 
 # 무료특강 주제별 모객 (주문 원본 집계) — 모객 콘텐츠 효율
 WEBINAR_TOPICS_PATH = "data/webinar_topics.csv"
+WEBINAR_HOOK_AD_PATH = "data/webinar_hook_ad.csv"
 WEBINAR_CONV_PATH = "data/webinar_conversion.csv"
 
 # 데이터 소스 레지스트리 (신선도 추적)
@@ -967,6 +968,26 @@ def load_webinar_topics() -> pd.DataFrame:
     if df.empty:
         return df
     df['signups'] = pd.to_numeric(df['signups'], errors='coerce').fillna(0).astype(int)
+    return df
+
+
+@st.cache_data(ttl=3600)
+def load_webinar_hook_ad() -> pd.DataFrame:
+    """무료특강 후킹 소재별 메타 광고 성과 (마케팅시트 이관, 스냅샷).
+
+    period·product·hook·creatives·spend·impressions·clicks·leads.
+    leads = 메타 전환(0원강의 신청). 파생: ctr·cvr·cpl.
+    """
+    df = _read_csv(WEBINAR_HOOK_AD_PATH,
+                   ['period', 'product', 'hook', 'creatives',
+                    'spend', 'impressions', 'clicks', 'leads'])
+    if df.empty:
+        return df
+    for c in ['creatives', 'spend', 'impressions', 'clicks', 'leads']:
+        df[c] = pd.to_numeric(df[c], errors='coerce').fillna(0).astype(int)
+    df['ctr'] = (df['clicks'] / df['impressions'] * 100).where(df['impressions'] > 0, 0.0)
+    df['cvr'] = (df['leads'] / df['clicks'] * 100).where(df['clicks'] > 0, 0.0)
+    df['cpl'] = (df['spend'] / df['leads']).where(df['leads'] > 0, 0.0)
     return df
 
 

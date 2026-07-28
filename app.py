@@ -24,7 +24,7 @@ from github_store import (
     load_cust_crosssell_path,
     load_region_signups, load_region_cohort, load_region_city, CAPITAL_REGIONS,
     load_region_cohort_detail, load_region_cohort_topcity,
-    load_webinar_topics, load_webinar_conversion,
+    load_webinar_topics, load_webinar_conversion, load_webinar_hook_ad,
     load_data_sources, load_stage_timeline,
     load_adspend, save_adspend, delete_adspend_row,
     load_content, save_content, delete_content_row,
@@ -51,7 +51,7 @@ from charts import (
     product_ad_roi_chart, cohort_ad_roi_chart,
     overall_conversion_funnel, product_conversion_rate_chart,
     monthly_course_heatmap, monthly_course_stack,
-    stage_funnel_chart, cohort_stage_matrix_chart, webinar_topic_chart,
+    stage_funnel_chart, cohort_stage_matrix_chart, webinar_topic_chart, webinar_hook_ad_chart,
     webinar_quadrant_chart, webinar_selfconv_chart,
     stage_timeline_chart, ad_efficiency_diagnosis,
     cust_repeat_donut, cust_ltv_bar, cust_product_repeat_chart,
@@ -3070,6 +3070,57 @@ def tab_marketing():
                               "모객 규모가 크므로 **생태계 유입 창구**로 계속 활용하되, 유입 후 "
                               "교차판매(사주 허브) CRM을 연결하세요.")
                 st.info(_gmsg)
+
+        # ── 후킹 소재별 광고 효율 (메타, 스냅샷) ──────────
+        wha = load_webinar_hook_ad()
+        if not wha.empty:
+            _pd = wha['product'].iloc[0]
+            _per = wha['period'].iloc[0]
+            st.markdown(f"**💸 후킹 소재별 광고 효율 — {_pd} 무료특강 ({_per} 메타)**")
+            st.caption("어떤 후킹 주제에 메타 광고비를 얼마 써서 무료 신청(리드)을 얼마에 얻는지 — "
+                       "'모객' 뒤의 실제 **광고 투자 효율**입니다. 막대=광고비, 색=리드 단가(CPL, 초록=저렴).")
+            _tot_sp = int(wha['spend'].sum()); _tot_ld = int(wha['leads'].sum())
+            _avg_cpl = _tot_sp / _tot_ld if _tot_ld else 0
+            _paid = wha[wha['leads'] > 0]
+            _best = _paid.loc[_paid['cpl'].idxmin()]
+            _worst = _paid.loc[_paid['cpl'].idxmax()]
+            _topspend = wha.loc[wha['spend'].idxmax()]
+            _kpi_band([
+                ("💸 광고비 합계", f"{_tot_sp/1e4:,.0f}<small>만원</small>",
+                 f"소재 {int(wha['creatives'].sum())}개"),
+                ("🎣 리드 합계", f"{_tot_ld:,}<small>건</small>", "무료 신청 전환"),
+                ("📉 평균 리드 단가", f"{_avg_cpl:,.0f}<small>원</small>", "광고비÷리드"),
+                ("🏆 최저 CPL 후킹", f"{_best['hook']}",
+                 f"{_best['cpl']:,.0f}원 · 리드 {int(_best['leads']):,}"),
+            ])
+            _fig = webinar_hook_ad_chart(wha)
+            if _fig is not None:
+                st.plotly_chart(_fig, key="mkt_hook_ad")
+            # 표
+            _t = wha.sort_values('spend', ascending=False)[
+                ['hook', 'creatives', 'spend', 'leads', 'ctr', 'cvr', 'cpl']].copy()
+            _t.columns = ['후킹', '소재수', '광고비', '리드', 'CTR%', 'CVR%', 'CPL(원)']
+            st.dataframe(
+                _t.style.format({'광고비': '{:,.0f}', '리드': '{:,.0f}',
+                                 'CTR%': '{:.1f}', 'CVR%': '{:.1f}', 'CPL(원)': '{:,.0f}'}),
+                hide_index=True, width='stretch')
+            # 인사이트: 볼륨자석(고클릭·저전환) vs 알짜(저CPL)
+            _hi_ctr = wha.loc[wha['ctr'].idxmax()]
+            _hi_cvr = _paid.loc[_paid['cvr'].idxmax()]
+            _ratio = _worst['cpl'] / _best['cpl'] if _best['cpl'] else 0
+            _msg = (f"💡 **후킹 광고 효율 진단** — 광고비의 최대 몫은 **{_topspend['hook']}**"
+                    f"({_topspend['spend']/_tot_sp*100:.0f}%)에 투입됐고, 리드를 가장 싸게 얻은 후킹은 "
+                    f"**{_best['hook']}({_best['cpl']:,.0f}원)**, 가장 비싼 후킹은 "
+                    f"**{_worst['hook']}({_worst['cpl']:,.0f}원, {_ratio:.1f}배)**입니다. ")
+            if _hi_ctr['hook'] != _hi_cvr['hook']:
+                _msg += (f"**{_hi_ctr['hook']}**은 클릭률(CTR {_hi_ctr['ctr']:.1f}%)이 가장 높아 "
+                         "시선을 끌지만, 실제 신청 전환은 "
+                         f"**{_hi_cvr['hook']}**(CVR {_hi_cvr['cvr']:.1f}%)이 가장 높습니다 — "
+                         "**'잘 눌리는 후킹'과 '잘 신청되는 후킹'이 다릅니다.** ")
+            _msg += (f"CPL이 낮은 **{_best['hook']}·{_paid.sort_values('cpl').iloc[1]['hook']}** "
+                     f"계열로 예산을 더 싣고, 고비용 **{_worst['hook']}**은 소재를 교체하거나 축소하세요. "
+                     "※ 이 값은 마케팅시트 스냅샷 기준(단일 기간)이므로 추세는 자료가 누적되면 갱신됩니다.")
+            st.info(_msg)
         st.divider()
 
     # ══ 강의 ROI 분석 (강의 집계 보고서 기반) ════════════════════

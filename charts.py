@@ -2456,6 +2456,40 @@ def webinar_topic_chart(df: pd.DataFrame):
     return fig
 
 
+def webinar_hook_ad_chart(df: pd.DataFrame):
+    """후킹 소재별 메타 광고비 가로 막대 + 리드 단가(CPL) 색상.
+
+    막대 길이=광고비(투자 규모), 색=CPL(낮을수록 초록=효율). 텍스트=CPL·리드수.
+    """
+    if df is None or df.empty:
+        return None
+    d = df.sort_values('spend')
+    cpl = d['cpl'].replace(0, float('nan'))
+    _lo, _hi = cpl.min(), cpl.max()
+    fig = go.Figure(go.Bar(
+        x=d['spend'], y=d['hook'], orientation='h',
+        marker=dict(
+            color=d['cpl'], colorscale='RdYlGn_r',
+            cmin=_lo, cmax=_hi,
+            colorbar=dict(title='CPL<br>(원)', thickness=12, len=0.85, x=1.02)),
+        text=[f"{s/1e4:,.0f}만 · 리드 {int(l):,} · CPL {int(c):,}원"
+              for s, l, c in zip(d['spend'], d['leads'], d['cpl'])],
+        textposition='outside', cliponaxis=False,
+        hovertemplate=('<b>%{y}</b><br>광고비 %{x:,.0f}원<br>'
+                       '리드 %{customdata[0]:,} · CTR %{customdata[1]:.1f}%'
+                       ' · CVR %{customdata[2]:.1f}%<br>리드 단가 %{customdata[3]:,.0f}원'
+                       '<extra></extra>'),
+        customdata=d[['leads', 'ctr', 'cvr', 'cpl']].values))
+    _mx = float(d['spend'].max()) if len(d) else 1
+    fig.update_layout(
+        title='후킹 소재별 광고비 · 리드 단가(CPL) — 초록=효율',
+        xaxis_title='메타 광고비(원)', yaxis_title='',
+        xaxis_range=[0, _mx * 1.5],
+        height=max(340, 34 * len(d) + 96),
+        margin=dict(t=58, b=40, l=20, r=40))
+    return fig
+
+
 def webinar_quadrant_chart(df: pd.DataFrame):
     """후킹 모객량 × 전환율 버블 (사분면: 볼륨자석/스타/알짜/약함)."""
     if df is None or df.empty:
