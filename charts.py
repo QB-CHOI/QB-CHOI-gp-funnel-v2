@@ -2137,7 +2137,7 @@ def monthly_course_stack(df: pd.DataFrame, ad_df: pd.DataFrame = None, months: i
 # ══════════════ 강의별 유료 단계 전환 퍼널 ══════════════
 
 _STAGE_LABEL = {'기초': '기초·초급', '심화': '심화·중급',
-                '전문가': '전문가·고급', '해석창업': '해석·창업'}
+                '전문가': '전문가·고급', '해석창업': '창업·해석'}
 
 
 def stage_funnel_chart(stage_df: pd.DataFrame, product: str, cohort: str, stage_order):

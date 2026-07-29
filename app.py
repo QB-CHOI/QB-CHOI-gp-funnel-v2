@@ -151,7 +151,7 @@ def _kpi_band(items):
 
 # ── 사이드바 — 캐시 새로고침 ─────────────────────────────────────
 
-APP_VERSION = "v4.47"  # 배포 반영 확인용 — 화면 버전이 다르면 아직 리부팅 전
+APP_VERSION = "v4.48"  # 배포 반영 확인용 — 화면 버전이 다르면 아직 리부팅 전
 
 with st.sidebar:
     st.markdown("### 📊 황금후추 강의 분석")
@@ -897,8 +897,10 @@ def tab_course_detail():
     _stl_p = _stl[_stl['product'] == prod] if not _stl.empty else pd.DataFrame()
     if not _st.empty:
         st.divider()
-        st.subheader("유료 단계 전환 (기초 → 심화 → 전문가)")
-        st.caption("무료→유료 이후 **상위 과정으로의 단계 전환**. 어느 단계에서 이탈하는지 봅니다.")
+        st.subheader("유료 단계 전환 (기초 → 심화 → 전문가 → 창업)")
+        st.caption("무료→유료 이후 **상위 과정으로의 단계 전환**. 어느 단계에서 이탈하는지 봅니다. "
+                   "퍼널의 마지막 단계는 **창업·해석 합산**(주문 데이터에서 두 과정이 한 항목으로 "
+                   "집계됨)이며, 아래 **타임라인에서는 창업·해석이 분리**돼 실제 개강 시점을 보여줍니다.")
 
         # 단계-강의 타임라인 (기수 병합·이월 가시화) — 요청 1
         if not _stl_p.empty and _stl_p['stage'].nunique() >= 2:
