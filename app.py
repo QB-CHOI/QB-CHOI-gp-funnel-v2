@@ -153,7 +153,7 @@ def _kpi_band(items):
 
 # ── 사이드바 — 캐시 새로고침 ─────────────────────────────────────
 
-APP_VERSION = "v4.50"  # 배포 반영 확인용 — 화면 버전이 다르면 아직 리부팅 전
+APP_VERSION = "v4.51"  # 배포 반영 확인용 — 화면 버전이 다르면 아직 리부팅 전
 
 with st.sidebar:
     st.markdown("### 📊 황금후추 강의 분석")
@@ -669,6 +669,17 @@ def tab_period():
                    "**절기 기준 명리월**로 주문을 다시 묶었습니다 — 양력 1일이 아니라 "
                    "입춘·경칩 등 절입일에 달이 바뀝니다.")
         st.markdown(ganji.element_legend_html(), unsafe_allow_html=True)
+
+        # 강의별 오행 분석 — 상품군 선택
+        _oprods = ['전체'] + [p for p in ['사주', '타로', '부동산', '빌딩']
+                              if p in set(_oh['product'])]
+        _osel = st.radio("강의 선택", _oprods, horizontal=True, key="oh_prod")
+        _oh_all = _oh
+        _oh = _oh[_oh['product'] == _osel]
+        if _oh.empty:
+            _oh = _oh_all[_oh_all['product'] == '전체']
+            _osel = '전체'
+        st.caption(f"**{_osel}** 기준 — 강의마다 잘 모이는 시기와 잘 팔리는 시기가 다릅니다.")
 
         _ok1, _ok2 = st.columns(2)
         with _ok1:
@@ -1445,6 +1456,129 @@ def tab_overview():
                 f'<tbody>{_tr}</tbody></table>', unsafe_allow_html=True)
             st.caption("목표는 현재 실적에서 **달성 가능한 개선폭**으로 산출했습니다. "
                        "📅 기간별 분석 탭의 '목표 관리'에서 월별 목표로 등록해 추적할 수 있습니다.")
+
+        # 4) 강의별 모객 전략 플레이북
+        _pb = _course_playbook()
+        if _pb:
+            st.markdown("#### 4. 강의별 모객 전략 — 어떤 후킹으로 · 언제 · 얼마에")
+            st.caption("강의마다 잘 먹히는 후킹·잘 모이는 시기·광고 효율·이탈 지점이 다릅니다. "
+                       "각 강의를 **개별 전략으로** 운영하기 위한 실행안입니다.")
+            _tabs = st.tabs([f"{b['product']}" for b in _pb])
+            for _tb, b in zip(_tabs, _pb):
+                with _tb:
+                    p = b['product']
+                    _ro = f"{b['roas']:.1f}배" if b['roas'] else "—"
+                    _kpi_band([
+                        ("💰 누적 매출", f"{b['rev']/1e8:,.1f}<small>억</small>",
+                         f"수강생 {b['students']:,}명"),
+                        ("🎣 무료 모객", f"{b['free']:,}<small>명</small>",
+                         f"전환율 {b['cv']:.1f}%"),
+                        ("💎 객단가", f"{b['aov']/1e4:,.0f}<small>만원</small>", "수강생 1인당"),
+                        ("📈 광고 ROAS", _ro,
+                         f"광고비중 {b['adshare']:.0f}%" if b['adshare'] else "광고 데이터 없음"),
+                    ])
+
+                    _lines = []
+                    # 후킹 전략
+                    if b['hooks']:
+                        _best = b['hooks'][0]
+                        _vol = max(b['hooks'], key=lambda h: h['signups'])
+                        if _vol['topic'] != _best['topic']:
+                            _lines.append(
+                                ("🎣 후킹 전략",
+                                 f"모객은 **{_vol['topic']}**({_vol['signups']:,}명 모객, "
+                                 f"전환 {_vol['conv']:.1f}%)로 규모를 만들고, 전환은 "
+                                 f"**{_best['topic']}**(전환 {_best['conv']:.1f}%)를 "
+                                 f"마감·리마케팅에 배치하세요. "
+                                 f"두 후킹의 전환율 차이가 **{_best['conv']/max(_vol['conv'],0.1):.1f}배**입니다."))
+                        else:
+                            _lines.append(
+                                ("🎣 후킹 전략",
+                                 f"**{_best['topic']}**가 모객·전환 모두 1위"
+                                 f"({_best['signups']:,}명·{_best['conv']:.1f}%)입니다. "
+                                 "이 문구를 광고·랜딩 기본형으로 고정하고 변주만 테스트하세요."))
+                        if _best.get('self_share'):
+                            _sh = _best['self_share']
+                            _lines.append(
+                                ("🚪 후킹 성격",
+                                 f"이 강의 특강 전환의 **{_sh:.0f}%가 같은 강의 구매**입니다. "
+                                 + ("특강↔상품이 직결되는 **자기완결형**이라 특강 모객을 "
+                                    "늘리면 매출이 바로 따라옵니다."
+                                    if _sh >= 60 else
+                                    "전환의 절반 이상이 **다른 강의로 흘러가는 관문형**이라, "
+                                    "자사 전환율만으로 평가하면 저평가됩니다 — 유입 후 "
+                                    "교차판매 동선을 반드시 연결하세요.")))
+                    # 시기 전략
+                    if b['season']:
+                        s = b['season']
+                        if s['vol'] != s['cv']:
+                            _lines.append(
+                                ("🌳 시기 전략(오행)",
+                                 f"**{s['vol']}({ganji.ELEMENT_HANJA.get(s['vol'],'')})월에 "
+                                 f"가장 많이 모이고**(월평균 {s['vol_n']:,.0f}명), "
+                                 f"**{s['cv']}({ganji.ELEMENT_HANJA.get(s['cv'],'')})월에 "
+                                 f"가장 잘 팔립니다**(전환 {s['cv_v']:.1f}%). "
+                                 f"→ {s['vol']}월엔 광고비를 실어 리드를 쌓고, "
+                                 f"{s['cv']}월에 개강·마감을 배치하세요."))
+                        else:
+                            _lines.append(
+                                ("🌳 시기 전략(오행)",
+                                 f"**{s['vol']}({ganji.ELEMENT_HANJA.get(s['vol'],'')})월**이 "
+                                 f"모객·전환 모두 강합니다(월평균 {s['vol_n']:,.0f}명·"
+                                 f"전환 {s['cv_v']:.1f}%). 이 시기에 개강을 집중하세요."))
+                    # 광고 전략
+                    if b['roas'] and b['adshare'] is not None:
+                        if b['roas'] >= 10:
+                            _ad = (f"ROAS **{b['roas']:.1f}배**인데 광고비 비중이 "
+                                   f"**{b['adshare']:.0f}%**뿐입니다 — **확대 최우선**. "
+                                   "소액씩 늘리며 효율 유지 구간을 찾으세요.")
+                        elif b['roas'] >= 5:
+                            _ad = (f"ROAS **{b['roas']:.1f}배**로 건전합니다"
+                                   f"(비중 {b['adshare']:.0f}%). 현 수준 유지하며 "
+                                   "소재·후킹 개선으로 효율을 올리세요.")
+                        else:
+                            _ad = (f"ROAS **{b['roas']:.1f}배**로 낮습니다"
+                                   f"(비중 {b['adshare']:.0f}%). 광고비를 늘리기 전에 "
+                                   "**전환 구조부터 손봐야** 합니다.")
+                        _lines.append(("💰 광고 전략", _ad))
+                    # 전환 병목
+                    if b['bottleneck']:
+                        bo = b['bottleneck']
+                        if bo['rate'] <= 0.5:
+                            # 전환 0% = 이탈이 아니라 상위 과정 자체가 아직 없는 경우
+                            _lines.append(
+                                ("🔧 상위 과정 부재",
+                                 f"**{bo['to']}** 과정 수강이 사실상 없습니다"
+                                 f"({bo['from']} {bo['base']:,.0f}명 → {bo['to']} "
+                                 f"{bo['base']-bo['lost']:,.0f}명). 이탈이라기보다 "
+                                 f"**상위 과정이 아직 개설·판매되지 않은 상태**로 보입니다. "
+                                 f"→ {bo['from']} 수료생 **{bo['base']:,.0f}명**은 이미 확보된 "
+                                 "수요이므로, 상위 과정을 열면 **모객 비용 없이** 매출을 "
+                                 "만들 수 있는 가장 값싼 기회입니다."))
+                        else:
+                            _lines.append(
+                                ("🔧 전환 병목",
+                                 f"**{bo['from']}→{bo['to']}** 전환이 **{bo['rate']:.1f}%**로, "
+                                 f"이 구간에서 **{bo['lost']:,.0f}명**이 이탈합니다. "
+                                 "모객을 늘리기 전에 이 구간을 막는 게 비용 대비 효과가 큽니다."))
+                    # 교차판매
+                    if b['nextbuy']:
+                        nbk = b['nextbuy']
+                        _txt = (f"이 강의 첫 구매자는 다음에 **{nbk['to']}**를 가장 많이 삽니다"
+                                f"({nbk['n']:,}명, {nbk['pct']:.0f}%).")
+                        if b.get('repeat'):
+                            _txt += (f" 재구매율 **{b['repeat']['rate']:.0f}%**, 그중 "
+                                     f"**{b['repeat']['diff']:.0f}%가 다른 강의**로 이동합니다.")
+                        _txt += f" → {p} 수강생에게 **{nbk['to']}** 오퍼를 자동 연결하세요."
+                        _lines.append(("🔁 교차판매", _txt))
+
+                    _html = "".join(
+                        f'<div style="margin-bottom:9px"><span style="opacity:.6;'
+                        f'font-size:12px">{t}</span><br>'
+                        f'<span style="font-size:13px;line-height:1.6">{_b2h(v)}</span></div>'
+                        for t, v in _lines)
+                    st.markdown(f'<div style="margin-top:6px">{_html}</div>',
+                                unsafe_allow_html=True)
 
         if _con['caveats']:
             st.caption("⚠️ " + "  ·  ".join(_con['caveats']))
@@ -3027,6 +3161,103 @@ def _ad_budget_diagnosis(camp) -> list:
         out.append({'product': p, 'ad': ad, 'share': share, 'roas': roas,
                     'corr': corr, 'saturated': sat, 'rec': rec, 'why': why})
     return out
+
+
+def _course_playbook() -> list:
+    """강의별 모객 전략 플레이북 — 각 강의를 '어떤 후킹으로·언제·얼마에' 모을지.
+
+    상품군마다 후킹 효율·시기(오행)·광고 효율·전환 병목이 다르므로,
+    전 상품 공통 전략이 아니라 **강의별 실행안**을 데이터에서 생성한다.
+    """
+    cs = load_course_summary()
+    camp = load_campaign_adspend()
+    wcv = load_webinar_conversion()
+    oh = load_ohaeng_period()
+    stage = load_cohort_stage()
+    nb = load_cust_product_nextbuy()
+    xs = load_cust_crosssell_path()
+    if cs.empty:
+        return []
+
+    roas, adspend, adshare = {}, {}, {}
+    if not camp.empty and {'product', 'ad_spend', 'live_revenue'} <= set(camp.columns):
+        k = camp.groupby('product').agg(ad=('ad_spend', 'sum'), rev=('live_revenue', 'sum'))
+        _t = k['ad'].sum()
+        for p, r in k.iterrows():
+            if r['ad'] > 0:
+                roas[p] = r['rev'] / r['ad']
+                adspend[p] = float(r['ad'])
+                adshare[p] = r['ad'] / _t * 100
+
+    _stage_cols = [s for s in STAGE_ORDER if not stage.empty and s in stage.columns]
+    books = []
+    for _, r in cs.sort_values('revenue', ascending=False).iterrows():
+        p = r['product']
+        cv = (r['students'] / r['free'] * 100) if r['free'] else 0
+        aov = (r['revenue'] / r['students']) if r['students'] else 0
+        b = {'product': p, 'rev': float(r['revenue']), 'free': int(r['free']),
+             'students': int(r['students']), 'cv': cv, 'aov': aov,
+             'roas': roas.get(p), 'adshare': adshare.get(p), 'adspend': adspend.get(p)}
+
+        # ① 후킹 — 이 강의에서 검증된 문구
+        b['hooks'] = []
+        if not wcv.empty:
+            w = wcv[wcv['product'] == p]
+            if not w.empty:
+                b['hooks'] = [{
+                    'topic': h['topic'], 'signups': int(h['unique_signups']),
+                    'conv': float(h['conv_rate']),
+                    'self_share': float(h.get('self_share', 0) or 0),
+                } for _, h in w.sort_values('conv_rate', ascending=False).iterrows()]
+
+        # ② 시기 — 이 강의가 잘 모이는/잘 팔리는 오행월
+        b['season'] = None
+        if not oh.empty:
+            o = oh[oh['product'] == p]
+            if len(o) >= 6:
+                gb = o.groupby('branch_element').agg(
+                    n=('saju_month', 'size'), f=('free_signups', 'sum'),
+                    pd_=('paid_orders', 'sum'))
+                gb = gb[gb['n'] >= 2]
+                if not gb.empty and gb['f'].sum() > 0:
+                    gb['avg'] = gb['f'] / gb['n']
+                    gb['cv'] = (gb['pd_'] / gb['f'] * 100).where(gb['f'] > 0, 0)
+                    b['season'] = {'vol': gb['avg'].idxmax(), 'vol_n': float(gb['avg'].max()),
+                                   'cv': gb['cv'].idxmax(), 'cv_v': float(gb['cv'].max()),
+                                   'months': int(gb['n'].sum())}
+
+        # ③ 전환 병목 — 이 강의의 단계 이탈
+        b['bottleneck'] = None
+        if not stage.empty and _stage_cols:
+            g = stage[stage['product'] == p]
+            if not g.empty:
+                t = g[_stage_cols].fillna(0).sum()
+                worst = None
+                for i in range(len(_stage_cols) - 1):
+                    a_, b_ = t[_stage_cols[i]], t[_stage_cols[i + 1]]
+                    if a_ >= 50:
+                        rate = b_ / a_ * 100 if a_ else 0
+                        if worst is None or (a_ - b_) > worst['lost']:
+                            worst = {'from': _stage_cols[i], 'to': _stage_cols[i + 1],
+                                     'rate': rate, 'lost': float(a_ - b_), 'base': float(a_)}
+                b['bottleneck'] = worst
+
+        # ④ 교차판매 — 이 강의 첫 구매자가 다음에 가는 강의 + 재구매 성향
+        b['nextbuy'] = None
+        if not xs.empty and {'home', 'dest', 'customers', 'pct'} <= set(xs.columns):
+            x2 = xs[xs['home'] == p].sort_values('customers', ascending=False)
+            if not x2.empty:
+                b['nextbuy'] = {'to': x2.iloc[0]['dest'],
+                                'n': int(x2.iloc[0]['customers']),
+                                'pct': float(x2.iloc[0]['pct'])}
+        b['repeat'] = None
+        if not nb.empty and {'product', 'repeat_rate', 'diff_pct'} <= set(nb.columns):
+            n2 = nb[nb['product'] == p]
+            if not n2.empty:
+                b['repeat'] = {'rate': float(n2.iloc[0]['repeat_rate']),
+                               'diff': float(n2.iloc[0]['diff_pct'])}
+        books.append(b)
+    return books
 
 
 def _strategy_conclusion() -> dict:

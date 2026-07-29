@@ -1001,11 +1001,13 @@ def load_ohaeng_period() -> pd.DataFrame:
     시기를 나눠 모객·전환을 비교할 수 있다.
     """
     df = _read_csv(OHAENG_PERIOD_PATH,
-                   ['saju_year', 'saju_month', 'year_pillar', 'month_pillar',
+                   ['product', 'saju_year', 'saju_month', 'year_pillar', 'month_pillar',
                     'stem', 'branch', 'stem_element', 'branch_element',
                     'free_signups', 'paid_orders', 'revenue'])
     if df.empty:
         return df
+    if 'product' not in df.columns:      # 구버전 파일 호환
+        df['product'] = '전체'
     for c in ['saju_year', 'saju_month', 'free_signups', 'paid_orders', 'revenue']:
         df[c] = pd.to_numeric(df[c], errors='coerce').fillna(0).astype(int)
     df['conv_rate'] = (df['paid_orders'] / df['free_signups'] * 100).where(

@@ -37,21 +37,27 @@ def build(o: pd.DataFrame) -> pd.DataFrame:
     d["sm"] = [x[1] for x in sm[sm.notna()]]
 
     rows = []
-    for (y, m), g in d.groupby(["sy", "sm"]):
+    # product='전체' 행 + 상품군별 행을 함께 생성 → 강의별 오행 분석 가능
+    for (y, m), gm in d.groupby(["sy", "sm"]):
         yp = ganji.year_ganji(y, m)
         mp = ganji.month_ganji(y, m)
-        rows.append({
+        base = {
             "saju_year": int(y), "saju_month": int(m),
             "year_pillar": yp, "month_pillar": mp,
             "stem": mp[0], "branch": mp[1],
             "stem_element": ganji.element_of(mp[0]),
             "branch_element": ganji.element_of(mp[1]),
-            "free_signups": int((g["pay"] == 0).sum()),
-            "paid_orders": int((g["pay"] > 0).sum()),
-            "revenue": int(g.loc[g["pay"] > 0, "pay"].sum()),
-        })
-    df = pd.DataFrame(rows).sort_values(["saju_year", "saju_month"])
-    return df.reset_index(drop=True)
+        }
+        for prod, g in [("전체", gm)] + list(gm.groupby("product")):
+            rows.append({**base, "product": prod,
+                         "free_signups": int((g["pay"] == 0).sum()),
+                         "paid_orders": int((g["pay"] > 0).sum()),
+                         "revenue": int(g.loc[g["pay"] > 0, "pay"].sum())})
+    df = pd.DataFrame(rows).sort_values(["product", "saju_year", "saju_month"])
+    cols = ["product", "saju_year", "saju_month", "year_pillar", "month_pillar",
+            "stem", "branch", "stem_element", "branch_element",
+            "free_signups", "paid_orders", "revenue"]
+    return df[cols].reset_index(drop=True)
 
 
 def main():
