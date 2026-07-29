@@ -68,19 +68,21 @@ from charts import (
 # 모든 plotly 차트의 x축이 양력 월(YYYY-MM)이면 '2026년 6월 / 丙午 甲午'로
 # 눈금을 바꾼다. 중앙 1곳에서 st.plotly_chart를 감싸 전 그래프에 일괄 적용
 # (달력 월이 아닌 축은 무해한 no-op). 명리학적 해석을 위해 천간지지 병기.
-_orig_plotly_chart = st.plotly_chart
+# ⚠️ Streamlit은 상호작용마다 스크립트를 새 네임스페이스로 재실행한다. 가드가
+# 없으면 재실행마다 래퍼가 한 겹씩 중첩돼 결국 RecursionError로 사이트가 죽는다.
+if not getattr(st.plotly_chart, '_ganji_patched', False):
+    _orig_plotly_chart = st.plotly_chart
 
+    def _plotly_chart_ganji(fig, *args, **kwargs):
+        try:
+            if hasattr(fig, 'data'):
+                relabel_month_axis(fig)
+        except Exception:
+            pass
+        return _orig_plotly_chart(fig, *args, **kwargs)
 
-def _plotly_chart_ganji(fig, *args, **kwargs):
-    try:
-        if hasattr(fig, 'data'):
-            relabel_month_axis(fig)
-    except Exception:
-        pass
-    return _orig_plotly_chart(fig, *args, **kwargs)
-
-
-st.plotly_chart = _plotly_chart_ganji
+    _plotly_chart_ganji._ganji_patched = True
+    st.plotly_chart = _plotly_chart_ganji
 
 st.set_page_config(
     page_title="황금후추 강의 분석",
@@ -607,6 +609,29 @@ def tab_period():
                "각 강의가 **언제** 성과를 냈는지(개강 효과)를 시점축으로 봅니다.")
 
     _months = sorted(mbc['month'].unique())
+
+    # ── 🔮 월별 사주 구조 (간지) × 매출 ──────────────────
+    st.subheader("🔮 월별 사주 구조 (干支) · 매출")
+    st.caption("각 달의 **년주·월주**를 매출과 나란히 봅니다. 월주는 절기(입춘·경칩·망종…) 기준이며, "
+               "천간지지로 월별 성과의 명리학적 패턴(오행·십신 흐름)을 함께 해석할 수 있습니다.")
+    _mrev = mbc.groupby('month', as_index=False)['paid_revenue'].sum().sort_values('month')
+    _gj = _mrev.tail(18).copy()
+    _gj['연월'] = _gj['month'].apply(lambda m: ganji.ym_label(m, with_ganji=False))
+    _gj['년주'] = _gj['month'].apply(lambda m: ganji.year_ganji(*ganji._parse_ym(m)))
+    _gj['월주'] = _gj['month'].apply(lambda m: ganji.month_ganji(*ganji._parse_ym(m)))
+    _gj['독음'] = _gj['month'].apply(lambda m: ganji.saju_kor(*ganji._parse_ym(m)))
+    _gj['매출'] = _gj['paid_revenue'].apply(lambda v: f"{v/1e8:,.2f}억")
+    st.dataframe(_gj[['연월', '년주', '월주', '독음', '매출']].iloc[::-1],
+                 hide_index=True, width='stretch')
+    # 최고 매출 달의 간지
+    _top = _mrev.loc[_mrev['paid_revenue'].idxmax()]
+    _ty, _tm = ganji._parse_ym(_top['month'])
+    st.info(f"💡 최고 매출 달은 **{ganji.ym_label(_top['month'], with_ganji=False)} "
+            f"({ganji.saju_han(_ty, _tm)} · {ganji.saju_kor(_ty, _tm)})**로 "
+            f"**{_top['paid_revenue']/1e8:.2f}억**입니다. "
+            "아래 모든 월별 그래프의 가로축에도 연월과 간지가 함께 표시됩니다.")
+    st.divider()
+
     # ── 히트맵 ───────────────────────────────────────────
     st.subheader("월별 × 강의별 매출 히트맵")
     fig_h = monthly_course_heatmap(mbc)
