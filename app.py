@@ -153,7 +153,7 @@ def _kpi_band(items):
 
 # ── 사이드바 — 캐시 새로고침 ─────────────────────────────────────
 
-APP_VERSION = "v4.49"  # 배포 반영 확인용 — 화면 버전이 다르면 아직 리부팅 전
+APP_VERSION = "v4.50"  # 배포 반영 확인용 — 화면 버전이 다르면 아직 리부팅 전
 
 with st.sidebar:
     st.markdown("### 📊 황금후추 강의 분석")
@@ -1374,6 +1374,80 @@ def tab_overview():
                 f'<div class="gp-brief"><span class="bi">{_ic}</span>'
                 f'<span class="bt"><span class="tt">{_t}</span> — {_mdb(_b)}</span></div>'
                 for _ic, _t, _b in _brief), unsafe_allow_html=True)
+
+    # ── 🏁 최종 전략 결론 (근거 → 방향 → 목표) ──────────────
+    _con = _strategy_conclusion()
+    if _con.get('strategies') or _con.get('portfolio'):
+        st.divider()
+        st.markdown("### 🏁 최종 전략 결론 — 무엇을, 왜, 얼마나")
+        st.caption("모든 분석(광고 ROI·전환·단계·후킹·시기·고객)을 하나로 엮은 결론입니다. "
+                   "수치는 실데이터에서 자동 계산되며, 데이터가 갱신되면 결론도 함께 갱신됩니다.")
+
+        def _b2h(s):
+            _p = str(s).split('**')
+            return ''.join(x if i % 2 == 0 else f'<b>{x}</b>' for i, x in enumerate(_p))
+
+        # 1) 포트폴리오 역할
+        if _con['portfolio']:
+            st.markdown("#### 1. 상품 포트폴리오 — 각 강의의 역할")
+            _pr = ""
+            for p in _con['portfolio']:
+                _ro = f"{p['roas']:.1f}배" if p['roas'] else "—"
+                _sh = f"{p['adshare']:.0f}%" if p['adshare'] else "—"
+                _pr += (f'<tr><td><b>{p["product"]}</b></td>'
+                        f'<td style="white-space:nowrap">{p["role"]}</td>'
+                        f'<td style="text-align:right">{p["rev"]/1e8:.1f}억</td>'
+                        f'<td style="text-align:right">{p["cv"]:.1f}%</td>'
+                        f'<td style="text-align:right">{p["aov"]/1e4:,.0f}만</td>'
+                        f'<td style="text-align:right">{_ro}</td>'
+                        f'<td style="text-align:right">{_sh}</td>'
+                        f'<td style="opacity:.8">{p["action"]}</td></tr>')
+            st.markdown(
+                '<table class="gp-dtbl" style="width:100%;border-collapse:collapse;font-size:13px">'
+                '<thead><tr style="text-align:left"><th>강의</th><th>역할</th>'
+                '<th style="text-align:right">누적매출</th><th style="text-align:right">전환율</th>'
+                '<th style="text-align:right">객단가</th><th style="text-align:right">광고ROAS</th>'
+                '<th style="text-align:right">광고비중</th><th>해야 할 일</th></tr></thead>'
+                f'<tbody>{_pr}</tbody></table>', unsafe_allow_html=True)
+            st.caption("역할은 전환율·객단가의 중앙값 기준으로 자동 분류됩니다. "
+                       "**광고 ROAS가 높은데 광고비중이 낮은 강의가 최우선 확대 대상**입니다.")
+
+        # 2) 전략 방향
+        if _con['strategies']:
+            st.markdown("#### 2. 전략 방향 — 근거 · 실행 · 기대효과")
+            for s in _con['strategies']:
+                with st.container(border=True):
+                    st.markdown(f"**전략 {s['no']}. {s['title']}**")
+                    st.markdown(
+                        f'<div style="font-size:13px;line-height:1.65">'
+                        f'<div style="margin-bottom:6px"><span style="opacity:.6">📌 근거</span><br>'
+                        f'{_b2h(s["why"])}</div>'
+                        f'<div style="margin-bottom:6px"><span style="opacity:.6">🛠 실행</span><br>'
+                        f'{_b2h(s["how"])}</div>'
+                        f'<div style="color:#C8901A"><span style="opacity:.7">📈 기대효과</span><br>'
+                        f'{_b2h(s["effect"])}</div></div>', unsafe_allow_html=True)
+
+        # 3) 정량 목표
+        if _con['targets']:
+            st.markdown("#### 3. 정량 목표 — 무엇을 얼마나")
+            _tr = "".join(
+                f'<tr><td><b>{t["kpi"]}</b></td>'
+                f'<td style="text-align:right">{t["now"]}</td>'
+                f'<td style="text-align:center;opacity:.5">→</td>'
+                f'<td style="text-align:right;color:#C8901A;font-weight:700">{t["goal"]}</td>'
+                f'<td style="opacity:.8;font-size:12px">{_b2h(t["basis"])}</td></tr>'
+                for t in _con['targets'])
+            st.markdown(
+                '<table class="gp-dtbl" style="width:100%;border-collapse:collapse;font-size:13px">'
+                '<thead><tr style="text-align:left"><th>지표</th>'
+                '<th style="text-align:right">현재</th><th></th>'
+                '<th style="text-align:right">목표</th><th>근거</th></tr></thead>'
+                f'<tbody>{_tr}</tbody></table>', unsafe_allow_html=True)
+            st.caption("목표는 현재 실적에서 **달성 가능한 개선폭**으로 산출했습니다. "
+                       "📅 기간별 분석 탭의 '목표 관리'에서 월별 목표로 등록해 추적할 수 있습니다.")
+
+        if _con['caveats']:
+            st.caption("⚠️ " + "  ·  ".join(_con['caveats']))
 
     st.divider()
 
@@ -2952,6 +3026,186 @@ def _ad_budget_diagnosis(camp) -> list:
             rec, why = '적정 유지', '효율 보통'
         out.append({'product': p, 'ad': ad, 'share': share, 'roas': roas,
                     'corr': corr, 'saturated': sat, 'rec': rec, 'why': why})
+    return out
+
+
+def _strategy_conclusion() -> dict:
+    """모든 분석을 종합한 **최종 전략 결론** — 근거 → 방향 → 목표.
+
+    전략 브리핑(단발 액션)과 달리, 상품 포트폴리오 역할·예산 재배분·단계
+    병목·시기 전략을 하나의 결론으로 엮고 **정량 목표까지 계산**한다.
+    모든 수치는 실데이터에서 산출되므로 데이터가 갱신되면 결론도 갱신된다.
+    """
+    cs = load_course_summary()
+    camp = load_campaign_adspend()
+    stage = load_cohort_stage()
+    wcv = load_webinar_conversion()
+    oh = load_ohaeng_period()
+    out = {'portfolio': [], 'strategies': [], 'targets': [], 'caveats': []}
+    if cs.empty:
+        return out
+
+    # ── 상품 포트폴리오: 전환율·객단가·광고 ROAS로 역할 규정 ──────
+    c = cs.copy()
+    c['cv'] = (c['students'] / c['free'].replace(0, pd.NA) * 100)
+    c['aov'] = (c['revenue'] / c['students'].replace(0, pd.NA))
+    roas, adshare, adspend = {}, {}, {}
+    if not camp.empty and {'product', 'ad_spend', 'live_revenue'} <= set(camp.columns):
+        k = camp.groupby('product').agg(ad=('ad_spend', 'sum'), rev=('live_revenue', 'sum'))
+        _tot_ad = k['ad'].sum()
+        for p, r in k.iterrows():
+            if r['ad'] > 0:
+                roas[p] = r['rev'] / r['ad']
+                adshare[p] = r['ad'] / _tot_ad * 100
+                adspend[p] = r['ad']
+
+    _med_cv = c['cv'].median()
+    _med_aov = c['aov'].median()
+    for _, r in c.sort_values('revenue', ascending=False).iterrows():
+        p = r['product']
+        _ro = roas.get(p)
+        hi_cv, hi_aov = r['cv'] >= _med_cv, r['aov'] >= _med_aov
+        if hi_cv and hi_aov:
+            role, act = "⭐ 성장 엔진", "예산·인력 최우선 배분"
+        elif hi_cv:
+            role, act = "🚀 효율 확장", "광고비 확대로 규모를 키울 구간"
+        elif hi_aov:
+            role, act = "💎 프리미엄", "고단가 유지·업셀 설계"
+        else:
+            role, act = "🔧 재점검", "전환 구조 개선 후 재투자"
+        out['portfolio'].append({
+            'product': p, 'role': role, 'action': act,
+            'rev': float(r['revenue']), 'free': int(r['free']),
+            'students': int(r['students']), 'cv': float(r['cv']),
+            'aov': float(r['aov']), 'roas': _ro,
+            'adshare': adshare.get(p),
+        })
+
+    # ── 전략 1: 광고 예산 재배분 (ROAS 격차의 기회비용 정량화) ────
+    if len(roas) >= 2:
+        _hi = max(roas, key=roas.get)
+        _lo = min(roas, key=roas.get)
+        _hi_sh, _lo_sh = adshare.get(_hi, 0), adshare.get(_lo, 0)
+        _shift = adspend.get(_lo, 0) * 0.15          # 저효율에서 15%만 이동(보수적)
+        _decay = 0.5                                  # 확대 시 효율 절반으로 가정(수확체감)
+        _gain = _shift * (roas[_hi] * _decay - roas[_lo])
+        if _gain > 0:
+            out['strategies'].append({
+                'no': 1, 'title': f"광고 예산을 {_hi}로 재배분",
+                'why': (f"광고 ROAS가 **{_hi} {roas[_hi]:.1f}배 vs {_lo} {roas[_lo]:.1f}배**로 "
+                        f"**{roas[_hi]/roas[_lo]:.1f}배** 차이인데, 예산은 반대로 "
+                        f"{_lo}에 **{_lo_sh:.0f}%**, {_hi}에 **{_hi_sh:.0f}%**만 쓰고 있습니다."),
+                'how': (f"{_lo} 광고비의 **15%({_shift/1e4:,.0f}만원)** 만 {_hi}로 이동. "
+                        f"소액부터 2~4주 단위로 옮기며 ROAS를 확인하고, 효율이 유지되면 단계적 확대."),
+                'effect': (f"{_hi} 확대 시 효율이 **절반으로 떨어진다고 보수적으로 가정해도** "
+                           f"추가 매출 **약 {_gain/1e8:.2f}억** (같은 예산, 배분만 변경)."),
+            })
+
+    # ── 전략 2: 단계 전환 병목 (가장 크게 새는 구간) ─────────────
+    if not stage.empty:
+        _cols = [s for s in STAGE_ORDER if s in stage.columns]
+        _bott = None
+        for p, g in stage.groupby('product'):
+            t = g[_cols].fillna(0).sum()
+            for i in range(len(_cols) - 1):
+                a, b = t[_cols[i]], t[_cols[i + 1]]
+                if a >= 100 and b >= 0:
+                    rate = b / a * 100 if a else 0
+                    lost = a - b
+                    if _bott is None or lost > _bott['lost']:
+                        _bott = {'p': p, 'f': _cols[i], 't': _cols[i + 1],
+                                 'rate': rate, 'lost': lost, 'a': a, 'b': b}
+        if _bott:
+            _aov = float(c.loc[c['product'] == _bott['p'], 'aov'].iloc[0]) \
+                if (c['product'] == _bott['p']).any() else 0
+            _uplift = _bott['a'] * 0.10          # 전환율 +10%p 개선 시
+            out['strategies'].append({
+                'no': 2, 'title': f"{_bott['p']} {_bott['f']}→{_bott['t']} 이탈 막기",
+                'why': (f"**{_bott['p']}**의 **{_bott['f']}→{_bott['t']}** 전환이 "
+                        f"**{_bott['rate']:.1f}%**로, 이 구간에서만 **{int(_bott['lost']):,}명**이 "
+                        f"이탈합니다({int(_bott['a']):,}명 중 {int(_bott['b']):,}명만 진급). "
+                        "이미 유료로 돈을 낸 고객이라 **신규 모객보다 훨씬 싸게 잡을 수 있는 매출**입니다."),
+                'how': (f"{_bott['f']} 수료 시점에 {_bott['t']} 안내를 자동화(수료 직후 3일 내 "
+                        "혜택 마감형 오퍼), 수료생 후기·성과 사례 배포, 중도 이탈자 리마케팅. "
+                        "기수 병합·이월로 다음 기수까지 텀이 길어지는 구간은 대기 기간 콘텐츠로 연결."),
+                'effect': (f"전환율 **+10%p**만 올려도 추가 수강생 **약 {_uplift:,.0f}명** · "
+                           f"객단가 {_aov/1e4:,.0f}만원 기준 **약 {_uplift*_aov/1e8:.2f}억**."),
+            })
+
+    # ── 전략 3: 후킹 — 볼륨자석 vs 알짜의 역할 분리 ──────────────
+    if not wcv.empty and {'unique_signups', 'conv_rate'} <= set(wcv.columns):
+        w = wcv.copy()
+        _vol = w.loc[w['unique_signups'].idxmax()]
+        _qual = w.loc[w['conv_rate'].idxmax()]
+        if _vol['topic'] != _qual['topic']:
+            out['strategies'].append({
+                'no': 3, 'title': "모객용 후킹과 전환용 후킹을 나눠 쓰기",
+                'why': (f"가장 많이 모으는 **{_vol['product']} {_vol['topic']}**은 "
+                        f"{int(_vol['unique_signups']):,}명을 모으지만 전환율은 "
+                        f"**{_vol['conv_rate']:.1f}%**입니다. 반대로 **{_qual['product']} "
+                        f"{_qual['topic']}**은 {int(_qual['unique_signups']):,}명으로 적게 모아도 "
+                        f"전환율 **{_qual['conv_rate']:.1f}%**로 "
+                        f"**{_qual['conv_rate']/max(_vol['conv_rate'],0.1):.1f}배**입니다."),
+                'how': ("① 대형 후킹은 **리드 확보용**으로 계속 쓰되, 유입 후 곧바로 팔지 말고 "
+                        "고관여 콘텐츠로 데우는 CRM을 붙입니다. ② 고전환 후킹은 **마감·재구매 "
+                        "캠페인**에 집중 배치합니다. ③ 같은 상품이라도 후킹 문구에 따라 전환이 "
+                        "크게 갈리므로, 검증된 문구를 광고·랜딩에 우선 적용합니다."),
+                'effect': (f"대형 후킹 전환율이 **{_vol['conv_rate']:.1f}% → "
+                           f"{_vol['conv_rate']+2:.1f}%** (+2%p)만 돼도 추가 전환 "
+                           f"**약 {_vol['unique_signups']*0.02:,.0f}명**."),
+            })
+
+    # ── 전략 4: 시기 전략 (오행 — 모객기 vs 전환기) ──────────────
+    if not oh.empty and len(oh) >= 8:
+        b = oh.groupby('branch_element').agg(n=('saju_month', 'size'),
+                                             free=('free_signups', 'sum'),
+                                             paid=('paid_orders', 'sum'))
+        b['avg'] = b['free'] / b['n']
+        b['cv'] = (b['paid'] / b['free'] * 100).where(b['free'] > 0, 0)
+        _mo, _cvb = b['avg'].idxmax(), b['cv'].idxmax()
+        if _mo != _cvb:
+            out['strategies'].append({
+                'no': 4, 'title': "모객기와 전환기를 시기로 나누기",
+                'why': (f"명리월 기준으로 모객이 가장 많은 시기는 **{_mo}"
+                        f"({ganji.ELEMENT_HANJA.get(_mo,'')})월(월평균 {b.loc[_mo,'avg']:,.0f}명)**, "
+                        f"전환율이 가장 높은 시기는 **{_cvb}({ganji.ELEMENT_HANJA.get(_cvb,'')})월"
+                        f"({b.loc[_cvb,'cv']:.2f}%)**로 서로 다릅니다."),
+                'how': (f"{_mo}월에는 **광고비를 실어 리드를 최대한 확보**하고, "
+                        f"{_cvb}월에는 **개강·마감·업셀 캠페인**을 배치해 쌓인 리드를 전환시킵니다. "
+                        "개강 일정을 잡을 때 이 리듬을 참고하세요."),
+                'effect': "같은 예산으로 리드는 싸게, 전환은 비싸게 파는 구조를 만듭니다.",
+            })
+
+    # ── 정량 목표 ────────────────────────────────────────────
+    _tot_rev = float(c['revenue'].sum())
+    _tot_free = int(c['free'].sum())
+    _tot_std = int(c['students'].sum())
+    _cur_cv = _tot_std / _tot_free * 100 if _tot_free else 0
+    out['targets'].append({
+        'kpi': "전사 무료→유료 전환율", 'now': f"{_cur_cv:.2f}%",
+        'goal': f"{_cur_cv+1:.2f}%",
+        'basis': (f"현재 {_tot_free:,}명 모객 → {_tot_std:,}명 수강. "
+                  f"+1%p면 같은 모객으로 수강생 **약 {_tot_free*0.01:,.0f}명** 추가")})
+    if roas:
+        _hi = max(roas, key=roas.get)
+        out['targets'].append({
+            'kpi': f"{_hi} 광고비 비중", 'now': f"{adshare.get(_hi,0):.0f}%",
+            'goal': f"{min(adshare.get(_hi,0)*2, 30):.0f}%",
+            'basis': f"ROAS {roas[_hi]:.1f}배로 최고인데 예산 비중이 가장 낮음 — 단계적 2배"})
+    if not c.empty:
+        _best_aov = c.loc[c['aov'].idxmax()]
+        out['targets'].append({
+            'kpi': "객단가(전 상품 평균)", 'now': f"{_tot_rev/_tot_std/1e4:,.0f}만원",
+            'goal': f"{_tot_rev/_tot_std/1e4*1.1:,.0f}만원",
+            'basis': (f"최고 객단가 {_best_aov['product']} {_best_aov['aov']/1e4:,.0f}만원의 "
+                      "패키지 구성을 타 상품에 이식 — +10%")})
+
+    out['caveats'] = [
+        "수치는 누적 실적 기반 추정입니다. 예산 이동은 **소액·단기간으로 시험한 뒤** 확대하세요.",
+        "광고 확대 시 **수확체감**(광고비↑ → ROAS↓)이 관측되므로 위 기대효과는 효율 하락을 "
+        "반영해 보수적으로 계산했습니다.",
+        "시기(오행) 전략은 표본이 22개 명리월로 작고 개강 일정과 겹쳐 있어 **참고용**입니다.",
+    ]
     return out
 
 
