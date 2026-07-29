@@ -151,8 +151,12 @@ def _kpi_band(items):
 
 # ── 사이드바 — 캐시 새로고침 ─────────────────────────────────────
 
+APP_VERSION = "v4.45"  # 배포 반영 확인용 — 화면 버전이 다르면 아직 리부팅 전
+
 with st.sidebar:
     st.markdown("### 📊 황금후추 강의 분석")
+    _ty, _tm = date.today().year, date.today().month
+    st.caption(f"{APP_VERSION} · 이번 달 {ganji.ym_label(f'{_ty}-{_tm:02d}')}")
     st.divider()
 
     # 오늘 입력 상태
@@ -1114,8 +1118,12 @@ def _product_master_table():
 
 def tab_overview():
     st.header("🧭 종합 보고 — 전략 대시보드")
+    _ty, _tm = date.today().year, date.today().month
     st.caption("모객 · 매출 · 전환 · 광고 ROI · 지역을 한 화면에 종합한 경영 전략 요약입니다. "
                "모든 수치는 강의 집계·광고비·지역 실데이터에서 자동 계산됩니다.")
+    st.info(f"🔮 **이번 달 {ganji.ym_korean(_ty, _tm)} — {ganji.saju_han(_ty, _tm)}** "
+            f"({ganji.saju_kor(_ty, _tm)})  ·  모든 월별 표·그래프에 연월과 간지가 함께 표시됩니다. "
+            f"월별 간지 전체는 **📅 기간별 분석** 탭 최상단 표에서 볼 수 있습니다. `{APP_VERSION}`")
 
     # ── 🚨 이상 탐지 알림 (능동 경고) ───────────────────
     _alerts = _generate_alerts()
