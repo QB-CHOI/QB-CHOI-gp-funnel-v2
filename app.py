@@ -151,7 +151,7 @@ def _kpi_band(items):
 
 # ── 사이드바 — 캐시 새로고침 ─────────────────────────────────────
 
-APP_VERSION = "v4.46"  # 배포 반영 확인용 — 화면 버전이 다르면 아직 리부팅 전
+APP_VERSION = "v4.47"  # 배포 반영 확인용 — 화면 버전이 다르면 아직 리부팅 전
 
 with st.sidebar:
     st.markdown("### 📊 황금후추 강의 분석")
@@ -161,8 +161,7 @@ with st.sidebar:
         f'{ganji.ym_korean(_ty, _tm)}</div>'
         f'<div style="font-size:15px;letter-spacing:1px">'
         f'{ganji.colorize(ganji.year_ganji(_ty, _tm))} '
-        f'{ganji.colorize(ganji.month_ganji(_ty, _tm))} '
-        f'{ganji.colorize(ganji.day_ganji(date.today()))}</div>',
+        f'{ganji.colorize(ganji.month_ganji(_ty, _tm))}</div>',
         unsafe_allow_html=True)
     st.divider()
 
@@ -932,13 +931,22 @@ def tab_course_detail():
         sc1, sc2 = st.columns([1, 1.3])
         with sc1:
             _cohs = _st.assign(n=_st['cohort'].str.extract(r'(\d+)').astype(float)) \
-                       .sort_values('n')['cohort'].tolist()
-            _csel = st.selectbox("기수 선택", options=_cohs[::-1], key="drill_stage_coh")
+                       .sort_values('n')['cohort'].tolist()[::-1]
+            # 최신 기수는 아직 상위 단계가 열리지 않아 퍼널이 비는 경우가 많다.
+            # → 단계가 2개 이상 채워진 가장 최근 기수를 기본 선택.
+            _have = [s for s in STAGE_ORDER if s in _st.columns]
+            _ok = [c for c in _cohs
+                   if (_st.loc[_st['cohort'] == c, _have].fillna(0) > 0).sum(axis=1).max() >= 2]
+            _idx = _cohs.index(_ok[0]) if _ok else 0
+            _csel = st.selectbox("기수 선택", options=_cohs, index=_idx, key="drill_stage_coh")
             _sf = stage_funnel_chart(stage, prod, _csel, STAGE_ORDER)
             if _sf:
                 st.plotly_chart(_sf, width='stretch', key="drill_stage_funnel")
             else:
-                st.caption("이 기수는 단계 데이터가 1개뿐이라 퍼널을 표시하지 않습니다.")
+                _filled = (_st.loc[_st['cohort'] == _csel, _have].fillna(0) > 0).sum(axis=1).max()
+                st.info(f"**{_csel}**는 아직 채워진 단계가 {int(_filled)}개뿐이라 퍼널을 그릴 수 "
+                        f"없습니다(진행 중인 최신 기수는 상위 단계가 미개설). "
+                        + (f"→ 위 선택에서 **{_ok[0]}** 등 완료된 기수를 보세요." if _ok else ""))
         with sc2:
             _mx = cohort_stage_matrix_chart(stage, prod, STAGE_ORDER)
             if _mx:
@@ -1144,20 +1152,17 @@ def tab_overview():
     _ty, _tm = date.today().year, date.today().month
     st.caption("모객 · 매출 · 전환 · 광고 ROI · 지역을 한 화면에 종합한 경영 전략 요약입니다. "
                "모든 수치는 강의 집계·광고비·지역 실데이터에서 자동 계산됩니다.")
-    _td = date.today()
     st.markdown(
         '<div class="gp-card" style="padding:10px 14px;margin:2px 0 10px">'
-        f'<span style="font-size:13px;opacity:.75">🔮 오늘 {ganji.ym_korean(_ty, _tm)} '
-        f'{_td.day}일</span><br>'
+        f'<span style="font-size:13px;opacity:.75">🔮 이번 달 '
+        f'{ganji.ym_korean(_ty, _tm)}</span><br>'
         f'<span style="font-size:20px;letter-spacing:2px">'
         f'{ganji.colorize(ganji.year_ganji(_ty, _tm))}<span style="opacity:.45;'
         f'font-size:13px">年</span> '
         f'{ganji.colorize(ganji.month_ganji(_ty, _tm))}<span style="opacity:.45;'
-        f'font-size:13px">月</span> '
-        f'{ganji.colorize(ganji.day_ganji(_td))}<span style="opacity:.45;'
-        f'font-size:13px">日</span></span>'
+        f'font-size:13px">月</span></span>'
         f'<span style="opacity:.6;font-size:12px"> · {ganji.saju_kor(_ty, _tm)}</span><br>'
-        '<span style="font-size:11px;opacity:.6">모든 월별·일자별 그래프 축에 간지가 '
+        '<span style="font-size:11px;opacity:.6">모든 시간축 그래프에 연월과 간지가 '
         '오행 색상으로 표시됩니다 · 월별 간지 전체는 📅 기간별 분석 탭 상단</span></div>',
         unsafe_allow_html=True)
     st.markdown(ganji.element_legend_html(), unsafe_allow_html=True)

@@ -180,17 +180,14 @@ def day_ganji(d, han: bool = True) -> str:
 
 
 def date_tick(d, lines: bool = True, color: bool = True) -> str:
-    """일자 축용 라벨. '6월 15일<br>丙午 甲午 戊寅'(년주 월주 일진)."""
+    """일자 축용 라벨. '6월 15일<br>丙午 甲午' (년주·월주만 — 일주는 표기하지 않음)."""
     import datetime as _dt
     s = str(d)[:10]
     try:
         dd = _dt.date.fromisoformat(s)
     except ValueError:
         return str(d)
-    yg = year_ganji(dd.year, dd.month)
-    mg = month_ganji(dd.year, dd.month)
-    dg = day_ganji(dd)
-    gj = f"{yg} {mg} {dg}"
+    gj = f"{year_ganji(dd.year, dd.month)} {month_ganji(dd.year, dd.month)}"
     if color:
         gj = colorize(gj)
     head = f"{dd.month}월 {dd.day}일"

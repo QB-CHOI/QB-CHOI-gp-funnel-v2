@@ -43,6 +43,35 @@ def relabel_month_axis(fig, lines: bool = True):
             picked = dates[::step]
             fig.update_xaxes(tickmode='array', tickvals=picked,
                              ticktext=[ganji.date_tick(v, lines=lines) for v in picked])
+        elif getattr(fig.layout.xaxis, 'type', None) == 'date':
+            # 간트(타임라인)처럼 base=날짜 + x=길이(숫자)인 축. 실제 날짜는 base에 있다.
+            stamps = []
+            for tr in fig.data:
+                for attr in ('base', 'x'):
+                    vv = getattr(tr, attr, None)
+                    if vv is None:
+                        continue
+                    for v in vv:
+                        # 숫자는 막대 '길이'(일수)이므로 날짜로 해석하면 안 된다
+                        # (pd.to_datetime(70) → 1970년). 날짜형/문자열만 받는다.
+                        if isinstance(v, (int, float)) or hasattr(v, 'dtype') and \
+                                getattr(v, 'dtype', None) is not None and \
+                                str(getattr(v, 'dtype', '')).startswith(('int', 'float')):
+                            continue
+                        ts = pd.to_datetime(v, errors='coerce')
+                        if pd.notna(ts):
+                            stamps.append(ts)
+            if stamps:
+                lo, hi = min(stamps), max(stamps)
+                mons = pd.date_range(lo.to_period('M').to_timestamp(),
+                                     hi.to_period('M').to_timestamp() + pd.offsets.MonthBegin(1),
+                                     freq='MS')
+                if len(mons) > _MAX_DATE_TICKS:
+                    mons = mons[::max(1, len(mons) // _MAX_DATE_TICKS)]
+                fig.update_xaxes(
+                    tickmode='array',
+                    tickvals=[m.strftime('%Y-%m-%d') for m in mons],
+                    ticktext=[ganji.ym_tick(m.strftime('%Y-%m'), lines=lines) for m in mons])
     except Exception:
         pass
     return fig
