@@ -156,7 +156,14 @@ APP_VERSION = "v4.45"  # 배포 반영 확인용 — 화면 버전이 다르면 
 with st.sidebar:
     st.markdown("### 📊 황금후추 강의 분석")
     _ty, _tm = date.today().year, date.today().month
-    st.caption(f"{APP_VERSION} · 이번 달 {ganji.ym_label(f'{_ty}-{_tm:02d}')}")
+    st.markdown(
+        f'<div style="font-size:12px;opacity:.7">{APP_VERSION} · '
+        f'{ganji.ym_korean(_ty, _tm)}</div>'
+        f'<div style="font-size:15px;letter-spacing:1px">'
+        f'{ganji.colorize(ganji.year_ganji(_ty, _tm))} '
+        f'{ganji.colorize(ganji.month_ganji(_ty, _tm))} '
+        f'{ganji.colorize(ganji.day_ganji(date.today()))}</div>',
+        unsafe_allow_html=True)
     st.divider()
 
     # 오늘 입력 상태
@@ -618,15 +625,31 @@ def tab_period():
     st.subheader("🔮 월별 사주 구조 (干支) · 매출")
     st.caption("각 달의 **년주·월주**를 매출과 나란히 봅니다. 월주는 절기(입춘·경칩·망종…) 기준이며, "
                "천간지지로 월별 성과의 명리학적 패턴(오행·십신 흐름)을 함께 해석할 수 있습니다.")
+    st.markdown(ganji.element_legend_html(), unsafe_allow_html=True)
     _mrev = mbc.groupby('month', as_index=False)['paid_revenue'].sum().sort_values('month')
-    _gj = _mrev.tail(18).copy()
-    _gj['연월'] = _gj['month'].apply(lambda m: ganji.ym_label(m, with_ganji=False))
-    _gj['년주'] = _gj['month'].apply(lambda m: ganji.year_ganji(*ganji._parse_ym(m)))
-    _gj['월주'] = _gj['month'].apply(lambda m: ganji.month_ganji(*ganji._parse_ym(m)))
-    _gj['독음'] = _gj['month'].apply(lambda m: ganji.saju_kor(*ganji._parse_ym(m)))
-    _gj['매출'] = _gj['paid_revenue'].apply(lambda v: f"{v/1e8:,.2f}억")
-    st.dataframe(_gj[['연월', '년주', '월주', '독음', '매출']].iloc[::-1],
-                 hide_index=True, width='stretch')
+    _gj = _mrev.tail(18).iloc[::-1]
+    _mx_rev = float(_mrev['paid_revenue'].max()) or 1
+    _rows = ""
+    for _, r in _gj.iterrows():
+        _y, _m = ganji._parse_ym(r['month'])
+        _bar = int(r['paid_revenue'] / _mx_rev * 100)
+        _rows += (
+            f'<tr><td style="white-space:nowrap">{ganji.ym_korean(_y, _m)}</td>'
+            f'<td style="font-size:16px;letter-spacing:1px">'
+            f'{ganji.colorize(ganji.year_ganji(_y, _m))}</td>'
+            f'<td style="font-size:16px;letter-spacing:1px">'
+            f'{ganji.colorize(ganji.month_ganji(_y, _m))}</td>'
+            f'<td style="opacity:.7;white-space:nowrap">{ganji.saju_kor(_y, _m)}</td>'
+            f'<td style="text-align:right;white-space:nowrap">'
+            f'{r["paid_revenue"]/1e8:,.2f}억</td>'
+            f'<td style="width:38%"><div style="background:rgba(127,127,127,.18);'
+            f'border-radius:3px;height:9px"><div style="width:{_bar}%;height:9px;'
+            f'background:#C8901A;border-radius:3px"></div></div></td></tr>')
+    st.markdown(
+        '<table class="gp-dtbl" style="width:100%;border-collapse:collapse;font-size:13px">'
+        '<thead><tr style="text-align:left"><th>연월</th><th>년주</th><th>월주</th>'
+        '<th>독음</th><th style="text-align:right">매출</th><th></th></tr></thead>'
+        f'<tbody>{_rows}</tbody></table>', unsafe_allow_html=True)
     # 최고 매출 달의 간지
     _top = _mrev.loc[_mrev['paid_revenue'].idxmax()]
     _ty, _tm = ganji._parse_ym(_top['month'])
@@ -1121,9 +1144,23 @@ def tab_overview():
     _ty, _tm = date.today().year, date.today().month
     st.caption("모객 · 매출 · 전환 · 광고 ROI · 지역을 한 화면에 종합한 경영 전략 요약입니다. "
                "모든 수치는 강의 집계·광고비·지역 실데이터에서 자동 계산됩니다.")
-    st.info(f"🔮 **이번 달 {ganji.ym_korean(_ty, _tm)} — {ganji.saju_han(_ty, _tm)}** "
-            f"({ganji.saju_kor(_ty, _tm)})  ·  모든 월별 표·그래프에 연월과 간지가 함께 표시됩니다. "
-            f"월별 간지 전체는 **📅 기간별 분석** 탭 최상단 표에서 볼 수 있습니다. `{APP_VERSION}`")
+    _td = date.today()
+    st.markdown(
+        '<div class="gp-card" style="padding:10px 14px;margin:2px 0 10px">'
+        f'<span style="font-size:13px;opacity:.75">🔮 오늘 {ganji.ym_korean(_ty, _tm)} '
+        f'{_td.day}일</span><br>'
+        f'<span style="font-size:20px;letter-spacing:2px">'
+        f'{ganji.colorize(ganji.year_ganji(_ty, _tm))}<span style="opacity:.45;'
+        f'font-size:13px">年</span> '
+        f'{ganji.colorize(ganji.month_ganji(_ty, _tm))}<span style="opacity:.45;'
+        f'font-size:13px">月</span> '
+        f'{ganji.colorize(ganji.day_ganji(_td))}<span style="opacity:.45;'
+        f'font-size:13px">日</span></span>'
+        f'<span style="opacity:.6;font-size:12px"> · {ganji.saju_kor(_ty, _tm)}</span><br>'
+        '<span style="font-size:11px;opacity:.6">모든 월별·일자별 그래프 축에 간지가 '
+        '오행 색상으로 표시됩니다 · 월별 간지 전체는 📅 기간별 분석 탭 상단</span></div>',
+        unsafe_allow_html=True)
+    st.markdown(ganji.element_legend_html(), unsafe_allow_html=True)
 
     # ── 🚨 이상 탐지 알림 (능동 경고) ───────────────────
     _alerts = _generate_alerts()

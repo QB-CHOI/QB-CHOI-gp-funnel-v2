@@ -15,6 +15,66 @@
 정밀 일주·시주는 정확한 날짜/시각이 필요해 여기서는 다루지 않는다(년주·월주만).
 """
 
+# ── 오행(五行) ────────────────────────────────────────────────
+# 천간·지지가 각각 어느 오행에 속하는지. 색상은 전통 오방색(청·적·황·백·흑)을
+# 화면 가독성에 맞춰 조정: 금(백)→은회, 수(흑)→청람. 라이트/다크 양쪽에서 읽힌다.
+ELEMENT_OF = {
+    '甲': '목', '乙': '목', '丙': '화', '丁': '화', '戊': '토',
+    '己': '토', '庚': '금', '辛': '금', '壬': '수', '癸': '수',
+    '寅': '목', '卯': '목', '巳': '화', '午': '화', '辰': '토',
+    '戌': '토', '丑': '토', '未': '토', '申': '금', '酉': '금',
+    '亥': '수', '子': '수',
+}
+ELEMENT_COLORS = {
+    '목': '#2E9E5B',   # 청(靑) → 초록
+    '화': '#E0483E',   # 적(赤)
+    '토': '#C8901A',   # 황(黃)
+    '금': '#8E9BA8',   # 백(白) → 은회(가독성)
+    '수': '#3B82F6',   # 흑(黑) → 청람(가독성)
+}
+ELEMENT_HANJA = {'목': '木', '화': '火', '토': '土', '금': '金', '수': '水'}
+
+
+def element_of(ch: str) -> str:
+    """한 글자(천간 또는 지지)의 오행. 예: '甲'→'목'."""
+    return ELEMENT_OF.get(ch, '')
+
+
+def color_of(ch: str) -> str:
+    """한 글자의 오행 색상 hex. 모르는 글자는 회색."""
+    return ELEMENT_COLORS.get(ELEMENT_OF.get(ch, ''), '#9AA0A6')
+
+
+def colorize(s: str, bold: bool = True) -> str:
+    """간지 문자열의 각 글자를 오행 색으로 감싼 HTML.
+
+    plotly 눈금·st.markdown 모두 <span style="color:..."> 를 지원한다.
+    간지가 아닌 글자(공백·年月 등)는 그대로 둔다.
+    """
+    out = []
+    for ch in str(s):
+        if ch in ELEMENT_OF:
+            w = 'font-weight:700;' if bold else ''
+            out.append(f'<span style="color:{color_of(ch)};{w}">{ch}</span>')
+        else:
+            out.append(ch)
+    return ''.join(out)
+
+
+def element_legend_html() -> str:
+    """오행 색상 범례 HTML."""
+    items = []
+    for el, col in ELEMENT_COLORS.items():
+        items.append(
+            f'<span style="display:inline-block;margin-right:14px;white-space:nowrap">'
+            f'<span style="color:{col};font-weight:700;font-size:15px">'
+            f'{ELEMENT_HANJA[el]}</span> '
+            f'<span style="opacity:.75;font-size:12px">{el}</span></span>')
+    return ('<div style="margin:2px 0 6px">' + ''.join(items) +
+            '<span style="opacity:.55;font-size:11px">'
+            '· 전통 오방색 기준(금=백→은회, 수=흑→청람으로 가독성 조정)</span></div>')
+
+
 STEMS_HAN = ['甲', '乙', '丙', '丁', '戊', '己', '庚', '辛', '壬', '癸']
 STEMS_KOR = ['갑', '을', '병', '정', '무', '기', '경', '신', '임', '계']
 BRANCHES_HAN = ['子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥']
@@ -98,14 +158,54 @@ def ym_label(ym, with_ganji: bool = True, sep: str = ' · ', han: bool = True) -
     return f"{base}{sep}{saju_han(y, mo) if han else saju_kor(y, mo)}"
 
 
-def ym_tick(ym, lines: bool = True) -> str:
-    """차트 축용 짧은 라벨. '2026년 6월\\n丙午 甲午' (년주·월주 한자, 年/月 생략)."""
+def day_ganji(d, han: bool = True) -> str:
+    """일주(日柱) 간지. 60갑자 연속 순환 — 2000-01-07(甲子日) 기준.
+
+    d: date/datetime 또는 'YYYY-MM-DD' 문자열.
+    """
+    import datetime as _dt
+    if isinstance(d, str):
+        try:
+            d = _dt.date.fromisoformat(d[:10])
+        except ValueError:
+            return ''
+    if isinstance(d, _dt.datetime):
+        d = d.date()
+    if not isinstance(d, _dt.date):
+        return ''
+    n = (d - _dt.date(2000, 1, 7)).days   # 甲子일 기준 경과일
+    if han:
+        return STEMS_HAN[n % 10] + BRANCHES_HAN[n % 12]
+    return STEMS_KOR[n % 10] + BRANCHES_KOR[n % 12]
+
+
+def date_tick(d, lines: bool = True, color: bool = True) -> str:
+    """일자 축용 라벨. '6월 15일<br>丙午 甲午 戊寅'(년주 월주 일진)."""
+    import datetime as _dt
+    s = str(d)[:10]
+    try:
+        dd = _dt.date.fromisoformat(s)
+    except ValueError:
+        return str(d)
+    yg = year_ganji(dd.year, dd.month)
+    mg = month_ganji(dd.year, dd.month)
+    dg = day_ganji(dd)
+    gj = f"{yg} {mg} {dg}"
+    if color:
+        gj = colorize(gj)
+    head = f"{dd.month}월 {dd.day}일"
+    return f"{head}<br>{gj}" if lines else f"{head} ({gj})"
+
+
+def ym_tick(ym, lines: bool = True, color: bool = True) -> str:
+    """차트 축용 짧은 라벨. '2026년 6월\\n丙午 甲午' (년주·월주, 오행 색상)."""
     p = _parse_ym(ym)
     if p is None:
         return str(ym)
     y, mo = p
-    yg = year_ganji(y, mo)
-    mg = month_ganji(y, mo)
+    gj = f"{year_ganji(y, mo)} {month_ganji(y, mo)}"
+    if color:
+        gj = colorize(gj)
     if lines:
-        return f"{y}년 {mo}월<br>{yg} {mg}"
-    return f"{y}년 {mo}월 ({yg} {mg})"
+        return f"{y}년 {mo}월<br>{gj}"
+    return f"{y}년 {mo}월 ({gj})"

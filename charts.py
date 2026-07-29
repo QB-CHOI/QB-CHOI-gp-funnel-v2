@@ -5,28 +5,44 @@ import ganji
 
 
 import re as _re
-_MONTH_TOKEN = _re.compile(r'^(\d{4})[-./](\d{1,2})$')  # 정확히 'YYYY-MM' 월만
+_MONTH_TOKEN = _re.compile(r'^(\d{4})[-./](\d{1,2})$')      # 정확히 'YYYY-MM'
+_DATE_TOKEN = _re.compile(r'^(\d{4})-(\d{2})-(\d{2})')       # 'YYYY-MM-DD…'
+_MAX_DATE_TICKS = 14   # 일자 축은 눈금이 많아 과밀 — 균등 샘플링
 
 
 def relabel_month_axis(fig, lines: bool = True):
-    """x축 값이 양력 월(YYYY-MM)이면 눈금을 '2026년 6월 / 丙午 甲午'(한글+간지)로 변환.
+    """시간 축 눈금에 사주(간지)를 오행 색상으로 병기.
 
-    각 trace x값 중 **정확히 YYYY-MM** 형태만 relabel한다(일자 YYYY-MM-DD·경과월·
-    기수 등은 매칭 안 됨 → 무해한 no-op). 안전을 위해 예외는 삼켜 원본 유지.
+    · 월 축(YYYY-MM)   → '2026년 6월 / 丙午 甲午'  (년주·월주)
+    · 일자 축(YYYY-MM-DD) → '6월 15일 / 丙午 甲午 戊寅' (년주·월주·일진)
+      눈금이 많으면 최대 14개로 균등 샘플링해 과밀을 막는다.
+    · 그 밖의 축(기수·상품·지역)은 매칭되지 않아 무해한 no-op.
+
+    안전을 위해 예외는 삼켜 원본 그림을 유지한다.
     """
     try:
-        vals = []
+        months, dates = [], []
         for tr in fig.data:
             xs = getattr(tr, 'x', None)
             if xs is None:
                 continue
             for v in xs:
                 s = str(v)
-                if s not in vals and _MONTH_TOKEN.match(s):
-                    vals.append(s)
-        if vals:
-            fig.update_xaxes(tickmode='array', tickvals=vals,
-                             ticktext=[ganji.ym_tick(v, lines=lines) for v in vals])
+                if _MONTH_TOKEN.match(s):
+                    if s not in months:
+                        months.append(s)
+                elif _DATE_TOKEN.match(s):
+                    if s not in dates:
+                        dates.append(s)
+        if months:
+            fig.update_xaxes(tickmode='array', tickvals=months,
+                             ticktext=[ganji.ym_tick(v, lines=lines) for v in months])
+        elif dates:
+            dates = sorted(dates)
+            step = max(1, len(dates) // _MAX_DATE_TICKS)
+            picked = dates[::step]
+            fig.update_xaxes(tickmode='array', tickvals=picked,
+                             ticktext=[ganji.date_tick(v, lines=lines) for v in picked])
     except Exception:
         pass
     return fig
