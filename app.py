@@ -1,4 +1,5 @@
 import streamlit as st
+import ganji
 import pandas as pd
 from datetime import date, timedelta
 
@@ -60,7 +61,26 @@ from charts import (
     repeat_timing_chart, retention_curve_chart, retention_heatmap,
     target_vs_actual_chart,
     product_retention_curve_chart, nextbuy_chart, crosssell_path_heatmap,
+    relabel_month_axis,
 )
+
+# ── 그래프 월 축을 한글+간지(사주 구조)로 자동 변환 ──────────────
+# 모든 plotly 차트의 x축이 양력 월(YYYY-MM)이면 '2026년 6월 / 丙午 甲午'로
+# 눈금을 바꾼다. 중앙 1곳에서 st.plotly_chart를 감싸 전 그래프에 일괄 적용
+# (달력 월이 아닌 축은 무해한 no-op). 명리학적 해석을 위해 천간지지 병기.
+_orig_plotly_chart = st.plotly_chart
+
+
+def _plotly_chart_ganji(fig, *args, **kwargs):
+    try:
+        if hasattr(fig, 'data'):
+            relabel_month_axis(fig)
+    except Exception:
+        pass
+    return _orig_plotly_chart(fig, *args, **kwargs)
+
+
+st.plotly_chart = _plotly_chart_ganji
 
 st.set_page_config(
     page_title="황금후추 강의 분석",
@@ -604,7 +624,8 @@ def tab_period():
     # ── 특정 월 드릴다운 ─────────────────────────────────
     st.divider()
     st.subheader("월 선택 상세")
-    _msel = st.selectbox("월 선택", options=_months[::-1], key="prd_month")
+    _msel = st.selectbox("월 선택", options=_months[::-1], key="prd_month",
+                         format_func=lambda m: ganji.ym_label(m))
     _cur = mbc[mbc['month'] == _msel]
     _prev_month = _months[_months.index(_msel) - 1] if _months.index(_msel) > 0 else None
     _prev = mbc[mbc['month'] == _prev_month] if _prev_month else pd.DataFrame()
@@ -614,8 +635,11 @@ def tab_period():
     _tot_free = int(_cur['free_signups'].sum())
     _prev_rev = int(_prev['paid_revenue'].sum()) if not _prev.empty else 0
     mm1, mm2, mm3, mm4 = st.columns(4)
-    mm1.metric(f"{_msel} 매출", f"{_tot_rev/1e8:,.2f}억",
-               delta=(f"{(_tot_rev-_prev_rev)/1e8:+.2f}억 vs {_prev_month}" if _prev_month else None))
+    mm1.metric(f"{ganji.ym_label(_msel, with_ganji=False)} 매출", f"{_tot_rev/1e8:,.2f}억",
+               delta=(f"{(_tot_rev-_prev_rev)/1e8:+.2f}억 vs {ganji.ym_label(_prev_month, with_ganji=False)}"
+                      if _prev_month else None))
+    st.caption(f"🔮 사주 구조: **{ganji.saju_han(*ganji._parse_ym(_msel))}** "
+               f"({ganji.saju_kor(*ganji._parse_ym(_msel))}) — 월주는 절기(입춘·망종 등) 기준")
     mm2.metric("유료 주문", f"{_tot_ord:,}건")
     mm3.metric("무료 신청", f"{_tot_free:,}명")
     mm4.metric("월 객단가", f"{_tot_rev/_tot_ord/1e4:,.0f}만" if _tot_ord else "—")
@@ -633,7 +657,7 @@ def tab_period():
     st.dataframe(_cd_disp, hide_index=True, width='stretch')
     if _tot_rev:
         _top = _cd.iloc[0]
-        st.info(f"💡 **{_msel}**는 **{_top['product']}**가 매출 {_top['paid_revenue']/1e8:.2f}억으로 주도"
+        st.info(f"💡 **{ganji.ym_label(_msel, with_ganji=False)}**는 **{_top['product']}**가 매출 {_top['paid_revenue']/1e8:.2f}억으로 주도"
                 f"({_top['paid_revenue']/_tot_rev*100:.0f}%). 개강·프로모션 시점과 대조해 보세요.")
 
     # ── 다음 기간 전망 (런레이트) ────────────────────────
@@ -702,7 +726,7 @@ def tab_period():
                                               help=f"런레이트 참고: {_rr_free:,.0f}명/월")
                 if st.form_submit_button("목표 저장", type="primary", width='stretch'):
                     save_target(_fm, int(_rev_t * 1e8), int(_free_t))
-                    st.success(f"{_fm} 목표 저장: 매출 {_rev_t}억 · 모객 {int(_free_t):,}명")
+                    st.success(f"{ganji.ym_label(_fm, with_ganji=False)} 목표 저장: 매출 {_rev_t}억 · 모객 {int(_free_t):,}명")
                     st.rerun()
 
         if not tgt.empty:
@@ -723,7 +747,7 @@ def tab_period():
                 _t = _tm.iloc[0]
                 _ar = int(_perf_idx.loc[_this_month, 'revenue']) if _this_month in _perf_idx.index else 0
                 _af = int(_perf_idx.loc[_this_month, 'free_signups']) if _this_month in _perf_idx.index else 0
-                st.markdown(f"**📌 이번 달({_this_month}) 진행** — 집계 진행 중")
+                st.markdown(f"**📌 이번 달({ganji.ym_label(_this_month, with_ganji=False)}) 진행** — 집계 진행 중")
                 pc1, pc2 = st.columns(2)
                 with pc1:
                     _rr = _ar / int(_t['revenue_target']) if int(_t['revenue_target']) else 0
@@ -992,7 +1016,7 @@ def _generate_alerts() -> list:
             _rr = _comp['revenue'].iloc[-4:-1].mean()
             if _rr and int(_last['revenue']) < _rr * 0.6:
                 alerts.append({'sev': 'warning', 'title': '매출 둔화',
-                               'msg': f"최근 완료월({_last['month']}) 매출 **{_last['revenue']/1e8:.2f}억**이 "
+                               'msg': f"최근 완료월({ganji.ym_label(_last['month'], with_ganji=False)}) 매출 **{_last['revenue']/1e8:.2f}억**이 "
                                       f"직전 3개월 평균({_rr/1e8:.2f}억)의 60% 미만입니다. "
                                       "개강 공백인지 실적 저하인지 확인하세요."})
 
@@ -2867,7 +2891,8 @@ def tab_marketing():
     ad_m = load_ad_spend_monthly()
     if not perf.empty:
         st.subheader("📈 전 기간 성과 추이")
-        st.caption(f"주문 데이터 기반 월별 성과 ({perf['month'].min()} ~ {perf['month'].max()}, "
+        st.caption(f"주문 데이터 기반 월별 성과 ({ganji.ym_label(perf['month'].min(), with_ganji=False)} ~ "
+                   f"{ganji.ym_label(perf['month'].max(), with_ganji=False)}, "
                    f"{len(perf)}개월). 개인정보 없는 집계.")
         _tot_rev = int(perf['revenue'].sum())
         _tot_free = int(perf['free_signups'].sum())
@@ -2916,13 +2941,14 @@ def tab_marketing():
                     _asp = st.number_input("광고비(원)", min_value=0, step=100000, value=0)
                 if st.form_submit_button("저장", type="primary", width='stretch'):
                     save_ad_spend_monthly(_am, _ac, int(_asp))
-                    st.success(f"{_am} {_ac} 광고비 {_asp:,}원 저장 완료")
+                    st.success(f"{ganji.ym_label(_am, with_ganji=False)} {_ac} 광고비 {_asp:,}원 저장 완료")
                     st.rerun()
             if not ad_m.empty:
                 _disp = ad_m.copy()
                 _disp['spend'] = _disp['spend'].apply(lambda x: f"{x:,}원")
+                _disp['month'] = _disp['month'].apply(lambda m: ganji.ym_label(m))
                 st.dataframe(_disp[['month', 'channel', 'spend']].rename(
-                    columns={'month': '월', 'channel': '채널', 'spend': '광고비'}),
+                    columns={'month': '월(사주 구조)', 'channel': '채널', 'spend': '광고비'}),
                     hide_index=True)
 
         # ── 월별 광고비 vs 매출 ROAS ──────────────────────────
@@ -2953,8 +2979,8 @@ def tab_marketing():
                     _worst_cpa = _mm.loc[_mm['cpa'].idxmax()]
                     st.info(
                         f"💡 **광고비의 1차 성과는 '무료 모객'입니다** — 광고비↔모객 상관 "
-                        f"**{_corr_lead:+.2f}**(강한 양). 리드 획득 단가는 **{_best_cpa['month']} "
-                        f"{_best_cpa['cpa']:,.0f}원**(최저)에서 **{_worst_cpa['month']} "
+                        f"**{_corr_lead:+.2f}**(강한 양). 리드 획득 단가는 **{ganji.ym_label(_best_cpa['month'], with_ganji=False)} "
+                        f"{_best_cpa['cpa']:,.0f}원**(최저)에서 **{ganji.ym_label(_worst_cpa['month'], with_ganji=False)} "
                         f"{_worst_cpa['cpa']:,.0f}원**(최고) 사이입니다. "
                         f"다만 광고비↔ROAS 상관은 **{_corr_roas:+.2f}**(음) — "
                         "**광고를 키우면 리드는 싸게 대량으로 오지만, 그 리드의 매출 전환 효율은 "
@@ -3076,7 +3102,8 @@ def tab_marketing():
         if not wha.empty:
             _pd = wha['product'].iloc[0]
             _per = wha['period'].iloc[0]
-            st.markdown(f"**💸 후킹 소재별 광고 효율 — {_pd} 무료특강 ({_per} 메타)**")
+            _per_lbl = ganji.ym_label(_per)  # '2025년 11월 · 乙巳年 丁亥月'
+            st.markdown(f"**💸 후킹 소재별 광고 효율 — {_pd} 무료특강 ({_per_lbl}, 메타)**")
             st.caption("어떤 후킹 주제에 메타 광고비를 얼마 써서 무료 신청(리드)을 얼마에 얻는지 — "
                        "'모객' 뒤의 실제 **광고 투자 효율**입니다. 막대=광고비, 색=리드 단가(CPL, 초록=저렴).")
             _tot_sp = int(wha['spend'].sum()); _tot_ld = int(wha['leads'].sum())

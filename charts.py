@@ -1,6 +1,35 @@
 import plotly.graph_objects as go
 import plotly.express as px
 import pandas as pd
+import ganji
+
+
+import re as _re
+_MONTH_TOKEN = _re.compile(r'^(\d{4})[-./](\d{1,2})$')  # 정확히 'YYYY-MM' 월만
+
+
+def relabel_month_axis(fig, lines: bool = True):
+    """x축 값이 양력 월(YYYY-MM)이면 눈금을 '2026년 6월 / 丙午 甲午'(한글+간지)로 변환.
+
+    각 trace x값 중 **정확히 YYYY-MM** 형태만 relabel한다(일자 YYYY-MM-DD·경과월·
+    기수 등은 매칭 안 됨 → 무해한 no-op). 안전을 위해 예외는 삼켜 원본 유지.
+    """
+    try:
+        vals = []
+        for tr in fig.data:
+            xs = getattr(tr, 'x', None)
+            if xs is None:
+                continue
+            for v in xs:
+                s = str(v)
+                if s not in vals and _MONTH_TOKEN.match(s):
+                    vals.append(s)
+        if vals:
+            fig.update_xaxes(tickmode='array', tickvals=vals,
+                             ticktext=[ganji.ym_tick(v, lines=lines) for v in vals])
+    except Exception:
+        pass
+    return fig
 
 
 def _space_legend(fig, height: int = 400, title_size: int = 15, bottom: int = 45):
