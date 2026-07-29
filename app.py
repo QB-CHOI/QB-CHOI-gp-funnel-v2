@@ -26,6 +26,7 @@ from github_store import (
     load_region_signups, load_region_cohort, load_region_city, CAPITAL_REGIONS,
     load_region_cohort_detail, load_region_cohort_topcity,
     load_webinar_topics, load_webinar_conversion, load_webinar_hook_ad,
+    load_ohaeng_period,
     load_data_sources, load_stage_timeline,
     load_adspend, save_adspend, delete_adspend_row,
     load_content, save_content, delete_content_row,
@@ -55,6 +56,7 @@ from charts import (
     stage_funnel_chart, cohort_stage_matrix_chart, webinar_topic_chart, webinar_hook_ad_chart,
     webinar_quadrant_chart, webinar_selfconv_chart,
     stage_timeline_chart, ad_efficiency_diagnosis,
+    ohaeng_chart, ohaeng_timeline_chart,
     cust_repeat_donut, cust_ltv_bar, cust_product_repeat_chart,
     cross_sell_heatmap, monthly_new_repeat_chart,
     runrate_forecast_chart,
@@ -151,7 +153,7 @@ def _kpi_band(items):
 
 # ── 사이드바 — 캐시 새로고침 ─────────────────────────────────────
 
-APP_VERSION = "v4.48"  # 배포 반영 확인용 — 화면 버전이 다르면 아직 리부팅 전
+APP_VERSION = "v4.49"  # 배포 반영 확인용 — 화면 버전이 다르면 아직 리부팅 전
 
 with st.sidebar:
     st.markdown("### 📊 황금후추 강의 분석")
@@ -656,6 +658,93 @@ def tab_period():
             f"({ganji.saju_han(_ty, _tm)} · {ganji.saju_kor(_ty, _tm)})**로 "
             f"**{_top['paid_revenue']/1e8:.2f}억**입니다. "
             "아래 모든 월별 그래프의 가로축에도 연월과 간지가 함께 표시됩니다.")
+    # ── 🌳 오행별 시기 분석 ──────────────────────────────
+    _oh = load_ohaeng_period()
+    if not _oh.empty:
+        st.divider()
+        st.subheader("🌳 오행(五行) 시기별 모객 · 전환")
+        st.caption("월주의 **천간·지지가 속한 오행**으로 시기를 나눠 모객과 전환을 비교합니다. "
+                   "(목=갑·을/인·묘, 화=병·정/사·오, 토=무·기/진·술·축·미, "
+                   "금=경·신/신·유, 수=임·계/해·자) "
+                   "**절기 기준 명리월**로 주문을 다시 묶었습니다 — 양력 1일이 아니라 "
+                   "입춘·경칩 등 절입일에 달이 바뀝니다.")
+        st.markdown(ganji.element_legend_html(), unsafe_allow_html=True)
+
+        _ok1, _ok2 = st.columns(2)
+        with _ok1:
+            _f1 = ohaeng_chart(_oh, 'stem')
+            if _f1:
+                st.plotly_chart(_f1, width='stretch', key="oh_stem")
+        with _ok2:
+            _f2 = ohaeng_chart(_oh, 'branch')
+            if _f2:
+                st.plotly_chart(_f2, width='stretch', key="oh_branch")
+
+        _ft = ohaeng_timeline_chart(_oh)
+        if _ft:
+            st.plotly_chart(_ft, width='stretch', key="oh_timeline")
+
+        # 오행별 요약표 + 해석
+        _rows = ""
+        _tot_m = len(_oh)
+        for _kind, _col in [("천간", "stem_element"), ("지지", "branch_element")]:
+            _g = _oh.groupby(_col).agg(n=('saju_month', 'size'),
+                                       free=('free_signups', 'sum'),
+                                       paid=('paid_orders', 'sum'),
+                                       rev=('revenue', 'sum'))
+            for _el in ['목', '화', '토', '금', '수']:
+                if _el not in _g.index:
+                    continue
+                _r = _g.loc[_el]
+                _af = _r['free'] / _r['n']
+                _cv = _r['paid'] / _r['free'] * 100 if _r['free'] else 0
+                _rows += (
+                    f'<tr><td>{_kind}</td>'
+                    f'<td><span style="color:{ganji.ELEMENT_COLORS[_el]};font-weight:700">'
+                    f'{ganji.ELEMENT_HANJA[_el]} {_el}</span></td>'
+                    f'<td style="text-align:right">{int(_r["n"])}</td>'
+                    f'<td style="text-align:right">{int(_r["free"]):,}</td>'
+                    f'<td style="text-align:right">{_af:,.0f}</td>'
+                    f'<td style="text-align:right">{int(_r["paid"]):,}</td>'
+                    f'<td style="text-align:right">{_cv:.2f}%</td>'
+                    f'<td style="text-align:right">{_r["rev"]/1e8:.2f}억</td></tr>')
+        st.markdown(
+            '<table class="gp-dtbl" style="width:100%;border-collapse:collapse;font-size:13px">'
+            '<thead><tr style="text-align:left"><th>구분</th><th>오행</th>'
+            '<th style="text-align:right">개월</th><th style="text-align:right">모객</th>'
+            '<th style="text-align:right">월평균</th><th style="text-align:right">유료</th>'
+            '<th style="text-align:right">전환율</th><th style="text-align:right">매출</th>'
+            '</tr></thead>'
+            f'<tbody>{_rows}</tbody></table>', unsafe_allow_html=True)
+
+        # 자동 해석 (월평균 기준 — 오행별 개월 수가 다르므로)
+        _sg = _oh.groupby('stem_element').agg(n=('saju_month', 'size'),
+                                              free=('free_signups', 'sum'),
+                                              paid=('paid_orders', 'sum'))
+        _sg['avg'] = _sg['free'] / _sg['n']
+        _sg['cv'] = (_sg['paid'] / _sg['free'] * 100).where(_sg['free'] > 0, 0)
+        _bg = _oh.groupby('branch_element').agg(n=('saju_month', 'size'),
+                                                free=('free_signups', 'sum'),
+                                                paid=('paid_orders', 'sum'))
+        _bg['avg'] = _bg['free'] / _bg['n']
+        _bg['cv'] = (_bg['paid'] / _bg['free'] * 100).where(_bg['free'] > 0, 0)
+        _s_top, _b_top = _sg['avg'].idxmax(), _bg['avg'].idxmax()
+        _s_cv, _b_cv = _sg['cv'].idxmax(), _bg['cv'].idxmax()
+        st.info(
+            f"💡 **오행별 패턴** — 모객이 가장 많았던 시기는 천간 **{_s_top}"
+            f"({ganji.ELEMENT_HANJA[_s_top]})월 평균 {_sg.loc[_s_top,'avg']:,.0f}명**, "
+            f"지지 **{_b_top}({ganji.ELEMENT_HANJA[_b_top]})월 평균 "
+            f"{_bg.loc[_b_top,'avg']:,.0f}명**입니다. "
+            f"전환율이 가장 높았던 시기는 천간 **{_s_cv}({_sg.loc[_s_cv,'cv']:.2f}%)**, "
+            f"지지 **{_b_cv}({_bg.loc[_b_cv,'cv']:.2f}%)** — "
+            "**많이 모으는 시기와 잘 파는 시기가 다를 수 있으니** 모객은 전자에, "
+            "전환 캠페인·마감은 후자에 무게를 두는 식으로 활용할 수 있습니다.")
+        st.caption(f"⚠️ 해석 주의 — 전체 {_tot_m}개 명리월(오행당 2~8개월)로 표본이 작고, "
+                   "강의 개강 일정·광고비 집행이 시기와 겹쳐 **오행 자체의 효과와 "
+                   "사업 일정 효과가 섞여 있습니다.** 인과가 아닌 **패턴 참고용**으로 보시고, "
+                   "데이터가 쌓이면 매월 자동으로 정밀해집니다. "
+                   "집계 기준: 4개 상품군(전자책·달력 등 기타 제외).")
+
     st.divider()
 
     # ── 히트맵 ───────────────────────────────────────────

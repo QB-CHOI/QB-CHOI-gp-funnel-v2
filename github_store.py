@@ -101,6 +101,7 @@ REGION_COHORT_TOPCITY_PATH = "data/region_cohort_topcity.csv"
 # 무료특강 주제별 모객 (주문 원본 집계) — 모객 콘텐츠 효율
 WEBINAR_TOPICS_PATH = "data/webinar_topics.csv"
 WEBINAR_HOOK_AD_PATH = "data/webinar_hook_ad.csv"
+OHAENG_PERIOD_PATH = "data/ohaeng_period.csv"
 WEBINAR_CONV_PATH = "data/webinar_conversion.csv"
 
 # 데이터 소스 레지스트리 (신선도 추적)
@@ -989,6 +990,27 @@ def load_webinar_hook_ad() -> pd.DataFrame:
     df['cvr'] = (df['leads'] / df['clicks'] * 100).where(df['clicks'] > 0, 0.0)
     df['cpl'] = (df['spend'] / df['leads']).where(df['leads'] > 0, 0.0)
     return df
+
+
+@st.cache_data(ttl=3600)
+def load_ohaeng_period() -> pd.DataFrame:
+    """오행(五行) 시기별 모객·전환 — 절기 기준 명리월 집계.
+
+    양력 달이 아니라 **절입일 기준 명리월**로 주문을 다시 묶은 것.
+    월주의 천간·지지가 각각 어느 오행인지(stem_element/branch_element)로
+    시기를 나눠 모객·전환을 비교할 수 있다.
+    """
+    df = _read_csv(OHAENG_PERIOD_PATH,
+                   ['saju_year', 'saju_month', 'year_pillar', 'month_pillar',
+                    'stem', 'branch', 'stem_element', 'branch_element',
+                    'free_signups', 'paid_orders', 'revenue'])
+    if df.empty:
+        return df
+    for c in ['saju_year', 'saju_month', 'free_signups', 'paid_orders', 'revenue']:
+        df[c] = pd.to_numeric(df[c], errors='coerce').fillna(0).astype(int)
+    df['conv_rate'] = (df['paid_orders'] / df['free_signups'] * 100).where(
+        df['free_signups'] > 0, 0.0)
+    return df.sort_values(['saju_year', 'saju_month']).reset_index(drop=True)
 
 
 @st.cache_data(ttl=3600)

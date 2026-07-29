@@ -158,6 +158,52 @@ def ym_label(ym, with_ganji: bool = True, sep: str = ' · ', han: bool = True) -
     return f"{base}{sep}{saju_han(y, mo) if han else saju_kor(y, mo)}"
 
 
+# ── 절기(節氣) 절입일 ─────────────────────────────────────────
+# 월주는 매월 1일이 아니라 절기(입춘·경칩·청명…)에 바뀐다. 아래는 각 달에서
+# **새 월주가 시작되는 날짜(일)**. 만세력 라이브러리 sajupy(MIT)로 오프라인
+# 생성·검증했으며, 런타임 의존성을 만들지 않으려고 표로 embed했다.
+# (전체 기간 일별 대조 결과 이 표 적용 시 sajupy와 100% 일치)
+_JEOLGI_DAY = {
+    2023: [6, 4, 6, 5, 6, 6, 8, 8, 8, 9, 8, 8],
+    2024: [6, 5, 5, 5, 5, 6, 7, 7, 8, 8, 7, 6],
+    2025: [5, 4, 6, 5, 6, 6, 7, 8, 8, 8, 8, 7],
+    2026: [6, 4, 6, 5, 6, 6, 7, 8, 7, 9, 8, 7],
+    2027: [6, 4, 6, 5, 6, 6, 8, 8, 8, 9, 7, 8],
+    2028: [6, 5, 5, 5, 5, 6, 7, 7, 7, 8, 7, 7],
+}
+_JEOLGI_FALLBACK = [6, 4, 6, 5, 6, 6, 7, 8, 8, 8, 8, 7]  # 표 밖 연도용 평균 절입일
+
+
+def jeolgi_day(year: int, month: int) -> int:
+    """그 달에 새 월주가 시작되는 날짜(일). 표에 없으면 평년 근사치."""
+    row = _JEOLGI_DAY.get(year)
+    return (row or _JEOLGI_FALLBACK)[month - 1]
+
+
+def saju_month_of(d):
+    """날짜 → 그 날이 실제로 속한 **명리 월**(year, month) — 절기 기준.
+
+    절입일 이전이면 전월에 속한다. 예: 2026-06-03은 절입(6/6) 전이므로
+    2026년 5월(癸巳月)에 속한다.
+    """
+    import datetime as _dt
+    if isinstance(d, str):
+        try:
+            d = _dt.date.fromisoformat(str(d)[:10])
+        except ValueError:
+            return None
+    if isinstance(d, _dt.datetime):
+        d = d.date()
+    if not isinstance(d, _dt.date):
+        return None
+    y, m = d.year, d.month
+    if d.day < jeolgi_day(y, m):
+        m -= 1
+        if m == 0:
+            y, m = y - 1, 12
+    return y, m
+
+
 def day_ganji(d, han: bool = True) -> str:
     """일주(日柱) 간지. 60갑자 연속 순환 — 2000-01-07(甲子日) 기준.
 

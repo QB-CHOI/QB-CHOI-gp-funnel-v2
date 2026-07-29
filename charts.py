@@ -2530,6 +2530,76 @@ def webinar_topic_chart(df: pd.DataFrame):
     return fig
 
 
+def ohaeng_chart(df: pd.DataFrame, kind: str = 'stem'):
+    """오행별 월평균 모객 + 전환율.
+
+    kind='stem'(천간) / 'branch'(지지). 오행 그룹마다 달 수가 다르므로
+    (특히 지지의 土는 辰戌丑未 4글자 = 12지 중 4/12) **월평균**으로 비교한다.
+    막대=월평균 모객, 선=전환율(유료건÷모객).
+    """
+    if df is None or df.empty:
+        return None
+    col = 'stem_element' if kind == 'stem' else 'branch_element'
+    order = ['목', '화', '토', '금', '수']
+    g = df.groupby(col).agg(months=('saju_month', 'size'),
+                            free=('free_signups', 'sum'),
+                            paid=('paid_orders', 'sum'),
+                            rev=('revenue', 'sum')).reindex(order).dropna(how='all')
+    if g.empty:
+        return None
+    g['avg_free'] = g['free'] / g['months']
+    g['conv'] = (g['paid'] / g['free'] * 100).where(g['free'] > 0, 0)
+    colors = [ganji.ELEMENT_COLORS.get(i, '#90A4AE') for i in g.index]
+    label = '천간(天干)' if kind == 'stem' else '지지(地支)'
+    fig = go.Figure()
+    fig.add_trace(go.Bar(
+        x=[f"{i}({ganji.ELEMENT_HANJA.get(i, '')})" for i in g.index],
+        y=g['avg_free'], name='월평균 모객', marker_color=colors,
+        text=[f"{v:,.0f}명<br>{int(m)}개월" for v, m in zip(g['avg_free'], g['months'])],
+        textposition='outside', cliponaxis=False,
+        hovertemplate=('%{x}<br>월평균 모객 %{y:,.0f}명'
+                       '<br>누적 %{customdata[0]:,}명 · %{customdata[1]}개월'
+                       '<extra></extra>'),
+        customdata=g[['free', 'months']].values))
+    fig.add_trace(go.Scatter(
+        x=[f"{i}({ganji.ELEMENT_HANJA.get(i, '')})" for i in g.index],
+        y=g['conv'], name='전환율(%)', yaxis='y2', mode='lines+markers+text',
+        line=dict(color='#C8901A', width=2), marker=dict(size=9),
+        text=[f"{v:.2f}%" for v in g['conv']], textposition='top center',
+        textfont=dict(size=11),
+        hovertemplate='%{x}<br>전환율 %{y:.2f}%<extra></extra>'))
+    fig.update_layout(
+        title=f'{label} 오행별 월평균 모객 · 전환율',
+        yaxis=dict(title='월평균 모객(명)'),
+        yaxis2=dict(title='전환율(%)', overlaying='y', side='right', showgrid=False),
+        height=400, margin=dict(t=92, b=45, l=28, r=28))
+    _space_legend(fig, height=400)
+    return fig
+
+
+def ohaeng_timeline_chart(df: pd.DataFrame):
+    """명리월 시간순 모객 막대 — 월지 오행 색상으로 시기 흐름을 본다."""
+    if df is None or df.empty:
+        return None
+    d = df.copy()
+    d['label'] = d.apply(
+        lambda r: f"{int(r['saju_year'])}년 {int(r['saju_month'])}월<br>"
+                  f"{ganji.colorize(r['month_pillar'])}", axis=1)
+    colors = [ganji.ELEMENT_COLORS.get(e, '#90A4AE') for e in d['branch_element']]
+    fig = go.Figure(go.Bar(
+        x=list(range(len(d))), y=d['free_signups'], marker_color=colors,
+        hovertemplate=('%{customdata[0]}<br>모객 %{y:,}명 · 유료 %{customdata[1]:,}건'
+                       '<br>지지 오행 %{customdata[2]}<extra></extra>'),
+        customdata=d[['month_pillar', 'paid_orders', 'branch_element']].values))
+    fig.update_layout(
+        title='명리월 흐름 — 모객 (막대색 = 월지 오행)',
+        xaxis=dict(tickmode='array', tickvals=list(range(len(d))),
+                   ticktext=d['label'].tolist(), tickfont=dict(size=10)),
+        yaxis=dict(title='모객(명)'),
+        height=400, margin=dict(t=60, b=60, l=28, r=28), showlegend=False)
+    return fig
+
+
 def webinar_hook_ad_chart(df: pd.DataFrame):
     """후킹 소재별 메타 광고비 가로 막대 + 리드 단가(CPL) 색상.
 
