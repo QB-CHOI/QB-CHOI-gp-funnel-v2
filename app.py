@@ -1,6 +1,7 @@
 import streamlit as st
 import ganji
 import pandas as pd
+import re
 from datetime import date, timedelta
 
 from github_store import (
@@ -154,7 +155,7 @@ def _kpi_band(items):
 
 # ── 사이드바 — 캐시 새로고침 ─────────────────────────────────────
 
-APP_VERSION = "v4.54"  # 배포 반영 확인용 — 화면 버전이 다르면 아직 리부팅 전
+APP_VERSION = "v4.55"  # 배포 반영 확인용 — 화면 버전이 다르면 아직 리부팅 전
 
 with st.sidebar:
     st.markdown("### 📊 황금후추 강의 분석")
@@ -3213,8 +3214,124 @@ def tab_experiments():
                 f"**{base[1]:,.0f}원**입니다. 실험 CPL이 이 범위보다 **낮으면 성공**, "
                 f"높으면 소재·타깃을 바꿔야 한다는 신호입니다.")
 
-    tab_brief, tab_new, tab_run, tab_log, tab_guide = st.tabs(
-        ["🎨 소재 브리프", "➕ 새 실험 등록", "📝 결과 입력", "📚 실험 기록", "📚 성장 가이드"])
+    (tab_brief, tab_new, tab_run, tab_log,
+     tab_month, tab_guide) = st.tabs(
+        ["🎨 소재 브리프", "➕ 새 실험 등록", "📝 결과 입력", "📚 실험 기록",
+         "📄 월간 리포트", "📚 성장 가이드"])
+
+    # ── 📄 월간 성과 리포트 (대표 보고용) ────────────────
+    with tab_month:
+        st.markdown("**대표님께 낼 이번 달 리포트를 한 장으로 자동 생성합니다.** "
+                    "지표 변화 · 실행한 실험 · 배운 점 · 다음 달 계획이 들어갑니다.")
+        perf = load_monthly_performance()
+        ad_m = load_ad_spend_monthly()
+        if perf.empty:
+            st.info("월별 성과 데이터가 없어 리포트를 만들 수 없습니다.")
+        else:
+            _ms = sorted(perf['month'].astype(str).unique())[::-1]
+            _msel2 = st.selectbox("보고할 달", _ms, key="rep_month",
+                                  format_func=lambda m: ganji.ym_label(m, with_ganji=False))
+            _cur = perf[perf['month'].astype(str) == _msel2]
+            _i = _ms.index(_msel2)
+            _prev_m = _ms[_i + 1] if _i + 1 < len(_ms) else None
+            _prv = perf[perf['month'].astype(str) == _prev_m] if _prev_m else pd.DataFrame()
+
+            def _d(cur, prev, unit="", pct=False):
+                if not prev:
+                    return "—"
+                _c = (cur - prev) / prev * 100
+                _s = "▲" if cur > prev else ("▼" if cur < prev else "—")
+                return f"{_s} {abs(_c):.0f}%"
+
+            _c_free = int(_cur['free_signups'].sum()) if not _cur.empty else 0
+            _c_paid = int(_cur['paid_orders'].sum()) if not _cur.empty else 0
+            _c_rev = int(_cur['revenue'].sum()) if not _cur.empty else 0
+            _p_free = int(_prv['free_signups'].sum()) if not _prv.empty else 0
+            _p_paid = int(_prv['paid_orders'].sum()) if not _prv.empty else 0
+            _p_rev = int(_prv['revenue'].sum()) if not _prv.empty else 0
+            _c_ad = int(ad_m[ad_m['month'].astype(str) == _msel2]['spend'].sum()) \
+                if not ad_m.empty else 0
+            _p_ad = int(ad_m[ad_m['month'].astype(str) == str(_prev_m)]['spend'].sum()) \
+                if (not ad_m.empty and _prev_m) else 0
+            _c_cv = _c_paid / _c_free * 100 if _c_free else 0
+            _p_cv = _p_paid / _p_free * 100 if _p_free else 0
+
+            _kpis = [
+                ("무료 모객", f"{_c_free:,}명", f"{_p_free:,}명" if _prev_m else "—",
+                 _d(_c_free, _p_free)),
+                ("유료 전환", f"{_c_paid:,}건", f"{_p_paid:,}건" if _prev_m else "—",
+                 _d(_c_paid, _p_paid)),
+                ("전환율", f"{_c_cv:.2f}%", f"{_p_cv:.2f}%" if _prev_m else "—",
+                 _d(_c_cv, _p_cv)),
+                ("매출", f"{_c_rev/1e8:.2f}억", f"{_p_rev/1e8:.2f}억" if _prev_m else "—",
+                 _d(_c_rev, _p_rev)),
+            ]
+            if _c_ad:
+                _kpis.append(("광고비", f"{_c_ad/1e4:,.0f}만원",
+                              f"{_p_ad/1e4:,.0f}만원" if _p_ad else "—",
+                              _d(_c_ad, _p_ad)))
+                _kpis.append(("ROAS", f"{_c_rev/_c_ad:.1f}배",
+                              f"{_p_rev/_p_ad:.1f}배" if _p_ad else "—",
+                              _d(_c_rev/_c_ad, _p_rev/_p_ad if _p_ad else 0)))
+
+            # 이번 달 실험
+            _exp_m, _learn = [], []
+            if not exps.empty:
+                _in = exps[exps['start'].astype(str).str[:7] == _msel2]
+                for _, e in _in.iterrows():
+                    _v = "—"
+                    if int(e['leads']) > 0 and base:
+                        _cplv = e['cpl']
+                        _v = ("🟢 성공" if _cplv <= base[1]
+                              else ("🟡 보통" if _cplv <= base[2] else "🔴 중단"))
+                    _exp_m.append({'product': e['product'], 'hook': e['hook'],
+                                   'budget': int(e['budget']), 'leads': int(e['leads']),
+                                   'cpl': e['cpl'], 'conv': int(e['conversions']),
+                                   'verdict': _v})
+                    if str(e['learning'] or '').strip():
+                        _learn.append(f"[{e['product']}] {e['learning']}")
+
+            # 다음 달 계획 = 전략 결론에서
+            _con2 = _strategy_conclusion()
+            _next = [(s['title'],
+                      re.sub(r'\*\*', '', s['why'])[:160],
+                      re.sub(r'\*\*', '', s['how'])[:160])
+                     for s in _con2.get('strategies', [])[:3]]
+
+            # 미리보기
+            st.divider()
+            st.markdown(f"#### 미리보기 — {ganji.ym_label(_msel2, with_ganji=False)}")
+            _kr = "".join(
+                f'<tr><td><b>{k}</b></td><td style="text-align:right">{c}</td>'
+                f'<td style="text-align:right;opacity:.6">{p}</td>'
+                f'<td style="text-align:right">{d}</td></tr>'
+                for k, c, p, d in _kpis)
+            st.markdown(
+                '<table class="gp-dtbl" style="width:100%;border-collapse:collapse;'
+                'font-size:13px"><thead><tr style="text-align:left"><th>지표</th>'
+                '<th style="text-align:right">이번 달</th>'
+                '<th style="text-align:right">전월</th>'
+                '<th style="text-align:right">증감</th></tr></thead>'
+                f'<tbody>{_kr}</tbody></table>', unsafe_allow_html=True)
+            if _exp_m:
+                st.markdown(f"**실험 {len(_exp_m)}건** · 배운 점 {len(_learn)}건")
+            else:
+                st.caption("이 달에 기록된 실험이 없습니다 — 실험을 등록하면 "
+                           "리포트에 자동으로 들어갑니다.")
+
+            try:
+                from pdf_report import generate_monthly_report
+                _pdf = generate_monthly_report(
+                    ganji.ym_label(_msel2, with_ganji=False), _kpis, _exp_m, _learn,
+                    _next,
+                    notes=["수치는 주문 원본 집계 기준입니다.",
+                           "다음 달 계획은 사이트의 전략 결론에서 자동 생성됩니다."])
+                st.download_button(
+                    "📄 월간 리포트 PDF 다운로드", _pdf,
+                    file_name=f"마케팅리포트_{_msel2}.pdf", mime="application/pdf",
+                    type="primary")
+            except Exception as _e:
+                st.error(f"PDF 생성 실패: {_e}")
 
     # ── 📚 마케터 성장 가이드 ────────────────────────────
     with tab_guide:

@@ -16,7 +16,7 @@ from reportlab.lib.styles import ParagraphStyle
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import (
-    BaseDocTemplate, PageTemplate, Frame, Paragraph, Spacer,
+    BaseDocTemplate, SimpleDocTemplate, PageTemplate, Frame, Paragraph, Spacer,
     Table, TableStyle, KeepTogether, Flowable,
 )
 
@@ -610,3 +610,110 @@ def _table_style():
         ("TOPPADDING", (0, 0), (-1, -1), 5), ("BOTTOMPADDING", (0, 0), (-1, -1), 5),
         ("LEFTPADDING", (0, 0), (-1, -1), 7), ("RIGHTPADDING", (0, 0), (-1, -1), 7),
     ])
+
+
+# ══════════════ 월간 마케팅 리포트 (대표 보고용 1장) ══════════════
+def generate_monthly_report(month_label, kpis, experiments, learnings,
+                            next_actions, notes=None):
+    """마케터가 매달 대표에게 내는 성과 리포트 1장.
+
+    month_label : "2026년 8월" 등
+    kpis        : [(지표, 이번달, 전월, 증감문구)] — 문자열로 준비해 전달
+    experiments : [{'product','hook','budget','leads','cpl','conv','verdict'}]
+    learnings   : [str]  이번 달 배운 점
+    next_actions: [(제목, 근거, 실행)] 다음 달 계획
+    notes       : [str]  참고/한계 (선택)
+    """
+    _register_fonts()
+    styles = _styles()
+    buf = io.BytesIO()
+    doc = SimpleDocTemplate(
+        buf, pagesize=A4,
+        leftMargin=16*mm, rightMargin=16*mm, topMargin=14*mm, bottomMargin=14*mm,
+        title=f"{month_label} 마케팅 리포트")
+    W = doc.width
+    st = []
+
+    # 표지 머리
+    st.append(Paragraph(f"{month_label} 마케팅 성과 리포트", styles["title"]))
+    st.append(Paragraph(f"황금후추 강의 마케팅 · 작성일 {_date.today()}", styles["subtitle"]))
+    st.append(Spacer(1, 7*mm))
+
+    # 1. 주요 지표
+    st.append(_section_header(1, "이번 달 주요 지표", styles, W))
+    st.append(Spacer(1, 3*mm))
+    if kpis:
+        rows = [[Paragraph("지표", styles["cell_h"]),
+                 Paragraph("이번 달", styles["cell_h"]),
+                 Paragraph("전월", styles["cell_h"]),
+                 Paragraph("증감", styles["cell_h"])]]
+        for k, cur, prev, delta in kpis:
+            rows.append([Paragraph(_clean(k), styles["cell_b"]),
+                         Paragraph(_clean(cur), styles["cell_r"]),
+                         Paragraph(_clean(prev), styles["cell_r"]),
+                         Paragraph(_clean(delta), styles["cell_r"])])
+        t = Table(rows, colWidths=[W*0.34, W*0.22, W*0.22, W*0.22])
+        t.setStyle(_table_style())
+        st.append(t)
+    else:
+        st.append(Paragraph("데이터가 없습니다.", styles["body_s"]))
+    st.append(Spacer(1, 6*mm))
+
+    # 2. 실험 결과
+    st.append(_section_header(2, "이번 달 실행한 실험", styles, W))
+    st.append(Spacer(1, 3*mm))
+    if experiments:
+        rows = [[Paragraph(h, styles["cell_h"]) for h in
+                 ("강의", "소재·후킹", "예산", "리드", "리드단가", "전환", "판정")]]
+        for e in experiments:
+            rows.append([
+                Paragraph(_clean(e.get("product")), styles["cell"]),
+                Paragraph(_clean(e.get("hook")), styles["cell"]),
+                Paragraph(f"{_fmt(e.get('budget', 0)/1e4)}만", styles["cell_r"]),
+                Paragraph(f"{_fmt(e.get('leads', 0))}", styles["cell_r"]),
+                Paragraph(f"{_fmt(e.get('cpl', 0))}원", styles["cell_r"]),
+                Paragraph(f"{_fmt(e.get('conv', 0))}건", styles["cell_r"]),
+                Paragraph(_clean(e.get("verdict")), styles["cell_b"]),
+            ])
+        t = Table(rows, colWidths=[W*0.11, W*0.28, W*0.12, W*0.11, W*0.14, W*0.11, W*0.13])
+        t.setStyle(_table_style())
+        st.append(t)
+    else:
+        st.append(Paragraph(
+            "이번 달 기록된 실험이 없습니다. 실험 일지에 등록하면 이 자리에 "
+            "자동으로 정리됩니다.", styles["body_s"]))
+    st.append(Spacer(1, 6*mm))
+
+    # 3. 배운 점
+    st.append(_section_header(3, "배운 점", styles, W))
+    st.append(Spacer(1, 3*mm))
+    if learnings:
+        for i, l in enumerate(learnings, 1):
+            st.append(Paragraph(f"{i}. {_clean(l)}", styles["bullet"]))
+            st.append(Spacer(1, 1.5*mm))
+    else:
+        st.append(Paragraph("아직 회고가 기록되지 않았습니다.", styles["body_s"]))
+    st.append(Spacer(1, 6*mm))
+
+    # 4. 다음 달 계획
+    st.append(_section_header(4, "다음 달 실행 계획", styles, W))
+    st.append(Spacer(1, 3*mm))
+    if next_actions:
+        for i, (title, why, how) in enumerate(next_actions, 1):
+            st.append(Paragraph(f"{i}. {_clean(title)}", styles["h3"]))
+            if why:
+                st.append(Paragraph(f"근거 — {_clean(why)}", styles["body"]))
+            if how:
+                st.append(Paragraph(f"실행 — {_clean(how)}", styles["body"]))
+            st.append(Spacer(1, 3*mm))
+    else:
+        st.append(Paragraph("계획이 아직 없습니다.", styles["body_s"]))
+
+    if notes:
+        st.append(Spacer(1, 4*mm))
+        for n in notes:
+            st.append(Paragraph(f"※ {_clean(n)}", styles["body_s"]))
+
+    doc.build(st)
+    buf.seek(0)
+    return buf.getvalue()
