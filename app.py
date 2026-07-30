@@ -154,7 +154,7 @@ def _kpi_band(items):
 
 # ── 사이드바 — 캐시 새로고침 ─────────────────────────────────────
 
-APP_VERSION = "v4.53"  # 배포 반영 확인용 — 화면 버전이 다르면 아직 리부팅 전
+APP_VERSION = "v4.54"  # 배포 반영 확인용 — 화면 버전이 다르면 아직 리부팅 전
 
 with st.sidebar:
     st.markdown("### 📊 황금후추 강의 분석")
@@ -3213,8 +3213,123 @@ def tab_experiments():
                 f"**{base[1]:,.0f}원**입니다. 실험 CPL이 이 범위보다 **낮으면 성공**, "
                 f"높으면 소재·타깃을 바꿔야 한다는 신호입니다.")
 
-    tab_brief, tab_new, tab_run, tab_log = st.tabs(
-        ["🎨 소재 브리프", "➕ 새 실험 등록", "📝 결과 입력", "📚 실험 기록"])
+    tab_brief, tab_new, tab_run, tab_log, tab_guide = st.tabs(
+        ["🎨 소재 브리프", "➕ 새 실험 등록", "📝 결과 입력", "📚 실험 기록", "📚 성장 가이드"])
+
+    # ── 📚 마케터 성장 가이드 ────────────────────────────
+    with tab_guide:
+        st.markdown("**이 사이트로 어떻게 일하고 성장하는가.** 지표를 읽고 → 행동으로 "
+                    "옮기고 → 결과를 회고하는 순서를 정리했습니다.")
+
+        with st.expander("🗓 주간 루틴 — 이 순서대로만 하시면 됩니다", expanded=True):
+            _routine = [
+                ("월 · 방향 잡기 (15분)", "🧭 종합 보고 → 최종 전략 결론",
+                 "이번 주에 건드릴 **강의 1개만** 고릅니다. 여러 개를 동시에 바꾸면 "
+                 "무엇이 효과였는지 알 수 없습니다."),
+                ("화 · 소재 기획 (30분)", "🧪 실험 일지 → 🎨 소재 브리프",
+                 "고른 강의의 브리프를 뽑아 후킹 3안을 정합니다. "
+                 "**검증된 문구의 변주**로 시작하는 게 가장 안전합니다."),
+                ("수 · 실험 등록 후 집행", "🧪 실험 일지 → ➕ 새 실험 등록",
+                 "**가설을 먼저 적고** 광고를 겁니다. 가설이 없으면 결과가 나와도 "
+                 "배울 게 없습니다."),
+                ("금 · 중간 점검 (20분)", "🧪 실험 일지 → 📝 결과 입력",
+                 "리드 수를 넣으면 CPL이 자동 판정됩니다. 🔴가 뜨면 **주말 넘기지 말고 중단**."),
+                ("월말 · 회고와 보고", "🧪 실험 일지 → 📚 실험 기록 / 📑 경영진 보고",
+                 "배운 점을 적고, 보고용 요약을 복사해 대표님께 공유합니다."),
+            ]
+            for _t, _where, _what in _routine:
+                st.markdown(
+                    f'<div style="margin-bottom:9px">'
+                    f'<b>{_t}</b> <span style="opacity:.55;font-size:12px">— {_where}</span><br>'
+                    f'<span style="font-size:13px;opacity:.85">{_md_bold(_what)}</span></div>',
+                    unsafe_allow_html=True)
+
+        with st.expander("📖 용어 — 이 사이트에 나오는 숫자 읽는 법"):
+            _terms = [
+                ("CPL (리드 단가)", "무료 신청 1건을 얻는 데 쓴 광고비. **낮을수록 좋음**.",
+                 f"우리 기준선 {base[1]:,.0f}원" if base else "광고비 ÷ 무료 신청 수"),
+                ("CVR (전환율)", "무료 신청자 중 **유료 결제까지 간 비율**. 후킹의 '질'.",
+                 "전환 ÷ 리드 × 100"),
+                ("ROAS", "광고비 1원이 만든 매출. **2배 이상이면 통상 안전**.",
+                 "매출 ÷ 광고비"),
+                ("객단가 (AOV)", "수강생 1명이 낸 평균 금액. 높을수록 프리미엄 라인.",
+                 "매출 ÷ 수강생"),
+                ("수확체감", "광고비를 늘릴수록 **효율이 떨어지는 현상**. "
+                             "'많이 쓸수록 좋다'가 틀린 이유.",
+                 "광고비↑ → ROAS↓ 관계"),
+                ("볼륨 자석 / 알짜", "많이 모으지만 전환이 낮은 후킹 vs "
+                                     "적게 모아도 잘 파는 후킹. **역할이 다름**.",
+                 "모객량 × 전환율로 판단"),
+                ("자기완결형 / 관문형", "특강이 그 강의 판매로 직결되는 유형 vs "
+                                        "다른 강의로 고객을 넘겨주는 유형.",
+                 "self 비율 60% 이상이면 자기완결형"),
+            ]
+            _tr = "".join(
+                f'<tr><td style="white-space:nowrap"><b>{a}</b></td>'
+                f'<td>{_md_bold(b2)}</td>'
+                f'<td style="opacity:.6;font-size:12px;white-space:nowrap">{c2}</td></tr>'
+                for a, b2, c2 in _terms)
+            st.markdown(
+                '<table class="gp-dtbl" style="width:100%;border-collapse:collapse;'
+                'font-size:13px"><thead><tr style="text-align:left"><th>용어</th>'
+                '<th>뜻</th><th>계산</th></tr></thead>'
+                f'<tbody>{_tr}</tbody></table>', unsafe_allow_html=True)
+
+        with st.expander("🧭 숫자가 이러면 이렇게 — 판단 기준표"):
+            _rules = [
+                ("CPL이 기준선보다 낮다", "🟢", "예산 확대. 단, 한 번에 2배 이상 올리지 말 것"),
+                ("CPL은 낮은데 전환이 안 난다", "🟡",
+                 "리드는 싸게 왔지만 관심도가 낮은 타깃. 후킹은 유지하고 **타깃을 좁히세요**"),
+                ("CPL이 높은데 전환은 좋다", "🟡",
+                 "비싸도 좋은 고객. 객단가가 높은 강의라면 **유지**할 만합니다"),
+                ("CPL도 전환도 나쁘다", "🔴", "즉시 중단. 후킹부터 다시"),
+                ("모객은 느는데 매출이 안 는다", "🟡",
+                 "**수확체감** 또는 뒤 단계 이탈. 강의별 상세에서 단계 전환을 확인하세요"),
+                ("ROAS가 갑자기 떨어졌다", "🟡",
+                 "광고비를 급히 늘렸는지 확인. 개강 시점과 어긋나면 자연스러운 변동일 수 있음"),
+            ]
+            _rr = "".join(
+                f'<tr><td style="white-space:nowrap">{ic}</td><td><b>{a}</b></td>'
+                f'<td>{_md_bold(c3)}</td></tr>' for a, ic, c3 in _rules)
+            st.markdown(
+                '<table class="gp-dtbl" style="width:100%;border-collapse:collapse;'
+                'font-size:13px"><thead><tr style="text-align:left"><th></th>'
+                '<th>상황</th><th>해야 할 일</th></tr></thead>'
+                f'<tbody>{_rr}</tbody></table>', unsafe_allow_html=True)
+
+        with st.expander("⚠️ 초보가 자주 하는 실수"):
+            for _m in [
+                "**한 번에 여러 개를 바꾼다** — 후킹·타깃·예산을 동시에 바꾸면 "
+                "무엇이 효과였는지 영원히 알 수 없습니다. 하나씩.",
+                "**결과가 나쁘면 기록하지 않는다** — 실패한 실험이 가장 값진 자산입니다. "
+                "'이건 안 된다'를 아는 게 곧 실력입니다.",
+                "**하루 이틀 보고 판단한다** — 최소 1~2주는 돌려야 의미 있는 숫자가 나옵니다.",
+                "**모객 수만 본다** — 많이 모아도 전환이 없으면 비용만 씁니다. "
+                "항상 CPL과 전환율을 **함께** 보세요.",
+                "**대표님께 숫자만 보고한다** — '무엇을 했고 → 결과가 어땠고 → "
+                "무엇을 배웠는지'를 함께 말해야 신뢰가 쌓입니다.",
+            ]:
+                st.markdown(f'<div style="font-size:13px;margin-bottom:7px">· '
+                            f'{_md_bold(_m)}</div>', unsafe_allow_html=True)
+
+        with st.expander("🚀 지금 가장 추천하는 첫 실험"):
+            _pb2 = _course_playbook()
+            _cand = [x for x in _pb2 if x['roas'] and x['adshare'] is not None]
+            if _cand:
+                _t = max(_cand, key=lambda x: x['roas'] / max(x['adshare'], 1))
+                _msg2 = (f"**{_t['product']} 광고 확대 실험**\n\n"
+                         f"· **근거**: 광고 ROAS **{_t['roas']:.1f}배**로 높은데 "
+                         f"광고비 비중은 **{_t['adshare']:.0f}%**뿐입니다\n")
+                if base:
+                    _msg2 += (f"· **가설**: 예산을 늘려도 CPL이 기준선"
+                              f"(**{base[1]:,.0f}원**) 아래로 유지될 것이다\n"
+                              f"· **성공 기준**: CPL {base[1]:,.0f}원 이하 유지 · "
+                              f"{base[2]:,.0f}원 초과 시 중단\n")
+                _msg2 += "· **규모**: 100만~300만원 / 2~4주로 작게 시작"
+                st.markdown(_msg2)
+                st.caption("이 실험이 첫 시작으로 좋은 이유 — 이미 효율이 검증된 곳에 "
+                           "예산을 더 쓰는 것이라 **실패 확률이 가장 낮고**, 성공하면 "
+                           "숫자로 명확히 보여줄 수 있습니다.")
 
     # ── 🎨 소재 브리프 생성기 ────────────────────────────
     with tab_brief:
