@@ -984,10 +984,12 @@ def load_webinar_hook_ad() -> pd.DataFrame:
     leads = 메타 전환(0원강의 신청). 파생: ctr·cvr·cpl.
     """
     df = _read_csv(WEBINAR_HOOK_AD_PATH,
-                   ['period', 'product', 'hook', 'creatives',
+                   ['period', 'product', 'hook', 'format', 'creatives',
                     'spend', 'impressions', 'clicks', 'leads'])
     if df.empty:
         return df
+    if 'format' not in df.columns:       # 구버전 파일 호환
+        df['format'] = '기타'
     for c in ['creatives', 'spend', 'impressions', 'clicks', 'leads']:
         df[c] = pd.to_numeric(df[c], errors='coerce').fillna(0).astype(int)
     df['ctr'] = (df['clicks'] / df['impressions'] * 100).where(df['impressions'] > 0, 0.0)

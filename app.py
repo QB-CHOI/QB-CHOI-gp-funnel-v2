@@ -154,7 +154,7 @@ def _kpi_band(items):
 
 # ── 사이드바 — 캐시 새로고침 ─────────────────────────────────────
 
-APP_VERSION = "v4.52"  # 배포 반영 확인용 — 화면 버전이 다르면 아직 리부팅 전
+APP_VERSION = "v4.53"  # 배포 반영 확인용 — 화면 버전이 다르면 아직 리부팅 전
 
 with st.sidebar:
     st.markdown("### 📊 황금후추 강의 분석")
@@ -3213,7 +3213,106 @@ def tab_experiments():
                 f"**{base[1]:,.0f}원**입니다. 실험 CPL이 이 범위보다 **낮으면 성공**, "
                 f"높으면 소재·타깃을 바꿔야 한다는 신호입니다.")
 
-    tab_new, tab_run, tab_log = st.tabs(["➕ 새 실험 등록", "📝 결과 입력", "📚 실험 기록"])
+    tab_brief, tab_new, tab_run, tab_log = st.tabs(
+        ["🎨 소재 브리프", "➕ 새 실험 등록", "📝 결과 입력", "📚 실험 기록"])
+
+    # ── 🎨 소재 브리프 생성기 ────────────────────────────
+    with tab_brief:
+        st.markdown("**만들 소재의 기획서를 데이터에서 자동으로 뽑습니다.** "
+                    "검증된 후킹·형식·시기·타깃·목표 CPL을 조합해, 무엇을 만들지 "
+                    "막막하지 않게 해줍니다.")
+        pb0 = _course_playbook()
+        if not pb0:
+            st.info("강의 집계 데이터가 없어 브리프를 만들 수 없습니다.")
+        else:
+            _bp = st.selectbox("어떤 강의의 소재를 만드나요?",
+                               [b['product'] for b in pb0], key="brief_prod")
+            b = next(x for x in pb0 if x['product'] == _bp)
+            wha = load_webinar_hook_ad()
+            region = load_region_signups()
+
+            _parts = []
+            # 1) 후킹 각도
+            if b['hooks']:
+                _vol = max(b['hooks'], key=lambda h: h['signups'])
+                _cv = b['hooks'][0]
+                _parts.append(("① 후킹 각도 (검증된 문구 기반)",
+                               f"· 모객용 주력: **{_vol['topic']}** "
+                               f"— 실적 {_vol['signups']:,}명 모객 / 전환 {_vol['conv']:.1f}%\n"
+                               f"· 전환용 보조: **{_cv['topic']}** "
+                               f"— 전환 {_cv['conv']:.1f}%로 최고\n"
+                               f"· 제작 방향: 새 문구를 처음부터 만들기보다 "
+                               f"**위 문구의 변주**(같은 약속, 다른 표현·사례)로 3안을 만들어 "
+                               f"동시 테스트하세요."))
+            # 2) 형식
+            if not wha.empty and 'format' in wha.columns:
+                _f = wha[wha['leads'] > 0].groupby('format').agg(
+                    s=('spend', 'sum'), l=('leads', 'sum'))
+                if len(_f) >= 2:
+                    _f['cpl'] = _f['s'] / _f['l']
+                    _bf = _f['cpl'].idxmin()
+                    _parts.append(("② 소재 형식",
+                                   f"· **{_bf} 우선** — 리드 단가 {_f.loc[_bf,'cpl']:,.0f}원으로 "
+                                   f"가장 저렴 (타 형식 대비 "
+                                   f"{(_f['cpl'].max()/_f['cpl'].min()-1)*100:.0f}% 우위)\n"
+                                   f"· 편수: 같은 후킹으로 **3~5개** 만들어 함께 돌린 뒤 "
+                                   f"이긴 소재에 예산을 몰아주세요."))
+            # 3) 타깃
+            _tg = []
+            if not region.empty:
+                _tot = int(region['signups'].sum())
+                _cap = int(region[region['region'].isin(CAPITAL_REGIONS)]['signups'].sum())
+                if _tot:
+                    _tg.append(f"지역: **수도권 {_cap/_tot*100:.0f}%** 집중 "
+                               f"(서울·경기·인천 우선, 예산 여유 시 광역시 확장)")
+            if b['hooks'] and b['hooks'][0].get('self_share'):
+                _sh = b['hooks'][0]['self_share']
+                _tg.append("성격: **자기완결형** — 특강→해당 강의 구매로 바로 이어짐"
+                           if _sh >= 60 else
+                           "성격: **관문형** — 특강 참여자 상당수가 다른 강의로 이동하므로 "
+                           "랜딩에 다른 강의 동선도 함께 노출")
+            if _tg:
+                _parts.append(("③ 타깃·노출", "\n".join("· " + t for t in _tg)))
+            # 4) 시기
+            if b['season']:
+                s = b['season']
+                _parts.append(("④ 집행 시기",
+                               f"· 모객 강한 시기: **{s['vol']}"
+                               f"({ganji.ELEMENT_HANJA.get(s['vol'],'')})월** "
+                               f"(월평균 {s['vol_n']:,.0f}명) → 이때 광고비 집중\n"
+                               f"· 전환 강한 시기: **{s['cv']}"
+                               f"({ganji.ELEMENT_HANJA.get(s['cv'],'')})월** "
+                               f"(전환 {s['cv_v']:.1f}%) → 이때 개강·마감 배치"))
+            # 5) 예산·목표
+            if base:
+                _parts.append(("⑤ 예산·성공 기준",
+                               f"· 테스트 예산: **100만~300만원 / 2~4주** "
+                               f"(작게 시작해 이긴 소재만 확대)\n"
+                               f"· 목표 CPL: **{base[1]:,.0f}원 이하** "
+                               f"(최고 성과 {base[0]:,.0f}원)\n"
+                               f"· 중단 기준: CPL **{base[2]:,.0f}원 초과** 시 즉시 중단·재검토"))
+            # 6) 주의
+            _cau = ["과장·단정 표현(수익 보장 등)은 쓰지 않습니다 — 광고 심의·신뢰 문제",
+                    "한 번에 하나만 바꿔서 테스트하세요(후킹·형식·타깃 동시 변경 시 원인 불명)"]
+            if b['bottleneck'] and b['bottleneck']['rate'] > 0.5:
+                _cau.append(f"이 강의는 {b['bottleneck']['from']}→{b['bottleneck']['to']} "
+                            f"전환이 {b['bottleneck']['rate']:.0f}%로 낮습니다 — "
+                            "모객을 늘려도 뒤에서 새므로 후속 안내도 함께 준비하세요")
+            _parts.append(("⑥ 주의", "\n".join("· " + c for c in _cau)))
+
+            for _t, _v in _parts:
+                st.markdown(f"**{_t}**")
+                st.markdown(
+                    f'<div style="font-size:13px;line-height:1.75;white-space:pre-wrap;'
+                    f'opacity:.9;margin-bottom:10px">{_md_bold(_v)}</div>',
+                    unsafe_allow_html=True)
+
+            _copy = f"[{_bp} 소재 브리프]\n" + "\n\n".join(
+                f"{t}\n{v}".replace('**', '') for t, v in _parts)
+            with st.expander("📋 텍스트로 복사하기 (디자이너·외주 전달용)"):
+                st.code(_copy, language=None)
+
+    tab_new_placeholder = None
 
     # ── 새 실험 등록 ────────────────────────────────────
     with tab_new:
@@ -3459,6 +3558,12 @@ def _course_playbook() -> list:
                                'diff': float(n2.iloc[0]['diff_pct'])}
         books.append(b)
     return books
+
+
+def _md_bold(s) -> str:
+    """마크다운 **굵게**를 <b>로 변환 (st.markdown HTML 렌더용)."""
+    _p = str(s).split('**')
+    return ''.join(x if i % 2 == 0 else f'<b>{x}</b>' for i, x in enumerate(_p))
 
 
 def _strategy_conclusion() -> dict:
@@ -4000,6 +4105,41 @@ def tab_marketing():
                      f"계열로 예산을 더 싣고, 고비용 **{_worst['hook']}**은 소재를 교체하거나 축소하세요. "
                      "※ 이 값은 마케팅시트 스냅샷 기준(단일 기간)이므로 추세는 자료가 누적되면 갱신됩니다.")
             st.info(_msg)
+
+            # 소재 형식(동영상 vs 이미지) 효율 — 무엇을 만들지의 근거
+            if 'format' in wha.columns and wha['format'].nunique() > 1:
+                _fm = wha.groupby('format').agg(
+                    n=('creatives', 'sum'), spend=('spend', 'sum'),
+                    leads=('leads', 'sum'), imp=('impressions', 'sum'),
+                    clk=('clicks', 'sum'))
+                _fm = _fm[_fm['leads'] > 0]
+                if len(_fm) >= 2:
+                    _fm['cpl'] = _fm['spend'] / _fm['leads']
+                    _fm['ctr'] = _fm['clk'] / _fm['imp'] * 100
+                    _bf = _fm['cpl'].idxmin()
+                    _wf = _fm['cpl'].idxmax()
+                    _gap = (_fm.loc[_wf, 'cpl'] / _fm.loc[_bf, 'cpl'] - 1) * 100
+                    st.markdown("**🎬 소재 형식별 효율 — 무엇을 만들어야 하나**")
+                    _fr = "".join(
+                        f'<tr><td><b>{i}</b></td>'
+                        f'<td style="text-align:right">{int(r["n"])}개</td>'
+                        f'<td style="text-align:right">{r["spend"]/1e4:,.0f}만원</td>'
+                        f'<td style="text-align:right">{int(r["leads"]):,}건</td>'
+                        f'<td style="text-align:right">{r["cpl"]:,.0f}원</td>'
+                        f'<td style="text-align:right">{r["ctr"]:.1f}%</td></tr>'
+                        for i, r in _fm.sort_values('cpl').iterrows())
+                    st.markdown(
+                        '<table class="gp-dtbl" style="width:100%;border-collapse:collapse;'
+                        'font-size:13px"><thead><tr style="text-align:left"><th>형식</th>'
+                        '<th style="text-align:right">소재수</th>'
+                        '<th style="text-align:right">광고비</th>'
+                        '<th style="text-align:right">리드</th>'
+                        '<th style="text-align:right">CPL</th>'
+                        '<th style="text-align:right">CTR</th></tr></thead>'
+                        f'<tbody>{_fr}</tbody></table>', unsafe_allow_html=True)
+                    st.success(f"🎬 **{_bf}이 {_wf}보다 리드를 {_gap:.0f}% 싸게** 데려옵니다"
+                               f"({_fm.loc[_bf,'cpl']:,.0f}원 vs {_fm.loc[_wf,'cpl']:,.0f}원). "
+                               f"→ 신규 소재는 **{_bf} 우선**으로 제작하세요.")
         st.divider()
 
     # ══ 강의 ROI 분석 (강의 집계 보고서 기반) ════════════════════
