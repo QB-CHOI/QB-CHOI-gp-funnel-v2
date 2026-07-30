@@ -102,6 +102,10 @@ REGION_COHORT_TOPCITY_PATH = "data/region_cohort_topcity.csv"
 WEBINAR_TOPICS_PATH = "data/webinar_topics.csv"
 WEBINAR_HOOK_AD_PATH = "data/webinar_hook_ad.csv"
 OHAENG_PERIOD_PATH = "data/ohaeng_period.csv"
+EXPERIMENTS_PATH = "data/experiments.csv"
+EXPERIMENTS_COLS = ['id', 'created', 'start', 'end', 'product', 'hook', 'channel',
+                    'hypothesis', 'budget', 'status',
+                    'leads', 'conversions', 'revenue', 'learning']
 WEBINAR_CONV_PATH = "data/webinar_conversion.csv"
 
 # 데이터 소스 레지스트리 (신선도 추적)
@@ -990,6 +994,45 @@ def load_webinar_hook_ad() -> pd.DataFrame:
     df['cvr'] = (df['leads'] / df['clicks'] * 100).where(df['clicks'] > 0, 0.0)
     df['cpl'] = (df['spend'] / df['leads']).where(df['leads'] > 0, 0.0)
     return df
+
+
+@st.cache_data(ttl=300)
+def load_experiments() -> pd.DataFrame:
+    """마케팅 실험 일지 — 무엇을 왜 했고 결과가 어땠는지 기록.
+
+    기록하지 않은 실험은 학습으로 남지 않는다. 실행(가설·예산)과
+    결과(모객·전환·매출)를 한 행에 모아 회고와 대표 보고에 쓴다.
+    """
+    df = _read_csv(EXPERIMENTS_PATH, EXPERIMENTS_COLS)
+    if df.empty:
+        return df
+    for c in ['budget', 'leads', 'conversions', 'revenue']:
+        df[c] = pd.to_numeric(df[c], errors='coerce').fillna(0).astype(int)
+    df['cpl'] = (df['budget'] / df['leads']).where(df['leads'] > 0, 0.0)
+    df['cvr'] = (df['conversions'] / df['leads'] * 100).where(df['leads'] > 0, 0.0)
+    df['roas'] = (df['revenue'] / df['budget']).where(df['budget'] > 0, 0.0)
+    return df.sort_values('start', ascending=False).reset_index(drop=True)
+
+
+def save_experiment(row: dict):
+    """실험 저장/수정 (id가 같으면 갱신)."""
+    df = _read_csv(EXPERIMENTS_PATH, EXPERIMENTS_COLS)
+    if not df.empty and 'id' in df.columns:
+        df = df[df['id'].astype(str) != str(row['id'])]
+    new = pd.DataFrame([{c: row.get(c, '') for c in EXPERIMENTS_COLS}])
+    combined = pd.concat([df, new], ignore_index=True)
+    _write_csv(EXPERIMENTS_PATH, combined, f"실험 일지 저장: {row.get('id')}")
+    load_experiments.clear()
+
+
+def delete_experiment(exp_id: str):
+    """실험 삭제."""
+    df = _read_csv(EXPERIMENTS_PATH, EXPERIMENTS_COLS)
+    if df.empty:
+        return
+    df = df[df['id'].astype(str) != str(exp_id)]
+    _write_csv(EXPERIMENTS_PATH, df, f"실험 일지 삭제: {exp_id}")
+    load_experiments.clear()
 
 
 @st.cache_data(ttl=3600)

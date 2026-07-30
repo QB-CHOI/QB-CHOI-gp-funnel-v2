@@ -27,6 +27,7 @@ from github_store import (
     load_region_cohort_detail, load_region_cohort_topcity,
     load_webinar_topics, load_webinar_conversion, load_webinar_hook_ad,
     load_ohaeng_period,
+    load_experiments, save_experiment, delete_experiment,
     load_data_sources, load_stage_timeline,
     load_adspend, save_adspend, delete_adspend_row,
     load_content, save_content, delete_content_row,
@@ -153,7 +154,7 @@ def _kpi_band(items):
 
 # ── 사이드바 — 캐시 새로고침 ─────────────────────────────────────
 
-APP_VERSION = "v4.51"  # 배포 반영 확인용 — 화면 버전이 다르면 아직 리부팅 전
+APP_VERSION = "v4.52"  # 배포 반영 확인용 — 화면 버전이 다르면 아직 리부팅 전
 
 with st.sidebar:
     st.markdown("### 📊 황금후추 강의 분석")
@@ -364,10 +365,10 @@ def main():
     st.title("📊 황금후추 강의 분석")
 
     (tab_ov, tab1, tab2, tab3, tab4, tab5, tab_drill, tab_prd, tab_cust, tab9, tab10,
-     tab6, tab7, tab8) = st.tabs([
+     tab_exp, tab6, tab7, tab8) = st.tabs([
         "🧭 종합 보고", "📸 오늘 입력", "📊 현황", "📋 전환 분석", "📈 추이 그래프",
         "🎓 강의 분석", "🔎 강의별 상세", "📅 기간별 분석", "👥 고객 분석",
-        "📢 마케팅 분석", "📍 지역 분석",
+        "📢 마케팅 분석", "📍 지역 분석", "🧪 실험 일지",
         "📑 경영진 보고", "⚙️ 채팅방 설정", "🗂️ 데이터 관리",
     ])
 
@@ -393,6 +394,8 @@ def main():
         tab_marketing()
     with tab10:
         tab_region()
+    with tab_exp:
+        tab_experiments()
     with tab6:
         tab_report()
     with tab7:
@@ -3161,6 +3164,204 @@ def _ad_budget_diagnosis(camp) -> list:
         out.append({'product': p, 'ad': ad, 'share': share, 'roas': roas,
                     'corr': corr, 'saturated': sat, 'rec': rec, 'why': why})
     return out
+
+
+def _cpl_baseline():
+    """검증된 후킹 소재의 리드 단가(CPL) 기준선 — 실험 결과 판정용.
+
+    (최저, 평균, 최고) 원. 데이터가 없으면 None.
+    """
+    w = load_webinar_hook_ad()
+    if w.empty:
+        return None
+    p = w[w['leads'] > 0]
+    if p.empty:
+        return None
+    avg = p['spend'].sum() / p['leads'].sum()
+    return float(p['cpl'].min()), float(avg), float(p['cpl'].max())
+
+
+def tab_experiments():
+    st.header("🧪 실험 일지")
+    st.caption("실행한 마케팅을 **가설 → 결과 → 배운 점**으로 남깁니다. "
+               "기록하지 않은 실험은 학습으로 남지 않습니다. "
+               "쌓인 기록은 그대로 대표님 보고 근거가 됩니다.")
+
+    exps = load_experiments()
+    base = _cpl_baseline()
+
+    # ── 요약 KPI ────────────────────────────────────────
+    if not exps.empty:
+        _done = exps[exps['status'] == '완료']
+        _run = exps[exps['status'] == '진행중']
+        _tot_b = int(exps['budget'].sum())
+        _tot_l = int(exps['leads'].sum())
+        _avg_cpl = _tot_b / _tot_l if _tot_l else 0
+        _kpi_band([
+            ("🧪 누적 실험", f"{len(exps)}<small>건</small>",
+             f"진행중 {len(_run)} · 완료 {len(_done)}"),
+            ("💸 집행 예산", f"{_tot_b/1e4:,.0f}<small>만원</small>", "실험 합계"),
+            ("🎣 확보 리드", f"{_tot_l:,}<small>건</small>",
+             f"평균 CPL {_avg_cpl:,.0f}원" if _tot_l else "—"),
+            ("📚 배운 점", f"{int((exps['learning'].astype(str).str.len() > 1).sum())}"
+                          f"<small>건</small>", "회고 기록"),
+        ])
+
+    if base:
+        st.info(f"📏 **판정 기준선** — 지금까지 검증된 후킹 소재의 리드 단가는 "
+                f"**{base[0]:,.0f}원(최저) ~ {base[2]:,.0f}원(최고)**, 평균 "
+                f"**{base[1]:,.0f}원**입니다. 실험 CPL이 이 범위보다 **낮으면 성공**, "
+                f"높으면 소재·타깃을 바꿔야 한다는 신호입니다.")
+
+    tab_new, tab_run, tab_log = st.tabs(["➕ 새 실험 등록", "📝 결과 입력", "📚 실험 기록"])
+
+    # ── 새 실험 등록 ────────────────────────────────────
+    with tab_new:
+        st.markdown("**실행 전에 가설부터 적습니다.** 왜 될 거라고 보는지 먼저 쓰면, "
+                    "결과가 나왔을 때 무엇을 배웠는지가 분명해집니다.")
+        pb = _course_playbook()
+        _prods = [b['product'] for b in pb] or ['사주', '타로', '부동산', '빌딩']
+        with st.form("exp_new"):
+            c1, c2 = st.columns(2)
+            with c1:
+                e_prod = st.selectbox("강의", _prods)
+                e_hook = st.text_input("후킹·소재",
+                                       placeholder="예) 재물운 투자법 — 영상 A안")
+                e_ch = st.selectbox("채널", ["메타", "인스타", "유튜브", "카카오",
+                                             "틱톡", "문자", "오가닉", "기타"])
+            with c2:
+                e_start = st.date_input("시작일", value=date.today())
+                e_end = st.date_input("종료(예정)일", value=date.today() + timedelta(days=14))
+                e_budget = st.number_input("예산(원)", min_value=0, step=100000, value=1000000)
+            # 선택한 강의의 검증된 후킹을 힌트로
+            _hint = next((b for b in pb if b['product'] == e_prod), None)
+            if _hint and _hint.get('hooks'):
+                _h = _hint['hooks'][0]
+                _v = max(_hint['hooks'], key=lambda x: x['signups'])
+                st.caption(f"💡 {e_prod} 참고 — 모객 1위 **{_v['topic']}**"
+                           f"({_v['signups']:,}명·전환 {_v['conv']:.1f}%) · "
+                           f"전환 1위 **{_h['topic']}**({_h['conv']:.1f}%)")
+            e_hyp = st.text_area(
+                "가설 — 왜 될 거라고 보는가",
+                placeholder="예) 타로는 ROAS 17.4배인데 광고비 비중이 5%뿐이다. "
+                            "예산을 2배로 늘려도 CPL이 기준선(14,000원) 아래로 유지될 것이다.",
+                height=90)
+            if st.form_submit_button("실험 등록", type="primary"):
+                if not e_hook.strip() or not e_hyp.strip():
+                    st.error("후킹·소재와 가설은 반드시 적어주세요. 가설 없는 실험은 "
+                             "결과가 나와도 배울 게 없습니다.")
+                else:
+                    _eid = f"{e_start}-{e_prod}-{str(abs(hash(e_hook)))[:4]}"
+                    save_experiment({
+                        'id': _eid, 'created': str(date.today()),
+                        'start': str(e_start), 'end': str(e_end),
+                        'product': e_prod, 'hook': e_hook.strip(), 'channel': e_ch,
+                        'hypothesis': e_hyp.strip(), 'budget': int(e_budget),
+                        'status': '진행중', 'leads': 0, 'conversions': 0,
+                        'revenue': 0, 'learning': ''})
+                    st.success(f"등록 완료 — {e_prod} · {e_hook}")
+                    st.rerun()
+
+    # ── 결과 입력 ───────────────────────────────────────
+    with tab_run:
+        _open = exps[exps['status'] == '진행중'] if not exps.empty else pd.DataFrame()
+        if _open.empty:
+            st.info("진행 중인 실험이 없습니다. '➕ 새 실험 등록'에서 시작하세요.")
+        else:
+            _pick = st.selectbox(
+                "실험 선택", _open['id'].tolist(),
+                format_func=lambda i: (
+                    f"{_open.loc[_open['id'] == i, 'product'].iloc[0]} · "
+                    f"{_open.loc[_open['id'] == i, 'hook'].iloc[0]} "
+                    f"({_open.loc[_open['id'] == i, 'start'].iloc[0]})"))
+            _row = _open[_open['id'] == _pick].iloc[0]
+            st.caption(f"📌 가설 — {_row['hypothesis']}")
+            with st.form("exp_result"):
+                r1, r2, r3 = st.columns(3)
+                with r1:
+                    r_leads = st.number_input("확보 리드(무료 신청)", min_value=0, step=1,
+                                              value=int(_row['leads']))
+                with r2:
+                    r_conv = st.number_input("유료 전환(건)", min_value=0, step=1,
+                                             value=int(_row['conversions']))
+                with r3:
+                    r_rev = st.number_input("매출(원)", min_value=0, step=100000,
+                                            value=int(_row['revenue']))
+                r_learn = st.text_area(
+                    "배운 점 — 가설이 맞았나? 다음엔 무엇을 바꿀 것인가",
+                    value=str(_row['learning'] or ''), height=90,
+                    placeholder="예) CPL은 기준선 아래였지만 전환이 낮았다. "
+                                "리드는 싸게 왔으나 관심도가 낮은 타깃 — 다음엔 관심사 좁히기")
+                r_done = st.checkbox("이 실험 완료 처리")
+                if st.form_submit_button("결과 저장", type="primary"):
+                    save_experiment({
+                        'id': _row['id'], 'created': _row['created'],
+                        'start': _row['start'], 'end': _row['end'],
+                        'product': _row['product'], 'hook': _row['hook'],
+                        'channel': _row['channel'], 'hypothesis': _row['hypothesis'],
+                        'budget': int(_row['budget']),
+                        'status': '완료' if r_done else '진행중',
+                        'leads': int(r_leads), 'conversions': int(r_conv),
+                        'revenue': int(r_rev), 'learning': r_learn.strip()})
+                    st.success("저장했습니다.")
+                    st.rerun()
+
+            # 즉시 판정
+            if int(_row['leads']) > 0 and base:
+                _cpl = int(_row['budget']) / int(_row['leads'])
+                if _cpl <= base[0]:
+                    st.success(f"🟢 CPL **{_cpl:,.0f}원** — 기존 최저({base[0]:,.0f}원)보다도 "
+                               "저렴합니다. **확대 검토** 대상입니다.")
+                elif _cpl <= base[1]:
+                    st.success(f"🟢 CPL **{_cpl:,.0f}원** — 평균({base[1]:,.0f}원)보다 "
+                               "좋습니다. 유지·소폭 확대하세요.")
+                elif _cpl <= base[2]:
+                    st.warning(f"🟡 CPL **{_cpl:,.0f}원** — 평균({base[1]:,.0f}원)보다 "
+                               "비쌉니다. 소재를 바꿔 다시 시도해 보세요.")
+                else:
+                    st.error(f"🔴 CPL **{_cpl:,.0f}원** — 기존 최고({base[2]:,.0f}원)보다 "
+                             "비쌉니다. **중단하고 후킹부터 재검토**하세요.")
+
+    # ── 실험 기록 ───────────────────────────────────────
+    with tab_log:
+        if exps.empty:
+            st.info("아직 기록된 실험이 없습니다.")
+        else:
+            for _, e in exps.iterrows():
+                _ic = "✅" if e['status'] == '완료' else "🔄"
+                with st.expander(
+                        f"{_ic} {e['product']} · {e['hook']} "
+                        f"({e['start']} ~ {e['end']}) · 예산 {int(e['budget'])/1e4:,.0f}만원"):
+                    st.markdown(f"**가설** — {e['hypothesis']}")
+                    if int(e['leads']) > 0:
+                        m1, m2, m3, m4 = st.columns(4)
+                        m1.metric("리드", f"{int(e['leads']):,}건")
+                        m2.metric("CPL", f"{e['cpl']:,.0f}원")
+                        m3.metric("전환", f"{int(e['conversions']):,}건",
+                                  f"{e['cvr']:.1f}%")
+                        m4.metric("ROAS", f"{e['roas']:.1f}배" if e['roas'] else "—")
+                    else:
+                        st.caption("결과 미입력 — '📝 결과 입력'에서 채워주세요.")
+                    if str(e['learning'] or '').strip():
+                        st.success(f"📚 **배운 점** — {e['learning']}")
+                    if st.button("삭제", key=f"exp_del_{e['id']}"):
+                        delete_experiment(e['id'])
+                        st.rerun()
+
+            _learned = exps[exps['learning'].astype(str).str.len() > 1]
+            if not _learned.empty:
+                st.divider()
+                st.markdown("#### 📋 대표님 보고용 요약")
+                _txt = "\n".join(
+                    f"{i+1}. [{e['product']}] {e['hook']} — 예산 "
+                    f"{int(e['budget'])/1e4:,.0f}만원 · 리드 {int(e['leads']):,}건"
+                    f"(CPL {e['cpl']:,.0f}원) · 전환 {int(e['conversions']):,}건"
+                    f"\n   배운 점: {e['learning']}"
+                    for i, (_, e) in enumerate(_learned.iterrows()))
+                st.code(_txt, language=None)
+                st.caption("복사해서 보고에 그대로 쓰실 수 있습니다. "
+                           "**무엇을 했고 → 결과가 어땠고 → 무엇을 배웠는지**의 형식이 "
+                           "초보 마케터의 신뢰를 만듭니다.")
 
 
 def _course_playbook() -> list:
