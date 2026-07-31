@@ -103,6 +103,7 @@ WEBINAR_TOPICS_PATH = "data/webinar_topics.csv"
 WEBINAR_HOOK_AD_PATH = "data/webinar_hook_ad.csv"
 OHAENG_PERIOD_PATH = "data/ohaeng_period.csv"
 EXPERIMENTS_PATH = "data/experiments.csv"
+MARKET_SIGNALS_PATH = "data/market_signals.csv"
 EXPERIMENTS_COLS = ['id', 'created', 'start', 'end', 'product', 'hook', 'channel',
                     'hypothesis', 'budget', 'status',
                     'leads', 'conversions', 'revenue', 'learning']
@@ -995,6 +996,24 @@ def load_webinar_hook_ad() -> pd.DataFrame:
     df['ctr'] = (df['clicks'] / df['impressions'] * 100).where(df['impressions'] > 0, 0.0)
     df['cvr'] = (df['leads'] / df['clicks'] * 100).where(df['clicks'] > 0, 0.0)
     df['cpl'] = (df['spend'] / df['leads']).where(df['leads'] > 0, 0.0)
+    return df
+
+
+@st.cache_data(ttl=1800)
+def load_market_signals() -> pd.DataFrame:
+    """시장 신호 — 키워드 분석툴(별도 앱)에서 이관한 소재 기획용 데이터.
+
+    signal: own_top(자사 고성과 콘텐츠 제목) · market_top(시장 상위 영상 제목)
+            · age(키워드별 최고 반응 연령대)
+    키워드툴은 로컬 전용이라 직접 호출이 불가능해, 캐시를 CSV로 옮겨 쓴다.
+    scripts/sync_market_signals.py 로 갱신.
+    """
+    df = _read_csv(MARKET_SIGNALS_PATH,
+                   ['product', 'signal', 'rank_by', 'text',
+                    'metric1', 'metric2', 'collected'])
+    if df.empty:
+        return df
+    df['metric1'] = pd.to_numeric(df['metric1'], errors='coerce').fillna(0).astype(int)
     return df
 
 

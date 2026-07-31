@@ -28,7 +28,7 @@ from github_store import (
     load_region_cohort_detail, load_region_cohort_topcity,
     load_webinar_topics, load_webinar_conversion, load_webinar_hook_ad,
     load_ohaeng_period,
-    load_experiments, save_experiment, delete_experiment,
+    load_experiments, save_experiment, delete_experiment, load_market_signals,
     load_data_sources, load_stage_timeline,
     load_adspend, save_adspend, delete_adspend_row,
     load_content, save_content, delete_content_row,
@@ -155,7 +155,7 @@ def _kpi_band(items):
 
 # ── 사이드바 — 캐시 새로고침 ─────────────────────────────────────
 
-APP_VERSION = "v4.55"  # 배포 반영 확인용 — 화면 버전이 다르면 아직 리부팅 전
+APP_VERSION = "v4.56"  # 배포 반영 확인용 — 화면 버전이 다르면 아직 리부팅 전
 
 with st.sidebar:
     st.markdown("### 📊 황금후추 강의 분석")
@@ -3463,7 +3463,29 @@ def tab_experiments():
             wha = load_webinar_hook_ad()
             region = load_region_signups()
 
+            _sig = load_market_signals()
+            _sp = _sig[_sig['product'] == _bp] if not _sig.empty else pd.DataFrame()
+
             _parts = []
+            # 0) 지금 시장에서 먹히는 각도 (키워드 분석툴 이관)
+            if not _sp.empty:
+                _own = _sp[_sp['signal'] == 'own_top'].sort_values('metric1', ascending=False)
+                _mkt = _sp[_sp['signal'] == 'market_top'].sort_values('metric1', ascending=False)
+                _txt0 = ""
+                if not _own.empty:
+                    _txt0 += "· **우리 채널에서 가장 잘 먹힌 제목** (이 각도를 변주하세요)\n"
+                    for _, r in _own.head(3).iterrows():
+                        _m2 = f" · {r['metric2']}" if r['metric2'] else ""
+                        _txt0 += f"   - {r['text']}  ({int(r['metric1']):,}회{_m2})\n"
+                if not _mkt.empty:
+                    _txt0 += "· **지금 시장 상위 영상** (경쟁이 쓰는 각도)\n"
+                    for _, r in _mkt.head(3).iterrows():
+                        _txt0 += f"   - {r['text']}  ({int(r['metric1']):,}회 · {r['metric2']})\n"
+                if _txt0:
+                    _cd = _sp['collected'].iloc[0] if 'collected' in _sp.columns else ''
+                    _parts.append((f"⓪ 지금 먹히는 각도 (키워드 분석툴 · {_cd} 수집)",
+                                   _txt0.rstrip()))
+
             # 1) 후킹 각도
             if b['hooks']:
                 _vol = max(b['hooks'], key=lambda h: h['signups'])
@@ -3503,6 +3525,13 @@ def tab_experiments():
                            if _sh >= 60 else
                            "성격: **관문형** — 특강 참여자 상당수가 다른 강의로 이동하므로 "
                            "랜딩에 다른 강의 동선도 함께 노출")
+            if not _sp.empty:
+                _age = _sp[_sp['signal'] == 'age'].sort_values('metric1', ascending=False)
+                if not _age.empty:
+                    _al = " · ".join(f"{r['text']}→{r['metric2']}"
+                                     for _, r in _age.head(4).iterrows())
+                    _tg.append(f"연령: **{_al}** (네이버 검색 반응 기준) — "
+                               "소재의 화자·사례·말투를 이 연령대에 맞추세요")
             if _tg:
                 _parts.append(("③ 타깃·노출", "\n".join("· " + t for t in _tg)))
             # 4) 시기
