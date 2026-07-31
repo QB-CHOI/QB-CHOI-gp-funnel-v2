@@ -29,6 +29,7 @@ from github_store import (
     load_webinar_topics, load_webinar_conversion, load_webinar_hook_ad,
     load_ohaeng_period,
     load_experiments, save_experiment, delete_experiment, load_market_signals,
+    load_refresh_status,
     load_data_sources, load_stage_timeline,
     load_adspend, save_adspend, delete_adspend_row,
     load_content, save_content, delete_content_row,
@@ -155,7 +156,7 @@ def _kpi_band(items):
 
 # ── 사이드바 — 캐시 새로고침 ─────────────────────────────────────
 
-APP_VERSION = "v4.56"  # 배포 반영 확인용 — 화면 버전이 다르면 아직 리부팅 전
+APP_VERSION = "v4.57"  # 배포 반영 확인용 — 화면 버전이 다르면 아직 리부팅 전
 
 with st.sidebar:
     st.markdown("### 📊 황금후추 강의 분석")
@@ -5911,6 +5912,24 @@ def tab_data():
     ROOM_NUMBERS = sorted(ROOMS.keys())
     st.header("데이터 관리")
     df = load_all()
+
+    # ── 🔄 자동 갱신 상태 ─────────────────────────────────────
+    _rs = load_refresh_status()
+    if not _rs.empty:
+        _r0 = _rs.iloc[-1]
+        try:
+            _lr = pd.to_datetime(_r0['last_run'])
+            _hrs = (pd.Timestamp.now() - _lr).total_seconds() / 3600
+        except Exception:
+            _hrs = None
+        _msg = (f"마지막 자동 갱신 **{_r0['last_run']}** · "
+                f"시장 신호 {_r0['market_signals']} · 주문 집계 {_r0['order_aggregates']}")
+        if _hrs is not None and _hrs > 36:
+            st.warning(f"⚠️ 자동 갱신이 {_hrs/24:.0f}일째 돌지 않았습니다 — {_msg}")
+        else:
+            st.success(f"🔄 {_msg}")
+        st.caption("매일 09:10 자동 실행(맥 launchd). 주문 엑셀은 "
+                   "`gp-funnel-v2/inbox/`에 넣으면 자동 반영됩니다.")
 
     # ── 📅 데이터 현황 (신선도) ───────────────────────────────
     _ds = load_data_sources()

@@ -3,3 +3,8 @@ __pycache__/
 data/campaigns.csv
 
 .vercel
+
+# 주문 엑셀(개인정보) — 자동 갱신 입력
+inbox/*.xlsx
+inbox/*.xls
+.auto_refresh_state.json

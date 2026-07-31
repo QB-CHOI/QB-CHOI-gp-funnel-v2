@@ -104,6 +104,7 @@ WEBINAR_HOOK_AD_PATH = "data/webinar_hook_ad.csv"
 OHAENG_PERIOD_PATH = "data/ohaeng_period.csv"
 EXPERIMENTS_PATH = "data/experiments.csv"
 MARKET_SIGNALS_PATH = "data/market_signals.csv"
+REFRESH_STATUS_PATH = "data/refresh_status.csv"
 EXPERIMENTS_COLS = ['id', 'created', 'start', 'end', 'product', 'hook', 'channel',
                     'hypothesis', 'budget', 'status',
                     'leads', 'conversions', 'revenue', 'learning']
@@ -997,6 +998,17 @@ def load_webinar_hook_ad() -> pd.DataFrame:
     df['cvr'] = (df['leads'] / df['clicks'] * 100).where(df['clicks'] > 0, 0.0)
     df['cpl'] = (df['spend'] / df['leads']).where(df['leads'] > 0, 0.0)
     return df
+
+
+@st.cache_data(ttl=600)
+def load_refresh_status() -> pd.DataFrame:
+    """자동 갱신 실행 상태 — 맥의 launchd 작업이 남긴 기록.
+
+    로그는 그 맥에만 있어 자동 갱신이 멈춰도 알아채기 어렵다.
+    실행 결과를 사이트에서 보이게 해 중단을 즉시 알 수 있게 한다.
+    """
+    return _read_csv(REFRESH_STATUS_PATH,
+                     ['last_run', 'market_signals', 'order_aggregates', 'changed'])
 
 
 @st.cache_data(ttl=1800)
