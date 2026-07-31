@@ -31,8 +31,28 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 KEYWORD_TOOL_DIR = os.path.expanduser(
     "~/Documents/📌 콘텐츠 자동화 제작 프로그램/키워드 분석툴")
-PROCESSED = os.path.join(KEYWORD_TOOL_DIR, "data", "processed")
-DATASET = os.path.join(KEYWORD_TOOL_DIR, "data", "dataset.json")
+
+# 스테이징 폴더를 먼저 본다.
+#   macOS TCC가 launchd 프로세스의 ~/Documents 접근을 막기 때문에,
+#   권한이 있는 node(scripts/stage_keyword_cache.js)가 최신 캐시를 여기로
+#   복사해 둔다. 원본을 직접 읽을 수 있는 환경(터미널)에서는 원본을 쓴다.
+_STAGE = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                      "inbox", "market")
+
+
+def _pick_source():
+    """(processed_dir, dataset_path) — 읽을 수 있는 쪽을 고른다."""
+    orig_p = os.path.join(KEYWORD_TOOL_DIR, "data", "processed")
+    orig_d = os.path.join(KEYWORD_TOOL_DIR, "data", "dataset.json")
+    try:                       # 원본이 읽히면 원본 우선(항상 최신)
+        if os.path.isdir(orig_p) and os.listdir(orig_p):
+            return orig_p, orig_d
+    except OSError:            # PermissionError 등 → 스테이징으로
+        pass
+    return _STAGE, os.path.join(_STAGE, "dataset.json")
+
+
+PROCESSED, DATASET = _pick_source()
 
 # 키워드툴 주제 코드 → 강의 상품군
 TOPIC_MAP = {"saju": "사주", "tarot": "타로", "realestate": "부동산"}

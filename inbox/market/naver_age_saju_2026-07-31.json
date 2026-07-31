@@ -1,0 +1,275 @@
+{
+  "ok": true,
+  "topic": "사주",
+  "date": "2026-07-31",
+  "generatedAt": "2026-07-30T23:20:37.870Z",
+  "brackets": [
+    "10대",
+    "20대",
+    "30대",
+    "40대",
+    "50대+"
+  ],
+  "profiles": [
+    {
+      "keyword": "직업운",
+      "byAge": {
+        "10대": {
+          "deltaPercent": -38,
+          "level": 15,
+          "recentAvg": 15.38461
+        },
+        "20대": {
+          "deltaPercent": -22,
+          "level": 22,
+          "recentAvg": 21.63461
+        },
+        "30대": {
+          "deltaPercent": 70,
+          "level": 21,
+          "recentAvg": 20.98214
+        },
+        "40대": {
+          "deltaPercent": 29,
+          "level": 26,
+          "recentAvg": 26.315784999999998
+        },
+        "50대+": {
+          "deltaPercent": 36,
+          "level": 27,
+          "recentAvg": 27.27272
+        }
+      },
+      "hottestAge": "30대",
+      "hottestDelta": 70
+    },
+    {
+      "keyword": "결혼운",
+      "byAge": {
+        "10대": {
+          "deltaPercent": 47,
+          "level": 38,
+          "recentAvg": 38.461535
+        },
+        "20대": {
+          "deltaPercent": 7,
+          "level": 83,
+          "recentAvg": 82.6923025
+        },
+        "30대": {
+          "deltaPercent": -18,
+          "level": 66,
+          "recentAvg": 66.071425
+        },
+        "40대": {
+          "deltaPercent": -22,
+          "level": 49,
+          "recentAvg": 48.68420750000001
+        },
+        "50대+": {
+          "deltaPercent": -16,
+          "level": 36,
+          "recentAvg": 36.36363
+        }
+      },
+      "hottestAge": "10대",
+      "hottestDelta": 47
+    },
+    {
+      "keyword": "사업운",
+      "byAge": {
+        "10대": {
+          "deltaPercent": 0,
+          "level": 0,
+          "recentAvg": 0
+        },
+        "20대": {
+          "deltaPercent": 28,
+          "level": 12,
+          "recentAvg": 12.019225
+        },
+        "30대": {
+          "deltaPercent": -17,
+          "level": 14,
+          "recentAvg": 13.839279999999999
+        },
+        "40대": {
+          "deltaPercent": 17,
+          "level": 38,
+          "recentAvg": 38.1578875
+        },
+        "50대+": {
+          "deltaPercent": -13,
+          "level": 34,
+          "recentAvg": 34.0909025
+        }
+      },
+      "hottestAge": "20대",
+      "hottestDelta": 28
+    },
+    {
+      "keyword": "오늘의 운세",
+      "byAge": {
+        "10대": {
+          "deltaPercent": 12,
+          "level": 45,
+          "recentAvg": 44.8153025
+        },
+        "20대": {
+          "deltaPercent": -12,
+          "level": 78,
+          "recentAvg": 78.4978125
+        },
+        "30대": {
+          "deltaPercent": -3,
+          "level": 94,
+          "recentAvg": 93.5602425
+        },
+        "40대": {
+          "deltaPercent": -3,
+          "level": 91,
+          "recentAvg": 91.46447749999999
+        },
+        "50대+": {
+          "deltaPercent": -5,
+          "level": 92,
+          "recentAvg": 92.2538025
+        }
+      },
+      "hottestAge": "10대",
+      "hottestDelta": 12
+    },
+    {
+      "keyword": "2026 운세",
+      "byAge": {
+        "10대": {
+          "deltaPercent": 0,
+          "level": 0,
+          "recentAvg": 0.007712500000000001
+        },
+        "20대": {
+          "deltaPercent": 0,
+          "level": 0,
+          "recentAvg": 0.025615
+        },
+        "30대": {
+          "deltaPercent": 0,
+          "level": 0,
+          "recentAvg": 0.039842499999999996
+        },
+        "40대": {
+          "deltaPercent": 0,
+          "level": 0,
+          "recentAvg": 0.030047500000000005
+        },
+        "50대+": {
+          "deltaPercent": 0,
+          "level": 0,
+          "recentAvg": 0.0214575
+        }
+      },
+      "hottestAge": null,
+      "hottestDelta": 0
+    },
+    {
+      "keyword": "신년운세",
+      "byAge": {
+        "10대": {
+          "deltaPercent": 0,
+          "level": 0,
+          "recentAvg": 0.0148075
+        },
+        "20대": {
+          "deltaPercent": 0,
+          "level": 0,
+          "recentAvg": 0.0765
+        },
+        "30대": {
+          "deltaPercent": 0,
+          "level": 0,
+          "recentAvg": 0.0783925
+        },
+        "40대": {
+          "deltaPercent": 0,
+          "level": 0,
+          "recentAvg": 0.0539675
+        },
+        "50대+": {
+          "deltaPercent": 0,
+          "level": 0,
+          "recentAvg": 0.017665
+        }
+      },
+      "hottestAge": null,
+      "hottestDelta": 0
+    },
+    {
+      "keyword": "재물운",
+      "byAge": {
+        "10대": {
+          "deltaPercent": 0,
+          "level": 0,
+          "recentAvg": 0.010574999999999998
+        },
+        "20대": {
+          "deltaPercent": 0,
+          "level": 0,
+          "recentAvg": 0.0529375
+        },
+        "30대": {
+          "deltaPercent": 0,
+          "level": 0,
+          "recentAvg": 0.0531675
+        },
+        "40대": {
+          "deltaPercent": 0,
+          "level": 0,
+          "recentAvg": 0.0361725
+        },
+        "50대+": {
+          "deltaPercent": 0,
+          "level": 0,
+          "recentAvg": 0.0118425
+        }
+      },
+      "hottestAge": null,
+      "hottestDelta": 0
+    },
+    {
+      "keyword": "띠별 운세",
+      "byAge": {
+        "10대": {
+          "deltaPercent": 0,
+          "level": 5,
+          "recentAvg": 4.953664999999999
+        },
+        "20대": {
+          "deltaPercent": -10,
+          "level": 11,
+          "recentAvg": 11.031035
+        },
+        "30대": {
+          "deltaPercent": -5,
+          "level": 20,
+          "recentAvg": 19.56415
+        },
+        "40대": {
+          "deltaPercent": -4,
+          "level": 20,
+          "recentAvg": 20.306867500000003
+        },
+        "50대+": {
+          "deltaPercent": -6,
+          "level": 24,
+          "recentAvg": 23.914722500000003
+        }
+      },
+      "hottestAge": "40대",
+      "hottestDelta": -4
+    }
+  ],
+  "limitations": [
+    "데이터랩은 조회별 상대지표(최대=100)라 연령 간 절대 검색량 비교는 불가 — 연령별 추세(상승률) 비교만 유효합니다.",
+    "최근 4주 vs 이전 10주 평균 변화율. 진행 중인 마지막 주는 불완전해 제외하고, 관심도가 낮은(저기반) 키워드는 왜곡을 막기 위해 상승으로 집계하지 않습니다."
+  ]
+}

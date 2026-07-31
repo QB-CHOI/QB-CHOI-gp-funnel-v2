@@ -1,0 +1,275 @@
+{
+  "ok": true,
+  "topic": "부동산",
+  "date": "2026-07-31",
+  "generatedAt": "2026-07-30T22:51:00.286Z",
+  "brackets": [
+    "10대",
+    "20대",
+    "30대",
+    "40대",
+    "50대+"
+  ],
+  "profiles": [
+    {
+      "keyword": "청약",
+      "byAge": {
+        "10대": {
+          "deltaPercent": 80,
+          "level": 56,
+          "recentAvg": 56.14316000000001
+        },
+        "20대": {
+          "deltaPercent": 34,
+          "level": 84,
+          "recentAvg": 84.063095
+        },
+        "30대": {
+          "deltaPercent": 8,
+          "level": 88,
+          "recentAvg": 88.36742500000001
+        },
+        "40대": {
+          "deltaPercent": -5,
+          "level": 79,
+          "recentAvg": 78.558605
+        },
+        "50대+": {
+          "deltaPercent": 3,
+          "level": 87,
+          "recentAvg": 86.98501250000001
+        }
+      },
+      "hottestAge": "10대",
+      "hottestDelta": 80
+    },
+    {
+      "keyword": "재개발",
+      "byAge": {
+        "10대": {
+          "deltaPercent": 0,
+          "level": 6,
+          "recentAvg": 6.089737500000001
+        },
+        "20대": {
+          "deltaPercent": 0,
+          "level": 5,
+          "recentAvg": 4.9244175
+        },
+        "30대": {
+          "deltaPercent": 18,
+          "level": 11,
+          "recentAvg": 11.41696
+        },
+        "40대": {
+          "deltaPercent": 4,
+          "level": 22,
+          "recentAvg": 22.11423
+        },
+        "50대+": {
+          "deltaPercent": 29,
+          "level": 70,
+          "recentAvg": 69.803365
+        }
+      },
+      "hottestAge": "50대+",
+      "hottestDelta": 29
+    },
+    {
+      "keyword": "아파트 매매",
+      "byAge": {
+        "10대": {
+          "deltaPercent": 25,
+          "level": 23,
+          "recentAvg": 22.532182499999998
+        },
+        "20대": {
+          "deltaPercent": 1,
+          "level": 35,
+          "recentAvg": 35.484865
+        },
+        "30대": {
+          "deltaPercent": -4,
+          "level": 43,
+          "recentAvg": 43.440615
+        },
+        "40대": {
+          "deltaPercent": -4,
+          "level": 69,
+          "recentAvg": 69.320535
+        },
+        "50대+": {
+          "deltaPercent": -12,
+          "level": 81,
+          "recentAvg": 80.5151225
+        }
+      },
+      "hottestAge": "10대",
+      "hottestDelta": 25
+    },
+    {
+      "keyword": "전세",
+      "byAge": {
+        "10대": {
+          "deltaPercent": -14,
+          "level": 71,
+          "recentAvg": 71.4592225
+        },
+        "20대": {
+          "deltaPercent": 5,
+          "level": 61,
+          "recentAvg": 60.53667250000001
+        },
+        "30대": {
+          "deltaPercent": 10,
+          "level": 51,
+          "recentAvg": 51.2874525
+        },
+        "40대": {
+          "deltaPercent": 10,
+          "level": 63,
+          "recentAvg": 62.8112
+        },
+        "50대+": {
+          "deltaPercent": -9,
+          "level": 32,
+          "recentAvg": 32.1237025
+        }
+      },
+      "hottestAge": "30대",
+      "hottestDelta": 10
+    },
+    {
+      "keyword": "월세",
+      "byAge": {
+        "10대": {
+          "deltaPercent": -32,
+          "level": 32,
+          "recentAvg": 32.081540000000004
+        },
+        "20대": {
+          "deltaPercent": -5,
+          "level": 51,
+          "recentAvg": 50.922085
+        },
+        "30대": {
+          "deltaPercent": 3,
+          "level": 41,
+          "recentAvg": 41.0377275
+        },
+        "40대": {
+          "deltaPercent": 3,
+          "level": 54,
+          "recentAvg": 53.933260000000004
+        },
+        "50대+": {
+          "deltaPercent": -7,
+          "level": 29,
+          "recentAvg": 29.069317499999997
+        }
+      },
+      "hottestAge": "30대",
+      "hottestDelta": 3
+    },
+    {
+      "keyword": "분양",
+      "byAge": {
+        "10대": {
+          "deltaPercent": -13,
+          "level": 15,
+          "recentAvg": 14.9572625
+        },
+        "20대": {
+          "deltaPercent": 0,
+          "level": 6,
+          "recentAvg": 6.369957500000001
+        },
+        "30대": {
+          "deltaPercent": 0,
+          "level": 8,
+          "recentAvg": 8.167864999999999
+        },
+        "40대": {
+          "deltaPercent": -5,
+          "level": 24,
+          "recentAvg": 24.19258
+        },
+        "50대+": {
+          "deltaPercent": -3,
+          "level": 51,
+          "recentAvg": 50.795874999999995
+        }
+      },
+      "hottestAge": "50대+",
+      "hottestDelta": -3
+    },
+    {
+      "keyword": "집값 전망",
+      "byAge": {
+        "10대": {
+          "deltaPercent": 0,
+          "level": 1,
+          "recentAvg": 0.96566
+        },
+        "20대": {
+          "deltaPercent": 0,
+          "level": 3,
+          "recentAvg": 3.4396975
+        },
+        "30대": {
+          "deltaPercent": 0,
+          "level": 8,
+          "recentAvg": 7.896777500000001
+        },
+        "40대": {
+          "deltaPercent": -18,
+          "level": 11,
+          "recentAvg": 11.186025
+        },
+        "50대+": {
+          "deltaPercent": -23,
+          "level": 11,
+          "recentAvg": 10.6376825
+        }
+      },
+      "hottestAge": "40대",
+      "hottestDelta": -18
+    },
+    {
+      "keyword": "부동산 전망",
+      "byAge": {
+        "10대": {
+          "deltaPercent": 0,
+          "level": 1,
+          "recentAvg": 0.7510675
+        },
+        "20대": {
+          "deltaPercent": 0,
+          "level": 1,
+          "recentAvg": 1.2328999999999999
+        },
+        "30대": {
+          "deltaPercent": 0,
+          "level": 5,
+          "recentAvg": 5.04994
+        },
+        "40대": {
+          "deltaPercent": 0,
+          "level": 8,
+          "recentAvg": 8.402485
+        },
+        "50대+": {
+          "deltaPercent": -22,
+          "level": 11,
+          "recentAvg": 10.599382499999999
+        }
+      },
+      "hottestAge": "50대+",
+      "hottestDelta": -22
+    }
+  ],
+  "limitations": [
+    "데이터랩은 조회별 상대지표(최대=100)라 연령 간 절대 검색량 비교는 불가 — 연령별 추세(상승률) 비교만 유효합니다.",
+    "최근 4주 vs 이전 10주 평균 변화율. 진행 중인 마지막 주는 불완전해 제외하고, 관심도가 낮은(저기반) 키워드는 왜곡을 막기 위해 상승으로 집계하지 않습니다."
+  ]
+}

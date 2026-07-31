@@ -1,0 +1,1583 @@
+{
+  "ok": true,
+  "topic": "부동산",
+  "date": "2026-07-30",
+  "generatedAt": "2026-07-30T02:18:49.561Z",
+  "seeds": [
+    "부동산 전망",
+    "집값 전망",
+    "아파트 매매",
+    "전세",
+    "월세",
+    "청약",
+    "분양",
+    "재개발",
+    "재건축",
+    "부동산 투자",
+    "갭투자",
+    "금리 부동산",
+    "경매",
+    "오피스텔"
+  ],
+  "datalabConfigured": true,
+  "searchAdConfigured": true,
+  "trends": [
+    {
+      "keyword": "금리 부동산",
+      "deltaPercent": 190,
+      "latestRatio": 0.10743,
+      "monthly": [
+        {
+          "period": "2025-08-01",
+          "ratio": 0.00639
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 0.01918
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 0.03836
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 0.01918
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 0.01662
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 0.07545
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 0.10743
+        }
+      ]
+    },
+    {
+      "keyword": "재개발",
+      "deltaPercent": 13,
+      "latestRatio": 9.75323,
+      "monthly": [
+        {
+          "period": "2025-06-01",
+          "ratio": 11.57374
+        },
+        {
+          "period": "2025-07-01",
+          "ratio": 11.65867
+        },
+        {
+          "period": "2025-08-01",
+          "ratio": 10.20657
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 11.14433
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 11.25796
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 9.81663
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 10.00083
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 10.24125
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 9.18388
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 8.90877
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 8.67313
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 8.35137
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 9.75323
+        }
+      ]
+    },
+    {
+      "keyword": "재건축",
+      "deltaPercent": 9,
+      "latestRatio": 7.51767,
+      "monthly": [
+        {
+          "period": "2025-06-01",
+          "ratio": 11.25557
+        },
+        {
+          "period": "2025-07-01",
+          "ratio": 11.04146
+        },
+        {
+          "period": "2025-08-01",
+          "ratio": 8.99369
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 10.67306
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 12.8847
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 7.77364
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 7.93631
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 8.93867
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 9.0224
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 7.53322
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 6.97104
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 6.10145
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 7.51767
+        }
+      ]
+    },
+    {
+      "keyword": "전세",
+      "deltaPercent": 8,
+      "latestRatio": 64.12039,
+      "monthly": [
+        {
+          "period": "2025-06-01",
+          "ratio": 62.48812
+        },
+        {
+          "period": "2025-07-01",
+          "ratio": 69.73549
+        },
+        {
+          "period": "2025-08-01",
+          "ratio": 70.37585
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 60.64302
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 77.52821
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 57.22646
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 52.42845
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 65.27381
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 57.6388
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 63.93417
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 60.12807
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 53.8631
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 64.12039
+        }
+      ]
+    },
+    {
+      "keyword": "월세",
+      "deltaPercent": -6,
+      "latestRatio": 51.9439,
+      "monthly": [
+        {
+          "period": "2025-06-01",
+          "ratio": 57.23976
+        },
+        {
+          "period": "2025-07-01",
+          "ratio": 58.65731
+        },
+        {
+          "period": "2025-08-01",
+          "ratio": 61.3461
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 57.04784
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 60.24588
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 54.02082
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 52.23083
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 59.92285
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 53.8194
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 60.24968
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 53.16003
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 53.02702
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 51.9439
+        }
+      ]
+    },
+    {
+      "keyword": "아파트 매매",
+      "deltaPercent": -11,
+      "latestRatio": 69.77159,
+      "monthly": [
+        {
+          "period": "2025-06-01",
+          "ratio": 100
+        },
+        {
+          "period": "2025-07-01",
+          "ratio": 92.05335
+        },
+        {
+          "period": "2025-08-01",
+          "ratio": 85.78649
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 80.03648
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 86.23684
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 73.82662
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 74.74822
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 93.74643
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 92.72222
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 87.88431
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 72.31596
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 75.03135
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 69.77159
+        }
+      ]
+    },
+    {
+      "keyword": "분양",
+      "deltaPercent": -11,
+      "latestRatio": 9.11211,
+      "monthly": [
+        {
+          "period": "2025-06-01",
+          "ratio": 17.57233
+        },
+        {
+          "period": "2025-07-01",
+          "ratio": 16.03052
+        },
+        {
+          "period": "2025-08-01",
+          "ratio": 15.21715
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 14.81525
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 14.74947
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 13.78299
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 13.22919
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 13.90619
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 10.17427
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 10.97448
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 10.17547
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 9.54152
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 9.11211
+        }
+      ]
+    },
+    {
+      "keyword": "청약",
+      "deltaPercent": -12,
+      "latestRatio": 58.28259,
+      "monthly": [
+        {
+          "period": "2025-06-01",
+          "ratio": 96.85896
+        },
+        {
+          "period": "2025-07-01",
+          "ratio": 100
+        },
+        {
+          "period": "2025-08-01",
+          "ratio": 75.52001
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 82.9085
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 66.28829
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 73.92198
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 76.65992
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 75.39561
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 52.39405
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 73.20191
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 68.52385
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 56.41543
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 58.28259
+        }
+      ]
+    },
+    {
+      "keyword": "오피스텔",
+      "deltaPercent": -13,
+      "latestRatio": 27.84442,
+      "monthly": [
+        {
+          "period": "2025-06-01",
+          "ratio": 38.22581
+        },
+        {
+          "period": "2025-07-01",
+          "ratio": 41.83634
+        },
+        {
+          "period": "2025-08-01",
+          "ratio": 43.71642
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 37.52749
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 42.54744
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 36.64117
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 37.50959
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 41.47567
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 36.37131
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 34.30577
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 30.11459
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 31.24264
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 27.84442
+        }
+      ]
+    },
+    {
+      "keyword": "경매",
+      "deltaPercent": -14,
+      "latestRatio": 55.7042,
+      "monthly": [
+        {
+          "period": "2025-06-01",
+          "ratio": 100
+        },
+        {
+          "period": "2025-07-01",
+          "ratio": 94.10395
+        },
+        {
+          "period": "2025-08-01",
+          "ratio": 98.7351
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 95.57732
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 87.13741
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 83.04215
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 86.25236
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 89.39862
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 66.62915
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 68.36471
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 65.56121
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 60.29697
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 55.7042
+        }
+      ]
+    },
+    {
+      "keyword": "부동산 전망",
+      "deltaPercent": -21,
+      "latestRatio": 9.88484,
+      "monthly": [
+        {
+          "period": "2025-06-01",
+          "ratio": 37.52327
+        },
+        {
+          "period": "2025-07-01",
+          "ratio": 23.85512
+        },
+        {
+          "period": "2025-08-01",
+          "ratio": 15.89898
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 16.54505
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 21.97392
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 13.42492
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 11.26629
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 14.72276
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 16.87188
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 14.64295
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 11.12757
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 11.53232
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 9.88484
+        }
+      ]
+    },
+    {
+      "keyword": "부동산 투자",
+      "deltaPercent": -25,
+      "latestRatio": 1.44253,
+      "monthly": [
+        {
+          "period": "2025-06-01",
+          "ratio": 3.57164
+        },
+        {
+          "period": "2025-07-01",
+          "ratio": 2.9951
+        },
+        {
+          "period": "2025-08-01",
+          "ratio": 3.0585
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 3.00228
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 3.06089
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 2.89702
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 2.65421
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 2.83123
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 2.35398
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 2.05255
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 1.8528
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 1.89108
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 1.44253
+        }
+      ]
+    },
+    {
+      "keyword": "집값 전망",
+      "deltaPercent": -27,
+      "latestRatio": 11.13137,
+      "monthly": [
+        {
+          "period": "2025-06-01",
+          "ratio": 43.4443
+        },
+        {
+          "period": "2025-07-01",
+          "ratio": 26.19237
+        },
+        {
+          "period": "2025-08-01",
+          "ratio": 18.02151
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 19.31934
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 24.73302
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 15.1883
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 13.2482
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 15.77927
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 23.74681
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 18.55926
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 14.31421
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 12.98787
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 11.13137
+        }
+      ]
+    },
+    {
+      "keyword": "갭투자",
+      "deltaPercent": -27,
+      "latestRatio": 3.2473,
+      "monthly": [
+        {
+          "period": "2025-06-01",
+          "ratio": 19.84319
+        },
+        {
+          "period": "2025-07-01",
+          "ratio": 14.06481
+        },
+        {
+          "period": "2025-08-01",
+          "ratio": 13.87041
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 8.31201
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 39.23108
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 10.41975
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 4.96367
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 5.1811
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 8.49363
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 3.54913
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 5.39852
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 4.44441
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 3.2473
+        }
+      ]
+    }
+  ],
+  "keywords": [
+    {
+      "keyword": "아파트",
+      "pcMonthly": 134700,
+      "mobileMonthly": 953700,
+      "totalMonthly": 1088400,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "부동산",
+      "pcMonthly": 152200,
+      "mobileMonthly": 680500,
+      "totalMonthly": 832700,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "ETF",
+      "pcMonthly": 46800,
+      "mobileMonthly": 129500,
+      "totalMonthly": 176300,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "법원경매",
+      "pcMonthly": 65400,
+      "mobileMonthly": 43600,
+      "totalMonthly": 109000,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "LH임대주택",
+      "pcMonthly": 37900,
+      "mobileMonthly": 63500,
+      "totalMonthly": 101400,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "부동산스터디",
+      "pcMonthly": 18400,
+      "mobileMonthly": 79000,
+      "totalMonthly": 97400,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "대법원경매",
+      "pcMonthly": 61300,
+      "mobileMonthly": 32200,
+      "totalMonthly": 93500,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "광명역",
+      "pcMonthly": 12900,
+      "mobileMonthly": 55300,
+      "totalMonthly": 68200,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "투자자산운용사",
+      "pcMonthly": 19300,
+      "mobileMonthly": 42100,
+      "totalMonthly": 61400,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "청약",
+      "pcMonthly": 25100,
+      "mobileMonthly": 32500,
+      "totalMonthly": 57600,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "행복주택",
+      "pcMonthly": 17200,
+      "mobileMonthly": 33200,
+      "totalMonthly": 50400,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "청년안심주택",
+      "pcMonthly": 20500,
+      "mobileMonthly": 26800,
+      "totalMonthly": 47300,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "금정역",
+      "pcMonthly": 5140,
+      "mobileMonthly": 41400,
+      "totalMonthly": 46540,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "성수동",
+      "pcMonthly": 10800,
+      "mobileMonthly": 34700,
+      "totalMonthly": 45500,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "경매",
+      "pcMonthly": 20800,
+      "mobileMonthly": 22600,
+      "totalMonthly": 43400,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "공인중개사시험",
+      "pcMonthly": 9290,
+      "mobileMonthly": 34100,
+      "totalMonthly": 43390,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "중개수수료계산기",
+      "pcMonthly": 15800,
+      "mobileMonthly": 27000,
+      "totalMonthly": 42800,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "청년주택",
+      "pcMonthly": 13300,
+      "mobileMonthly": 29200,
+      "totalMonthly": 42500,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "대법원경매정보",
+      "pcMonthly": 23600,
+      "mobileMonthly": 16400,
+      "totalMonthly": 40000,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "송파헬리오시티",
+      "pcMonthly": 3980,
+      "mobileMonthly": 33800,
+      "totalMonthly": 37780,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "증여세",
+      "pcMonthly": 9470,
+      "mobileMonthly": 26900,
+      "totalMonthly": 36370,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "아파트매매",
+      "pcMonthly": 4480,
+      "mobileMonthly": 31800,
+      "totalMonthly": 36280,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "운정스타필드",
+      "pcMonthly": 2830,
+      "mobileMonthly": 32700,
+      "totalMonthly": 35530,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "아파트실거래가",
+      "pcMonthly": 17500,
+      "mobileMonthly": 17100,
+      "totalMonthly": 34600,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "법무사",
+      "pcMonthly": 8290,
+      "mobileMonthly": 26200,
+      "totalMonthly": 34490,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "전세",
+      "pcMonthly": 5760,
+      "mobileMonthly": 28600,
+      "totalMonthly": 34360,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "주택청약",
+      "pcMonthly": 10600,
+      "mobileMonthly": 23300,
+      "totalMonthly": 33900,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "LH행복주택",
+      "pcMonthly": 13000,
+      "mobileMonthly": 20200,
+      "totalMonthly": 33200,
+      "competition": "낮음",
+      "isSeed": false
+    },
+    {
+      "keyword": "아파트실거래가조회",
+      "pcMonthly": 16600,
+      "mobileMonthly": 15700,
+      "totalMonthly": 32300,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "ETF투자방법",
+      "pcMonthly": 4910,
+      "mobileMonthly": 26600,
+      "totalMonthly": 31510,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "망포역",
+      "pcMonthly": 3890,
+      "mobileMonthly": 26800,
+      "totalMonthly": 30690,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "공인중개사",
+      "pcMonthly": 8660,
+      "mobileMonthly": 20800,
+      "totalMonthly": 29460,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "월세",
+      "pcMonthly": 4420,
+      "mobileMonthly": 23900,
+      "totalMonthly": 28320,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "연금저축펀드",
+      "pcMonthly": 5640,
+      "mobileMonthly": 22300,
+      "totalMonthly": 27940,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "청년임대주택",
+      "pcMonthly": 7760,
+      "mobileMonthly": 19600,
+      "totalMonthly": 27360,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "한남더힐",
+      "pcMonthly": 5110,
+      "mobileMonthly": 21700,
+      "totalMonthly": 26810,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "부동산중개수수료",
+      "pcMonthly": 5180,
+      "mobileMonthly": 20100,
+      "totalMonthly": 25280,
+      "competition": "낮음",
+      "isSeed": false
+    },
+    {
+      "keyword": "원룸",
+      "pcMonthly": 5270,
+      "mobileMonthly": 19400,
+      "totalMonthly": 24670,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "의왕역",
+      "pcMonthly": 6180,
+      "mobileMonthly": 18200,
+      "totalMonthly": 24380,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "임대아파트",
+      "pcMonthly": 4270,
+      "mobileMonthly": 19700,
+      "totalMonthly": 23970,
+      "competition": "높음",
+      "isSeed": false
+    }
+  ],
+  "seedKeywords": [
+    {
+      "keyword": "청약",
+      "pcMonthly": 25100,
+      "mobileMonthly": 32500,
+      "totalMonthly": 57600,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "경매",
+      "pcMonthly": 20800,
+      "mobileMonthly": 22600,
+      "totalMonthly": 43400,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "아파트매매",
+      "pcMonthly": 4480,
+      "mobileMonthly": 31800,
+      "totalMonthly": 36280,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "전세",
+      "pcMonthly": 5760,
+      "mobileMonthly": 28600,
+      "totalMonthly": 34360,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "월세",
+      "pcMonthly": 4420,
+      "mobileMonthly": 23900,
+      "totalMonthly": 28320,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "오피스텔",
+      "pcMonthly": 4520,
+      "mobileMonthly": 19200,
+      "totalMonthly": 23720,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "재개발",
+      "pcMonthly": 3380,
+      "mobileMonthly": 6620,
+      "totalMonthly": 10000,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "분양",
+      "pcMonthly": 2680,
+      "mobileMonthly": 5230,
+      "totalMonthly": 7910,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "재건축",
+      "pcMonthly": 2350,
+      "mobileMonthly": 5340,
+      "totalMonthly": 7690,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "집값전망",
+      "pcMonthly": 1020,
+      "mobileMonthly": 4560,
+      "totalMonthly": 5580,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "부동산전망",
+      "pcMonthly": 1240,
+      "mobileMonthly": 3330,
+      "totalMonthly": 4570,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "갭투자",
+      "pcMonthly": 780,
+      "mobileMonthly": 1940,
+      "totalMonthly": 2720,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "부동산투자",
+      "pcMonthly": 330,
+      "mobileMonthly": 720,
+      "totalMonthly": 1050,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "금리부동산",
+      "pcMonthly": 80,
+      "mobileMonthly": 180,
+      "totalMonthly": 260,
+      "competition": "높음",
+      "isSeed": true
+    }
+  ],
+  "newDiscoveries": [
+    {
+      "keyword": "아파트",
+      "pcMonthly": 134700,
+      "mobileMonthly": 953700,
+      "totalMonthly": 1088400,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "부동산",
+      "pcMonthly": 152200,
+      "mobileMonthly": 680500,
+      "totalMonthly": 832700,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "ETF",
+      "pcMonthly": 46800,
+      "mobileMonthly": 129500,
+      "totalMonthly": 176300,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "법원경매",
+      "pcMonthly": 65400,
+      "mobileMonthly": 43600,
+      "totalMonthly": 109000,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "LH임대주택",
+      "pcMonthly": 37900,
+      "mobileMonthly": 63500,
+      "totalMonthly": 101400,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "부동산스터디",
+      "pcMonthly": 18400,
+      "mobileMonthly": 79000,
+      "totalMonthly": 97400,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "대법원경매",
+      "pcMonthly": 61300,
+      "mobileMonthly": 32200,
+      "totalMonthly": 93500,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "광명역",
+      "pcMonthly": 12900,
+      "mobileMonthly": 55300,
+      "totalMonthly": 68200,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "투자자산운용사",
+      "pcMonthly": 19300,
+      "mobileMonthly": 42100,
+      "totalMonthly": 61400,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "행복주택",
+      "pcMonthly": 17200,
+      "mobileMonthly": 33200,
+      "totalMonthly": 50400,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "청년안심주택",
+      "pcMonthly": 20500,
+      "mobileMonthly": 26800,
+      "totalMonthly": 47300,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "금정역",
+      "pcMonthly": 5140,
+      "mobileMonthly": 41400,
+      "totalMonthly": 46540,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "성수동",
+      "pcMonthly": 10800,
+      "mobileMonthly": 34700,
+      "totalMonthly": 45500,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "공인중개사시험",
+      "pcMonthly": 9290,
+      "mobileMonthly": 34100,
+      "totalMonthly": 43390,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "중개수수료계산기",
+      "pcMonthly": 15800,
+      "mobileMonthly": 27000,
+      "totalMonthly": 42800,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "청년주택",
+      "pcMonthly": 13300,
+      "mobileMonthly": 29200,
+      "totalMonthly": 42500,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "대법원경매정보",
+      "pcMonthly": 23600,
+      "mobileMonthly": 16400,
+      "totalMonthly": 40000,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "송파헬리오시티",
+      "pcMonthly": 3980,
+      "mobileMonthly": 33800,
+      "totalMonthly": 37780,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "증여세",
+      "pcMonthly": 9470,
+      "mobileMonthly": 26900,
+      "totalMonthly": 36370,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "운정스타필드",
+      "pcMonthly": 2830,
+      "mobileMonthly": 32700,
+      "totalMonthly": 35530,
+      "competition": "높음",
+      "isSeed": false
+    }
+  ],
+  "communityDemand": {
+    "enough": true,
+    "scanned": 1200,
+    "questionCount": 31,
+    "noiseFiltered": 1169,
+    "hotSeeds": [
+      {
+        "seed": "집값 전망",
+        "count": 13
+      },
+      {
+        "seed": "부동산 전망",
+        "count": 8
+      },
+      {
+        "seed": "월세",
+        "count": 5
+      },
+      {
+        "seed": "청약",
+        "count": 2
+      },
+      {
+        "seed": "재개발",
+        "count": 2
+      }
+    ],
+    "posts": [
+      {
+        "seed": "부동산 전망",
+        "kind": "지식iN",
+        "title": "공인중개사 전망과 시험 난이도에 대해 여쭤봅니다.",
+        "link": "https://kin.naver.com/qna/detail.naver?d1id=4&dirId=406&docId=494424148&qb=67aA64+Z7IKwIOyghOunnQ==&enc=utf8"
+      },
+      {
+        "seed": "집값 전망",
+        "kind": "지식iN",
+        "title": "지금 집값으로 난리인데 또 무슨 대책을 내놓는건가요?",
+        "link": "https://kin.naver.com/qna/detail.naver?d1id=4&dirId=402&docId=494408827&qb=7KeR6rCSIOyghOunnQ==&enc=utf8"
+      },
+      {
+        "seed": "아파트 매매",
+        "kind": "블로그",
+        "title": "기장군 아파트 시세, 일광과 정관·기장읍이 확연히 다르다?",
+        "link": "https://blog.naver.com/dok2mom/224362597544"
+      },
+      {
+        "seed": "월세",
+        "kind": "지식iN",
+        "title": "월세 세액공제 가능한지 궁금합니다",
+        "link": "https://kin.naver.com/qna/detail.naver?d1id=4&dirId=40311&docId=494517065&qb=7JuU7IS4&enc=utf8"
+      },
+      {
+        "seed": "청약",
+        "kind": "지식iN",
+        "title": "청약포기 후 임의공급 신청가능한가요?",
+        "link": "https://kin.naver.com/qna/detail.naver?d1id=4&dirId=40203&docId=494519253&qb=7LKt7JW9&enc=utf8"
+      },
+      {
+        "seed": "재개발",
+        "kind": "지식iN",
+        "title": "주택 재개발 사업이란?",
+        "link": "https://kin.naver.com/qna/detail.naver?d1id=6&dirId=6&docId=494512491&qb=7J6s6rCc67Cc&enc=utf8"
+      },
+      {
+        "seed": "부동산 전망",
+        "kind": "지식iN",
+        "title": "이천역이 시골인가요 그리고 부동산투자하는거...",
+        "link": "https://kin.naver.com/qna/detail.naver?d1id=4&dirId=402&docId=494413427&qb=67aA64+Z7IKwIOyghOunnQ==&enc=utf8"
+      },
+      {
+        "seed": "집값 전망",
+        "kind": "지식iN",
+        "title": "2026년. 부산집값 전망.?",
+        "link": "https://kin.naver.com/qna/detail.naver?d1id=4&dirId=40201&docId=492025806&qb=7KeR6rCSIOyghOunnQ==&enc=utf8"
+      },
+      {
+        "seed": "월세",
+        "kind": "지식iN",
+        "title": "아낌e보금자리론 받고 월세 줄수 있나요?? 경기도 부천시",
+        "link": "https://kin.naver.com/qna/detail.naver?d1id=4&dirId=40201&docId=494517255&qb=7JuU7IS4&enc=utf8"
+      },
+      {
+        "seed": "청약",
+        "kind": "블로그",
+        "title": "51대1 청약경쟁률에도 계약 반토막 분당 아파트, 왜?",
+        "link": "https://blog.naver.com/kebin0605/224362599143"
+      },
+      {
+        "seed": "재개발",
+        "kind": "카페",
+        "title": "자양1동 재개발 신통기획 vs 모아타운, 여러분의 선택은?",
+        "link": "https://cafe.naver.com/jayangdongcom/941"
+      },
+      {
+        "seed": "부동산 전망",
+        "kind": "지식iN",
+        "title": "파주 운정 가람마을 4단지 아파트 전망?",
+        "link": "https://kin.naver.com/qna/detail.naver?d1id=8&dirId=80801&docId=494305334&qb=67aA64+Z7IKwIOyghOunnQ==&enc=utf8"
+      }
+    ]
+  },
+  "newsSignals": {
+    "scanned": 8,
+    "issueCount": 8,
+    "articles": [
+      {
+        "seed": "전세",
+        "title": "시흥시, '신혼부부 전세 대출금 이자지원 사업' 시행",
+        "link": "https://www.kmaeil.com/news/articleView.html?idxno=646991",
+        "publishedAt": "2026-07-30T02:08:00.000Z",
+        "coverage": 1
+      },
+      {
+        "seed": "아파트 매매",
+        "title": "서울 신축 아파트 희소성 지속…‘쌍용 더 플래티넘 서대문’ 분양 예정",
+        "link": "https://n.news.naver.com/mnews/article/016/0002677296?sid=101",
+        "publishedAt": "2026-07-30T02:06:00.000Z",
+        "coverage": 1
+      },
+      {
+        "seed": "전세",
+        "title": "이혼 6개월, 내 명의 전세금 1.4억…전남편 몫 빼지 않고 써도 될까?",
+        "link": "https://lawtalknews.co.kr/article/T3UV4DWS27YL",
+        "publishedAt": "2026-07-30T01:56:00.000Z",
+        "coverage": 1
+      },
+      {
+        "seed": "월세",
+        "title": "“보유세 올릴 때마다 월세도 뛰었다” 서울 월세 160만 육박 어쩌나 [부...",
+        "link": "https://n.news.naver.com/mnews/article/016/0002677269?sid=101",
+        "publishedAt": "2026-07-30T01:48:00.000Z",
+        "coverage": 1
+      },
+      {
+        "seed": "부동산 전망",
+        "title": "中, 이번주 정치국회의 개최 전망…하반기 경제정책 논의",
+        "link": "https://n.news.naver.com/mnews/article/001/0016223573?sid=104",
+        "publishedAt": "2026-07-30T01:33:00.000Z",
+        "coverage": 1
+      },
+      {
+        "seed": "아파트 매매",
+        "title": "집값 상승률의 5배 넘게 뛰었다…서울 아파트 전셋값, 1년 새 7.2% 급등",
+        "link": "https://n.news.naver.com/mnews/article/008/0005393218?sid=101",
+        "publishedAt": "2026-07-30T01:18:00.000Z",
+        "coverage": 1
+      }
+    ],
+    "enough": true
+  },
+  "notes": [],
+  "limitations": [
+    "검색량은 네이버 검색 기준이며 유튜브 내 검색량과 다를 수 있습니다.",
+    "데이터랩 트렌드는 절대 검색량이 아니라 기간 내 상대 비율(0~100)입니다.",
+    "월간 검색수 10 미만은 네이버가 '< 10'으로만 제공해 5로 집계합니다."
+  ]
+}
