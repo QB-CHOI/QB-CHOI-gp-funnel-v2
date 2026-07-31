@@ -2530,6 +2530,35 @@ def webinar_topic_chart(df: pd.DataFrame):
     return fig
 
 
+def room_funnel_chart(df: pd.DataFrame):
+    """방 인원 vs 방→수강생 전환율 (버블=매출) — '키우는 게 답인가'를 본다.
+
+    가로=방 최고 인원, 세로=방 인원 대비 수강생 비율, 버블 크기=매출.
+    오른쪽 아래(크게 모았는데 전환 낮음)가 많으면 '규모 늘리기'가 답이 아니다.
+    """
+    if df is None or df.empty:
+        return None
+    d = df.copy()
+    colors = [_PRODUCT_COLOR.get(p, '#90A4AE') for p in d['product']]
+    _mx = float(d['revenue'].max()) or 1
+    fig = go.Figure(go.Scatter(
+        x=d['peak'], y=d['room_to_student'], mode='markers+text',
+        text=d['label'], textposition='top center', textfont=dict(size=10),
+        marker=dict(size=(d['revenue'] / _mx * 46 + 14), color=colors,
+                    line=dict(width=1, color='rgba(255,255,255,.6)'), opacity=0.85),
+        hovertemplate=('<b>%{text}</b><br>방 최고 인원 %{x:,}명'
+                       '<br>방→수강생 %{y:.2f}%'
+                       '<br>수강생 %{customdata[0]:,}명 · 매출 %{customdata[1]:,.2f}억'
+                       '<br>방 1명당 %{customdata[2]:,.0f}원<extra></extra>'),
+        customdata=list(zip(d['students'], d['revenue'] / 1e8, d['rev_per_member']))))
+    fig.update_layout(
+        title='채팅방 모객 → 수강생 전환 (버블 크기 = 매출)',
+        xaxis=dict(title='방 최고 인원(명)'),
+        yaxis=dict(title='방 인원 대비 수강생(%)'),
+        height=430, margin=dict(t=58, b=45, l=28, r=28), showlegend=False)
+    return fig
+
+
 def ohaeng_chart(df: pd.DataFrame, kind: str = 'stem'):
     """오행별 월평균 모객 + 전환율.
 

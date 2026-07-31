@@ -59,7 +59,7 @@ from charts import (
     stage_funnel_chart, cohort_stage_matrix_chart, webinar_topic_chart, webinar_hook_ad_chart,
     webinar_quadrant_chart, webinar_selfconv_chart,
     stage_timeline_chart, ad_efficiency_diagnosis,
-    ohaeng_chart, ohaeng_timeline_chart,
+    ohaeng_chart, ohaeng_timeline_chart, room_funnel_chart,
     cust_repeat_donut, cust_ltv_bar, cust_product_repeat_chart,
     cross_sell_heatmap, monthly_new_repeat_chart,
     runrate_forecast_chart,
@@ -156,7 +156,7 @@ def _kpi_band(items):
 
 # ── 사이드바 — 캐시 새로고침 ─────────────────────────────────────
 
-APP_VERSION = "v4.58"  # 배포 반영 확인용 — 화면 버전이 다르면 아직 리부팅 전
+APP_VERSION = "v4.59"  # 배포 반영 확인용 — 화면 버전이 다르면 아직 리부팅 전
 
 with st.sidebar:
     st.markdown("### 📊 황금후추 강의 분석")
@@ -2868,6 +2868,76 @@ def tab_lecture_analysis():
     st.header("🎓 강의 분석")
     st.caption("기수별 모객 효율·개강 후 잔류율·채팅방 운영 이력을 한눈에 비교합니다.")
 
+    # ── 💰 채팅방 모객 → 수강생·매출 (방이 돈이 되는가) ────────
+    _rf = _room_funnel()
+    if not _rf.empty:
+        st.subheader("💰 채팅방 모객 → 수강생 · 매출")
+        st.caption("모은 인원이 **실제 수강생과 매출로 얼마나 이어졌는지**를 봅니다. "
+                   "방 인원과 매출 데이터를 기수 단위로 이어 붙였습니다. "
+                   "'방을 키우는 것'이 정답인지 숫자로 판단할 수 있습니다.")
+        _tot_peak = int(_rf['peak'].sum())
+        _tot_stu = int(_rf['students'].sum())
+        _tot_rev = float(_rf['revenue'].sum())
+        _best = _rf.iloc[0]
+        _kpi_band([
+            ("👥 방 모객 합계", f"{_tot_peak:,}<small>명</small>",
+             f"{len(_rf)}개 기수 · 방 {int(_rf['rooms'].sum())}개"),
+            ("🎓 수강생", f"{_tot_stu:,}<small>명</small>",
+             f"방 대비 {_tot_stu/_tot_peak*100:.1f}%"),
+            ("💰 방 1명당 매출", f"{_tot_rev/_tot_peak:,.0f}<small>원</small>", "전체 평균"),
+            ("🏆 최고 효율", f"{_best['label']}",
+             f"{_best['rev_per_member']:,.0f}원/명"),
+        ])
+        _fig_rf = room_funnel_chart(_rf)
+        if _fig_rf:
+            st.plotly_chart(_fig_rf, width='stretch', key="lec_room_funnel")
+
+        _rows_rf = "".join(
+            f'<tr><td><b>{r["label"]}</b></td>'
+            f'<td style="text-align:right">{int(r["rooms"])}</td>'
+            f'<td style="text-align:right">{int(r["peak"]):,}</td>'
+            f'<td style="text-align:right">{int(r["students"]):,}</td>'
+            f'<td style="text-align:right">{r["room_to_student"]:.2f}%</td>'
+            f'<td style="text-align:right">{r["revenue"]/1e8:.2f}억</td>'
+            f'<td style="text-align:right;font-weight:700">'
+            f'{r["rev_per_member"]:,.0f}원</td></tr>'
+            for _, r in _rf.iterrows())
+        st.markdown(
+            '<table class="gp-dtbl" style="width:100%;border-collapse:collapse;'
+            'font-size:13px"><thead><tr style="text-align:left"><th>기수</th>'
+            '<th style="text-align:right">방</th>'
+            '<th style="text-align:right">방 인원</th>'
+            '<th style="text-align:right">수강생</th>'
+            '<th style="text-align:right">전환율</th>'
+            '<th style="text-align:right">매출</th>'
+            '<th style="text-align:right">방1명당</th></tr></thead>'
+            f'<tbody>{_rows_rf}</tbody></table>', unsafe_allow_html=True)
+
+        # 핵심 진단: 방 크기가 효율과 관계있는가
+        _corr_rf = _rf['peak'].corr(_rf['rev_per_member']) if len(_rf) >= 3 else None
+        _worst = _rf.iloc[-1]
+        _msg_rf = (f"💡 **방 1명당 매출이 기수마다 크게 다릅니다** — 최고 "
+                   f"**{_best['label']} {_best['rev_per_member']:,.0f}원** vs 최저 "
+                   f"**{_worst['label']} {_worst['rev_per_member']:,.0f}원**"
+                   f"({_best['rev_per_member']/max(_worst['rev_per_member'],1):.1f}배 차이). ")
+        if _corr_rf is not None and abs(_corr_rf) < 0.35:
+            _msg_rf += (f"방 크기와 1명당 매출의 상관은 **{_corr_rf:+.2f}로 거의 무관**합니다 — "
+                        "**인원을 늘리는 것 자체는 매출로 이어지지 않습니다.** "
+                        "같은 규모를 모아도 기수·상품에 따라 결과가 갈리므로, "
+                        "'몇 명 모았나'보다 **'어떤 사람을 모았나'와 개강 후 전환 설계**가 "
+                        "성패를 가릅니다.")
+        elif _corr_rf is not None and _corr_rf <= -0.35:
+            _msg_rf += (f"방 크기와 1명당 매출의 상관이 **{_corr_rf:+.2f}(음)** — "
+                        "**크게 모을수록 1명당 가치는 오히려 떨어집니다.** "
+                        "무리한 규모 확대보다 타깃 정밀도를 높이세요.")
+        else:
+            _msg_rf += "방 크기가 클수록 1명당 매출도 높은 경향이라, 규모 확대가 유효합니다."
+        st.info(_msg_rf)
+        st.caption("※ 기수 번호로 연결했으며, 한 기수의 단계별 매출(기초·심화·전문가 등)은 "
+                   "합산했습니다. 같은 기수를 여러 방으로 나눈 경우도 합산합니다. "
+                   "강의 집계가 이관된 기수만 표시됩니다.")
+        st.divider()
+
     if df_all.empty or df_camps.empty:
         st.info("데이터가 없습니다. 강의 정보를 등록하고 인원 데이터를 입력해주세요.")
         return
@@ -3166,6 +3236,49 @@ def _ad_budget_diagnosis(camp) -> list:
         out.append({'product': p, 'ad': ad, 'share': share, 'roas': roas,
                     'corr': corr, 'saturated': sat, 'rec': rec, 'why': why})
     return out
+
+
+def _room_funnel() -> pd.DataFrame:
+    """채팅방 모객 → 수강생·매출 연결 (기수 단위).
+
+    이 앱의 출발점인 '채팅방 인원'과 매출 데이터가 그동안 따로 놀았다.
+    campaigns(방→상품·기수)로 이어 붙여 **방 1명이 얼마의 매출이 됐는지**를 본다.
+
+    주의: 기수명 형식이 서로 다르다(campaigns '11기' vs cohort_revenue
+    '11기(기+심)'). 기수 '번호'로 맞추고, 한 기수의 단계별 매출은 합산한다.
+    같은 기수를 여러 방으로 나눠 모은 경우(예: 돈사공 11기 3개 방)도 합산.
+    """
+    mem = load_all()
+    camp = load_campaigns()
+    crev = load_cohort_revenue()
+    if mem.empty or camp.empty or crev.empty:
+        return pd.DataFrame()
+
+    def _num(s):
+        m = re.search(r'(\d+)', str(s))
+        return m.group(1) if m else None
+
+    cr = crev.copy()
+    cr['n'] = cr['cohort'].map(_num)
+    cr = cr.dropna(subset=['n'])
+    agg = cr.groupby(['product', 'n'], as_index=False).agg(
+        students=('students', 'sum'), revenue=('revenue', 'sum'))
+
+    cp = camp.copy()
+    cp['n'] = cp['cohort'].map(_num)
+    peak = mem.groupby('room_num')['members'].max().reset_index(name='peak')
+    cp = cp.merge(peak, on='room_num', how='left')
+    rooms = cp.dropna(subset=['n']).groupby(['product', 'n'], as_index=False).agg(
+        peak=('peak', 'sum'), rooms=('room_num', 'count'))
+
+    j = rooms.merge(agg, on=['product', 'n'], how='inner')
+    j = j[(j['peak'] > 0) & (j['students'] > 0)]
+    if j.empty:
+        return j
+    j['rev_per_member'] = j['revenue'] / j['peak']
+    j['room_to_student'] = j['students'] / j['peak'] * 100
+    j['label'] = j['product'] + ' ' + j['n'] + '기'
+    return j.sort_values('rev_per_member', ascending=False).reset_index(drop=True)
 
 
 def _cpl_baseline():
