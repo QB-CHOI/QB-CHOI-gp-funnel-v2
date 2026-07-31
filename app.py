@@ -156,7 +156,7 @@ def _kpi_band(items):
 
 # ── 사이드바 — 캐시 새로고침 ─────────────────────────────────────
 
-APP_VERSION = "v4.60"  # 배포 반영 확인용 — 화면 버전이 다르면 아직 리부팅 전
+APP_VERSION = "v4.61"  # 배포 반영 확인용 — 화면 버전이 다르면 아직 리부팅 전
 
 with st.sidebar:
     st.markdown("### 📊 황금후추 강의 분석")
@@ -852,6 +852,92 @@ def tab_period():
                 st.plotly_chart(_fr, width='stretch', key="prd_fc_rev")
         st.warning("⚠️ 전망은 **최근 추세 기준 참고치**입니다. 개강·프로모션이 있는 달은 크게 상회하고, "
                    "없는 달은 하회합니다. 확정 예측이 아니라 예산·목표 설정의 기준선으로 활용하세요.")
+
+        # ── 🔍 전망 정확도 (지난 예측이 맞았나) ───────────
+        # 전망만 보여주고 사후 검증을 안 하면 그 예측을 믿을지 알 수 없다.
+        # 과거 각 시점에서 '직전 3개월 평균'으로 다음 달을 예측했다고 보고,
+        # 실제와 대조해 평균 오차를 낸다(런레이트 로직과 동일한 방식).
+        if len(_complete) >= 5:
+            _bt = _complete.reset_index(drop=True)
+            _rows_bt = []
+            for i in range(3, len(_bt)):
+                _pred_f = _bt['free_signups'].iloc[i - 3:i].mean()
+                _pred_r = _bt['revenue'].iloc[i - 3:i].mean()
+                _act_f = _bt['free_signups'].iloc[i]
+                _act_r = _bt['revenue'].iloc[i]
+                if _pred_f > 0 and _pred_r > 0:
+                    _rows_bt.append({
+                        'month': _bt['month'].iloc[i],
+                        'pred_free': _pred_f, 'act_free': _act_f,
+                        'err_free': (_act_f - _pred_f) / _pred_f * 100,
+                        'pred_rev': _pred_r, 'act_rev': _act_r,
+                        'err_rev': (_act_r - _pred_r) / _pred_r * 100,
+                    })
+            if len(_rows_bt) >= 3:
+                _bd = pd.DataFrame(_rows_bt)
+                # 사업 초기(매출 수만원대)는 분모가 작아 오차율이 폭발한다
+                # (실제로 평균 ±1110%가 나왔다). 규모가 잡힌 구간만 평가하고,
+                # 이상치에 휘둘리지 않도록 **중앙값**을 대표값으로 쓴다.
+                _bd_all = _bd
+                _bd = _bd[_bd['pred_rev'] >= 1e8]
+                if len(_bd) < 3:
+                    _bd = _bd_all
+                _mae_f = _bd['err_free'].abs().median()
+                _mae_r = _bd['err_rev'].abs().median()
+                _bias_r = _bd['err_rev'].median()
+                st.divider()
+                st.subheader("🔍 전망 정확도 — 지난 예측은 맞았나")
+                st.caption("과거 각 시점에서 위와 **똑같은 방식(직전 3개월 평균)**으로 "
+                           "다음 달을 예측했다면 얼마나 맞았을지 대조했습니다. "
+                           "이 오차를 알면 위 전망을 어느 정도 믿을지 판단할 수 있습니다.")
+                _kpi_band([
+                    ("🎯 검증 개월", f"{len(_bd)}<small>개월</small>", "초기 램프업 제외"),
+                    ("🆓 모객 오차(중앙값)", f"±{_mae_f:.0f}<small>%</small>",
+                     "낮을수록 예측 신뢰"),
+                    ("💰 매출 오차(중앙값)", f"±{_mae_r:.0f}<small>%</small>",
+                     "낮을수록 예측 신뢰"),
+                    ("📐 매출 편향", f"{_bias_r:+.0f}<small>%</small>",
+                     "＋면 과소예측 경향"),
+                ])
+                _bt_rows = "".join(
+                    f'<tr><td>{ganji.ym_label(r["month"], with_ganji=False)}</td>'
+                    f'<td style="text-align:right">{r["pred_rev"]/1e8:.2f}억</td>'
+                    f'<td style="text-align:right">{r["act_rev"]/1e8:.2f}억</td>'
+                    f'<td style="text-align:right;color:'
+                    f'{"#2E9E5B" if abs(r["err_rev"])<=20 else "#E0483E"}">'
+                    f'{r["err_rev"]:+.0f}%</td>'
+                    f'<td style="text-align:right">{r["pred_free"]:,.0f}</td>'
+                    f'<td style="text-align:right">{r["act_free"]:,.0f}</td>'
+                    f'<td style="text-align:right;color:'
+                    f'{"#2E9E5B" if abs(r["err_free"])<=20 else "#E0483E"}">'
+                    f'{r["err_free"]:+.0f}%</td></tr>'
+                    for _, r in _bd.tail(8).iloc[::-1].iterrows())
+                st.markdown(
+                    '<table class="gp-dtbl" style="width:100%;border-collapse:collapse;'
+                    'font-size:13px"><thead><tr style="text-align:left"><th>월</th>'
+                    '<th style="text-align:right">매출 예측</th>'
+                    '<th style="text-align:right">실제</th>'
+                    '<th style="text-align:right">오차</th>'
+                    '<th style="text-align:right">모객 예측</th>'
+                    '<th style="text-align:right">실제</th>'
+                    '<th style="text-align:right">오차</th></tr></thead>'
+                    f'<tbody>{_bt_rows}</tbody></table>', unsafe_allow_html=True)
+                if _mae_r >= 40 or _mae_f >= 40:
+                    _worse = "매출" if _mae_r >= _mae_f else "모객"
+                    st.warning(
+                        f"⚠️ **전망 오차가 큽니다 — 매출 ±{_mae_r:.0f}% · 모객 "
+                        f"±{_mae_f:.0f}%(중앙값)**. 강의 사업은 개강 시점에 모객·매출이 "
+                        "몰려 월 편차가 크기 때문입니다. **위 전망은 '대략의 방향'으로만 "
+                        "보시고**, 실제 계획은 **개강 일정과 함께** 세우세요. "
+                        f"특히 {_worse} 전망을 근거로 단정하지 마세요.")
+                else:
+                    st.success(
+                        f"✅ 매출 전망 오차(중앙값) **±{_mae_r:.0f}%**, 모객 "
+                        f"**±{_mae_f:.0f}%** — 계획 수립에 쓸 만한 수준입니다.")
+                st.caption("※ 오차 = (실제−예측)÷예측. 초록은 ±20% 이내. 사업 초기(월 매출 "
+                           "1억 미만)는 분모가 작아 오차율이 왜곡되므로 제외했고, "
+                           "이상치 영향을 줄이려 평균이 아닌 **중앙값**을 씁니다. "
+                           "개강이 없는 달은 구조적으로 매출이 낮아 오차가 큽니다.")
 
         # ── 🎯 목표 관리 & 달성 추적 ─────────────────────
         st.divider()
