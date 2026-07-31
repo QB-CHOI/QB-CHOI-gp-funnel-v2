@@ -156,7 +156,7 @@ def _kpi_band(items):
 
 # ── 사이드바 — 캐시 새로고침 ─────────────────────────────────────
 
-APP_VERSION = "v4.61"  # 배포 반영 확인용 — 화면 버전이 다르면 아직 리부팅 전
+APP_VERSION = "v4.62"  # 배포 반영 확인용 — 화면 버전이 다르면 아직 리부팅 전
 
 with st.sidebar:
     st.markdown("### 📊 황금후추 강의 분석")
@@ -188,8 +188,33 @@ with st.sidebar:
         st.caption(f"최근 7일 입력률 **{_comp_7}%**")
         if _missing_7:
             st.warning("누락: " + ", ".join(sorted(_missing_7, reverse=True)[:3]) +
-                       (f" 외 {len(_missing_7)-3}일" if len(_missing_7) > 3 else ""),
+                       (f" 외 {len(_missing_7)-3}일" if len(_missing_7) > 3 else "") +
+                       "\n\n→ 🗂️ 데이터 관리 탭에서 소급 입력할 수 있습니다",
                        icon="📅")
+        # 연속 입력일 — 습관이 유지되는지 한눈에
+        _streak = 0
+        _d = date.today()
+        if _today_str not in _entered_7:      # 오늘 아직이면 어제부터 센다
+            _d -= timedelta(days=1)
+        while str(_d) in _df_check['date'].astype(str).values:
+            _streak += 1
+            _d -= timedelta(days=1)
+        if _streak >= 3:
+            st.caption(f"🔥 연속 입력 **{_streak}일**")
+
+    # 진행 중인데 개강일이 비어 있는 강의 — 개강 효과 분석에서 통째로 빠진다
+    _cmp_chk = load_campaigns()
+    if not _cmp_chk.empty and 'is_current' in _cmp_chk.columns:
+        _cur_chk = _cmp_chk[_cmp_chk['is_current'].astype(str).str.lower()
+                            .isin(['true', '1', 'yes'])]
+        _no_date = _cur_chk[_cur_chk['lecture_start_date'].isna() |
+                            (_cur_chk['lecture_start_date'].astype(str).str.strip() == '')]
+        if not _no_date.empty:
+            st.warning(
+                f"📅 개강일 미입력 **{len(_no_date)}건**\n\n"
+                + " · ".join(_no_date['campaign_name'].astype(str).head(3))
+                + "\n\n→ ⚙️ 채팅방 설정에서 입력하면 개강 효과 분석에 반영됩니다",
+                icon="⚠️")
 
     st.divider()
     if st.button("🔄 데이터 새로고침", width='stretch',
@@ -1350,6 +1375,20 @@ def _generate_alerts() -> list:
             alerts.append({'sev': 'info', 'title': '데이터 미입력',
                            'msg': f"최근 3일 중 **{len(_missing)}일** 인원이 미입력입니다. "
                                   "정확한 추세·전망을 위해 입력을 권장합니다."})
+
+    # 6) 진행 중인데 개강일이 비어 있는 강의
+    #    개강일이 없으면 개강 효과·기간별 분석에서 그 기수가 통째로 빠진다.
+    _cmp = load_campaigns()
+    if not _cmp.empty and 'is_current' in _cmp.columns:
+        _cur = _cmp[_cmp['is_current'].astype(str).str.lower().isin(['true', '1', 'yes'])]
+        _nod = _cur[_cur['lecture_start_date'].isna() |
+                    (_cur['lecture_start_date'].astype(str).str.strip() == '')]
+        if not _nod.empty:
+            alerts.append({
+                'sev': 'warning', 'title': '개강일 미입력',
+                'msg': f"진행 중인 강의 **{len(_nod)}건**({', '.join(_nod['campaign_name'].astype(str).head(3))})의 "
+                       "개강일이 비어 있습니다. 개강 효과·기간별 분석에서 제외되므로 "
+                       "**⚙️ 채팅방 설정**에서 입력하세요."})
     return alerts
 
 
