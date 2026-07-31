@@ -156,7 +156,7 @@ def _kpi_band(items):
 
 # ── 사이드바 — 캐시 새로고침 ─────────────────────────────────────
 
-APP_VERSION = "v4.59"  # 배포 반영 확인용 — 화면 버전이 다르면 아직 리부팅 전
+APP_VERSION = "v4.60"  # 배포 반영 확인용 — 화면 버전이 다르면 아직 리부팅 전
 
 with st.sidebar:
     st.markdown("### 📊 황금후추 강의 분석")
@@ -862,6 +862,42 @@ def tab_period():
         # 실적 결합 (monthly_performance)
         _perf_idx = _p.set_index('month')
         _this_month = date.today().strftime('%Y-%m')
+
+        # ── 전략 결론 기반 목표 자동 설정 ────────────────
+        # 목표 관리 기능이 다 만들어져 있는데 목표가 0건이면 달성 추적·
+        # 목표 지연 알림이 전부 잠들어 있게 된다. 전략 결론이 이미 계산한
+        # 개선폭을 근거로 3개월치를 한 번에 세워 기능을 살린다.
+        if tgt.empty and _rr_free and _rr_rev:
+            _cs_t = load_course_summary()
+            _cur_cv = _aov_t = 0.0
+            if not _cs_t.empty and _cs_t['free'].sum() and _cs_t['students'].sum():
+                _cur_cv = _cs_t['students'].sum() / _cs_t['free'].sum() * 100
+                _aov_t = _cs_t['revenue'].sum() / _cs_t['students'].sum()
+            _goal_cv = _cur_cv + 1.0                     # 전략 결론의 +1%p 목표
+            _goal_free = int(round(_rr_free / 100) * 100)
+            _goal_rev = _goal_free * (_goal_cv / 100) * _aov_t if _aov_t else _rr_rev
+            _next3 = _future_months(_pm, 3)
+            with st.container(border=True):
+                st.markdown("**📌 아직 목표가 없습니다 — 전략 결론 기준으로 세워보세요**")
+                st.caption(
+                    f"모객은 최근 3개월 런레이트(**{_rr_free:,.0f}명/월**)를, "
+                    f"매출은 **모객 × 목표 전환율 × 객단가**로 계산합니다. "
+                    f"전환율 목표는 현재 **{_cur_cv:.2f}% → {_goal_cv:.2f}%**"
+                    f"(전략 결론의 +1%p), 객단가 **{_aov_t/1e4:,.0f}만원** 기준입니다. "
+                    "→ 근거가 분명해 대표님께 설명하기 쉽습니다.")
+                st.markdown(
+                    f"<div style='font-size:13px'>대상: <b>"
+                    + " · ".join(ganji.ym_label(m, with_ganji=False) for m in _next3)
+                    + f"</b><br>월 목표: 모객 <b>{_goal_free:,}명</b> · "
+                      f"매출 <b>{_goal_rev/1e8:.2f}억</b></div>",
+                    unsafe_allow_html=True)
+                if st.button("이 목표로 3개월 자동 설정", type="primary", key="tgt_auto"):
+                    for _m in _next3:
+                        save_target(_m, int(_goal_rev), int(_goal_free),
+                                    memo=f"전략 결론 기반 자동 설정(전환율 {_goal_cv:.2f}% 목표)")
+                    st.success(f"{len(_next3)}개월 목표를 설정했습니다. "
+                               "이제 달성률 추적과 목표 지연 알림이 작동합니다.")
+                    st.rerun()
 
         # 목표 설정 폼 (런레이트 제안값 프리필)
         with st.expander("✏️ 월별 목표 설정 / 수정", expanded=tgt.empty):
