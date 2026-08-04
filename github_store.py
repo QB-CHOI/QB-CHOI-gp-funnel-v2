@@ -104,6 +104,9 @@ WEBINAR_HOOK_AD_PATH = "data/webinar_hook_ad.csv"
 OHAENG_PERIOD_PATH = "data/ohaeng_period.csv"
 EXPERIMENTS_PATH = "data/experiments.csv"
 MARKET_SIGNALS_PATH = "data/market_signals.csv"
+WEBINAR_SCHEDULE_PATH = "data/webinar_schedule.csv"
+WEBINAR_SCHEDULE_COLS = ['id', 'date', 'product', 'topic', 'target_signups',
+                         'budget', 'status', 'memo']
 REFRESH_STATUS_PATH = "data/refresh_status.csv"
 EXPERIMENTS_COLS = ['id', 'created', 'start', 'end', 'product', 'hook', 'channel',
                     'hypothesis', 'budget', 'status',
@@ -1027,6 +1030,42 @@ def load_market_signals() -> pd.DataFrame:
         return df
     df['metric1'] = pd.to_numeric(df['metric1'], errors='coerce').fillna(0).astype(int)
     return df
+
+
+@st.cache_data(ttl=300)
+def load_webinar_schedule() -> pd.DataFrame:
+    """무료특강(웨비나) 진행 일정 — 모객 계획의 기준선.
+
+    이 일정이 있어야 '언제 무엇을 준비해야 하는지'와 '그 시기가 그 강의에
+    유리한지'를 미리 판단할 수 있다.
+    """
+    df = _read_csv(WEBINAR_SCHEDULE_PATH, WEBINAR_SCHEDULE_COLS)
+    if df.empty:
+        return df
+    for c in ['target_signups', 'budget']:
+        df[c] = pd.to_numeric(df[c], errors='coerce').fillna(0).astype(int)
+    df['date'] = pd.to_datetime(df['date'], errors='coerce')
+    return df.dropna(subset=['date']).sort_values('date').reset_index(drop=True)
+
+
+def save_webinar(row: dict):
+    """웨비나 일정 저장/수정 (id 같으면 갱신)."""
+    df = _read_csv(WEBINAR_SCHEDULE_PATH, WEBINAR_SCHEDULE_COLS)
+    if not df.empty and 'id' in df.columns:
+        df = df[df['id'].astype(str) != str(row['id'])]
+    new = pd.DataFrame([{c: row.get(c, '') for c in WEBINAR_SCHEDULE_COLS}])
+    _write_csv(WEBINAR_SCHEDULE_PATH, pd.concat([df, new], ignore_index=True),
+               f"웨비나 일정 저장: {row.get('date')} {row.get('product')}")
+    load_webinar_schedule.clear()
+
+
+def delete_webinar(wid: str):
+    df = _read_csv(WEBINAR_SCHEDULE_PATH, WEBINAR_SCHEDULE_COLS)
+    if df.empty:
+        return
+    _write_csv(WEBINAR_SCHEDULE_PATH,
+               df[df['id'].astype(str) != str(wid)], f"웨비나 일정 삭제: {wid}")
+    load_webinar_schedule.clear()
 
 
 @st.cache_data(ttl=300)

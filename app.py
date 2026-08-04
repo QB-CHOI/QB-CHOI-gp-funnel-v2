@@ -29,6 +29,7 @@ from github_store import (
     load_webinar_topics, load_webinar_conversion, load_webinar_hook_ad,
     load_ohaeng_period,
     load_experiments, save_experiment, delete_experiment, load_market_signals,
+    load_webinar_schedule, save_webinar, delete_webinar,
     load_refresh_status,
     load_data_sources, load_stage_timeline,
     load_adspend, save_adspend, delete_adspend_row,
@@ -156,7 +157,7 @@ def _kpi_band(items):
 
 # ── 사이드바 — 캐시 새로고침 ─────────────────────────────────────
 
-APP_VERSION = "v4.63"  # 배포 반영 확인용 — 화면 버전이 다르면 아직 리부팅 전
+APP_VERSION = "v4.64"  # 배포 반영 확인용 — 화면 버전이 다르면 아직 리부팅 전
 
 with st.sidebar:
     st.markdown("### 📊 황금후추 강의 분석")
@@ -393,10 +394,10 @@ def main():
     st.title("📊 황금후추 강의 분석")
 
     (tab_ov, tab1, tab2, tab3, tab4, tab5, tab_drill, tab_prd, tab_cust, tab9, tab10,
-     tab_exp, tab6, tab7, tab8) = st.tabs([
+     tab_wb, tab_exp, tab6, tab7, tab8) = st.tabs([
         "🧭 종합 보고", "📸 오늘 입력", "📊 현황", "📋 전환 분석", "📈 추이 그래프",
         "🎓 강의 분석", "🔎 강의별 상세", "📅 기간별 분석", "👥 고객 분석",
-        "📢 마케팅 분석", "📍 지역 분석", "🧪 실험 일지",
+        "📢 마케팅 분석", "📍 지역 분석", "🗓️ 웨비나 일정", "🧪 실험 일지",
         "📑 경영진 보고", "⚙️ 채팅방 설정", "🗂️ 데이터 관리",
     ])
 
@@ -422,6 +423,8 @@ def main():
         tab_marketing()
     with tab10:
         tab_region()
+    with tab_wb:
+        tab_webinar()
     with tab_exp:
         tab_experiments()
     with tab6:
@@ -3409,6 +3412,145 @@ def _ad_budget_diagnosis(camp) -> list:
     return out
 
 
+def _webinar_calendar_html(year: int, month: int, events: pd.DataFrame) -> str:
+    """월별 캘린더 HTML — 절기 전환일과 웨비나 일정을 함께 보여준다.
+
+    달력 월 안에서 월주가 바뀌는 날(절입)을 표시해, 명리 기준 시기와
+    실제 일정을 한 화면에서 대조할 수 있게 한다.
+    """
+    import calendar as _cal
+    _cal.setfirstweekday(_cal.SUNDAY)
+    weeks = _cal.monthcalendar(year, month)
+    jd, jh = ganji.jeolgi(year, month)
+    prev_mg = ganji.month_ganji(*ganji.saju_month_of(date(year, month, 1)))
+    cur_mg = ganji.month_ganji(year, month)
+
+    ev = {}
+    if not events.empty:
+        for _, e in events.iterrows():
+            d = e['date']
+            if d.year == year and d.month == month:
+                ev.setdefault(d.day, []).append(e)
+
+    head = "".join(
+        f'<th style="padding:4px;font-size:11px;opacity:.6;'
+        f'color:{"#E0483E" if i == 0 else ("#3B82F6" if i == 6 else "inherit")}">'
+        f'{d}</th>'
+        for i, d in enumerate(['일', '월', '화', '수', '목', '금', '토']))
+    body = ""
+    _today = date.today()
+    for wk in weeks:
+        body += "<tr>"
+        for i, day in enumerate(wk):
+            if day == 0:
+                body += '<td style="border:1px solid rgba(127,127,127,.15)"></td>'
+                continue
+            _is_today = (year, month, day) == (_today.year, _today.month, _today.day)
+            _bg = "rgba(200,144,26,.13)" if _is_today else "transparent"
+            _dcol = "#E0483E" if i == 0 else ("#3B82F6" if i == 6 else "inherit")
+            cell = (f'<div style="font-size:12px;font-weight:600;color:{_dcol}">'
+                    f'{day}</div>')
+            if day == jd:      # 절입일 — 월주가 바뀌는 날
+                cell += (f'<div style="font-size:10px;line-height:1.3;margin-top:1px">'
+                         f'<span style="opacity:.65">{ganji.jeolgi_name(month)} {jh}시</span><br>'
+                         f'{ganji.colorize(prev_mg)}<span style="opacity:.4">→</span>'
+                         f'{ganji.colorize(cur_mg)}</div>')
+            for e in ev.get(day, []):
+                _c = _PRODUCT_COLOR_APP.get(e['product'], '#90A4AE')
+                _done = str(e.get('status', '')) == '완료'
+                cell += (f'<div style="margin-top:3px;padding:2px 4px;border-radius:3px;'
+                         f'background:{_c};color:#fff;font-size:10px;line-height:1.25;'
+                         f'opacity:{"0.5" if _done else "1"}">'
+                         f'<b>{e["product"]}</b><br>{str(e["topic"])[:14]}</div>')
+            body += (f'<td style="border:1px solid rgba(127,127,127,.15);'
+                     f'vertical-align:top;padding:3px;height:74px;background:{_bg}">'
+                     f'{cell}</td>')
+        body += "</tr>"
+    return (f'<table style="width:100%;border-collapse:collapse;table-layout:fixed">'
+            f'<thead><tr>{head}</tr></thead><tbody>{body}</tbody></table>')
+
+
+_PRODUCT_COLOR_APP = {'사주': '#C8901A', '타로': '#8A5CF6',
+                      '부동산': '#2E9E5B', '빌딩': '#3B82F6'}
+
+
+def _webinar_advice(ev, pb_map, oh, base) -> list:
+    """예정된 웨비나 1건에 대한 모객 방안 추천 (근거 있는 항목만)."""
+    out = []
+    prod = ev['product']
+    d = ev['date'].date() if hasattr(ev['date'], 'date') else ev['date']
+    b = pb_map.get(prod)
+
+    # ① 후킹 — 이 강의에서 검증된 문구
+    if b and b.get('hooks'):
+        _vol = max(b['hooks'], key=lambda h: h['signups'])
+        _cv = b['hooks'][0]
+        out.append(("🎣 후킹",
+                    f"모객은 **{_vol['topic']}**({_vol['signups']:,}명 실적), "
+                    f"마감은 **{_cv['topic']}**(전환 {_cv['conv']:.1f}%)로 이원화"))
+
+    # ② 시기 — 그 날짜가 속한 명리월이 이 강의에 유리한가
+    sm = ganji.saju_month_of(d)
+    if sm and not oh.empty:
+        _mg = ganji.month_ganji(*sm)
+        _el = ganji.element_of(_mg[1])          # 월지 오행
+        o = oh[oh['product'] == prod]
+        if len(o) >= 6 and _el:
+            gb = o.groupby('branch_element').agg(
+                n=('saju_month', 'size'), f=('free_signups', 'sum'),
+                pd_=('paid_orders', 'sum'))
+            gb = gb[gb['n'] >= 2]
+            if not gb.empty and _el in gb.index and gb['f'].sum():
+                gb['avg'] = gb['f'] / gb['n']
+                gb['cv'] = (gb['pd_'] / gb['f'] * 100).where(gb['f'] > 0, 0)
+                _rank_v = int((gb['avg'] > gb.loc[_el, 'avg']).sum()) + 1
+                _rank_c = int((gb['cv'] > gb.loc[_el, 'cv']).sum()) + 1
+                _n = len(gb)
+                _t = (f"이 날은 **{ganji.ym_korean(*sm)} {_mg}月**(월지 {_el}"
+                      f"{ganji.ELEMENT_HANJA.get(_el, '')}). "
+                      f"{prod} 기준 이 오행 시기는 **모객 {_rank_v}/{_n}위 · "
+                      f"전환 {_rank_c}/{_n}위**")
+                if _rank_v <= 2 and _rank_c > 2:
+                    _t += " — **모객엔 좋고 전환은 약한 시기**라 리드 확보에 무게를 두고, 마감은 다음 시기로 이어가세요."
+                elif _rank_c <= 2 and _rank_v > 2:
+                    _t += " — **전환이 강한 시기**라 마감·업셀을 이때 배치하세요."
+                elif _rank_v <= 2 and _rank_c <= 2:
+                    _t += " — 모객·전환 모두 강한 **황금 구간**입니다."
+                else:
+                    _t += " — 특별히 유리한 시기는 아니니 소재·타깃으로 승부하세요."
+                out.append(("🌳 시기", _t))
+
+    # ③ 예산·목표
+    if base:
+        _tg = int(ev['target_signups']) or 0
+        _bd = int(ev['budget']) or 0
+        if _tg and _bd:
+            _need = _bd / _tg
+            _v = ("🟢 여유 있는 목표" if _need >= base[1]
+                  else ("🟡 기준선보다 빡빡" if _need >= base[0] else "🔴 과도하게 공격적"))
+            out.append(("💰 예산·목표",
+                        f"목표 {_tg:,}명 / 예산 {_bd/1e4:,.0f}만원 → "
+                        f"필요 CPL **{_need:,.0f}원** ({_v}). "
+                        f"기준선 최저 {base[0]:,.0f}·평균 {base[1]:,.0f}원"))
+        elif _tg:
+            out.append(("💰 예산 제안",
+                        f"목표 {_tg:,}명이면 평균 CPL {base[1]:,.0f}원 기준 "
+                        f"**약 {_tg*base[1]/1e4:,.0f}만원**이 필요합니다"))
+
+    # ④ 준비 일정 (D-day)
+    _dd = (d - date.today()).days
+    if _dd >= 0:
+        _steps = []
+        if _dd >= 14:
+            _steps.append("D-14 소재 3안 제작(동영상 우선)")
+        if _dd >= 7:
+            _steps.append("D-7 광고 시작·초기 CPL 확인")
+        _steps.append("D-3 저효율 소재 교체")
+        _steps.append("D-1 리마인드 발송")
+        out.append(("🗓 준비", f"**D-{_dd}** · " + " → ".join(_steps)))
+    return out
+
+
 def _room_funnel() -> pd.DataFrame:
     """채팅방 모객 → 수강생·매출 연결 (기수 단위).
 
@@ -3465,6 +3607,116 @@ def _cpl_baseline():
         return None
     avg = p['spend'].sum() / p['leads'].sum()
     return float(p['cpl'].min()), float(avg), float(p['cpl'].max())
+
+
+def tab_webinar():
+    st.header("🗓️ 웨비나 일정 & 모객 계획")
+    st.caption("무료특강(웨비나) 일정을 달력에 올리면, 각 회차에 맞는 **후킹·시기·예산·"
+               "준비 일정**을 데이터에서 추천합니다. 절기 전환일도 함께 표시돼 "
+               "명리 기준 시기와 실제 일정을 대조할 수 있습니다.")
+
+    ws = load_webinar_schedule()
+    pb = _course_playbook()
+    pb_map = {b['product']: b for b in pb}
+    oh = load_ohaeng_period()
+    base = _cpl_baseline()
+    camp_ad = load_campaign_adspend()
+
+    # ── 월 선택 + 캘린더 ─────────────────────────────────
+    _t = date.today()
+    c1, c2, _ = st.columns([1, 1, 2])
+    with c1:
+        _yy = st.number_input("연도", min_value=2024, max_value=2030,
+                              value=_t.year, step=1, key="wb_year")
+    with c2:
+        _mm = st.number_input("월", min_value=1, max_value=12,
+                              value=_t.month, step=1, key="wb_month")
+    _yy, _mm = int(_yy), int(_mm)
+    st.markdown(f"#### {ganji.ym_korean(_yy, _mm)} · "
+                f"{ganji.month_ganji(_yy, _mm)}月 "
+                f"<span style='font-size:12px;opacity:.6'>"
+                f"({ganji.jeolgi_label(_yy, _mm)}부터)</span>",
+                unsafe_allow_html=True)
+    st.markdown(_webinar_calendar_html(_yy, _mm, ws), unsafe_allow_html=True)
+    st.caption("색 블록 = 예정된 웨비나(흐린 것은 완료) · "
+               "절입일 칸에는 월주가 바뀌는 시각이 표시됩니다.")
+
+    # ── 예정 웨비나별 추천 ───────────────────────────────
+    st.divider()
+    _up = ws[ws['date'].dt.date >= _t] if not ws.empty else pd.DataFrame()
+    if _up.empty:
+        st.info("예정된 웨비나가 없습니다. 아래에서 일정을 추가하면 "
+                "회차별 모객 방안을 추천해 드립니다.")
+    else:
+        st.subheader(f"📌 다가오는 웨비나 {len(_up)}건 — 회차별 모객 방안")
+        for _, e in _up.head(6).iterrows():
+            _d = e['date'].date()
+            _dd = (_d - _t).days
+            with st.expander(
+                    f"{'🔴' if _dd <= 7 else '🟡' if _dd <= 14 else '⚪'} "
+                    f"{_d} ({['월','화','수','목','금','토','일'][_d.weekday()]}) · "
+                    f"{e['product']} · {e['topic']}  —  D-{_dd}",
+                    expanded=(_dd <= 14)):
+                for _t2, _v in _webinar_advice(e, pb_map, oh, base):
+                    st.markdown(
+                        f'<div style="margin-bottom:7px">'
+                        f'<span style="opacity:.6;font-size:12px">{_t2}</span><br>'
+                        f'<span style="font-size:13px;line-height:1.6">'
+                        f'{_md_bold(_v)}</span></div>', unsafe_allow_html=True)
+                if str(e.get('memo', '')).strip() and str(e['memo']) != 'nan':
+                    st.caption(f"메모: {e['memo']}")
+                if st.button("삭제", key=f"wb_del_{e['id']}"):
+                    delete_webinar(e['id'])
+                    st.rerun()
+
+    # ── 일정 등록 ────────────────────────────────────────
+    st.divider()
+    with st.expander("➕ 웨비나 일정 추가", expanded=ws.empty):
+        # 과거 이력으로 기본값 제안
+        _hint = ""
+        if not camp_ad.empty:
+            _ca = camp_ad.copy()
+            _ca['live_date'] = pd.to_datetime(_ca['live_date'], errors='coerce')
+            _ca = _ca.dropna(subset=['live_date'])
+            if not _ca.empty:
+                _wd = _ca['live_date'].dt.dayofweek.mode()
+                _wdn = ['월', '화', '수', '목', '금', '토', '일'][int(_wd.iloc[0])] \
+                    if not _wd.empty else '수'
+                _hint = (f"과거 {len(_ca)}회 진행 · 가장 많이 연 요일 **{_wdn}요일** · "
+                         f"평균 광고비 {_ca['ad_spend'].mean()/1e4:,.0f}만원")
+        if _hint:
+            st.caption(_hint)
+        with st.form("wb_new"):
+            w1, w2 = st.columns(2)
+            with w1:
+                _wp = st.selectbox("강의", ['사주', '타로', '부동산', '빌딩'])
+                _wd2 = st.date_input("웨비나 날짜", value=_t + timedelta(days=14))
+                _wst = st.selectbox("상태", ['예정', '완료'])
+            with w2:
+                _wt = st.text_input("주제·후킹", placeholder="예) 재물운 투자법")
+                _wtg = st.number_input("목표 모객(명)", min_value=0, step=100, value=2000)
+                _wb = st.number_input("광고 예산(원)", min_value=0, step=1000000,
+                                      value=30000000)
+            # 선택 강의의 검증된 후킹 힌트
+            _hb = pb_map.get(_wp)
+            if _hb and _hb.get('hooks'):
+                _hv = max(_hb['hooks'], key=lambda h: h['signups'])
+                st.caption(f"💡 {_wp} 검증된 후킹 — 모객 1위 **{_hv['topic']}**"
+                           f"({_hv['signups']:,}명) · 전환 1위 "
+                           f"**{_hb['hooks'][0]['topic']}**"
+                           f"({_hb['hooks'][0]['conv']:.1f}%)")
+            _wm = st.text_input("메모", placeholder="선택")
+            if st.form_submit_button("일정 추가", type="primary"):
+                if not _wt.strip():
+                    st.error("주제·후킹을 입력해주세요.")
+                else:
+                    save_webinar({
+                        'id': f"{_wd2}-{_wp}-{str(abs(hash(_wt)))[:4]}",
+                        'date': str(_wd2), 'product': _wp, 'topic': _wt.strip(),
+                        'target_signups': int(_wtg), 'budget': int(_wb),
+                        'status': _wst, 'memo': _wm.strip()})
+                    st.success(f"{_wd2} {_wp} 웨비나를 추가했습니다.")
+                    st.rerun()
 
 
 def tab_experiments():
