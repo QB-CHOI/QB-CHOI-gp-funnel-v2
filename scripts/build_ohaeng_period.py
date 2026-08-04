@@ -4,8 +4,10 @@
 속한다(갑·을=목, 병·정=화 … / 인·묘=목, 사·오=화 …). 이 스크립트는 주문
 원본을 **절기 기준 명리월**로 다시 묶어 오행별 모객·전환을 집계한다.
 
-핵심: 양력 1일이 아니라 **절입일**에 월이 바뀐다(예: 2026-06-03은 아직
-癸巳月). 달력월로 묶으면 매월 앞 5일 정도가 다른 오행에 잘못 들어간다.
+핵심: 양력 1일이 아니라 **절기**에 월이 바뀐다.
+  예) 丙申月은 8월 1일이 아니라 **8월 7일 22시 입추**부터다.
+달력월로 묶으면 매월 앞 5일 정도가 다른 오행에 잘못 들어간다.
+주문일에 시각이 있으므로 **절입 시각까지** 반영해 경계일 주문도 정확히 가른다.
 
 실행:
     python3 scripts/build_ohaeng_period.py            # 미리보기
@@ -30,8 +32,10 @@ from scripts.refresh_order_aggregates import load_orders  # noqa: E402
 def build(o: pd.DataFrame) -> pd.DataFrame:
     d = o[o["d"].notna()].copy()
     d = d[d["product"] != "기타"]
-    # 절기 기준 명리월로 재배정 (달력월이 아님)
-    sm = d["d"].dt.date.map(ganji.saju_month_of)
+    # 절기 기준 명리월로 재배정 (달력월이 아님).
+    # 주문일에 시각까지 있으므로 **절입 시각**까지 반영한다.
+    # 예: 2026-08-07 21시 주문은 乙未月, 23시 주문은 丙申月(입추 22시).
+    sm = d["d"].map(ganji.saju_month_of)
     d = d[sm.notna()].copy()
     d["sy"] = [x[0] for x in sm[sm.notna()]]
     d["sm"] = [x[1] for x in sm[sm.notna()]]

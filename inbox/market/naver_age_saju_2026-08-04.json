@@ -1,8 +1,8 @@
 {
   "ok": true,
   "topic": "사주",
-  "date": "2026-07-31",
-  "generatedAt": "2026-07-30T23:20:37.870Z",
+  "date": "2026-08-04",
+  "generatedAt": "2026-08-03T23:02:48.158Z",
   "brackets": [
     "10대",
     "20대",
@@ -35,9 +35,9 @@
           "recentAvg": 26.315784999999998
         },
         "50대+": {
-          "deltaPercent": 36,
-          "level": 27,
-          "recentAvg": 27.27272
+          "deltaPercent": -12,
+          "level": 23,
+          "recentAvg": 22.727265
         }
       },
       "hottestAge": "30대",
@@ -67,9 +67,9 @@
           "recentAvg": 48.68420750000001
         },
         "50대+": {
-          "deltaPercent": -16,
-          "level": 36,
-          "recentAvg": 36.36363
+          "deltaPercent": -32,
+          "level": 30,
+          "recentAvg": 29.545447499999998
         }
       },
       "hottestAge": "10대",
@@ -84,28 +84,28 @@
           "recentAvg": 0
         },
         "20대": {
-          "deltaPercent": 28,
-          "level": 12,
-          "recentAvg": 12.019225
+          "deltaPercent": 13,
+          "level": 11,
+          "recentAvg": 11.057687500000002
         },
         "30대": {
-          "deltaPercent": -17,
-          "level": 14,
-          "recentAvg": 13.839279999999999
+          "deltaPercent": -5,
+          "level": 15,
+          "recentAvg": 14.732137499999999
         },
         "40대": {
-          "deltaPercent": 17,
-          "level": 38,
-          "recentAvg": 38.1578875
+          "deltaPercent": -5,
+          "level": 33,
+          "recentAvg": 32.89473
         },
         "50대+": {
-          "deltaPercent": -13,
-          "level": 34,
-          "recentAvg": 34.0909025
+          "deltaPercent": 29,
+          "level": 50,
+          "recentAvg": 49.999995
         }
       },
-      "hottestAge": "20대",
-      "hottestDelta": 28
+      "hottestAge": "50대+",
+      "hottestDelta": 29
     },
     {
       "keyword": "오늘의 운세",

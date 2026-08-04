@@ -1,8 +1,8 @@
 {
   "ok": true,
   "topic": "부동산",
-  "date": "2026-07-31",
-  "generatedAt": "2026-07-30T22:51:00.286Z",
+  "date": "2026-08-04",
+  "generatedAt": "2026-08-03T22:28:59.162Z",
   "brackets": [
     "10대",
     "20대",
@@ -209,7 +209,7 @@
         "10대": {
           "deltaPercent": 0,
           "level": 1,
-          "recentAvg": 0.96566
+          "recentAvg": 1.072955
         },
         "20대": {
           "deltaPercent": 0,

@@ -158,46 +158,80 @@ def ym_label(ym, with_ganji: bool = True, sep: str = ' · ', han: bool = True) -
     return f"{base}{sep}{saju_han(y, mo) if han else saju_kor(y, mo)}"
 
 
-# ── 절기(節氣) 절입일 ─────────────────────────────────────────
-# 월주는 매월 1일이 아니라 절기(입춘·경칩·청명…)에 바뀐다. 아래는 각 달에서
-# **새 월주가 시작되는 날짜(일)**. 만세력 라이브러리 sajupy(MIT)로 오프라인
-# 생성·검증했으며, 런타임 의존성을 만들지 않으려고 표로 embed했다.
-# (전체 기간 일별 대조 결과 이 표 적용 시 sajupy와 100% 일치)
-_JEOLGI_DAY = {
-    2023: [6, 4, 6, 5, 6, 6, 8, 8, 8, 9, 8, 8],
-    2024: [6, 5, 5, 5, 5, 6, 7, 7, 8, 8, 7, 6],
-    2025: [5, 4, 6, 5, 6, 6, 7, 8, 8, 8, 8, 7],
-    2026: [6, 4, 6, 5, 6, 6, 7, 8, 7, 9, 8, 7],
-    2027: [6, 4, 6, 5, 6, 6, 8, 8, 8, 9, 7, 8],
-    2028: [6, 5, 5, 5, 5, 6, 7, 7, 7, 8, 7, 7],
+# ── 절기(節氣) 절입 시각 ───────────────────────────────────────
+# 월주는 매월 1일이 아니라 **절기**에 바뀐다.
+#   예) 2026년 丙申月은 8월 1일이 아니라 **8월 7일 22시 입추**부터 시작한다.
+# 아래는 각 달에서 새 월주가 시작되는 (일, 시). 만세력 라이브러리 sajupy(MIT)로
+# 시각 단위까지 탐지해 오프라인 생성했고, 런타임 의존성을 만들지 않으려고
+# 표로 embed했다. (정오 기준으로만 만들면 오후 절입이 다음 날로 밀리는 오차가
+# 생긴다 — 실제로 2026년 입추를 8/8로 잘못 잡았던 적이 있다.)
+_JEOLGI = {
+    2023: [(6, 0), (4, 12), (6, 6), (5, 11), (6, 4), (6, 8), (7, 18), (8, 4), (8, 7), (8, 23), (8, 2), (7, 19)],
+    2024: [(6, 6), (4, 17), (5, 12), (4, 16), (5, 10), (5, 14), (7, 0), (7, 10), (7, 13), (8, 5), (7, 8), (6, 0)],
+    2025: [(5, 12), (3, 23), (5, 17), (4, 22), (5, 16), (5, 20), (7, 6), (7, 16), (7, 19), (8, 10), (7, 13), (7, 6)],
+    2026: [(5, 18), (4, 5), (5, 23), (5, 4), (5, 21), (6, 2), (7, 12), (7, 22), (7, 0), (8, 16), (7, 19), (7, 12)],
+    2027: [(5, 23), (4, 11), (6, 5), (5, 10), (6, 3), (6, 7), (7, 18), (8, 4), (8, 6), (8, 22), (7, 0), (7, 18)],
+    2028: [(6, 5), (4, 17), (5, 11), (4, 16), (5, 9), (5, 13), (7, 0), (7, 9), (7, 12), (8, 4), (7, 7), (7, 0)],
+    2029: [(5, 11), (3, 23), (5, 17), (4, 21), (5, 15), (5, 19), (7, 5), (7, 15), (7, 18), (8, 10), (7, 13), (7, 6)],
 }
-_JEOLGI_FALLBACK = [6, 4, 6, 5, 6, 6, 7, 8, 8, 8, 8, 7]  # 표 밖 연도용 평균 절입일
+# 표 밖 연도용 근사(평년 절입일 정오)
+_JEOLGI_FALLBACK = [(6, 12), (4, 12), (6, 12), (5, 12), (6, 12), (6, 12),
+                    (7, 12), (8, 12), (8, 12), (8, 12), (7, 12), (7, 12)]
+
+# 각 달을 여는 절기 이름 (1월=소한 … 8월=입추 … 12월=대설)
+JEOLGI_NAMES = ['소한', '입춘', '경칩', '청명', '입하', '망종',
+                '소서', '입추', '백로', '한로', '입동', '대설']
 
 
-def jeolgi_day(year: int, month: int) -> int:
-    """그 달에 새 월주가 시작되는 날짜(일). 표에 없으면 평년 근사치."""
-    row = _JEOLGI_DAY.get(year)
+def jeolgi(year: int, month: int):
+    """그 달에 새 월주가 시작되는 (일, 시). 표에 없으면 근사치."""
+    row = _JEOLGI.get(year)
     return (row or _JEOLGI_FALLBACK)[month - 1]
 
 
-def saju_month_of(d):
-    """날짜 → 그 날이 실제로 속한 **명리 월**(year, month) — 절기 기준.
+def jeolgi_day(year: int, month: int) -> int:
+    """절입 '일'만. (하위 호환)"""
+    return jeolgi(year, month)[0]
 
-    절입일 이전이면 전월에 속한다. 예: 2026-06-03은 절입(6/6) 전이므로
-    2026년 5월(癸巳月)에 속한다.
+
+def jeolgi_name(month: int) -> str:
+    """그 달을 여는 절기 이름. 예: 8 → '입추'."""
+    return JEOLGI_NAMES[(month - 1) % 12]
+
+
+def jeolgi_label(year: int, month: int) -> str:
+    """'8/7 22시 입추' 형태의 절입 시점 표기."""
+    d, h = jeolgi(year, month)
+    return f"{month}/{d} {h}시 {jeolgi_name(month)}"
+
+
+def saju_month_of(d):
+    """날짜(또는 일시) → 그 시점이 속한 **명리 월**(year, month) — 절기 기준.
+
+    절입 시각 이전이면 전월에 속한다.
+      2026-08-03      → (2026, 7)  乙未月  (입추 8/7 22시 전)
+      2026-08-07 21시 → (2026, 7)  乙未月
+      2026-08-07 23시 → (2026, 8)  丙申月
+    시각 정보가 없는 날짜는 그날 정오로 본다(일 단위 집계 기준).
     """
     import datetime as _dt
     if isinstance(d, str):
+        s = str(d).strip()
         try:
-            d = _dt.date.fromisoformat(str(d)[:10])
+            d = _dt.datetime.fromisoformat(s.replace('Z', ''))
         except ValueError:
-            return None
+            try:
+                d = _dt.date.fromisoformat(s[:10])
+            except ValueError:
+                return None
     if isinstance(d, _dt.datetime):
-        d = d.date()
-    if not isinstance(d, _dt.date):
+        y, m, day, hour = d.year, d.month, d.day, d.hour
+    elif isinstance(d, _dt.date):
+        y, m, day, hour = d.year, d.month, d.day, 12   # 날짜만 → 정오 기준
+    else:
         return None
-    y, m = d.year, d.month
-    if d.day < jeolgi_day(y, m):
+    jd, jh = jeolgi(y, m)
+    if (day, hour) < (jd, jh):
         m -= 1
         if m == 0:
             y, m = y - 1, 12
@@ -226,14 +260,19 @@ def day_ganji(d, han: bool = True) -> str:
 
 
 def date_tick(d, lines: bool = True, color: bool = True) -> str:
-    """일자 축용 라벨. '6월 15일<br>丙午 甲午' (년주·월주만 — 일주는 표기하지 않음)."""
+    """일자 축용 라벨. '6월 15일<br>丙午 甲午' (년주·월주만 — 일주는 표기하지 않음).
+
+    **절기 기준**으로 월주를 정한다. 예를 들어 8월 3일은 입추(8/7) 전이라
+    丙申月이 아니라 乙未月이다.
+    """
     import datetime as _dt
     s = str(d)[:10]
     try:
         dd = _dt.date.fromisoformat(s)
     except ValueError:
         return str(d)
-    gj = f"{year_ganji(dd.year, dd.month)} {month_ganji(dd.year, dd.month)}"
+    _sm = saju_month_of(dd) or (dd.year, dd.month)
+    gj = f"{year_ganji(*_sm)} {month_ganji(*_sm)}"
     if color:
         gj = colorize(gj)
     head = f"{dd.month}월 {dd.day}일"
@@ -252,3 +291,17 @@ def ym_tick(ym, lines: bool = True, color: bool = True) -> str:
     if lines:
         return f"{y}년 {mo}월<br>{gj}"
     return f"{y}년 {mo}월 ({gj})"
+
+
+def ym_label_jeolgi(ym, han: bool = True) -> str:
+    """'2026년 8월 · 丙申月 (8/7 22시 입추부터)' — 절입 시점을 함께 보여준다.
+
+    달력 월과 명리 월이 어긋나는 구간(매월 초 며칠)을 오해하지 않도록,
+    그 달의 월주가 **언제부터** 시작되는지 명시한다.
+    """
+    p = _parse_ym(ym)
+    if p is None:
+        return str(ym)
+    y, mo = p
+    mg = month_ganji(y, mo) if han else month_ganji(y, mo, han=False)
+    return f"{ym_korean(y, mo)} · {mg}月 ({jeolgi_label(y, mo)}부터)"

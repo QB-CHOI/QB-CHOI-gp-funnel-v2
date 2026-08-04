@@ -1,8 +1,8 @@
 {
   "ok": true,
   "topic": "타로",
-  "date": "2026-07-31",
-  "generatedAt": "2026-07-30T22:19:45.129Z",
+  "date": "2026-08-04",
+  "generatedAt": "2026-08-03T23:03:19.174Z",
   "brackets": [
     "10대",
     "20대",
@@ -261,7 +261,7 @@
         "50대+": {
           "deltaPercent": 0,
           "level": 3,
-          "recentAvg": 2.6315749999999998
+          "recentAvg": 2.7777724999999998
         }
       },
       "hottestAge": "20대",

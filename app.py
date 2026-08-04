@@ -156,11 +156,12 @@ def _kpi_band(items):
 
 # ── 사이드바 — 캐시 새로고침 ─────────────────────────────────────
 
-APP_VERSION = "v4.62"  # 배포 반영 확인용 — 화면 버전이 다르면 아직 리부팅 전
+APP_VERSION = "v4.63"  # 배포 반영 확인용 — 화면 버전이 다르면 아직 리부팅 전
 
 with st.sidebar:
     st.markdown("### 📊 황금후추 강의 분석")
-    _ty, _tm = date.today().year, date.today().month
+    # 오늘이 속한 '명리 월'(절기 기준). 8/3은 입추(8/7) 전이라 아직 7월(乙未月).
+    _ty, _tm = ganji.saju_month_of(date.today()) or (date.today().year, date.today().month)
     st.markdown(
         f'<div style="font-size:12px;opacity:.7">{APP_VERSION} · '
         f'{ganji.ym_korean(_ty, _tm)}</div>'
@@ -657,6 +658,9 @@ def tab_period():
     st.caption("각 달의 **년주·월주**를 매출과 나란히 봅니다. 월주는 절기(입춘·경칩·망종…) 기준이며, "
                "천간지지로 월별 성과의 명리학적 패턴(오행·십신 흐름)을 함께 해석할 수 있습니다.")
     st.markdown(ganji.element_legend_html(), unsafe_allow_html=True)
+    st.caption("⚠️ **월주는 달력 1일이 아니라 절기에 바뀝니다.** 예를 들어 丙申月은 "
+               "8월 1일이 아니라 **8월 7일 22시 입추**부터입니다. 아래 '절입' 열이 "
+               "각 월주가 실제로 시작되는 시점이며, 오행 집계도 이 기준으로 계산됩니다.")
     _mrev = mbc.groupby('month', as_index=False)['paid_revenue'].sum().sort_values('month')
     _gj = _mrev.tail(18).iloc[::-1]
     _mx_rev = float(_mrev['paid_revenue'].max()) or 1
@@ -671,6 +675,8 @@ def tab_period():
             f'<td style="font-size:16px;letter-spacing:1px">'
             f'{ganji.colorize(ganji.month_ganji(_y, _m))}</td>'
             f'<td style="opacity:.7;white-space:nowrap">{ganji.saju_kor(_y, _m)}</td>'
+            f'<td style="opacity:.6;white-space:nowrap;font-size:12px">'
+            f'{ganji.jeolgi_label(_y, _m)}</td>'
             f'<td style="text-align:right;white-space:nowrap">'
             f'{r["paid_revenue"]/1e8:,.2f}억</td>'
             f'<td style="width:38%"><div style="background:rgba(127,127,127,.18);'
@@ -679,7 +685,8 @@ def tab_period():
     st.markdown(
         '<table class="gp-dtbl" style="width:100%;border-collapse:collapse;font-size:13px">'
         '<thead><tr style="text-align:left"><th>연월</th><th>년주</th><th>월주</th>'
-        '<th>독음</th><th style="text-align:right">매출</th><th></th></tr></thead>'
+        '<th>독음</th><th>절입(월주 시작)</th>'
+        '<th style="text-align:right">매출</th><th></th></tr></thead>'
         f'<tbody>{_rows}</tbody></table>', unsafe_allow_html=True)
     # 최고 매출 달의 간지
     _top = _mrev.loc[_mrev['paid_revenue'].idxmax()]
@@ -1417,21 +1424,24 @@ def _product_master_table():
 
 def tab_overview():
     st.header("🧭 종합 보고 — 전략 대시보드")
-    _ty, _tm = date.today().year, date.today().month
+    # 절기 기준 명리 월 (달력 월과 매월 초 며칠 어긋난다)
+    _ty, _tm = ganji.saju_month_of(date.today()) or (date.today().year, date.today().month)
     st.caption("모객 · 매출 · 전환 · 광고 ROI · 지역을 한 화면에 종합한 경영 전략 요약입니다. "
                "모든 수치는 강의 집계·광고비·지역 실데이터에서 자동 계산됩니다.")
     st.markdown(
         '<div class="gp-card" style="padding:10px 14px;margin:2px 0 10px">'
-        f'<span style="font-size:13px;opacity:.75">🔮 이번 달 '
-        f'{ganji.ym_korean(_ty, _tm)}</span><br>'
+        f'<span style="font-size:13px;opacity:.75">🔮 지금은 '
+        f'{ganji.ym_korean(_ty, _tm)} (명리 기준) · '
+        f'{ganji.jeolgi_label(_ty, _tm)}부터</span><br>'
         f'<span style="font-size:20px;letter-spacing:2px">'
         f'{ganji.colorize(ganji.year_ganji(_ty, _tm))}<span style="opacity:.45;'
         f'font-size:13px">年</span> '
         f'{ganji.colorize(ganji.month_ganji(_ty, _tm))}<span style="opacity:.45;'
         f'font-size:13px">月</span></span>'
         f'<span style="opacity:.6;font-size:12px"> · {ganji.saju_kor(_ty, _tm)}</span><br>'
-        '<span style="font-size:11px;opacity:.6">모든 시간축 그래프에 연월과 간지가 '
-        '오행 색상으로 표시됩니다 · 월별 간지 전체는 📅 기간별 분석 탭 상단</span></div>',
+        '<span style="font-size:11px;opacity:.6">월주는 달력 1일이 아니라 <b>절기</b>에 '
+        '바뀝니다 · 모든 시간축 그래프와 집계가 절기 기준입니다 · '
+        '월별 간지 전체는 📅 기간별 분석 탭 상단</span></div>',
         unsafe_allow_html=True)
     st.markdown(ganji.element_legend_html(), unsafe_allow_html=True)
 
