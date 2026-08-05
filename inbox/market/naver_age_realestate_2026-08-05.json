@@ -1,8 +1,8 @@
 {
   "ok": true,
   "topic": "부동산",
-  "date": "2026-08-04",
-  "generatedAt": "2026-08-03T22:28:59.162Z",
+  "date": "2026-08-05",
+  "generatedAt": "2026-08-04T18:30:48.034Z",
   "brackets": [
     "10대",
     "20대",
@@ -15,33 +15,65 @@
       "keyword": "청약",
       "byAge": {
         "10대": {
-          "deltaPercent": 80,
-          "level": 56,
-          "recentAvg": 56.14316000000001
+          "deltaPercent": 74,
+          "level": 55,
+          "recentAvg": 55.34187750000001
         },
         "20대": {
-          "deltaPercent": 34,
-          "level": 84,
-          "recentAvg": 84.063095
+          "deltaPercent": 37,
+          "level": 86,
+          "recentAvg": 85.7245625
         },
         "30대": {
-          "deltaPercent": 8,
-          "level": 88,
-          "recentAvg": 88.36742500000001
+          "deltaPercent": 10,
+          "level": 89,
+          "recentAvg": 89.149615
         },
         "40대": {
-          "deltaPercent": -5,
-          "level": 79,
-          "recentAvg": 78.558605
+          "deltaPercent": -4,
+          "level": 77,
+          "recentAvg": 76.5849225
         },
         "50대+": {
-          "deltaPercent": 3,
-          "level": 87,
-          "recentAvg": 86.98501250000001
+          "deltaPercent": 8,
+          "level": 92,
+          "recentAvg": 92.4804675
         }
       },
       "hottestAge": "10대",
-      "hottestDelta": 80
+      "hottestDelta": 74
+    },
+    {
+      "keyword": "아파트 매매",
+      "byAge": {
+        "10대": {
+          "deltaPercent": 44,
+          "level": 26,
+          "recentAvg": 25.8583625
+        },
+        "20대": {
+          "deltaPercent": -3,
+          "level": 34,
+          "recentAvg": 34.355565
+        },
+        "30대": {
+          "deltaPercent": -8,
+          "level": 41,
+          "recentAvg": 41.459485
+        },
+        "40대": {
+          "deltaPercent": -10,
+          "level": 65,
+          "recentAvg": 65.15387
+        },
+        "50대+": {
+          "deltaPercent": -13,
+          "level": 78,
+          "recentAvg": 78.0256525
+        }
+      },
+      "hottestAge": "10대",
+      "hottestDelta": 44
     },
     {
       "keyword": "재개발",
@@ -49,62 +81,30 @@
         "10대": {
           "deltaPercent": 0,
           "level": 6,
-          "recentAvg": 6.089737500000001
+          "recentAvg": 6.3568325
         },
         "20대": {
           "deltaPercent": 0,
           "level": 5,
-          "recentAvg": 4.9244175
+          "recentAvg": 4.924417500000001
         },
         "30대": {
-          "deltaPercent": 18,
+          "deltaPercent": 19,
           "level": 11,
-          "recentAvg": 11.41696
+          "recentAvg": 11.472114999999999
         },
         "40대": {
-          "deltaPercent": 4,
-          "level": 22,
-          "recentAvg": 22.11423
+          "deltaPercent": 11,
+          "level": 23,
+          "recentAvg": 23.1758325
         },
         "50대+": {
-          "deltaPercent": 29,
-          "level": 70,
-          "recentAvg": 69.803365
+          "deltaPercent": 25,
+          "level": 72,
+          "recentAvg": 72.412105
         }
       },
       "hottestAge": "50대+",
-      "hottestDelta": 29
-    },
-    {
-      "keyword": "아파트 매매",
-      "byAge": {
-        "10대": {
-          "deltaPercent": 25,
-          "level": 23,
-          "recentAvg": 22.532182499999998
-        },
-        "20대": {
-          "deltaPercent": 1,
-          "level": 35,
-          "recentAvg": 35.484865
-        },
-        "30대": {
-          "deltaPercent": -4,
-          "level": 43,
-          "recentAvg": 43.440615
-        },
-        "40대": {
-          "deltaPercent": -4,
-          "level": 69,
-          "recentAvg": 69.320535
-        },
-        "50대+": {
-          "deltaPercent": -12,
-          "level": 81,
-          "recentAvg": 80.5151225
-        }
-      },
-      "hottestAge": "10대",
       "hottestDelta": 25
     },
     {
@@ -113,95 +113,95 @@
         "10대": {
           "deltaPercent": -14,
           "level": 71,
-          "recentAvg": 71.4592225
+          "recentAvg": 70.7081475
         },
         "20대": {
-          "deltaPercent": 5,
+          "deltaPercent": 8,
           "level": 61,
-          "recentAvg": 60.53667250000001
+          "recentAvg": 60.60919749999999
         },
         "30대": {
-          "deltaPercent": 10,
+          "deltaPercent": 14,
           "level": 51,
-          "recentAvg": 51.2874525
+          "recentAvg": 51.48723
         },
         "40대": {
-          "deltaPercent": 10,
+          "deltaPercent": 15,
           "level": 63,
-          "recentAvg": 62.8112
+          "recentAvg": 63.131047499999994
         },
         "50대+": {
-          "deltaPercent": -9,
+          "deltaPercent": -5,
           "level": 32,
-          "recentAvg": 32.1237025
+          "recentAvg": 32.047105
         }
       },
-      "hottestAge": "30대",
-      "hottestDelta": 10
+      "hottestAge": "40대",
+      "hottestDelta": 15
     },
     {
       "keyword": "월세",
       "byAge": {
         "10대": {
-          "deltaPercent": -32,
+          "deltaPercent": -30,
           "level": 32,
-          "recentAvg": 32.081540000000004
+          "recentAvg": 31.866947500000002
         },
         "20대": {
-          "deltaPercent": -5,
+          "deltaPercent": -4,
           "level": 51,
-          "recentAvg": 50.922085
+          "recentAvg": 50.8702825
         },
         "30대": {
-          "deltaPercent": 3,
-          "level": 41,
-          "recentAvg": 41.0377275
+          "deltaPercent": 2,
+          "level": 40,
+          "recentAvg": 40.1720225
         },
         "40대": {
-          "deltaPercent": 3,
-          "level": 54,
-          "recentAvg": 53.933260000000004
+          "deltaPercent": 1,
+          "level": 53,
+          "recentAvg": 52.93049499999999
         },
         "50대+": {
-          "deltaPercent": -7,
+          "deltaPercent": -6,
           "level": 29,
-          "recentAvg": 29.069317499999997
+          "recentAvg": 29.088467500000004
         }
       },
       "hottestAge": "30대",
-      "hottestDelta": 3
+      "hottestDelta": 2
     },
     {
       "keyword": "분양",
       "byAge": {
         "10대": {
-          "deltaPercent": -13,
-          "level": 15,
-          "recentAvg": 14.9572625
+          "deltaPercent": -17,
+          "level": 14,
+          "recentAvg": 14.4764925
         },
         "20대": {
           "deltaPercent": 0,
-          "level": 6,
-          "recentAvg": 6.369957500000001
+          "level": 7,
+          "recentAvg": 6.663865
         },
         "30대": {
           "deltaPercent": 0,
           "level": 8,
-          "recentAvg": 8.167864999999999
+          "recentAvg": 8.09767
         },
         "40대": {
-          "deltaPercent": -5,
+          "deltaPercent": -4,
           "level": 24,
-          "recentAvg": 24.19258
+          "recentAvg": 24.237434999999998
         },
         "50대+": {
-          "deltaPercent": -3,
-          "level": 51,
-          "recentAvg": 50.795874999999995
+          "deltaPercent": 0,
+          "level": 53,
+          "recentAvg": 52.97850999999999
         }
       },
       "hottestAge": "50대+",
-      "hottestDelta": -3
+      "hottestDelta": 0
     },
     {
       "keyword": "집값 전망",
@@ -213,27 +213,27 @@
         },
         "20대": {
           "deltaPercent": 0,
-          "level": 3,
-          "recentAvg": 3.4396975
+          "level": 4,
+          "recentAvg": 3.6572675
         },
         "30대": {
           "deltaPercent": 0,
           "level": 8,
-          "recentAvg": 7.896777500000001
+          "recentAvg": 7.6359575
         },
         "40대": {
-          "deltaPercent": -18,
+          "deltaPercent": -14,
           "level": 11,
-          "recentAvg": 11.186025
+          "recentAvg": 11.289760000000001
         },
         "50대+": {
-          "deltaPercent": -23,
+          "deltaPercent": -19,
           "level": 11,
-          "recentAvg": 10.6376825
+          "recentAvg": 10.7047075
         }
       },
       "hottestAge": "40대",
-      "hottestDelta": -18
+      "hottestDelta": -14
     },
     {
       "keyword": "부동산 전망",
@@ -246,26 +246,26 @@
         "20대": {
           "deltaPercent": 0,
           "level": 1,
-          "recentAvg": 1.2328999999999999
+          "recentAvg": 1.4090274999999999
         },
         "30대": {
           "deltaPercent": 0,
           "level": 5,
-          "recentAvg": 5.04994
+          "recentAvg": 5.2053225
         },
         "40대": {
           "deltaPercent": 0,
-          "level": 8,
-          "recentAvg": 8.402485
+          "level": 9,
+          "recentAvg": 9.0162475
         },
         "50대+": {
-          "deltaPercent": -22,
+          "deltaPercent": -19,
           "level": 11,
-          "recentAvg": 10.599382499999999
+          "recentAvg": 10.877052500000001
         }
       },
       "hottestAge": "50대+",
-      "hottestDelta": -22
+      "hottestDelta": -19
     }
   ],
   "limitations": [

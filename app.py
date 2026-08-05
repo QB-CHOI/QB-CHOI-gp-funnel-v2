@@ -157,7 +157,7 @@ def _kpi_band(items):
 
 # ── 사이드바 — 캐시 새로고침 ─────────────────────────────────────
 
-APP_VERSION = "v4.64"  # 배포 반영 확인용 — 화면 버전이 다르면 아직 리부팅 전
+APP_VERSION = "v4.65"  # 배포 반영 확인용 — 화면 버전이 다르면 아직 리부팅 전
 
 with st.sidebar:
     st.markdown("### 📊 황금후추 강의 분석")
@@ -3474,7 +3474,29 @@ _PRODUCT_COLOR_APP = {'사주': '#C8901A', '타로': '#8A5CF6',
                       '부동산': '#2E9E5B', '빌딩': '#3B82F6'}
 
 
-def _webinar_advice(ev, pb_map, oh, base) -> list:
+def _webinar_baseline(product, camp_ad, base):
+    """과거 실적에서 이 강의의 '통상 규모'를 뽑아 예산·모객을 역산 제안.
+
+    예산 권한이 없는 실무자가 숫자를 지어내지 않고, **근거를 들고 요청**할 수
+    있게 하려는 것. 중앙값을 쓰는 이유는 한두 번의 큰 집행에 끌려가지 않기 위함.
+    """
+    if camp_ad is None or camp_ad.empty:
+        return None
+    c = camp_ad[camp_ad['product'] == product].copy()
+    c = c[pd.to_numeric(c['ad_spend'], errors='coerce').fillna(0) > 0]
+    if c.empty:
+        return None
+    _ad = float(pd.to_numeric(c['ad_spend'], errors='coerce').median())
+    _rev = float(pd.to_numeric(c['live_revenue'], errors='coerce').median())
+    out = {'n': len(c), 'ad': _ad, 'rev': _rev,
+           'roas': (_rev / _ad) if _ad else 0}
+    if base and base[1]:
+        out['leads'] = _ad / base[1]          # 평균 CPL로 기대 리드 역산
+        out['cpl'] = base[1]
+    return out
+
+
+def _webinar_advice(ev, pb_map, oh, base, camp_ad=None) -> list:
     """예정된 웨비나 1건에 대한 모객 방안 추천 (근거 있는 항목만)."""
     out = []
     prod = ev['product']
@@ -3520,22 +3542,31 @@ def _webinar_advice(ev, pb_map, oh, base) -> list:
                     _t += " — 특별히 유리한 시기는 아니니 소재·타깃으로 승부하세요."
                 out.append(("🌳 시기", _t))
 
-    # ③ 예산·목표
-    if base:
-        _tg = int(ev['target_signups']) or 0
-        _bd = int(ev['budget']) or 0
-        if _tg and _bd:
-            _need = _bd / _tg
-            _v = ("🟢 여유 있는 목표" if _need >= base[1]
-                  else ("🟡 기준선보다 빡빡" if _need >= base[0] else "🔴 과도하게 공격적"))
-            out.append(("💰 예산·목표",
-                        f"목표 {_tg:,}명 / 예산 {_bd/1e4:,.0f}만원 → "
-                        f"필요 CPL **{_need:,.0f}원** ({_v}). "
-                        f"기준선 최저 {base[0]:,.0f}·평균 {base[1]:,.0f}원"))
-        elif _tg:
-            out.append(("💰 예산 제안",
-                        f"목표 {_tg:,}명이면 평균 CPL {base[1]:,.0f}원 기준 "
-                        f"**약 {_tg*base[1]/1e4:,.0f}만원**이 필요합니다"))
+    # ③ 예산·목표 — 정해져 있으면 진단, 비어 있으면 **데이터가 제안**
+    _tg = int(ev['target_signups']) or 0
+    _bd = int(ev['budget']) or 0
+    _bl = _webinar_baseline(prod, camp_ad, base)
+    if base and _tg and _bd:
+        _need = _bd / _tg
+        _v = ("🟢 여유 있는 목표" if _need >= base[1]
+              else ("🟡 기준선보다 빡빡" if _need >= base[0] else "🔴 과도하게 공격적"))
+        out.append(("💰 예산·목표 점검",
+                    f"목표 {_tg:,}명 / 예산 {_bd/1e4:,.0f}만원 → "
+                    f"필요 CPL **{_need:,.0f}원** ({_v}). "
+                    f"기준선 최저 {base[0]:,.0f}·평균 {base[1]:,.0f}원"))
+    elif _bl:
+        # 예산 권한이 없는 경우 — 요청할 근거를 만들어 준다
+        _t = (f"과거 **{prod} 웨비나 {_bl['n']}회**의 통상 규모는 광고비 "
+              f"**{_bl['ad']/1e4:,.0f}만원**(중앙값)이고, 그때 매출은 "
+              f"**{_bl['rev']/1e8:.2f}억**(ROAS {_bl['roas']:.1f}배)이었습니다. ")
+        if _bl.get('leads'):
+            _t += (f"평균 리드 단가 {_bl['cpl']:,.0f}원 기준으로 이 예산이면 "
+                   f"**약 {_bl['leads']:,.0f}명** 모객이 기대됩니다.")
+        out.append(("💰 통상 규모 (요청 근거)", _t))
+    elif _tg and base:
+        out.append(("💰 필요 예산 추정",
+                    f"목표 {_tg:,}명이면 평균 CPL {base[1]:,.0f}원 기준 "
+                    f"**약 {_tg*base[1]/1e4:,.0f}만원**이 필요합니다"))
 
     # ④ 준비 일정 (D-day)
     _dd = (d - date.today()).days
@@ -3657,7 +3688,7 @@ def tab_webinar():
                     f"{_d} ({['월','화','수','목','금','토','일'][_d.weekday()]}) · "
                     f"{e['product']} · {e['topic']}  —  D-{_dd}",
                     expanded=(_dd <= 14)):
-                for _t2, _v in _webinar_advice(e, pb_map, oh, base):
+                for _t2, _v in _webinar_advice(e, pb_map, oh, base, camp_ad):
                     st.markdown(
                         f'<div style="margin-bottom:7px">'
                         f'<span style="opacity:.6;font-size:12px">{_t2}</span><br>'
@@ -3665,6 +3696,39 @@ def tab_webinar():
                         f'{_md_bold(_v)}</span></div>', unsafe_allow_html=True)
                 if str(e.get('memo', '')).strip() and str(e['memo']) != 'nan':
                     st.caption(f"메모: {e['memo']}")
+
+                # 예산·목표가 미정이면 '요청서'를 만들어 준다.
+                # 실무자는 숫자를 정하는 사람이 아니라, 근거를 들고 요청하는 사람.
+                if not int(e['budget']) or not int(e['target_signups']):
+                    _bl2 = _webinar_baseline(e['product'], camp_ad, base)
+                    if _bl2:
+                        _hk = ""
+                        _b2 = pb_map.get(e['product'])
+                        if _b2 and _b2.get('hooks'):
+                            _hv = max(_b2['hooks'], key=lambda h: h['signups'])
+                            _hk = (f"\n- 후킹은 과거 최다 모객 '{_hv['topic']}'"
+                                   f"({_hv['signups']:,}명) 계열로 준비하겠습니다.")
+                        _req = (
+                            f"[{_d} {e['product']} 무료특강 — 광고 예산 요청]\n\n"
+                            f"- 과거 {e['product']} 웨비나 {_bl2['n']}회의 통상 광고비는 "
+                            f"{_bl2['ad']/1e4:,.0f}만원(중앙값)이었고, "
+                            f"그때 매출은 {_bl2['rev']/1e8:.2f}억"
+                            f"(ROAS {_bl2['roas']:.1f}배)였습니다.\n"
+                            + (f"- 이 예산이면 리드 단가 {_bl2['cpl']:,.0f}원 기준 "
+                               f"약 {_bl2['leads']:,.0f}명 모객이 기대됩니다.\n"
+                               if _bl2.get('leads') else "")
+                            + f"- 요청: 광고비 {_bl2['ad']/1e4:,.0f}만원"
+                            + (f" / 목표 모객 {_bl2['leads']:,.0f}명"
+                               if _bl2.get('leads') else "")
+                            + _hk
+                            + "\n- 집행 후 리드 단가와 전환을 기록해 다음 회차에 "
+                              "반영하겠습니다.")
+                        with st.expander("📋 예산 요청 문구 (복사해서 보고)"):
+                            st.code(_req, language=None)
+                            st.caption("숫자를 지어내지 말고 **과거 실적을 근거로 요청**하는 "
+                                       "형식입니다. 정해지면 위 폼에서 값을 채워 넣으면 "
+                                       "목표 대비 점검으로 바뀝니다.")
+
                 if st.button("삭제", key=f"wb_del_{e['id']}"):
                     delete_webinar(e['id'])
                     st.rerun()
@@ -3694,9 +3758,13 @@ def tab_webinar():
                 _wst = st.selectbox("상태", ['예정', '완료'])
             with w2:
                 _wt = st.text_input("주제·후킹", placeholder="예) 재물운 투자법")
-                _wtg = st.number_input("목표 모객(명)", min_value=0, step=100, value=2000)
-                _wb = st.number_input("광고 예산(원)", min_value=0, step=1000000,
-                                      value=30000000)
+                _wtg = st.number_input(
+                    "목표 모객(명) — 모르면 0", min_value=0, step=100, value=0,
+                    help="기획팀·대표님이 정하는 값입니다. 비워두면(0) 과거 실적으로 "
+                         "통상 규모를 제안해 드립니다.")
+                _wb = st.number_input(
+                    "광고 예산(원) — 모르면 0", min_value=0, step=1000000, value=0,
+                    help="정해지지 않았으면 0으로 두세요. 요청에 쓸 근거를 만들어 드립니다.")
             # 선택 강의의 검증된 후킹 힌트
             _hb = pb_map.get(_wp)
             if _hb and _hb.get('hooks'):

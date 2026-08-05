@@ -1,8 +1,8 @@
 {
   "ok": true,
   "topic": "사주",
-  "date": "2026-08-04",
-  "generatedAt": "2026-08-03T23:02:44.260Z",
+  "date": "2026-08-05",
+  "generatedAt": "2026-08-04T18:28:43.785Z",
   "seeds": [
     "2026 운세",
     "신년운세",
@@ -1449,37 +1449,37 @@
   ],
   "communityDemand": {
     "enough": true,
-    "scanned": 1050,
-    "questionCount": 26,
-    "noiseFiltered": 1024,
+    "scanned": 1200,
+    "questionCount": 41,
+    "noiseFiltered": 1159,
     "hotSeeds": [
       {
-        "seed": "재물운",
-        "count": 7
+        "seed": "2026 운세",
+        "count": 11
       },
       {
         "seed": "신년운세",
-        "count": 6
-      },
-      {
-        "seed": "2026 운세",
-        "count": 5
-      },
-      {
-        "seed": "직업운",
-        "count": 3
+        "count": 9
       },
       {
         "seed": "띠별 운세",
-        "count": 2
+        "count": 6
+      },
+      {
+        "seed": "오늘의 운세",
+        "count": 5
+      },
+      {
+        "seed": "재물운",
+        "count": 4
       }
     ],
     "posts": [
       {
         "seed": "2026 운세",
         "kind": "지식iN",
-        "title": "2026년 병오년의 시작은 언제인가요?",
-        "link": "https://kin.naver.com/qna/detail.naver?d1id=6&dirId=6130103&docId=488059860&qb=MjAyNiDsmrTshLg=&enc=utf8"
+        "title": "2026년 8월운세가 너무 궁금합니다 답변해주실분?",
+        "link": "https://kin.naver.com/qna/detail.naver?d1id=3&dirId=31504&docId=494597161&qb=MjAyNiDsmrTshLg=&enc=utf8"
       },
       {
         "seed": "신년운세",
@@ -1488,10 +1488,16 @@
         "link": "https://kin.naver.com/qna/detail.naver?d1id=3&dirId=31501&docId=459960980&qb=7Iug64WE7Jq07IS4&enc=utf8"
       },
       {
+        "seed": "오늘의 운세",
+        "kind": "지식iN",
+        "title": "네이버 오늘의 운세 정확도가 얼마나 되나요 ㅎㅎ",
+        "link": "https://kin.naver.com/qna/detail.naver?d1id=3&dirId=31504&docId=493252997&qb=7Jik64qY7J2YIOyatOyEuA==&enc=utf8"
+      },
+      {
         "seed": "띠별 운세",
-        "kind": "블로그",
-        "title": "띠별운세 내 몸에 붙은 기운은? 부족한 기운 오행 채우는 법",
-        "link": "https://blog.naver.com/ppuppu__11/224367388072"
+        "kind": "카페",
+        "title": "오늘의운세 띠별운세 2026년08월05일 수요일 마음의 답을 만나요",
+        "link": "https://cafe.naver.com/aua/168029"
       },
       {
         "seed": "재물운",
@@ -1512,16 +1518,10 @@
         "link": "https://kin.naver.com/qna/detail.naver?d1id=3&dirId=31501&docId=494512528&qb=7IKs7JeF7Jq0&enc=utf8"
       },
       {
-        "seed": "결혼운",
-        "kind": "블로그",
-        "title": "아옳이 사주 결혼운 있나?(김형배 한의사 나이 프로필 나무위키)",
-        "link": "https://blog.naver.com/coconut3838/224367288208"
-      },
-      {
         "seed": "2026 운세",
         "kind": "지식iN",
-        "title": "올해 하반기 운세좀 봐주세요?",
-        "link": "https://kin.naver.com/qna/detail.naver?d1id=3&dirId=31501&docId=494564755&qb=MjAyNiDsmrTshLg=&enc=utf8"
+        "title": "2026년 병오년의 시작은 언제인가요?",
+        "link": "https://kin.naver.com/qna/detail.naver?d1id=6&dirId=6130103&docId=488059860&qb=MjAyNiDsmrTshLg=&enc=utf8"
       },
       {
         "seed": "신년운세",
@@ -1530,22 +1530,22 @@
         "link": "https://kin.naver.com/qna/detail.naver?d1id=3&dirId=31504&docId=406769159&qb=7Iug64WE7Jq07IS4&enc=utf8"
       },
       {
-        "seed": "띠별 운세",
+        "seed": "오늘의 운세",
         "kind": "블로그",
-        "title": "2026년 8월 4일 오늘의 띠별 운세 — 오늘 운 좋은 띠는? (말띠)",
-        "link": "https://blog.naver.com/badaro007/224367372663"
+        "title": "8월 5일 띠별 운세 오늘 가장 운 좋은 띠는 누구? 재물운...",
+        "link": "https://blog.naver.com/coolsury/224359437822"
       },
       {
         "seed": "재물운",
         "kind": "카페",
-        "title": "\"이 사람이랑 결혼하면 돈 걱정 없을까?\" 재물운 궁합 스스로 체크하는 법",
-        "link": "https://cafe.naver.com/athenagarden/23"
+        "title": "돈이 들어와도 계속 새어나가는데 재물운이 어떤가요?",
+        "link": "https://cafe.naver.com/praetorians/396556"
       },
       {
         "seed": "직업운",
         "kind": "카페",
-        "title": "번아웃 남편한테 직업운 링크 보냈는데, 대화가 열린 이유는?",
-        "link": "https://cafe.naver.com/cupoon/143666"
+        "title": "용기내어 올려봅니다 직업운이 궁금해요",
+        "link": "https://cafe.naver.com/saju1379/189945"
       }
     ]
   },

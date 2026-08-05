@@ -1,0 +1,3079 @@
+{
+  "ok": true,
+  "topic": "부동산",
+  "date": "2026-08-05",
+  "generatedAt": "2026-08-04T18:30:34.091Z",
+  "queries": [
+    "부동산 전망",
+    "집값 전망",
+    "아파트 매매",
+    "전세",
+    "월세",
+    "청약",
+    "분양",
+    "재개발",
+    "재건축",
+    "부동산 투자",
+    "갭투자",
+    "금리 부동산",
+    "경매",
+    "오피스텔"
+  ],
+  "publishedAfter": "2026-05-06T18:30:28.209Z",
+  "quotaCost": 1407,
+  "totalVideos": 195,
+  "shortsCount": 24,
+  "longformCount": 171,
+  "topVideos": [
+    {
+      "videoId": "VvJUi6uM_ck",
+      "url": "https://www.youtube.com/watch?v=VvJUi6uM_ck",
+      "title": "[EN/JP] 사회초년생 살만한 서울 월세 현실 🏠💦  | 중개보조원 | 워크돌ㅣ프로미스나인 지원, 지헌",
+      "description": "우리 알바생들 지난번 해군에 이어서\n열심히 돈 벌어서 집 사려고 왔다!\nBUT 찾아볼수록 비싼 집값에 서민통만 오는데..\n\n0:00 오프닝 \n1:02 오늘의 알바\n2:13 사수님 만남\n4:54 나인원 한남?!\n6:25 임장 출발\n8:36 첫번째 집 \n12:55 두번째 집 \n17:20 세",
+      "channelId": "UCwx6n_4OcLgzAGdty0RWCoA",
+      "channelTitle": "워크맨-Workman",
+      "publishedAt": "2026-07-22T10:00:28Z",
+      "thumbnail": "https://i.ytimg.com/vi/VvJUi6uM_ck/mqdefault.jpg",
+      "tags": [
+        "워크돌",
+        "프로미스나인",
+        "지원",
+        "박지원",
+        "백지헌",
+        "프나",
+        "프로미스나인 컴백",
+        "앨범",
+        "여름 노래",
+        "워터밤",
+        "아정당",
+        "부동산"
+      ],
+      "viewCount": 955888,
+      "likeCount": 14131,
+      "commentCount": 1052,
+      "durationSeconds": 1430,
+      "format": "롱폼",
+      "ageDays": 13.4,
+      "viewsPerDay": 71579,
+      "momentum": 64231,
+      "likeRate": 1.48,
+      "commentRate": 0.11,
+      "matchedQueries": [
+        "월세"
+      ],
+      "marketScore": {
+        "total": 80,
+        "parts": {
+          "volume": 25,
+          "velocity": 30,
+          "likeRate": 6,
+          "commentRate": 1,
+          "recency": 19
+        }
+      },
+      "channelSubscribers": 4280000
+    },
+    {
+      "videoId": "fyD0lxI_U9g",
+      "url": "https://www.youtube.com/watch?v=fyD0lxI_U9g",
+      "title": "40억 청약 당첨된 22살 안유진",
+      "description": "#안유진 #아이브 #유진 #청약 #ive",
+      "channelId": "UC9W24E8rhGKlZdKyjJ4Mh5g",
+      "channelTitle": "리즈시절 천개 모으기",
+      "publishedAt": "2026-07-10T10:37:45Z",
+      "thumbnail": "https://i.ytimg.com/vi/fyD0lxI_U9g/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 450689,
+      "likeCount": 2749,
+      "commentCount": 201,
+      "durationSeconds": 10,
+      "format": "쇼츠",
+      "ageDays": 25.3,
+      "viewsPerDay": 17794,
+      "momentum": 13973,
+      "likeRate": 0.61,
+      "commentRate": 0.04,
+      "matchedQueries": [
+        "청약"
+      ],
+      "marketScore": {
+        "total": 71,
+        "parts": {
+          "volume": 24,
+          "velocity": 28,
+          "likeRate": 2,
+          "commentRate": 0,
+          "recency": 16
+        }
+      },
+      "channelSubscribers": 28700
+    },
+    {
+      "videoId": "7PRgr93iRu8",
+      "url": "https://www.youtube.com/watch?v=7PRgr93iRu8",
+      "title": "\"1주택자에게 기회가 오고 있습니다\" 8월 이후 부동산 이렇게 됩니다 (주간머니이슈 | 너나위)",
+      "description": "너나위가 깨달은 [나만의 재테크 찾는 법]\n4주 완성 재테크 입문반 (바로가기) 👉 https://link.weolbu.com/4vqJ4nT\n\n사회초년생·과장님·부장님·사장님\n각자 다른 상황에 맞는 재테크 방법을 알려드리기 위해\n너나위의 재테크 입문반을 준비했어요.\n\n만약 여러분이 올",
+      "channelId": "UCDSj40X9FFUAnx1nv7gQhcA",
+      "channelTitle": "월급쟁이부자들TV",
+      "publishedAt": "2026-07-09T22:00:39Z",
+      "thumbnail": "https://i.ytimg.com/vi/7PRgr93iRu8/mqdefault.jpg",
+      "tags": [
+        "월급쟁이부자들",
+        "너나위",
+        "너바나",
+        "코크드림",
+        "구해줘월부",
+        "월부",
+        "10억달성",
+        "월부닷컴",
+        "재테크",
+        "부동산투자",
+        "부동산강의",
+        "월부리뷰"
+      ],
+      "viewCount": 377993,
+      "likeCount": 5697,
+      "commentCount": 351,
+      "durationSeconds": 1745,
+      "format": "롱폼",
+      "ageDays": 25.9,
+      "viewsPerDay": 14620,
+      "momentum": 11403,
+      "likeRate": 1.51,
+      "commentRate": 0.09,
+      "matchedQueries": [
+        "부동산 투자"
+      ],
+      "marketScore": {
+        "total": 74,
+        "parts": {
+          "volume": 23,
+          "velocity": 28,
+          "likeRate": 6,
+          "commentRate": 1,
+          "recency": 16
+        }
+      },
+      "channelSubscribers": 2110000
+    },
+    {
+      "videoId": "56MQkUuS_dc",
+      "url": "https://www.youtube.com/watch?v=56MQkUuS_dc",
+      "title": "“대출 막혔다고 무작정 기다리지 마세요” 내 능력에 맞는 집 매수하는 법ㅣ지식인 클래스 EP.11 (송희구 작가)",
+      "description": "오늘은 송희구 작가 님을 모시고 대출 규제와 시장 변화 속에서 실패하지 않는 \n내 집 마련 및 상급지 갈아타기 전략에 대해 들어봤습니다.\n\n영상이 유익 했다면 구독!! 영상이 재밌으셨다면 좋아요 버튼을 눌러주세요!\n\n#지식인사이드 #송희구 #내집마련 #부동산투자 #부동산정책 #적정집값 ",
+      "channelId": "UCA_hgsFzmynpv1zkvA5A7jA",
+      "channelTitle": "지식인사이드",
+      "publishedAt": "2026-07-25T09:00:18Z",
+      "thumbnail": "https://i.ytimg.com/vi/56MQkUuS_dc/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 357091,
+      "likeCount": 5594,
+      "commentCount": 586,
+      "durationSeconds": 2087,
+      "format": "롱폼",
+      "ageDays": 10.4,
+      "viewsPerDay": 34349,
+      "momentum": 31563,
+      "likeRate": 1.57,
+      "commentRate": 0.16,
+      "matchedQueries": [
+        "부동산 투자"
+      ],
+      "marketScore": {
+        "total": 80,
+        "parts": {
+          "volume": 23,
+          "velocity": 30,
+          "likeRate": 6,
+          "commentRate": 2,
+          "recency": 19
+        }
+      },
+      "channelSubscribers": 3980000
+    },
+    {
+      "videoId": "dldq0Fv1Gc0",
+      "url": "https://www.youtube.com/watch?v=dldq0Fv1Gc0",
+      "title": "\"월세는 버리는 돈이 아니다\" 내 집 마련을 망치는 치명적인 생각의 오류｜클래스e｜알고e즘",
+      "description": "#부동산불패 #내집마련 #주식투자\n\n주식 투자와 함께 항상 거론되는 '부동산' 투자. \n주식이 나을까, 부동산이 나을까? 그 의견은 항상 팽팽하다. \n\n주식과 부동산, 부동산과 주식. 이 두 가지를 존 리가 수학적으로 제대로 비교한다!\n📺방송정보 \n📌프로그램명: 클래스e - 존 리의",
+      "channelId": "UCl_tB4AqPkkxuYcJQHz6dMw",
+      "channelTitle": "EBSCulture (EBS 교양)",
+      "publishedAt": "2026-06-20T11:00:34Z",
+      "thumbnail": "https://i.ytimg.com/vi/dldq0Fv1Gc0/mqdefault.jpg",
+      "tags": [
+        "EBS",
+        "EBS culture",
+        "EBS 교양",
+        "교양",
+        "문화",
+        "culture"
+      ],
+      "viewCount": 318183,
+      "likeCount": 5850,
+      "commentCount": 1671,
+      "durationSeconds": 940,
+      "format": "롱폼",
+      "ageDays": 45.3,
+      "viewsPerDay": 7022,
+      "momentum": 4053,
+      "likeRate": 1.84,
+      "commentRate": 0.53,
+      "matchedQueries": [
+        "월세"
+      ],
+      "marketScore": {
+        "total": 74,
+        "parts": {
+          "volume": 23,
+          "velocity": 26,
+          "likeRate": 7,
+          "commentRate": 7,
+          "recency": 12
+        }
+      },
+      "channelSubscribers": 3040000
+    },
+    {
+      "videoId": "dEvTLAII22E",
+      "url": "https://www.youtube.com/watch?v=dEvTLAII22E",
+      "title": "청약통장에 2만원, 25만원씩 돈 넣지 마세요 (4가지 케이스 완벽 정리)",
+      "description": "#청약통장 #청약전략 #청약정보 \n\n청약통장에 무작정 돈 넣지 마세요! \n청약통장 2만원, 10만원, 25만원 \n얼마씩 넣어야되는지 딱 정해드릴게요. \n머리아프실 필요없게 \n딱 4가지로 정리해왔습니다 :)\n\n청약통장 정리본 \nhttps://blog.naver.com/jaeunbobos/",
+      "channelId": "UCvq386U571OWVCbznTGSW-A",
+      "channelTitle": "보보스_부르주아 보헤미안",
+      "publishedAt": "2026-06-01T09:58:58Z",
+      "thumbnail": "https://i.ytimg.com/vi/dEvTLAII22E/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 297881,
+      "likeCount": 2870,
+      "commentCount": 287,
+      "durationSeconds": 488,
+      "format": "롱폼",
+      "ageDays": 64.4,
+      "viewsPerDay": 4629,
+      "momentum": 1730,
+      "likeRate": 0.96,
+      "commentRate": 0.1,
+      "matchedQueries": [
+        "청약"
+      ],
+      "marketScore": {
+        "total": 60,
+        "parts": {
+          "volume": 23,
+          "velocity": 24,
+          "likeRate": 4,
+          "commentRate": 1,
+          "recency": 8
+        }
+      },
+      "channelSubscribers": 74100
+    },
+    {
+      "videoId": "6GTLWK0WvPM",
+      "url": "https://www.youtube.com/watch?v=6GTLWK0WvPM",
+      "title": "\"시세 8억인데 추가 분담금이 7억?\" 재건축 환상 깨진 상계주공 아파트ㅣ추PD가간다",
+      "description": "#노원구 #재건축 #분담금 \n\n서울 노원구 대표 노후 단지로 꼽히는 상계주공6단지가 재건축에 속도를 내고 있습니다.\n하지만 사업 추진 과정에서 예상치 못한 변수가 등장했습니다. 바로 수억원대 추정 추가분담금입니다.\n재건축을 기다려온 주민들이 마주한 현실은 무엇인지, 현장을 찾아가봤습니다",
+      "channelId": "UCFhF5oooL5ugxHKvTxBD75Q",
+      "channelTitle": "땅집고",
+      "publishedAt": "2026-08-03T08:00:24Z",
+      "thumbnail": "https://i.ytimg.com/vi/6GTLWK0WvPM/mqdefault.jpg",
+      "tags": [
+        "땅집고",
+        "부동산",
+        "분양",
+        "아파트",
+        "청약",
+        "공동주택",
+        "전세",
+        "월세",
+        "전월세",
+        "매매",
+        "거래",
+        "매매가격"
+      ],
+      "viewCount": 273499,
+      "likeCount": 2950,
+      "commentCount": 1277,
+      "durationSeconds": 294,
+      "format": "롱폼",
+      "ageDays": 1.4,
+      "viewsPerDay": 190247,
+      "momentum": 141154,
+      "likeRate": 1.08,
+      "commentRate": 0.47,
+      "matchedQueries": [
+        "재개발",
+        "재건축"
+      ],
+      "marketScore": {
+        "total": 83,
+        "parts": {
+          "volume": 23,
+          "velocity": 30,
+          "likeRate": 4,
+          "commentRate": 6,
+          "recency": 20
+        }
+      },
+      "channelSubscribers": 444000
+    },
+    {
+      "videoId": "oJpqP7-j3bY",
+      "url": "https://www.youtube.com/watch?v=oJpqP7-j3bY",
+      "title": "\"원룸을 투룸으로 만들었어요\" l 송파구 오피스텔 매매",
+      "description": ".\n촬영문의 및 러브레터 👉 contact@jachinam.com\n인스타그램 👉 kimeptony\n.\n-하이라이트(00:00)\n-인터뷰(00:38)\n-집구경 시작(5:03)\n\n-화장실 방음문 (10:18)\nhttps://greensd.co.kr/\n\n-블루워시 캡슐세제 (15:06)\n",
+      "channelId": "UCtYHCl8yhhvpWfcvdA_sCVg",
+      "channelTitle": "자취남",
+      "publishedAt": "2026-05-19T09:15:05Z",
+      "thumbnail": "https://i.ytimg.com/vi/oJpqP7-j3bY/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 254141,
+      "likeCount": 2669,
+      "commentCount": 228,
+      "durationSeconds": 1761,
+      "format": "롱폼",
+      "ageDays": 77.4,
+      "viewsPerDay": 3284,
+      "momentum": 767,
+      "likeRate": 1.05,
+      "commentRate": 0.09,
+      "matchedQueries": [
+        "오피스텔"
+      ],
+      "marketScore": {
+        "total": 56,
+        "parts": {
+          "volume": 23,
+          "velocity": 23,
+          "likeRate": 4,
+          "commentRate": 1,
+          "recency": 5
+        }
+      },
+      "channelSubscribers": 1000000
+    },
+    {
+      "videoId": "JBy-a8NE7yw",
+      "url": "https://www.youtube.com/watch?v=JBy-a8NE7yw",
+      "title": "자양2동 모아타운 결국 무산…주민들 왜 찬성에서 반대로 돌아섰나",
+      "description": "광진구 자양동 일대에서 추진 중이던 모아타운 사업이 서울시 통합심의를 통과한 지 넉 달 만에 무산됐습니다. 당초 재개발에 찬성했던 주민 상당수가 분담금 부담과 재입주에 대한 불안감을 이유로 반대 입장으로 돌아섰기 때문인데요. \n\n● 방송일 : 2026.07.24\n● 딜라이브TV 박선화 ",
+      "channelId": "UCuH0h3EVpSc_wTwIgodSO-Q",
+      "channelTitle": "딜라이브 뉴스",
+      "publishedAt": "2026-07-24T08:46:53Z",
+      "thumbnail": "https://i.ytimg.com/vi/JBy-a8NE7yw/mqdefault.jpg",
+      "tags": [
+        "딜라이브TV",
+        "딜라이브",
+        "모아타운",
+        "자양2동",
+        "광진구",
+        "재개발",
+        "모아주택",
+        "서울시",
+        "통합심의",
+        "주민갈등",
+        "분담금",
+        "재입주"
+      ],
+      "viewCount": 249469,
+      "likeCount": 1823,
+      "commentCount": 1084,
+      "durationSeconds": 134,
+      "format": "롱폼",
+      "ageDays": 11.4,
+      "viewsPerDay": 21873,
+      "momentum": 19951,
+      "likeRate": 0.73,
+      "commentRate": 0.43,
+      "matchedQueries": [
+        "재개발"
+      ],
+      "marketScore": {
+        "total": 79,
+        "parts": {
+          "volume": 22,
+          "velocity": 29,
+          "likeRate": 3,
+          "commentRate": 5,
+          "recency": 19
+        }
+      },
+      "channelSubscribers": 40500
+    },
+    {
+      "videoId": "JpdfA-A2k30",
+      "url": "https://www.youtube.com/watch?v=JpdfA-A2k30",
+      "title": "분양받은 강아지가 집에 적응하지 못할때 #강아지 #강아지쇼츠 #분양",
+      "description": "분양받아 데려온 아이에게\n어쩔수없이 밥은 먹여야 하겠고\n가서 먹이려고 하면 절대 놓지 않는 걸 보면서\n당분간 적응할때까지는\n이렇게라도 계속 먹여야 겠다고 하네요\n\n#강아지 #강아지쇼츠 #반려견 #반려동물 #애완동물 #애완견 #분양 #적응기 #적응",
+      "channelId": "UCGuxBqoxO_-ljU-w-zn57_A",
+      "channelTitle": "멍제로",
+      "publishedAt": "2026-07-30T08:51:17Z",
+      "thumbnail": "https://i.ytimg.com/vi/JpdfA-A2k30/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 232450,
+      "likeCount": 1491,
+      "commentCount": 31,
+      "durationSeconds": 20,
+      "format": "쇼츠",
+      "ageDays": 5.4,
+      "viewsPerDay": 43028,
+      "momentum": 39383,
+      "likeRate": 0.64,
+      "commentRate": 0.01,
+      "matchedQueries": [
+        "분양"
+      ],
+      "marketScore": {
+        "total": 75,
+        "parts": {
+          "volume": 22,
+          "velocity": 30,
+          "likeRate": 2,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "channelSubscribers": 37000
+    },
+    {
+      "videoId": "1FLUYHHAK7Q",
+      "url": "https://www.youtube.com/watch?v=1FLUYHHAK7Q",
+      "title": "본격적으로 금리 인상 후 벌어질 일.. 주담대 8% 시대 '영끌족 비상' | 인사이트30",
+      "description": "📺프로그램 관련 문의:  dylee2@yna.co.kr\n💼광고/협업 관련 문의:  jtyoon@yna.co.kr\n\n📚 한국은행 부총재 출신 현직 경제학 교수의 '돈 이야기'\nhttps://product.kyobobook.co.kr/detail/S000219349836\n📚 경제학교",
+      "channelId": "UC6kZpTl39-_SqfBrF1-N2oQ",
+      "channelTitle": "연합뉴스경제TV",
+      "publishedAt": "2026-07-17T23:00:32Z",
+      "thumbnail": "https://i.ytimg.com/vi/1FLUYHHAK7Q/mqdefault.jpg",
+      "tags": [
+        "코스피",
+        "코스닥",
+        "나스닥",
+        "2차전지",
+        "배터리",
+        "전기차",
+        "반도체",
+        "삼성전자",
+        "현대",
+        "기아",
+        "주식",
+        "투자"
+      ],
+      "viewCount": 225802,
+      "likeCount": 1730,
+      "commentCount": 1030,
+      "durationSeconds": 1410,
+      "format": "롱폼",
+      "ageDays": 17.8,
+      "viewsPerDay": 12677,
+      "momentum": 10881,
+      "likeRate": 0.77,
+      "commentRate": 0.46,
+      "matchedQueries": [
+        "금리 부동산"
+      ],
+      "marketScore": {
+        "total": 76,
+        "parts": {
+          "volume": 22,
+          "velocity": 27,
+          "likeRate": 3,
+          "commentRate": 6,
+          "recency": 18
+        }
+      },
+      "channelSubscribers": 1070000
+    },
+    {
+      "videoId": "ukXbFiBgERk",
+      "url": "https://www.youtube.com/watch?v=ukXbFiBgERk",
+      "title": "\"은행 이자도 못 갚는다\" 은행 줄줄이 파산 코앞이다. 지금 집 산 사람들 날벼락 맞았습니다. 8월부터 집값 진짜 두렵습니다 | 박은정 감정평가사 3부",
+      "description": "▶️유튜브 [박감사리얼아이] 채널 바로가기: https://www.youtube.com/@realeyepark\n▶️박은정 감정평가사 [부동산 최저점을 읽는 핵심 수업] 온라인 서점 구매 링크: https://product.kyobobook.co.kr/detail/S000217740537",
+      "channelId": "UCiLdPBP0AeP-Z9CDH4MggYQ",
+      "channelTitle": "재테크는 두꺼비 세무사",
+      "publishedAt": "2026-07-23T10:00:07Z",
+      "thumbnail": "https://i.ytimg.com/vi/ukXbFiBgERk/mqdefault.jpg",
+      "tags": [
+        "두꺼비세무사",
+        "이장원세무사",
+        "이장원",
+        "이장원 세무사",
+        "두꺼비 세무사",
+        "세무법인 리치",
+        "상속세",
+        "증여세",
+        "상증세",
+        "송파세무사",
+        "잠실세무사",
+        "석촌동세무사"
+      ],
+      "viewCount": 214501,
+      "likeCount": 2960,
+      "commentCount": 505,
+      "durationSeconds": 1257,
+      "format": "롱폼",
+      "ageDays": 12.4,
+      "viewsPerDay": 17362,
+      "momentum": 15716,
+      "likeRate": 1.38,
+      "commentRate": 0.24,
+      "matchedQueries": [
+        "금리 부동산"
+      ],
+      "marketScore": {
+        "total": 77,
+        "parts": {
+          "volume": 22,
+          "velocity": 28,
+          "likeRate": 5,
+          "commentRate": 3,
+          "recency": 19
+        }
+      },
+      "channelSubscribers": 248000
+    },
+    {
+      "videoId": "TcKwHhOLNQA",
+      "url": "https://www.youtube.com/watch?v=TcKwHhOLNQA",
+      "title": "제발 아무나 와주세요.. 월세 3만원까지 무너진 구미 원룸촌 근황",
+      "description": "하늘 아래 빈 땅 하나 없이 빼곡하게 들어선 원룸촌. 그런데 지금 이 일대 원룸 시세는 보증금 50에 월세 10만 원을 못 넘는 곳들이 수두룩합니다. 이에 이곳 수많은 건물주들은 피눈물을 흘릴 수밖에 없는 상황. 실제 여기 방이 무려 17개나 있는 다가구 주택이 경매로 나왔는데 감정가 ",
+      "channelId": "UCabdDNbpoShi21sLQmvhgqg",
+      "channelTitle": "여우대장",
+      "publishedAt": "2026-06-19T09:30:31Z",
+      "thumbnail": "https://i.ytimg.com/vi/TcKwHhOLNQA/mqdefault.jpg",
+      "tags": [
+        "구미원룸",
+        "구미역",
+        "구미상권",
+        "구미국가산업단지",
+        "원룸경매",
+        "다가구주택",
+        "경매",
+        "월세",
+        "전세",
+        "공실"
+      ],
+      "viewCount": 214052,
+      "likeCount": 2587,
+      "commentCount": 1131,
+      "durationSeconds": 567,
+      "format": "롱폼",
+      "ageDays": 46.4,
+      "viewsPerDay": 4616,
+      "momentum": 2612,
+      "likeRate": 1.21,
+      "commentRate": 0.53,
+      "matchedQueries": [
+        "월세"
+      ],
+      "marketScore": {
+        "total": 69,
+        "parts": {
+          "volume": 22,
+          "velocity": 24,
+          "likeRate": 5,
+          "commentRate": 7,
+          "recency": 11
+        }
+      },
+      "channelSubscribers": 100000
+    },
+    {
+      "videoId": "LPYT7yGcqQM",
+      "url": "https://www.youtube.com/watch?v=LPYT7yGcqQM",
+      "title": "[지식뉴스] \"월세는 그냥 사라지는 돈이잖아요\" 경기도·인천까지 번진 전세 대란..30대가 '떠밀리듯' 집을 사는 진짜 이유 / 교양이를 부탁해",
+      "description": "서울에서 전셋집 구하기가 굉장히 힘들어졌습니다. 전세가 1~2억씩 뛰면서 매매가까지 밀어 올렸고, 한 달 전만 해도 '노도강·금관구'를 이야기하던 시장은 이제 경기도·인천으로 넘어갔습니다. 광명과 동탄은 상반기 전셋값이 8%대로 급등했고, 서울에 밀린 30대는 경기도 주택을 3건 중 1",
+      "channelId": "UChY8VUjXv0aA7RF9hDQ0ISg",
+      "channelTitle": "교양이를 부탁해",
+      "publishedAt": "2026-07-17T00:14:58Z",
+      "thumbnail": "https://i.ytimg.com/vi/LPYT7yGcqQM/mqdefault.jpg",
+      "tags": [
+        "교양이를부탁해",
+        "지식뉴스",
+        "국제정세",
+        "재테크",
+        "직장인",
+        "생존전략",
+        "첨단산업",
+        "반도체",
+        "패권전쟁",
+        "ai혁명",
+        "긴급점검",
+        "지식콘서트"
+      ],
+      "viewCount": 206838,
+      "likeCount": 2713,
+      "commentCount": 1325,
+      "durationSeconds": 1204,
+      "format": "롱폼",
+      "ageDays": 18.8,
+      "viewsPerDay": 11025,
+      "momentum": 9366,
+      "likeRate": 1.31,
+      "commentRate": 0.64,
+      "matchedQueries": [
+        "월세"
+      ],
+      "marketScore": {
+        "total": 79,
+        "parts": {
+          "volume": 22,
+          "velocity": 27,
+          "likeRate": 5,
+          "commentRate": 8,
+          "recency": 17
+        }
+      },
+      "channelSubscribers": 467000
+    },
+    {
+      "videoId": "3-kcEbE2hps",
+      "url": "https://www.youtube.com/watch?v=3-kcEbE2hps",
+      "title": "한국 아파트 싹다 물갈이 된다, 집값 내년부터 무서울 겁니다 (송희구 작가 풀버전)",
+      "description": "집값 '여기까지' 오르고 나면, 진짜 폭락장이 시작됩니다 (송희구 작가 풀버전)\n\n📚 송희구 작가 『나의 첫 번째 부동산 교과서』 도서 구매\n👉 https://product.kyobobook.co.kr/detail/S000220119415\n\n✔ 출연 신청/광고 문의/강연 신청: in",
+      "channelId": "UCvil4OAt-zShzkKHsg9EQAw",
+      "channelTitle": "김작가 TV",
+      "publishedAt": "2026-08-01T10:30:26Z",
+      "thumbnail": "https://i.ytimg.com/vi/3-kcEbE2hps/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 187097,
+      "likeCount": 2595,
+      "commentCount": 259,
+      "durationSeconds": 3906,
+      "format": "롱폼",
+      "ageDays": 3.3,
+      "viewsPerDay": 56128,
+      "momentum": 48807,
+      "likeRate": 1.39,
+      "commentRate": 0.14,
+      "matchedQueries": [
+        "부동산 전망",
+        "집값 전망"
+      ],
+      "marketScore": {
+        "total": 79,
+        "parts": {
+          "volume": 22,
+          "velocity": 30,
+          "likeRate": 5,
+          "commentRate": 2,
+          "recency": 20
+        }
+      },
+      "channelSubscribers": 2720000
+    },
+    {
+      "videoId": "UJmT8aqr8BI",
+      "url": "https://www.youtube.com/watch?v=UJmT8aqr8BI",
+      "title": "\"앞으로 한 달 남았다\" IMF 때부터 투자해왔지만, 이런 부동산 시장은 처음 봅니다 (40년차 투자자 아기곰)",
+      "description": "정보가 없는 게 아니라 '기준'이 없어서 어려웠던 겁니다\n내 예산과 상황에 맞는 내집마련 고르는 기준을 알려드립니다\n👉 https://link.weolbu.com/4g2f2mC\n\n카드값 리볼빙하며 살던 30대가 1년만에 서울에서 내집마련한 방법\n👉 https://link.weolbu",
+      "channelId": "UCDSj40X9FFUAnx1nv7gQhcA",
+      "channelTitle": "월급쟁이부자들TV",
+      "publishedAt": "2026-06-26T23:00:03Z",
+      "thumbnail": "https://i.ytimg.com/vi/UJmT8aqr8BI/mqdefault.jpg",
+      "tags": [
+        "월급쟁이부자들",
+        "너나위",
+        "너바나",
+        "코크드림",
+        "구해줘월부",
+        "월부",
+        "10억달성",
+        "월부닷컴",
+        "재테크",
+        "부동산투자",
+        "부동산강의",
+        "월부리뷰"
+      ],
+      "viewCount": 186915,
+      "likeCount": 2071,
+      "commentCount": 319,
+      "durationSeconds": 950,
+      "format": "롱폼",
+      "ageDays": 38.8,
+      "viewsPerDay": 4816,
+      "momentum": 3110,
+      "likeRate": 1.11,
+      "commentRate": 0.17,
+      "matchedQueries": [
+        "부동산 투자"
+      ],
+      "marketScore": {
+        "total": 66,
+        "parts": {
+          "volume": 22,
+          "velocity": 25,
+          "likeRate": 4,
+          "commentRate": 2,
+          "recency": 13
+        }
+      },
+      "channelSubscribers": 2110000
+    },
+    {
+      "videoId": "iJ8odc-gfBQ",
+      "url": "https://www.youtube.com/watch?v=iJ8odc-gfBQ",
+      "title": "\"1년에 딱 한번 뿐인 기회!\" 확 바뀌었습니다 🔥 2026년 재개발 임대주택 🏠 모집공고 뽀개기(SH)",
+      "description": "[Chapter]\n00:10 ｜ 1년에 딱 1번 나오는 공고\n00:34 ｜ 확 바뀐 배점 기준 (필수시청)\n01:55 ｜ SH 공고소식 + 접수 알림 서비스\n02:45 ｜ 포인트\n04:06 ｜ 공급 규모\n06:01 ｜ 동대문구_e편한세상 답십리 아르테포레\n07:59 ｜ 관악구_힐스테이트",
+      "channelId": "UC4uGVGxC9kiYkLBnU1a97Vw",
+      "channelTitle": "아영이네 행복주택",
+      "publishedAt": "2026-08-02T11:30:30Z",
+      "thumbnail": "https://i.ytimg.com/vi/iJ8odc-gfBQ/mqdefault.jpg",
+      "tags": [
+        "아영이네 행복주택",
+        "서울 임대주택",
+        "서울 임대아파트",
+        "서울임대주택",
+        "재개발임대주택",
+        "재개발임대",
+        "임대주택",
+        "공공임대주택",
+        "임대아파트",
+        "임대주택 소개",
+        "임대아파트 소개",
+        "서울 투룸"
+      ],
+      "viewCount": 175259,
+      "likeCount": 4065,
+      "commentCount": 503,
+      "durationSeconds": 1235,
+      "format": "롱폼",
+      "ageDays": 2.3,
+      "viewsPerDay": 76476,
+      "momentum": 62779,
+      "likeRate": 2.32,
+      "commentRate": 0.29,
+      "matchedQueries": [
+        "재개발"
+      ],
+      "marketScore": {
+        "total": 84,
+        "parts": {
+          "volume": 22,
+          "velocity": 30,
+          "likeRate": 9,
+          "commentRate": 4,
+          "recency": 20
+        }
+      },
+      "channelSubscribers": 689000
+    },
+    {
+      "videoId": "5ZIiXwTe-U4",
+      "url": "https://www.youtube.com/watch?v=5ZIiXwTe-U4",
+      "title": "그린벨트에 집 짓는다? 재개발·재건축부터 챙겨라 | 박상규 시사평론가 | 경제픽썰",
+      "description": "#박상규 #부동산 #그린벨트 #재개발 #재건축 #주거정책\n------------------------------\n자율후원 : 기업은행 107-271-5881 (예금주: 펜앤마이크) \n\n펜앤경제TV LIVE 4 요일별 프로그램 (오후 4시 라이브)\n월: 경제픽썰  (출연: 박상규 / 진행",
+      "channelId": "UC0DSMN_m8Tfp8ruMXRdgjOA",
+      "channelTitle": "펜앤경제TV",
+      "publishedAt": "2026-07-29T21:00:00Z",
+      "thumbnail": "https://i.ytimg.com/vi/5ZIiXwTe-U4/mqdefault.jpg",
+      "tags": [
+        "펜앤경제",
+        "경제TV",
+        "펜앤경제TV",
+        "펜엔경제",
+        "팬엔경제",
+        "경제지식",
+        "경제방송",
+        "지식방송",
+        "경제라이브",
+        "지식라이브",
+        "LIVE4",
+        "라이브4"
+      ],
+      "viewCount": 174810,
+      "likeCount": 5348,
+      "commentCount": 93,
+      "durationSeconds": 63,
+      "format": "쇼츠",
+      "ageDays": 5.9,
+      "viewsPerDay": 29648,
+      "momentum": 27330,
+      "likeRate": 3.06,
+      "commentRate": 0.05,
+      "matchedQueries": [
+        "재건축"
+      ],
+      "marketScore": {
+        "total": 84,
+        "parts": {
+          "volume": 22,
+          "velocity": 30,
+          "likeRate": 11,
+          "commentRate": 1,
+          "recency": 20
+        }
+      },
+      "channelSubscribers": 103000
+    },
+    {
+      "videoId": "-5aruNJPTsk",
+      "url": "https://www.youtube.com/watch?v=-5aruNJPTsk",
+      "title": "9월 30일 종료!! 결국.. 청약 통장 이렇게 됩니다! (무조건 신청하세요)",
+      "description": "청약 통장 개편 이후로 그 동안 정말 많은 분들이 이메일이나 댓글로 이제 어떻게 해야 되냐? 청약 포기해야 되냐? 등등 많은 분들이 물어봐 주셔서 준비해봤는데요. 특히 이렇게 생긴 청약 통장 가지고 계신 분들은 지금 당장 전환하셔야 됩니다. 이제 한 달 밖에 안 남았어요. #9월30일,",
+      "channelId": "UCcWXeluvExN8-eo_5KFfyjw",
+      "channelTitle": "버미쌤",
+      "publishedAt": "2026-07-28T22:00:36Z",
+      "thumbnail": "https://i.ytimg.com/vi/-5aruNJPTsk/mqdefault.jpg",
+      "tags": [
+        "9월30일",
+        "주택청약",
+        "청약",
+        "국민주택",
+        "민영주택",
+        "공공분양",
+        "민간분양",
+        "납입인정금액",
+        "LH주택",
+        "임대주택"
+      ],
+      "viewCount": 173548,
+      "likeCount": 2556,
+      "commentCount": 213,
+      "durationSeconds": 485,
+      "format": "롱폼",
+      "ageDays": 6.9,
+      "viewsPerDay": 25320,
+      "momentum": 23599,
+      "likeRate": 1.47,
+      "commentRate": 0.12,
+      "matchedQueries": [
+        "청약"
+      ],
+      "marketScore": {
+        "total": 78,
+        "parts": {
+          "volume": 22,
+          "velocity": 29,
+          "likeRate": 6,
+          "commentRate": 2,
+          "recency": 20
+        }
+      },
+      "channelSubscribers": 879000
+    },
+    {
+      "videoId": "iXElekh_7Jw",
+      "url": "https://www.youtube.com/watch?v=iXElekh_7Jw",
+      "title": "(속보) 드디어 금리 인상... 부동산, 주식 어떻게 될까?",
+      "description": "※ 참고로 저는 전문가가 아닙니다 같이 공부해보자는 취지의 영상입니다^^",
+      "channelId": "UCaWi2foADm_lKAKnmeQwLSA",
+      "channelTitle": "재테크읽어주는 파일럿",
+      "publishedAt": "2026-07-16T08:14:54Z",
+      "thumbnail": "https://i.ytimg.com/vi/iXElekh_7Jw/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 159370,
+      "likeCount": 5744,
+      "commentCount": 615,
+      "durationSeconds": 559,
+      "format": "롱폼",
+      "ageDays": 19.4,
+      "viewsPerDay": 8203,
+      "momentum": 6917,
+      "likeRate": 3.6,
+      "commentRate": 0.39,
+      "matchedQueries": [
+        "금리 부동산"
+      ],
+      "marketScore": {
+        "total": 83,
+        "parts": {
+          "volume": 22,
+          "velocity": 26,
+          "likeRate": 14,
+          "commentRate": 5,
+          "recency": 17
+        }
+      },
+      "channelSubscribers": 1280000
+    }
+  ],
+  "topScoredVideos": [
+    {
+      "videoId": "VseR65IsoZY",
+      "url": "https://www.youtube.com/watch?v=VseR65IsoZY",
+      "title": "'정말 고민이 큽니다' 살던 곳을 떠나야 한다는 게...",
+      "description": "1주택자까지 던지는 매물 폭탄, 2028년의 반전\n\n채널에 가입하여 혜택을 누려보세요.\nhttps://www.youtube.com/channel/UCp8lZRI3NSCXxhn_a_WGVKQ/join\n\n업무 메일 · 광고 · 협찬 · 출연문의 goodmic01@naver.com\n\n#표영호",
+      "channelId": "UCp8lZRI3NSCXxhn_a_WGVKQ",
+      "channelTitle": "표영호 tv  / 경제적 자유와 행복을 위하여",
+      "publishedAt": "2026-08-02T10:30:24Z",
+      "thumbnail": "https://i.ytimg.com/vi/VseR65IsoZY/mqdefault.jpg",
+      "tags": [
+        "표영호tv",
+        "부동산",
+        "부동산전망",
+        "아파트값",
+        "오피스텔",
+        "아파트분양",
+        "1인가구",
+        "머니",
+        "지식",
+        "부동산개발",
+        "집값",
+        "집구경"
+      ],
+      "viewCount": 76909,
+      "likeCount": 2414,
+      "commentCount": 619,
+      "durationSeconds": 715,
+      "format": "롱폼",
+      "ageDays": 2.3,
+      "viewsPerDay": 32960,
+      "momentum": 27143,
+      "likeRate": 3.14,
+      "commentRate": 0.8,
+      "matchedQueries": [
+        "부동산 전망"
+      ],
+      "marketScore": {
+        "total": 92,
+        "parts": {
+          "volume": 20,
+          "velocity": 30,
+          "likeRate": 12,
+          "commentRate": 10,
+          "recency": 20
+        }
+      },
+      "channelSubscribers": 854000
+    },
+    {
+      "videoId": "GjiGwyCPoJc",
+      "url": "https://www.youtube.com/watch?v=GjiGwyCPoJc",
+      "title": "충격적인 세법 개편안 과 2027 부동산 전망",
+      "description": "부동산 상담 & 강의 문의 02-6733-3333\n부동산 스터디 텔레그램 https://t.me/nollbootv\n놀부의 멤버십과 강의 참석 & 상담 신청 온라인 신청은 아래 링크 클릭\n https://linktr.ee/nollbootv\n상담&출연&프로모션 문의 nollbootv@gma",
+      "channelId": "UCysO8h0ZdipoFZd-2-EZ4uQ",
+      "channelTitle": "놀라운부동산",
+      "publishedAt": "2026-08-04T04:49:38Z",
+      "thumbnail": "https://i.ytimg.com/vi/GjiGwyCPoJc/mqdefault.jpg",
+      "tags": [
+        "부동산상담",
+        "부동산컨설팅",
+        "부동산전문가",
+        "부동산공부",
+        "부동산특강",
+        "소액투자",
+        "갭투자",
+        "놀부",
+        "놀라운부동산",
+        "직방",
+        "직방TV",
+        "투자의신"
+      ],
+      "viewCount": 15305,
+      "likeCount": 661,
+      "commentCount": 96,
+      "durationSeconds": 3560,
+      "format": "롱폼",
+      "ageDays": 0.6,
+      "viewsPerDay": 26847,
+      "momentum": 14303,
+      "likeRate": 4.32,
+      "commentRate": 0.63,
+      "matchedQueries": [
+        "부동산 전망",
+        "부동산 투자"
+      ],
+      "marketScore": {
+        "total": 90,
+        "parts": {
+          "volume": 17,
+          "velocity": 30,
+          "likeRate": 15,
+          "commentRate": 8,
+          "recency": 20
+        }
+      },
+      "channelSubscribers": 289000
+    },
+    {
+      "videoId": "SbS0Xjr8hpA",
+      "url": "https://www.youtube.com/watch?v=SbS0Xjr8hpA",
+      "title": "🚨속보🚨 2026 세제개편안 발표! 1주택자도 궤멸.. 부동산 초토화 확정입니다! 상상 그 이상 세제개편안! 부동산 패닉셀!",
+      "description": "본 영상은 출연자의 투자 조언 및 추천일 뿐 투자자의 수익까지 보장하지 않습니다. \n따라서 시청자의 신중한 판단을 바랍니다.\n\n안녕하세요😃 구독자 여러분 놀라운 부동산 놀부입니다.\n\n상담 및 오프라인 특별 강의 참석 신청은 02-6733-3333 로 문의주세요.\n\n채널 후원은 멤버십 ",
+      "channelId": "UCysO8h0ZdipoFZd-2-EZ4uQ",
+      "channelTitle": "놀라운부동산",
+      "publishedAt": "2026-08-02T01:00:58Z",
+      "thumbnail": "https://i.ytimg.com/vi/SbS0Xjr8hpA/mqdefault.jpg",
+      "tags": [
+        "부동산상담",
+        "부동산컨설팅",
+        "부동산전문가",
+        "부동산공부",
+        "부동산특강",
+        "소액투자",
+        "갭투자",
+        "놀부",
+        "놀라운부동산",
+        "직방",
+        "직방TV",
+        "투자의신"
+      ],
+      "viewCount": 142608,
+      "likeCount": 3429,
+      "commentCount": 1427,
+      "durationSeconds": 1548,
+      "format": "롱폼",
+      "ageDays": 2.7,
+      "viewsPerDay": 52259,
+      "momentum": 44167,
+      "likeRate": 2.4,
+      "commentRate": 1,
+      "matchedQueries": [
+        "부동산 전망",
+        "집값 전망"
+      ],
+      "marketScore": {
+        "total": 90,
+        "parts": {
+          "volume": 21,
+          "velocity": 30,
+          "likeRate": 9,
+          "commentRate": 10,
+          "recency": 20
+        }
+      },
+      "channelSubscribers": 289000
+    },
+    {
+      "videoId": "SHC5UIRO5ug",
+      "url": "https://www.youtube.com/watch?v=SHC5UIRO5ug",
+      "title": "8.3 부동산 세제 개편 '충격 자체', 5년전과 달라!!",
+      "description": "8.3 부동산 세제개편 분석 및 설명, 부동산 시장 영향 및 전망",
+      "channelId": "UCHNwpYjtV8qc_HJlOfnDcAg",
+      "channelTitle": "파가시-아파트 가격시황",
+      "publishedAt": "2026-08-03T15:21:02Z",
+      "thumbnail": "https://i.ytimg.com/vi/SHC5UIRO5ug/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 15442,
+      "likeCount": 800,
+      "commentCount": 105,
+      "durationSeconds": 1998,
+      "format": "롱폼",
+      "ageDays": 1.1,
+      "viewsPerDay": 13646,
+      "momentum": 9464,
+      "likeRate": 5.18,
+      "commentRate": 0.68,
+      "matchedQueries": [
+        "부동산 전망"
+      ],
+      "marketScore": {
+        "total": 89,
+        "parts": {
+          "volume": 17,
+          "velocity": 28,
+          "likeRate": 15,
+          "commentRate": 9,
+          "recency": 20
+        }
+      },
+      "channelSubscribers": 112000
+    },
+    {
+      "videoId": "lFjNYWrs1hM",
+      "url": "https://www.youtube.com/watch?v=lFjNYWrs1hM",
+      "title": "정부가 국민 상대로 사기를? '뉴홈 청약' 정조준한 조정훈",
+      "description": "2026.07.28 정무위원회 현안 질의\n\n#조정훈 #이재명 #부동산",
+      "channelId": "UCf8h3rgyIyV2_wmF5TiR85g",
+      "channelTitle": "조정훈",
+      "publishedAt": "2026-08-04T09:02:01Z",
+      "thumbnail": "https://i.ytimg.com/vi/lFjNYWrs1hM/mqdefault.jpg",
+      "tags": [
+        "조정훈",
+        "국민의힘",
+        "조정훈 의원",
+        "정치",
+        "민주당",
+        "국회",
+        "shorts",
+        "뉴스",
+        "속보",
+        "민주",
+        "지지율",
+        "대한민국"
+      ],
+      "viewCount": 6355,
+      "likeCount": 400,
+      "commentCount": 143,
+      "durationSeconds": 333,
+      "format": "롱폼",
+      "ageDays": 0.4,
+      "viewsPerDay": 16096,
+      "momentum": 7102,
+      "likeRate": 6.29,
+      "commentRate": 2.25,
+      "matchedQueries": [
+        "청약"
+      ],
+      "marketScore": {
+        "total": 89,
+        "parts": {
+          "volume": 16,
+          "velocity": 28,
+          "likeRate": 15,
+          "commentRate": 10,
+          "recency": 20
+        }
+      },
+      "channelSubscribers": 182000
+    },
+    {
+      "videoId": "-xXzgSCH3m0",
+      "url": "https://www.youtube.com/watch?v=-xXzgSCH3m0",
+      "title": "[속보] 세제개편안, 투기·다주택자 과세 강화: 부동산 시장에 미칠 영향  [즉시분석]",
+      "description": "#세제개편 #세제개편안 #종부세 #보유세 #양도세 #종합부동산세 #투기 #투자 #다주택자 #아파트 #부동산 #부동산전망\n\n[속보] 세제개편안, 투기·다주택자 과세 강화: 부동산 시장에 미칠 영향  [즉시분석]\n\n1. 종합부동산세(종부세) 및 보유세 재편  1가구 1주택 기본공제선 조정:",
+      "channelId": "UC3pfEoxaRDT6hvZZjpHu7Tg",
+      "channelTitle": "경제 읽어주는 남자(김광석TV)",
+      "publishedAt": "2026-08-03T09:05:18Z",
+      "thumbnail": "https://i.ytimg.com/vi/-xXzgSCH3m0/mqdefault.jpg",
+      "tags": [
+        "김광석",
+        "김광석 교수",
+        "경제읽어주는남자",
+        "금리",
+        "경제전망",
+        "경읽남 김광석",
+        "한양대학교",
+        "한국경제산업연구원",
+        "2026년",
+        "세제개편안",
+        "세제개정안",
+        "부동산"
+      ],
+      "viewCount": 143165,
+      "likeCount": 3845,
+      "commentCount": 672,
+      "durationSeconds": 1498,
+      "format": "롱폼",
+      "ageDays": 1.4,
+      "viewsPerDay": 102809,
+      "momentum": 75648,
+      "likeRate": 2.69,
+      "commentRate": 0.47,
+      "matchedQueries": [
+        "부동산 전망"
+      ],
+      "marketScore": {
+        "total": 87,
+        "parts": {
+          "volume": 21,
+          "velocity": 30,
+          "likeRate": 10,
+          "commentRate": 6,
+          "recency": 20
+        }
+      },
+      "channelSubscribers": 510000
+    },
+    {
+      "videoId": "3CXwWPXBJ_0",
+      "url": "https://www.youtube.com/watch?v=3CXwWPXBJ_0",
+      "title": "금리 인상이 시작됐습니다. 부동산 시장에 가장 위험한 순간이 다가오고 있습니다",
+      "description": "■멤버쉽에서 실계좌 오픈 매매함.\n\n■청춘부동산 교육/강의  https://cafe.naver.com/dgsstory\n■청춘의 공략주 https://blog.naver.com/akeron00\n■멤버쉽 가입 https://www.youtube.com/channel/UC2qy9fzBKyYQ",
+      "channelId": "UC2qy9fzBKyYQyZHpW-V2x6g",
+      "channelTitle": "청춘 부동산",
+      "publishedAt": "2026-08-03T04:31:33Z",
+      "thumbnail": "https://i.ytimg.com/vi/3CXwWPXBJ_0/mqdefault.jpg",
+      "tags": [
+        "달러",
+        "환율",
+        "주식",
+        "부동산",
+        "미분양아파트",
+        "경제"
+      ],
+      "viewCount": 11628,
+      "likeCount": 488,
+      "commentCount": 87,
+      "durationSeconds": 426,
+      "format": "롱폼",
+      "ageDays": 1.6,
+      "viewsPerDay": 7347,
+      "momentum": 5583,
+      "likeRate": 4.2,
+      "commentRate": 0.75,
+      "matchedQueries": [
+        "금리 부동산"
+      ],
+      "marketScore": {
+        "total": 87,
+        "parts": {
+          "volume": 17,
+          "velocity": 26,
+          "likeRate": 15,
+          "commentRate": 9,
+          "recency": 20
+        }
+      },
+      "channelSubscribers": 47600
+    },
+    {
+      "videoId": "pKzwiAIA48Y",
+      "url": "https://www.youtube.com/watch?v=pKzwiAIA48Y",
+      "title": "1000명 중 991명이 상승 전망! 하반기 집값 더 오른다!",
+      "description": "8.5 당산센터 특강) 오르는 집과 내리는 집을 노골적으로 추천 드립니다! - 메디테라 정은숙 \nhttps://www.smarttube.kr/web/81?wmod=detail&idx=619\n\n8.10 당산센터 특강) 미국 대표 성장주부터 한국 핵심 수혜주까지! - 손정우 대표\nhttps",
+      "channelId": "UCKosTo5bqKm4v264z2zDnFQ",
+      "channelTitle": "스마트튜브(스튜TV)",
+      "publishedAt": "2026-08-02T23:00:06Z",
+      "thumbnail": "https://i.ytimg.com/vi/pKzwiAIA48Y/mqdefault.jpg",
+      "tags": [
+        "스마트튜브",
+        "부동산",
+        "김학렬",
+        "빠숑",
+        "지역",
+        "정책",
+        "투자",
+        "내집마련",
+        "아파트",
+        "한국",
+        "재테크",
+        "입지"
+      ],
+      "viewCount": 21217,
+      "likeCount": 757,
+      "commentCount": 126,
+      "durationSeconds": 1866,
+      "format": "롱폼",
+      "ageDays": 1.8,
+      "viewsPerDay": 11704,
+      "momentum": 9174,
+      "likeRate": 3.57,
+      "commentRate": 0.59,
+      "matchedQueries": [
+        "집값 전망"
+      ],
+      "marketScore": {
+        "total": 86,
+        "parts": {
+          "volume": 18,
+          "velocity": 27,
+          "likeRate": 13,
+          "commentRate": 7,
+          "recency": 20
+        }
+      },
+      "channelSubscribers": 252000
+    },
+    {
+      "videoId": "Kd-ZyfpHfIg",
+      "url": "https://www.youtube.com/watch?v=Kd-ZyfpHfIg",
+      "title": "이재명 아파트 매매 근저당 꼼수 논란 ㄷㄷ | 도람뿌",
+      "description": "#이재명 #이재명대통령",
+      "channelId": "UCQ21caARmy5hvLqvwIEBNUw",
+      "channelTitle": "도람뿌",
+      "publishedAt": "2026-07-21T04:55:46Z",
+      "thumbnail": "https://i.ytimg.com/vi/Kd-ZyfpHfIg/mqdefault.jpg",
+      "tags": [
+        "이재명",
+        "이재명 근저당",
+        "이재명 꼼수 근저당",
+        "이재명 꼼수",
+        "이재명 편법",
+        "이재명 근저당 꼼수 편법",
+        "이재명 아파트 근저당",
+        "이재명 아파트"
+      ],
+      "viewCount": 27976,
+      "likeCount": 2926,
+      "commentCount": 456,
+      "durationSeconds": 177,
+      "format": "롱폼",
+      "ageDays": 14.6,
+      "viewsPerDay": 1921,
+      "momentum": 1704,
+      "likeRate": 10.46,
+      "commentRate": 1.63,
+      "matchedQueries": [
+        "아파트 매매"
+      ],
+      "marketScore": {
+        "total": 84,
+        "parts": {
+          "volume": 19,
+          "velocity": 22,
+          "likeRate": 15,
+          "commentRate": 10,
+          "recency": 18
+        }
+      },
+      "channelSubscribers": 270000
+    },
+    {
+      "videoId": "iJ8odc-gfBQ",
+      "url": "https://www.youtube.com/watch?v=iJ8odc-gfBQ",
+      "title": "\"1년에 딱 한번 뿐인 기회!\" 확 바뀌었습니다 🔥 2026년 재개발 임대주택 🏠 모집공고 뽀개기(SH)",
+      "description": "[Chapter]\n00:10 ｜ 1년에 딱 1번 나오는 공고\n00:34 ｜ 확 바뀐 배점 기준 (필수시청)\n01:55 ｜ SH 공고소식 + 접수 알림 서비스\n02:45 ｜ 포인트\n04:06 ｜ 공급 규모\n06:01 ｜ 동대문구_e편한세상 답십리 아르테포레\n07:59 ｜ 관악구_힐스테이트",
+      "channelId": "UC4uGVGxC9kiYkLBnU1a97Vw",
+      "channelTitle": "아영이네 행복주택",
+      "publishedAt": "2026-08-02T11:30:30Z",
+      "thumbnail": "https://i.ytimg.com/vi/iJ8odc-gfBQ/mqdefault.jpg",
+      "tags": [
+        "아영이네 행복주택",
+        "서울 임대주택",
+        "서울 임대아파트",
+        "서울임대주택",
+        "재개발임대주택",
+        "재개발임대",
+        "임대주택",
+        "공공임대주택",
+        "임대아파트",
+        "임대주택 소개",
+        "임대아파트 소개",
+        "서울 투룸"
+      ],
+      "viewCount": 175259,
+      "likeCount": 4065,
+      "commentCount": 503,
+      "durationSeconds": 1235,
+      "format": "롱폼",
+      "ageDays": 2.3,
+      "viewsPerDay": 76476,
+      "momentum": 62779,
+      "likeRate": 2.32,
+      "commentRate": 0.29,
+      "matchedQueries": [
+        "재개발"
+      ],
+      "marketScore": {
+        "total": 84,
+        "parts": {
+          "volume": 22,
+          "velocity": 30,
+          "likeRate": 9,
+          "commentRate": 4,
+          "recency": 20
+        }
+      },
+      "channelSubscribers": 689000
+    },
+    {
+      "videoId": "5ZIiXwTe-U4",
+      "url": "https://www.youtube.com/watch?v=5ZIiXwTe-U4",
+      "title": "그린벨트에 집 짓는다? 재개발·재건축부터 챙겨라 | 박상규 시사평론가 | 경제픽썰",
+      "description": "#박상규 #부동산 #그린벨트 #재개발 #재건축 #주거정책\n------------------------------\n자율후원 : 기업은행 107-271-5881 (예금주: 펜앤마이크) \n\n펜앤경제TV LIVE 4 요일별 프로그램 (오후 4시 라이브)\n월: 경제픽썰  (출연: 박상규 / 진행",
+      "channelId": "UC0DSMN_m8Tfp8ruMXRdgjOA",
+      "channelTitle": "펜앤경제TV",
+      "publishedAt": "2026-07-29T21:00:00Z",
+      "thumbnail": "https://i.ytimg.com/vi/5ZIiXwTe-U4/mqdefault.jpg",
+      "tags": [
+        "펜앤경제",
+        "경제TV",
+        "펜앤경제TV",
+        "펜엔경제",
+        "팬엔경제",
+        "경제지식",
+        "경제방송",
+        "지식방송",
+        "경제라이브",
+        "지식라이브",
+        "LIVE4",
+        "라이브4"
+      ],
+      "viewCount": 174810,
+      "likeCount": 5348,
+      "commentCount": 93,
+      "durationSeconds": 63,
+      "format": "쇼츠",
+      "ageDays": 5.9,
+      "viewsPerDay": 29648,
+      "momentum": 27330,
+      "likeRate": 3.06,
+      "commentRate": 0.05,
+      "matchedQueries": [
+        "재건축"
+      ],
+      "marketScore": {
+        "total": 84,
+        "parts": {
+          "volume": 22,
+          "velocity": 30,
+          "likeRate": 11,
+          "commentRate": 1,
+          "recency": 20
+        }
+      },
+      "channelSubscribers": 103000
+    },
+    {
+      "videoId": "1eIaKoKhgM8",
+      "url": "https://www.youtube.com/watch?v=1eIaKoKhgM8",
+      "title": "이재명 정부 부동산 세제 개편 분석, 집값 내년부터 무서울 겁니다 (김제경 박사)",
+      "description": "충격적 부동산 세제 개편 분석, 서울 아파트 싹 다 묶인다 (김제경 박사)\n- 촬영일시: 8월 3일\n\n📌 김제경 박사 『시장을 이기는 부동산 투자 원칙』 도서 구매\n👉 https://product.kyobobook.co.kr/detail/S000215009049\n\n📚 김작가 단독 ",
+      "channelId": "UCvil4OAt-zShzkKHsg9EQAw",
+      "channelTitle": "김작가 TV",
+      "publishedAt": "2026-08-04T09:30:05Z",
+      "thumbnail": "https://i.ytimg.com/vi/1eIaKoKhgM8/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 28277,
+      "likeCount": 547,
+      "commentCount": 189,
+      "durationSeconds": 3356,
+      "format": "롱폼",
+      "ageDays": 0.4,
+      "viewsPerDay": 75342,
+      "momentum": 32305,
+      "likeRate": 1.93,
+      "commentRate": 0.67,
+      "matchedQueries": [
+        "부동산 투자"
+      ],
+      "marketScore": {
+        "total": 84,
+        "parts": {
+          "volume": 19,
+          "velocity": 30,
+          "likeRate": 7,
+          "commentRate": 8,
+          "recency": 20
+        }
+      },
+      "channelSubscribers": 2720000
+    },
+    {
+      "videoId": "-x0Qkk0_Kzo",
+      "url": "https://www.youtube.com/watch?v=-x0Qkk0_Kzo",
+      "title": "'이대로 가면 집값 폭등!' 하락론자도 걱정하는 부동산 정책 (한문도 교수)",
+      "description": "[하반기 부동산 시장 전망 - 한문도 교수 작심발언 모음]\n00:00 하이라이트\n00:30 이재명 대통령의 부동산 정책\n06:37 3기 신도시 진척 더딘 이유\n07:51 세제 개편안 이후 변화 전망\n12:02 집값 안정화 방안\n\n진행 : 한영준 파이낸셜뉴스 기자\n출연 : 김인만 김인만부",
+      "channelId": "UCGntVCJZW44CxkV3stW1FHg",
+      "channelTitle": "파이낸셜뉴스",
+      "publishedAt": "2026-08-02T06:00:32Z",
+      "thumbnail": "https://i.ytimg.com/vi/-x0Qkk0_Kzo/mqdefault.jpg",
+      "tags": [
+        "부동산 시장 전망",
+        "서울 아파트값 전망",
+        "서울 아파트값",
+        "서울 집값",
+        "양도세 중과 유예",
+        "이재명 양도세",
+        "양도세",
+        "서울 집값 상승",
+        "서울 집값 하락",
+        "서울 아파트 전망",
+        "서울 아파트 상승",
+        "서울 아파트 하락"
+      ],
+      "viewCount": 77554,
+      "likeCount": 767,
+      "commentCount": 569,
+      "durationSeconds": 790,
+      "format": "롱폼",
+      "ageDays": 2.5,
+      "viewsPerDay": 30765,
+      "momentum": 25673,
+      "likeRate": 0.99,
+      "commentRate": 0.73,
+      "matchedQueries": [
+        "부동산 전망",
+        "집값 전망"
+      ],
+      "marketScore": {
+        "total": 83,
+        "parts": {
+          "volume": 20,
+          "velocity": 30,
+          "likeRate": 4,
+          "commentRate": 9,
+          "recency": 20
+        }
+      },
+      "channelSubscribers": 91700
+    },
+    {
+      "videoId": "6GTLWK0WvPM",
+      "url": "https://www.youtube.com/watch?v=6GTLWK0WvPM",
+      "title": "\"시세 8억인데 추가 분담금이 7억?\" 재건축 환상 깨진 상계주공 아파트ㅣ추PD가간다",
+      "description": "#노원구 #재건축 #분담금 \n\n서울 노원구 대표 노후 단지로 꼽히는 상계주공6단지가 재건축에 속도를 내고 있습니다.\n하지만 사업 추진 과정에서 예상치 못한 변수가 등장했습니다. 바로 수억원대 추정 추가분담금입니다.\n재건축을 기다려온 주민들이 마주한 현실은 무엇인지, 현장을 찾아가봤습니다",
+      "channelId": "UCFhF5oooL5ugxHKvTxBD75Q",
+      "channelTitle": "땅집고",
+      "publishedAt": "2026-08-03T08:00:24Z",
+      "thumbnail": "https://i.ytimg.com/vi/6GTLWK0WvPM/mqdefault.jpg",
+      "tags": [
+        "땅집고",
+        "부동산",
+        "분양",
+        "아파트",
+        "청약",
+        "공동주택",
+        "전세",
+        "월세",
+        "전월세",
+        "매매",
+        "거래",
+        "매매가격"
+      ],
+      "viewCount": 273499,
+      "likeCount": 2950,
+      "commentCount": 1277,
+      "durationSeconds": 294,
+      "format": "롱폼",
+      "ageDays": 1.4,
+      "viewsPerDay": 190247,
+      "momentum": 141154,
+      "likeRate": 1.08,
+      "commentRate": 0.47,
+      "matchedQueries": [
+        "재개발",
+        "재건축"
+      ],
+      "marketScore": {
+        "total": 83,
+        "parts": {
+          "volume": 23,
+          "velocity": 30,
+          "likeRate": 4,
+          "commentRate": 6,
+          "recency": 20
+        }
+      },
+      "channelSubscribers": 444000
+    },
+    {
+      "videoId": "_WhrrO93rOg",
+      "url": "https://www.youtube.com/watch?v=_WhrrO93rOg",
+      "title": "서울지역 재개발 지적하자 대통령의 답변",
+      "description": "서울지역 재개발 지적하자 대통령의 답변\n\n#재개발 #대통령 #정치 #뉴스 #재건축",
+      "channelId": "UCPrgawYezHDg8cJEF_XZLdw",
+      "channelTitle": "짧은정치",
+      "publishedAt": "2026-08-03T00:30:04Z",
+      "thumbnail": "https://i.ytimg.com/vi/_WhrrO93rOg/mqdefault.jpg",
+      "tags": [
+        "재개발",
+        "뉴스",
+        "대통령",
+        "재건축",
+        "이재명",
+        "서울",
+        "신규주택",
+        "이재명 대통령",
+        "부동산 정책",
+        "정치",
+        "정치 뉴스",
+        "정치 쇼츠"
+      ],
+      "viewCount": 152865,
+      "likeCount": 4432,
+      "commentCount": 80,
+      "durationSeconds": 73,
+      "format": "쇼츠",
+      "ageDays": 1.8,
+      "viewsPerDay": 87335,
+      "momentum": 67930,
+      "likeRate": 2.9,
+      "commentRate": 0.05,
+      "matchedQueries": [
+        "재개발",
+        "재건축"
+      ],
+      "marketScore": {
+        "total": 83,
+        "parts": {
+          "volume": 22,
+          "velocity": 30,
+          "likeRate": 11,
+          "commentRate": 1,
+          "recency": 20
+        }
+      },
+      "channelSubscribers": 89200
+    },
+    {
+      "videoId": "MMIKK6CmtPE",
+      "url": "https://www.youtube.com/watch?v=MMIKK6CmtPE",
+      "title": "'갭투자' 아파트는 팔아도 양도세 한 푼 안 깎아준다 / JTBC 뉴스룸",
+      "description": "정부는 보유만 했던 '갭투자' 아파트는 팔더라도 세제 혜택을 주지 않기로 했습니다. 실제 거주한 경우만 공제 혜택을 주겠다는 것입니다. 수십억원에 달하는 양도차익이 생긴 초고가 아파트를 팔 때도 10억원까지만 공제받을 수 있도록 제한합니다.\n\n이상화 기자입니다.\n\n▶ 기사 전문 http",
+      "channelId": "UCsU-I-vHLiaMfV_ceaYz5rQ",
+      "channelTitle": "JTBC News",
+      "publishedAt": "2026-08-03T10:47:10Z",
+      "thumbnail": "https://i.ytimg.com/vi/MMIKK6CmtPE/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 62972,
+      "likeCount": 543,
+      "commentCount": 665,
+      "durationSeconds": 123,
+      "format": "롱폼",
+      "ageDays": 1.3,
+      "viewsPerDay": 47642,
+      "momentum": 34566,
+      "likeRate": 0.86,
+      "commentRate": 1.06,
+      "matchedQueries": [
+        "갭투자"
+      ],
+      "marketScore": {
+        "total": 83,
+        "parts": {
+          "volume": 20,
+          "velocity": 30,
+          "likeRate": 3,
+          "commentRate": 10,
+          "recency": 20
+        }
+      },
+      "channelSubscribers": 4890000
+    },
+    {
+      "videoId": "iXElekh_7Jw",
+      "url": "https://www.youtube.com/watch?v=iXElekh_7Jw",
+      "title": "(속보) 드디어 금리 인상... 부동산, 주식 어떻게 될까?",
+      "description": "※ 참고로 저는 전문가가 아닙니다 같이 공부해보자는 취지의 영상입니다^^",
+      "channelId": "UCaWi2foADm_lKAKnmeQwLSA",
+      "channelTitle": "재테크읽어주는 파일럿",
+      "publishedAt": "2026-07-16T08:14:54Z",
+      "thumbnail": "https://i.ytimg.com/vi/iXElekh_7Jw/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 159370,
+      "likeCount": 5744,
+      "commentCount": 615,
+      "durationSeconds": 559,
+      "format": "롱폼",
+      "ageDays": 19.4,
+      "viewsPerDay": 8203,
+      "momentum": 6917,
+      "likeRate": 3.6,
+      "commentRate": 0.39,
+      "matchedQueries": [
+        "금리 부동산"
+      ],
+      "marketScore": {
+        "total": 83,
+        "parts": {
+          "volume": 22,
+          "velocity": 26,
+          "likeRate": 14,
+          "commentRate": 5,
+          "recency": 17
+        }
+      },
+      "channelSubscribers": 1280000
+    },
+    {
+      "videoId": "948Hu5OL_h0",
+      "url": "https://www.youtube.com/watch?v=948Hu5OL_h0",
+      "title": "[LIVE] 세제개편 발표 이후, 부동산 시장 판이 바뀐다｜내집마련 상담소",
+      "description": "📢 [내집마련 상담소 LIVE] 8월 4일(화) 오후 7시\n\n세제개편 이후, 부동산 시장은 어떻게 달라질까요?\n세법 전문가 제네시스박님과 함께 무주택자부터 다주택자까지, 포지션별 대응 전략을 알아봅니다.\n\n✅ 타임테이블\n1부｜세제개편 이후 하반기 시장 전망\n2부｜내집마련 상담소 Q&A",
+      "channelId": "UCYko46TGl7BlW6aZuW8eg2A",
+      "channelTitle": "부티비",
+      "publishedAt": "2026-08-04T11:19:28Z",
+      "thumbnail": "https://i.ytimg.com/vi/948Hu5OL_h0/mqdefault.jpg",
+      "tags": [
+        "부동산",
+        "부티비",
+        "라이브",
+        "세제개편",
+        "세제개편안",
+        "제네시스박",
+        "다주택자",
+        "무주택자",
+        "장특공",
+        "양도세",
+        "보유세",
+        "재산세"
+      ],
+      "viewCount": 4058,
+      "likeCount": 180,
+      "commentCount": 16,
+      "durationSeconds": 4087,
+      "format": "롱폼",
+      "ageDays": 0.3,
+      "viewsPerDay": 13556,
+      "momentum": 5077,
+      "likeRate": 4.44,
+      "commentRate": 0.39,
+      "matchedQueries": [
+        "부동산 전망"
+      ],
+      "marketScore": {
+        "total": 82,
+        "parts": {
+          "volume": 15,
+          "velocity": 28,
+          "likeRate": 15,
+          "commentRate": 5,
+          "recency": 20
+        }
+      },
+      "channelSubscribers": 78500
+    },
+    {
+      "videoId": "u1UWelFrFJ4",
+      "url": "https://www.youtube.com/watch?v=u1UWelFrFJ4",
+      "title": "[🚨긴급진단] 2026 세제개편안 이후 상급지 갈아타기 불리, 20억 이하 아파트 수요만 강해진다 '이 지역' 노리세요ㅣ김인만 소장ㅣ경제시그널",
+      "description": "📌김인만 소장과 함께 2026 세제개편안을 꼼꼼하게 분석합니다.\n종부세 '주택가액 합산' 단일화와 실거주 의무 강화가 불러올 부동산 시장의 양극화 및 틈새 지역을 전격 진단합니다.\n📌종부세 1주택 기본공제가 14억(시가 약 20억)으로 상향되었지만, 공정시장가액비율 인상과 초고가 주",
+      "channelId": "UCdErKhSSwQcVSC4PEp6soZQ",
+      "channelTitle": "경제시그널",
+      "publishedAt": "2026-08-03T09:03:29Z",
+      "thumbnail": "https://i.ytimg.com/vi/u1UWelFrFJ4/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 38608,
+      "likeCount": 565,
+      "commentCount": 236,
+      "durationSeconds": 2201,
+      "format": "롱폼",
+      "ageDays": 1.4,
+      "viewsPerDay": 27700,
+      "momentum": 20387,
+      "likeRate": 1.46,
+      "commentRate": 0.61,
+      "matchedQueries": [
+        "부동산 전망",
+        "집값 전망"
+      ],
+      "marketScore": {
+        "total": 82,
+        "parts": {
+          "volume": 19,
+          "velocity": 30,
+          "likeRate": 5,
+          "commentRate": 8,
+          "recency": 20
+        }
+      },
+      "channelSubscribers": 24300
+    },
+    {
+      "videoId": "Z-1i30X91qc",
+      "url": "https://www.youtube.com/watch?v=Z-1i30X91qc",
+      "title": "이재명 대통령, 부동산 작심 발언 \"투자로 수십억 벌었는데 세금 안 내는 건…\"",
+      "description": "ⓒ 무단 전재, 재배포 및 재가공, 이용(AI학습 포함)금지\n\n4일 오전 청와대에서 이재명 대통령 주재로 국무회의가 열렸다.\n\n(영상 출처 - KTV)\n\n채널에 가입하여 혜택을 누려보세요.\nhttps://www.youtube.com/channel/UClAfLVQYZSLrMAQQ_SXPV",
+      "channelId": "UClAfLVQYZSLrMAQQ_SXPVZw",
+      "channelTitle": "오마이TV",
+      "publishedAt": "2026-08-04T01:35:28Z",
+      "thumbnail": "https://i.ytimg.com/vi/Z-1i30X91qc/mqdefault.jpg",
+      "tags": [
+        "이재명",
+        "부동산",
+        "물가",
+        "작심",
+        "수십억",
+        "투자",
+        "세금",
+        "노동자",
+        "근로소득",
+        "국무회의",
+        "구윤철",
+        "오마이tv"
+      ],
+      "viewCount": 4437,
+      "likeCount": 131,
+      "commentCount": 83,
+      "durationSeconds": 415,
+      "format": "롱폼",
+      "ageDays": 0.7,
+      "viewsPerDay": 6294,
+      "momentum": 3682,
+      "likeRate": 2.95,
+      "commentRate": 1.87,
+      "matchedQueries": [
+        "부동산 투자"
+      ],
+      "marketScore": {
+        "total": 82,
+        "parts": {
+          "volume": 15,
+          "velocity": 25,
+          "likeRate": 11,
+          "commentRate": 10,
+          "recency": 20
+        }
+      },
+      "channelSubscribers": 2480000
+    }
+  ],
+  "risingVideos": [
+    {
+      "videoId": "6GTLWK0WvPM",
+      "url": "https://www.youtube.com/watch?v=6GTLWK0WvPM",
+      "title": "\"시세 8억인데 추가 분담금이 7억?\" 재건축 환상 깨진 상계주공 아파트ㅣ추PD가간다",
+      "description": "#노원구 #재건축 #분담금 \n\n서울 노원구 대표 노후 단지로 꼽히는 상계주공6단지가 재건축에 속도를 내고 있습니다.\n하지만 사업 추진 과정에서 예상치 못한 변수가 등장했습니다. 바로 수억원대 추정 추가분담금입니다.\n재건축을 기다려온 주민들이 마주한 현실은 무엇인지, 현장을 찾아가봤습니다",
+      "channelId": "UCFhF5oooL5ugxHKvTxBD75Q",
+      "channelTitle": "땅집고",
+      "publishedAt": "2026-08-03T08:00:24Z",
+      "thumbnail": "https://i.ytimg.com/vi/6GTLWK0WvPM/mqdefault.jpg",
+      "tags": [
+        "땅집고",
+        "부동산",
+        "분양",
+        "아파트",
+        "청약",
+        "공동주택",
+        "전세",
+        "월세",
+        "전월세",
+        "매매",
+        "거래",
+        "매매가격"
+      ],
+      "viewCount": 273499,
+      "likeCount": 2950,
+      "commentCount": 1277,
+      "durationSeconds": 294,
+      "format": "롱폼",
+      "ageDays": 1.4,
+      "viewsPerDay": 190247,
+      "momentum": 141154,
+      "likeRate": 1.08,
+      "commentRate": 0.47,
+      "matchedQueries": [
+        "재개발",
+        "재건축"
+      ],
+      "marketScore": {
+        "total": 83,
+        "parts": {
+          "volume": 23,
+          "velocity": 30,
+          "likeRate": 4,
+          "commentRate": 6,
+          "recency": 20
+        }
+      },
+      "channelSubscribers": 444000
+    },
+    {
+      "videoId": "iyjErmWJ8eo",
+      "url": "https://www.youtube.com/watch?v=iyjErmWJ8eo",
+      "title": "분양 주민들에게 무시당하는 임대 사는 여사님의 억울함 #shorts",
+      "description": "#shorts #지성 #하윤경 #박병은 #문소리 #김규원 #김원해",
+      "channelId": "UCxr89be3loUcLGYCAIcj-yw",
+      "channelTitle": "1분드라마모음zip",
+      "publishedAt": "2026-08-04T06:33:19Z",
+      "thumbnail": "https://i.ytimg.com/vi/iyjErmWJ8eo/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 122015,
+      "likeCount": 789,
+      "commentCount": 171,
+      "durationSeconds": 51,
+      "format": "쇼츠",
+      "ageDays": 0.5,
+      "viewsPerDay": 244975,
+      "momentum": 122251,
+      "likeRate": 0.65,
+      "commentRate": 0.14,
+      "matchedQueries": [
+        "분양"
+      ],
+      "marketScore": {
+        "total": 75,
+        "parts": {
+          "volume": 21,
+          "velocity": 30,
+          "likeRate": 2,
+          "commentRate": 2,
+          "recency": 20
+        }
+      },
+      "channelSubscribers": 994000
+    },
+    {
+      "videoId": "-xXzgSCH3m0",
+      "url": "https://www.youtube.com/watch?v=-xXzgSCH3m0",
+      "title": "[속보] 세제개편안, 투기·다주택자 과세 강화: 부동산 시장에 미칠 영향  [즉시분석]",
+      "description": "#세제개편 #세제개편안 #종부세 #보유세 #양도세 #종합부동산세 #투기 #투자 #다주택자 #아파트 #부동산 #부동산전망\n\n[속보] 세제개편안, 투기·다주택자 과세 강화: 부동산 시장에 미칠 영향  [즉시분석]\n\n1. 종합부동산세(종부세) 및 보유세 재편  1가구 1주택 기본공제선 조정:",
+      "channelId": "UC3pfEoxaRDT6hvZZjpHu7Tg",
+      "channelTitle": "경제 읽어주는 남자(김광석TV)",
+      "publishedAt": "2026-08-03T09:05:18Z",
+      "thumbnail": "https://i.ytimg.com/vi/-xXzgSCH3m0/mqdefault.jpg",
+      "tags": [
+        "김광석",
+        "김광석 교수",
+        "경제읽어주는남자",
+        "금리",
+        "경제전망",
+        "경읽남 김광석",
+        "한양대학교",
+        "한국경제산업연구원",
+        "2026년",
+        "세제개편안",
+        "세제개정안",
+        "부동산"
+      ],
+      "viewCount": 143165,
+      "likeCount": 3845,
+      "commentCount": 672,
+      "durationSeconds": 1498,
+      "format": "롱폼",
+      "ageDays": 1.4,
+      "viewsPerDay": 102809,
+      "momentum": 75648,
+      "likeRate": 2.69,
+      "commentRate": 0.47,
+      "matchedQueries": [
+        "부동산 전망"
+      ],
+      "marketScore": {
+        "total": 87,
+        "parts": {
+          "volume": 21,
+          "velocity": 30,
+          "likeRate": 10,
+          "commentRate": 6,
+          "recency": 20
+        }
+      },
+      "channelSubscribers": 510000
+    },
+    {
+      "videoId": "_WhrrO93rOg",
+      "url": "https://www.youtube.com/watch?v=_WhrrO93rOg",
+      "title": "서울지역 재개발 지적하자 대통령의 답변",
+      "description": "서울지역 재개발 지적하자 대통령의 답변\n\n#재개발 #대통령 #정치 #뉴스 #재건축",
+      "channelId": "UCPrgawYezHDg8cJEF_XZLdw",
+      "channelTitle": "짧은정치",
+      "publishedAt": "2026-08-03T00:30:04Z",
+      "thumbnail": "https://i.ytimg.com/vi/_WhrrO93rOg/mqdefault.jpg",
+      "tags": [
+        "재개발",
+        "뉴스",
+        "대통령",
+        "재건축",
+        "이재명",
+        "서울",
+        "신규주택",
+        "이재명 대통령",
+        "부동산 정책",
+        "정치",
+        "정치 뉴스",
+        "정치 쇼츠"
+      ],
+      "viewCount": 152865,
+      "likeCount": 4432,
+      "commentCount": 80,
+      "durationSeconds": 73,
+      "format": "쇼츠",
+      "ageDays": 1.8,
+      "viewsPerDay": 87335,
+      "momentum": 67930,
+      "likeRate": 2.9,
+      "commentRate": 0.05,
+      "matchedQueries": [
+        "재개발",
+        "재건축"
+      ],
+      "marketScore": {
+        "total": 83,
+        "parts": {
+          "volume": 22,
+          "velocity": 30,
+          "likeRate": 11,
+          "commentRate": 1,
+          "recency": 20
+        }
+      },
+      "channelSubscribers": 89200
+    },
+    {
+      "videoId": "VvJUi6uM_ck",
+      "url": "https://www.youtube.com/watch?v=VvJUi6uM_ck",
+      "title": "[EN/JP] 사회초년생 살만한 서울 월세 현실 🏠💦  | 중개보조원 | 워크돌ㅣ프로미스나인 지원, 지헌",
+      "description": "우리 알바생들 지난번 해군에 이어서\n열심히 돈 벌어서 집 사려고 왔다!\nBUT 찾아볼수록 비싼 집값에 서민통만 오는데..\n\n0:00 오프닝 \n1:02 오늘의 알바\n2:13 사수님 만남\n4:54 나인원 한남?!\n6:25 임장 출발\n8:36 첫번째 집 \n12:55 두번째 집 \n17:20 세",
+      "channelId": "UCwx6n_4OcLgzAGdty0RWCoA",
+      "channelTitle": "워크맨-Workman",
+      "publishedAt": "2026-07-22T10:00:28Z",
+      "thumbnail": "https://i.ytimg.com/vi/VvJUi6uM_ck/mqdefault.jpg",
+      "tags": [
+        "워크돌",
+        "프로미스나인",
+        "지원",
+        "박지원",
+        "백지헌",
+        "프나",
+        "프로미스나인 컴백",
+        "앨범",
+        "여름 노래",
+        "워터밤",
+        "아정당",
+        "부동산"
+      ],
+      "viewCount": 955888,
+      "likeCount": 14131,
+      "commentCount": 1052,
+      "durationSeconds": 1430,
+      "format": "롱폼",
+      "ageDays": 13.4,
+      "viewsPerDay": 71579,
+      "momentum": 64231,
+      "likeRate": 1.48,
+      "commentRate": 0.11,
+      "matchedQueries": [
+        "월세"
+      ],
+      "marketScore": {
+        "total": 80,
+        "parts": {
+          "volume": 25,
+          "velocity": 30,
+          "likeRate": 6,
+          "commentRate": 1,
+          "recency": 19
+        }
+      },
+      "channelSubscribers": 4280000
+    },
+    {
+      "videoId": "iJ8odc-gfBQ",
+      "url": "https://www.youtube.com/watch?v=iJ8odc-gfBQ",
+      "title": "\"1년에 딱 한번 뿐인 기회!\" 확 바뀌었습니다 🔥 2026년 재개발 임대주택 🏠 모집공고 뽀개기(SH)",
+      "description": "[Chapter]\n00:10 ｜ 1년에 딱 1번 나오는 공고\n00:34 ｜ 확 바뀐 배점 기준 (필수시청)\n01:55 ｜ SH 공고소식 + 접수 알림 서비스\n02:45 ｜ 포인트\n04:06 ｜ 공급 규모\n06:01 ｜ 동대문구_e편한세상 답십리 아르테포레\n07:59 ｜ 관악구_힐스테이트",
+      "channelId": "UC4uGVGxC9kiYkLBnU1a97Vw",
+      "channelTitle": "아영이네 행복주택",
+      "publishedAt": "2026-08-02T11:30:30Z",
+      "thumbnail": "https://i.ytimg.com/vi/iJ8odc-gfBQ/mqdefault.jpg",
+      "tags": [
+        "아영이네 행복주택",
+        "서울 임대주택",
+        "서울 임대아파트",
+        "서울임대주택",
+        "재개발임대주택",
+        "재개발임대",
+        "임대주택",
+        "공공임대주택",
+        "임대아파트",
+        "임대주택 소개",
+        "임대아파트 소개",
+        "서울 투룸"
+      ],
+      "viewCount": 175259,
+      "likeCount": 4065,
+      "commentCount": 503,
+      "durationSeconds": 1235,
+      "format": "롱폼",
+      "ageDays": 2.3,
+      "viewsPerDay": 76476,
+      "momentum": 62779,
+      "likeRate": 2.32,
+      "commentRate": 0.29,
+      "matchedQueries": [
+        "재개발"
+      ],
+      "marketScore": {
+        "total": 84,
+        "parts": {
+          "volume": 22,
+          "velocity": 30,
+          "likeRate": 9,
+          "commentRate": 4,
+          "recency": 20
+        }
+      },
+      "channelSubscribers": 689000
+    },
+    {
+      "videoId": "3-kcEbE2hps",
+      "url": "https://www.youtube.com/watch?v=3-kcEbE2hps",
+      "title": "한국 아파트 싹다 물갈이 된다, 집값 내년부터 무서울 겁니다 (송희구 작가 풀버전)",
+      "description": "집값 '여기까지' 오르고 나면, 진짜 폭락장이 시작됩니다 (송희구 작가 풀버전)\n\n📚 송희구 작가 『나의 첫 번째 부동산 교과서』 도서 구매\n👉 https://product.kyobobook.co.kr/detail/S000220119415\n\n✔ 출연 신청/광고 문의/강연 신청: in",
+      "channelId": "UCvil4OAt-zShzkKHsg9EQAw",
+      "channelTitle": "김작가 TV",
+      "publishedAt": "2026-08-01T10:30:26Z",
+      "thumbnail": "https://i.ytimg.com/vi/3-kcEbE2hps/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 187097,
+      "likeCount": 2595,
+      "commentCount": 259,
+      "durationSeconds": 3906,
+      "format": "롱폼",
+      "ageDays": 3.3,
+      "viewsPerDay": 56128,
+      "momentum": 48807,
+      "likeRate": 1.39,
+      "commentRate": 0.14,
+      "matchedQueries": [
+        "부동산 전망",
+        "집값 전망"
+      ],
+      "marketScore": {
+        "total": 79,
+        "parts": {
+          "volume": 22,
+          "velocity": 30,
+          "likeRate": 5,
+          "commentRate": 2,
+          "recency": 20
+        }
+      },
+      "channelSubscribers": 2720000
+    },
+    {
+      "videoId": "SbS0Xjr8hpA",
+      "url": "https://www.youtube.com/watch?v=SbS0Xjr8hpA",
+      "title": "🚨속보🚨 2026 세제개편안 발표! 1주택자도 궤멸.. 부동산 초토화 확정입니다! 상상 그 이상 세제개편안! 부동산 패닉셀!",
+      "description": "본 영상은 출연자의 투자 조언 및 추천일 뿐 투자자의 수익까지 보장하지 않습니다. \n따라서 시청자의 신중한 판단을 바랍니다.\n\n안녕하세요😃 구독자 여러분 놀라운 부동산 놀부입니다.\n\n상담 및 오프라인 특별 강의 참석 신청은 02-6733-3333 로 문의주세요.\n\n채널 후원은 멤버십 ",
+      "channelId": "UCysO8h0ZdipoFZd-2-EZ4uQ",
+      "channelTitle": "놀라운부동산",
+      "publishedAt": "2026-08-02T01:00:58Z",
+      "thumbnail": "https://i.ytimg.com/vi/SbS0Xjr8hpA/mqdefault.jpg",
+      "tags": [
+        "부동산상담",
+        "부동산컨설팅",
+        "부동산전문가",
+        "부동산공부",
+        "부동산특강",
+        "소액투자",
+        "갭투자",
+        "놀부",
+        "놀라운부동산",
+        "직방",
+        "직방TV",
+        "투자의신"
+      ],
+      "viewCount": 142608,
+      "likeCount": 3429,
+      "commentCount": 1427,
+      "durationSeconds": 1548,
+      "format": "롱폼",
+      "ageDays": 2.7,
+      "viewsPerDay": 52259,
+      "momentum": 44167,
+      "likeRate": 2.4,
+      "commentRate": 1,
+      "matchedQueries": [
+        "부동산 전망",
+        "집값 전망"
+      ],
+      "marketScore": {
+        "total": 90,
+        "parts": {
+          "volume": 21,
+          "velocity": 30,
+          "likeRate": 9,
+          "commentRate": 10,
+          "recency": 20
+        }
+      },
+      "channelSubscribers": 289000
+    },
+    {
+      "videoId": "ap-Or__OUVI",
+      "url": "https://www.youtube.com/watch?v=ap-Or__OUVI",
+      "title": "남궁민이 월세 내는 방법",
+      "description": "천원짜리 변호사\n단돈 1,000원의 수임료만 받고 뛰어난 실력으로 약자들을 보살피는 괴짜 변호사의 통쾌한 법정 활약극\n\n남궁민, 김자영, 김지은, 박진우, 정규수\n\n#드라마몰아보기 #드라마추천 #드라마리뷰",
+      "channelId": "UC_B8nMS7Lbwez_ozoVLjNFQ",
+      "channelTitle": "스토컷",
+      "publishedAt": "2026-08-04T07:30:39Z",
+      "thumbnail": "https://i.ytimg.com/vi/ap-Or__OUVI/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 42145,
+      "likeCount": 95,
+      "commentCount": 5,
+      "durationSeconds": 31,
+      "format": "쇼츠",
+      "ageDays": 0.5,
+      "viewsPerDay": 91968,
+      "momentum": 43981,
+      "likeRate": 0.23,
+      "commentRate": 0.01,
+      "matchedQueries": [
+        "월세"
+      ],
+      "marketScore": {
+        "total": 70,
+        "parts": {
+          "volume": 19,
+          "velocity": 30,
+          "likeRate": 1,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "channelSubscribers": 26300
+    },
+    {
+      "videoId": "fM_JK8wA1Mw",
+      "url": "https://www.youtube.com/watch?v=fM_JK8wA1Mw",
+      "title": "다시 강력해진 종부세, 부동산 시장엔 어떤 파장이 [MBN 뉴스7]",
+      "description": "【 앵커멘트 】\n  종부세를 다시 강력하게 만든 이번 세제개편안, 파장이 만만치 않을 것 같습니다.\n  부동산 전문 김경기 경제부장과 분석합니다.\n\n【 질문1 】\n  1주택자라도 실제 살지 않으면 종부세 부담이 만만치 않을 것 같은데요. 어느 지역까지 해당하나요?\n\n【 답변 】\n  공시",
+      "channelId": "UCG9aFJTZ-lMCHAiO1KJsirg",
+      "channelTitle": "MBN News",
+      "publishedAt": "2026-08-03T10:19:31Z",
+      "thumbnail": "https://i.ytimg.com/vi/fM_JK8wA1Mw/mqdefault.jpg",
+      "tags": [
+        "MBN",
+        "MBN뉴스",
+        "뉴스7",
+        "엠비엔뉴스",
+        "이상훈",
+        "유호정",
+        "종부세",
+        "부동산시장",
+        "세제개편안",
+        "1주택자",
+        "종부세부담",
+        "공시가격"
+      ],
+      "viewCount": 75197,
+      "likeCount": 393,
+      "commentCount": 496,
+      "durationSeconds": 345,
+      "format": "롱폼",
+      "ageDays": 1.3,
+      "viewsPerDay": 56076,
+      "momentum": 40846,
+      "likeRate": 0.52,
+      "commentRate": 0.66,
+      "matchedQueries": [
+        "부동산 전망"
+      ],
+      "marketScore": {
+        "total": 81,
+        "parts": {
+          "volume": 20,
+          "velocity": 30,
+          "likeRate": 2,
+          "commentRate": 8,
+          "recency": 20
+        }
+      },
+      "channelSubscribers": 2580000
+    }
+  ],
+  "topPhrases": [
+    {
+      "phrase": "부동산 시장",
+      "videoCount": 4,
+      "recentCount": 3
+    },
+    {
+      "phrase": "은행 이자도",
+      "videoCount": 4,
+      "recentCount": 4
+    },
+    {
+      "phrase": "세컨하우스 세컨홈",
+      "videoCount": 3,
+      "recentCount": 1
+    },
+    {
+      "phrase": "당진아파트 매매",
+      "videoCount": 3,
+      "recentCount": 1
+    },
+    {
+      "phrase": "부동산 시장에",
+      "videoCount": 3,
+      "recentCount": 2
+    },
+    {
+      "phrase": "8월부터 집값",
+      "videoCount": 3,
+      "recentCount": 3
+    },
+    {
+      "phrase": "송희구 작가",
+      "videoCount": 3,
+      "recentCount": 2
+    },
+    {
+      "phrase": "아파트 매매",
+      "videoCount": 3,
+      "recentCount": 1
+    },
+    {
+      "phrase": "공모주 청약",
+      "videoCount": 3,
+      "recentCount": 3
+    },
+    {
+      "phrase": "갭투자 허용",
+      "videoCount": 3,
+      "recentCount": 0
+    },
+    {
+      "phrase": "세제 개편",
+      "videoCount": 3,
+      "recentCount": 3
+    },
+    {
+      "phrase": "연합뉴스TV YonhapnewsTV",
+      "videoCount": 2,
+      "recentCount": 1
+    },
+    {
+      "phrase": "한국토지주택공사 LH청약캘린더",
+      "videoCount": 2,
+      "recentCount": 0
+    },
+    {
+      "phrase": "이슈PLAY JTBC News",
+      "videoCount": 2,
+      "recentCount": 2
+    },
+    {
+      "phrase": "당진아파트전세 당진아파트월세",
+      "videoCount": 2,
+      "recentCount": 0
+    }
+  ],
+  "topKeywords": [
+    {
+      "keyword": "부동산",
+      "videoCount": 36,
+      "recentCount": 25
+    },
+    {
+      "keyword": "아파트",
+      "videoCount": 15,
+      "recentCount": 7
+    },
+    {
+      "keyword": "서울",
+      "videoCount": 15,
+      "recentCount": 11
+    },
+    {
+      "keyword": "월세",
+      "videoCount": 14,
+      "recentCount": 8
+    },
+    {
+      "keyword": "재개발",
+      "videoCount": 14,
+      "recentCount": 14
+    },
+    {
+      "keyword": "집값",
+      "videoCount": 12,
+      "recentCount": 9
+    },
+    {
+      "keyword": "매매",
+      "videoCount": 12,
+      "recentCount": 4
+    },
+    {
+      "keyword": "재건축",
+      "videoCount": 10,
+      "recentCount": 9
+    },
+    {
+      "keyword": "청약",
+      "videoCount": 10,
+      "recentCount": 8
+    },
+    {
+      "keyword": "전세",
+      "videoCount": 9,
+      "recentCount": 6
+    },
+    {
+      "keyword": "갭투자",
+      "videoCount": 9,
+      "recentCount": 2
+    },
+    {
+      "keyword": "오피스텔",
+      "videoCount": 9,
+      "recentCount": 5
+    },
+    {
+      "keyword": "이유",
+      "videoCount": 8,
+      "recentCount": 4
+    },
+    {
+      "keyword": "겁니다",
+      "videoCount": 7,
+      "recentCount": 5
+    },
+    {
+      "keyword": "풀버전",
+      "videoCount": 6,
+      "recentCount": 5
+    },
+    {
+      "keyword": "후랭이TV",
+      "videoCount": 6,
+      "recentCount": 6
+    },
+    {
+      "keyword": "이런",
+      "videoCount": 6,
+      "recentCount": 3
+    },
+    {
+      "keyword": "분양",
+      "videoCount": 6,
+      "recentCount": 3
+    },
+    {
+      "keyword": "8월",
+      "videoCount": 6,
+      "recentCount": 5
+    },
+    {
+      "keyword": "대통령",
+      "videoCount": 6,
+      "recentCount": 2
+    }
+  ],
+  "channels": [
+    {
+      "channelId": "UCiLdPBP0AeP-Z9CDH4MggYQ",
+      "channelTitle": "재테크는 두꺼비 세무사",
+      "videoCount": 6,
+      "totalViews": 378255,
+      "avgMarketScore": 77,
+      "bestVideoTitle": "\"은행 이자도 못 갚는다\" 은행 줄줄이 파산 코앞이다. 지금 집 산 사람들 날벼락 맞았습니다. 8월부터 집값 진짜 두렵습니다 | 박은정 감정평가사 3부",
+      "subscriberCount": 248000,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 825,
+      "channelPublishedAt": "2013-06-19T05:58:00Z"
+    },
+    {
+      "channelId": "UChnfOZtjny0KBSVkfS9nwsg",
+      "channelTitle": "후랭이TV",
+      "videoCount": 6,
+      "totalViews": 47452,
+      "avgMarketScore": 73,
+      "bestVideoTitle": "세제개편안 이후 서울 집값은 이렇게 됩니다(서울집값전망)ㅣ무명강사 타이거 4부 [후랭이TV]",
+      "subscriberCount": 451000,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 6353,
+      "channelPublishedAt": "2017-10-10T04:18:28Z"
+    },
+    {
+      "channelId": "UC2QeHNJFfuQWB4cy3M-745g",
+      "channelTitle": "부읽남TV_내집마련부터건물주까지",
+      "videoCount": 5,
+      "totalViews": 502628,
+      "avgMarketScore": 68,
+      "bestVideoTitle": "정확히 1년 안에 부동산 시장 이런 일들이 일어날 겁니다 [제네시스박 풀버전]",
+      "subscriberCount": 1810000,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 4910,
+      "channelPublishedAt": "2016-02-18T04:35:49Z"
+    },
+    {
+      "channelId": "UCDSj40X9FFUAnx1nv7gQhcA",
+      "channelTitle": "월급쟁이부자들TV",
+      "videoCount": 4,
+      "totalViews": 705298,
+      "avgMarketScore": 71,
+      "bestVideoTitle": "\"1주택자에게 기회가 오고 있습니다\" 8월 이후 부동산 이렇게 됩니다 (주간머니이슈 | 너나위)",
+      "subscriberCount": 2110000,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 3725,
+      "channelPublishedAt": "2019-07-24T06:59:17Z"
+    },
+    {
+      "channelId": "UCtYHCl8yhhvpWfcvdA_sCVg",
+      "channelTitle": "자취남",
+      "videoCount": 4,
+      "totalViews": 529355,
+      "avgMarketScore": 68,
+      "bestVideoTitle": "\"원룸을 투룸으로 만들었어요\" l 송파구 오피스텔 매매",
+      "subscriberCount": 1000000,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 1803,
+      "channelPublishedAt": "2012-03-24T09:27:42Z"
+    },
+    {
+      "channelId": "UCsU-I-vHLiaMfV_ceaYz5rQ",
+      "channelTitle": "JTBC News",
+      "videoCount": 4,
+      "totalViews": 106635,
+      "avgMarketScore": 73,
+      "bestVideoTitle": "'갭투자' 아파트는 팔아도 양도세 한 푼 안 깎아준다 / JTBC 뉴스룸",
+      "subscriberCount": 4890000,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 325751,
+      "channelPublishedAt": "2012-02-21T07:43:44Z"
+    },
+    {
+      "channelId": "UCKosTo5bqKm4v264z2zDnFQ",
+      "channelTitle": "스마트튜브(스튜TV)",
+      "videoCount": 3,
+      "totalViews": 157281,
+      "avgMarketScore": 74,
+      "bestVideoTitle": "정부! 세금으로 강남 때리겠다!",
+      "subscriberCount": 252000,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 6091,
+      "channelPublishedAt": "2017-10-16T21:38:33Z"
+    },
+    {
+      "channelId": "UCpifRu_t9JyfLuberyQEcmQ",
+      "channelTitle": "주말에가는집",
+      "videoCount": 3,
+      "totalViews": 81702,
+      "avgMarketScore": 55,
+      "bestVideoTitle": "강뷰와 산뷰가 있는 세컨홈 단지 분양중! 이런 6천만원대 토지 수도권에 많지 않아요~ #세컨하우스 #세컨홈 #전원주택 #주말주택 #주택 #체류형쉼터 #농촌체류형쉼터 #오른카운티",
+      "subscriberCount": 137000,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 476,
+      "channelPublishedAt": "2020-07-26T21:38:33.267408Z"
+    },
+    {
+      "channelId": "UCcQTRi69dsVYHN3exePtZ1A",
+      "channelTitle": "KBS News",
+      "videoCount": 3,
+      "totalViews": 58968,
+      "avgMarketScore": 52,
+      "bestVideoTitle": "비거주 1주택 토허제 예외 시사…이 대통령, ‘갭투자 허용’ 주장 “억지 비난” [9시 뉴스] ​/ KBS  2026.05.11.",
+      "subscriberCount": 3680000,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 465418,
+      "channelPublishedAt": "2013-08-06T12:47:09Z"
+    },
+    {
+      "channelId": "UCzXtaeY4EfSnSB9_3gYnqdw",
+      "channelTitle": "미분양 줍줍TV",
+      "videoCount": 3,
+      "totalViews": 29365,
+      "avgMarketScore": 59,
+      "bestVideoTitle": "서울 유일의 4년전 분양가 재공급 새아파트 줍줍, 심지어 1분 초역새권",
+      "subscriberCount": 165000,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 1654,
+      "channelPublishedAt": "2019-04-30T04:56:12Z"
+    }
+  ],
+  "searchSuggestions": [
+    {
+      "query": "부동산 전망",
+      "suggestions": [
+        "부동산 전망 2026",
+        "부동산 전망 이광수",
+        "부동산 전망 한문도",
+        "부동산 전망 2025",
+        "부동산 전망 김경민",
+        "부동산 전망 무속인",
+        "부동산 전망 김기원",
+        "부동산 전망 렘군",
+        "부동산 전망 김인만"
+      ]
+    },
+    {
+      "query": "집값 전망",
+      "suggestions": [
+        "집값 전망 2026",
+        "집값 전망 2025",
+        "부동산 집값 전망",
+        "서울 집값 전망",
+        "대출규제 집값 전망",
+        "부산 집값 전망",
+        "대구 집값 전망",
+        "송도 집값 전망",
+        "대전 집값 전망"
+      ]
+    },
+    {
+      "query": "아파트 매매",
+      "suggestions": [
+        "아파트 매매 절차",
+        "아파트 매매 계약시 주의사항",
+        "아파트 매매 대출",
+        "아파트 매매 체크리스트",
+        "아파트 매매시 주의사항",
+        "아파트 매매 시기",
+        "아파트 매매사기",
+        "아파트 매매시 체크리스트",
+        "아파트 매매 특약사항"
+      ]
+    },
+    {
+      "query": "전세",
+      "suggestions": [
+        "전세사기",
+        "전세대출",
+        "전세계",
+        "전세연 아나운서",
+        "전세보증보험",
+        "전세기",
+        "전세계 탈영",
+        "전세대출 규제",
+        "전세사기 브이로그"
+      ]
+    },
+    {
+      "query": "월세",
+      "suggestions": [
+        "월세받는사람들",
+        "월세 세액공제",
+        "월세 환급 방법",
+        "월세사기",
+        "월세 세액공제 홈택스 신청방법",
+        "월세지원금",
+        "월세 계약시 주의사항",
+        "월세가 밀렸어",
+        "월세모닝콜"
+      ]
+    },
+    {
+      "query": "청약",
+      "suggestions": [
+        "청약통장",
+        "청약통장 해지",
+        "청약통장 추천",
+        "청약 당첨",
+        "청약일정",
+        "청약통장 25만원",
+        "청약저축",
+        "청약 대출",
+        "청약 해지"
+      ]
+    },
+    {
+      "query": "분양",
+      "suggestions": [
+        "분양상담사",
+        "분양권 매매",
+        "분양사기",
+        "분양통",
+        "분양상담사 현실",
+        "분양권 양도소득세",
+        "분양가상한제",
+        "분양권 양도세",
+        "분양권 입주권 차이"
+      ]
+    },
+    {
+      "query": "재개발",
+      "suggestions": [
+        "재개발임대주택",
+        "재개발 빌라 투자",
+        "재개발 분담금",
+        "재개발 절차",
+        "재개발 임대아파트",
+        "재개발 입주권",
+        "재개발 감정평가",
+        "재개발 양도소득세",
+        "재개발 양도세"
+      ]
+    },
+    {
+      "query": "재건축",
+      "suggestions": [
+        "재건축 분담금",
+        "재건축 아파트",
+        "재건축절차",
+        "재건축재개발",
+        "재건축 아파트 투자",
+        "재건축 아파트 추천",
+        "재건축 아파트 전망",
+        "재건축 과정",
+        "재건축 현금청산"
+      ]
+    },
+    {
+      "query": "부동산 투자",
+      "suggestions": [
+        "부동산 투자 기초",
+        "부동산 투자 실패 사례",
+        "부동산 투자 공부",
+        "부동산 투자 책 추천",
+        "부동산 투자 세미나",
+        "부동산 투자 실패",
+        "부동산 투자 방법",
+        "부동산 투자 전망",
+        "부동산 투자 대충하자"
+      ]
+    },
+    {
+      "query": "갭투자",
+      "suggestions": [
+        "갭투자 방법",
+        "갭투자 대출",
+        "갭투자 뜻",
+        "갭투자 전세 못구하면",
+        "갭투자란",
+        "갭투자 실패",
+        "갭투자 실거주",
+        "갭투자 주담대",
+        "갭투자 유망지역"
+      ]
+    },
+    {
+      "query": "금리 부동산",
+      "suggestions": [
+        "금리 부동산 관계",
+        "금리 부동산 전망",
+        "환율 금리 부동산",
+        "일본 금리 부동산",
+        "주담대 금리 부동산",
+        "한국 금리 부동산",
+        "미국 금리 부동산",
+        "부동산 대출 금리",
+        "미미 부동산 금리"
+      ]
+    },
+    {
+      "query": "경매",
+      "suggestions": [
+        "경매물건",
+        "경매강의",
+        "경매가 알고 싶다",
+        "경매초보",
+        "경매장",
+        "경매대마왕",
+        "경매 권리분석",
+        "경매입찰방법",
+        "경매사"
+      ]
+    },
+    {
+      "query": "오피스텔",
+      "suggestions": [
+        "오피스텔 인테리어",
+        "오피스텔 투자",
+        "오피스텔 룸투어",
+        "오피스텔 주택수 제외",
+        "오피스텔 꾸미기",
+        "오피스텔 월세",
+        "오피스텔 전세",
+        "오피스텔 매매 실거주",
+        "오피스텔 원룸 인테리어",
+        "오피스텔 노래"
+      ]
+    }
+  ],
+  "limitations": [
+    "외부 영상의 CTR, 노출수, 시청 지속률, 평균 시청 시간은 YouTube 공개 API로 확인할 수 없습니다.",
+    "성과 점수는 조회수, 좋아요, 댓글, 최근성 등 공개 지표 기반 추정치입니다.",
+    "CTR·지속률 지표는 황금후추 내부 YouTube Studio 데이터에서만 확인할 수 있습니다."
+  ],
+  "outperformers": [
+    {
+      "videoId": "o-GiGsTvW8o",
+      "title": "전세 계약 연장 때문에 집주인분이 오셨는데이 벽을 보시더니 표정이 갑자기 굳으시는 거예요…😳",
+      "channelTitle": "오늘의꿀템",
+      "channelSubscribers": 959,
+      "viewCount": 36581,
+      "viewsPerDay": 13047,
+      "ageDays": 2.8,
+      "format": "쇼츠",
+      "url": "https://www.youtube.com/watch?v=o-GiGsTvW8o",
+      "ratio": 38.1
+    },
+    {
+      "videoId": "fyD0lxI_U9g",
+      "title": "40억 청약 당첨된 22살 안유진",
+      "channelTitle": "리즈시절 천개 모으기",
+      "channelSubscribers": 28700,
+      "viewCount": 450689,
+      "viewsPerDay": 17794,
+      "ageDays": 25.3,
+      "format": "쇼츠",
+      "url": "https://www.youtube.com/watch?v=fyD0lxI_U9g",
+      "ratio": 15.7
+    },
+    {
+      "videoId": "JpdfA-A2k30",
+      "title": "분양받은 강아지가 집에 적응하지 못할때 #강아지 #강아지쇼츠 #분양",
+      "channelTitle": "멍제로",
+      "channelSubscribers": 37000,
+      "viewCount": 232450,
+      "viewsPerDay": 43028,
+      "ageDays": 5.4,
+      "format": "쇼츠",
+      "url": "https://www.youtube.com/watch?v=JpdfA-A2k30",
+      "ratio": 6.3
+    },
+    {
+      "videoId": "JBy-a8NE7yw",
+      "title": "자양2동 모아타운 결국 무산…주민들 왜 찬성에서 반대로 돌아섰나",
+      "channelTitle": "딜라이브 뉴스",
+      "channelSubscribers": 40500,
+      "viewCount": 249469,
+      "viewsPerDay": 21873,
+      "ageDays": 11.4,
+      "format": "롱폼",
+      "url": "https://www.youtube.com/watch?v=JBy-a8NE7yw",
+      "ratio": 6.2
+    },
+    {
+      "videoId": "1DgOFlbRnEk",
+      "title": "할인 분양으로 집 사면 생기는 일",
+      "channelTitle": "짤시네마",
+      "channelSubscribers": 15600,
+      "viewCount": 71456,
+      "viewsPerDay": 54442,
+      "ageDays": 1.3,
+      "format": "쇼츠",
+      "url": "https://www.youtube.com/watch?v=1DgOFlbRnEk",
+      "ratio": 4.6
+    },
+    {
+      "videoId": "6fUAnfOSaOg",
+      "title": "한순간에 나락가는 동대문구 용두동 재개발 몰락의 이유, 왜 옆구역은 잘될까? #동대문구재개발 #동대문구 용두동 재개발 #동대문재개발",
+      "channelTitle": "오늘의 재재",
+      "channelSubscribers": 1260,
+      "viewCount": 5193,
+      "viewsPerDay": 1156,
+      "ageDays": 4.5,
+      "format": "롱폼",
+      "url": "https://www.youtube.com/watch?v=6fUAnfOSaOg",
+      "ratio": 4.1
+    },
+    {
+      "videoId": "dEvTLAII22E",
+      "title": "청약통장에 2만원, 25만원씩 돈 넣지 마세요 (4가지 케이스 완벽 정리)",
+      "channelTitle": "보보스_부르주아 보헤미안",
+      "channelSubscribers": 74100,
+      "viewCount": 297881,
+      "viewsPerDay": 4629,
+      "ageDays": 64.4,
+      "format": "롱폼",
+      "url": "https://www.youtube.com/watch?v=dEvTLAII22E",
+      "ratio": 4
+    },
+    {
+      "videoId": "EL0SEVvUdo4",
+      "title": "일본 닮아가는 한국 부동산, 월세로 바뀌면 벌어지는 일 (홍춘욱 박사) [요지부동]",
+      "channelTitle": "부동산360",
+      "channelSubscribers": 28500,
+      "viewCount": 86017,
+      "viewsPerDay": 973,
+      "ageDays": 88.4,
+      "format": "롱폼",
+      "url": "https://www.youtube.com/watch?v=EL0SEVvUdo4",
+      "ratio": 3
+    }
+  ],
+  "commentDemand": {
+    "scannedVideos": 8,
+    "totalComments": 400,
+    "requests": [
+      {
+        "text": "조정훈의원님 ~젊은이들에게 살게해주세요~~~대출상품을 거짓으로~~~왜 안지키는지요~",
+        "likeCount": 14,
+        "videoTitle": "정부가 국민 상대로 사기를? '뉴홈 청약' 정조준한 조정훈"
+      },
+      {
+        "text": "영호씨 그리고 제발 지금껏 주택에 적용됐던 공제도 모조리 얘기 좀 해 주셔~난 고령자 공제도 있는지 몰랐다. 직장인 연말정산때 붙는 공제보다도 더 많더라ㅋㅋ 근데 그런 얘기는 단 1도 안하고 50억 집 가진 사람 세…",
+        "likeCount": 13,
+        "videoTitle": "'정말 고민이 큽니다' 살던 곳을 떠나야 한다는 게..."
+      }
+    ]
+  },
+  "comparison": {
+    "previousDate": "2026-08-04",
+    "newKeywords": [
+      {
+        "keyword": "풀버전",
+        "videoCount": 6,
+        "recentCount": 5
+      },
+      {
+        "keyword": "후랭이TV",
+        "videoCount": 6,
+        "recentCount": 6
+      },
+      {
+        "keyword": "분양",
+        "videoCount": 6,
+        "recentCount": 3
+      },
+      {
+        "keyword": "대통령",
+        "videoCount": 6,
+        "recentCount": 2
+      }
+    ],
+    "strengthenedKeywords": [
+      {
+        "keyword": "부동산",
+        "previousVideoCount": 33,
+        "videoCount": 36
+      },
+      {
+        "keyword": "재개발",
+        "previousVideoCount": 13,
+        "videoCount": 14
+      },
+      {
+        "keyword": "매매",
+        "previousVideoCount": 11,
+        "videoCount": 12
+      },
+      {
+        "keyword": "이유",
+        "previousVideoCount": 7,
+        "videoCount": 8
+      },
+      {
+        "keyword": "겁니다",
+        "previousVideoCount": 6,
+        "videoCount": 7
+      }
+    ],
+    "newPhrases": [
+      {
+        "phrase": "세컨하우스 세컨홈",
+        "videoCount": 3,
+        "recentCount": 1
+      },
+      {
+        "phrase": "당진아파트 매매",
+        "videoCount": 3,
+        "recentCount": 1
+      },
+      {
+        "phrase": "세제 개편",
+        "videoCount": 3,
+        "recentCount": 3
+      },
+      {
+        "phrase": "이슈PLAY JTBC News",
+        "videoCount": 2,
+        "recentCount": 2
+      },
+      {
+        "phrase": "당진아파트전세 당진아파트월세",
+        "videoCount": 2,
+        "recentCount": 0
+      }
+    ],
+    "newRisingVideos": [
+      {
+        "videoId": "iyjErmWJ8eo",
+        "title": "분양 주민들에게 무시당하는 임대 사는 여사님의 억울함 #shorts",
+        "channelTitle": "1분드라마모음zip",
+        "viewsPerDay": 244975,
+        "ageDays": 0.5,
+        "format": "쇼츠",
+        "url": "https://www.youtube.com/watch?v=iyjErmWJ8eo"
+      },
+      {
+        "videoId": "SbS0Xjr8hpA",
+        "title": "🚨속보🚨 2026 세제개편안 발표! 1주택자도 궤멸.. 부동산 초토화 확정입니다! 상상 그 이상 세제개편안! 부동산 패닉셀!",
+        "channelTitle": "놀라운부동산",
+        "viewsPerDay": 52259,
+        "ageDays": 2.7,
+        "format": "롱폼",
+        "url": "https://www.youtube.com/watch?v=SbS0Xjr8hpA"
+      },
+      {
+        "videoId": "ap-Or__OUVI",
+        "title": "남궁민이 월세 내는 방법",
+        "channelTitle": "스토컷",
+        "viewsPerDay": 91968,
+        "ageDays": 0.5,
+        "format": "쇼츠",
+        "url": "https://www.youtube.com/watch?v=ap-Or__OUVI"
+      }
+    ]
+  },
+  "velocityVideos": [
+    {
+      "videoId": "6GTLWK0WvPM",
+      "title": "\"시세 8억인데 추가 분담금이 7억?\" 재건축 환상 깨진 상계주공 아파트ㅣ추PD가간다",
+      "channelTitle": "땅집고",
+      "url": "https://www.youtube.com/watch?v=6GTLWK0WvPM",
+      "format": "롱폼",
+      "viewCount": 273499,
+      "previousViews": 179644,
+      "viewDelta": 93855,
+      "hoursBetween": 15.2,
+      "measuredViewsPerDay": 148469
+    },
+    {
+      "videoId": "_WhrrO93rOg",
+      "title": "서울지역 재개발 지적하자 대통령의 답변",
+      "channelTitle": "짧은정치",
+      "url": "https://www.youtube.com/watch?v=_WhrrO93rOg",
+      "format": "쇼츠",
+      "viewCount": 152865,
+      "previousViews": 121082,
+      "viewDelta": 31783,
+      "hoursBetween": 15.2,
+      "measuredViewsPerDay": 50277
+    },
+    {
+      "videoId": "-xXzgSCH3m0",
+      "title": "[속보] 세제개편안, 투기·다주택자 과세 강화: 부동산 시장에 미칠 영향  [즉시분석]",
+      "channelTitle": "경제 읽어주는 남자(김광석TV)",
+      "url": "https://www.youtube.com/watch?v=-xXzgSCH3m0",
+      "format": "롱폼",
+      "viewCount": 143165,
+      "previousViews": 118687,
+      "viewDelta": 24478,
+      "hoursBetween": 15.2,
+      "measuredViewsPerDay": 38722
+    },
+    {
+      "videoId": "iJ8odc-gfBQ",
+      "title": "\"1년에 딱 한번 뿐인 기회!\" 확 바뀌었습니다 🔥 2026년 재개발 임대주택 🏠 모집공고 뽀개기(SH)",
+      "channelTitle": "아영이네 행복주택",
+      "url": "https://www.youtube.com/watch?v=iJ8odc-gfBQ",
+      "format": "롱폼",
+      "viewCount": 175259,
+      "previousViews": 153027,
+      "viewDelta": 22232,
+      "hoursBetween": 15.2,
+      "measuredViewsPerDay": 35169
+    },
+    {
+      "videoId": "3-kcEbE2hps",
+      "title": "한국 아파트 싹다 물갈이 된다, 집값 내년부터 무서울 겁니다 (송희구 작가 풀버전)",
+      "channelTitle": "김작가 TV",
+      "url": "https://www.youtube.com/watch?v=3-kcEbE2hps",
+      "format": "롱폼",
+      "viewCount": 187097,
+      "previousViews": 168423,
+      "viewDelta": 18674,
+      "hoursBetween": 15.2,
+      "measuredViewsPerDay": 29540
+    },
+    {
+      "videoId": "MMIKK6CmtPE",
+      "title": "'갭투자' 아파트는 팔아도 양도세 한 푼 안 깎아준다 / JTBC 뉴스룸",
+      "channelTitle": "JTBC News",
+      "url": "https://www.youtube.com/watch?v=MMIKK6CmtPE",
+      "format": "롱폼",
+      "viewCount": 62972,
+      "previousViews": 48190,
+      "viewDelta": 14782,
+      "hoursBetween": 15.2,
+      "measuredViewsPerDay": 23384
+    },
+    {
+      "videoId": "SbS0Xjr8hpA",
+      "title": "🚨속보🚨 2026 세제개편안 발표! 1주택자도 궤멸.. 부동산 초토화 확정입니다! 상상 그 이상 세제개편안! 부동산 패닉셀!",
+      "channelTitle": "놀라운부동산",
+      "url": "https://www.youtube.com/watch?v=SbS0Xjr8hpA",
+      "format": "롱폼",
+      "viewCount": 142608,
+      "previousViews": 128788,
+      "viewDelta": 13820,
+      "hoursBetween": 15.2,
+      "measuredViewsPerDay": 21862
+    },
+    {
+      "videoId": "VvJUi6uM_ck",
+      "title": "[EN/JP] 사회초년생 살만한 서울 월세 현실 🏠💦  | 중개보조원 | 워크돌ㅣ프로미스나인 지원, 지헌",
+      "channelTitle": "워크맨-Workman",
+      "url": "https://www.youtube.com/watch?v=VvJUi6uM_ck",
+      "format": "롱폼",
+      "viewCount": 955888,
+      "previousViews": 943693,
+      "viewDelta": 12195,
+      "hoursBetween": 15.2,
+      "measuredViewsPerDay": 19291
+    },
+    {
+      "videoId": "56MQkUuS_dc",
+      "title": "“대출 막혔다고 무작정 기다리지 마세요” 내 능력에 맞는 집 매수하는 법ㅣ지식인 클래스 EP.11 (송희구 작가)",
+      "channelTitle": "지식인사이드",
+      "url": "https://www.youtube.com/watch?v=56MQkUuS_dc",
+      "format": "롱폼",
+      "viewCount": 357091,
+      "previousViews": 347667,
+      "viewDelta": 9424,
+      "hoursBetween": 15.2,
+      "measuredViewsPerDay": 14908
+    },
+    {
+      "videoId": "u1UWelFrFJ4",
+      "title": "[🚨긴급진단] 2026 세제개편안 이후 상급지 갈아타기 불리, 20억 이하 아파트 수요만 강해진다 '이 지역' 노리세요ㅣ김인만 소장ㅣ경제시그널",
+      "channelTitle": "경제시그널",
+      "url": "https://www.youtube.com/watch?v=u1UWelFrFJ4",
+      "format": "롱폼",
+      "viewCount": 38608,
+      "previousViews": 31611,
+      "viewDelta": 6997,
+      "hoursBetween": 15.2,
+      "measuredViewsPerDay": 11069
+    }
+  ]
+}

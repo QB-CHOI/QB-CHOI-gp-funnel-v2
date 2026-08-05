@@ -1,8 +1,8 @@
 {
   "ok": true,
   "topic": "타로",
-  "date": "2026-08-04",
-  "generatedAt": "2026-08-03T23:03:15.365Z",
+  "date": "2026-08-05",
+  "generatedAt": "2026-08-04T18:29:44.311Z",
   "seeds": [
     "오늘의 타로",
     "이번주 타로",
@@ -1036,28 +1036,28 @@
   "communityDemand": {
     "enough": true,
     "scanned": 1200,
-    "questionCount": 99,
-    "noiseFiltered": 1101,
+    "questionCount": 52,
+    "noiseFiltered": 1148,
     "hotSeeds": [
       {
-        "seed": "금전 타로",
-        "count": 20
-      },
-      {
-        "seed": "재물 타로",
-        "count": 17
-      },
-      {
         "seed": "재회 타로",
-        "count": 16
+        "count": 10
+      },
+      {
+        "seed": "금전 타로",
+        "count": 8
       },
       {
         "seed": "연애 타로",
-        "count": 13
+        "count": 7
+      },
+      {
+        "seed": "속마음 타로",
+        "count": 7
       },
       {
         "seed": "취업 타로",
-        "count": 12
+        "count": 7
       }
     ],
     "posts": [
