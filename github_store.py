@@ -1011,7 +1011,8 @@ def load_refresh_status() -> pd.DataFrame:
     실행 결과를 사이트에서 보이게 해 중단을 즉시 알 수 있게 한다.
     """
     return _read_csv(REFRESH_STATUS_PATH,
-                     ['last_run', 'market_signals', 'order_aggregates', 'changed'])
+                     ['last_run', 'market_signals', 'order_aggregates',
+                      'rooms', 'changed'])
 
 
 @st.cache_data(ttl=1800)

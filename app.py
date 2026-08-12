@@ -6528,12 +6528,16 @@ def tab_data():
             _hrs = None
         _msg = (f"마지막 자동 갱신 **{_r0['last_run']}** · "
                 f"시장 신호 {_r0['market_signals']} · 주문 집계 {_r0['order_aggregates']}")
+        # 'rooms'는 나중에 추가된 컬럼이라 옛 기록엔 없다 — 있을 때만 붙인다.
+        if str(_r0.get('rooms', '')).strip():
+            _msg += f" · 방목록 {_r0['rooms']}"
         if _hrs is not None and _hrs > 36:
             st.warning(f"⚠️ 자동 갱신이 {_hrs/24:.0f}일째 돌지 않았습니다 — {_msg}")
         else:
             st.success(f"🔄 {_msg}")
         st.caption("하루 3회(09:10·14:10·20:10) + 맥 켤 때 자동 실행. "
-                   "주문 엑셀은 `gp-funnel-v2/inbox/`에 넣어두면 자동 반영됩니다.")
+                   "주문 엑셀과 `오카방의 모든 것.xlsx`는 `gp-funnel-v2/inbox/`에 "
+                   "넣어두면 자동 반영됩니다.")
 
     # ── 📅 데이터 현황 (신선도) ───────────────────────────────
     _ds = load_data_sources()

@@ -1,16 +1,20 @@
 """데이터 자동 갱신 — launchd가 매일 호출하는 진입점.
 
-세 가지를 순서대로 처리한다. 어느 하나가 실패해도 나머지는 계속 진행한다.
+네 가지를 순서대로 처리한다. 어느 하나가 실패해도 나머지는 계속 진행한다.
 
   1) 시장 신호   : 키워드 분석툴 캐시 → market_signals.csv   (매일 자동)
   2) 주문 집계   : 새 '강의별_리스트*.xlsx'가 있을 때만 15종 재생성
   3) 오행 집계   : 위 2)가 돌았을 때만 함께 갱신
+  4) 오카방 방목록: '오카방의 모든 것.xlsx' → campaigns.csv  (매일 자동)
 
 설계 원칙
   · **내용이 같으면 푸시하지 않는다** — 매일 도는 작업이라 동일 커밋이
     쌓이면 이력이 지저분해지고 API 호출만 낭비된다.
   · 주문 엑셀은 사람이 아임웹에서 내려받아야 하므로 자동화할 수 없다.
     대신 ~/Downloads에 새 파일이 생기면 자동으로 알아채 반영한다.
+  · 구글 드라이브도 직접 못 읽는다(서비스 계정·rclone·드라이브 데스크톱 없음).
+    4)는 **로컬에 내려온 사본**을 읽는다 — 드라이브 데스크톱을 깔면 그 경로가
+    자동으로 잡히고, 그 전까지는 inbox/에 둔 사본을 쓴다.
   · 실패해도 조용히 죽지 않고 로그에 남긴다(launchd는 화면이 없다).
 
 실행:
@@ -203,6 +207,18 @@ def refresh_order_based(dry):
     return changed
 
 
+# ── 4) 오카방 레지스트리 ─────────────────────────────────────
+def refresh_rooms(dry):
+    log("④ 오카방 방목록 (구글 드라이브 시트)")
+    try:
+        from scripts.sync_rooms_from_drive import run
+        return run(dry)
+    except Exception as e:
+        log(f"  ⚠️ 방목록 동기화 실패: {type(e).__name__}: {e}")
+        log(traceback.format_exc(limit=2))
+        return False
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true", help="확인만, 쓰지 않음")
@@ -211,7 +227,7 @@ def main():
     log("=" * 52)
     log(f"데이터 자동 갱신 시작{' (dry-run)' if a.dry_run else ''}")
     results = []
-    for fn in (refresh_market_signals, refresh_order_based):
+    for fn in (refresh_market_signals, refresh_order_based, refresh_rooms):
         try:
             results.append(fn(a.dry_run))
         except Exception as e:
@@ -232,6 +248,7 @@ def main():
                 "last_run": st["last_run"],
                 "market_signals": "갱신" if results[0] else "변경없음/실패",
                 "order_aggregates": "갱신" if results[1] else "변경없음/실패",
+                "rooms": "갱신" if results[2] else "변경없음/실패",
                 "changed": "예" if any(results) else "아니오",
             }]), f"chore: 자동 갱신 상태 {st['last_run']}")
         except Exception as e:

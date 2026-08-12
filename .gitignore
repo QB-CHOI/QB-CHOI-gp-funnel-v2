@@ -8,3 +8,6 @@ data/campaigns.csv
 inbox/*.xlsx
 inbox/*.xls
 .auto_refresh_state.json
+
+# macOS
+.DS_Store
