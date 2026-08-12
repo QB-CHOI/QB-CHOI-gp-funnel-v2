@@ -23,6 +23,8 @@ launchd는 구글 드라이브에 직접 접근할 수단이 없으므로(서비
 import argparse
 import os
 import re
+import shutil
+import subprocess
 import sys
 from datetime import datetime
 
@@ -59,8 +61,52 @@ SYNCED_COLS = ["campaign_name", "product", "cohort",
                "start_date", "lecture_start_date", "is_current"]
 
 
+# rclone으로 원본을 직접 받아오기 위한 좌표.
+# 파일 ID로 집으므로 드라이브 전체를 동기화하지 않는다 — 매일 89KB 한 개만 받는다.
+# 소유자가 남(hyems3@gmail.com)이라 '내 드라이브'에 없고 '공유 문서함'에 있는데,
+# copyid는 ID로 직접 집어서 공유 여부와 무관하게 동작한다.
+DRIVE_FILE_ID = "11WO5a32_WW7G4mDhRYdrFomjtW3wdA2l"
+RCLONE_REMOTE = "gdrive"
+SHEET_FILENAME = "오카방의 모든 것.xlsx"
+
+
 def log(msg):
     print(f"[{datetime.now():%Y-%m-%d %H:%M:%S}] {msg}", flush=True)
+
+
+def fetch_from_drive():
+    """rclone이 설정돼 있으면 마스터 시트를 내려받아 inbox/를 최신으로 만든다.
+
+    설정 전이면 조용히 건너뛴다 — 그 경우 inbox/에 있는 사본(사람이 넣어둔
+    스냅샷)으로 계속 동작한다. 즉 이 함수는 '있으면 좋은' 단계지 전제가 아니다.
+    """
+    rclone = shutil.which("rclone")
+    if not rclone:
+        return False
+    try:
+        remotes = subprocess.run([rclone, "listremotes"], capture_output=True,
+                                 text=True, timeout=30).stdout
+    except (OSError, subprocess.SubprocessError):
+        return False
+    if f"{RCLONE_REMOTE}:" not in remotes:
+        log("  · rclone 미설정 — 드라이브 내려받기 건너뜀 (inbox/ 사본 사용)")
+        return False
+
+    dest = os.path.join(INBOX, SHEET_FILENAME)
+    try:
+        r = subprocess.run(
+            [rclone, "backend", "copyid", f"{RCLONE_REMOTE}:", DRIVE_FILE_ID, dest],
+            capture_output=True, text=True, timeout=180)
+    except subprocess.TimeoutExpired:
+        log("  ⚠️ 드라이브 내려받기 시간 초과 — inbox/ 사본으로 계속")
+        return False
+    if r.returncode != 0:
+        # 네트워크·인증 실패로 죽지 않는다. 옛 사본으로라도 도는 게 낫다.
+        log(f"  ⚠️ 드라이브 내려받기 실패 — inbox/ 사본으로 계속: "
+            f"{(r.stderr or '').strip().splitlines()[-1] if r.stderr else '원인 불명'}")
+        return False
+    log(f"  · 드라이브에서 최신본 수신 ({os.path.getsize(dest):,} bytes)")
+    return True
 
 
 def find_sheet(patterns=None):
@@ -167,6 +213,7 @@ def merge(sheet_df, current_df):
 
 def run(dry=False):
     """auto_refresh에서 호출하는 진입점. 변경이 있었으면 True."""
+    fetch_from_drive()          # 되면 최신본, 안 되면 기존 사본으로 진행
     path = find_sheet()
     if not path:
         log("  · 오카방 마스터 시트 없음 — 건너뜀 (드라이브 데스크톱 또는 inbox/)")
