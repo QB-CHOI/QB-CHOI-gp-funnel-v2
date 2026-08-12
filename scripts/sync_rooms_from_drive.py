@@ -173,22 +173,37 @@ def run(dry=False):
         return False
     log(f"  · 시트: {os.path.basename(path)}")
 
-    from github_store import load_campaigns, _write_csv
+    from github_store import load_campaigns, load_rooms, save_rooms_batch, _write_csv
     sheet_df = parse_rooms(path)
     merged, changes = merge(sheet_df, load_campaigns())
 
-    if not changes:
+    # 일일 입력 화면은 rooms.csv를 돈다. campaigns.csv에만 넣으면 새 방이
+    # 입력 목록에 안 떠서 인원이 안 쌓인다 — 진행 중인 방은 여기도 채운다.
+    # 이름은 사람이 붙인 별칭('채팅방 37 (부동산2)')이 있어 기존 값은 건드리지 않는다.
+    known_rooms = load_rooms()
+    missing = {int(r["room_num"]): f"채팅방 {int(r['room_num'])}"
+               for _, r in sheet_df.iterrows()
+               if r["is_current"] and int(r["room_num"]) not in known_rooms}
+
+    if not changes and not missing:
         log(f"  · 오카방 {len(sheet_df)}개 — 변경 없음")
         return False
     for c in changes:
         log(f"    · {c}")
+    for rn in sorted(missing):
+        log(f"    · {rn}번 일일 입력 목록에 추가")
     if dry:
-        log(f"  · [dry-run] campaigns.csv {len(changes)}건 반영 예정")
+        log(f"  · [dry-run] campaigns.csv {len(changes)}건 · rooms.csv {len(missing)}건 반영 예정")
         return True
-    _write_csv("data/campaigns.csv", merged,
-               f"data: 오카방 레지스트리 자동 동기화 ({len(changes)}건)")
-    load_campaigns.clear()
-    log(f"  ✅ campaigns.csv 갱신 ({len(changes)}건, {len(merged)}행)")
+
+    if changes:
+        _write_csv("data/campaigns.csv", merged,
+                   f"data: 오카방 레지스트리 자동 동기화 ({len(changes)}건)")
+        load_campaigns.clear()
+        log(f"  ✅ campaigns.csv 갱신 ({len(changes)}건, {len(merged)}행)")
+    if missing:
+        save_rooms_batch(missing)
+        log(f"  ✅ rooms.csv 갱신 ({len(missing)}건 추가)")
     return True
 
 

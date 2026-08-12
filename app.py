@@ -1912,14 +1912,27 @@ def tab_input():
                     ocr_error = str(e)
 
                 # ── 신규 방 후보 탐지: 배지 영역만 사용 (텍스트 오인식 차단) ──
-                badge_new = {}
+                # 신규 방 후보는 **타당한 번호만** 받는다. OCR이 배지를 잘못
+                # 읽으면(37→237 같은 자릿수 붙음) 그대로 등록 후보가 되고,
+                # 등록해 버리면 인원 기록까지 남아 유령 방이 생긴다.
+                # 실제로 237번방 4건이 이렇게 들어와 있었다(2026-08-13 정리).
+                # 방 번호는 순차 증가하므로 '현재 최대 + 10'을 상한으로 둔다.
+                _rn_max = (max(ROOMS) if ROOMS else 43) + 10
+                badge_new, badge_junk = {}, set()
                 try:
                     for _, img in images:
                         for rn, cnt_val in get_badge_rooms(img).items():
-                            if rn not in ROOMS and rn not in badge_new:
-                                badge_new[rn] = cnt_val
+                            if rn in ROOMS or rn in badge_new:
+                                continue
+                            if not (1 <= rn <= _rn_max):
+                                badge_junk.add(rn)
+                                continue
+                            badge_new[rn] = cnt_val
                 except Exception:
                     pass
+                if badge_junk:
+                    st.caption(f"🔍 인식 오류로 보이는 방 번호 무시: "
+                               f"{', '.join(str(x) for x in sorted(badge_junk))}")
 
                 st.session_state.ocr_results = merged
                 st.session_state.ocr_done = True
