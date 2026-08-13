@@ -4148,8 +4148,12 @@ def tab_experiments():
                 if not _age.empty:
                     _al = " · ".join(f"{r['text']}→{r['metric2']}"
                                      for _, r in _age.head(4).iterrows())
-                    _tg.append(f"연령: **{_al}** (네이버 검색 반응 기준) — "
-                               "소재의 화자·사례·말투를 이 연령대에 맞추세요")
+                    # 네이버 데이터랩은 연령대마다 따로 정규화되므로 연령 간 크기 비교가
+                    # 불가능하다. '주 검색층'이 아니라 '최근 관심이 빠르게 느는 층'이다.
+                    _tg.append(f"관심 급증 연령: **{_al}** — 최근 4주 검색이 이 연령대에서 "
+                               "가장 빠르게 늘었습니다(**주 검색층이 아니라 증가 신호**). "
+                               "새로 열리는 수요라 선점 여지가 있으니, 이 연령의 사례·말투로 "
+                               "**시험 소재 1편**을 얹어 보세요")
             if _tg:
                 _parts.append(("③ 타깃·노출", "\n".join("· " + t for t in _tg)))
             # 4) 시기
@@ -4190,6 +4194,41 @@ def tab_experiments():
                 f"{t}\n{v}".replace('**', '') for t, v in _parts)
             with st.expander("📋 텍스트로 복사하기 (디자이너·외주 전달용)"):
                 st.code(_copy, language=None)
+
+        # ── 🧭 확장 주제 — 강의 밖에서 찾는 새 각도 ──────────
+        # 키워드툴에 직접 추가한 주제(건강운·재테크 등). 어느 상품군에 붙일지가
+        # 명확하지 않아(건강운=사주+타로, 재테크=부동산+빌딩+사주 재물운) 위
+        # 브리프에는 섞지 않고 따로 보여준다 — 잘못 귀속시키면 그 강의의 신호가
+        # 다른 의도로 모은 데이터에 오염된다.
+        _sx = load_market_signals()
+        if not _sx.empty:
+            _sx = _sx[_sx['signal'].astype(str).str.startswith('ext_')]
+        if not _sx.empty:
+            st.divider()
+            st.markdown("#### 🧭 확장 주제 — 강의 밖에서 찾는 새 각도")
+            st.caption("키워드 분석툴에 직접 추가한 탐색 주제입니다. 특정 강의에 속하지 "
+                       "않아 위 브리프와 분리했습니다. 기존 후킹이 식었을 때 새 각도를 "
+                       "찾거나, 신규 강의 주제를 가늠할 때 보세요. "
+                       "주제 추가·삭제는 키워드 분석툴에서 하면 다음 갱신에 반영됩니다.")
+            for _tp in _sx['product'].unique():
+                _g = _sx[_sx['product'] == _tp]
+                _gm = _g[_g['signal'] == 'ext_market_top'].sort_values(
+                    'metric1', ascending=False)
+                _ga = _g[_g['signal'] == 'ext_age'].sort_values(
+                    'metric1', ascending=False)
+                with st.expander(f"**{_tp}** — 시장 상위 영상 {len(_gm)}건"
+                                 + (f" · 관심 급증 연령 {len(_ga)}건" if len(_ga) else "")):
+                    if not _gm.empty:
+                        _t = "".join(
+                            f"- {r['text']}  ({int(r['metric1']):,}회 · {r['metric2']})\n"
+                            for _, r in _gm.head(6).iterrows())
+                        st.markdown("**지금 이 주제에서 잘 되는 영상**\n\n" + _t)
+                    if not _ga.empty:
+                        st.markdown("**관심이 빠르게 느는 연령** (주 검색층이 아니라 증가 신호)\n\n"
+                                    + "".join(f"- {r['text']} → {r['metric2']}\n"
+                                              for _, r in _ga.head(4).iterrows()))
+                    st.caption("이 제목들이 우리 강의 후킹으로 바꿔 쓸 만한지 보세요 — "
+                               "그대로 베끼지 말고 같은 약속·다른 표현으로 변주합니다.")
 
     tab_new_placeholder = None
 

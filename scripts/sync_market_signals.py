@@ -9,10 +9,13 @@
   빠듯해(3주제 약 4,200u/10,000u) 추가 수집을 유발하면 안 된다.
   → 이미 저장된 캐시 파일만 읽는다. 서버가 꺼져 있어도 동작한다.
 
-추출 신호 3종
+추출 신호 5종
   own_top    : 자사 유튜브 고성과 콘텐츠 제목 (후킹 문구의 원천)
   market_top : 시장 상위 영상 제목 (지금 먹히는 각도)
   age        : 키워드별 최고 반응 연령대 (타깃팅)
+  ext_*      : 확장 주제(키워드툴에 직접 추가한 주제) 버전. 강의 상품군이 아니라
+               주제명(건강운·재테크 등)이 product에 들어가므로, 상품군 기준으로
+               읽는 기존 화면과 섞이지 않는다.
 
 실행:
     python3 scripts/sync_market_signals.py           # 미리보기
@@ -54,6 +57,13 @@ def _pick_source():
 
 PROCESSED, DATASET = _pick_source()
 
+# 확장 주제 설정(키워드툴에서 사용자가 직접 추가·삭제하는 주제 목록).
+# 지운 주제의 캐시 파일은 디스크에 남으므로, '지금 살아 있는 주제'는 이 파일로만 판별한다.
+CUSTOM_CONFIG = [
+    os.path.join(KEYWORD_TOOL_DIR, "data", "custom_topics.json"),
+    os.path.join(_STAGE, "custom_topics.json"),
+]
+
 # 키워드툴 주제 코드 → 강의 상품군
 TOPIC_MAP = {"saju": "사주", "tarot": "타로", "realestate": "부동산"}
 
@@ -83,6 +93,53 @@ def _latest(pattern):
     return fs[-1] if fs else None
 
 
+def _latest_by_slug(prefix):
+    """{주제 슬러그: 최신 캐시 경로} — 확장 주제는 슬러그가 여러 개라 묶어서 고른다."""
+    out = {}
+    for p in glob.glob(os.path.join(PROCESSED, prefix + "*.json")):
+        m = re.match(r"^(.*)_(\d{4}-\d{2}-\d{2})$", os.path.basename(p)[:-5])
+        if not m:
+            continue
+        slug, day = m.group(1), m.group(2)
+        if slug not in out or out[slug][0] < day:
+            out[slug] = (day, p)
+    return {s: v[1] for s, v in out.items()}
+
+
+def _age_rows(d, product, sig, rank):
+    """연령 신호 행 — '증가 신호'로만 쓴다.
+
+    키워드툴은 연령대마다 네이버 데이터랩을 **따로** 호출하는데(server.mjs
+    `ages: bracket.ages`), 데이터랩은 호출 단위로 최대값을 100으로 정규화한다.
+    따라서 level·ratio는 연령대 간 비교가 불가능하고, hottestAge는 '가장 많이
+    검색하는 층'이 아니라 '그 연령대 안에서 최근 상승폭이 가장 큰 연령'이다.
+    → 상승폭을 함께 실어 보내고, 실제로 오른 것(+10% 이상)만 남긴다.
+    """
+    out = []
+    for p in (d.get("profiles") or [])[:8]:
+        age, delta = p.get("hottestAge"), int(p.get("hottestDelta") or 0)
+        if not age or delta < 10:      # 하락·보합은 '뜨는 연령'이 아니다
+            continue
+        out.append({
+            "product": product, "signal": sig, "rank_by": rank,
+            "text": _clean_title(p.get("keyword"))[:40],
+            "metric1": delta, "metric2": f"{age} +{delta}%",
+        })
+    return out
+
+
+def _custom_topics():
+    """살아 있는 확장 주제 이름 집합. 설정을 못 읽으면 None(=확장 주제 건너뜀)."""
+    for path in CUSTOM_CONFIG:
+        d = _load(path)
+        if isinstance(d, list):
+            names = {str(t.get("name")).strip() for t in d
+                     if isinstance(t, dict) and t.get("name")}
+            if names:
+                return names
+    return None
+
+
 def _load(path):
     if not path or not os.path.exists(path):
         return None
@@ -100,8 +157,10 @@ def _clean_title(s):
     return s
 
 
-def build() -> pd.DataFrame:
+def build(notes=None) -> pd.DataFrame:
+    """notes: 리스트를 주면 '건너뛴 주제' 같은 사람이 볼 메모를 담아 돌려준다."""
     rows = []
+    notes = notes if notes is not None else []
 
     # ① 자사 유튜브 고성과 콘텐츠 (dataset.json)
     ds = _load(DATASET)
@@ -151,21 +210,57 @@ def build() -> pd.DataFrame:
         # "이재명 사주를", "도와 수백억"처럼 날짜·인명·문장 조각이 대부분이라
         # 후킹 아이디어로 쓸 수 없었다. 영상 '제목' 전체가 훨씬 나은 소재다.
 
-    # ③ 연령대
+    # ③ 연령대 — 관심이 빠르게 느는 연령(주 검색층 아님, _age_rows 주석 참조)
     for code, prod in TOPIC_MAP.items():
         d = _load(_latest(f"naver_age_{code}_*.json"))
-        if not d:
-            continue
-        for p in (d.get("profiles") or [])[:8]:
-            age = p.get("hottestAge")
-            if not age:
-                continue
-            rows.append({
-                "product": prod, "signal": "age", "rank_by": "연령",
-                "text": _clean_title(p.get("keyword"))[:40],
-                "metric1": int(p.get("hottestDelta") or 0),
-                "metric2": str(age),
-            })
+        if d:
+            rows.extend(_age_rows(d, prod, "age", "연령"))
+
+    # ④ 확장 주제 — 키워드툴에 직접 추가한 주제(건강운·재테크 등)
+    #
+    # 상품군에 억지로 붙이지 않는다. '건강운'은 사주·타로 양쪽에 걸치고 '재테크'는
+    # 부동산·빌딩·사주(재물운) 어디에도 붙일 수 있어, 한쪽에 귀속시키면 그 상품군의
+    # 신호가 다른 의도로 모은 데이터에 오염된다. product에 주제명을 그대로 넣고
+    # signal을 ext_* 로 구분해, 상품군 기준으로 읽는 기존 화면과 분리한다.
+    live = _custom_topics()
+    if live is None:
+        notes.append("확장 주제 설정(custom_topics.json)을 읽지 못해 건너뜀")
+    else:
+        seen, skipped = [], []
+        for kind, prefix, sig, rank in [
+                ("video", "youtube_market_cu_", "ext_market_top", "조회"),
+                ("age", "naver_age_cu_", "ext_age", "연령")]:
+            for slug, path in sorted(_latest_by_slug(prefix).items()):
+                d = _load(path)
+                topic = str((d or {}).get("topic") or "").strip()
+                if not topic:
+                    continue
+                if topic not in live:
+                    # 사용자가 키워드툴에서 지운 주제 — 캐시 파일만 남아 있다.
+                    # 조용히 버리면 '수집 실패'와 구분이 안 되므로 기록해 알린다.
+                    if topic not in skipped:
+                        skipped.append(topic)
+                    continue
+                if topic not in seen:
+                    seen.append(topic)
+                if kind == "video":
+                    for v in (d.get("topScoredVideos") or d.get("topVideos") or [])[:8]:
+                        t = _clean_title(v.get("title"))
+                        if not t or NOISE.search(t):
+                            continue
+                        rows.append({
+                            "product": topic, "signal": sig, "rank_by": rank,
+                            "text": t[:80],
+                            "metric1": int(v.get("viewCount") or 0),
+                            "metric2": f"일 {int(v.get('viewsPerDay') or 0):,}회",
+                        })
+                else:
+                    rows.extend(_age_rows(d, topic, sig, rank))
+        if seen:
+            notes.append(f"확장 주제 {len(seen)}개 반영 ({'·'.join(seen)})")
+        if skipped:
+            notes.append(f"확장 주제 {len(skipped)}개 무시 — 키워드툴에서 삭제된 주제"
+                         f" ({'·'.join(skipped)})")
 
     if not rows:
         return pd.DataFrame(columns=["product", "signal", "rank_by", "text",
@@ -187,14 +282,20 @@ def main():
         print(f"❌ 키워드 분석툴 데이터를 찾지 못했습니다: {PROCESSED}")
         return 1
 
-    df = build()
+    notes = []
+    df = build(notes)
     if df.empty:
         print("❌ 추출된 신호가 없습니다.")
         return 1
 
-    print(f"수집일 {df['collected'].iloc[0]} · 신호 {len(df)}건\n")
+    print(f"수집일 {df['collected'].iloc[0]} · 신호 {len(df)}건")
+    for n in notes:
+        print(f"  · {n}")
+    print()
     for sig, label in [("own_top", "자사 고성과 콘텐츠"), ("market_top", "시장 상위 영상"),
-                       ("age", "연령대")]:
+                       ("age", "연령대"),
+                       ("ext_market_top", "확장 주제 · 시장 상위 영상"),
+                       ("ext_age", "확장 주제 · 연령대")]:
         g = df[df["signal"] == sig]
         print(f"[{label}] {len(g)}건")
         for _, r in g.head(4).iterrows():

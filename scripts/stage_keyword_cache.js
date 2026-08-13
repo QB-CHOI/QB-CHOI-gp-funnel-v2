@@ -69,24 +69,29 @@ function main() {
     }
   }
 
-  // 자사 유튜브 실적
-  const ds = path.join(SRC, "dataset.json");
-  if (fs.existsSync(ds)) {
+  // 자사 유튜브 실적 + 확장 주제 설정
+  //   custom_topics.json: 사용자가 키워드툴에서 추가·삭제하는 주제 목록.
+  //   지운 주제의 캐시 파일은 processed/에 그대로 남으므로, 이 설정이 없으면
+  //   '지금 살아 있는 주제'와 '지운 주제'를 구분할 수 없다.
+  for (const name of ["dataset.json", "custom_topics.json"]) {
+    const src = path.join(SRC, name);
+    if (!fs.existsSync(src)) continue;
     try {
-      const dst = path.join(DEST, "dataset.json");
+      const dst = path.join(DEST, name);
       if (!fs.existsSync(dst) ||
-          fs.statSync(ds).mtimeMs > fs.statSync(dst).mtimeMs) {
-        fs.copyFileSync(ds, dst);
+          fs.statSync(src).mtimeMs > fs.statSync(dst).mtimeMs) {
+        fs.copyFileSync(src, dst);
         copied += 1;
       }
     } catch (e) {
-      log(`dataset.json 복사 실패: ${e.code}`);
+      log(`${name} 복사 실패: ${e.code}`);
     }
   }
 
   // 오래된 스테이징 파일 정리 (최신 세트만 유지)
   const keep = new Set([...latest.values()].map((v) => v.file));
   keep.add("dataset.json");
+  keep.add("custom_topics.json");
   for (const f of fs.readdirSync(DEST)) {
     if (f.endsWith(".json") && !keep.has(f)) {
       try { fs.unlinkSync(path.join(DEST, f)); } catch { /* 무시 */ }

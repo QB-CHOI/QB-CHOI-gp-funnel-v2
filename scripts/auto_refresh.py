@@ -145,8 +145,9 @@ def refresh_market_signals(dry):
         log(f"     {FDA_HELP}")
         return False
     log(f"  · 캐시 파일 {n_cache}개 확인")
+    notes = []
     try:
-        df = build()
+        df = build(notes)
     except PermissionError:
         log("  🔒 파일 읽기 거부 — 권한 필요")
         log(f"     {FDA_HELP}")
@@ -154,6 +155,8 @@ def refresh_market_signals(dry):
     except Exception as e:
         log(f"  ⚠️ 추출 실패: {type(e).__name__}: {e}")
         return False
+    for n in notes:
+        log(f"  · {n}")
     if df.empty:
         log("  · 추출된 신호 없음 — 건너뜀")
         return False
