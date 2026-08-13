@@ -1,0 +1,211 @@
+{
+  "ok": true,
+  "topic": "건강운",
+  "date": "2026-08-13",
+  "generatedAt": "2026-08-12T16:46:58.479Z",
+  "brackets": [
+    "10대",
+    "20대",
+    "30대",
+    "40대",
+    "50대+"
+  ],
+  "profiles": [
+    {
+      "keyword": "건강 운세",
+      "byAge": {
+        "10대": {
+          "deltaPercent": 80,
+          "level": 25,
+          "recentAvg": 24.999995
+        },
+        "20대": {
+          "deltaPercent": 20,
+          "level": 17,
+          "recentAvg": 17
+        },
+        "30대": {
+          "deltaPercent": 67,
+          "level": 32,
+          "recentAvg": 32.14285
+        },
+        "40대": {
+          "deltaPercent": 50,
+          "level": 20,
+          "recentAvg": 19.9999975
+        },
+        "50대+": {
+          "deltaPercent": 8,
+          "level": 57,
+          "recentAvg": 57.142852500000004
+        }
+      },
+      "hottestAge": "10대",
+      "hottestDelta": 80
+    },
+    {
+      "keyword": "사상체질",
+      "byAge": {
+        "10대": {
+          "deltaPercent": 30,
+          "level": 61,
+          "recentAvg": 61.111105
+        },
+        "20대": {
+          "deltaPercent": 16,
+          "level": 81,
+          "recentAvg": 80.9294825
+        },
+        "30대": {
+          "deltaPercent": 26,
+          "level": 82,
+          "recentAvg": 82.2619025
+        },
+        "40대": {
+          "deltaPercent": 22,
+          "level": 97,
+          "recentAvg": 97.02380500000001
+        },
+        "50대+": {
+          "deltaPercent": 7,
+          "level": 80,
+          "recentAvg": 79.595585
+        }
+      },
+      "hottestAge": "10대",
+      "hottestDelta": 30
+    },
+    {
+      "keyword": "사주 건강",
+      "byAge": {
+        "10대": {
+          "deltaPercent": 0,
+          "level": 0,
+          "recentAvg": 0
+        },
+        "20대": {
+          "deltaPercent": 0,
+          "level": 0,
+          "recentAvg": 0
+        },
+        "30대": {
+          "deltaPercent": 0,
+          "level": 0,
+          "recentAvg": 0
+        },
+        "40대": {
+          "deltaPercent": 0,
+          "level": 0,
+          "recentAvg": 0
+        },
+        "50대+": {
+          "deltaPercent": 0,
+          "level": 0,
+          "recentAvg": 0
+        }
+      },
+      "hottestAge": null,
+      "hottestDelta": 0
+    },
+    {
+      "keyword": "건강 타로",
+      "byAge": {
+        "10대": {
+          "deltaPercent": 0,
+          "level": 0,
+          "recentAvg": 0
+        },
+        "20대": {
+          "deltaPercent": 0,
+          "level": 0,
+          "recentAvg": 0
+        },
+        "30대": {
+          "deltaPercent": 0,
+          "level": 0,
+          "recentAvg": 0
+        },
+        "40대": {
+          "deltaPercent": 0,
+          "level": 0,
+          "recentAvg": 0
+        },
+        "50대+": {
+          "deltaPercent": 0,
+          "level": 0,
+          "recentAvg": 0
+        }
+      },
+      "hottestAge": null,
+      "hottestDelta": 0
+    },
+    {
+      "keyword": "질병운",
+      "byAge": {
+        "10대": {
+          "deltaPercent": 0,
+          "level": 0,
+          "recentAvg": 0
+        },
+        "20대": {
+          "deltaPercent": 0,
+          "level": 0,
+          "recentAvg": 0
+        },
+        "30대": {
+          "deltaPercent": 0,
+          "level": 0,
+          "recentAvg": 0
+        },
+        "40대": {
+          "deltaPercent": 0,
+          "level": 0,
+          "recentAvg": 0
+        },
+        "50대+": {
+          "deltaPercent": 0,
+          "level": 0,
+          "recentAvg": 0
+        }
+      },
+      "hottestAge": null,
+      "hottestDelta": 0
+    },
+    {
+      "keyword": "건강운",
+      "byAge": {
+        "10대": {
+          "deltaPercent": -13,
+          "level": 44,
+          "recentAvg": 43.7499975
+        },
+        "20대": {
+          "deltaPercent": -10,
+          "level": 65,
+          "recentAvg": 65
+        },
+        "30대": {
+          "deltaPercent": -38,
+          "level": 37,
+          "recentAvg": 37.499995
+        },
+        "40대": {
+          "deltaPercent": -34,
+          "level": 27,
+          "recentAvg": 26.6666625
+        },
+        "50대+": {
+          "deltaPercent": -35,
+          "level": 16,
+          "recentAvg": 16.0714225
+        }
+      },
+      "hottestAge": "20대",
+      "hottestDelta": -10
+    }
+  ],
+  "limitations": [
+    "데이터랩은 조회별 상대지표(최대=100)라 연령 간 절대 검색량 비교는 불가 — 연령별 추세(상승률) 비교만 유효합니다.",
+    "최근 4주 vs 이전 10주 평균 변화율. 진행 중인 마지막 주는 불완전해 제외하고, 관심도가 낮은(저기반) 키워드는 왜곡을 막기 위해 상승으로 집계하지 않습니다."
+  ]
+}

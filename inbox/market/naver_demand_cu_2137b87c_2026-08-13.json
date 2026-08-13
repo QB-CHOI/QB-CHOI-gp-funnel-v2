@@ -1,0 +1,1028 @@
+{
+  "ok": true,
+  "topic": "반려동물",
+  "date": "2026-08-13",
+  "generatedAt": "2026-08-12T16:48:48.881Z",
+  "seeds": [
+    "강아지",
+    "고양이",
+    "반려견 훈련",
+    "고양이 행동",
+    "강아지 사료",
+    "펫보험"
+  ],
+  "datalabConfigured": true,
+  "searchAdConfigured": true,
+  "trends": [
+    {
+      "keyword": "강아지 사료",
+      "deltaPercent": 40,
+      "latestRatio": 36.8328,
+      "monthly": [
+        {
+          "period": "2025-07-01",
+          "ratio": 32.73559
+        },
+        {
+          "period": "2025-08-01",
+          "ratio": 31.32547
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 30.31869
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 29.14917
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 32.23804
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 34.68609
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 31.41424
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 25.59157
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 26.04474
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 28.16342
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 28.20235
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 22.68335
+        },
+        {
+          "period": "2026-07-01",
+          "ratio": 36.8328
+        }
+      ]
+    },
+    {
+      "keyword": "펫보험",
+      "deltaPercent": -1,
+      "latestRatio": 65.26359,
+      "monthly": [
+        {
+          "period": "2025-07-01",
+          "ratio": 75.16151
+        },
+        {
+          "period": "2025-08-01",
+          "ratio": 83.13522
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 100
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 86.06908
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 64.96154
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 63.91833
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 70.52999
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 66.50258
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 68.48552
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 69.62382
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 64.42175
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 62.9814
+        },
+        {
+          "period": "2026-07-01",
+          "ratio": 65.26359
+        }
+      ]
+    },
+    {
+      "keyword": "고양이 행동",
+      "deltaPercent": -9,
+      "latestRatio": 0.2515,
+      "monthly": [
+        {
+          "period": "2025-07-01",
+          "ratio": 0.33092
+        },
+        {
+          "period": "2025-08-01",
+          "ratio": 0.31379
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 0.23125
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 0.39087
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 0.46329
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 0.27641
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 0.2842
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 0.31457
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 0.23748
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 0.29121
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 0.306
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 0.23125
+        },
+        {
+          "period": "2026-07-01",
+          "ratio": 0.2515
+        }
+      ]
+    },
+    {
+      "keyword": "고양이",
+      "deltaPercent": -13,
+      "latestRatio": 58.89869,
+      "monthly": [
+        {
+          "period": "2025-07-01",
+          "ratio": 92.59357
+        },
+        {
+          "period": "2025-08-01",
+          "ratio": 100
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 82.84188
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 83.19382
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 78.97593
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 72.68919
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 73.45926
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 64.85061
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 71.2487
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 72.46883
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 68.4199
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 62.03193
+        },
+        {
+          "period": "2026-07-01",
+          "ratio": 58.89869
+        }
+      ]
+    },
+    {
+      "keyword": "강아지",
+      "deltaPercent": -17,
+      "latestRatio": 54.61616,
+      "monthly": [
+        {
+          "period": "2025-07-01",
+          "ratio": 82.04688
+        },
+        {
+          "period": "2025-08-01",
+          "ratio": 86.94531
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 77.92943
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 78.35224
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 71.92923
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 67.60622
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 70.53858
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 62.32003
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 69.44693
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 70.36417
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 67.86239
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 58.56387
+        },
+        {
+          "period": "2026-07-01",
+          "ratio": 54.61616
+        }
+      ]
+    },
+    {
+      "keyword": "반려견 훈련",
+      "deltaPercent": -74,
+      "latestRatio": 0.0218,
+      "monthly": [
+        {
+          "period": "2025-07-01",
+          "ratio": 1.17808
+        },
+        {
+          "period": "2025-08-01",
+          "ratio": 0.89777
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 0.37841
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 0.48042
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 0.04438
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 0.08175
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 0.21646
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 0.1822
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 0.18765
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 0.17597
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 0.07085
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 0.00778
+        },
+        {
+          "period": "2026-07-01",
+          "ratio": 0.0218
+        }
+      ]
+    }
+  ],
+  "keywords": [
+    {
+      "keyword": "서울가볼만한곳",
+      "pcMonthly": 14200,
+      "mobileMonthly": 116400,
+      "totalMonthly": 130600,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "동물병원",
+      "pcMonthly": 5980,
+      "mobileMonthly": 119600,
+      "totalMonthly": 125580,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "애견카페",
+      "pcMonthly": 3240,
+      "mobileMonthly": 91900,
+      "totalMonthly": 95140,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "고양이",
+      "pcMonthly": 15500,
+      "mobileMonthly": 64900,
+      "totalMonthly": 80400,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "강아지",
+      "pcMonthly": 13100,
+      "mobileMonthly": 59600,
+      "totalMonthly": 72700,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "4대보험",
+      "pcMonthly": 36800,
+      "mobileMonthly": 31400,
+      "totalMonthly": 68200,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "서울놀거리",
+      "pcMonthly": 8280,
+      "mobileMonthly": 55800,
+      "totalMonthly": 64080,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "대형카페",
+      "pcMonthly": 1690,
+      "mobileMonthly": 60700,
+      "totalMonthly": 62390,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "고양이의날",
+      "pcMonthly": 11500,
+      "mobileMonthly": 48700,
+      "totalMonthly": 60200,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "애견동반카페",
+      "pcMonthly": 1320,
+      "mobileMonthly": 56700,
+      "totalMonthly": 58020,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "홍대놀거리",
+      "pcMonthly": 5810,
+      "mobileMonthly": 52000,
+      "totalMonthly": 57810,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "고용산재보험토탈",
+      "pcMonthly": 45000,
+      "mobileMonthly": 12600,
+      "totalMonthly": 57600,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "강아지사료",
+      "pcMonthly": 5190,
+      "mobileMonthly": 40800,
+      "totalMonthly": 45990,
+      "competition": "중간",
+      "isSeed": true
+    },
+    {
+      "keyword": "포메라니안",
+      "pcMonthly": 4380,
+      "mobileMonthly": 39100,
+      "totalMonthly": 43480,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "서울실내놀거리",
+      "pcMonthly": 5120,
+      "mobileMonthly": 37500,
+      "totalMonthly": 42620,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "실내데이트",
+      "pcMonthly": 4710,
+      "mobileMonthly": 35800,
+      "totalMonthly": 40510,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "말티푸",
+      "pcMonthly": 4690,
+      "mobileMonthly": 34400,
+      "totalMonthly": 39090,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "세계고양이의날",
+      "pcMonthly": 7160,
+      "mobileMonthly": 30100,
+      "totalMonthly": 37260,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "꼬똥드툴레아",
+      "pcMonthly": 3160,
+      "mobileMonthly": 33600,
+      "totalMonthly": 36760,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "고양이사료",
+      "pcMonthly": 4820,
+      "mobileMonthly": 30900,
+      "totalMonthly": 35720,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "강아지종류",
+      "pcMonthly": 3280,
+      "mobileMonthly": 25800,
+      "totalMonthly": 29080,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "보더콜리",
+      "pcMonthly": 2970,
+      "mobileMonthly": 25800,
+      "totalMonthly": 28770,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "강아지간식",
+      "pcMonthly": 4730,
+      "mobileMonthly": 23900,
+      "totalMonthly": 28630,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "고양이종류",
+      "pcMonthly": 3240,
+      "mobileMonthly": 24600,
+      "totalMonthly": 27840,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "실내놀거리",
+      "pcMonthly": 2080,
+      "mobileMonthly": 24000,
+      "totalMonthly": 26080,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "먼치킨",
+      "pcMonthly": 3400,
+      "mobileMonthly": 22400,
+      "totalMonthly": 25800,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "HUG보증보험",
+      "pcMonthly": 8090,
+      "mobileMonthly": 16400,
+      "totalMonthly": 24490,
+      "competition": "낮음",
+      "isSeed": false
+    },
+    {
+      "keyword": "서울실내데이트",
+      "pcMonthly": 4860,
+      "mobileMonthly": 19400,
+      "totalMonthly": 24260,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "잠실놀거리",
+      "pcMonthly": 2540,
+      "mobileMonthly": 21700,
+      "totalMonthly": 24240,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "서울실내가볼만한곳",
+      "pcMonthly": 3120,
+      "mobileMonthly": 21100,
+      "totalMonthly": 24220,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "푸들",
+      "pcMonthly": 2620,
+      "mobileMonthly": 20500,
+      "totalMonthly": 23120,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "펫보험",
+      "pcMonthly": 3750,
+      "mobileMonthly": 18900,
+      "totalMonthly": 22650,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "고양이분양",
+      "pcMonthly": 2540,
+      "mobileMonthly": 19900,
+      "totalMonthly": 22440,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "폴드",
+      "pcMonthly": 4940,
+      "mobileMonthly": 17100,
+      "totalMonthly": 22040,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "강아지무료분양",
+      "pcMonthly": 1710,
+      "mobileMonthly": 15400,
+      "totalMonthly": 17110,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "토이푸들",
+      "pcMonthly": 1960,
+      "mobileMonthly": 14800,
+      "totalMonthly": 16760,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "빠삐용",
+      "pcMonthly": 1410,
+      "mobileMonthly": 14400,
+      "totalMonthly": 15810,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "건강보험공단고객센터",
+      "pcMonthly": 2440,
+      "mobileMonthly": 13000,
+      "totalMonthly": 15440,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "서울데이트",
+      "pcMonthly": 3020,
+      "mobileMonthly": 12000,
+      "totalMonthly": 15020,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "코카스파니엘",
+      "pcMonthly": 1430,
+      "mobileMonthly": 13400,
+      "totalMonthly": 14830,
+      "competition": "높음",
+      "isSeed": false
+    }
+  ],
+  "seedKeywords": [
+    {
+      "keyword": "고양이",
+      "pcMonthly": 15500,
+      "mobileMonthly": 64900,
+      "totalMonthly": 80400,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "강아지",
+      "pcMonthly": 13100,
+      "mobileMonthly": 59600,
+      "totalMonthly": 72700,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "강아지사료",
+      "pcMonthly": 5190,
+      "mobileMonthly": 40800,
+      "totalMonthly": 45990,
+      "competition": "중간",
+      "isSeed": true
+    },
+    {
+      "keyword": "펫보험",
+      "pcMonthly": 3750,
+      "mobileMonthly": 18900,
+      "totalMonthly": 22650,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "고양이행동",
+      "pcMonthly": 40,
+      "mobileMonthly": 500,
+      "totalMonthly": 540,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "반려견훈련",
+      "pcMonthly": 60,
+      "mobileMonthly": 150,
+      "totalMonthly": 210,
+      "competition": "높음",
+      "isSeed": true
+    }
+  ],
+  "newDiscoveries": [
+    {
+      "keyword": "서울가볼만한곳",
+      "pcMonthly": 14200,
+      "mobileMonthly": 116400,
+      "totalMonthly": 130600,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "동물병원",
+      "pcMonthly": 5980,
+      "mobileMonthly": 119600,
+      "totalMonthly": 125580,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "애견카페",
+      "pcMonthly": 3240,
+      "mobileMonthly": 91900,
+      "totalMonthly": 95140,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "4대보험",
+      "pcMonthly": 36800,
+      "mobileMonthly": 31400,
+      "totalMonthly": 68200,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "서울놀거리",
+      "pcMonthly": 8280,
+      "mobileMonthly": 55800,
+      "totalMonthly": 64080,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "대형카페",
+      "pcMonthly": 1690,
+      "mobileMonthly": 60700,
+      "totalMonthly": 62390,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "고양이의날",
+      "pcMonthly": 11500,
+      "mobileMonthly": 48700,
+      "totalMonthly": 60200,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "애견동반카페",
+      "pcMonthly": 1320,
+      "mobileMonthly": 56700,
+      "totalMonthly": 58020,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "홍대놀거리",
+      "pcMonthly": 5810,
+      "mobileMonthly": 52000,
+      "totalMonthly": 57810,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "고용산재보험토탈",
+      "pcMonthly": 45000,
+      "mobileMonthly": 12600,
+      "totalMonthly": 57600,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "포메라니안",
+      "pcMonthly": 4380,
+      "mobileMonthly": 39100,
+      "totalMonthly": 43480,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "서울실내놀거리",
+      "pcMonthly": 5120,
+      "mobileMonthly": 37500,
+      "totalMonthly": 42620,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "실내데이트",
+      "pcMonthly": 4710,
+      "mobileMonthly": 35800,
+      "totalMonthly": 40510,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "말티푸",
+      "pcMonthly": 4690,
+      "mobileMonthly": 34400,
+      "totalMonthly": 39090,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "세계고양이의날",
+      "pcMonthly": 7160,
+      "mobileMonthly": 30100,
+      "totalMonthly": 37260,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "꼬똥드툴레아",
+      "pcMonthly": 3160,
+      "mobileMonthly": 33600,
+      "totalMonthly": 36760,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "고양이사료",
+      "pcMonthly": 4820,
+      "mobileMonthly": 30900,
+      "totalMonthly": 35720,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "강아지종류",
+      "pcMonthly": 3280,
+      "mobileMonthly": 25800,
+      "totalMonthly": 29080,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "보더콜리",
+      "pcMonthly": 2970,
+      "mobileMonthly": 25800,
+      "totalMonthly": 28770,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "강아지간식",
+      "pcMonthly": 4730,
+      "mobileMonthly": 23900,
+      "totalMonthly": 28630,
+      "competition": "중간",
+      "isSeed": false
+    }
+  ],
+  "communityDemand": {
+    "enough": true,
+    "scanned": 900,
+    "questionCount": 120,
+    "noiseFiltered": 780,
+    "hotSeeds": [
+      {
+        "seed": "펫보험",
+        "count": 34
+      },
+      {
+        "seed": "강아지 사료",
+        "count": 28
+      },
+      {
+        "seed": "고양이 행동",
+        "count": 21
+      },
+      {
+        "seed": "고양이",
+        "count": 19
+      },
+      {
+        "seed": "강아지",
+        "count": 15
+      }
+    ],
+    "posts": [
+      {
+        "seed": "강아지",
+        "kind": "지식iN",
+        "title": "강아지 금 목걸이 하려고 고민중인데",
+        "link": "https://kin.naver.com/qna/detail.naver?dirId=5040302&docId=494715822&answerNo=0"
+      },
+      {
+        "seed": "고양이",
+        "kind": "지식iN",
+        "title": "고양이 혹이 생겼는데 피부병일까요?",
+        "link": "https://kin.naver.com/qna/detail.naver?dirId=8030101&docId=494715969&answerNo=0"
+      },
+      {
+        "seed": "반려견 훈련",
+        "kind": "카페",
+        "title": "강아지 훈련 어디서 시키면 좋을까요..",
+        "link": "https://cafe.naver.com/kwstar/4748"
+      },
+      {
+        "seed": "고양이 행동",
+        "kind": "지식iN",
+        "title": "사람이 고독사 하면 키우던 고양이가 주인먹나요?",
+        "link": "https://kin.naver.com/qna/detail.naver?dirId=80502&docId=484364485&answerNo=4"
+      },
+      {
+        "seed": "강아지 사료",
+        "kind": "지식iN",
+        "title": "강아지가 많이 위험한 상황인거죠? 어떻게해야되나요",
+        "link": "https://kin.naver.com/qna/detail.naver?dirId=8050103&docId=494710071&answerNo=1"
+      },
+      {
+        "seed": "펫보험",
+        "kind": "지식iN",
+        "title": "이마트 올라펫보험 좋나요?",
+        "link": "https://kin.naver.com/qna/detail.naver?dirId=401030203&docId=494233620&answerNo=4"
+      },
+      {
+        "seed": "강아지",
+        "kind": "지식iN",
+        "title": "여자강아지 산책시 마킹 빈도 횟수 어느정도가 정상일까요?",
+        "link": "https://kin.naver.com/qna/detail.naver?dirId=8050104&docId=494714341&answerNo=1"
+      },
+      {
+        "seed": "고양이",
+        "kind": "지식iN",
+        "title": "고양이 설사 장염인가요?",
+        "link": "https://kin.naver.com/qna/detail.naver?dirId=80511&docId=494715562&answerNo=1"
+      },
+      {
+        "seed": "반려견 훈련",
+        "kind": "블로그",
+        "title": "새로운 가족, 반려견 배변 훈련, 어디서부터 시작해야 할까요?",
+        "link": "https://blog.naver.com/pmkang/224374570468"
+      },
+      {
+        "seed": "고양이 행동",
+        "kind": "지식iN",
+        "title": "고양이 당뇨병인가요?",
+        "link": "https://kin.naver.com/qna/detail.naver?dirId=80511&docId=494700243&answerNo=1"
+      },
+      {
+        "seed": "강아지 사료",
+        "kind": "지식iN",
+        "title": "강아지 발바닥 각질(?)",
+        "link": "https://kin.naver.com/qna/detail.naver?dirId=8050105&docId=494710491&answerNo=1"
+      },
+      {
+        "seed": "펫보험",
+        "kind": "카페",
+        "title": "펫보험 궁금해요",
+        "link": "https://cafe.naver.com/gdqueen/343333"
+      }
+    ]
+  },
+  "newsSignals": {
+    "scanned": 1,
+    "issueCount": 1,
+    "articles": [
+      {
+        "seed": "강아지 사료",
+        "title": "도그마루, 강아지·고양이 분양 및 입양시 '최신형 휴대폰' 증정 혜택 단...",
+        "link": "https://www.job-post.co.kr/news/articleView.html?idxno=223759",
+        "publishedAt": "2026-08-12T08:00:00.000Z",
+        "coverage": 1
+      }
+    ],
+    "enough": true
+  },
+  "notes": [],
+  "limitations": [
+    "검색량은 네이버 검색 기준이며 유튜브 내 검색량과 다를 수 있습니다.",
+    "데이터랩 트렌드는 절대 검색량이 아니라 기간 내 상대 비율(0~100)입니다.",
+    "월간 검색수 10 미만은 네이버가 '< 10'으로만 제공해 5로 집계합니다."
+  ]
+}

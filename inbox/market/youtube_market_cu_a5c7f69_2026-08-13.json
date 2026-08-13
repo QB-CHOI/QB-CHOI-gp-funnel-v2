@@ -1,0 +1,4919 @@
+{
+  "ok": true,
+  "topic": "재테크",
+  "date": "2026-08-13",
+  "generatedAt": "2026-08-12T16:47:41.669Z",
+  "queries": [
+    "재테크",
+    "주식 투자",
+    "적금 금리",
+    "ETF",
+    "연금저축",
+    "배당주"
+  ],
+  "publishedAfter": "2026-05-14T16:47:38.563Z",
+  "quotaCost": 604,
+  "totalVideos": 88,
+  "shortsCount": 7,
+  "longformCount": 81,
+  "topVideos": [
+    {
+      "videoId": "7FrJ3wuJDaY",
+      "url": "https://www.youtube.com/watch?v=7FrJ3wuJDaY",
+      "title": "어떤 투자는 '도박'이다? 주식 투자 때문에 인생이 무너진 사람들 | 추적60분 KBS 방송",
+      "description": "00:00 빚투 https://youtu.be/9sOGwpOy4jY\n04:08 K사 거래정지 사태 https://youtu.be/yERWAxUcgCY\n13:38 레버리지 https://youtu.be/dRJNi2zPD4U\n30:31 대유 상장폐지 사태 https://youtu.be/HD",
+      "channelId": "UCy-6oZwPwrR_W-zYnqLD8dg",
+      "channelTitle": "KBS 추적60분",
+      "publishedAt": "2026-08-02T14:59:30Z",
+      "thumbnail": "https://i.ytimg.com/vi/7FrJ3wuJDaY/mqdefault.jpg",
+      "tags": [
+        "KBS",
+        "다큐",
+        "다큐멘터리",
+        "인터뷰",
+        "레전드",
+        "그것이 알고싶다"
+      ],
+      "viewCount": 2347256,
+      "likeCount": 18508,
+      "commentCount": 8549,
+      "durationSeconds": 2316,
+      "format": "롱폼",
+      "ageDays": 10.1,
+      "viewsPerDay": 232975,
+      "momentum": 214541,
+      "likeRate": 0.79,
+      "commentRate": 0.36,
+      "matchedQueries": [
+        "주식 투자"
+      ],
+      "marketScore": {
+        "total": 82,
+        "parts": {
+          "volume": 25,
+          "velocity": 30,
+          "likeRate": 3,
+          "commentRate": 5,
+          "recency": 19
+        }
+      },
+      "rankScore": {
+        "total": 100,
+        "parts": {
+          "momentum": 60,
+          "volume": 40
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 799000
+    },
+    {
+      "videoId": "Y_HTZh_b1ko",
+      "url": "https://www.youtube.com/watch?v=Y_HTZh_b1ko",
+      "title": "\"손실률 78%, 22억 날렸다\" 레버리지로 파산한 투자자 속출? / KNN",
+      "description": "#knn뉴스 #손실률 #레버리지\n\n40년 동안 모은 전 재산에 집까지 팔아 투자했다가 22억 원 넘게 잃고 파산했다는 한 투자자의 사연이 올라와 충격을 주고 있습니다.\n\n제보\n카톡 : 'KNN' 친구추가\n메일 : knnstorynews@gmail.com\n          adknn@kn",
+      "channelId": "UC1ifSsWUG241rRfK0ezYCgA",
+      "channelTitle": "KNN NEWS",
+      "publishedAt": "2026-07-30T09:45:10Z",
+      "thumbnail": "https://i.ytimg.com/vi/Y_HTZh_b1ko/mqdefault.jpg",
+      "tags": [
+        "knn뉴스",
+        "e뉴스",
+        "주식",
+        "투자",
+        "하락",
+        "폭락",
+        "손실",
+        "도박"
+      ],
+      "viewCount": 855715,
+      "likeCount": 5978,
+      "commentCount": 9900,
+      "durationSeconds": 99,
+      "format": "롱폼",
+      "ageDays": 13.3,
+      "viewsPerDay": 64371,
+      "momentum": 57794,
+      "likeRate": 0.7,
+      "commentRate": 1.16,
+      "matchedQueries": [
+        "주식 투자"
+      ],
+      "marketScore": {
+        "total": 86,
+        "parts": {
+          "volume": 25,
+          "velocity": 30,
+          "likeRate": 3,
+          "commentRate": 10,
+          "recency": 19
+        }
+      },
+      "rankScore": {
+        "total": 99,
+        "parts": {
+          "momentum": 59,
+          "volume": 40
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 1300000
+    },
+    {
+      "videoId": "Wc52vsC6q4U",
+      "url": "https://www.youtube.com/watch?v=Wc52vsC6q4U",
+      "title": "생활비 한 달 5만원..10년 만에 배당금 월 300만원 받는 이유  (조윤진 1부) #세미파이어 #배당투자",
+      "description": "👤 오늘의 게스트:  조윤진 작가\n'6억으로 시작한 세미파이어' 저자 & 배당으로 부자되기 유튜브 채널 운영\n\n\n평범한 중소기업 직장인이었던 그녀는 이혼 후 경제적으로 큰 타격을 입고, \"목숨 걸고 노후를 준비해야겠다\"는 마음으로 10년간 악착같이 아끼고 모았습니다. 5천만 원으로 시",
+      "channelId": "UC5UFGiELUPSTvFfMGEUxeiQ",
+      "channelTitle": "자람들 - 자립하는사람들",
+      "publishedAt": "2026-07-17T12:09:28Z",
+      "thumbnail": "https://i.ytimg.com/vi/Wc52vsC6q4U/mqdefault.jpg",
+      "tags": [
+        "나는사장님",
+        "사장님",
+        "마케팅",
+        "자영업",
+        "프랜차이즈",
+        "퇴직",
+        "퇴사",
+        "사직서",
+        "온라인사업",
+        "온라인부업",
+        "부업",
+        "겸직"
+      ],
+      "viewCount": 569589,
+      "likeCount": 5778,
+      "commentCount": 536,
+      "durationSeconds": 1758,
+      "format": "롱폼",
+      "ageDays": 26.2,
+      "viewsPerDay": 21746,
+      "momentum": 16887,
+      "likeRate": 1.01,
+      "commentRate": 0.09,
+      "matchedQueries": [
+        "배당주"
+      ],
+      "marketScore": {
+        "total": 74,
+        "parts": {
+          "volume": 24,
+          "velocity": 29,
+          "likeRate": 4,
+          "commentRate": 1,
+          "recency": 16
+        }
+      },
+      "rankScore": {
+        "total": 89,
+        "parts": {
+          "momentum": 50,
+          "volume": 39
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 26600
+    },
+    {
+      "videoId": "Xr1yQKkBdmw",
+      "url": "https://www.youtube.com/watch?v=Xr1yQKkBdmw",
+      "title": "\"친정에서 1억도 싹 날려\" 주식으로 집안 거덜 낸 남편 / KNN",
+      "description": "#knn뉴스 #주식 #실패\n\n남편이 주식 투자로 1억 7천만 원을 잃었습니다.\n\n제보\n카톡 : 'KNN' 친구추가\n메일 : knnstorynews@gmail.com\n          adknn@knn.co.kr\n\n홈페이지 www.knn.co.kr\n검색 : KNN",
+      "channelId": "UC1ifSsWUG241rRfK0ezYCgA",
+      "channelTitle": "KNN NEWS",
+      "publishedAt": "2026-07-01T10:15:36Z",
+      "thumbnail": "https://i.ytimg.com/vi/Xr1yQKkBdmw/mqdefault.jpg",
+      "tags": [
+        "knn뉴스",
+        "e뉴스",
+        "주식",
+        "남편",
+        "아내",
+        "시댁",
+        "친정",
+        "통장"
+      ],
+      "viewCount": 488360,
+      "likeCount": 2376,
+      "commentCount": 2007,
+      "durationSeconds": 97,
+      "format": "롱폼",
+      "ageDays": 42.3,
+      "viewsPerDay": 11553,
+      "momentum": 7040,
+      "likeRate": 0.49,
+      "commentRate": 0.41,
+      "matchedQueries": [
+        "주식 투자"
+      ],
+      "marketScore": {
+        "total": 70,
+        "parts": {
+          "volume": 24,
+          "velocity": 27,
+          "likeRate": 2,
+          "commentRate": 5,
+          "recency": 12
+        }
+      },
+      "rankScore": {
+        "total": 80,
+        "parts": {
+          "momentum": 41,
+          "volume": 39
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 1300000
+    },
+    {
+      "videoId": "QWYnZG7LfEs",
+      "url": "https://www.youtube.com/watch?v=QWYnZG7LfEs",
+      "title": "99% 모르는 AI로 주식수익 극대화 하는 법ㅣ대외비 EP.29",
+      "description": "오늘은 김경민 대표님, 무빙워터님, 김덕진 소장님을 모시고 \n주식으로 수백억 버는 사람들이 AI로 주식하는 천재적인 방법을 파헤쳐봤습니다.  \n영상이 유익 했다면 구독!! 영상이 재밌으셨다면 좋아요 버튼을 눌러주세요!\n\n#김경민 #무빙워터 #김덕진 #신아영 #지식인사이드 #주식 #삼전 ",
+      "channelId": "UCA_hgsFzmynpv1zkvA5A7jA",
+      "channelTitle": "지식인사이드",
+      "publishedAt": "2026-07-25T01:00:26Z",
+      "thumbnail": "https://i.ytimg.com/vi/QWYnZG7LfEs/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 367625,
+      "likeCount": 7093,
+      "commentCount": 221,
+      "durationSeconds": 2247,
+      "format": "롱폼",
+      "ageDays": 18.7,
+      "viewsPerDay": 19704,
+      "momentum": 16758,
+      "likeRate": 1.93,
+      "commentRate": 0.06,
+      "matchedQueries": [
+        "주식 투자"
+      ],
+      "marketScore": {
+        "total": 77,
+        "parts": {
+          "volume": 23,
+          "velocity": 29,
+          "likeRate": 7,
+          "commentRate": 1,
+          "recency": 17
+        }
+      },
+      "rankScore": {
+        "total": 86,
+        "parts": {
+          "momentum": 48,
+          "volume": 38
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 4000000
+    },
+    {
+      "videoId": "4028wzjJCZA",
+      "url": "https://www.youtube.com/watch?v=4028wzjJCZA",
+      "title": "청년들 놀랄 '대박 적금' 나왔다 [NEWS 11]",
+      "description": "◇ NEWS 11 (월~금 오전 11:30~12시)\n홈페이지 바로가기: https://programs.sbs.co.kr/sbsbiz/cnbcbackbriefing/articles/55138\n\n#청년미래적금 #적금 #청년 #예금 #금리 #재테크 #은행 #sbsbiz",
+      "channelId": "UCbMjg2EvXs_RUGW-KrdM3pw",
+      "channelTitle": "SBS Biz 뉴스",
+      "publishedAt": "2026-06-22T05:15:11Z",
+      "thumbnail": "https://i.ytimg.com/vi/4028wzjJCZA/mqdefault.jpg",
+      "tags": [
+        "SBSBiz",
+        "경제",
+        "뉴스",
+        "주식",
+        "경제뉴스"
+      ],
+      "viewCount": 232719,
+      "likeCount": 1936,
+      "commentCount": 983,
+      "durationSeconds": 117,
+      "format": "롱폼",
+      "ageDays": 51.5,
+      "viewsPerDay": 4520,
+      "momentum": 2312,
+      "likeRate": 0.83,
+      "commentRate": 0.42,
+      "matchedQueries": [
+        "적금 금리"
+      ],
+      "marketScore": {
+        "total": 65,
+        "parts": {
+          "volume": 22,
+          "velocity": 24,
+          "likeRate": 3,
+          "commentRate": 5,
+          "recency": 10
+        }
+      },
+      "rankScore": {
+        "total": 62,
+        "parts": {
+          "momentum": 24,
+          "volume": 38
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 447000
+    },
+    {
+      "videoId": "BxDfMXa4_ws",
+      "url": "https://www.youtube.com/watch?v=BxDfMXa4_ws",
+      "title": "존리 대표│연금저축, 이렇게 해야 돈이 모입니다! 존리가 알려주는 ETF 투자의 핵심 (풀영상)",
+      "description": "https://youtube.com/playlist?list=PLrtJ1CzSbrovHpgwNNM-UV2sPR8YKIddu&si=G6pYEHfWlQITNRsS\n#존리 #타이밍투자 #노후자금 #노후투자 #노후준비 #노후대비 #노후파산 #노후투자 #투자공부 #투자기초 #금융교육 #금융지식 ",
+      "channelId": "UCXIIyfdS3hA3OHrhuMY1urQ",
+      "channelTitle": "새멋TV",
+      "publishedAt": "2026-08-03T02:00:25Z",
+      "thumbnail": "https://i.ytimg.com/vi/BxDfMXa4_ws/mqdefault.jpg",
+      "tags": [
+        "새멋TV",
+        "시니어",
+        "MTN",
+        "머니투데이방송",
+        "고령화",
+        "노후준비",
+        "노후대비",
+        "노후자산",
+        "노후자금",
+        "노후경제",
+        "노후현실",
+        "한국노후"
+      ],
+      "viewCount": 195006,
+      "likeCount": 4041,
+      "commentCount": 162,
+      "durationSeconds": 1936,
+      "format": "롱폼",
+      "ageDays": 9.6,
+      "viewsPerDay": 20279,
+      "momentum": 18729,
+      "likeRate": 2.07,
+      "commentRate": 0.08,
+      "matchedQueries": [
+        "연금저축"
+      ],
+      "marketScore": {
+        "total": 79,
+        "parts": {
+          "volume": 22,
+          "velocity": 29,
+          "likeRate": 8,
+          "commentRate": 1,
+          "recency": 19
+        }
+      },
+      "rankScore": {
+        "total": 88,
+        "parts": {
+          "momentum": 51,
+          "volume": 37
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 43600
+    },
+    {
+      "videoId": "fLGhZQdfd_M",
+      "url": "https://www.youtube.com/watch?v=fLGhZQdfd_M",
+      "title": "“매달 50만원씩 여기 넣어라” 19.5% 확정수익 주는 통장 떴다. 나이제한, 소득제한 없습니다 | 송영욱 대표 풀버전 #돈쭐남 #김경필",
+      "description": "*본 영상은 송영욱 대표님 출연 영상(1~3편)의 풀버전입니다. 시청에 참고하시기 바랍니다.\n\n👉 송영욱 대표 유튜브 채널 바로가기 : https://www.youtube.com/@flyingturtle2024/videos \n👉 송영욱 대표 저서 [돈 걱정 없는 노후를 위한은퇴세팅법",
+      "channelId": "UCriq8I8GEESkQq0svX19oCw",
+      "channelTitle": "부티플 - 부의 배수를 높여라",
+      "publishedAt": "2026-07-26T02:00:25Z",
+      "thumbnail": "https://i.ytimg.com/vi/fLGhZQdfd_M/mqdefault.jpg",
+      "tags": [
+        "yt:cc=on",
+        "노후준비",
+        "연금",
+        "기초연금",
+        "통장",
+        "정부통장",
+        "정부정책",
+        "국민연금",
+        "개인연금",
+        "노후자금",
+        "은퇴자금",
+        "은퇴설계"
+      ],
+      "viewCount": 177380,
+      "likeCount": 2753,
+      "commentCount": 257,
+      "durationSeconds": 3884,
+      "format": "롱폼",
+      "ageDays": 17.6,
+      "viewsPerDay": 10069,
+      "momentum": 8661,
+      "likeRate": 1.55,
+      "commentRate": 0.14,
+      "matchedQueries": [
+        "재테크"
+      ],
+      "marketScore": {
+        "total": 74,
+        "parts": {
+          "volume": 22,
+          "velocity": 27,
+          "likeRate": 6,
+          "commentRate": 2,
+          "recency": 18
+        }
+      },
+      "rankScore": {
+        "total": 80,
+        "parts": {
+          "momentum": 43,
+          "volume": 37
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 1200000
+    },
+    {
+      "videoId": "wkyJFVjEVlk",
+      "url": "https://www.youtube.com/watch?v=wkyJFVjEVlk",
+      "title": "혜택 사라지는 ISA 계좌... 당장 이것부터 하세요!",
+      "description": "※ 참고로 저는 전문가가 아닙니다 같이 공부해보자는 취지의 영상입니다^^\n\n#ISA #ISA통장 #ISA계좌",
+      "channelId": "UCaWi2foADm_lKAKnmeQwLSA",
+      "channelTitle": "재테크읽어주는 파일럿",
+      "publishedAt": "2026-08-07T03:00:31Z",
+      "thumbnail": "https://i.ytimg.com/vi/wkyJFVjEVlk/mqdefault.jpg",
+      "tags": [
+        "ISA",
+        "ISA 통장",
+        "ISA 계좌"
+      ],
+      "viewCount": 163464,
+      "likeCount": 5607,
+      "commentCount": 717,
+      "durationSeconds": 709,
+      "format": "롱폼",
+      "ageDays": 5.6,
+      "viewsPerDay": 29324,
+      "momentum": 26910,
+      "likeRate": 3.43,
+      "commentRate": 0.44,
+      "matchedQueries": [
+        "재테크"
+      ],
+      "marketScore": {
+        "total": 90,
+        "parts": {
+          "volume": 22,
+          "velocity": 30,
+          "likeRate": 13,
+          "commentRate": 5,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 90,
+        "parts": {
+          "momentum": 54,
+          "volume": 36
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 1280000
+    },
+    {
+      "videoId": "sF4LCIZAVog",
+      "url": "https://www.youtube.com/watch?v=sF4LCIZAVog",
+      "title": "“S&P500보다 3배 벌어야죠” 현금 흐름을 만들어낼 4가지 월배당 전략! I 제도권주식분석 I 염승환 I ETF아는형",
+      "description": "💰 ETF로 ‘월 500만 원’ 현금흐름, 정말 가능할까?\n14년간 증권사에서 투자자들을 만나고\n40대 초반, ‘하프 파이어족’이 된 제도권 주식 분석!\n월급이 사라진 뒤 가장 먼저 깨달은 건\n수익률보다도 꾸준히 들어오는 ‘현금흐름’의 중요성이었습니다.\n\n✔️ 파이어족이 커버드콜 ET",
+      "channelId": "UCIt_hQy30blHrVAS7QLTyTg",
+      "channelTitle": "ETF 아는 형",
+      "publishedAt": "2026-08-05T08:00:31Z",
+      "thumbnail": "https://i.ytimg.com/vi/sF4LCIZAVog/mqdefault.jpg",
+      "tags": [
+        "ETF",
+        "ETF투자방법",
+        "염승환",
+        "주식투자",
+        "제도권주식분석",
+        "연금 ETF",
+        "SCHD",
+        "커버드콜",
+        "KODEX",
+        "반도체 커버드콜",
+        "배당주",
+        "월배당"
+      ],
+      "viewCount": 132691,
+      "likeCount": 2444,
+      "commentCount": 205,
+      "durationSeconds": 2291,
+      "format": "롱폼",
+      "ageDays": 7.4,
+      "viewsPerDay": 18014,
+      "momentum": 16802,
+      "likeRate": 1.84,
+      "commentRate": 0.15,
+      "matchedQueries": [
+        "ETF",
+        "배당주"
+      ],
+      "marketScore": {
+        "total": 78,
+        "parts": {
+          "volume": 21,
+          "velocity": 28,
+          "likeRate": 7,
+          "commentRate": 2,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 85,
+        "parts": {
+          "momentum": 49,
+          "volume": 36
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 145000
+    },
+    {
+      "videoId": "kdZhonQ3qmg",
+      "url": "https://www.youtube.com/watch?v=kdZhonQ3qmg",
+      "title": "이 ETF 죽을 때까지 배당 나오는데 원금도 미친듯이 불어납니다. 1억 맘편히 묻으세요 | 배당의만장 풀버전 #돈쭐남#김경필",
+      "description": "*본 영상은 배당의만장님 출연 영상(1~3편)의 풀버전입니다. 시청에 참고하시기 바랍니다.\n\n▶배당의만장 [평생 월 500만 원 받는 월배당 ETF] 온라인 서점 구매 링크: https://www.yes24.com/Product/Goods/182639140\n▶유튜브채널: 배당의만장 (월",
+      "channelId": "UCriq8I8GEESkQq0svX19oCw",
+      "channelTitle": "부티플 - 부의 배수를 높여라",
+      "publishedAt": "2026-07-05T04:00:22Z",
+      "thumbnail": "https://i.ytimg.com/vi/kdZhonQ3qmg/mqdefault.jpg",
+      "tags": [
+        "재테크",
+        "주식투자",
+        "증시전망",
+        "국내주식",
+        "코스피",
+        "노후준비",
+        "노후자금",
+        "ETF투자",
+        "월배당ETF",
+        "배당주",
+        "배당금",
+        "배당투자"
+      ],
+      "viewCount": 131553,
+      "likeCount": 3379,
+      "commentCount": 82,
+      "durationSeconds": 2651,
+      "format": "롱폼",
+      "ageDays": 38.5,
+      "viewsPerDay": 3414,
+      "momentum": 2215,
+      "likeRate": 2.57,
+      "commentRate": 0.06,
+      "matchedQueries": [
+        "배당주"
+      ],
+      "marketScore": {
+        "total": 68,
+        "parts": {
+          "volume": 21,
+          "velocity": 24,
+          "likeRate": 10,
+          "commentRate": 1,
+          "recency": 13
+        }
+      },
+      "rankScore": {
+        "total": 58,
+        "parts": {
+          "momentum": 23,
+          "volume": 35
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 1200000
+    },
+    {
+      "videoId": "545SwSzAkKc",
+      "url": "https://www.youtube.com/watch?v=545SwSzAkKc",
+      "title": "삼전 말고 코스닥 간다🔥 상위 1% 고수의 순매수",
+      "description": "삼전 말고 코스닥 간다🔥 상위 1% 고수의 순매수 종목을 정리했습니다.\n코스닥 강세장에서 초고수들은 어떤 종목을 담았을까요?\n\n제주반도체·알테오젠·네오팜·제닉·주성엔지니어링·티에스이 등 강세 종목과 함께 SK하이닉스·삼성SDI·한화오션·두산에너빌리티 등 상위 1% 투자자들의 당일 순매",
+      "channelId": "UCooN1oaxqRME-p48T67Jq1w",
+      "channelTitle": "행복의 나침반",
+      "publishedAt": "2026-08-10T02:49:01Z",
+      "thumbnail": "https://i.ytimg.com/vi/545SwSzAkKc/mqdefault.jpg",
+      "tags": [
+        "코스닥",
+        "코스닥 상승",
+        "코스닥 상승장",
+        "초고수 순매수",
+        "상위 1% 고수",
+        "상위 1프로 순매수",
+        "고수의 픽",
+        "순매수 종목",
+        "국내주식 수급",
+        "제주반도체",
+        "알테오젠",
+        "삼성SDI"
+      ],
+      "viewCount": 108204,
+      "likeCount": 162,
+      "commentCount": 0,
+      "durationSeconds": 4,
+      "format": "쇼츠",
+      "ageDays": 2.6,
+      "viewsPerDay": 41900,
+      "momentum": 35104,
+      "likeRate": 0.15,
+      "commentRate": 0,
+      "matchedQueries": [
+        "재테크"
+      ],
+      "marketScore": {
+        "total": 72,
+        "parts": {
+          "volume": 21,
+          "velocity": 30,
+          "likeRate": 1,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 92,
+        "parts": {
+          "momentum": 57,
+          "volume": 35
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 95400
+    },
+    {
+      "videoId": "Kj-eou5fbmM",
+      "url": "https://www.youtube.com/watch?v=Kj-eou5fbmM",
+      "title": "삼전·하닉 5.9조 던졌다😱 외국인 갈아탄 종목 TOP15",
+      "description": "삼전·하닉 5.9조 던졌다😱 외국인 갈아탄 종목 TOP15\n8월 들어 외국인이 SK하이닉스 약 4.2조원, 삼성전자 약 1.7조원을 순매도하며 두 종목에서만 약 5.9조원을 빼냈습니다.\n\n반면 셀트리온·삼성물산·삼성바이오로직스·현대차·한화에어로스페이스·현대모비스·기아·SK스퀘어 등에는",
+      "channelId": "UCooN1oaxqRME-p48T67Jq1w",
+      "channelTitle": "행복의 나침반",
+      "publishedAt": "2026-08-11T11:15:38Z",
+      "thumbnail": "https://i.ytimg.com/vi/Kj-eou5fbmM/mqdefault.jpg",
+      "tags": [
+        "외국인 갈아탄 종목",
+        "외국인 순매수",
+        "외국인 순매도",
+        "외국인 수급",
+        "삼성전자 외국인",
+        "SK하이닉스 외국인",
+        "SK하이닉스 순매도",
+        "삼성전자 순매도",
+        "셀트리온 순매수",
+        "삼성물산 순매수",
+        "외국인 매수 종목",
+        "외국인 매도 종목"
+      ],
+      "viewCount": 100300,
+      "likeCount": 162,
+      "commentCount": 0,
+      "durationSeconds": 5,
+      "format": "쇼츠",
+      "ageDays": 1.2,
+      "viewsPerDay": 81506,
+      "momentum": 57957,
+      "likeRate": 0.16,
+      "commentRate": 0,
+      "matchedQueries": [
+        "재테크"
+      ],
+      "marketScore": {
+        "total": 71,
+        "parts": {
+          "volume": 21,
+          "velocity": 30,
+          "likeRate": 1,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 93,
+        "parts": {
+          "momentum": 59,
+          "volume": 34
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 95400
+    },
+    {
+      "videoId": "3X8nJlHUOhk",
+      "url": "https://www.youtube.com/watch?v=3X8nJlHUOhk",
+      "title": "미래적금 몰아보기🔥 담당자가 직접 출연한 유일한 영상! 이거만 보면 다 정리됩니다!",
+      "description": "💌 BUSINESS MAIL: heeaeson@gmail.com\n(비즈니스 전용  메일이므로 일반 상담 답변드리지 않습니다)\n📕 저서 \nNEW : 부의 이동 트렌드 2026 \n- 예스24\nhttps://vo.la/JtyTZ5b\n- 교보문고\nhttps://vo.la/tmlBYT8\n- ",
+      "channelId": "UCapIR8DFk5x_rLEjpfqKK_A",
+      "channelTitle": "개념있는 희애씨",
+      "publishedAt": "2026-06-23T11:00:02Z",
+      "thumbnail": "https://i.ytimg.com/vi/3X8nJlHUOhk/mqdefault.jpg",
+      "tags": [
+        "개념있는희애씨",
+        "곰아나",
+        "재테크",
+        "세테크",
+        "짠테크",
+        "연말정산",
+        "은행원",
+        "전직은행원",
+        "은행원 유튜버",
+        "금융유튜버",
+        "재테크유튜버",
+        "경제유튜버"
+      ],
+      "viewCount": 99914,
+      "likeCount": 1577,
+      "commentCount": 214,
+      "durationSeconds": 1496,
+      "format": "롱폼",
+      "ageDays": 50.2,
+      "viewsPerDay": 1989,
+      "momentum": 1044,
+      "likeRate": 1.58,
+      "commentRate": 0.21,
+      "matchedQueries": [
+        "적금 금리"
+      ],
+      "marketScore": {
+        "total": 62,
+        "parts": {
+          "volume": 21,
+          "velocity": 22,
+          "likeRate": 6,
+          "commentRate": 3,
+          "recency": 11
+        }
+      },
+      "rankScore": {
+        "total": 50,
+        "parts": {
+          "momentum": 16,
+          "volume": 34
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 136000
+    },
+    {
+      "videoId": "nm2um6Dd648",
+      "url": "https://www.youtube.com/watch?v=nm2um6Dd648",
+      "title": "SK하이닉스 신규팹 투자 확정🔥반도체 소부장 상승률 TOP15",
+      "description": "SK하이닉스 신규팹 투자 확정🔥 반도체 소부장 상승률 TOP15\nSK하이닉스가 용인 Y2와 청주 M17 신규 팹 건설에 총 54조3천억원 규모 투자를 확정했습니다. AI 메모리 수요 대응을 위한 대규모 생산능력 확대에 나서면서 반도체 소재·부품·장비주에도 수혜 기대감이 부각됐습니다.\n",
+      "channelId": "UCooN1oaxqRME-p48T67Jq1w",
+      "channelTitle": "행복의 나침반",
+      "publishedAt": "2026-08-10T11:15:32Z",
+      "thumbnail": "https://i.ytimg.com/vi/nm2um6Dd648/mqdefault.jpg",
+      "tags": [
+        "SK하이닉스",
+        "SK하이닉스투자",
+        "반도체소부장",
+        "반도체소부장주",
+        "반도체장비주",
+        "반도체소재주",
+        "반도체부품주",
+        "반도체관련주",
+        "HBM관련주",
+        "용인반도체클러스터",
+        "피엠티",
+        "티씨케이"
+      ],
+      "viewCount": 82880,
+      "likeCount": 83,
+      "commentCount": 0,
+      "durationSeconds": 4,
+      "format": "쇼츠",
+      "ageDays": 2.2,
+      "viewsPerDay": 37155,
+      "momentum": 30352,
+      "likeRate": 0.1,
+      "commentRate": 0,
+      "matchedQueries": [
+        "재테크"
+      ],
+      "marketScore": {
+        "total": 71,
+        "parts": {
+          "volume": 20,
+          "velocity": 30,
+          "likeRate": 0,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 90,
+        "parts": {
+          "momentum": 56,
+          "volume": 34
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 95400
+    },
+    {
+      "videoId": "a-890uldXeo",
+      "url": "https://www.youtube.com/watch?v=a-890uldXeo",
+      "title": "👨🏻‍🦳👵🏻 연금저축 사용설명서 | 연말정산 세액공제 가능한 연금저축펀드 | ver.2026",
+      "description": "#연금저축 #세액공제 #연금저축펀드\n\n안녕하세요 박곰희입니다.\n오늘은 제가 평소에도 가장 중요하게 생각하는 연금저축펀드에 관한 내용입니다.\n연금저축의 종류 중 '연금저축펀드' 중심으로 영상을 만들게 되었다는 점을 고려해주시면 감사하겠습니다.\n여러분의 노후에 큰 도움이 되었으면 좋겠습니다",
+      "channelId": "UCr7XsrSrvAn_WcU4kF99bbQ",
+      "channelTitle": "박곰희TV",
+      "publishedAt": "2026-07-24T11:00:07Z",
+      "thumbnail": "https://i.ytimg.com/vi/a-890uldXeo/mqdefault.jpg",
+      "tags": [
+        "재테크",
+        "투자",
+        "박곰희",
+        "빠꼼이",
+        "증권사",
+        "증권",
+        "자산관리사",
+        "금융",
+        "금융인",
+        "연금저축",
+        "연금",
+        "연금펀드"
+      ],
+      "viewCount": 81438,
+      "likeCount": 2291,
+      "commentCount": 193,
+      "durationSeconds": 1500,
+      "format": "롱폼",
+      "ageDays": 19.2,
+      "viewsPerDay": 4232,
+      "momentum": 3576,
+      "likeRate": 2.81,
+      "commentRate": 0.24,
+      "matchedQueries": [
+        "연금저축"
+      ],
+      "marketScore": {
+        "total": 76,
+        "parts": {
+          "volume": 20,
+          "velocity": 24,
+          "likeRate": 11,
+          "commentRate": 3,
+          "recency": 17
+        }
+      },
+      "rankScore": {
+        "total": 61,
+        "parts": {
+          "momentum": 28,
+          "volume": 33
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 1260000
+    },
+    {
+      "videoId": "iMkvDXx86dE",
+      "url": "https://www.youtube.com/watch?v=iMkvDXx86dE",
+      "title": "연금고수들이 연금저축계좌 반드시 담는 ETF 3가지",
+      "description": "📈 오늘 시장에서 꼭 알아야 할 경제와 투자 인사이트를 쉽고 명확하게 정리해드립니다.\n💡 주식, ETF, 미국주식, 경제 전망, 금리, AI, 반도체, 부동산까지 투자자가 반드시 알아야 할 핵심 정보를 함께 살펴보세요.\n\n이번 영상에서는 최신 경제 뉴스와 금융시장 흐름을 바탕으로 투",
+      "channelId": "UCjm62t0FCasxIA_fu_uUcOg",
+      "channelTitle": "경제나침반",
+      "publishedAt": "2026-07-28T04:50:14Z",
+      "thumbnail": "https://i.ytimg.com/vi/iMkvDXx86dE/mqdefault.jpg",
+      "tags": [
+        "경제",
+        "주식",
+        "투자",
+        "재테크",
+        "경제공부",
+        "경제뉴스",
+        "주식초보",
+        "ETF투자",
+        "미국주식",
+        "한국주식",
+        "돈공부",
+        "경제전망"
+      ],
+      "viewCount": 79903,
+      "likeCount": 1608,
+      "commentCount": 53,
+      "durationSeconds": 1512,
+      "format": "롱폼",
+      "ageDays": 15.5,
+      "viewsPerDay": 5156,
+      "momentum": 4533,
+      "likeRate": 2.01,
+      "commentRate": 0.07,
+      "matchedQueries": [
+        "연금저축"
+      ],
+      "marketScore": {
+        "total": 72,
+        "parts": {
+          "volume": 20,
+          "velocity": 25,
+          "likeRate": 8,
+          "commentRate": 1,
+          "recency": 18
+        }
+      },
+      "rankScore": {
+        "total": 66,
+        "parts": {
+          "momentum": 33,
+          "volume": 33
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 12200
+    },
+    {
+      "videoId": "SdBtN1tTAD4",
+      "url": "https://www.youtube.com/watch?v=SdBtN1tTAD4",
+      "title": "청년미래적금, 가입 전에 꼭 보세요! (가장 좋은 은행, 청년도약계좌 갈아타기 다 알려드림)",
+      "description": "#청년미래적금 #청년도약계좌 #미래적금결과발표 \n📢 청년미래적금 결과발표!!\n신청 기간은 7/24~8/7까지 놓치지마세요!\n\n드디어 정부가 만든 '청년미래적금'이 나옵니다‼\n월 50만원씩 3년이면 우대형 기준 약 2,255만원,\n실질 연 19% 수준까지 가능한 역대급 청년 적금이에요!",
+      "channelId": "UCd7lUUDMIGDybpy9xY9CpfA",
+      "channelTitle": "부자습관은 래빗해빛",
+      "publishedAt": "2026-06-21T05:06:00Z",
+      "thumbnail": "https://i.ytimg.com/vi/SdBtN1tTAD4/mqdefault.jpg",
+      "tags": [
+        "청년미래적금",
+        "래빗해빛 미래적금",
+        "미래적금 래빗해빛",
+        "청년미래적금 래빗해빛",
+        "청년미래적금 갈아타기",
+        "청년미래적금 가입조건",
+        "청년미래적금 은행별 금리",
+        "청년미래적금 신청방법",
+        "청년미래적금 우대형",
+        "청년미래적금 전환",
+        "청년미래적금 군인",
+        "청년미래적금 연계가입"
+      ],
+      "viewCount": 79677,
+      "likeCount": 1288,
+      "commentCount": 538,
+      "durationSeconds": 822,
+      "format": "롱폼",
+      "ageDays": 52.5,
+      "viewsPerDay": 1518,
+      "momentum": 760,
+      "likeRate": 1.62,
+      "commentRate": 0.68,
+      "matchedQueries": [
+        "적금 금리"
+      ],
+      "marketScore": {
+        "total": 66,
+        "parts": {
+          "volume": 20,
+          "velocity": 21,
+          "likeRate": 6,
+          "commentRate": 9,
+          "recency": 10
+        }
+      },
+      "rankScore": {
+        "total": 46,
+        "parts": {
+          "momentum": 14,
+          "volume": 32
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 97400
+    },
+    {
+      "videoId": "ESO-lkX6vi8",
+      "url": "https://www.youtube.com/watch?v=ESO-lkX6vi8",
+      "title": "\"은퇴가 코앞인데 연금이 없다고요?\" 5년만 내고 10년 뒤 바로 받는 연금 2가지",
+      "description": "은퇴가 코앞인데 연금이 없으신가요?\n빨리 내고 빨리 받는 연금이 있습니다!\n5년만 내면 평생 받을 수 있는\n연금 2가지 알려드리겠습니다!\n\n🔔 연금에 대한 모든 궁금증, 연금박사에서 해결해 드립니다.\n【전화】 1800-3624 \n【홈페이지】  https://www.100-500.kr/",
+      "channelId": "UCD9mxN8o9qLei1MbzroeP_A",
+      "channelTitle": "연금박사",
+      "publishedAt": "2026-05-20T07:45:00Z",
+      "thumbnail": "https://i.ytimg.com/vi/ESO-lkX6vi8/mqdefault.jpg",
+      "tags": [
+        "연금박사",
+        "이영주",
+        "연금박사상담센터",
+        "연금상담",
+        "종합재무",
+        "연금",
+        "연금보험",
+        "연금저축",
+        "연금계좌",
+        "irp",
+        "연금추천",
+        "개인연금"
+      ],
+      "viewCount": 79151,
+      "likeCount": 955,
+      "commentCount": 31,
+      "durationSeconds": 479,
+      "format": "롱폼",
+      "ageDays": 84.4,
+      "viewsPerDay": 938,
+      "momentum": 148,
+      "likeRate": 1.21,
+      "commentRate": 0.04,
+      "matchedQueries": [
+        "연금저축"
+      ],
+      "marketScore": {
+        "total": 48,
+        "parts": {
+          "volume": 20,
+          "velocity": 20,
+          "likeRate": 5,
+          "commentRate": 0,
+          "recency": 3
+        }
+      },
+      "rankScore": {
+        "total": 40,
+        "parts": {
+          "momentum": 8,
+          "volume": 32
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 440000
+    },
+    {
+      "videoId": "BnAiFr8Enhw",
+      "url": "https://www.youtube.com/watch?v=BnAiFr8Enhw",
+      "title": "재테크 공부 시작하는 법, 경제 책 유튜브 강의 추천, 한살이라도 어릴 때 시작해야하는 이유",
+      "description": "#재테크 #재테크공부 #재테크초보 \n\n안녕하세요.\n제가 처음 재테크 공부를 시작하면서 활용했던 유튜브, 책, 강의 등을 소개했습니다.\n\n01:07 재테크 공부를 해야하는 이유\n04:45 처음 재테크 공부하는 방향\n06:04 유튜브 추천\n07:17 블로그 추천\n08:23 강의 후기\n10:",
+      "channelId": "UCXeoKHFwsPsN5wTLyPSpPqQ",
+      "channelTitle": "2030 미혼여자 내집마련 | 재테크모아",
+      "publishedAt": "2026-08-02T07:12:15Z",
+      "thumbnail": "https://i.ytimg.com/vi/BnAiFr8Enhw/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 75121,
+      "likeCount": 3572,
+      "commentCount": 105,
+      "durationSeconds": 1051,
+      "format": "롱폼",
+      "ageDays": 10.4,
+      "viewsPerDay": 7223,
+      "momentum": 6637,
+      "likeRate": 4.75,
+      "commentRate": 0.14,
+      "matchedQueries": [
+        "재테크"
+      ],
+      "marketScore": {
+        "total": 82,
+        "parts": {
+          "volume": 20,
+          "velocity": 26,
+          "likeRate": 15,
+          "commentRate": 2,
+          "recency": 19
+        }
+      },
+      "rankScore": {
+        "total": 69,
+        "parts": {
+          "momentum": 38,
+          "volume": 31
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 7950
+    }
+  ],
+  "topScoredVideos": [
+    {
+      "videoId": "7FrJ3wuJDaY",
+      "url": "https://www.youtube.com/watch?v=7FrJ3wuJDaY",
+      "title": "어떤 투자는 '도박'이다? 주식 투자 때문에 인생이 무너진 사람들 | 추적60분 KBS 방송",
+      "description": "00:00 빚투 https://youtu.be/9sOGwpOy4jY\n04:08 K사 거래정지 사태 https://youtu.be/yERWAxUcgCY\n13:38 레버리지 https://youtu.be/dRJNi2zPD4U\n30:31 대유 상장폐지 사태 https://youtu.be/HD",
+      "channelId": "UCy-6oZwPwrR_W-zYnqLD8dg",
+      "channelTitle": "KBS 추적60분",
+      "publishedAt": "2026-08-02T14:59:30Z",
+      "thumbnail": "https://i.ytimg.com/vi/7FrJ3wuJDaY/mqdefault.jpg",
+      "tags": [
+        "KBS",
+        "다큐",
+        "다큐멘터리",
+        "인터뷰",
+        "레전드",
+        "그것이 알고싶다"
+      ],
+      "viewCount": 2347256,
+      "likeCount": 18508,
+      "commentCount": 8549,
+      "durationSeconds": 2316,
+      "format": "롱폼",
+      "ageDays": 10.1,
+      "viewsPerDay": 232975,
+      "momentum": 214541,
+      "likeRate": 0.79,
+      "commentRate": 0.36,
+      "matchedQueries": [
+        "주식 투자"
+      ],
+      "marketScore": {
+        "total": 82,
+        "parts": {
+          "volume": 25,
+          "velocity": 30,
+          "likeRate": 3,
+          "commentRate": 5,
+          "recency": 19
+        }
+      },
+      "rankScore": {
+        "total": 100,
+        "parts": {
+          "momentum": 60,
+          "volume": 40
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 799000
+    },
+    {
+      "videoId": "Y_HTZh_b1ko",
+      "url": "https://www.youtube.com/watch?v=Y_HTZh_b1ko",
+      "title": "\"손실률 78%, 22억 날렸다\" 레버리지로 파산한 투자자 속출? / KNN",
+      "description": "#knn뉴스 #손실률 #레버리지\n\n40년 동안 모은 전 재산에 집까지 팔아 투자했다가 22억 원 넘게 잃고 파산했다는 한 투자자의 사연이 올라와 충격을 주고 있습니다.\n\n제보\n카톡 : 'KNN' 친구추가\n메일 : knnstorynews@gmail.com\n          adknn@kn",
+      "channelId": "UC1ifSsWUG241rRfK0ezYCgA",
+      "channelTitle": "KNN NEWS",
+      "publishedAt": "2026-07-30T09:45:10Z",
+      "thumbnail": "https://i.ytimg.com/vi/Y_HTZh_b1ko/mqdefault.jpg",
+      "tags": [
+        "knn뉴스",
+        "e뉴스",
+        "주식",
+        "투자",
+        "하락",
+        "폭락",
+        "손실",
+        "도박"
+      ],
+      "viewCount": 855715,
+      "likeCount": 5978,
+      "commentCount": 9900,
+      "durationSeconds": 99,
+      "format": "롱폼",
+      "ageDays": 13.3,
+      "viewsPerDay": 64371,
+      "momentum": 57794,
+      "likeRate": 0.7,
+      "commentRate": 1.16,
+      "matchedQueries": [
+        "주식 투자"
+      ],
+      "marketScore": {
+        "total": 86,
+        "parts": {
+          "volume": 25,
+          "velocity": 30,
+          "likeRate": 3,
+          "commentRate": 10,
+          "recency": 19
+        }
+      },
+      "rankScore": {
+        "total": 99,
+        "parts": {
+          "momentum": 59,
+          "volume": 40
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 1300000
+    },
+    {
+      "videoId": "Kj-eou5fbmM",
+      "url": "https://www.youtube.com/watch?v=Kj-eou5fbmM",
+      "title": "삼전·하닉 5.9조 던졌다😱 외국인 갈아탄 종목 TOP15",
+      "description": "삼전·하닉 5.9조 던졌다😱 외국인 갈아탄 종목 TOP15\n8월 들어 외국인이 SK하이닉스 약 4.2조원, 삼성전자 약 1.7조원을 순매도하며 두 종목에서만 약 5.9조원을 빼냈습니다.\n\n반면 셀트리온·삼성물산·삼성바이오로직스·현대차·한화에어로스페이스·현대모비스·기아·SK스퀘어 등에는",
+      "channelId": "UCooN1oaxqRME-p48T67Jq1w",
+      "channelTitle": "행복의 나침반",
+      "publishedAt": "2026-08-11T11:15:38Z",
+      "thumbnail": "https://i.ytimg.com/vi/Kj-eou5fbmM/mqdefault.jpg",
+      "tags": [
+        "외국인 갈아탄 종목",
+        "외국인 순매수",
+        "외국인 순매도",
+        "외국인 수급",
+        "삼성전자 외국인",
+        "SK하이닉스 외국인",
+        "SK하이닉스 순매도",
+        "삼성전자 순매도",
+        "셀트리온 순매수",
+        "삼성물산 순매수",
+        "외국인 매수 종목",
+        "외국인 매도 종목"
+      ],
+      "viewCount": 100300,
+      "likeCount": 162,
+      "commentCount": 0,
+      "durationSeconds": 5,
+      "format": "쇼츠",
+      "ageDays": 1.2,
+      "viewsPerDay": 81506,
+      "momentum": 57957,
+      "likeRate": 0.16,
+      "commentRate": 0,
+      "matchedQueries": [
+        "재테크"
+      ],
+      "marketScore": {
+        "total": 71,
+        "parts": {
+          "volume": 21,
+          "velocity": 30,
+          "likeRate": 1,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 93,
+        "parts": {
+          "momentum": 59,
+          "volume": 34
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 95400
+    },
+    {
+      "videoId": "545SwSzAkKc",
+      "url": "https://www.youtube.com/watch?v=545SwSzAkKc",
+      "title": "삼전 말고 코스닥 간다🔥 상위 1% 고수의 순매수",
+      "description": "삼전 말고 코스닥 간다🔥 상위 1% 고수의 순매수 종목을 정리했습니다.\n코스닥 강세장에서 초고수들은 어떤 종목을 담았을까요?\n\n제주반도체·알테오젠·네오팜·제닉·주성엔지니어링·티에스이 등 강세 종목과 함께 SK하이닉스·삼성SDI·한화오션·두산에너빌리티 등 상위 1% 투자자들의 당일 순매",
+      "channelId": "UCooN1oaxqRME-p48T67Jq1w",
+      "channelTitle": "행복의 나침반",
+      "publishedAt": "2026-08-10T02:49:01Z",
+      "thumbnail": "https://i.ytimg.com/vi/545SwSzAkKc/mqdefault.jpg",
+      "tags": [
+        "코스닥",
+        "코스닥 상승",
+        "코스닥 상승장",
+        "초고수 순매수",
+        "상위 1% 고수",
+        "상위 1프로 순매수",
+        "고수의 픽",
+        "순매수 종목",
+        "국내주식 수급",
+        "제주반도체",
+        "알테오젠",
+        "삼성SDI"
+      ],
+      "viewCount": 108204,
+      "likeCount": 162,
+      "commentCount": 0,
+      "durationSeconds": 4,
+      "format": "쇼츠",
+      "ageDays": 2.6,
+      "viewsPerDay": 41900,
+      "momentum": 35104,
+      "likeRate": 0.15,
+      "commentRate": 0,
+      "matchedQueries": [
+        "재테크"
+      ],
+      "marketScore": {
+        "total": 72,
+        "parts": {
+          "volume": 21,
+          "velocity": 30,
+          "likeRate": 1,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 92,
+        "parts": {
+          "momentum": 57,
+          "volume": 35
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 95400
+    },
+    {
+      "videoId": "wkyJFVjEVlk",
+      "url": "https://www.youtube.com/watch?v=wkyJFVjEVlk",
+      "title": "혜택 사라지는 ISA 계좌... 당장 이것부터 하세요!",
+      "description": "※ 참고로 저는 전문가가 아닙니다 같이 공부해보자는 취지의 영상입니다^^\n\n#ISA #ISA통장 #ISA계좌",
+      "channelId": "UCaWi2foADm_lKAKnmeQwLSA",
+      "channelTitle": "재테크읽어주는 파일럿",
+      "publishedAt": "2026-08-07T03:00:31Z",
+      "thumbnail": "https://i.ytimg.com/vi/wkyJFVjEVlk/mqdefault.jpg",
+      "tags": [
+        "ISA",
+        "ISA 통장",
+        "ISA 계좌"
+      ],
+      "viewCount": 163464,
+      "likeCount": 5607,
+      "commentCount": 717,
+      "durationSeconds": 709,
+      "format": "롱폼",
+      "ageDays": 5.6,
+      "viewsPerDay": 29324,
+      "momentum": 26910,
+      "likeRate": 3.43,
+      "commentRate": 0.44,
+      "matchedQueries": [
+        "재테크"
+      ],
+      "marketScore": {
+        "total": 90,
+        "parts": {
+          "volume": 22,
+          "velocity": 30,
+          "likeRate": 13,
+          "commentRate": 5,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 90,
+        "parts": {
+          "momentum": 54,
+          "volume": 36
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 1280000
+    },
+    {
+      "videoId": "nm2um6Dd648",
+      "url": "https://www.youtube.com/watch?v=nm2um6Dd648",
+      "title": "SK하이닉스 신규팹 투자 확정🔥반도체 소부장 상승률 TOP15",
+      "description": "SK하이닉스 신규팹 투자 확정🔥 반도체 소부장 상승률 TOP15\nSK하이닉스가 용인 Y2와 청주 M17 신규 팹 건설에 총 54조3천억원 규모 투자를 확정했습니다. AI 메모리 수요 대응을 위한 대규모 생산능력 확대에 나서면서 반도체 소재·부품·장비주에도 수혜 기대감이 부각됐습니다.\n",
+      "channelId": "UCooN1oaxqRME-p48T67Jq1w",
+      "channelTitle": "행복의 나침반",
+      "publishedAt": "2026-08-10T11:15:32Z",
+      "thumbnail": "https://i.ytimg.com/vi/nm2um6Dd648/mqdefault.jpg",
+      "tags": [
+        "SK하이닉스",
+        "SK하이닉스투자",
+        "반도체소부장",
+        "반도체소부장주",
+        "반도체장비주",
+        "반도체소재주",
+        "반도체부품주",
+        "반도체관련주",
+        "HBM관련주",
+        "용인반도체클러스터",
+        "피엠티",
+        "티씨케이"
+      ],
+      "viewCount": 82880,
+      "likeCount": 83,
+      "commentCount": 0,
+      "durationSeconds": 4,
+      "format": "쇼츠",
+      "ageDays": 2.2,
+      "viewsPerDay": 37155,
+      "momentum": 30352,
+      "likeRate": 0.1,
+      "commentRate": 0,
+      "matchedQueries": [
+        "재테크"
+      ],
+      "marketScore": {
+        "total": 71,
+        "parts": {
+          "volume": 20,
+          "velocity": 30,
+          "likeRate": 0,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 90,
+        "parts": {
+          "momentum": 56,
+          "volume": 34
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 95400
+    },
+    {
+      "videoId": "Wc52vsC6q4U",
+      "url": "https://www.youtube.com/watch?v=Wc52vsC6q4U",
+      "title": "생활비 한 달 5만원..10년 만에 배당금 월 300만원 받는 이유  (조윤진 1부) #세미파이어 #배당투자",
+      "description": "👤 오늘의 게스트:  조윤진 작가\n'6억으로 시작한 세미파이어' 저자 & 배당으로 부자되기 유튜브 채널 운영\n\n\n평범한 중소기업 직장인이었던 그녀는 이혼 후 경제적으로 큰 타격을 입고, \"목숨 걸고 노후를 준비해야겠다\"는 마음으로 10년간 악착같이 아끼고 모았습니다. 5천만 원으로 시",
+      "channelId": "UC5UFGiELUPSTvFfMGEUxeiQ",
+      "channelTitle": "자람들 - 자립하는사람들",
+      "publishedAt": "2026-07-17T12:09:28Z",
+      "thumbnail": "https://i.ytimg.com/vi/Wc52vsC6q4U/mqdefault.jpg",
+      "tags": [
+        "나는사장님",
+        "사장님",
+        "마케팅",
+        "자영업",
+        "프랜차이즈",
+        "퇴직",
+        "퇴사",
+        "사직서",
+        "온라인사업",
+        "온라인부업",
+        "부업",
+        "겸직"
+      ],
+      "viewCount": 569589,
+      "likeCount": 5778,
+      "commentCount": 536,
+      "durationSeconds": 1758,
+      "format": "롱폼",
+      "ageDays": 26.2,
+      "viewsPerDay": 21746,
+      "momentum": 16887,
+      "likeRate": 1.01,
+      "commentRate": 0.09,
+      "matchedQueries": [
+        "배당주"
+      ],
+      "marketScore": {
+        "total": 74,
+        "parts": {
+          "volume": 24,
+          "velocity": 29,
+          "likeRate": 4,
+          "commentRate": 1,
+          "recency": 16
+        }
+      },
+      "rankScore": {
+        "total": 89,
+        "parts": {
+          "momentum": 50,
+          "volume": 39
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 26600
+    },
+    {
+      "videoId": "BxDfMXa4_ws",
+      "url": "https://www.youtube.com/watch?v=BxDfMXa4_ws",
+      "title": "존리 대표│연금저축, 이렇게 해야 돈이 모입니다! 존리가 알려주는 ETF 투자의 핵심 (풀영상)",
+      "description": "https://youtube.com/playlist?list=PLrtJ1CzSbrovHpgwNNM-UV2sPR8YKIddu&si=G6pYEHfWlQITNRsS\n#존리 #타이밍투자 #노후자금 #노후투자 #노후준비 #노후대비 #노후파산 #노후투자 #투자공부 #투자기초 #금융교육 #금융지식 ",
+      "channelId": "UCXIIyfdS3hA3OHrhuMY1urQ",
+      "channelTitle": "새멋TV",
+      "publishedAt": "2026-08-03T02:00:25Z",
+      "thumbnail": "https://i.ytimg.com/vi/BxDfMXa4_ws/mqdefault.jpg",
+      "tags": [
+        "새멋TV",
+        "시니어",
+        "MTN",
+        "머니투데이방송",
+        "고령화",
+        "노후준비",
+        "노후대비",
+        "노후자산",
+        "노후자금",
+        "노후경제",
+        "노후현실",
+        "한국노후"
+      ],
+      "viewCount": 195006,
+      "likeCount": 4041,
+      "commentCount": 162,
+      "durationSeconds": 1936,
+      "format": "롱폼",
+      "ageDays": 9.6,
+      "viewsPerDay": 20279,
+      "momentum": 18729,
+      "likeRate": 2.07,
+      "commentRate": 0.08,
+      "matchedQueries": [
+        "연금저축"
+      ],
+      "marketScore": {
+        "total": 79,
+        "parts": {
+          "volume": 22,
+          "velocity": 29,
+          "likeRate": 8,
+          "commentRate": 1,
+          "recency": 19
+        }
+      },
+      "rankScore": {
+        "total": 88,
+        "parts": {
+          "momentum": 51,
+          "volume": 37
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 43600
+    },
+    {
+      "videoId": "QWYnZG7LfEs",
+      "url": "https://www.youtube.com/watch?v=QWYnZG7LfEs",
+      "title": "99% 모르는 AI로 주식수익 극대화 하는 법ㅣ대외비 EP.29",
+      "description": "오늘은 김경민 대표님, 무빙워터님, 김덕진 소장님을 모시고 \n주식으로 수백억 버는 사람들이 AI로 주식하는 천재적인 방법을 파헤쳐봤습니다.  \n영상이 유익 했다면 구독!! 영상이 재밌으셨다면 좋아요 버튼을 눌러주세요!\n\n#김경민 #무빙워터 #김덕진 #신아영 #지식인사이드 #주식 #삼전 ",
+      "channelId": "UCA_hgsFzmynpv1zkvA5A7jA",
+      "channelTitle": "지식인사이드",
+      "publishedAt": "2026-07-25T01:00:26Z",
+      "thumbnail": "https://i.ytimg.com/vi/QWYnZG7LfEs/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 367625,
+      "likeCount": 7093,
+      "commentCount": 221,
+      "durationSeconds": 2247,
+      "format": "롱폼",
+      "ageDays": 18.7,
+      "viewsPerDay": 19704,
+      "momentum": 16758,
+      "likeRate": 1.93,
+      "commentRate": 0.06,
+      "matchedQueries": [
+        "주식 투자"
+      ],
+      "marketScore": {
+        "total": 77,
+        "parts": {
+          "volume": 23,
+          "velocity": 29,
+          "likeRate": 7,
+          "commentRate": 1,
+          "recency": 17
+        }
+      },
+      "rankScore": {
+        "total": 86,
+        "parts": {
+          "momentum": 48,
+          "volume": 38
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 4000000
+    },
+    {
+      "videoId": "sF4LCIZAVog",
+      "url": "https://www.youtube.com/watch?v=sF4LCIZAVog",
+      "title": "“S&P500보다 3배 벌어야죠” 현금 흐름을 만들어낼 4가지 월배당 전략! I 제도권주식분석 I 염승환 I ETF아는형",
+      "description": "💰 ETF로 ‘월 500만 원’ 현금흐름, 정말 가능할까?\n14년간 증권사에서 투자자들을 만나고\n40대 초반, ‘하프 파이어족’이 된 제도권 주식 분석!\n월급이 사라진 뒤 가장 먼저 깨달은 건\n수익률보다도 꾸준히 들어오는 ‘현금흐름’의 중요성이었습니다.\n\n✔️ 파이어족이 커버드콜 ET",
+      "channelId": "UCIt_hQy30blHrVAS7QLTyTg",
+      "channelTitle": "ETF 아는 형",
+      "publishedAt": "2026-08-05T08:00:31Z",
+      "thumbnail": "https://i.ytimg.com/vi/sF4LCIZAVog/mqdefault.jpg",
+      "tags": [
+        "ETF",
+        "ETF투자방법",
+        "염승환",
+        "주식투자",
+        "제도권주식분석",
+        "연금 ETF",
+        "SCHD",
+        "커버드콜",
+        "KODEX",
+        "반도체 커버드콜",
+        "배당주",
+        "월배당"
+      ],
+      "viewCount": 132691,
+      "likeCount": 2444,
+      "commentCount": 205,
+      "durationSeconds": 2291,
+      "format": "롱폼",
+      "ageDays": 7.4,
+      "viewsPerDay": 18014,
+      "momentum": 16802,
+      "likeRate": 1.84,
+      "commentRate": 0.15,
+      "matchedQueries": [
+        "ETF",
+        "배당주"
+      ],
+      "marketScore": {
+        "total": 78,
+        "parts": {
+          "volume": 21,
+          "velocity": 28,
+          "likeRate": 7,
+          "commentRate": 2,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 85,
+        "parts": {
+          "momentum": 49,
+          "volume": 36
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 145000
+    },
+    {
+      "videoId": "ZVIoKQamAmg",
+      "url": "https://www.youtube.com/watch?v=ZVIoKQamAmg",
+      "title": "삼성전자 SK하이닉스 진짜 끝난거 아닌가요?",
+      "description": "#투자 #주식투자 #주식",
+      "channelId": "UCSKL0LobVZxLWrcbvwju6TA",
+      "channelTitle": "자본주의 게임, 프론트맨",
+      "publishedAt": "2026-08-10T09:00:32Z",
+      "thumbnail": "https://i.ytimg.com/vi/ZVIoKQamAmg/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 71814,
+      "likeCount": 746,
+      "commentCount": 40,
+      "durationSeconds": 165,
+      "format": "롱폼",
+      "ageDays": 2.3,
+      "viewsPerDay": 30896,
+      "momentum": 25426,
+      "likeRate": 1.04,
+      "commentRate": 0.06,
+      "matchedQueries": [
+        "주식 투자"
+      ],
+      "marketScore": {
+        "total": 75,
+        "parts": {
+          "volume": 20,
+          "velocity": 30,
+          "likeRate": 4,
+          "commentRate": 1,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 84,
+        "parts": {
+          "momentum": 54,
+          "volume": 30
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 62900
+    },
+    {
+      "videoId": "i-J-kPrSqmI",
+      "url": "https://www.youtube.com/watch?v=i-J-kPrSqmI",
+      "title": "안정모의 주식투자님의 실시간 스트림",
+      "description": "채널에 가입하여 혜택을 누려보세요.\nhttps://www.youtube.com/channel/UCVAbB2v_MCpAWNVTGxVLRxw/join\n\njimkony@naver.com\nhttp://cafe.daum.net/richteck\n\n전)한국경제TV 전문가, 전)SBSCNBC 전문가,",
+      "channelId": "UCVAbB2v_MCpAWNVTGxVLRxw",
+      "channelTitle": "안정모의 주식투자",
+      "publishedAt": "2026-08-12T06:55:12Z",
+      "thumbnail": "https://i.ytimg.com/vi/i-J-kPrSqmI/mqdefault.jpg",
+      "tags": [
+        "주식",
+        "주식투자",
+        "주식공부",
+        "주식강의",
+        "주식초보",
+        "주식단타",
+        "주식고수",
+        "단타매매",
+        "삼성전자",
+        "하이닉스",
+        "셀트리온",
+        "셀트리온제약"
+      ],
+      "viewCount": 36710,
+      "likeCount": 2686,
+      "commentCount": 0,
+      "durationSeconds": 26741,
+      "format": "롱폼",
+      "ageDays": 0.4,
+      "viewsPerDay": 89222,
+      "momentum": 40277,
+      "likeRate": 7.32,
+      "commentRate": 0,
+      "matchedQueries": [
+        "주식 투자"
+      ],
+      "marketScore": {
+        "total": 84,
+        "parts": {
+          "volume": 19,
+          "velocity": 30,
+          "likeRate": 15,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 81,
+        "parts": {
+          "momentum": 58,
+          "volume": 23
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 227000
+    },
+    {
+      "videoId": "fLGhZQdfd_M",
+      "url": "https://www.youtube.com/watch?v=fLGhZQdfd_M",
+      "title": "“매달 50만원씩 여기 넣어라” 19.5% 확정수익 주는 통장 떴다. 나이제한, 소득제한 없습니다 | 송영욱 대표 풀버전 #돈쭐남 #김경필",
+      "description": "*본 영상은 송영욱 대표님 출연 영상(1~3편)의 풀버전입니다. 시청에 참고하시기 바랍니다.\n\n👉 송영욱 대표 유튜브 채널 바로가기 : https://www.youtube.com/@flyingturtle2024/videos \n👉 송영욱 대표 저서 [돈 걱정 없는 노후를 위한은퇴세팅법",
+      "channelId": "UCriq8I8GEESkQq0svX19oCw",
+      "channelTitle": "부티플 - 부의 배수를 높여라",
+      "publishedAt": "2026-07-26T02:00:25Z",
+      "thumbnail": "https://i.ytimg.com/vi/fLGhZQdfd_M/mqdefault.jpg",
+      "tags": [
+        "yt:cc=on",
+        "노후준비",
+        "연금",
+        "기초연금",
+        "통장",
+        "정부통장",
+        "정부정책",
+        "국민연금",
+        "개인연금",
+        "노후자금",
+        "은퇴자금",
+        "은퇴설계"
+      ],
+      "viewCount": 177380,
+      "likeCount": 2753,
+      "commentCount": 257,
+      "durationSeconds": 3884,
+      "format": "롱폼",
+      "ageDays": 17.6,
+      "viewsPerDay": 10069,
+      "momentum": 8661,
+      "likeRate": 1.55,
+      "commentRate": 0.14,
+      "matchedQueries": [
+        "재테크"
+      ],
+      "marketScore": {
+        "total": 74,
+        "parts": {
+          "volume": 22,
+          "velocity": 27,
+          "likeRate": 6,
+          "commentRate": 2,
+          "recency": 18
+        }
+      },
+      "rankScore": {
+        "total": 80,
+        "parts": {
+          "momentum": 43,
+          "volume": 37
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 1200000
+    },
+    {
+      "videoId": "Xr1yQKkBdmw",
+      "url": "https://www.youtube.com/watch?v=Xr1yQKkBdmw",
+      "title": "\"친정에서 1억도 싹 날려\" 주식으로 집안 거덜 낸 남편 / KNN",
+      "description": "#knn뉴스 #주식 #실패\n\n남편이 주식 투자로 1억 7천만 원을 잃었습니다.\n\n제보\n카톡 : 'KNN' 친구추가\n메일 : knnstorynews@gmail.com\n          adknn@knn.co.kr\n\n홈페이지 www.knn.co.kr\n검색 : KNN",
+      "channelId": "UC1ifSsWUG241rRfK0ezYCgA",
+      "channelTitle": "KNN NEWS",
+      "publishedAt": "2026-07-01T10:15:36Z",
+      "thumbnail": "https://i.ytimg.com/vi/Xr1yQKkBdmw/mqdefault.jpg",
+      "tags": [
+        "knn뉴스",
+        "e뉴스",
+        "주식",
+        "남편",
+        "아내",
+        "시댁",
+        "친정",
+        "통장"
+      ],
+      "viewCount": 488360,
+      "likeCount": 2376,
+      "commentCount": 2007,
+      "durationSeconds": 97,
+      "format": "롱폼",
+      "ageDays": 42.3,
+      "viewsPerDay": 11553,
+      "momentum": 7040,
+      "likeRate": 0.49,
+      "commentRate": 0.41,
+      "matchedQueries": [
+        "주식 투자"
+      ],
+      "marketScore": {
+        "total": 70,
+        "parts": {
+          "volume": 24,
+          "velocity": 27,
+          "likeRate": 2,
+          "commentRate": 5,
+          "recency": 12
+        }
+      },
+      "rankScore": {
+        "total": 80,
+        "parts": {
+          "momentum": 41,
+          "volume": 39
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 1300000
+    },
+    {
+      "videoId": "MEo0P_cTHX0",
+      "url": "https://www.youtube.com/watch?v=MEo0P_cTHX0",
+      "title": "\"지수 위주로 투자해요\" 지방에서 주식 투자해 자산 10억원 만든 30대 공무원 [싱글파이어]",
+      "description": "✨파이어족의 실전 재테크 노하우를 듣고 싶다면?✨\n🔎손주부의 '2026년 주식 투자 놓치면 안 될 유망 산업 TOP5 분석' 강의 보러가기\nhttps://fireclub.liveklass.com/classes/300425\n\n👪김운아의 '온 가족 1억 만드는 재테크 전략' 보러 가기\n",
+      "channelId": "UC5CyCSvCdoEP-VgQmFq3iww",
+      "channelTitle": "싱글파이어",
+      "publishedAt": "2026-08-11T09:00:38Z",
+      "thumbnail": "https://i.ytimg.com/vi/MEo0P_cTHX0/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 43373,
+      "likeCount": 675,
+      "commentCount": 27,
+      "durationSeconds": 685,
+      "format": "롱폼",
+      "ageDays": 1.3,
+      "viewsPerDay": 32751,
+      "momentum": 23775,
+      "likeRate": 1.56,
+      "commentRate": 0.06,
+      "matchedQueries": [
+        "주식 투자"
+      ],
+      "marketScore": {
+        "total": 76,
+        "parts": {
+          "volume": 19,
+          "velocity": 30,
+          "likeRate": 6,
+          "commentRate": 1,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 78,
+        "parts": {
+          "momentum": 53,
+          "volume": 25
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 504000
+    },
+    {
+      "videoId": "Zri3iqY8-E0",
+      "url": "https://www.youtube.com/watch?v=Zri3iqY8-E0",
+      "title": "\"5060은 그냥 이 ETF 하나만 사세요. 월 300만원 평생 나옵니다\" 가격도 싼데 배당까지 퍼준다. 전 이걸로 싹 다 바꿨어요 | 최창규 본부장 풀버전",
+      "description": "*본 영상은 최창규 본부장님 출연 영상(1~3편)의 풀버전입니다. 시청에 참고하시기 바랍니다. \n\n📌 세제개편 이후, 지금 필요한 대응 전략 특강 \nhttps://fanding.me/buyziptax_yt\n\n세제개편 이후,\n가장 중요한 것은 '내 상황에 맞는 대응'입니다.\n\n무엇이 바",
+      "channelId": "UCiLdPBP0AeP-Z9CDH4MggYQ",
+      "channelTitle": "재테크는 두꺼비 세무사",
+      "publishedAt": "2026-08-07T08:00:38Z",
+      "thumbnail": "https://i.ytimg.com/vi/Zri3iqY8-E0/mqdefault.jpg",
+      "tags": [
+        "두꺼비세무사",
+        "이장원세무사",
+        "이장원",
+        "이장원 세무사",
+        "두꺼비 세무사",
+        "세무법인 리치",
+        "상속세",
+        "증여세",
+        "상증세",
+        "송파세무사",
+        "잠실세무사",
+        "석촌동세무사"
+      ],
+      "viewCount": 74776,
+      "likeCount": 1253,
+      "commentCount": 48,
+      "durationSeconds": 3572,
+      "format": "롱폼",
+      "ageDays": 5.4,
+      "viewsPerDay": 13935,
+      "momentum": 12747,
+      "likeRate": 1.68,
+      "commentRate": 0.06,
+      "matchedQueries": [
+        "ETF"
+      ],
+      "marketScore": {
+        "total": 75,
+        "parts": {
+          "volume": 20,
+          "velocity": 28,
+          "likeRate": 6,
+          "commentRate": 1,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 78,
+        "parts": {
+          "momentum": 47,
+          "volume": 31
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 255000
+    },
+    {
+      "videoId": "SXQGU3vSX1w",
+      "url": "https://www.youtube.com/watch?v=SXQGU3vSX1w",
+      "title": "지갑 속 이것만 봐도 돈 새는 습관 보인다｜재테크 상식 (시니어 필수)",
+      "description": "#지갑습관 #돈새는습관 #재테크\n\n지갑 속을 한번 열어보세요.\n평소 아무 생각 없이 넣고 다니는 것들에 의외의 돈 습관이 드러날 때가 있습니다.\n\n영수증 안 버리고 쌓아둠 → 지출 파악만 하고 실천 안 함\n카드만 여러 장 꽂혀있음 → 혜택 비교 없이 그냥 씀\n현금 항상 두둑함 → 충동구",
+      "channelId": "UCC_TlXuhGjt4rkNdeDtVyxg",
+      "channelTitle": "건강바다TV",
+      "publishedAt": "2026-08-11T08:15:03Z",
+      "thumbnail": "https://i.ytimg.com/vi/SXQGU3vSX1w/mqdefault.jpg",
+      "tags": [
+        "건강",
+        "시니어건강",
+        "노후준비",
+        "중년건강",
+        "건강정보",
+        "생활꿀팁",
+        "은퇴준비",
+        "행복한노후",
+        "건강한습관",
+        "고혈압",
+        "당뇨",
+        "혈당"
+      ],
+      "viewCount": 43004,
+      "likeCount": 49,
+      "commentCount": 1,
+      "durationSeconds": 5,
+      "format": "쇼츠",
+      "ageDays": 1.4,
+      "viewsPerDay": 31714,
+      "momentum": 23170,
+      "likeRate": 0.11,
+      "commentRate": 0,
+      "matchedQueries": [
+        "재테크"
+      ],
+      "marketScore": {
+        "total": 70,
+        "parts": {
+          "volume": 19,
+          "velocity": 30,
+          "likeRate": 0,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 77,
+        "parts": {
+          "momentum": 52,
+          "volume": 25
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 27500
+    },
+    {
+      "videoId": "CB6ibr4KEcc",
+      "url": "https://www.youtube.com/watch?v=CB6ibr4KEcc",
+      "title": "배당 ETF에 10억 투자하면 종합소득세·건보료 다 떼고 매달 이만큼 들어옵니다 (ft. SCHD, JEPQ, 커버드콜 etf 배당금)",
+      "description": "📌'평생 ETF 투자' 카페 선물 이벤트 참여하기!\nhttps://cafe.naver.com/ttokjae/12209\n\n📌가성비 갑! 한번 구매로 평생 무료 업데이트!\n똑재 전자책, 수 많은 만족 후기 보고 결정하세요:-)\nhttps://blog.naver.com/ttok_jae/2",
+      "channelId": "UCmshc9VpICv4oPyjMK3Vk_w",
+      "channelTitle": "똑재TV",
+      "publishedAt": "2026-08-12T07:50:25Z",
+      "thumbnail": "https://i.ytimg.com/vi/CB6ibr4KEcc/mqdefault.jpg",
+      "tags": [
+        "금융자산 10억",
+        "금융자산 10억 투자",
+        "금융자산",
+        "10억 모으기",
+        "10억 투자",
+        "10억 은퇴",
+        "10억 파이어족",
+        "10억 포트폴리오",
+        "건강보험료",
+        "건보료",
+        "금융소득종합과세",
+        "금융소득종합과세자"
+      ],
+      "viewCount": 31600,
+      "likeCount": 1161,
+      "commentCount": 152,
+      "durationSeconds": 914,
+      "format": "롱폼",
+      "ageDays": 0.4,
+      "viewsPerDay": 84696,
+      "momentum": 36193,
+      "likeRate": 3.67,
+      "commentRate": 0.48,
+      "matchedQueries": [
+        "ETF"
+      ],
+      "marketScore": {
+        "total": 89,
+        "parts": {
+          "volume": 19,
+          "velocity": 30,
+          "likeRate": 14,
+          "commentRate": 6,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 77,
+        "parts": {
+          "momentum": 57,
+          "volume": 20
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 161000
+    },
+    {
+      "videoId": "2OWTkiKCIPQ",
+      "url": "https://www.youtube.com/watch?v=2OWTkiKCIPQ",
+      "title": "안정모의 주식투자님의 실시간 스트림",
+      "description": "채널에 가입하여 혜택을 누려보세요.\nhttps://www.youtube.com/channel/UCVAbB2v_MCpAWNVTGxVLRxw/join\n\njimkony@naver.com\nhttp://cafe.daum.net/richteck\n\n전)한국경제TV 전문가, 전)SBSCNBC 전문가,",
+      "channelId": "UCVAbB2v_MCpAWNVTGxVLRxw",
+      "channelTitle": "안정모의 주식투자",
+      "publishedAt": "2026-08-11T06:57:13Z",
+      "thumbnail": "https://i.ytimg.com/vi/2OWTkiKCIPQ/mqdefault.jpg",
+      "tags": [
+        "주식",
+        "주식투자",
+        "주식공부",
+        "주식강의",
+        "주식초보",
+        "주식단타",
+        "주식고수",
+        "단타매매",
+        "삼성전자",
+        "하이닉스",
+        "셀트리온",
+        "셀트리온제약"
+      ],
+      "viewCount": 37874,
+      "likeCount": 2545,
+      "commentCount": 0,
+      "durationSeconds": 26696,
+      "format": "롱폼",
+      "ageDays": 1.4,
+      "viewsPerDay": 26860,
+      "momentum": 19829,
+      "likeRate": 6.72,
+      "commentRate": 0,
+      "matchedQueries": [
+        "주식 투자"
+      ],
+      "marketScore": {
+        "total": 84,
+        "parts": {
+          "volume": 19,
+          "velocity": 30,
+          "likeRate": 15,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 75,
+        "parts": {
+          "momentum": 52,
+          "volume": 23
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 227000
+    },
+    {
+      "videoId": "UqF7q4yIODM",
+      "url": "https://www.youtube.com/watch?v=UqF7q4yIODM",
+      "title": "📊 드디어 연금저축의 시대가 왔다!ㅣ연금저축통계 | ver.2026",
+      "description": "#연금저축 #연금통계 #금융감독원\n\n안녕하세요 박곰희입니다!\n오늘은 연금저축의 통계 자료를\n같이 살펴보는 영상을 가져왔습니다.\n구독자분들께 도움이 되었으면 좋겠습니다 :)\n\n📍연금저축 통계 자료가 궁금하시다면?\nhttps://www.fss.or.kr/fss/bbs/B0000188/vi",
+      "channelId": "UCr7XsrSrvAn_WcU4kF99bbQ",
+      "channelTitle": "박곰희TV",
+      "publishedAt": "2026-08-07T11:00:26Z",
+      "thumbnail": "https://i.ytimg.com/vi/UqF7q4yIODM/mqdefault.jpg",
+      "tags": [
+        "재테크",
+        "투자",
+        "박곰희",
+        "빠꼼이",
+        "증권사",
+        "증권",
+        "자산관리사",
+        "금융",
+        "금융인",
+        "주식",
+        "주식투자",
+        "주식초보"
+      ],
+      "viewCount": 64235,
+      "likeCount": 1327,
+      "commentCount": 180,
+      "durationSeconds": 2920,
+      "format": "롱폼",
+      "ageDays": 5.2,
+      "viewsPerDay": 12256,
+      "momentum": 11189,
+      "likeRate": 2.07,
+      "commentRate": 0.28,
+      "matchedQueries": [
+        "연금저축"
+      ],
+      "marketScore": {
+        "total": 79,
+        "parts": {
+          "volume": 20,
+          "velocity": 27,
+          "likeRate": 8,
+          "commentRate": 4,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 75,
+        "parts": {
+          "momentum": 46,
+          "volume": 29
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 1260000
+    }
+  ],
+  "risingVideos": [
+    {
+      "videoId": "7FrJ3wuJDaY",
+      "url": "https://www.youtube.com/watch?v=7FrJ3wuJDaY",
+      "title": "어떤 투자는 '도박'이다? 주식 투자 때문에 인생이 무너진 사람들 | 추적60분 KBS 방송",
+      "description": "00:00 빚투 https://youtu.be/9sOGwpOy4jY\n04:08 K사 거래정지 사태 https://youtu.be/yERWAxUcgCY\n13:38 레버리지 https://youtu.be/dRJNi2zPD4U\n30:31 대유 상장폐지 사태 https://youtu.be/HD",
+      "channelId": "UCy-6oZwPwrR_W-zYnqLD8dg",
+      "channelTitle": "KBS 추적60분",
+      "publishedAt": "2026-08-02T14:59:30Z",
+      "thumbnail": "https://i.ytimg.com/vi/7FrJ3wuJDaY/mqdefault.jpg",
+      "tags": [
+        "KBS",
+        "다큐",
+        "다큐멘터리",
+        "인터뷰",
+        "레전드",
+        "그것이 알고싶다"
+      ],
+      "viewCount": 2347256,
+      "likeCount": 18508,
+      "commentCount": 8549,
+      "durationSeconds": 2316,
+      "format": "롱폼",
+      "ageDays": 10.1,
+      "viewsPerDay": 232975,
+      "momentum": 214541,
+      "likeRate": 0.79,
+      "commentRate": 0.36,
+      "matchedQueries": [
+        "주식 투자"
+      ],
+      "marketScore": {
+        "total": 82,
+        "parts": {
+          "volume": 25,
+          "velocity": 30,
+          "likeRate": 3,
+          "commentRate": 5,
+          "recency": 19
+        }
+      },
+      "rankScore": {
+        "total": 100,
+        "parts": {
+          "momentum": 60,
+          "volume": 40
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 799000
+    },
+    {
+      "videoId": "Kj-eou5fbmM",
+      "url": "https://www.youtube.com/watch?v=Kj-eou5fbmM",
+      "title": "삼전·하닉 5.9조 던졌다😱 외국인 갈아탄 종목 TOP15",
+      "description": "삼전·하닉 5.9조 던졌다😱 외국인 갈아탄 종목 TOP15\n8월 들어 외국인이 SK하이닉스 약 4.2조원, 삼성전자 약 1.7조원을 순매도하며 두 종목에서만 약 5.9조원을 빼냈습니다.\n\n반면 셀트리온·삼성물산·삼성바이오로직스·현대차·한화에어로스페이스·현대모비스·기아·SK스퀘어 등에는",
+      "channelId": "UCooN1oaxqRME-p48T67Jq1w",
+      "channelTitle": "행복의 나침반",
+      "publishedAt": "2026-08-11T11:15:38Z",
+      "thumbnail": "https://i.ytimg.com/vi/Kj-eou5fbmM/mqdefault.jpg",
+      "tags": [
+        "외국인 갈아탄 종목",
+        "외국인 순매수",
+        "외국인 순매도",
+        "외국인 수급",
+        "삼성전자 외국인",
+        "SK하이닉스 외국인",
+        "SK하이닉스 순매도",
+        "삼성전자 순매도",
+        "셀트리온 순매수",
+        "삼성물산 순매수",
+        "외국인 매수 종목",
+        "외국인 매도 종목"
+      ],
+      "viewCount": 100300,
+      "likeCount": 162,
+      "commentCount": 0,
+      "durationSeconds": 5,
+      "format": "쇼츠",
+      "ageDays": 1.2,
+      "viewsPerDay": 81506,
+      "momentum": 57957,
+      "likeRate": 0.16,
+      "commentRate": 0,
+      "matchedQueries": [
+        "재테크"
+      ],
+      "marketScore": {
+        "total": 71,
+        "parts": {
+          "volume": 21,
+          "velocity": 30,
+          "likeRate": 1,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 93,
+        "parts": {
+          "momentum": 59,
+          "volume": 34
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 95400
+    },
+    {
+      "videoId": "Y_HTZh_b1ko",
+      "url": "https://www.youtube.com/watch?v=Y_HTZh_b1ko",
+      "title": "\"손실률 78%, 22억 날렸다\" 레버리지로 파산한 투자자 속출? / KNN",
+      "description": "#knn뉴스 #손실률 #레버리지\n\n40년 동안 모은 전 재산에 집까지 팔아 투자했다가 22억 원 넘게 잃고 파산했다는 한 투자자의 사연이 올라와 충격을 주고 있습니다.\n\n제보\n카톡 : 'KNN' 친구추가\n메일 : knnstorynews@gmail.com\n          adknn@kn",
+      "channelId": "UC1ifSsWUG241rRfK0ezYCgA",
+      "channelTitle": "KNN NEWS",
+      "publishedAt": "2026-07-30T09:45:10Z",
+      "thumbnail": "https://i.ytimg.com/vi/Y_HTZh_b1ko/mqdefault.jpg",
+      "tags": [
+        "knn뉴스",
+        "e뉴스",
+        "주식",
+        "투자",
+        "하락",
+        "폭락",
+        "손실",
+        "도박"
+      ],
+      "viewCount": 855715,
+      "likeCount": 5978,
+      "commentCount": 9900,
+      "durationSeconds": 99,
+      "format": "롱폼",
+      "ageDays": 13.3,
+      "viewsPerDay": 64371,
+      "momentum": 57794,
+      "likeRate": 0.7,
+      "commentRate": 1.16,
+      "matchedQueries": [
+        "주식 투자"
+      ],
+      "marketScore": {
+        "total": 86,
+        "parts": {
+          "volume": 25,
+          "velocity": 30,
+          "likeRate": 3,
+          "commentRate": 10,
+          "recency": 19
+        }
+      },
+      "rankScore": {
+        "total": 99,
+        "parts": {
+          "momentum": 59,
+          "volume": 40
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 1300000
+    },
+    {
+      "videoId": "545SwSzAkKc",
+      "url": "https://www.youtube.com/watch?v=545SwSzAkKc",
+      "title": "삼전 말고 코스닥 간다🔥 상위 1% 고수의 순매수",
+      "description": "삼전 말고 코스닥 간다🔥 상위 1% 고수의 순매수 종목을 정리했습니다.\n코스닥 강세장에서 초고수들은 어떤 종목을 담았을까요?\n\n제주반도체·알테오젠·네오팜·제닉·주성엔지니어링·티에스이 등 강세 종목과 함께 SK하이닉스·삼성SDI·한화오션·두산에너빌리티 등 상위 1% 투자자들의 당일 순매",
+      "channelId": "UCooN1oaxqRME-p48T67Jq1w",
+      "channelTitle": "행복의 나침반",
+      "publishedAt": "2026-08-10T02:49:01Z",
+      "thumbnail": "https://i.ytimg.com/vi/545SwSzAkKc/mqdefault.jpg",
+      "tags": [
+        "코스닥",
+        "코스닥 상승",
+        "코스닥 상승장",
+        "초고수 순매수",
+        "상위 1% 고수",
+        "상위 1프로 순매수",
+        "고수의 픽",
+        "순매수 종목",
+        "국내주식 수급",
+        "제주반도체",
+        "알테오젠",
+        "삼성SDI"
+      ],
+      "viewCount": 108204,
+      "likeCount": 162,
+      "commentCount": 0,
+      "durationSeconds": 4,
+      "format": "쇼츠",
+      "ageDays": 2.6,
+      "viewsPerDay": 41900,
+      "momentum": 35104,
+      "likeRate": 0.15,
+      "commentRate": 0,
+      "matchedQueries": [
+        "재테크"
+      ],
+      "marketScore": {
+        "total": 72,
+        "parts": {
+          "volume": 21,
+          "velocity": 30,
+          "likeRate": 1,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 92,
+        "parts": {
+          "momentum": 57,
+          "volume": 35
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 95400
+    },
+    {
+      "videoId": "nm2um6Dd648",
+      "url": "https://www.youtube.com/watch?v=nm2um6Dd648",
+      "title": "SK하이닉스 신규팹 투자 확정🔥반도체 소부장 상승률 TOP15",
+      "description": "SK하이닉스 신규팹 투자 확정🔥 반도체 소부장 상승률 TOP15\nSK하이닉스가 용인 Y2와 청주 M17 신규 팹 건설에 총 54조3천억원 규모 투자를 확정했습니다. AI 메모리 수요 대응을 위한 대규모 생산능력 확대에 나서면서 반도체 소재·부품·장비주에도 수혜 기대감이 부각됐습니다.\n",
+      "channelId": "UCooN1oaxqRME-p48T67Jq1w",
+      "channelTitle": "행복의 나침반",
+      "publishedAt": "2026-08-10T11:15:32Z",
+      "thumbnail": "https://i.ytimg.com/vi/nm2um6Dd648/mqdefault.jpg",
+      "tags": [
+        "SK하이닉스",
+        "SK하이닉스투자",
+        "반도체소부장",
+        "반도체소부장주",
+        "반도체장비주",
+        "반도체소재주",
+        "반도체부품주",
+        "반도체관련주",
+        "HBM관련주",
+        "용인반도체클러스터",
+        "피엠티",
+        "티씨케이"
+      ],
+      "viewCount": 82880,
+      "likeCount": 83,
+      "commentCount": 0,
+      "durationSeconds": 4,
+      "format": "쇼츠",
+      "ageDays": 2.2,
+      "viewsPerDay": 37155,
+      "momentum": 30352,
+      "likeRate": 0.1,
+      "commentRate": 0,
+      "matchedQueries": [
+        "재테크"
+      ],
+      "marketScore": {
+        "total": 71,
+        "parts": {
+          "volume": 20,
+          "velocity": 30,
+          "likeRate": 0,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 90,
+        "parts": {
+          "momentum": 56,
+          "volume": 34
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 95400
+    },
+    {
+      "videoId": "wkyJFVjEVlk",
+      "url": "https://www.youtube.com/watch?v=wkyJFVjEVlk",
+      "title": "혜택 사라지는 ISA 계좌... 당장 이것부터 하세요!",
+      "description": "※ 참고로 저는 전문가가 아닙니다 같이 공부해보자는 취지의 영상입니다^^\n\n#ISA #ISA통장 #ISA계좌",
+      "channelId": "UCaWi2foADm_lKAKnmeQwLSA",
+      "channelTitle": "재테크읽어주는 파일럿",
+      "publishedAt": "2026-08-07T03:00:31Z",
+      "thumbnail": "https://i.ytimg.com/vi/wkyJFVjEVlk/mqdefault.jpg",
+      "tags": [
+        "ISA",
+        "ISA 통장",
+        "ISA 계좌"
+      ],
+      "viewCount": 163464,
+      "likeCount": 5607,
+      "commentCount": 717,
+      "durationSeconds": 709,
+      "format": "롱폼",
+      "ageDays": 5.6,
+      "viewsPerDay": 29324,
+      "momentum": 26910,
+      "likeRate": 3.43,
+      "commentRate": 0.44,
+      "matchedQueries": [
+        "재테크"
+      ],
+      "marketScore": {
+        "total": 90,
+        "parts": {
+          "volume": 22,
+          "velocity": 30,
+          "likeRate": 13,
+          "commentRate": 5,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 90,
+        "parts": {
+          "momentum": 54,
+          "volume": 36
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 1280000
+    },
+    {
+      "videoId": "ZVIoKQamAmg",
+      "url": "https://www.youtube.com/watch?v=ZVIoKQamAmg",
+      "title": "삼성전자 SK하이닉스 진짜 끝난거 아닌가요?",
+      "description": "#투자 #주식투자 #주식",
+      "channelId": "UCSKL0LobVZxLWrcbvwju6TA",
+      "channelTitle": "자본주의 게임, 프론트맨",
+      "publishedAt": "2026-08-10T09:00:32Z",
+      "thumbnail": "https://i.ytimg.com/vi/ZVIoKQamAmg/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 71814,
+      "likeCount": 746,
+      "commentCount": 40,
+      "durationSeconds": 165,
+      "format": "롱폼",
+      "ageDays": 2.3,
+      "viewsPerDay": 30896,
+      "momentum": 25426,
+      "likeRate": 1.04,
+      "commentRate": 0.06,
+      "matchedQueries": [
+        "주식 투자"
+      ],
+      "marketScore": {
+        "total": 75,
+        "parts": {
+          "volume": 20,
+          "velocity": 30,
+          "likeRate": 4,
+          "commentRate": 1,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 84,
+        "parts": {
+          "momentum": 54,
+          "volume": 30
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 62900
+    },
+    {
+      "videoId": "MEo0P_cTHX0",
+      "url": "https://www.youtube.com/watch?v=MEo0P_cTHX0",
+      "title": "\"지수 위주로 투자해요\" 지방에서 주식 투자해 자산 10억원 만든 30대 공무원 [싱글파이어]",
+      "description": "✨파이어족의 실전 재테크 노하우를 듣고 싶다면?✨\n🔎손주부의 '2026년 주식 투자 놓치면 안 될 유망 산업 TOP5 분석' 강의 보러가기\nhttps://fireclub.liveklass.com/classes/300425\n\n👪김운아의 '온 가족 1억 만드는 재테크 전략' 보러 가기\n",
+      "channelId": "UC5CyCSvCdoEP-VgQmFq3iww",
+      "channelTitle": "싱글파이어",
+      "publishedAt": "2026-08-11T09:00:38Z",
+      "thumbnail": "https://i.ytimg.com/vi/MEo0P_cTHX0/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 43373,
+      "likeCount": 675,
+      "commentCount": 27,
+      "durationSeconds": 685,
+      "format": "롱폼",
+      "ageDays": 1.3,
+      "viewsPerDay": 32751,
+      "momentum": 23775,
+      "likeRate": 1.56,
+      "commentRate": 0.06,
+      "matchedQueries": [
+        "주식 투자"
+      ],
+      "marketScore": {
+        "total": 76,
+        "parts": {
+          "volume": 19,
+          "velocity": 30,
+          "likeRate": 6,
+          "commentRate": 1,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 78,
+        "parts": {
+          "momentum": 53,
+          "volume": 25
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 504000
+    },
+    {
+      "videoId": "SXQGU3vSX1w",
+      "url": "https://www.youtube.com/watch?v=SXQGU3vSX1w",
+      "title": "지갑 속 이것만 봐도 돈 새는 습관 보인다｜재테크 상식 (시니어 필수)",
+      "description": "#지갑습관 #돈새는습관 #재테크\n\n지갑 속을 한번 열어보세요.\n평소 아무 생각 없이 넣고 다니는 것들에 의외의 돈 습관이 드러날 때가 있습니다.\n\n영수증 안 버리고 쌓아둠 → 지출 파악만 하고 실천 안 함\n카드만 여러 장 꽂혀있음 → 혜택 비교 없이 그냥 씀\n현금 항상 두둑함 → 충동구",
+      "channelId": "UCC_TlXuhGjt4rkNdeDtVyxg",
+      "channelTitle": "건강바다TV",
+      "publishedAt": "2026-08-11T08:15:03Z",
+      "thumbnail": "https://i.ytimg.com/vi/SXQGU3vSX1w/mqdefault.jpg",
+      "tags": [
+        "건강",
+        "시니어건강",
+        "노후준비",
+        "중년건강",
+        "건강정보",
+        "생활꿀팁",
+        "은퇴준비",
+        "행복한노후",
+        "건강한습관",
+        "고혈압",
+        "당뇨",
+        "혈당"
+      ],
+      "viewCount": 43004,
+      "likeCount": 49,
+      "commentCount": 1,
+      "durationSeconds": 5,
+      "format": "쇼츠",
+      "ageDays": 1.4,
+      "viewsPerDay": 31714,
+      "momentum": 23170,
+      "likeRate": 0.11,
+      "commentRate": 0,
+      "matchedQueries": [
+        "재테크"
+      ],
+      "marketScore": {
+        "total": 70,
+        "parts": {
+          "volume": 19,
+          "velocity": 30,
+          "likeRate": 0,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 77,
+        "parts": {
+          "momentum": 52,
+          "volume": 25
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 27500
+    },
+    {
+      "videoId": "2OWTkiKCIPQ",
+      "url": "https://www.youtube.com/watch?v=2OWTkiKCIPQ",
+      "title": "안정모의 주식투자님의 실시간 스트림",
+      "description": "채널에 가입하여 혜택을 누려보세요.\nhttps://www.youtube.com/channel/UCVAbB2v_MCpAWNVTGxVLRxw/join\n\njimkony@naver.com\nhttp://cafe.daum.net/richteck\n\n전)한국경제TV 전문가, 전)SBSCNBC 전문가,",
+      "channelId": "UCVAbB2v_MCpAWNVTGxVLRxw",
+      "channelTitle": "안정모의 주식투자",
+      "publishedAt": "2026-08-11T06:57:13Z",
+      "thumbnail": "https://i.ytimg.com/vi/2OWTkiKCIPQ/mqdefault.jpg",
+      "tags": [
+        "주식",
+        "주식투자",
+        "주식공부",
+        "주식강의",
+        "주식초보",
+        "주식단타",
+        "주식고수",
+        "단타매매",
+        "삼성전자",
+        "하이닉스",
+        "셀트리온",
+        "셀트리온제약"
+      ],
+      "viewCount": 37874,
+      "likeCount": 2545,
+      "commentCount": 0,
+      "durationSeconds": 26696,
+      "format": "롱폼",
+      "ageDays": 1.4,
+      "viewsPerDay": 26860,
+      "momentum": 19829,
+      "likeRate": 6.72,
+      "commentRate": 0,
+      "matchedQueries": [
+        "주식 투자"
+      ],
+      "marketScore": {
+        "total": 84,
+        "parts": {
+          "volume": 19,
+          "velocity": 30,
+          "likeRate": 15,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 75,
+        "parts": {
+          "momentum": 52,
+          "volume": 23
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 227000
+    }
+  ],
+  "allVideos": [
+    {
+      "videoId": "NszeLsHJeGY",
+      "title": "삼성전자, SK하이닉스 갖고 계신 분들 오늘 이 반전 꼭 보세요 #sk하이닉스 #투자 #코스피 #삼성전자 #주식 #주식공부 #경제뉴스 #futurescope #재테크 #반도체",
+      "channelId": "UCgsW8fzux4yFsQiW7WiH4aA",
+      "publishedAt": "2026-08-12T12:06:38Z",
+      "viewCount": 20880,
+      "viewsPerDay": 83520,
+      "momentum": 27840,
+      "ageDays": 0.3,
+      "format": "롱폼",
+      "likeRate": 4.49,
+      "rankScore": {
+        "total": 73,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "e_cI91M6KqE",
+      "title": "빚 없이 사는 사람들의 현실 습관 10가지            #재테크 #돈관리 #생활습관",
+      "channelId": "UCSCDuAk2anY738M9VcnpexA",
+      "publishedAt": "2026-08-11T06:30:20Z",
+      "viewCount": 16863,
+      "viewsPerDay": 11803,
+      "momentum": 8743,
+      "ageDays": 1.4,
+      "format": "쇼츠",
+      "likeRate": 0.24,
+      "rankScore": {
+        "total": 60,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "wkyJFVjEVlk",
+      "title": "혜택 사라지는 ISA 계좌... 당장 이것부터 하세요!",
+      "channelId": "UCaWi2foADm_lKAKnmeQwLSA",
+      "publishedAt": "2026-08-07T03:00:31Z",
+      "viewCount": 163464,
+      "viewsPerDay": 29324,
+      "momentum": 26910,
+      "ageDays": 5.6,
+      "format": "롱폼",
+      "likeRate": 3.43,
+      "rankScore": {
+        "total": 90,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "vXiBD4quLRw",
+      "title": "쏘이님 요즘 주식 계좌 괜찮아요..? (재테크 근황 토크)",
+      "channelId": "UCXME0jhaXzTE1r_FFhHIsrQ",
+      "publishedAt": "2026-08-10T09:00:35Z",
+      "viewCount": 11761,
+      "viewsPerDay": 5060,
+      "momentum": 4164,
+      "ageDays": 2.3,
+      "format": "롱폼",
+      "likeRate": 2.52,
+      "rankScore": {
+        "total": 44,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "SXQGU3vSX1w",
+      "title": "지갑 속 이것만 봐도 돈 새는 습관 보인다｜재테크 상식 (시니어 필수)",
+      "channelId": "UCC_TlXuhGjt4rkNdeDtVyxg",
+      "publishedAt": "2026-08-11T08:15:03Z",
+      "viewCount": 43004,
+      "viewsPerDay": 31714,
+      "momentum": 23170,
+      "ageDays": 1.4,
+      "format": "쇼츠",
+      "likeRate": 0.11,
+      "rankScore": {
+        "total": 77,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "BnAiFr8Enhw",
+      "title": "재테크 공부 시작하는 법, 경제 책 유튜브 강의 추천, 한살이라도 어릴 때 시작해야하는 이유",
+      "channelId": "UCXeoKHFwsPsN5wTLyPSpPqQ",
+      "publishedAt": "2026-08-02T07:12:15Z",
+      "viewCount": 75121,
+      "viewsPerDay": 7223,
+      "momentum": 6637,
+      "ageDays": 10.4,
+      "format": "롱폼",
+      "likeRate": 4.75,
+      "rankScore": {
+        "total": 69,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "Kj-eou5fbmM",
+      "title": "삼전·하닉 5.9조 던졌다😱 외국인 갈아탄 종목 TOP15",
+      "channelId": "UCooN1oaxqRME-p48T67Jq1w",
+      "publishedAt": "2026-08-11T11:15:38Z",
+      "viewCount": 100300,
+      "viewsPerDay": 81506,
+      "momentum": 57957,
+      "ageDays": 1.2,
+      "format": "쇼츠",
+      "likeRate": 0.16,
+      "rankScore": {
+        "total": 93,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "nm2um6Dd648",
+      "title": "SK하이닉스 신규팹 투자 확정🔥반도체 소부장 상승률 TOP15",
+      "channelId": "UCooN1oaxqRME-p48T67Jq1w",
+      "publishedAt": "2026-08-10T11:15:32Z",
+      "viewCount": 82880,
+      "viewsPerDay": 37155,
+      "momentum": 30352,
+      "ageDays": 2.2,
+      "format": "쇼츠",
+      "likeRate": 0.1,
+      "rankScore": {
+        "total": 90,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "cb-c2ag7HYY",
+      "title": "하이닉스보다 삼전 좋게 보는 이유 | \"당부쌤\" 김도형 자유아카데미 원장 | 박상규의 투맥",
+      "channelId": "UC0DSMN_m8Tfp8ruMXRdgjOA",
+      "publishedAt": "2026-08-12T11:06:59Z",
+      "viewCount": 4851,
+      "viewsPerDay": 19404,
+      "momentum": 6468,
+      "ageDays": 0.3,
+      "format": "롱폼",
+      "likeRate": 3.26,
+      "rankScore": {
+        "total": 45,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "Ug-zpESl-XY",
+      "title": "하루라도 빨리 알아야할 억대 자산 만들어주는 재테크 습관 5가지",
+      "channelId": "UCY9-fwRmV8XFqbY-npsHB3A",
+      "publishedAt": "2026-06-28T12:06:27Z",
+      "viewCount": 30921,
+      "viewsPerDay": 684,
+      "momentum": 396,
+      "ageDays": 45.2,
+      "format": "롱폼",
+      "likeRate": 3.08,
+      "rankScore": {
+        "total": 30,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "84eCH_HVa6E",
+      "title": "\"하루만 맡겨도 25배\" 대한민국 누구나 7% 주는 역대급 고금리 통장 떴다 | 이지한 재테크 1부 #돈쭐남 #김경필",
+      "channelId": "UCriq8I8GEESkQq0svX19oCw",
+      "publishedAt": "2026-06-04T07:00:02Z",
+      "viewCount": 12101,
+      "viewsPerDay": 174,
+      "momentum": 56,
+      "ageDays": 69.4,
+      "format": "롱폼",
+      "likeRate": 1.29,
+      "rankScore": {
+        "total": 18,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "fLGhZQdfd_M",
+      "title": "“매달 50만원씩 여기 넣어라” 19.5% 확정수익 주는 통장 떴다. 나이제한, 소득제한 없습니다 | 송영욱 대표 풀버전 #돈쭐남 #김경필",
+      "channelId": "UCriq8I8GEESkQq0svX19oCw",
+      "publishedAt": "2026-07-26T02:00:25Z",
+      "viewCount": 177380,
+      "viewsPerDay": 10069,
+      "momentum": 8661,
+      "ageDays": 17.6,
+      "format": "롱폼",
+      "likeRate": 1.55,
+      "rankScore": {
+        "total": 80,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "7Gq5a_c9WSM",
+      "title": "삼성전자 6%, 하이닉스 5% 동반 급등",
+      "channelId": "UCKtTmHZoS2XTgUpMyoT2C9Q",
+      "publishedAt": "2026-08-12T10:44:14Z",
+      "viewCount": 1632,
+      "viewsPerDay": 6466,
+      "momentum": 2169,
+      "ageDays": 0.3,
+      "format": "쇼츠",
+      "likeRate": 0,
+      "rankScore": {
+        "total": 26,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "ldBYRibURCQ",
+      "title": "\"SCHD 아닙니다\" 매달 300만원씩 평생 나오는 배당+성장 다 잡은 괴물 ETF | 이지한 재테크 20분 요약 #김경필 #돈쭐남",
+      "channelId": "UCriq8I8GEESkQq0svX19oCw",
+      "publishedAt": "2026-06-08T11:00:31Z",
+      "viewCount": 4506,
+      "viewsPerDay": 69,
+      "momentum": 25,
+      "ageDays": 65.2,
+      "format": "롱폼",
+      "likeRate": 1.26,
+      "rankScore": {
+        "total": 9,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "545SwSzAkKc",
+      "title": "삼전 말고 코스닥 간다🔥 상위 1% 고수의 순매수",
+      "channelId": "UCooN1oaxqRME-p48T67Jq1w",
+      "publishedAt": "2026-08-10T02:49:01Z",
+      "viewCount": 108204,
+      "viewsPerDay": 41900,
+      "momentum": 35104,
+      "ageDays": 2.6,
+      "format": "쇼츠",
+      "likeRate": 0.15,
+      "rankScore": {
+        "total": 92,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "MEo0P_cTHX0",
+      "title": "\"지수 위주로 투자해요\" 지방에서 주식 투자해 자산 10억원 만든 30대 공무원 [싱글파이어]",
+      "channelId": "UC5CyCSvCdoEP-VgQmFq3iww",
+      "publishedAt": "2026-08-11T09:00:38Z",
+      "viewCount": 43373,
+      "viewsPerDay": 32751,
+      "momentum": 23775,
+      "ageDays": 1.3,
+      "format": "롱폼",
+      "likeRate": 1.56,
+      "rankScore": {
+        "total": 78,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "I7vM6MGDt3g",
+      "title": "주식 투자 부자들이 항상 현금을 남겨두는 진짜 이유",
+      "channelId": "UCm04C1eVPBn0m3aUzPwppkg",
+      "publishedAt": "2026-07-01T05:41:42Z",
+      "viewCount": 2617,
+      "viewsPerDay": 62,
+      "momentum": 37,
+      "ageDays": 42.5,
+      "format": "롱폼",
+      "likeRate": 0.08,
+      "rankScore": {
+        "total": 8,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "PAqLyAyYMEk",
+      "title": "주식투자 고민해결사80회260812",
+      "channelId": "UCgTZYZEu4bGFkb9IFkoTr7A",
+      "publishedAt": "2026-08-12T13:40:17Z",
+      "viewCount": 319,
+      "viewsPerDay": 1276,
+      "momentum": 425,
+      "ageDays": 0.3,
+      "format": "롱폼",
+      "likeRate": 6.58,
+      "rankScore": {
+        "total": 12,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "dEkbYyaxboI",
+      "title": "[장순규화물]26/08 영상을 못올린 이유,주식투자 그리고 멘탈",
+      "channelId": "UCocMGpO5vxY9zX4xRgqkJlA",
+      "publishedAt": "2026-08-06T04:18:47Z",
+      "viewCount": 8114,
+      "viewsPerDay": 1244,
+      "momentum": 1156,
+      "ageDays": 6.5,
+      "format": "롱폼",
+      "likeRate": 2.06,
+      "rankScore": {
+        "total": 28,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "WsJSkHAKkrM",
+      "title": "삼성전자 SK하이닉스 앞으로 이렇게 될 수 밖에 없습니다...",
+      "channelId": "UCSKL0LobVZxLWrcbvwju6TA",
+      "publishedAt": "2026-08-11T09:00:10Z",
+      "viewCount": 33527,
+      "viewsPerDay": 25310,
+      "momentum": 18374,
+      "ageDays": 1.3,
+      "format": "롱폼",
+      "likeRate": 1.45,
+      "rankScore": {
+        "total": 71,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "zPGf9mVZbDk",
+      "title": "주식투자, 지수만 보면 놓칩니다 시장의 방향을 읽는 3가지 신호",
+      "channelId": "UCm04C1eVPBn0m3aUzPwppkg",
+      "publishedAt": "2026-07-31T04:05:45Z",
+      "viewCount": 1411,
+      "viewsPerDay": 113,
+      "momentum": 102,
+      "ageDays": 12.5,
+      "format": "롱폼",
+      "likeRate": 0,
+      "rankScore": {
+        "total": 9,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "i-J-kPrSqmI",
+      "title": "안정모의 주식투자님의 실시간 스트림",
+      "channelId": "UCVAbB2v_MCpAWNVTGxVLRxw",
+      "publishedAt": "2026-08-12T06:55:12Z",
+      "viewCount": 36710,
+      "viewsPerDay": 89222,
+      "momentum": 40277,
+      "ageDays": 0.4,
+      "format": "롱폼",
+      "likeRate": 7.32,
+      "rankScore": {
+        "total": 81,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "eqG7BP7oZ6I",
+      "title": "주식 투자 앞으로 돈이 몰릴 5가지 핵심 산업",
+      "channelId": "UCm04C1eVPBn0m3aUzPwppkg",
+      "publishedAt": "2026-07-08T02:31:34Z",
+      "viewCount": 1407,
+      "viewsPerDay": 40,
+      "momentum": 27,
+      "ageDays": 35.6,
+      "format": "롱폼",
+      "likeRate": 0,
+      "rankScore": {
+        "total": 6,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "2OWTkiKCIPQ",
+      "title": "안정모의 주식투자님의 실시간 스트림",
+      "channelId": "UCVAbB2v_MCpAWNVTGxVLRxw",
+      "publishedAt": "2026-08-11T06:57:13Z",
+      "viewCount": 37874,
+      "viewsPerDay": 26860,
+      "momentum": 19829,
+      "ageDays": 1.4,
+      "format": "롱폼",
+      "likeRate": 6.72,
+      "rankScore": {
+        "total": 75,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "7FrJ3wuJDaY",
+      "title": "어떤 투자는 '도박'이다? 주식 투자 때문에 인생이 무너진 사람들 | 추적60분 KBS 방송",
+      "channelId": "UCy-6oZwPwrR_W-zYnqLD8dg",
+      "publishedAt": "2026-08-02T14:59:30Z",
+      "viewCount": 2347256,
+      "viewsPerDay": 232975,
+      "momentum": 214541,
+      "ageDays": 10.1,
+      "format": "롱폼",
+      "likeRate": 0.79,
+      "rankScore": {
+        "total": 100,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "jKL9Pwi0g9M",
+      "title": "500으로 주식투자! 논란의 원인 없도록.",
+      "channelId": "UCDZwlODFiTpVbLqHdM0XoSg",
+      "publishedAt": "2026-08-12T09:50:52Z",
+      "viewCount": 1177,
+      "viewsPerDay": 4066,
+      "momentum": 1491,
+      "ageDays": 0.3,
+      "format": "쇼츠",
+      "likeRate": 0.25,
+      "rankScore": {
+        "total": 20,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "Y_HTZh_b1ko",
+      "title": "\"손실률 78%, 22억 날렸다\" 레버리지로 파산한 투자자 속출? / KNN",
+      "channelId": "UC1ifSsWUG241rRfK0ezYCgA",
+      "publishedAt": "2026-07-30T09:45:10Z",
+      "viewCount": 855715,
+      "viewsPerDay": 64371,
+      "momentum": 57794,
+      "ageDays": 13.3,
+      "format": "롱폼",
+      "likeRate": 0.7,
+      "rankScore": {
+        "total": 99,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "Xr1yQKkBdmw",
+      "title": "\"친정에서 1억도 싹 날려\" 주식으로 집안 거덜 낸 남편 / KNN",
+      "channelId": "UC1ifSsWUG241rRfK0ezYCgA",
+      "publishedAt": "2026-07-01T10:15:36Z",
+      "viewCount": 488360,
+      "viewsPerDay": 11553,
+      "momentum": 7040,
+      "ageDays": 42.3,
+      "format": "롱폼",
+      "likeRate": 0.49,
+      "rankScore": {
+        "total": 80,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "ZVIoKQamAmg",
+      "title": "삼성전자 SK하이닉스 진짜 끝난거 아닌가요?",
+      "channelId": "UCSKL0LobVZxLWrcbvwju6TA",
+      "publishedAt": "2026-08-10T09:00:32Z",
+      "viewCount": 71814,
+      "viewsPerDay": 30896,
+      "momentum": 25426,
+      "ageDays": 2.3,
+      "format": "롱폼",
+      "likeRate": 1.04,
+      "rankScore": {
+        "total": 84,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "QWYnZG7LfEs",
+      "title": "99% 모르는 AI로 주식수익 극대화 하는 법ㅣ대외비 EP.29",
+      "channelId": "UCA_hgsFzmynpv1zkvA5A7jA",
+      "publishedAt": "2026-07-25T01:00:26Z",
+      "viewCount": 367625,
+      "viewsPerDay": 19704,
+      "momentum": 16758,
+      "ageDays": 18.7,
+      "format": "롱폼",
+      "likeRate": 1.93,
+      "rankScore": {
+        "total": 86,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "MXR1P8H9nUw",
+      "title": "농협은행, ‘NH농심천심예적금’ 출시…최고 연 8.15%",
+      "channelId": "UCcOpzCuVnpUxgHXU6XBdTrQ",
+      "publishedAt": "2026-08-12T02:04:58Z",
+      "viewCount": 4152,
+      "viewsPerDay": 6773,
+      "momentum": 3730,
+      "ageDays": 0.6,
+      "format": "롱폼",
+      "likeRate": 0.65,
+      "rankScore": {
+        "total": 36,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "tFS9Ga_v5_U",
+      "title": "[전체] 2026년 7월 은행,저축은행 예금적금 금리 Top5   #예금 #적금 #예적금비교 #은행별 예적금 비교 #재태크 #은행 #저축은행",
+      "channelId": "UC_hB08hfGFSD-_S2eSl4oOA",
+      "publishedAt": "2026-07-02T21:35:36Z",
+      "viewCount": 5322,
+      "viewsPerDay": 130,
+      "momentum": 82,
+      "ageDays": 40.8,
+      "format": "롱폼",
+      "likeRate": 1.11,
+      "rankScore": {
+        "total": 14,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "BagtzAToyMo",
+      "title": "부자들이 이 시기에 돈을 넣기 시작하는 '3곳' 싹 알려드려요! | 절세미녀 #금리 #현금 #재테크",
+      "channelId": "UC2ByczqyZtt0Lj2DCkQuXJA",
+      "publishedAt": "2026-08-04T09:00:13Z",
+      "viewCount": 14900,
+      "viewsPerDay": 1790,
+      "momentum": 1664,
+      "ageDays": 8.3,
+      "format": "롱폼",
+      "likeRate": 2.88,
+      "rankScore": {
+        "total": 34,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "djsrvS87cj4",
+      "title": "파킹통장 추천 2026 💸 적금 추천 2026 예금 cma 돈 빨리 모으는법",
+      "channelId": "UCoSWoAjHKtVuyxHPaF_BMEA",
+      "publishedAt": "2026-08-03T11:35:22Z",
+      "viewCount": 71057,
+      "viewsPerDay": 7709,
+      "momentum": 7137,
+      "ageDays": 9.2,
+      "format": "롱폼",
+      "likeRate": 2.87,
+      "rankScore": {
+        "total": 72,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "u4faQ28zDXg",
+      "title": "시중은행 최고 연 10%...\"돌아오세요\" [NEWS 11]",
+      "channelId": "UCbMjg2EvXs_RUGW-KrdM3pw",
+      "publishedAt": "2026-07-20T05:15:35Z",
+      "viewCount": 57551,
+      "viewsPerDay": 2451,
+      "momentum": 1970,
+      "ageDays": 23.5,
+      "format": "롱폼",
+      "likeRate": 0.2,
+      "rankScore": {
+        "total": 48,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "4028wzjJCZA",
+      "title": "청년들 놀랄 '대박 적금' 나왔다 [NEWS 11]",
+      "channelId": "UCbMjg2EvXs_RUGW-KrdM3pw",
+      "publishedAt": "2026-06-22T05:15:11Z",
+      "viewCount": 232719,
+      "viewsPerDay": 4520,
+      "momentum": 2312,
+      "ageDays": 51.5,
+      "format": "롱폼",
+      "likeRate": 0.83,
+      "rankScore": {
+        "total": 62,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "SdBtN1tTAD4",
+      "title": "청년미래적금, 가입 전에 꼭 보세요! (가장 좋은 은행, 청년도약계좌 갈아타기 다 알려드림)",
+      "channelId": "UCd7lUUDMIGDybpy9xY9CpfA",
+      "publishedAt": "2026-06-21T05:06:00Z",
+      "viewCount": 79677,
+      "viewsPerDay": 1518,
+      "momentum": 760,
+      "ageDays": 52.5,
+      "format": "롱폼",
+      "likeRate": 1.62,
+      "rankScore": {
+        "total": 46,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "95j-fgW5kx0",
+      "title": "2026년 6월 은행별 예금적금 금리비교",
+      "channelId": "UCjmc0bEwxz8nqyaYSj_3bSQ",
+      "publishedAt": "2026-06-19T01:00:10Z",
+      "viewCount": 329,
+      "viewsPerDay": 6,
+      "momentum": 3,
+      "ageDays": 54.7,
+      "format": "롱폼",
+      "likeRate": 0.91,
+      "rankScore": {
+        "total": 2,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "Auc0RXchnN0",
+      "title": "“통장에 남는 돈 있다면 여기에 넣으세요” 매달 돈 주는 파킹통장 추천",
+      "channelId": "UCiHCmazdsMM9j3Jbqx3p7Ig",
+      "publishedAt": "2026-07-31T10:00:39Z",
+      "viewCount": 64044,
+      "viewsPerDay": 5214,
+      "momentum": 4723,
+      "ageDays": 12.3,
+      "format": "롱폼",
+      "likeRate": 1.15,
+      "rankScore": {
+        "total": 62,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "1EziScJ5bdE",
+      "title": "청년도약계좌 vs 청년미래적금 갈아타기 비교｜나는 얼마나 이득일까? | 직접 만든 계산기로 30초 만에 결론 ‼",
+      "channelId": "UCd7lUUDMIGDybpy9xY9CpfA",
+      "publishedAt": "2026-06-26T08:00:25Z",
+      "viewCount": 35995,
+      "viewsPerDay": 760,
+      "momentum": 422,
+      "ageDays": 47.4,
+      "format": "롱폼",
+      "likeRate": 1.46,
+      "rankScore": {
+        "total": 34,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "Oyh3Yns8yLE",
+      "title": "\"롤러코스피에 질렸어요\" 3%대 이자 등장에 35조 예금으로 [굿모닝 MBN]",
+      "channelId": "UCG9aFJTZ-lMCHAiO1KJsirg",
+      "publishedAt": "2026-08-09T23:53:37Z",
+      "viewCount": 40561,
+      "viewsPerDay": 14999,
+      "momentum": 12659,
+      "ageDays": 2.7,
+      "format": "롱폼",
+      "likeRate": 0.46,
+      "rankScore": {
+        "total": 70,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "wK7pkeoZkoc",
+      "title": "50만원 넣으면 최대 2255만원! 청년미래적금 가입할까 말까 정해드려요",
+      "channelId": "UCVIB6JMy4MW5b8yl4TA04YA",
+      "publishedAt": "2026-06-28T10:30:26Z",
+      "viewCount": 32025,
+      "viewsPerDay": 708,
+      "momentum": 409,
+      "ageDays": 45.3,
+      "format": "롱폼",
+      "likeRate": 0.85,
+      "rankScore": {
+        "total": 32,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "3X8nJlHUOhk",
+      "title": "미래적금 몰아보기🔥 담당자가 직접 출연한 유일한 영상! 이거만 보면 다 정리됩니다!",
+      "channelId": "UCapIR8DFk5x_rLEjpfqKK_A",
+      "publishedAt": "2026-06-23T11:00:02Z",
+      "viewCount": 99914,
+      "viewsPerDay": 1989,
+      "momentum": 1044,
+      "ageDays": 50.2,
+      "format": "롱폼",
+      "likeRate": 1.58,
+      "rankScore": {
+        "total": 50,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "m7CMYNFGY8Y",
+      "title": "고민은 시간 낭비입니다 \"청년미래적금\" 5분 핵심 요약",
+      "channelId": "UC35RZ2m69oVPUManql44imw",
+      "publishedAt": "2026-06-23T13:30:18Z",
+      "viewCount": 29101,
+      "viewsPerDay": 580,
+      "momentum": 305,
+      "ageDays": 50.1,
+      "format": "롱폼",
+      "likeRate": 2.14,
+      "rankScore": {
+        "total": 28,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "IHbiMUnJrO0",
+      "title": "청년미래적금, 어디에서 만들어야 이득일까? | 은행별 금리 계산기 나눔, 유형별 은행 추천",
+      "channelId": "UCto7MqwLxoc6tnA1nzz2ohg",
+      "publishedAt": "2026-06-20T07:18:09Z",
+      "viewCount": 70728,
+      "viewsPerDay": 1325,
+      "momentum": 651,
+      "ageDays": 53.4,
+      "format": "롱폼",
+      "likeRate": 1.44,
+      "rankScore": {
+        "total": 42,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "CB6ibr4KEcc",
+      "title": "배당 ETF에 10억 투자하면 종합소득세·건보료 다 떼고 매달 이만큼 들어옵니다 (ft. SCHD, JEPQ, 커버드콜 etf 배당금)",
+      "channelId": "UCmshc9VpICv4oPyjMK3Vk_w",
+      "publishedAt": "2026-08-12T07:50:25Z",
+      "viewCount": 31600,
+      "viewsPerDay": 84696,
+      "momentum": 36193,
+      "ageDays": 0.4,
+      "format": "롱폼",
+      "likeRate": 3.67,
+      "rankScore": {
+        "total": 77,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "JRR10lEvoHs",
+      "title": "지금사면 저보다 싸게 삽니다. 우리나라 코스닥 1황 ETF",
+      "channelId": "UCP7SbLrtO4TwE0hLRquXGqA",
+      "publishedAt": "2026-08-11T07:55:20Z",
+      "viewCount": 12457,
+      "viewsPerDay": 9095,
+      "momentum": 6663,
+      "ageDays": 1.4,
+      "format": "롱폼",
+      "likeRate": 2.71,
+      "rankScore": {
+        "total": 53,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "WBD2BMKyvG8",
+      "title": "\"국장으로 자금 돌리자\" ISA 개편에도…해외 ETF로 방향 튼 개미들｜지금 이 뉴스",
+      "channelId": "UCsU-I-vHLiaMfV_ceaYz5rQ",
+      "publishedAt": "2026-08-12T04:38:36Z",
+      "viewCount": 8110,
+      "viewsPerDay": 16018,
+      "momentum": 8059,
+      "ageDays": 0.5,
+      "format": "롱폼",
+      "likeRate": 0.64,
+      "rankScore": {
+        "total": 53,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "zJkyavbzxZU",
+      "title": "\"5060은 그냥 이 ETF 하나만 사세요. 월 500만원 평생 나옵니다\" 가격도 싼데 배당까지 퍼준다. 전 이걸로 싹 다 바꿨어요 | 윤보원(작은오구) 작가 3부",
+      "channelId": "UCiLdPBP0AeP-Z9CDH4MggYQ",
+      "publishedAt": "2026-08-11T09:00:18Z",
+      "viewCount": 4156,
+      "viewsPerDay": 3138,
+      "momentum": 2278,
+      "ageDays": 1.3,
+      "format": "롱폼",
+      "likeRate": 1.92,
+      "rankScore": {
+        "total": 30,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "Of_CjSXtEQ8",
+      "title": "제대로 ETF 투자하는 방법 아무것도 안 하면 성공하는데 왜 이렇게 다들 손해를 볼까",
+      "channelId": "UCjm62t0FCasxIA_fu_uUcOg",
+      "publishedAt": "2026-07-29T04:52:10Z",
+      "viewCount": 25542,
+      "viewsPerDay": 1762,
+      "momentum": 1564,
+      "ageDays": 14.5,
+      "format": "롱폼",
+      "likeRate": 2.48,
+      "rankScore": {
+        "total": 38,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "Dup-IouBAkA",
+      "title": "S&P500 월배당 ETF 샀는데 원금이 녹는다? 고분배 커버드콜의 불편한 진실 ｜신얼｜김세종｜ETF아는형",
+      "channelId": "UCIt_hQy30blHrVAS7QLTyTg",
+      "publishedAt": "2026-08-10T08:00:37Z",
+      "viewCount": 18151,
+      "viewsPerDay": 7672,
+      "momentum": 6333,
+      "ageDays": 2.4,
+      "format": "롱폼",
+      "likeRate": 2.1,
+      "rankScore": {
+        "total": 52,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "Zri3iqY8-E0",
+      "title": "\"5060은 그냥 이 ETF 하나만 사세요. 월 300만원 평생 나옵니다\" 가격도 싼데 배당까지 퍼준다. 전 이걸로 싹 다 바꿨어요 | 최창규 본부장 풀버전",
+      "channelId": "UCiLdPBP0AeP-Z9CDH4MggYQ",
+      "publishedAt": "2026-08-07T08:00:38Z",
+      "viewCount": 74776,
+      "viewsPerDay": 13935,
+      "momentum": 12747,
+      "ageDays": 5.4,
+      "format": "롱폼",
+      "likeRate": 1.68,
+      "rankScore": {
+        "total": 78,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "4l1xjP_mk4o",
+      "title": "다시 돌아온 SCHD 시대? 그래도 SCHD 커버드콜 ETF를 추천하지 않는 이유",
+      "channelId": "UCd_oHZ2cthBnyLnp-vslOhQ",
+      "publishedAt": "2026-08-06T09:30:28Z",
+      "viewCount": 19566,
+      "viewsPerDay": 3104,
+      "momentum": 2876,
+      "ageDays": 6.3,
+      "format": "롱폼",
+      "likeRate": 2.52,
+      "rankScore": {
+        "total": 43,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "WGkQ7wwHHlQ",
+      "title": "월 100만원 ETF 투자하면, 60대에 \"진짜 부자\"가 됩니다",
+      "channelId": "UCsYEheohThz9KQz8K4S2KXA",
+      "publishedAt": "2026-08-11T07:30:17Z",
+      "viewCount": 21105,
+      "viewsPerDay": 15215,
+      "momentum": 11184,
+      "ageDays": 1.4,
+      "format": "롱폼",
+      "likeRate": 2.45,
+      "rankScore": {
+        "total": 63,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "OeCTNw96SyU",
+      "title": "적립식 투자자에게 -27% 조정은 오히려 반갑습니다💡(AI ETF)",
+      "channelId": "UC3n0yal3W2bXVCfke6V-e2g",
+      "publishedAt": "2026-08-09T08:03:45Z",
+      "viewCount": 18012,
+      "viewsPerDay": 5355,
+      "momentum": 4662,
+      "ageDays": 3.4,
+      "format": "롱폼",
+      "likeRate": 2.71,
+      "rankScore": {
+        "total": 50,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "TYFVJzALVh0",
+      "title": "\"폭락 오든말든 담으세요\" 매달 75만 원씩 이 ETF 사 모아라. 10억까지 무조건 됩니다. 누구나 할 수 있어요｜이상건 센터장 2부 #etf",
+      "channelId": "UCriq8I8GEESkQq0svX19oCw",
+      "publishedAt": "2026-08-10T09:30:39Z",
+      "viewCount": 19677,
+      "viewsPerDay": 8542,
+      "momentum": 7019,
+      "ageDays": 2.3,
+      "format": "롱폼",
+      "likeRate": 1.89,
+      "rankScore": {
+        "total": 57,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "eGrHNAF9xq4",
+      "title": "월배당 12%? 믿었다간 노후 망한다! 월배당 ETF 투자시 '이것'도 꼭 확인하세요 I 김수정 I 유용주 I 염승환 I ETF아는형",
+      "channelId": "UCIt_hQy30blHrVAS7QLTyTg",
+      "publishedAt": "2026-08-06T08:00:23Z",
+      "viewCount": 44147,
+      "viewsPerDay": 6935,
+      "momentum": 6430,
+      "ageDays": 6.4,
+      "format": "롱폼",
+      "likeRate": 1.26,
+      "rankScore": {
+        "total": 63,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "_LIp-Jvo-ak",
+      "title": "환율이 높을때 투자하기 좋은 미국 ETF",
+      "channelId": "UCjm62t0FCasxIA_fu_uUcOg",
+      "publishedAt": "2026-08-11T04:54:21Z",
+      "viewCount": 5919,
+      "viewsPerDay": 3958,
+      "momentum": 2966,
+      "ageDays": 1.5,
+      "format": "롱폼",
+      "likeRate": 1.71,
+      "rankScore": {
+        "total": 35,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "sF4LCIZAVog",
+      "title": "“S&P500보다 3배 벌어야죠” 현금 흐름을 만들어낼 4가지 월배당 전략! I 제도권주식분석 I 염승환 I ETF아는형",
+      "channelId": "UCIt_hQy30blHrVAS7QLTyTg",
+      "publishedAt": "2026-08-05T08:00:31Z",
+      "viewCount": 132691,
+      "viewsPerDay": 18014,
+      "momentum": 16802,
+      "ageDays": 7.4,
+      "format": "롱폼",
+      "likeRate": 1.84,
+      "rankScore": {
+        "total": 85,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "ZdIYz92NzQg",
+      "title": "단일종목 ETF 폭망시킨 진짜 범인 나왔다? 수천억 손실 본 개미들이 증권사 상대로 돈 돌려받을 수 있다는 충격적 분석 (0809)",
+      "channelId": "UCgeOlLcX6PReHdWImEnUVTg",
+      "publishedAt": "2026-08-09T02:15:04Z",
+      "viewCount": 14978,
+      "viewsPerDay": 4154,
+      "momentum": 3648,
+      "ageDays": 3.6,
+      "format": "롱폼",
+      "likeRate": 4.77,
+      "rankScore": {
+        "total": 43,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "UqF7q4yIODM",
+      "title": "📊 드디어 연금저축의 시대가 왔다!ㅣ연금저축통계 | ver.2026",
+      "channelId": "UCr7XsrSrvAn_WcU4kF99bbQ",
+      "publishedAt": "2026-08-07T11:00:26Z",
+      "viewCount": 64235,
+      "viewsPerDay": 12256,
+      "momentum": 11189,
+      "ageDays": 5.2,
+      "format": "롱폼",
+      "likeRate": 2.07,
+      "rankScore": {
+        "total": 75,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "DVEdeOoCtXA",
+      "title": "👴👵 연금저축과 IRP의 결정적인 차이 | 어떤 게 더 좋아요? | 2026년 리뉴얼",
+      "channelId": "UCr7XsrSrvAn_WcU4kF99bbQ",
+      "publishedAt": "2026-07-29T11:00:29Z",
+      "viewCount": 60798,
+      "viewsPerDay": 4269,
+      "momentum": 3800,
+      "ageDays": 14.2,
+      "format": "롱폼",
+      "likeRate": 2.48,
+      "rankScore": {
+        "total": 58,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "YkenefuSvns",
+      "title": "연금저축, 이렇게 해야 돈이 모입니다!  ETF 투자의 핵심 이번 달은  역대급 손실",
+      "channelId": "UCdA_ovMcYiNgbkf4624Tbxw",
+      "publishedAt": "2026-08-10T10:00:23Z",
+      "viewCount": 6805,
+      "viewsPerDay": 2981,
+      "momentum": 2445,
+      "ageDays": 2.3,
+      "format": "롱폼",
+      "likeRate": 4,
+      "rankScore": {
+        "total": 35,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "iMkvDXx86dE",
+      "title": "연금고수들이 연금저축계좌 반드시 담는 ETF 3가지",
+      "channelId": "UCjm62t0FCasxIA_fu_uUcOg",
+      "publishedAt": "2026-07-28T04:50:14Z",
+      "viewCount": 79903,
+      "viewsPerDay": 5156,
+      "momentum": 4533,
+      "ageDays": 15.5,
+      "format": "롱폼",
+      "likeRate": 2.01,
+      "rankScore": {
+        "total": 66,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "3A_oSFAnxxs",
+      "title": "존리 대표│연금저축보험, 절대 해지하지 마세요! 존리가 알려주는 노후 투자의 정답",
+      "channelId": "UCXIIyfdS3hA3OHrhuMY1urQ",
+      "publishedAt": "2026-07-29T08:00:25Z",
+      "viewCount": 50081,
+      "viewsPerDay": 3486,
+      "momentum": 3099,
+      "ageDays": 14.4,
+      "format": "롱폼",
+      "likeRate": 3.04,
+      "rankScore": {
+        "total": 53,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "a-890uldXeo",
+      "title": "👨🏻‍🦳👵🏻 연금저축 사용설명서 | 연말정산 세액공제 가능한 연금저축펀드 | ver.2026",
+      "channelId": "UCr7XsrSrvAn_WcU4kF99bbQ",
+      "publishedAt": "2026-07-24T11:00:07Z",
+      "viewCount": 81438,
+      "viewsPerDay": 4232,
+      "momentum": 3576,
+      "ageDays": 19.2,
+      "format": "롱폼",
+      "likeRate": 2.81,
+      "rankScore": {
+        "total": 61,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "BxDfMXa4_ws",
+      "title": "존리 대표│연금저축, 이렇게 해야 돈이 모입니다! 존리가 알려주는 ETF 투자의 핵심 (풀영상)",
+      "channelId": "UCXIIyfdS3hA3OHrhuMY1urQ",
+      "publishedAt": "2026-08-03T02:00:25Z",
+      "viewCount": 195006,
+      "viewsPerDay": 20279,
+      "momentum": 18729,
+      "ageDays": 9.6,
+      "format": "롱폼",
+      "likeRate": 2.07,
+      "rankScore": {
+        "total": 88,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "5R1sIo8Ymbk",
+      "title": "개인연금보험 추천 개인연금저축 비과세 세액공제 연금액까지 비교해서 가입하기(6% 7% 8%)",
+      "channelId": "UCYQVAqegqQwP0gOIr8KBSAQ",
+      "publishedAt": "2026-08-11T08:34:41Z",
+      "viewCount": 1389,
+      "viewsPerDay": 1035,
+      "momentum": 754,
+      "ageDays": 1.3,
+      "format": "롱폼",
+      "likeRate": 0,
+      "rankScore": {
+        "total": 16,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "BcmPPA5JkOc",
+      "title": "연금저축펀드·IRP·ISA, 어떤 계좌부터 채워야 할까? 내 상황에 맞게 절세하면서 목돈까지 만드는 순서",
+      "channelId": "UCJK9KN_0uXngk0nT61-1DnA",
+      "publishedAt": "2026-08-06T07:00:19Z",
+      "viewCount": 2741,
+      "viewsPerDay": 428,
+      "momentum": 397,
+      "ageDays": 6.4,
+      "format": "롱폼",
+      "likeRate": 4.78,
+      "rankScore": {
+        "total": 15,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "-GiLBfitkZc",
+      "title": "연금저축계좌 5년 운용 기록 | 5년 간 2억 모은 과정을 공유합니다!",
+      "channelId": "UCcJ1RfzosmcJ4jUJ6Pu0X5w",
+      "publishedAt": "2026-07-17T13:18:00Z",
+      "viewCount": 34289,
+      "viewsPerDay": 1311,
+      "momentum": 1019,
+      "ageDays": 26.1,
+      "format": "롱폼",
+      "likeRate": 3.14,
+      "rankScore": {
+        "total": 37,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "J-uDzkter-M",
+      "title": "연금저축펀드 최악의 ETF 3가지#연금저축펀드 #ETF추천 #S&P500 #커버드콜 #수수료함정 #노후준비 #총보수비용비율 #경제 #재테크 #꿀팁 #ETF #ETF투자",
+      "channelId": "UCCCqHSzzcI65Dv_wpldE8Zw",
+      "publishedAt": "2026-05-20T06:15:38Z",
+      "viewCount": 129,
+      "viewsPerDay": 2,
+      "momentum": 0,
+      "ageDays": 84.4,
+      "format": "롱폼",
+      "likeRate": 1.55,
+      "rankScore": {
+        "total": 0,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "kb9Fbzv7dtg",
+      "title": "연금저축, IRP, ISA계좌 어떻게 운용하지?",
+      "channelId": "UCXRlkKtaSUSAiZXQrpOFwaA",
+      "publishedAt": "2026-07-04T10:38:18Z",
+      "viewCount": 11182,
+      "viewsPerDay": 285,
+      "momentum": 183,
+      "ageDays": 39.3,
+      "format": "롱폼",
+      "likeRate": 3.3,
+      "rankScore": {
+        "total": 20,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "ESO-lkX6vi8",
+      "title": "\"은퇴가 코앞인데 연금이 없다고요?\" 5년만 내고 10년 뒤 바로 받는 연금 2가지",
+      "channelId": "UCD9mxN8o9qLei1MbzroeP_A",
+      "publishedAt": "2026-05-20T07:45:00Z",
+      "viewCount": 79151,
+      "viewsPerDay": 938,
+      "momentum": 148,
+      "ageDays": 84.4,
+      "format": "롱폼",
+      "likeRate": 1.21,
+      "rankScore": {
+        "total": 40,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "YLvmfbkueXM",
+      "title": "50대 60대 연금저축 IRP 수령액 늘리는 법 (세액공제, 계좌이전 방법 총정리) | 방치하면 수천만 원 날립니다! 5060 연금저축·IRP 지금 당장 점검해야 하는 이유",
+      "channelId": "UCSqFJxc0zYKLTr2IwFth2pA",
+      "publishedAt": "2026-06-15T10:00:34Z",
+      "viewCount": 2964,
+      "viewsPerDay": 51,
+      "momentum": 22,
+      "ageDays": 58.3,
+      "format": "롱폼",
+      "likeRate": 1.35,
+      "rankScore": {
+        "total": 6,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "6kD9bXIkumE",
+      "title": "연금저축, IRP, ISA 핵심정보만 요약해 드립니다(적립)",
+      "channelId": "UCXRlkKtaSUSAiZXQrpOFwaA",
+      "publishedAt": "2026-06-26T08:24:30Z",
+      "viewCount": 8978,
+      "viewsPerDay": 190,
+      "momentum": 105,
+      "ageDays": 47.3,
+      "format": "롱폼",
+      "likeRate": 3.73,
+      "rankScore": {
+        "total": 18,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "47oPvH5VZ6g",
+      "title": "\"5060은 그냥 이 ETF만 사세요\" 가격도 싼데 배당도 퍼줍니다. 저는 이걸로 싹 다 바꿨어요 | 인생업 작가 풀버전",
+      "channelId": "UCiLdPBP0AeP-Z9CDH4MggYQ",
+      "publishedAt": "2026-08-10T10:00:20Z",
+      "viewCount": 38697,
+      "viewsPerDay": 16951,
+      "momentum": 13905,
+      "ageDays": 2.3,
+      "format": "롱폼",
+      "likeRate": 2.09,
+      "rankScore": {
+        "total": 72,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "hdv8KvDwfrA",
+      "title": "\"연 9% 준다\" 배당+성장 모두 잡는 괴물 월배당 ETF 4가지. 연 4천만 원 현금 따박따박 나옵니다 | 김범곤 대표 3부 #돈쭐남 #김경필",
+      "channelId": "UCriq8I8GEESkQq0svX19oCw",
+      "publishedAt": "2026-08-04T07:00:04Z",
+      "viewCount": 12245,
+      "viewsPerDay": 1456,
+      "momentum": 1354,
+      "ageDays": 8.4,
+      "format": "롱폼",
+      "likeRate": 1.79,
+      "rankScore": {
+        "total": 30,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "po8Q2JBawq4",
+      "title": "[3탄-008] 4억 투자하면 월647만원 배당받는 세팅방법 배당금 주가 헷징까지 동시에",
+      "channelId": "UCfkZdJmNBlYrCSm35ckzLKA",
+      "publishedAt": "2026-08-12T04:31:53Z",
+      "viewCount": 3735,
+      "viewsPerDay": 7310,
+      "momentum": 3694,
+      "ageDays": 0.5,
+      "format": "롱폼",
+      "likeRate": 3.99,
+      "rankScore": {
+        "total": 35,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "iawOZV6PJMA",
+      "title": "시장이 흔들려도 월급처럼 쌓이는 배당주로 노후 대비하기 (홍춘욱 박사)",
+      "channelId": "UCmNbuxmvRVv9OcdAO0cpLnw",
+      "publishedAt": "2026-08-03T09:41:49Z",
+      "viewCount": 69054,
+      "viewsPerDay": 7429,
+      "momentum": 6873,
+      "ageDays": 9.3,
+      "format": "롱폼",
+      "likeRate": 1.97,
+      "rankScore": {
+        "total": 68,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "vrZKuTGJsQU",
+      "title": "\"평생 출근 안해도 월급 들어오는 배당주\"로 노후준비 끝내기",
+      "channelId": "UCn49LSg2JSP-9rXV5G2kt4A",
+      "publishedAt": "2026-08-12T06:00:01Z",
+      "viewCount": 6066,
+      "viewsPerDay": 13487,
+      "momentum": 6387,
+      "ageDays": 0.4,
+      "format": "롱폼",
+      "likeRate": 3.02,
+      "rankScore": {
+        "total": 45,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "KJAwteyp1lc",
+      "title": "26년 7월 배당 결산💰 배당금(세후) +1,064만원💵 / 누적배당금 1억 713만원📈 / 파이어족🏝️",
+      "channelId": "UC7XSkHmwqs4dypu-z1ibRpw",
+      "publishedAt": "2026-08-11T12:56:22Z",
+      "viewCount": 3542,
+      "viewsPerDay": 3052,
+      "momentum": 2133,
+      "ageDays": 1.2,
+      "format": "롱폼",
+      "likeRate": 0,
+      "rankScore": {
+        "total": 27,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "kdZhonQ3qmg",
+      "title": "이 ETF 죽을 때까지 배당 나오는데 원금도 미친듯이 불어납니다. 1억 맘편히 묻으세요 | 배당의만장 풀버전 #돈쭐남#김경필",
+      "channelId": "UCriq8I8GEESkQq0svX19oCw",
+      "publishedAt": "2026-07-05T04:00:22Z",
+      "viewCount": 131553,
+      "viewsPerDay": 3414,
+      "momentum": 2215,
+      "ageDays": 38.5,
+      "format": "롱폼",
+      "likeRate": 2.57,
+      "rankScore": {
+        "total": 58,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "Z3B_osrQTFY",
+      "title": "월 300 배당 받으려면 종잣돈 얼마 필요? 고배당주, 커버드콜 ETF 비교 #리치노마드",
+      "channelId": "UCTIgENwrcMCmD4xbjPCKfIw",
+      "publishedAt": "2026-08-10T08:44:26Z",
+      "viewCount": 12455,
+      "viewsPerDay": 5333,
+      "momentum": 4392,
+      "ageDays": 2.3,
+      "format": "롱폼",
+      "likeRate": 4.26,
+      "rankScore": {
+        "total": 46,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "DGQOyTn7iP0",
+      "title": "SCHD 대신 KODEX 미국배당다우존스?｜2억 투자, 결과가 완전 달라졌다 (상승장·하락장·세금까지)",
+      "channelId": "UCA57zlqR9wYq7RZP1y3w4AQ",
+      "publishedAt": "2026-08-07T09:00:01Z",
+      "viewCount": 10776,
+      "viewsPerDay": 2024,
+      "momentum": 1850,
+      "ageDays": 5.3,
+      "format": "롱폼",
+      "likeRate": 3.02,
+      "rankScore": {
+        "total": 31,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "yi-QLA1Fu-Y",
+      "title": "국내 배당주 순위 TOP 20 (2026년 7월) | 배당률 1위는 왜 사면 안 되는가",
+      "channelId": "UCF17r486IIMd2QH-wH2KZdQ",
+      "publishedAt": "2026-07-27T21:00:27Z",
+      "viewCount": 649,
+      "viewsPerDay": 41,
+      "momentum": 36,
+      "ageDays": 15.8,
+      "format": "롱폼",
+      "likeRate": 1.85,
+      "rankScore": {
+        "total": 4,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "Wc52vsC6q4U",
+      "title": "생활비 한 달 5만원..10년 만에 배당금 월 300만원 받는 이유  (조윤진 1부) #세미파이어 #배당투자",
+      "channelId": "UC5UFGiELUPSTvFfMGEUxeiQ",
+      "publishedAt": "2026-07-17T12:09:28Z",
+      "viewCount": 569589,
+      "viewsPerDay": 21746,
+      "momentum": 16887,
+      "ageDays": 26.2,
+      "format": "롱폼",
+      "likeRate": 1.01,
+      "rankScore": {
+        "total": 89,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "r01BowSuDLM",
+      "title": "생활비 완벽 해결한 배당주 고르는 법",
+      "channelId": "UCUS-I9DgdlNrvBOIGUCJthA",
+      "publishedAt": "2026-08-01T02:00:01Z",
+      "viewCount": 52349,
+      "viewsPerDay": 4506,
+      "momentum": 4104,
+      "ageDays": 11.6,
+      "format": "롱폼",
+      "likeRate": 2.83,
+      "rankScore": {
+        "total": 58,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "JCyRhHwzyl0",
+      "title": "3억으로 파이어한 투자 포트폴리오 실제 계좌 인증 공개, 미니멀라이프",
+      "channelId": "UCUS-I9DgdlNrvBOIGUCJthA",
+      "publishedAt": "2026-08-08T02:00:32Z",
+      "viewCount": 36354,
+      "viewsPerDay": 7876,
+      "momentum": 7106,
+      "ageDays": 4.6,
+      "format": "롱폼",
+      "likeRate": 3.41,
+      "rankScore": {
+        "total": 64,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    }
+  ],
+  "topPhrases": [
+    {
+      "phrase": "돈쭐남 김경필",
+      "videoCount": 4,
+      "recentCount": 1
+    },
+    {
+      "phrase": "삼성전자 SK하이닉스",
+      "videoCount": 3,
+      "recentCount": 3
+    },
+    {
+      "phrase": "이걸로 바꿨어요",
+      "videoCount": 3,
+      "recentCount": 3
+    },
+    {
+      "phrase": "연금저축 IRP",
+      "videoCount": 3,
+      "recentCount": 0
+    },
+    {
+      "phrase": "월배당 ETF",
+      "videoCount": 3,
+      "recentCount": 3
+    },
+    {
+      "phrase": "가격도 싼데",
+      "videoCount": 3,
+      "recentCount": 3
+    },
+    {
+      "phrase": "주식 투자",
+      "videoCount": 3,
+      "recentCount": 1
+    },
+    {
+      "phrase": "안정모의 주식투자님의 실시간",
+      "videoCount": 2,
+      "recentCount": 2
+    },
+    {
+      "phrase": "주식투자님의 실시간 스트림",
+      "videoCount": 2,
+      "recentCount": 2
+    },
+    {
+      "phrase": "5060은 ETF 하나만",
+      "videoCount": 2,
+      "recentCount": 2
+    },
+    {
+      "phrase": "배당까지 퍼준다. 이걸로",
+      "videoCount": 2,
+      "recentCount": 2
+    },
+    {
+      "phrase": "퍼준다. 이걸로 바꿨어요",
+      "videoCount": 2,
+      "recentCount": 2
+    },
+    {
+      "phrase": "ETF 하나만 사세요.",
+      "videoCount": 2,
+      "recentCount": 2
+    },
+    {
+      "phrase": "싼데 배당까지 퍼준다.",
+      "videoCount": 2,
+      "recentCount": 2
+    },
+    {
+      "phrase": "풀버전 돈쭐남 김경필",
+      "videoCount": 2,
+      "recentCount": 0
+    }
+  ],
+  "topKeywords": [
+    {
+      "keyword": "ETF",
+      "videoCount": 19,
+      "recentCount": 14
+    },
+    {
+      "keyword": "재테크",
+      "videoCount": 9,
+      "recentCount": 5
+    },
+    {
+      "keyword": "투자",
+      "videoCount": 7,
+      "recentCount": 5
+    },
+    {
+      "keyword": "이유",
+      "videoCount": 7,
+      "recentCount": 4
+    },
+    {
+      "keyword": "배당",
+      "videoCount": 6,
+      "recentCount": 4
+    },
+    {
+      "keyword": "주식",
+      "videoCount": 5,
+      "recentCount": 3
+    },
+    {
+      "keyword": "추천",
+      "videoCount": 5,
+      "recentCount": 4
+    },
+    {
+      "keyword": "돈쭐남",
+      "videoCount": 5,
+      "recentCount": 1
+    },
+    {
+      "keyword": "김경필",
+      "videoCount": 5,
+      "recentCount": 1
+    },
+    {
+      "keyword": "매달",
+      "videoCount": 5,
+      "recentCount": 3
+    },
+    {
+      "keyword": "연금저축",
+      "videoCount": 5,
+      "recentCount": 1
+    },
+    {
+      "keyword": "삼성전자",
+      "videoCount": 4,
+      "recentCount": 4
+    },
+    {
+      "keyword": "SK하이닉스",
+      "videoCount": 4,
+      "recentCount": 4
+    },
+    {
+      "keyword": "SCHD",
+      "videoCount": 4,
+      "recentCount": 3
+    },
+    {
+      "keyword": "평생",
+      "videoCount": 4,
+      "recentCount": 3
+    },
+    {
+      "keyword": "주식투자",
+      "videoCount": 4,
+      "recentCount": 4
+    },
+    {
+      "keyword": "핵심",
+      "videoCount": 4,
+      "recentCount": 2
+    },
+    {
+      "keyword": "2026년",
+      "videoCount": 4,
+      "recentCount": 0
+    },
+    {
+      "keyword": "청년미래적금",
+      "videoCount": 4,
+      "recentCount": 0
+    },
+    {
+      "keyword": "커버드콜",
+      "videoCount": 4,
+      "recentCount": 3
+    }
+  ],
+  "channels": [
+    {
+      "channelId": "UCriq8I8GEESkQq0svX19oCw",
+      "channelTitle": "부티플 - 부의 배수를 높여라",
+      "videoCount": 6,
+      "totalViews": 357462,
+      "avgMarketScore": 42,
+      "bestVideoTitle": "“매달 50만원씩 여기 넣어라” 19.5% 확정수익 주는 통장 떴다. 나이제한, 소득제한 없습니다 | 송영욱 대표 풀버전 #돈쭐남 #김경필",
+      "subscriberCount": 1200000,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 5156,
+      "channelPublishedAt": "2022-03-04T02:49:40.554017Z"
+    },
+    {
+      "channelId": "UCooN1oaxqRME-p48T67Jq1w",
+      "channelTitle": "행복의 나침반",
+      "videoCount": 3,
+      "totalViews": 291384,
+      "avgMarketScore": 92,
+      "bestVideoTitle": "삼전 말고 코스닥 간다🔥 상위 1% 고수의 순매수",
+      "subscriberCount": 95400,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 1879,
+      "channelPublishedAt": "2025-04-18T11:18:32.241438Z"
+    },
+    {
+      "channelId": "UCr7XsrSrvAn_WcU4kF99bbQ",
+      "channelTitle": "박곰희TV",
+      "videoCount": 3,
+      "totalViews": 206471,
+      "avgMarketScore": 65,
+      "bestVideoTitle": "👨🏻‍🦳👵🏻 연금저축 사용설명서 | 연말정산 세액공제 가능한 연금저축펀드 | ver.2026",
+      "subscriberCount": 1260000,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 767,
+      "channelPublishedAt": "2019-06-15T07:18:40Z"
+    },
+    {
+      "channelId": "UCIt_hQy30blHrVAS7QLTyTg",
+      "channelTitle": "ETF 아는 형",
+      "videoCount": 3,
+      "totalViews": 194989,
+      "avgMarketScore": 67,
+      "bestVideoTitle": "“S&P500보다 3배 벌어야죠” 현금 흐름을 만들어낼 4가지 월배당 전략! I 제도권주식분석 I 염승환 I ETF아는형",
+      "subscriberCount": 145000,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 814,
+      "channelPublishedAt": "2025-07-01T02:27:00.497213Z"
+    },
+    {
+      "channelId": "UCiLdPBP0AeP-Z9CDH4MggYQ",
+      "channelTitle": "재테크는 두꺼비 세무사",
+      "videoCount": 3,
+      "totalViews": 117629,
+      "avgMarketScore": 60,
+      "bestVideoTitle": "\"5060은 그냥 이 ETF 하나만 사세요. 월 300만원 평생 나옵니다\" 가격도 싼데 배당까지 퍼준다. 전 이걸로 싹 다 바꿨어요 | 최창규 본부장 풀버전",
+      "subscriberCount": 255000,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 846,
+      "channelPublishedAt": "2013-06-19T05:58:00Z"
+    },
+    {
+      "channelId": "UCjm62t0FCasxIA_fu_uUcOg",
+      "channelTitle": "경제나침반",
+      "videoCount": 3,
+      "totalViews": 111364,
+      "avgMarketScore": 46,
+      "bestVideoTitle": "연금고수들이 연금저축계좌 반드시 담는 ETF 3가지",
+      "subscriberCount": 12200,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 119,
+      "channelPublishedAt": "2026-07-27T02:03:36.376981Z"
+    },
+    {
+      "channelId": "UCm04C1eVPBn0m3aUzPwppkg",
+      "channelTitle": "든든자산연구소",
+      "videoCount": 3,
+      "totalViews": 5435,
+      "avgMarketScore": 8,
+      "bestVideoTitle": "주식 투자 부자들이 항상 현금을 남겨두는 진짜 이유",
+      "subscriberCount": 156000,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 86,
+      "channelPublishedAt": "2026-01-02T08:37:48.137895Z"
+    },
+    {
+      "channelId": "UC1ifSsWUG241rRfK0ezYCgA",
+      "channelTitle": "KNN NEWS",
+      "videoCount": 2,
+      "totalViews": 1344075,
+      "avgMarketScore": 90,
+      "bestVideoTitle": "\"손실률 78%, 22억 날렸다\" 레버리지로 파산한 투자자 속출? / KNN",
+      "subscriberCount": 1300000,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 199104,
+      "channelPublishedAt": "2013-01-17T06:56:30Z"
+    },
+    {
+      "channelId": "UCbMjg2EvXs_RUGW-KrdM3pw",
+      "channelTitle": "SBS Biz 뉴스",
+      "videoCount": 2,
+      "totalViews": 290270,
+      "avgMarketScore": 55,
+      "bestVideoTitle": "청년들 놀랄 '대박 적금' 나왔다 [NEWS 11]",
+      "subscriberCount": 447000,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 96712,
+      "channelPublishedAt": "2013-07-31T01:30:57Z"
+    },
+    {
+      "channelId": "UCXIIyfdS3hA3OHrhuMY1urQ",
+      "channelTitle": "새멋TV",
+      "videoCount": 2,
+      "totalViews": 245087,
+      "avgMarketScore": 71,
+      "bestVideoTitle": "존리 대표│연금저축, 이렇게 해야 돈이 모입니다! 존리가 알려주는 ETF 투자의 핵심 (풀영상)",
+      "subscriberCount": 43600,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 783,
+      "channelPublishedAt": "2020-06-23T02:36:08.826629Z"
+    }
+  ],
+  "searchSuggestions": [
+    {
+      "query": "재테크",
+      "suggestions": [
+        "재테크 기초",
+        "재테크 책 추천",
+        "재테크 종류",
+        "재테크 추천",
+        "재테크 기초 강의",
+        "재테크 공부 실전 후기",
+        "재테크농부",
+        "재테크 공부 2026 최신 정보",
+        "재테크하는 일개미"
+      ]
+    },
+    {
+      "query": "주식 투자",
+      "suggestions": [
+        "주식 투자 하는 방법",
+        "주식 투자 종목 추천",
+        "주식 투자 기초 추천",
+        "주식 투자 기초",
+        "주식 투자 기초 비교",
+        "주식 투자 기초 실전 후기",
+        "주식 투자 기초 초보 가이드",
+        "주식 투자 금액",
+        "주식 투자 전략"
+      ]
+    },
+    {
+      "query": "적금 금리",
+      "suggestions": [
+        "적금 금리 높은곳",
+        "적금 금리 계산",
+        "적금 금리 비교",
+        "적금 예금 금리 비교",
+        "은행 적금 금리 비교",
+        "은행 적금 금리",
+        "예금 적금 금리"
+      ]
+    },
+    {
+      "query": "ETF",
+      "suggestions": [
+        "etf",
+        "etf 추천",
+        "etf아는형",
+        "etf베이커리",
+        "etf 투자방법",
+        "etf 추천 종목",
+        "etf 투자",
+        "etf란",
+        "etf 포트폴리오",
+        "etf 초보"
+      ]
+    },
+    {
+      "query": "연금저축",
+      "suggestions": [
+        "연금저축계좌",
+        "연금저축펀드",
+        "연금저축펀드 etf",
+        "연금저축 irp",
+        "연금저축계좌 개설",
+        "연금저축 etf 추천",
+        "연금저축 etf",
+        "연금저축 포트폴리오",
+        "연금저축계좌 etf"
+      ]
+    },
+    {
+      "query": "배당주",
+      "suggestions": [
+        "배당주 etf",
+        "배당주 투자",
+        "배당주 포트폴리오",
+        "배당주 추천",
+        "배당주 추천 종목",
+        "배당주 etf 추천",
+        "배당주 투자 전략",
+        "배당주식",
+        "배당주 투자 방법"
+      ]
+    }
+  ],
+  "limitations": [
+    "외부 영상의 CTR, 노출수, 시청 지속률, 평균 시청 시간은 YouTube 공개 API로 확인할 수 없습니다.",
+    "성과 점수는 조회수, 좋아요, 댓글, 최근성 등 공개 지표 기반 추정치입니다.",
+    "CTR·지속률 지표는 황금후추 내부 YouTube Studio 데이터에서만 확인할 수 있습니다."
+  ],
+  "outperformers": [
+    {
+      "videoId": "Wc52vsC6q4U",
+      "title": "생활비 한 달 5만원..10년 만에 배당금 월 300만원 받는 이유  (조윤진 1부) #세미파이어 #배당투자",
+      "channelTitle": "자람들 - 자립하는사람들",
+      "channelSubscribers": 26600,
+      "viewCount": 569589,
+      "viewsPerDay": 21746,
+      "ageDays": 26.2,
+      "format": "롱폼",
+      "url": "https://www.youtube.com/watch?v=Wc52vsC6q4U",
+      "ratio": 21.4
+    },
+    {
+      "videoId": "BnAiFr8Enhw",
+      "title": "재테크 공부 시작하는 법, 경제 책 유튜브 강의 추천, 한살이라도 어릴 때 시작해야하는 이유",
+      "channelTitle": "2030 미혼여자 내집마련 | 재테크모아",
+      "channelSubscribers": 7950,
+      "viewCount": 75121,
+      "viewsPerDay": 7223,
+      "ageDays": 10.4,
+      "format": "롱폼",
+      "url": "https://www.youtube.com/watch?v=BnAiFr8Enhw",
+      "ratio": 9.4
+    },
+    {
+      "videoId": "IHbiMUnJrO0",
+      "title": "청년미래적금, 어디에서 만들어야 이득일까? | 은행별 금리 계산기 나눔, 유형별 은행 추천",
+      "channelTitle": "똑경이",
+      "channelSubscribers": 10400,
+      "viewCount": 70728,
+      "viewsPerDay": 1325,
+      "ageDays": 53.4,
+      "format": "롱폼",
+      "url": "https://www.youtube.com/watch?v=IHbiMUnJrO0",
+      "ratio": 6.8
+    },
+    {
+      "videoId": "iMkvDXx86dE",
+      "title": "연금고수들이 연금저축계좌 반드시 담는 ETF 3가지",
+      "channelTitle": "경제나침반",
+      "channelSubscribers": 12200,
+      "viewCount": 79903,
+      "viewsPerDay": 5156,
+      "ageDays": 15.5,
+      "format": "롱폼",
+      "url": "https://www.youtube.com/watch?v=iMkvDXx86dE",
+      "ratio": 6.5
+    },
+    {
+      "videoId": "BxDfMXa4_ws",
+      "title": "존리 대표│연금저축, 이렇게 해야 돈이 모입니다! 존리가 알려주는 ETF 투자의 핵심 (풀영상)",
+      "channelTitle": "새멋TV",
+      "channelSubscribers": 43600,
+      "viewCount": 195006,
+      "viewsPerDay": 20279,
+      "ageDays": 9.6,
+      "format": "롱폼",
+      "url": "https://www.youtube.com/watch?v=BxDfMXa4_ws",
+      "ratio": 4.5
+    },
+    {
+      "videoId": "WGkQ7wwHHlQ",
+      "title": "월 100만원 ETF 투자하면, 60대에 \"진짜 부자\"가 됩니다",
+      "channelTitle": "농부의 경제학",
+      "channelSubscribers": 6860,
+      "viewCount": 21105,
+      "viewsPerDay": 15215,
+      "ageDays": 1.4,
+      "format": "롱폼",
+      "url": "https://www.youtube.com/watch?v=WGkQ7wwHHlQ",
+      "ratio": 3.1
+    },
+    {
+      "videoId": "7FrJ3wuJDaY",
+      "title": "어떤 투자는 '도박'이다? 주식 투자 때문에 인생이 무너진 사람들 | 추적60분 KBS 방송",
+      "channelTitle": "KBS 추적60분",
+      "channelSubscribers": 799000,
+      "viewCount": 2347256,
+      "viewsPerDay": 232975,
+      "ageDays": 10.1,
+      "format": "롱폼",
+      "url": "https://www.youtube.com/watch?v=7FrJ3wuJDaY",
+      "ratio": 2.9
+    },
+    {
+      "videoId": "tFS9Ga_v5_U",
+      "title": "[전체] 2026년 7월 은행,저축은행 예금적금 금리 Top5   #예금 #적금 #예적금비교 #은행별 예적금 비교 #재태크 #은행 #저축은행",
+      "channelTitle": "나두시니어",
+      "channelSubscribers": 2140,
+      "viewCount": 5322,
+      "viewsPerDay": 130,
+      "ageDays": 40.8,
+      "format": "롱폼",
+      "url": "https://www.youtube.com/watch?v=tFS9Ga_v5_U",
+      "ratio": 2.5
+    }
+  ],
+  "commentDemand": {
+    "scannedVideos": 8,
+    "totalComments": 250,
+    "requests": [
+      {
+        "text": "전국민 부자로 만들어 주시는 분",
+        "likeCount": 10,
+        "videoTitle": "존리 대표│연금저축, 이렇게 해야 돈이 모입니다! 존리가 알려주는 ETF 투자의 핵심 (풀영상)"
+      },
+      {
+        "text": "대표님, 안녕하세요. 존리 대표님의 주식 투자 철학에 공감해 현재 연금저축을 통해 장기투자를 하고 있습니다. 다만 최근 ISA 계좌 개정안에서 국내 상장 ETF 중 S&P500, 나스닥 같은 해외지수 ETF 투자가 …",
+        "likeCount": 4,
+        "videoTitle": "존리 대표│연금저축, 이렇게 해야 돈이 모입니다! 존리가 알려주는 ETF 투자의 핵심 (풀영상)"
+      },
+      {
+        "text": "43살인데 4년후 재개발매도하면 5억이나 6억정도 인데 아님 매도하지말고 모아갈지 일반아파트하나사고 2.5억정도? 나머지 2.5를 etf 하려는데 너무 무서워요 해도될지 존리님 꼭 답변 부탁드립니다🙏",
+        "likeCount": 4,
+        "videoTitle": "존리 대표│연금저축, 이렇게 해야 돈이 모입니다! 존리가 알려주는 ETF 투자의 핵심 (풀영상)"
+      },
+      {
+        "text": "40세 이상 모임도 만들어주시면 좋을거같아요ㅠ . 가입하고싶은데 아쉬워요",
+        "likeCount": 1,
+        "videoTitle": "존리 대표│연금저축, 이렇게 해야 돈이 모입니다! 존리가 알려주는 ETF 투자의 핵심 (풀영상)"
+      }
+    ]
+  },
+  "comparison": {
+    "previousDate": "2026-08-12",
+    "newKeywords": [
+      {
+        "keyword": "돈쭐남",
+        "videoCount": 5,
+        "recentCount": 1
+      },
+      {
+        "keyword": "김경필",
+        "videoCount": 5,
+        "recentCount": 1
+      },
+      {
+        "keyword": "매달",
+        "videoCount": 5,
+        "recentCount": 3
+      },
+      {
+        "keyword": "SK하이닉스",
+        "videoCount": 4,
+        "recentCount": 4
+      },
+      {
+        "keyword": "SCHD",
+        "videoCount": 4,
+        "recentCount": 3
+      },
+      {
+        "keyword": "평생",
+        "videoCount": 4,
+        "recentCount": 3
+      },
+      {
+        "keyword": "주식투자",
+        "videoCount": 4,
+        "recentCount": 4
+      },
+      {
+        "keyword": "청년미래적금",
+        "videoCount": 4,
+        "recentCount": 0
+      },
+      {
+        "keyword": "커버드콜",
+        "videoCount": 4,
+        "recentCount": 3
+      }
+    ],
+    "strengthenedKeywords": [
+      {
+        "keyword": "ETF",
+        "previousVideoCount": 15,
+        "videoCount": 19
+      },
+      {
+        "keyword": "재테크",
+        "previousVideoCount": 8,
+        "videoCount": 9
+      },
+      {
+        "keyword": "투자",
+        "previousVideoCount": 3,
+        "videoCount": 7
+      },
+      {
+        "keyword": "이유",
+        "previousVideoCount": 6,
+        "videoCount": 7
+      },
+      {
+        "keyword": "추천",
+        "previousVideoCount": 4,
+        "videoCount": 5
+      }
+    ],
+    "newPhrases": [
+      {
+        "phrase": "돈쭐남 김경필",
+        "videoCount": 4,
+        "recentCount": 1
+      },
+      {
+        "phrase": "가격도 싼데",
+        "videoCount": 3,
+        "recentCount": 3
+      },
+      {
+        "phrase": "주식 투자",
+        "videoCount": 3,
+        "recentCount": 1
+      },
+      {
+        "phrase": "안정모의 주식투자님의 실시간",
+        "videoCount": 2,
+        "recentCount": 2
+      },
+      {
+        "phrase": "주식투자님의 실시간 스트림",
+        "videoCount": 2,
+        "recentCount": 2
+      },
+      {
+        "phrase": "5060은 ETF 하나만",
+        "videoCount": 2,
+        "recentCount": 2
+      },
+      {
+        "phrase": "배당까지 퍼준다. 이걸로",
+        "videoCount": 2,
+        "recentCount": 2
+      },
+      {
+        "phrase": "퍼준다. 이걸로 바꿨어요",
+        "videoCount": 2,
+        "recentCount": 2
+      },
+      {
+        "phrase": "ETF 하나만 사세요.",
+        "videoCount": 2,
+        "recentCount": 2
+      },
+      {
+        "phrase": "싼데 배당까지 퍼준다.",
+        "videoCount": 2,
+        "recentCount": 2
+      }
+    ],
+    "newRisingVideos": [
+      {
+        "videoId": "nm2um6Dd648",
+        "title": "SK하이닉스 신규팹 투자 확정🔥반도체 소부장 상승률 TOP15",
+        "channelTitle": "행복의 나침반",
+        "viewsPerDay": 37155,
+        "ageDays": 2.2,
+        "format": "쇼츠",
+        "url": "https://www.youtube.com/watch?v=nm2um6Dd648"
+      },
+      {
+        "videoId": "MEo0P_cTHX0",
+        "title": "\"지수 위주로 투자해요\" 지방에서 주식 투자해 자산 10억원 만든 30대 공무원 [싱글파이어]",
+        "channelTitle": "싱글파이어",
+        "viewsPerDay": 32751,
+        "ageDays": 1.3,
+        "format": "롱폼",
+        "url": "https://www.youtube.com/watch?v=MEo0P_cTHX0"
+      },
+      {
+        "videoId": "2OWTkiKCIPQ",
+        "title": "안정모의 주식투자님의 실시간 스트림",
+        "channelTitle": "안정모의 주식투자",
+        "viewsPerDay": 26860,
+        "ageDays": 1.4,
+        "format": "롱폼",
+        "url": "https://www.youtube.com/watch?v=2OWTkiKCIPQ"
+      }
+    ]
+  },
+  "velocityVideos": [
+    {
+      "videoId": "Kj-eou5fbmM",
+      "title": "삼전·하닉 5.9조 던졌다😱 외국인 갈아탄 종목 TOP15",
+      "channelTitle": "행복의 나침반",
+      "url": "https://www.youtube.com/watch?v=Kj-eou5fbmM",
+      "format": "쇼츠",
+      "viewCount": 100300,
+      "previousViews": 90051,
+      "viewDelta": 10249,
+      "hoursBetween": 5.4,
+      "measuredViewsPerDay": 45719
+    },
+    {
+      "videoId": "7FrJ3wuJDaY",
+      "title": "어떤 투자는 '도박'이다? 주식 투자 때문에 인생이 무너진 사람들 | 추적60분 KBS 방송",
+      "channelTitle": "KBS 추적60분",
+      "url": "https://www.youtube.com/watch?v=7FrJ3wuJDaY",
+      "format": "롱폼",
+      "viewCount": 2347256,
+      "previousViews": 2340141,
+      "viewDelta": 7115,
+      "hoursBetween": 5.4,
+      "measuredViewsPerDay": 31739
+    },
+    {
+      "videoId": "MEo0P_cTHX0",
+      "title": "\"지수 위주로 투자해요\" 지방에서 주식 투자해 자산 10억원 만든 30대 공무원 [싱글파이어]",
+      "channelTitle": "싱글파이어",
+      "url": "https://www.youtube.com/watch?v=MEo0P_cTHX0",
+      "format": "롱폼",
+      "viewCount": 43373,
+      "previousViews": 38185,
+      "viewDelta": 5188,
+      "hoursBetween": 5.4,
+      "measuredViewsPerDay": 23143
+    },
+    {
+      "videoId": "545SwSzAkKc",
+      "title": "삼전 말고 코스닥 간다🔥 상위 1% 고수의 순매수",
+      "channelTitle": "행복의 나침반",
+      "url": "https://www.youtube.com/watch?v=545SwSzAkKc",
+      "format": "쇼츠",
+      "viewCount": 108204,
+      "previousViews": 105014,
+      "viewDelta": 3190,
+      "hoursBetween": 5.4,
+      "measuredViewsPerDay": 14230
+    },
+    {
+      "videoId": "SXQGU3vSX1w",
+      "title": "지갑 속 이것만 봐도 돈 새는 습관 보인다｜재테크 상식 (시니어 필수)",
+      "channelTitle": "건강바다TV",
+      "url": "https://www.youtube.com/watch?v=SXQGU3vSX1w",
+      "format": "쇼츠",
+      "viewCount": 43004,
+      "previousViews": 40412,
+      "viewDelta": 2592,
+      "hoursBetween": 5.4,
+      "measuredViewsPerDay": 11562
+    },
+    {
+      "videoId": "sF4LCIZAVog",
+      "title": "“S&P500보다 3배 벌어야죠” 현금 흐름을 만들어낼 4가지 월배당 전략! I 제도권주식분석 I 염승환 I ETF아는형",
+      "channelTitle": "ETF 아는 형",
+      "url": "https://www.youtube.com/watch?v=sF4LCIZAVog",
+      "format": "롱폼",
+      "viewCount": 132691,
+      "previousViews": 130334,
+      "viewDelta": 2357,
+      "hoursBetween": 5.4,
+      "measuredViewsPerDay": 10514
+    },
+    {
+      "videoId": "QWYnZG7LfEs",
+      "title": "99% 모르는 AI로 주식수익 극대화 하는 법ㅣ대외비 EP.29",
+      "channelTitle": "지식인사이드",
+      "url": "https://www.youtube.com/watch?v=QWYnZG7LfEs",
+      "format": "롱폼",
+      "viewCount": 367625,
+      "previousViews": 365302,
+      "viewDelta": 2323,
+      "hoursBetween": 5.4,
+      "measuredViewsPerDay": 10362
+    },
+    {
+      "videoId": "Wc52vsC6q4U",
+      "title": "생활비 한 달 5만원..10년 만에 배당금 월 300만원 받는 이유  (조윤진 1부) #세미파이어 #배당투자",
+      "channelTitle": "자람들 - 자립하는사람들",
+      "url": "https://www.youtube.com/watch?v=Wc52vsC6q4U",
+      "format": "롱폼",
+      "viewCount": 569589,
+      "previousViews": 568024,
+      "viewDelta": 1565,
+      "hoursBetween": 5.4,
+      "measuredViewsPerDay": 6981
+    },
+    {
+      "videoId": "iMkvDXx86dE",
+      "title": "연금고수들이 연금저축계좌 반드시 담는 ETF 3가지",
+      "channelTitle": "경제나침반",
+      "url": "https://www.youtube.com/watch?v=iMkvDXx86dE",
+      "format": "롱폼",
+      "viewCount": 79903,
+      "previousViews": 78356,
+      "viewDelta": 1547,
+      "hoursBetween": 5.4,
+      "measuredViewsPerDay": 6901
+    },
+    {
+      "videoId": "BxDfMXa4_ws",
+      "title": "존리 대표│연금저축, 이렇게 해야 돈이 모입니다! 존리가 알려주는 ETF 투자의 핵심 (풀영상)",
+      "channelTitle": "새멋TV",
+      "url": "https://www.youtube.com/watch?v=BxDfMXa4_ws",
+      "format": "롱폼",
+      "viewCount": 195006,
+      "previousViews": 193675,
+      "viewDelta": 1331,
+      "hoursBetween": 5.4,
+      "measuredViewsPerDay": 5937
+    }
+  ]
+}

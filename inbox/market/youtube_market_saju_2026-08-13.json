@@ -1,0 +1,6394 @@
+{
+  "ok": true,
+  "topic": "사주",
+  "date": "2026-08-13",
+  "generatedAt": "2026-08-12T16:41:29.422Z",
+  "queries": [
+    "2026 운세",
+    "신년운세",
+    "오늘의 운세",
+    "띠별 운세",
+    "재물운",
+    "직업운",
+    "사업운",
+    "결혼운",
+    "애정운",
+    "궁합",
+    "건강운",
+    "대운",
+    "사주풀이",
+    "삼재"
+  ],
+  "publishedAfter": "2026-05-14T16:41:22.753Z",
+  "quotaCost": 1407,
+  "totalVideos": 191,
+  "shortsCount": 45,
+  "longformCount": 146,
+  "topVideos": [
+    {
+      "videoId": "Mne56POrjHI",
+      "url": "https://www.youtube.com/watch?v=Mne56POrjHI",
+      "title": "당신의 직업을 나쁘게 소개한다면? (5탄)",
+      "description": "",
+      "channelId": "UCmjjgsm51PYMPf5REDylbSA",
+      "channelTitle": "김켈리 Kellyfornia",
+      "publishedAt": "2026-07-15T10:00:14Z",
+      "thumbnail": "https://i.ytimg.com/vi/Mne56POrjHI/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 2060282,
+      "likeCount": 29688,
+      "commentCount": 466,
+      "durationSeconds": 37,
+      "format": "쇼츠",
+      "ageDays": 28.3,
+      "viewsPerDay": 72857,
+      "momentum": 55033,
+      "likeRate": 1.44,
+      "commentRate": 0.02,
+      "matchedQueries": [
+        "직업운"
+      ],
+      "marketScore": {
+        "total": 76,
+        "parts": {
+          "volume": 25,
+          "velocity": 30,
+          "likeRate": 5,
+          "commentRate": 0,
+          "recency": 15
+        }
+      },
+      "rankScore": {
+        "total": 98,
+        "parts": {
+          "momentum": 58,
+          "volume": 40
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 1310000
+    },
+    {
+      "videoId": "hPKD0lvriMM",
+      "url": "https://www.youtube.com/watch?v=hPKD0lvriMM",
+      "title": "관상만 보고 직업 정해주기 - 서울 식물원편",
+      "description": "#엄지윤 #송하빈 #관상\n\n관상만 보고 직업 맞혀드립니다\n\n📍 서울 식물원\n📍 특별 출연 - 매미\n\n*출연자에 대한 욕설 및 비방 댓글은 삭제될 수 있습니다.\n*해당 장소의 허가를 받고 촬영하였습니다.",
+      "channelId": "UCLXafJ8yYXeUN_eHai-6Pgw",
+      "channelTitle": "엄지렐라 Umjirella",
+      "publishedAt": "2026-07-31T11:03:52Z",
+      "thumbnail": "https://i.ytimg.com/vi/hPKD0lvriMM/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 425321,
+      "likeCount": 6658,
+      "commentCount": 689,
+      "durationSeconds": 1675,
+      "format": "롱폼",
+      "ageDays": 12.2,
+      "viewsPerDay": 34764,
+      "momentum": 31499,
+      "likeRate": 1.57,
+      "commentRate": 0.16,
+      "matchedQueries": [
+        "직업운"
+      ],
+      "marketScore": {
+        "total": 80,
+        "parts": {
+          "volume": 23,
+          "velocity": 30,
+          "likeRate": 6,
+          "commentRate": 2,
+          "recency": 19
+        }
+      },
+      "rankScore": {
+        "total": 97,
+        "parts": {
+          "momentum": 57,
+          "volume": 40
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 386000
+    },
+    {
+      "videoId": "lmhwViVb87U",
+      "url": "https://www.youtube.com/watch?v=lmhwViVb87U",
+      "title": "앞으로 3년 동안 재물운이 계단식으로 상승하는 띠 순위 TOP 12!",
+      "description": "본 영상은 동양 명리학의 삼재(三災) 및 대운 흐름과 간지(干支) 해석을 바탕으로 제작된 교양·인문학 정보 제공 목적의 콘텐츠입니다.\n\n각 띠별 기운의 상승 흐름과 상징적 의미를 알아보기 위한 참고 자료이며, 실제 개인이 체감하는 운세나 재물운의 결과는 전체 사주 구조 및 개별적인 노력",
+      "channelId": "UC5tzr-DRv0k7FcNC_NKc6_g",
+      "channelTitle": "천하태평",
+      "publishedAt": "2026-08-08T07:54:57Z",
+      "thumbnail": "https://i.ytimg.com/vi/lmhwViVb87U/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 287919,
+      "likeCount": 2064,
+      "commentCount": 15,
+      "durationSeconds": 7,
+      "format": "쇼츠",
+      "ageDays": 4.4,
+      "viewsPerDay": 65951,
+      "momentum": 59174,
+      "likeRate": 0.72,
+      "commentRate": 0.01,
+      "matchedQueries": [
+        "재물운",
+        "사주풀이"
+      ],
+      "marketScore": {
+        "total": 76,
+        "parts": {
+          "volume": 23,
+          "velocity": 30,
+          "likeRate": 3,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 99,
+        "parts": {
+          "momentum": 59,
+          "volume": 40
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 3230
+    },
+    {
+      "videoId": "GQGFb3Fq6lA",
+      "url": "https://www.youtube.com/watch?v=GQGFb3Fq6lA",
+      "title": "곧 뜻밖의 기쁜 소식을 받게 될 출생년도🍀 행운의 순간이 찾아옵니다✨  #행운 #재물운 #금전운 #대박운 #귀인운 #운세",
+      "description": "가까운 시일 안에 기다리던 연락, 재물운, 좋은 기회가 찾아올 수 있습니다.\n당신의 출생년도와 음력 생일이 있는지 확인해 보세요!\n포함되어 있다면 댓글에 **“행운을 받겠습니다”**라고 남겨주세요. 🙏",
+      "channelId": "UCCAgQsZRSi8jRfkcBUxf8kQ",
+      "channelTitle": "心の教科書",
+      "publishedAt": "2026-08-09T13:15:59Z",
+      "thumbnail": "https://i.ytimg.com/vi/GQGFb3Fq6lA/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 212982,
+      "likeCount": 2988,
+      "commentCount": 47,
+      "durationSeconds": 6,
+      "format": "쇼츠",
+      "ageDays": 3.1,
+      "viewsPerDay": 67771,
+      "momentum": 58468,
+      "likeRate": 1.4,
+      "commentRate": 0.02,
+      "matchedQueries": [
+        "재물운"
+      ],
+      "marketScore": {
+        "total": 78,
+        "parts": {
+          "volume": 22,
+          "velocity": 30,
+          "likeRate": 5,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 98,
+        "parts": {
+          "momentum": 59,
+          "volume": 39
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 13600
+    },
+    {
+      "videoId": "Ao8BgQgRmPo",
+      "url": "https://www.youtube.com/watch?v=Ao8BgQgRmPo",
+      "title": "내 띠는 언제 삼재일까? 2026년 - 2036년 삼재띠 총정리",
+      "description": "미리 알고 준비하면 마음이 편해지는 띠별 삼재 정보!\n2026년부터 2036년까지 각 띠별 들삼재, 눌삼재, 날삼재 시기를 한눈에 보기 쉽게 정리했습니다.\n나와 가족들의 삼재 해가 언제인지 지금 바로 확인해 보세요!\n\n#삼재 #삼재띠 #띠별운세 #들삼재 #눌삼재 #날삼재 #운세 #운세정",
+      "channelId": "UCfuX7zYPF2wq3mZ3A5vlgSA",
+      "channelTitle": "황금수첩",
+      "publishedAt": "2026-07-22T13:55:21Z",
+      "thumbnail": "https://i.ytimg.com/vi/Ao8BgQgRmPo/mqdefault.jpg",
+      "tags": [
+        "노후생활",
+        "노후자산",
+        "노후계획",
+        "중년건강",
+        "명언",
+        "공감글",
+        "시니어상식",
+        "건강정보",
+        "필수보험",
+        "대인관계",
+        "삼성가",
+        "아재개그"
+      ],
+      "viewCount": 199335,
+      "likeCount": 170,
+      "commentCount": 3,
+      "durationSeconds": 5,
+      "format": "쇼츠",
+      "ageDays": 21.1,
+      "viewsPerDay": 9440,
+      "momentum": 7807,
+      "likeRate": 0.09,
+      "commentRate": 0,
+      "matchedQueries": [
+        "삼재"
+      ],
+      "marketScore": {
+        "total": 66,
+        "parts": {
+          "volume": 22,
+          "velocity": 26,
+          "likeRate": 0,
+          "commentRate": 0,
+          "recency": 17
+        }
+      },
+      "rankScore": {
+        "total": 87,
+        "parts": {
+          "momentum": 48,
+          "volume": 39
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 5990
+    },
+    {
+      "videoId": "AjrD8-QW6uI",
+      "url": "https://www.youtube.com/watch?v=AjrD8-QW6uI",
+      "title": "🌕올해부터 큰 돈 만질 팔자 금전운 대운 소원성취",
+      "description": "#금전운 #재물운 #대운 #소원성취 #출생년도 #말년운 #풍수운세\n**올해부터 큰돈 만질 팔자 금전운 대운 소원성취**\n\n올해부터 재물의 흐름이 달라지고,\n그동안 쌓아온 노력과 기회가 결실로 이어지길 바랍니다 ✨\n\n한 번에 큰 기회를 만나는 재물운과\n꾸준한 성실함으로 부를 키워가는 재물",
+      "channelId": "UCRfMDPvJZkwom9DyqOW5feQ",
+      "channelTitle": "풍수운세_사주 운명 돈복",
+      "publishedAt": "2026-08-06T11:01:26Z",
+      "thumbnail": "https://i.ytimg.com/vi/AjrD8-QW6uI/mqdefault.jpg",
+      "tags": [
+        "로또",
+        "금전운",
+        "대운",
+        "소원성취"
+      ],
+      "viewCount": 188630,
+      "likeCount": 3227,
+      "commentCount": 40,
+      "durationSeconds": 10,
+      "format": "쇼츠",
+      "ageDays": 6.2,
+      "viewsPerDay": 30248,
+      "momentum": 28003,
+      "likeRate": 1.71,
+      "commentRate": 0.02,
+      "matchedQueries": [
+        "재물운"
+      ],
+      "marketScore": {
+        "total": 79,
+        "parts": {
+          "volume": 22,
+          "velocity": 30,
+          "likeRate": 6,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 95,
+        "parts": {
+          "momentum": 56,
+          "volume": 39
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 7800
+    },
+    {
+      "videoId": "YgF6NWb8iFc",
+      "url": "https://www.youtube.com/watch?v=YgF6NWb8iFc",
+      "title": "연애할 때부터 심상치 않았던 장윤정과 도경완의 궁합 #도경완 #장윤정 #부부",
+      "description": "",
+      "channelId": "UChQkAdeoyN9ZJRtIlIyFw_w",
+      "channelTitle": "투데이쇼츠",
+      "publishedAt": "2026-08-12T05:42:38Z",
+      "thumbnail": "https://i.ytimg.com/vi/YgF6NWb8iFc/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 187723,
+      "likeCount": 1728,
+      "commentCount": 14,
+      "durationSeconds": 29,
+      "format": "쇼츠",
+      "ageDays": 0.5,
+      "viewsPerDay": 410308,
+      "momentum": 196052,
+      "likeRate": 0.92,
+      "commentRate": 0.01,
+      "matchedQueries": [
+        "궁합"
+      ],
+      "marketScore": {
+        "total": 76,
+        "parts": {
+          "volume": 22,
+          "velocity": 30,
+          "likeRate": 3,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 99,
+        "parts": {
+          "momentum": 60,
+          "volume": 39
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 42700
+    },
+    {
+      "videoId": "kwftJ5KqZH4",
+      "url": "https://www.youtube.com/watch?v=kwftJ5KqZH4",
+      "title": "돈 들어오고 사람 모이는 대박 징조 10가지 #재물운 #운세",
+      "description": "현관이 밝아지고 화분에 새순이 돋는 등 좋은 변화가 이어진다면 대운이 시작되는 신호일지도 모릅니다.\n돈복과 귀인운이 들어온다고 알려진 대박 징조 10가지를 확인해 보세요.\n여러분에게 최근 나타난 좋은 징조는 무엇인가요?\n\n#재물운 #돈복 #대박징조 #행운 #금전운 #재물운상승 #대운 #",
+      "channelId": "UCbVa4V0hcnscgUFIklIwNEw",
+      "channelTitle": "바바라핵팁",
+      "publishedAt": "2026-08-06T22:00:16Z",
+      "thumbnail": "https://i.ytimg.com/vi/kwftJ5KqZH4/mqdefault.jpg",
+      "tags": [
+        "#재물운",
+        "#돈복",
+        "#대박징조",
+        "#행운",
+        "#금전운",
+        "#재물운상승",
+        "#대운",
+        "#운세",
+        "#귀인운",
+        "#복들어오는징조",
+        "#행운징조",
+        "#좋은일"
+      ],
+      "viewCount": 161739,
+      "likeCount": 256,
+      "commentCount": 0,
+      "durationSeconds": 6,
+      "format": "쇼츠",
+      "ageDays": 5.8,
+      "viewsPerDay": 27989,
+      "momentum": 25760,
+      "likeRate": 0.16,
+      "commentRate": 0,
+      "matchedQueries": [
+        "재물운"
+      ],
+      "marketScore": {
+        "total": 72,
+        "parts": {
+          "volume": 22,
+          "velocity": 30,
+          "likeRate": 1,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 95,
+        "parts": {
+          "momentum": 56,
+          "volume": 39
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 77900
+    },
+    {
+      "videoId": "qZVYr3UeDGw",
+      "url": "https://www.youtube.com/watch?v=qZVYr3UeDGw",
+      "title": "2026~2035 삼재 띠 총정리 | 내 띠 언제 조심해야 할까?",
+      "description": "2026년부터 2035년까지\n삼재에 해당하는 띠를 한눈에 보기 쉽게 정리했습니다.\n들삼재·눌삼재·날삼재 흐름까지 포함해\n내 띠가 언제 해당되는지 빠르게 확인할 수 있습니다.\n\n※본 영상은 시니어분들이 쉽게 이해할 수 있도록 여러 공개 자료와 레퍼런스를 바탕으로 참고해서 새롭게 재구성한 ",
+      "channelId": "UCL5p5u4IoMd4a25LR9Hn13w",
+      "channelTitle": "땡큐손머치 스튜디오",
+      "publishedAt": "2026-06-10T13:05:08Z",
+      "thumbnail": "https://i.ytimg.com/vi/qZVYr3UeDGw/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 143937,
+      "likeCount": 201,
+      "commentCount": 3,
+      "durationSeconds": 6,
+      "format": "쇼츠",
+      "ageDays": 63.2,
+      "viewsPerDay": 2279,
+      "momentum": 881,
+      "likeRate": 0.14,
+      "commentRate": 0,
+      "matchedQueries": [
+        "삼재"
+      ],
+      "marketScore": {
+        "total": 52,
+        "parts": {
+          "volume": 21,
+          "velocity": 22,
+          "likeRate": 1,
+          "commentRate": 0,
+          "recency": 8
+        }
+      },
+      "rankScore": {
+        "total": 64,
+        "parts": {
+          "momentum": 26,
+          "volume": 38
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 135000
+    },
+    {
+      "videoId": "jZqbHsrvw40",
+      "url": "https://www.youtube.com/watch?v=jZqbHsrvw40",
+      "title": "토끼띠 삼재 변동하지 마세요 고춘자 오방기 점사",
+      "description": "고춘자의 기묘한 사연함 사연보내기\n\n👉 https://forms.gle/VgtrwoMStVCECADC6\n\n삶이 답답할 때, 이상하게 일이 꼬일 때,\n말 못 할 사연을 혼자 품고 계신가요?\n\n무속인 고춘자가 사연 속 흐름을 읽고,\n막힌 운, 인간관계, 가족 문제, 연애와 이별, 돈과 일",
+      "channelId": "UCOd0Gj9G6KpHKdN_xl2eRvA",
+      "channelTitle": "무당고춘자",
+      "publishedAt": "2026-06-29T09:00:24Z",
+      "thumbnail": "https://i.ytimg.com/vi/jZqbHsrvw40/mqdefault.jpg",
+      "tags": [
+        "무당고춘자",
+        "무당",
+        "용한점집",
+        "고춘자",
+        "서울점집",
+        "백호신궁이다영",
+        "찐무당",
+        "강원도굿",
+        "신내림",
+        "신내림교과서",
+        "신굿",
+        "좋아요"
+      ],
+      "viewCount": 142879,
+      "likeCount": 1337,
+      "commentCount": 18,
+      "durationSeconds": 119,
+      "format": "롱폼",
+      "ageDays": 44.3,
+      "viewsPerDay": 3224,
+      "momentum": 1895,
+      "likeRate": 0.94,
+      "commentRate": 0.01,
+      "matchedQueries": [
+        "삼재"
+      ],
+      "marketScore": {
+        "total": 60,
+        "parts": {
+          "volume": 21,
+          "velocity": 23,
+          "likeRate": 4,
+          "commentRate": 0,
+          "recency": 12
+        }
+      },
+      "rankScore": {
+        "total": 76,
+        "parts": {
+          "momentum": 38,
+          "volume": 38
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 150000
+    },
+    {
+      "videoId": "8VZMmnK-jII",
+      "url": "https://www.youtube.com/watch?v=8VZMmnK-jII",
+      "title": "[사주] 2027년까지 연결되는 중요한 2026년 하반기 운세ㅣ특정 오행이 많은 사주들은 각각 운세 흐름이 다 달라요⭐",
+      "description": "26년 병오년 하반기는 사주로 볼 때 어떤 흐름이 펼쳐질까요!?\n\n26년의 절반 즘 지나온 지금, 구독자님들은 모두 어떠신가요?\n오늘은 많은 오행 별 하반기 운세를 목부터 수 오행까지 자세히 풀어 뒀어요!\n\n어떤 분들은 너무 힘들고 지치시는 분들도 계실 거고\n어떤 분들은 그 어느 때보다",
+      "channelId": "UC0asDkei6mvw2YXcq6had8g",
+      "channelTitle": "도화도르- 사주팔자 쉽게 풀어주는 남자",
+      "publishedAt": "2026-08-07T10:04:03Z",
+      "thumbnail": "https://i.ytimg.com/vi/8VZMmnK-jII/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 139674,
+      "likeCount": 3855,
+      "commentCount": 401,
+      "durationSeconds": 3762,
+      "format": "롱폼",
+      "ageDays": 5.3,
+      "viewsPerDay": 26474,
+      "momentum": 24182,
+      "likeRate": 2.76,
+      "commentRate": 0.29,
+      "matchedQueries": [
+        "2026 운세",
+        "건강운"
+      ],
+      "marketScore": {
+        "total": 85,
+        "parts": {
+          "volume": 21,
+          "velocity": 29,
+          "likeRate": 10,
+          "commentRate": 4,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 93,
+        "parts": {
+          "momentum": 55,
+          "volume": 38
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 366000
+    },
+    {
+      "videoId": "M543zT-zdhU",
+      "url": "https://www.youtube.com/watch?v=M543zT-zdhU",
+      "title": "【띠별 운세】딱 맞는 인연과 기회가 찾아오는 출생년도 24가지✨  #행운 #귀인운 #재물운 #운세 #좋은기회 #쇼츠",
+      "description": "사람도 기회도 타이밍이 중요합니다. 가까운 시기에 나에게 꼭 맞는 인연과 좋은 기회가 찾아올 수 있는 출생년도를 소개합니다. 내 출생년도가 있다면 댓글로 남겨주세요! 🍀",
+      "channelId": "UCCAgQsZRSi8jRfkcBUxf8kQ",
+      "channelTitle": "心の教科書",
+      "publishedAt": "2026-08-10T10:36:27Z",
+      "thumbnail": "https://i.ytimg.com/vi/M543zT-zdhU/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 134844,
+      "likeCount": 2283,
+      "commentCount": 21,
+      "durationSeconds": 6,
+      "format": "쇼츠",
+      "ageDays": 2.3,
+      "viewsPerDay": 59838,
+      "momentum": 48972,
+      "likeRate": 1.69,
+      "commentRate": 0.02,
+      "matchedQueries": [
+        "띠별 운세"
+      ],
+      "marketScore": {
+        "total": 78,
+        "parts": {
+          "volume": 21,
+          "velocity": 30,
+          "likeRate": 6,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 96,
+        "parts": {
+          "momentum": 58,
+          "volume": 38
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 13600
+    },
+    {
+      "videoId": "bRs-pAMI7LU",
+      "url": "https://www.youtube.com/watch?v=bRs-pAMI7LU",
+      "title": "직업운 여름 금전/커리어적으로 나에게 일어날 이슈",
+      "description": "나는 어떤 재능이 있을까?어떤 직업을 갖으면 좋을까? 여름 금전직업적 이슈",
+      "channelId": "UC49WT5jLw7RnAlMcNu-N-Zg",
+      "channelTitle": "김언니타로",
+      "publishedAt": "2026-06-18T09:01:16Z",
+      "thumbnail": "https://i.ytimg.com/vi/bRs-pAMI7LU/mqdefault.jpg",
+      "tags": [
+        "#금전운",
+        "#금전",
+        "#직업",
+        "#직업운",
+        "#재물운",
+        "#6월",
+        "#7월",
+        "#여름",
+        "#재회",
+        "#연락",
+        "#연애"
+      ],
+      "viewCount": 129154,
+      "likeCount": 10697,
+      "commentCount": 362,
+      "durationSeconds": 3938,
+      "format": "롱폼",
+      "ageDays": 55.3,
+      "viewsPerDay": 2335,
+      "momentum": 1099,
+      "likeRate": 8.28,
+      "commentRate": 0.28,
+      "matchedQueries": [
+        "직업운"
+      ],
+      "marketScore": {
+        "total": 72,
+        "parts": {
+          "volume": 21,
+          "velocity": 22,
+          "likeRate": 15,
+          "commentRate": 4,
+          "recency": 10
+        }
+      },
+      "rankScore": {
+        "total": 66,
+        "parts": {
+          "momentum": 29,
+          "volume": 37
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 348000
+    },
+    {
+      "videoId": "bHponlQhh9g",
+      "url": "https://www.youtube.com/watch?v=bHponlQhh9g",
+      "title": "삼재 띠에 해당되는 분들 반드시 알아두세요!",
+      "description": "#출장점문가윤대만#윤대만#출장전문가#출장의뢰#신청#신청서#운명전쟁#운명전쟁\n49#무속인#무당#귀신#점사#신당#괴담#농구교실#인테리어#풍수지리#삼재#돼지띠\n#토끼띠#양띠#금전운#건강",
+      "channelId": "UCLs5vaVleurw4zQPyBubdPA",
+      "channelTitle": "출장점문가 윤대만",
+      "publishedAt": "2026-05-22T13:30:21Z",
+      "thumbnail": "https://i.ytimg.com/vi/bHponlQhh9g/mqdefault.jpg",
+      "tags": [
+        "출장점문가윤대만",
+        "윤대만",
+        "출장전문가",
+        "출장의뢰",
+        "신청",
+        "신청서",
+        "운명전쟁",
+        "운명전쟁49",
+        "무속인",
+        "무당",
+        "귀신",
+        "점사"
+      ],
+      "viewCount": 126906,
+      "likeCount": 916,
+      "commentCount": 30,
+      "durationSeconds": 20,
+      "format": "쇼츠",
+      "ageDays": 82.1,
+      "viewsPerDay": 1545,
+      "momentum": 282,
+      "likeRate": 0.72,
+      "commentRate": 0.02,
+      "matchedQueries": [
+        "삼재"
+      ],
+      "marketScore": {
+        "total": 49,
+        "parts": {
+          "volume": 21,
+          "velocity": 21,
+          "likeRate": 3,
+          "commentRate": 0,
+          "recency": 4
+        }
+      },
+      "rankScore": {
+        "total": 54,
+        "parts": {
+          "momentum": 17,
+          "volume": 37
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 65000
+    },
+    {
+      "videoId": "lQn5byGSfoc",
+      "url": "https://www.youtube.com/watch?v=lQn5byGSfoc",
+      "title": "[타로] 😱섬뜩할 정도로 잘 맞는 용한 점ㅣ7월–8월, 신들린 예언🔮 (feat.직업운•금전운•학업운•관계운•연애운•컨디션👉전부 맞아떨어집니다🔥)",
+      "description": "[타로] 😱섬뜩할 정도로 잘 맞는 용한 점ㅣ7월–8월, 신들린 예언🔮 (feat.직업운•금전운•학업운•관계운•연애운•컨디션👉전부 맞아떨어집니다🔥)\n\n\n💖혜윰의 시크릿러버즈💖\n타로로 이어지는 우리만의 작은 대화, 먼저 열어드릴게요✨\n↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓\nhttps",
+      "channelId": "UCKqw6I5dr93y3NfXYHaIpSQ",
+      "channelTitle": "타로혜윰",
+      "publishedAt": "2026-06-27T11:00:14Z",
+      "thumbnail": "https://i.ytimg.com/vi/lQn5byGSfoc/mqdefault.jpg",
+      "tags": [
+        "타로운세",
+        "타로점",
+        "타로",
+        "타로카드",
+        "운세",
+        "연애운",
+        "금전운",
+        "성공운",
+        "건강운",
+        "결혼운",
+        "학업운",
+        "취업운"
+      ],
+      "viewCount": 124933,
+      "likeCount": 7916,
+      "commentCount": 1714,
+      "durationSeconds": 8413,
+      "format": "롱폼",
+      "ageDays": 46.2,
+      "viewsPerDay": 2702,
+      "momentum": 1533,
+      "likeRate": 6.34,
+      "commentRate": 1.37,
+      "matchedQueries": [
+        "직업운"
+      ],
+      "marketScore": {
+        "total": 81,
+        "parts": {
+          "volume": 21,
+          "velocity": 23,
+          "likeRate": 15,
+          "commentRate": 10,
+          "recency": 11
+        }
+      },
+      "rankScore": {
+        "total": 71,
+        "parts": {
+          "momentum": 34,
+          "volume": 37
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 66800
+    },
+    {
+      "videoId": "1apD-OYltOo",
+      "url": "https://www.youtube.com/watch?v=1apD-OYltOo",
+      "title": "[타로] 🚨지금 이 영상이 뜬 이유❗️ 이 영상이 나타났다면 제발 그냥 넘기지 마세요⚠️ (feat.이 메시지 무시하지 마세요🧿절대 우연이 아닙니다🚫금전•일•학업•관계까지 몽땅💥)",
+      "description": "[타로] 🚨지금 이 영상이 뜬 이유❗️ 이 영상이 나타났다면 제발 그냥 넘기지 마세요⚠️ (feat.이 메시지 무시하지 마세요🧿절대 우연이 아닙니다🚫넘기면 진짜 후회합니다💥금전•일•학업•인간관계까지 몽땅!!)\n\n\n💖혜윰의 시크릿러버즈💖\n타로로 이어지는 우리만의 작은 대화, 먼",
+      "channelId": "UCKqw6I5dr93y3NfXYHaIpSQ",
+      "channelTitle": "타로혜윰",
+      "publishedAt": "2026-08-04T11:00:28Z",
+      "thumbnail": "https://i.ytimg.com/vi/1apD-OYltOo/mqdefault.jpg",
+      "tags": [
+        "타로운세",
+        "타로점",
+        "타로",
+        "타로카드",
+        "운세",
+        "연애운",
+        "금전운",
+        "성공운",
+        "건강운",
+        "결혼운",
+        "학업운",
+        "취업운"
+      ],
+      "viewCount": 121943,
+      "likeCount": 5962,
+      "commentCount": 1209,
+      "durationSeconds": 7868,
+      "format": "롱폼",
+      "ageDays": 8.2,
+      "viewsPerDay": 14805,
+      "momentum": 13770,
+      "likeRate": 4.89,
+      "commentRate": 0.99,
+      "matchedQueries": [
+        "건강운"
+      ],
+      "marketScore": {
+        "total": 94,
+        "parts": {
+          "volume": 21,
+          "velocity": 28,
+          "likeRate": 15,
+          "commentRate": 10,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 89,
+        "parts": {
+          "momentum": 52,
+          "volume": 37
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 66800
+    },
+    {
+      "videoId": "Cuqu54Z-jqQ",
+      "url": "https://www.youtube.com/watch?v=Cuqu54Z-jqQ",
+      "title": "8월 솔로 연애운💥역대급 소름 리딩!",
+      "description": "안녕하세요. 오늘의 주제는 8월 솔로 연애운 입니다 :) \n8월도 화이팅 !! \n\n❤️멥버십 가입 2,990원 부터- (개인 상담/이달의 운세 등 다양한 혜택) : https://youtu.be/bAWVLBXiI1A\n❤️가문비 타로카드&부적 구매 :  https://smartstore.",
+      "channelId": "UCLdBo9WkZANmWuEZIE1eQtw",
+      "channelTitle": "가문비타로 Moonvi Tarot",
+      "publishedAt": "2026-07-20T13:40:48Z",
+      "thumbnail": "https://i.ytimg.com/vi/Cuqu54Z-jqQ/mqdefault.jpg",
+      "tags": [
+        "타로",
+        "타로카드",
+        "연애운",
+        "가문비타로",
+        "재회운",
+        "속마음타로",
+        "tarot",
+        "속마음",
+        "재회",
+        "재회운 타로",
+        "연락운",
+        "タロット"
+      ],
+      "viewCount": 105978,
+      "likeCount": 2421,
+      "commentCount": 479,
+      "durationSeconds": 3507,
+      "format": "롱폼",
+      "ageDays": 23.1,
+      "viewsPerDay": 4583,
+      "momentum": 3700,
+      "likeRate": 2.28,
+      "commentRate": 0.45,
+      "matchedQueries": [
+        "애정운"
+      ],
+      "marketScore": {
+        "total": 76,
+        "parts": {
+          "volume": 21,
+          "velocity": 24,
+          "likeRate": 9,
+          "commentRate": 6,
+          "recency": 17
+        }
+      },
+      "rankScore": {
+        "total": 82,
+        "parts": {
+          "momentum": 45,
+          "volume": 37
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 161000
+    },
+    {
+      "videoId": "PCHPEdybo7E",
+      "url": "https://www.youtube.com/watch?v=PCHPEdybo7E",
+      "title": "8월 하늘이 기회 주는 띠 💰🍀 #띠별운세 #풍수 #사주팔자",
+      "description": "#천복 #재물운 #대운상승 #신점",
+      "channelId": "UCuyX60UF5m5dZhc7kJc9Wig",
+      "channelTitle": "행운 충전소",
+      "publishedAt": "2026-08-08T05:33:19Z",
+      "thumbnail": "https://i.ytimg.com/vi/PCHPEdybo7E/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 94353,
+      "likeCount": 2234,
+      "commentCount": 19,
+      "durationSeconds": 19,
+      "format": "쇼츠",
+      "ageDays": 4.5,
+      "viewsPerDay": 21136,
+      "momentum": 19008,
+      "likeRate": 2.37,
+      "commentRate": 0.02,
+      "matchedQueries": [
+        "띠별 운세"
+      ],
+      "marketScore": {
+        "total": 79,
+        "parts": {
+          "volume": 21,
+          "velocity": 29,
+          "likeRate": 9,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 90,
+        "parts": {
+          "momentum": 54,
+          "volume": 36
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 124000
+    },
+    {
+      "videoId": "6wS_6eltkJM",
+      "url": "https://www.youtube.com/watch?v=6wS_6eltkJM",
+      "title": "[2026년 8월 운세] 병오년 병신월 일간별 운세 완벽정리!",
+      "description": "#마인드명리 #8월운세  #사주 \n\n상담문의  20~25분 종합상담 5만원\n본업으로 10년동안 사주상담만 했습니다.\n010 5735 2777\n\n갑목 00:00\n을목 05:23 \n병화 11:28\n정화 17:33 \n무토 23:15 \n기토 28:47 \n경금 33:56\n신금 40:18\n임수 4",
+      "channelId": "UCsxDelJKZ_BAzb_aMiRbtug",
+      "channelTitle": "마인드 명리",
+      "publishedAt": "2026-08-03T12:15:24Z",
+      "thumbnail": "https://i.ytimg.com/vi/6wS_6eltkJM/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 88023,
+      "likeCount": 3751,
+      "commentCount": 527,
+      "durationSeconds": 3414,
+      "format": "롱폼",
+      "ageDays": 9.2,
+      "viewsPerDay": 9584,
+      "momentum": 8873,
+      "likeRate": 4.26,
+      "commentRate": 0.6,
+      "matchedQueries": [
+        "2026 운세",
+        "건강운"
+      ],
+      "marketScore": {
+        "total": 89,
+        "parts": {
+          "volume": 21,
+          "velocity": 27,
+          "likeRate": 15,
+          "commentRate": 7,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 86,
+        "parts": {
+          "momentum": 50,
+          "volume": 36
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 61700
+    },
+    {
+      "videoId": "ewNhJYl2jbQ",
+      "url": "https://www.youtube.com/watch?v=ewNhJYl2jbQ",
+      "title": "​\"만나기만 해도 돈벼락\" 12띠별 '천생연분' 황금 궁합",
+      "description": "사주명리학에서 궁합(宮合)이란 단순히 누군가를 만나 요행이나 자극적인 행운을 얻게 된다는 뜻이 아닙니다. 이는 서로가 가진 오행(木, 火, 土, 金, 水)의 기운이 만나 부족한 부분을 보완하고, 지나친 기운을 부드럽게 다듬어 주는 '상생과 균형의 원리'를 의미합니다.\n​영상에 명시된 1",
+      "channelId": "UChOTOGMrAmqfz7x2n9zLTUA",
+      "channelTitle": "kingoftheworld",
+      "publishedAt": "2026-08-12T08:08:52Z",
+      "thumbnail": "https://i.ytimg.com/vi/ewNhJYl2jbQ/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 87782,
+      "likeCount": 0,
+      "commentCount": 3,
+      "durationSeconds": 7,
+      "format": "쇼츠",
+      "ageDays": 0.4,
+      "viewsPerDay": 246602,
+      "momentum": 102553,
+      "likeRate": 0,
+      "commentRate": 0,
+      "matchedQueries": [
+        "궁합"
+      ],
+      "marketScore": {
+        "total": 71,
+        "parts": {
+          "volume": 21,
+          "velocity": 30,
+          "likeRate": 0,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 96,
+        "parts": {
+          "momentum": 60,
+          "volume": 36
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 29400
+    }
+  ],
+  "topScoredVideos": [
+    {
+      "videoId": "lmhwViVb87U",
+      "url": "https://www.youtube.com/watch?v=lmhwViVb87U",
+      "title": "앞으로 3년 동안 재물운이 계단식으로 상승하는 띠 순위 TOP 12!",
+      "description": "본 영상은 동양 명리학의 삼재(三災) 및 대운 흐름과 간지(干支) 해석을 바탕으로 제작된 교양·인문학 정보 제공 목적의 콘텐츠입니다.\n\n각 띠별 기운의 상승 흐름과 상징적 의미를 알아보기 위한 참고 자료이며, 실제 개인이 체감하는 운세나 재물운의 결과는 전체 사주 구조 및 개별적인 노력",
+      "channelId": "UC5tzr-DRv0k7FcNC_NKc6_g",
+      "channelTitle": "천하태평",
+      "publishedAt": "2026-08-08T07:54:57Z",
+      "thumbnail": "https://i.ytimg.com/vi/lmhwViVb87U/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 287919,
+      "likeCount": 2064,
+      "commentCount": 15,
+      "durationSeconds": 7,
+      "format": "쇼츠",
+      "ageDays": 4.4,
+      "viewsPerDay": 65951,
+      "momentum": 59174,
+      "likeRate": 0.72,
+      "commentRate": 0.01,
+      "matchedQueries": [
+        "재물운",
+        "사주풀이"
+      ],
+      "marketScore": {
+        "total": 76,
+        "parts": {
+          "volume": 23,
+          "velocity": 30,
+          "likeRate": 3,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 99,
+        "parts": {
+          "momentum": 59,
+          "volume": 40
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 3230
+    },
+    {
+      "videoId": "YgF6NWb8iFc",
+      "url": "https://www.youtube.com/watch?v=YgF6NWb8iFc",
+      "title": "연애할 때부터 심상치 않았던 장윤정과 도경완의 궁합 #도경완 #장윤정 #부부",
+      "description": "",
+      "channelId": "UChQkAdeoyN9ZJRtIlIyFw_w",
+      "channelTitle": "투데이쇼츠",
+      "publishedAt": "2026-08-12T05:42:38Z",
+      "thumbnail": "https://i.ytimg.com/vi/YgF6NWb8iFc/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 187723,
+      "likeCount": 1728,
+      "commentCount": 14,
+      "durationSeconds": 29,
+      "format": "쇼츠",
+      "ageDays": 0.5,
+      "viewsPerDay": 410308,
+      "momentum": 196052,
+      "likeRate": 0.92,
+      "commentRate": 0.01,
+      "matchedQueries": [
+        "궁합"
+      ],
+      "marketScore": {
+        "total": 76,
+        "parts": {
+          "volume": 22,
+          "velocity": 30,
+          "likeRate": 3,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 99,
+        "parts": {
+          "momentum": 60,
+          "volume": 39
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 42700
+    },
+    {
+      "videoId": "GQGFb3Fq6lA",
+      "url": "https://www.youtube.com/watch?v=GQGFb3Fq6lA",
+      "title": "곧 뜻밖의 기쁜 소식을 받게 될 출생년도🍀 행운의 순간이 찾아옵니다✨  #행운 #재물운 #금전운 #대박운 #귀인운 #운세",
+      "description": "가까운 시일 안에 기다리던 연락, 재물운, 좋은 기회가 찾아올 수 있습니다.\n당신의 출생년도와 음력 생일이 있는지 확인해 보세요!\n포함되어 있다면 댓글에 **“행운을 받겠습니다”**라고 남겨주세요. 🙏",
+      "channelId": "UCCAgQsZRSi8jRfkcBUxf8kQ",
+      "channelTitle": "心の教科書",
+      "publishedAt": "2026-08-09T13:15:59Z",
+      "thumbnail": "https://i.ytimg.com/vi/GQGFb3Fq6lA/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 212982,
+      "likeCount": 2988,
+      "commentCount": 47,
+      "durationSeconds": 6,
+      "format": "쇼츠",
+      "ageDays": 3.1,
+      "viewsPerDay": 67771,
+      "momentum": 58468,
+      "likeRate": 1.4,
+      "commentRate": 0.02,
+      "matchedQueries": [
+        "재물운"
+      ],
+      "marketScore": {
+        "total": 78,
+        "parts": {
+          "volume": 22,
+          "velocity": 30,
+          "likeRate": 5,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 98,
+        "parts": {
+          "momentum": 59,
+          "volume": 39
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 13600
+    },
+    {
+      "videoId": "Mne56POrjHI",
+      "url": "https://www.youtube.com/watch?v=Mne56POrjHI",
+      "title": "당신의 직업을 나쁘게 소개한다면? (5탄)",
+      "description": "",
+      "channelId": "UCmjjgsm51PYMPf5REDylbSA",
+      "channelTitle": "김켈리 Kellyfornia",
+      "publishedAt": "2026-07-15T10:00:14Z",
+      "thumbnail": "https://i.ytimg.com/vi/Mne56POrjHI/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 2060282,
+      "likeCount": 29688,
+      "commentCount": 466,
+      "durationSeconds": 37,
+      "format": "쇼츠",
+      "ageDays": 28.3,
+      "viewsPerDay": 72857,
+      "momentum": 55033,
+      "likeRate": 1.44,
+      "commentRate": 0.02,
+      "matchedQueries": [
+        "직업운"
+      ],
+      "marketScore": {
+        "total": 76,
+        "parts": {
+          "volume": 25,
+          "velocity": 30,
+          "likeRate": 5,
+          "commentRate": 0,
+          "recency": 15
+        }
+      },
+      "rankScore": {
+        "total": 98,
+        "parts": {
+          "momentum": 58,
+          "volume": 40
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 1310000
+    },
+    {
+      "videoId": "hPKD0lvriMM",
+      "url": "https://www.youtube.com/watch?v=hPKD0lvriMM",
+      "title": "관상만 보고 직업 정해주기 - 서울 식물원편",
+      "description": "#엄지윤 #송하빈 #관상\n\n관상만 보고 직업 맞혀드립니다\n\n📍 서울 식물원\n📍 특별 출연 - 매미\n\n*출연자에 대한 욕설 및 비방 댓글은 삭제될 수 있습니다.\n*해당 장소의 허가를 받고 촬영하였습니다.",
+      "channelId": "UCLXafJ8yYXeUN_eHai-6Pgw",
+      "channelTitle": "엄지렐라 Umjirella",
+      "publishedAt": "2026-07-31T11:03:52Z",
+      "thumbnail": "https://i.ytimg.com/vi/hPKD0lvriMM/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 425321,
+      "likeCount": 6658,
+      "commentCount": 689,
+      "durationSeconds": 1675,
+      "format": "롱폼",
+      "ageDays": 12.2,
+      "viewsPerDay": 34764,
+      "momentum": 31499,
+      "likeRate": 1.57,
+      "commentRate": 0.16,
+      "matchedQueries": [
+        "직업운"
+      ],
+      "marketScore": {
+        "total": 80,
+        "parts": {
+          "volume": 23,
+          "velocity": 30,
+          "likeRate": 6,
+          "commentRate": 2,
+          "recency": 19
+        }
+      },
+      "rankScore": {
+        "total": 97,
+        "parts": {
+          "momentum": 57,
+          "volume": 40
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 386000
+    },
+    {
+      "videoId": "M543zT-zdhU",
+      "url": "https://www.youtube.com/watch?v=M543zT-zdhU",
+      "title": "【띠별 운세】딱 맞는 인연과 기회가 찾아오는 출생년도 24가지✨  #행운 #귀인운 #재물운 #운세 #좋은기회 #쇼츠",
+      "description": "사람도 기회도 타이밍이 중요합니다. 가까운 시기에 나에게 꼭 맞는 인연과 좋은 기회가 찾아올 수 있는 출생년도를 소개합니다. 내 출생년도가 있다면 댓글로 남겨주세요! 🍀",
+      "channelId": "UCCAgQsZRSi8jRfkcBUxf8kQ",
+      "channelTitle": "心の教科書",
+      "publishedAt": "2026-08-10T10:36:27Z",
+      "thumbnail": "https://i.ytimg.com/vi/M543zT-zdhU/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 134844,
+      "likeCount": 2283,
+      "commentCount": 21,
+      "durationSeconds": 6,
+      "format": "쇼츠",
+      "ageDays": 2.3,
+      "viewsPerDay": 59838,
+      "momentum": 48972,
+      "likeRate": 1.69,
+      "commentRate": 0.02,
+      "matchedQueries": [
+        "띠별 운세"
+      ],
+      "marketScore": {
+        "total": 78,
+        "parts": {
+          "volume": 21,
+          "velocity": 30,
+          "likeRate": 6,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 96,
+        "parts": {
+          "momentum": 58,
+          "volume": 38
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 13600
+    },
+    {
+      "videoId": "ewNhJYl2jbQ",
+      "url": "https://www.youtube.com/watch?v=ewNhJYl2jbQ",
+      "title": "​\"만나기만 해도 돈벼락\" 12띠별 '천생연분' 황금 궁합",
+      "description": "사주명리학에서 궁합(宮合)이란 단순히 누군가를 만나 요행이나 자극적인 행운을 얻게 된다는 뜻이 아닙니다. 이는 서로가 가진 오행(木, 火, 土, 金, 水)의 기운이 만나 부족한 부분을 보완하고, 지나친 기운을 부드럽게 다듬어 주는 '상생과 균형의 원리'를 의미합니다.\n​영상에 명시된 1",
+      "channelId": "UChOTOGMrAmqfz7x2n9zLTUA",
+      "channelTitle": "kingoftheworld",
+      "publishedAt": "2026-08-12T08:08:52Z",
+      "thumbnail": "https://i.ytimg.com/vi/ewNhJYl2jbQ/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 87782,
+      "likeCount": 0,
+      "commentCount": 3,
+      "durationSeconds": 7,
+      "format": "쇼츠",
+      "ageDays": 0.4,
+      "viewsPerDay": 246602,
+      "momentum": 102553,
+      "likeRate": 0,
+      "commentRate": 0,
+      "matchedQueries": [
+        "궁합"
+      ],
+      "marketScore": {
+        "total": 71,
+        "parts": {
+          "volume": 21,
+          "velocity": 30,
+          "likeRate": 0,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 96,
+        "parts": {
+          "momentum": 60,
+          "volume": 36
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 29400
+    },
+    {
+      "videoId": "kwftJ5KqZH4",
+      "url": "https://www.youtube.com/watch?v=kwftJ5KqZH4",
+      "title": "돈 들어오고 사람 모이는 대박 징조 10가지 #재물운 #운세",
+      "description": "현관이 밝아지고 화분에 새순이 돋는 등 좋은 변화가 이어진다면 대운이 시작되는 신호일지도 모릅니다.\n돈복과 귀인운이 들어온다고 알려진 대박 징조 10가지를 확인해 보세요.\n여러분에게 최근 나타난 좋은 징조는 무엇인가요?\n\n#재물운 #돈복 #대박징조 #행운 #금전운 #재물운상승 #대운 #",
+      "channelId": "UCbVa4V0hcnscgUFIklIwNEw",
+      "channelTitle": "바바라핵팁",
+      "publishedAt": "2026-08-06T22:00:16Z",
+      "thumbnail": "https://i.ytimg.com/vi/kwftJ5KqZH4/mqdefault.jpg",
+      "tags": [
+        "#재물운",
+        "#돈복",
+        "#대박징조",
+        "#행운",
+        "#금전운",
+        "#재물운상승",
+        "#대운",
+        "#운세",
+        "#귀인운",
+        "#복들어오는징조",
+        "#행운징조",
+        "#좋은일"
+      ],
+      "viewCount": 161739,
+      "likeCount": 256,
+      "commentCount": 0,
+      "durationSeconds": 6,
+      "format": "쇼츠",
+      "ageDays": 5.8,
+      "viewsPerDay": 27989,
+      "momentum": 25760,
+      "likeRate": 0.16,
+      "commentRate": 0,
+      "matchedQueries": [
+        "재물운"
+      ],
+      "marketScore": {
+        "total": 72,
+        "parts": {
+          "volume": 22,
+          "velocity": 30,
+          "likeRate": 1,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 95,
+        "parts": {
+          "momentum": 56,
+          "volume": 39
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 77900
+    },
+    {
+      "videoId": "AjrD8-QW6uI",
+      "url": "https://www.youtube.com/watch?v=AjrD8-QW6uI",
+      "title": "🌕올해부터 큰 돈 만질 팔자 금전운 대운 소원성취",
+      "description": "#금전운 #재물운 #대운 #소원성취 #출생년도 #말년운 #풍수운세\n**올해부터 큰돈 만질 팔자 금전운 대운 소원성취**\n\n올해부터 재물의 흐름이 달라지고,\n그동안 쌓아온 노력과 기회가 결실로 이어지길 바랍니다 ✨\n\n한 번에 큰 기회를 만나는 재물운과\n꾸준한 성실함으로 부를 키워가는 재물",
+      "channelId": "UCRfMDPvJZkwom9DyqOW5feQ",
+      "channelTitle": "풍수운세_사주 운명 돈복",
+      "publishedAt": "2026-08-06T11:01:26Z",
+      "thumbnail": "https://i.ytimg.com/vi/AjrD8-QW6uI/mqdefault.jpg",
+      "tags": [
+        "로또",
+        "금전운",
+        "대운",
+        "소원성취"
+      ],
+      "viewCount": 188630,
+      "likeCount": 3227,
+      "commentCount": 40,
+      "durationSeconds": 10,
+      "format": "쇼츠",
+      "ageDays": 6.2,
+      "viewsPerDay": 30248,
+      "momentum": 28003,
+      "likeRate": 1.71,
+      "commentRate": 0.02,
+      "matchedQueries": [
+        "재물운"
+      ],
+      "marketScore": {
+        "total": 79,
+        "parts": {
+          "volume": 22,
+          "velocity": 30,
+          "likeRate": 6,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 95,
+        "parts": {
+          "momentum": 56,
+          "volume": 39
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 7800
+    },
+    {
+      "videoId": "8VZMmnK-jII",
+      "url": "https://www.youtube.com/watch?v=8VZMmnK-jII",
+      "title": "[사주] 2027년까지 연결되는 중요한 2026년 하반기 운세ㅣ특정 오행이 많은 사주들은 각각 운세 흐름이 다 달라요⭐",
+      "description": "26년 병오년 하반기는 사주로 볼 때 어떤 흐름이 펼쳐질까요!?\n\n26년의 절반 즘 지나온 지금, 구독자님들은 모두 어떠신가요?\n오늘은 많은 오행 별 하반기 운세를 목부터 수 오행까지 자세히 풀어 뒀어요!\n\n어떤 분들은 너무 힘들고 지치시는 분들도 계실 거고\n어떤 분들은 그 어느 때보다",
+      "channelId": "UC0asDkei6mvw2YXcq6had8g",
+      "channelTitle": "도화도르- 사주팔자 쉽게 풀어주는 남자",
+      "publishedAt": "2026-08-07T10:04:03Z",
+      "thumbnail": "https://i.ytimg.com/vi/8VZMmnK-jII/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 139674,
+      "likeCount": 3855,
+      "commentCount": 401,
+      "durationSeconds": 3762,
+      "format": "롱폼",
+      "ageDays": 5.3,
+      "viewsPerDay": 26474,
+      "momentum": 24182,
+      "likeRate": 2.76,
+      "commentRate": 0.29,
+      "matchedQueries": [
+        "2026 운세",
+        "건강운"
+      ],
+      "marketScore": {
+        "total": 85,
+        "parts": {
+          "volume": 21,
+          "velocity": 29,
+          "likeRate": 10,
+          "commentRate": 4,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 93,
+        "parts": {
+          "momentum": 55,
+          "volume": 38
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 366000
+    },
+    {
+      "videoId": "NIpl6oxylvk",
+      "url": "https://www.youtube.com/watch?v=NIpl6oxylvk",
+      "title": "🌕생일 끝자리로 받게되는 복이 다릅니다 운세 사주 대운",
+      "description": "#복권 #생일운세 #재물운 #귀인운 #금전운 #대운 #생일날짜 #풍수운세\n\n들으면 막힌 돈줄이 열리고, 복과 행운이 현실이 됩니다 ✨  \n자비와 공덕의 파동이 마음을 정화하고, 풍요의 길을 여는 명상음악 🙏  \n\n───────────────────\n📜 \n2026년 생일 날짜에 따라 ",
+      "channelId": "UCRfMDPvJZkwom9DyqOW5feQ",
+      "channelTitle": "풍수운세_사주 운명 돈복",
+      "publishedAt": "2026-08-11T14:02:11Z",
+      "thumbnail": "https://i.ytimg.com/vi/NIpl6oxylvk/mqdefault.jpg",
+      "tags": [
+        "로또",
+        "금전운",
+        "대운",
+        "소원성취"
+      ],
+      "viewCount": 73317,
+      "likeCount": 1087,
+      "commentCount": 16,
+      "durationSeconds": 8,
+      "format": "쇼츠",
+      "ageDays": 1.1,
+      "viewsPerDay": 66015,
+      "momentum": 45521,
+      "likeRate": 1.48,
+      "commentRate": 0.02,
+      "matchedQueries": [
+        "재물운",
+        "대운"
+      ],
+      "marketScore": {
+        "total": 76,
+        "parts": {
+          "volume": 20,
+          "velocity": 30,
+          "likeRate": 6,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 93,
+        "parts": {
+          "momentum": 58,
+          "volume": 35
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 7800
+    },
+    {
+      "videoId": "bMgk7V4kthw",
+      "url": "https://www.youtube.com/watch?v=bMgk7V4kthw",
+      "title": "🌕이름으로 보는 대박 재물운 점수 운세 사주",
+      "description": "#이름운세 #재물운 #금전운 #성명학 #대운 #8월운세 #풍수운세\n8월 이후 이름으로 보는 대박 재물운 점수\n\n내 이름에 들어간 글자는 몇 점일까요? ✨\n이름 글자별로 재물 기운·기회운·금전 흐름을 점수로 정리했습니다.\n\n가족의 이름도 함께 확인해보고\n내 이름 속 재물운 점수를 재미있게",
+      "channelId": "UCRfMDPvJZkwom9DyqOW5feQ",
+      "channelTitle": "풍수운세_사주 운명 돈복",
+      "publishedAt": "2026-08-11T03:03:22Z",
+      "thumbnail": "https://i.ytimg.com/vi/bMgk7V4kthw/mqdefault.jpg",
+      "tags": [
+        "로또",
+        "금전운",
+        "대운",
+        "소원성취"
+      ],
+      "viewCount": 83434,
+      "likeCount": 1021,
+      "commentCount": 23,
+      "durationSeconds": 7,
+      "format": "쇼츠",
+      "ageDays": 1.6,
+      "viewsPerDay": 53206,
+      "momentum": 40343,
+      "likeRate": 1.22,
+      "commentRate": 0.03,
+      "matchedQueries": [
+        "재물운"
+      ],
+      "marketScore": {
+        "total": 75,
+        "parts": {
+          "volume": 21,
+          "velocity": 30,
+          "likeRate": 5,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 92,
+        "parts": {
+          "momentum": 57,
+          "volume": 35
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 7800
+    },
+    {
+      "videoId": "0N-W48OCTro",
+      "url": "https://www.youtube.com/watch?v=0N-W48OCTro",
+      "title": "늙을수록 돈복이 더쎄게 붙는 출생년도 #노후돈복 #재물운 #노후자금",
+      "description": "재물운, 금전운, 돈복부터 귀인운, 말년운, 노후운, 건강운, 인연운까지 —\n누구나 한 번쯤 궁금해하는 이야기들을 편안하게 풀어드립니다.\n\n바쁜 하루, 잠깐 멈춰서 보고 가시는 곳이었으면 합니다.\n\n매일 새로운 띠별 운세로 찾아뵐게요 🍀\n\n#사주 #돈복 #재물운 #띠별운세 #출생년도운",
+      "channelId": "UCpaGrfuMKafdl4rwugBLJQw",
+      "channelTitle": "사주공감",
+      "publishedAt": "2026-08-12T10:00:08Z",
+      "thumbnail": "https://i.ytimg.com/vi/0N-W48OCTro/mqdefault.jpg",
+      "tags": [
+        "사주",
+        "사주풀이",
+        "사주공합",
+        "사주연애",
+        "사주재회",
+        "재회운",
+        "연애운",
+        "재물운",
+        "평생운",
+        "사주운세",
+        "사주명리",
+        "운세풀이"
+      ],
+      "viewCount": 44555,
+      "likeCount": 1543,
+      "commentCount": 12,
+      "durationSeconds": 6,
+      "format": "쇼츠",
+      "ageDays": 0.3,
+      "viewsPerDay": 159869,
+      "momentum": 57217,
+      "likeRate": 3.46,
+      "commentRate": 0.03,
+      "matchedQueries": [
+        "띠별 운세"
+      ],
+      "marketScore": {
+        "total": 83,
+        "parts": {
+          "volume": 19,
+          "velocity": 30,
+          "likeRate": 13,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 91,
+        "parts": {
+          "momentum": 59,
+          "volume": 32
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 5760
+    },
+    {
+      "videoId": "PCHPEdybo7E",
+      "url": "https://www.youtube.com/watch?v=PCHPEdybo7E",
+      "title": "8월 하늘이 기회 주는 띠 💰🍀 #띠별운세 #풍수 #사주팔자",
+      "description": "#천복 #재물운 #대운상승 #신점",
+      "channelId": "UCuyX60UF5m5dZhc7kJc9Wig",
+      "channelTitle": "행운 충전소",
+      "publishedAt": "2026-08-08T05:33:19Z",
+      "thumbnail": "https://i.ytimg.com/vi/PCHPEdybo7E/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 94353,
+      "likeCount": 2234,
+      "commentCount": 19,
+      "durationSeconds": 19,
+      "format": "쇼츠",
+      "ageDays": 4.5,
+      "viewsPerDay": 21136,
+      "momentum": 19008,
+      "likeRate": 2.37,
+      "commentRate": 0.02,
+      "matchedQueries": [
+        "띠별 운세"
+      ],
+      "marketScore": {
+        "total": 79,
+        "parts": {
+          "volume": 21,
+          "velocity": 29,
+          "likeRate": 9,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 90,
+        "parts": {
+          "momentum": 54,
+          "volume": 36
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 124000
+    },
+    {
+      "videoId": "5prqyMZZ0pE",
+      "url": "https://www.youtube.com/watch?v=5prqyMZZ0pE",
+      "title": "2026년 하반기 띠별 금전운 TOP12 재물운, 행운의 숫자 총정리 #2026운세 #하반기운세 #띠운세 #행운의숫자 #금전운 #재물운 #돈복 #12간지 #띠 #행운 #운세 #사주",
+      "description": "2026년 하반기, 내 띠의 금전운은 \n어떤 흐름일까요?\n쥐띠부터 돼지띠까지 12띠별 금전운과 \n행운의 숫자를 한눈에 정리했습니다.\n부수입, 저축, 투자, 사업 등 띠별로 재미있게 \n살펴볼 수 있는 재물운 포인트를 \n확인해 보세요.\n특히 각 띠에 해당하는 행운의 숫자 2개도 \n함께 소개",
+      "channelId": "UC3jCPIBiBXscaXHegdlHuVw",
+      "channelTitle": "아름다운인생",
+      "publishedAt": "2026-08-11T22:15:01Z",
+      "thumbnail": "https://i.ytimg.com/vi/5prqyMZZ0pE/mqdefault.jpg",
+      "tags": [
+        "#2026운세",
+        "#하반기운세",
+        "#띠운세",
+        "#행운의숫자",
+        "#금전운",
+        "#재물운",
+        "#돈복",
+        "#12간지",
+        "#띠",
+        "#행운",
+        "#운세",
+        "#사주"
+      ],
+      "viewCount": 41768,
+      "likeCount": 200,
+      "commentCount": 0,
+      "durationSeconds": 6,
+      "format": "쇼츠",
+      "ageDays": 0.8,
+      "viewsPerDay": 54360,
+      "momentum": 32931,
+      "likeRate": 0.48,
+      "commentRate": 0,
+      "matchedQueries": [
+        "2026 운세",
+        "재물운"
+      ],
+      "marketScore": {
+        "total": 71,
+        "parts": {
+          "volume": 19,
+          "velocity": 30,
+          "likeRate": 2,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 89,
+        "parts": {
+          "momentum": 57,
+          "volume": 32
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 7530
+    },
+    {
+      "videoId": "1apD-OYltOo",
+      "url": "https://www.youtube.com/watch?v=1apD-OYltOo",
+      "title": "[타로] 🚨지금 이 영상이 뜬 이유❗️ 이 영상이 나타났다면 제발 그냥 넘기지 마세요⚠️ (feat.이 메시지 무시하지 마세요🧿절대 우연이 아닙니다🚫금전•일•학업•관계까지 몽땅💥)",
+      "description": "[타로] 🚨지금 이 영상이 뜬 이유❗️ 이 영상이 나타났다면 제발 그냥 넘기지 마세요⚠️ (feat.이 메시지 무시하지 마세요🧿절대 우연이 아닙니다🚫넘기면 진짜 후회합니다💥금전•일•학업•인간관계까지 몽땅!!)\n\n\n💖혜윰의 시크릿러버즈💖\n타로로 이어지는 우리만의 작은 대화, 먼",
+      "channelId": "UCKqw6I5dr93y3NfXYHaIpSQ",
+      "channelTitle": "타로혜윰",
+      "publishedAt": "2026-08-04T11:00:28Z",
+      "thumbnail": "https://i.ytimg.com/vi/1apD-OYltOo/mqdefault.jpg",
+      "tags": [
+        "타로운세",
+        "타로점",
+        "타로",
+        "타로카드",
+        "운세",
+        "연애운",
+        "금전운",
+        "성공운",
+        "건강운",
+        "결혼운",
+        "학업운",
+        "취업운"
+      ],
+      "viewCount": 121943,
+      "likeCount": 5962,
+      "commentCount": 1209,
+      "durationSeconds": 7868,
+      "format": "롱폼",
+      "ageDays": 8.2,
+      "viewsPerDay": 14805,
+      "momentum": 13770,
+      "likeRate": 4.89,
+      "commentRate": 0.99,
+      "matchedQueries": [
+        "건강운"
+      ],
+      "marketScore": {
+        "total": 94,
+        "parts": {
+          "volume": 21,
+          "velocity": 28,
+          "likeRate": 15,
+          "commentRate": 10,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 89,
+        "parts": {
+          "momentum": 52,
+          "volume": 37
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 66800
+    },
+    {
+      "videoId": "AylNFnnBv3A",
+      "url": "https://www.youtube.com/watch?v=AylNFnnBv3A",
+      "title": "🌕8월부터 재물운 들어오는 사주 운세 대운",
+      "description": "#8월운세 #재물운 #금전운 #대운 #출생년도 #출생월 #이름운세 #풍수운세\n\n들으면 막힌 돈줄이 열리고, 복과 행운이 현실이 됩니다 ✨  \n자비와 공덕의 파동이 마음을 정화하고, 풍요의 길을 여는 명상음악 🙏  \n\n───────────────────\n📜 \n두 개 이상 해당된다면 8",
+      "channelId": "UCRfMDPvJZkwom9DyqOW5feQ",
+      "channelTitle": "풍수운세_사주 운명 돈복",
+      "publishedAt": "2026-08-12T02:58:21Z",
+      "thumbnail": "https://i.ytimg.com/vi/AylNFnnBv3A/mqdefault.jpg",
+      "tags": [
+        "로또",
+        "금전운",
+        "대운",
+        "소원성취"
+      ],
+      "viewCount": 40624,
+      "likeCount": 579,
+      "commentCount": 15,
+      "durationSeconds": 8,
+      "format": "쇼츠",
+      "ageDays": 0.6,
+      "viewsPerDay": 71070,
+      "momentum": 37910,
+      "likeRate": 1.43,
+      "commentRate": 0.04,
+      "matchedQueries": [
+        "재물운"
+      ],
+      "marketScore": {
+        "total": 75,
+        "parts": {
+          "volume": 19,
+          "velocity": 30,
+          "likeRate": 5,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 88,
+        "parts": {
+          "momentum": 57,
+          "volume": 31
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 7800
+    },
+    {
+      "videoId": "Ao8BgQgRmPo",
+      "url": "https://www.youtube.com/watch?v=Ao8BgQgRmPo",
+      "title": "내 띠는 언제 삼재일까? 2026년 - 2036년 삼재띠 총정리",
+      "description": "미리 알고 준비하면 마음이 편해지는 띠별 삼재 정보!\n2026년부터 2036년까지 각 띠별 들삼재, 눌삼재, 날삼재 시기를 한눈에 보기 쉽게 정리했습니다.\n나와 가족들의 삼재 해가 언제인지 지금 바로 확인해 보세요!\n\n#삼재 #삼재띠 #띠별운세 #들삼재 #눌삼재 #날삼재 #운세 #운세정",
+      "channelId": "UCfuX7zYPF2wq3mZ3A5vlgSA",
+      "channelTitle": "황금수첩",
+      "publishedAt": "2026-07-22T13:55:21Z",
+      "thumbnail": "https://i.ytimg.com/vi/Ao8BgQgRmPo/mqdefault.jpg",
+      "tags": [
+        "노후생활",
+        "노후자산",
+        "노후계획",
+        "중년건강",
+        "명언",
+        "공감글",
+        "시니어상식",
+        "건강정보",
+        "필수보험",
+        "대인관계",
+        "삼성가",
+        "아재개그"
+      ],
+      "viewCount": 199335,
+      "likeCount": 170,
+      "commentCount": 3,
+      "durationSeconds": 5,
+      "format": "쇼츠",
+      "ageDays": 21.1,
+      "viewsPerDay": 9440,
+      "momentum": 7807,
+      "likeRate": 0.09,
+      "commentRate": 0,
+      "matchedQueries": [
+        "삼재"
+      ],
+      "marketScore": {
+        "total": 66,
+        "parts": {
+          "volume": 22,
+          "velocity": 26,
+          "likeRate": 0,
+          "commentRate": 0,
+          "recency": 17
+        }
+      },
+      "rankScore": {
+        "total": 87,
+        "parts": {
+          "momentum": 48,
+          "volume": 39
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 5990
+    },
+    {
+      "videoId": "6wS_6eltkJM",
+      "url": "https://www.youtube.com/watch?v=6wS_6eltkJM",
+      "title": "[2026년 8월 운세] 병오년 병신월 일간별 운세 완벽정리!",
+      "description": "#마인드명리 #8월운세  #사주 \n\n상담문의  20~25분 종합상담 5만원\n본업으로 10년동안 사주상담만 했습니다.\n010 5735 2777\n\n갑목 00:00\n을목 05:23 \n병화 11:28\n정화 17:33 \n무토 23:15 \n기토 28:47 \n경금 33:56\n신금 40:18\n임수 4",
+      "channelId": "UCsxDelJKZ_BAzb_aMiRbtug",
+      "channelTitle": "마인드 명리",
+      "publishedAt": "2026-08-03T12:15:24Z",
+      "thumbnail": "https://i.ytimg.com/vi/6wS_6eltkJM/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 88023,
+      "likeCount": 3751,
+      "commentCount": 527,
+      "durationSeconds": 3414,
+      "format": "롱폼",
+      "ageDays": 9.2,
+      "viewsPerDay": 9584,
+      "momentum": 8873,
+      "likeRate": 4.26,
+      "commentRate": 0.6,
+      "matchedQueries": [
+        "2026 운세",
+        "건강운"
+      ],
+      "marketScore": {
+        "total": 89,
+        "parts": {
+          "volume": 21,
+          "velocity": 27,
+          "likeRate": 15,
+          "commentRate": 7,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 86,
+        "parts": {
+          "momentum": 50,
+          "volume": 36
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 61700
+    },
+    {
+      "videoId": "5dHnjJBtESY",
+      "url": "https://www.youtube.com/watch?v=5dHnjJBtESY",
+      "title": "재물복이 좋아지는 주방풍수 비방법_금전운 건강운 막는 범인 '냉장고'입니다",
+      "description": "안녕하세요, 용궁사 오왕근 법사입니다. 🙏\n\n살다 보면 이상하리만큼 금전운이 막히고, \n자식 문제부터 사업, 인간관계까지 모든 일이 꼬여 답답할 때가 있습니다.\n아무리 노력하고 기도해도 상황이 나아지지 않는다면, \n지금 내가 매일 숨 쉬고 잠드는 '우리 집의 기운'을 반드시 점검하셔야",
+      "channelId": "UCmpiTmeMBPnaK6JAS12pe7w",
+      "channelTitle": "북한산용궁사tv오왕근",
+      "publishedAt": "2026-08-06T01:00:19Z",
+      "thumbnail": "https://i.ytimg.com/vi/5dHnjJBtESY/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 77913,
+      "likeCount": 2113,
+      "commentCount": 50,
+      "durationSeconds": 74,
+      "format": "쇼츠",
+      "ageDays": 6.7,
+      "viewsPerDay": 11710,
+      "momentum": 10891,
+      "likeRate": 2.71,
+      "commentRate": 0.06,
+      "matchedQueries": [
+        "건강운"
+      ],
+      "marketScore": {
+        "total": 78,
+        "parts": {
+          "volume": 20,
+          "velocity": 27,
+          "likeRate": 10,
+          "commentRate": 1,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 86,
+        "parts": {
+          "momentum": 51,
+          "volume": 35
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 416000
+    }
+  ],
+  "risingVideos": [
+    {
+      "videoId": "YgF6NWb8iFc",
+      "url": "https://www.youtube.com/watch?v=YgF6NWb8iFc",
+      "title": "연애할 때부터 심상치 않았던 장윤정과 도경완의 궁합 #도경완 #장윤정 #부부",
+      "description": "",
+      "channelId": "UChQkAdeoyN9ZJRtIlIyFw_w",
+      "channelTitle": "투데이쇼츠",
+      "publishedAt": "2026-08-12T05:42:38Z",
+      "thumbnail": "https://i.ytimg.com/vi/YgF6NWb8iFc/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 187723,
+      "likeCount": 1728,
+      "commentCount": 14,
+      "durationSeconds": 29,
+      "format": "쇼츠",
+      "ageDays": 0.5,
+      "viewsPerDay": 410308,
+      "momentum": 196052,
+      "likeRate": 0.92,
+      "commentRate": 0.01,
+      "matchedQueries": [
+        "궁합"
+      ],
+      "marketScore": {
+        "total": 76,
+        "parts": {
+          "volume": 22,
+          "velocity": 30,
+          "likeRate": 3,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 99,
+        "parts": {
+          "momentum": 60,
+          "volume": 39
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 42700
+    },
+    {
+      "videoId": "lmhwViVb87U",
+      "url": "https://www.youtube.com/watch?v=lmhwViVb87U",
+      "title": "앞으로 3년 동안 재물운이 계단식으로 상승하는 띠 순위 TOP 12!",
+      "description": "본 영상은 동양 명리학의 삼재(三災) 및 대운 흐름과 간지(干支) 해석을 바탕으로 제작된 교양·인문학 정보 제공 목적의 콘텐츠입니다.\n\n각 띠별 기운의 상승 흐름과 상징적 의미를 알아보기 위한 참고 자료이며, 실제 개인이 체감하는 운세나 재물운의 결과는 전체 사주 구조 및 개별적인 노력",
+      "channelId": "UC5tzr-DRv0k7FcNC_NKc6_g",
+      "channelTitle": "천하태평",
+      "publishedAt": "2026-08-08T07:54:57Z",
+      "thumbnail": "https://i.ytimg.com/vi/lmhwViVb87U/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 287919,
+      "likeCount": 2064,
+      "commentCount": 15,
+      "durationSeconds": 7,
+      "format": "쇼츠",
+      "ageDays": 4.4,
+      "viewsPerDay": 65951,
+      "momentum": 59174,
+      "likeRate": 0.72,
+      "commentRate": 0.01,
+      "matchedQueries": [
+        "재물운",
+        "사주풀이"
+      ],
+      "marketScore": {
+        "total": 76,
+        "parts": {
+          "volume": 23,
+          "velocity": 30,
+          "likeRate": 3,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 99,
+        "parts": {
+          "momentum": 59,
+          "volume": 40
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 3230
+    },
+    {
+      "videoId": "GQGFb3Fq6lA",
+      "url": "https://www.youtube.com/watch?v=GQGFb3Fq6lA",
+      "title": "곧 뜻밖의 기쁜 소식을 받게 될 출생년도🍀 행운의 순간이 찾아옵니다✨  #행운 #재물운 #금전운 #대박운 #귀인운 #운세",
+      "description": "가까운 시일 안에 기다리던 연락, 재물운, 좋은 기회가 찾아올 수 있습니다.\n당신의 출생년도와 음력 생일이 있는지 확인해 보세요!\n포함되어 있다면 댓글에 **“행운을 받겠습니다”**라고 남겨주세요. 🙏",
+      "channelId": "UCCAgQsZRSi8jRfkcBUxf8kQ",
+      "channelTitle": "心の教科書",
+      "publishedAt": "2026-08-09T13:15:59Z",
+      "thumbnail": "https://i.ytimg.com/vi/GQGFb3Fq6lA/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 212982,
+      "likeCount": 2988,
+      "commentCount": 47,
+      "durationSeconds": 6,
+      "format": "쇼츠",
+      "ageDays": 3.1,
+      "viewsPerDay": 67771,
+      "momentum": 58468,
+      "likeRate": 1.4,
+      "commentRate": 0.02,
+      "matchedQueries": [
+        "재물운"
+      ],
+      "marketScore": {
+        "total": 78,
+        "parts": {
+          "volume": 22,
+          "velocity": 30,
+          "likeRate": 5,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 98,
+        "parts": {
+          "momentum": 59,
+          "volume": 39
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 13600
+    },
+    {
+      "videoId": "Mne56POrjHI",
+      "url": "https://www.youtube.com/watch?v=Mne56POrjHI",
+      "title": "당신의 직업을 나쁘게 소개한다면? (5탄)",
+      "description": "",
+      "channelId": "UCmjjgsm51PYMPf5REDylbSA",
+      "channelTitle": "김켈리 Kellyfornia",
+      "publishedAt": "2026-07-15T10:00:14Z",
+      "thumbnail": "https://i.ytimg.com/vi/Mne56POrjHI/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 2060282,
+      "likeCount": 29688,
+      "commentCount": 466,
+      "durationSeconds": 37,
+      "format": "쇼츠",
+      "ageDays": 28.3,
+      "viewsPerDay": 72857,
+      "momentum": 55033,
+      "likeRate": 1.44,
+      "commentRate": 0.02,
+      "matchedQueries": [
+        "직업운"
+      ],
+      "marketScore": {
+        "total": 76,
+        "parts": {
+          "volume": 25,
+          "velocity": 30,
+          "likeRate": 5,
+          "commentRate": 0,
+          "recency": 15
+        }
+      },
+      "rankScore": {
+        "total": 98,
+        "parts": {
+          "momentum": 58,
+          "volume": 40
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 1310000
+    },
+    {
+      "videoId": "M543zT-zdhU",
+      "url": "https://www.youtube.com/watch?v=M543zT-zdhU",
+      "title": "【띠별 운세】딱 맞는 인연과 기회가 찾아오는 출생년도 24가지✨  #행운 #귀인운 #재물운 #운세 #좋은기회 #쇼츠",
+      "description": "사람도 기회도 타이밍이 중요합니다. 가까운 시기에 나에게 꼭 맞는 인연과 좋은 기회가 찾아올 수 있는 출생년도를 소개합니다. 내 출생년도가 있다면 댓글로 남겨주세요! 🍀",
+      "channelId": "UCCAgQsZRSi8jRfkcBUxf8kQ",
+      "channelTitle": "心の教科書",
+      "publishedAt": "2026-08-10T10:36:27Z",
+      "thumbnail": "https://i.ytimg.com/vi/M543zT-zdhU/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 134844,
+      "likeCount": 2283,
+      "commentCount": 21,
+      "durationSeconds": 6,
+      "format": "쇼츠",
+      "ageDays": 2.3,
+      "viewsPerDay": 59838,
+      "momentum": 48972,
+      "likeRate": 1.69,
+      "commentRate": 0.02,
+      "matchedQueries": [
+        "띠별 운세"
+      ],
+      "marketScore": {
+        "total": 78,
+        "parts": {
+          "volume": 21,
+          "velocity": 30,
+          "likeRate": 6,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 96,
+        "parts": {
+          "momentum": 58,
+          "volume": 38
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 13600
+    },
+    {
+      "videoId": "NIpl6oxylvk",
+      "url": "https://www.youtube.com/watch?v=NIpl6oxylvk",
+      "title": "🌕생일 끝자리로 받게되는 복이 다릅니다 운세 사주 대운",
+      "description": "#복권 #생일운세 #재물운 #귀인운 #금전운 #대운 #생일날짜 #풍수운세\n\n들으면 막힌 돈줄이 열리고, 복과 행운이 현실이 됩니다 ✨  \n자비와 공덕의 파동이 마음을 정화하고, 풍요의 길을 여는 명상음악 🙏  \n\n───────────────────\n📜 \n2026년 생일 날짜에 따라 ",
+      "channelId": "UCRfMDPvJZkwom9DyqOW5feQ",
+      "channelTitle": "풍수운세_사주 운명 돈복",
+      "publishedAt": "2026-08-11T14:02:11Z",
+      "thumbnail": "https://i.ytimg.com/vi/NIpl6oxylvk/mqdefault.jpg",
+      "tags": [
+        "로또",
+        "금전운",
+        "대운",
+        "소원성취"
+      ],
+      "viewCount": 73317,
+      "likeCount": 1087,
+      "commentCount": 16,
+      "durationSeconds": 8,
+      "format": "쇼츠",
+      "ageDays": 1.1,
+      "viewsPerDay": 66015,
+      "momentum": 45521,
+      "likeRate": 1.48,
+      "commentRate": 0.02,
+      "matchedQueries": [
+        "재물운",
+        "대운"
+      ],
+      "marketScore": {
+        "total": 76,
+        "parts": {
+          "volume": 20,
+          "velocity": 30,
+          "likeRate": 6,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 93,
+        "parts": {
+          "momentum": 58,
+          "volume": 35
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 7800
+    },
+    {
+      "videoId": "bMgk7V4kthw",
+      "url": "https://www.youtube.com/watch?v=bMgk7V4kthw",
+      "title": "🌕이름으로 보는 대박 재물운 점수 운세 사주",
+      "description": "#이름운세 #재물운 #금전운 #성명학 #대운 #8월운세 #풍수운세\n8월 이후 이름으로 보는 대박 재물운 점수\n\n내 이름에 들어간 글자는 몇 점일까요? ✨\n이름 글자별로 재물 기운·기회운·금전 흐름을 점수로 정리했습니다.\n\n가족의 이름도 함께 확인해보고\n내 이름 속 재물운 점수를 재미있게",
+      "channelId": "UCRfMDPvJZkwom9DyqOW5feQ",
+      "channelTitle": "풍수운세_사주 운명 돈복",
+      "publishedAt": "2026-08-11T03:03:22Z",
+      "thumbnail": "https://i.ytimg.com/vi/bMgk7V4kthw/mqdefault.jpg",
+      "tags": [
+        "로또",
+        "금전운",
+        "대운",
+        "소원성취"
+      ],
+      "viewCount": 83434,
+      "likeCount": 1021,
+      "commentCount": 23,
+      "durationSeconds": 7,
+      "format": "쇼츠",
+      "ageDays": 1.6,
+      "viewsPerDay": 53206,
+      "momentum": 40343,
+      "likeRate": 1.22,
+      "commentRate": 0.03,
+      "matchedQueries": [
+        "재물운"
+      ],
+      "marketScore": {
+        "total": 75,
+        "parts": {
+          "volume": 21,
+          "velocity": 30,
+          "likeRate": 5,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 92,
+        "parts": {
+          "momentum": 57,
+          "volume": 35
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 7800
+    },
+    {
+      "videoId": "AylNFnnBv3A",
+      "url": "https://www.youtube.com/watch?v=AylNFnnBv3A",
+      "title": "🌕8월부터 재물운 들어오는 사주 운세 대운",
+      "description": "#8월운세 #재물운 #금전운 #대운 #출생년도 #출생월 #이름운세 #풍수운세\n\n들으면 막힌 돈줄이 열리고, 복과 행운이 현실이 됩니다 ✨  \n자비와 공덕의 파동이 마음을 정화하고, 풍요의 길을 여는 명상음악 🙏  \n\n───────────────────\n📜 \n두 개 이상 해당된다면 8",
+      "channelId": "UCRfMDPvJZkwom9DyqOW5feQ",
+      "channelTitle": "풍수운세_사주 운명 돈복",
+      "publishedAt": "2026-08-12T02:58:21Z",
+      "thumbnail": "https://i.ytimg.com/vi/AylNFnnBv3A/mqdefault.jpg",
+      "tags": [
+        "로또",
+        "금전운",
+        "대운",
+        "소원성취"
+      ],
+      "viewCount": 40624,
+      "likeCount": 579,
+      "commentCount": 15,
+      "durationSeconds": 8,
+      "format": "쇼츠",
+      "ageDays": 0.6,
+      "viewsPerDay": 71070,
+      "momentum": 37910,
+      "likeRate": 1.43,
+      "commentRate": 0.04,
+      "matchedQueries": [
+        "재물운"
+      ],
+      "marketScore": {
+        "total": 75,
+        "parts": {
+          "volume": 19,
+          "velocity": 30,
+          "likeRate": 5,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 88,
+        "parts": {
+          "momentum": 57,
+          "volume": 31
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 7800
+    },
+    {
+      "videoId": "5prqyMZZ0pE",
+      "url": "https://www.youtube.com/watch?v=5prqyMZZ0pE",
+      "title": "2026년 하반기 띠별 금전운 TOP12 재물운, 행운의 숫자 총정리 #2026운세 #하반기운세 #띠운세 #행운의숫자 #금전운 #재물운 #돈복 #12간지 #띠 #행운 #운세 #사주",
+      "description": "2026년 하반기, 내 띠의 금전운은 \n어떤 흐름일까요?\n쥐띠부터 돼지띠까지 12띠별 금전운과 \n행운의 숫자를 한눈에 정리했습니다.\n부수입, 저축, 투자, 사업 등 띠별로 재미있게 \n살펴볼 수 있는 재물운 포인트를 \n확인해 보세요.\n특히 각 띠에 해당하는 행운의 숫자 2개도 \n함께 소개",
+      "channelId": "UC3jCPIBiBXscaXHegdlHuVw",
+      "channelTitle": "아름다운인생",
+      "publishedAt": "2026-08-11T22:15:01Z",
+      "thumbnail": "https://i.ytimg.com/vi/5prqyMZZ0pE/mqdefault.jpg",
+      "tags": [
+        "#2026운세",
+        "#하반기운세",
+        "#띠운세",
+        "#행운의숫자",
+        "#금전운",
+        "#재물운",
+        "#돈복",
+        "#12간지",
+        "#띠",
+        "#행운",
+        "#운세",
+        "#사주"
+      ],
+      "viewCount": 41768,
+      "likeCount": 200,
+      "commentCount": 0,
+      "durationSeconds": 6,
+      "format": "쇼츠",
+      "ageDays": 0.8,
+      "viewsPerDay": 54360,
+      "momentum": 32931,
+      "likeRate": 0.48,
+      "commentRate": 0,
+      "matchedQueries": [
+        "2026 운세",
+        "재물운"
+      ],
+      "marketScore": {
+        "total": 71,
+        "parts": {
+          "volume": 19,
+          "velocity": 30,
+          "likeRate": 2,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 89,
+        "parts": {
+          "momentum": 57,
+          "volume": 32
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 7530
+    },
+    {
+      "videoId": "hPKD0lvriMM",
+      "url": "https://www.youtube.com/watch?v=hPKD0lvriMM",
+      "title": "관상만 보고 직업 정해주기 - 서울 식물원편",
+      "description": "#엄지윤 #송하빈 #관상\n\n관상만 보고 직업 맞혀드립니다\n\n📍 서울 식물원\n📍 특별 출연 - 매미\n\n*출연자에 대한 욕설 및 비방 댓글은 삭제될 수 있습니다.\n*해당 장소의 허가를 받고 촬영하였습니다.",
+      "channelId": "UCLXafJ8yYXeUN_eHai-6Pgw",
+      "channelTitle": "엄지렐라 Umjirella",
+      "publishedAt": "2026-07-31T11:03:52Z",
+      "thumbnail": "https://i.ytimg.com/vi/hPKD0lvriMM/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 425321,
+      "likeCount": 6658,
+      "commentCount": 689,
+      "durationSeconds": 1675,
+      "format": "롱폼",
+      "ageDays": 12.2,
+      "viewsPerDay": 34764,
+      "momentum": 31499,
+      "likeRate": 1.57,
+      "commentRate": 0.16,
+      "matchedQueries": [
+        "직업운"
+      ],
+      "marketScore": {
+        "total": 80,
+        "parts": {
+          "volume": 23,
+          "velocity": 30,
+          "likeRate": 6,
+          "commentRate": 2,
+          "recency": 19
+        }
+      },
+      "rankScore": {
+        "total": 97,
+        "parts": {
+          "momentum": 57,
+          "volume": 40
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 386000
+    }
+  ],
+  "allVideos": [
+    {
+      "videoId": "prhnHUFvtGM",
+      "title": "2026년 8월12일 띠별 오늘의 운세를 전해드립니다. 재물운 애정운 건강운 직장운 사업운 등 알아보세요 상담 051- 805-4999",
+      "channelId": "UCsCGBHvkCvoYzYgDrrYwNdg",
+      "publishedAt": "2026-08-11T08:58:57Z",
+      "viewCount": 6575,
+      "viewsPerDay": 4977,
+      "momentum": 3610,
+      "ageDays": 1.3,
+      "format": "롱폼",
+      "likeRate": 6.8,
+      "rankScore": {
+        "total": 63,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "UAkT61PEWFo",
+      "title": "[2026년 58세 닭띠운세] 닭띠가 1969년생이라면 말년으로 갈수록 99% 이렇게 됩니다! 금전,귀인,문서운 모두 대박 터진다!! 병오년 1969년생 58세 닭띠운세",
+      "channelId": "UCzg-i1Ad6jGw0MfTt5SBOrQ",
+      "publishedAt": "2026-08-11T11:00:24Z",
+      "viewCount": 1872,
+      "viewsPerDay": 1514,
+      "momentum": 1078,
+      "ageDays": 1.2,
+      "format": "롱폼",
+      "likeRate": 7.1,
+      "rankScore": {
+        "total": 39,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "5t7iXgRbeYc",
+      "title": "2026년 7월 8월 양띠운세🌟 올 여름 난리났다! 큰일로 금전운 활짝 열려 초대박 터지는 55년생 67년생 79년생 91년생 43년생 말년 운명이 바뀌는 양띠운세",
+      "channelId": "UCIAhkNt6n9-lM48Zf6JYuEA",
+      "publishedAt": "2026-06-22T03:10:28Z",
+      "viewCount": 20977,
+      "viewsPerDay": 407,
+      "momentum": 208,
+      "ageDays": 51.6,
+      "format": "롱폼",
+      "likeRate": 2.72,
+      "rankScore": {
+        "total": 42,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "8VZMmnK-jII",
+      "title": "[사주] 2027년까지 연결되는 중요한 2026년 하반기 운세ㅣ특정 오행이 많은 사주들은 각각 운세 흐름이 다 달라요⭐",
+      "channelId": "UC0asDkei6mvw2YXcq6had8g",
+      "publishedAt": "2026-08-07T10:04:03Z",
+      "viewCount": 139674,
+      "viewsPerDay": 26474,
+      "momentum": 24182,
+      "ageDays": 5.3,
+      "format": "롱폼",
+      "likeRate": 2.76,
+      "rankScore": {
+        "total": 93,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "fnxyeMUHjp8",
+      "title": "🌟2026년 7월 개띠운세🌟대운이 터졌다! 🎉 하늘에서 금붙이가 쏟아지고 돈벼락이 떨어진다! 돈 쓸어담을 준비해💰| 58년생 70년생 82년생 94년생 06년생 |",
+      "channelId": "UC3_o6flFiiJwGIdcp8rJGmA",
+      "publishedAt": "2026-07-03T10:00:20Z",
+      "viewCount": 17200,
+      "viewsPerDay": 427,
+      "momentum": 269,
+      "ageDays": 40.3,
+      "format": "롱폼",
+      "likeRate": 3.64,
+      "rankScore": {
+        "total": 43,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "q2ROy4twc-k",
+      "title": "⭐2026년 하반기 토끼띠운세⭐이제 돈방석에 앉습니다! 무당이 뽑은 하반기 최고 대박나는 띠✨13년만에 천운 들어온다 63년생 75년생 87년생 99년생 토끼띠 운명과 평생운세",
+      "channelId": "UCjgloJE1QTTKj2eAhC-S-qg",
+      "publishedAt": "2026-08-07T11:00:05Z",
+      "viewCount": 8774,
+      "viewsPerDay": 1675,
+      "momentum": 1529,
+      "ageDays": 5.2,
+      "format": "롱폼",
+      "likeRate": 3.21,
+      "rankScore": {
+        "total": 55,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "rsdEKrf_RAI",
+      "title": "2026년 임인생 1962년생 8월 호랑이띠운세🌟말년은 '이 귀인 3명' 덕에 금전운 문서운 귀인운 펑펑 터져 범띠는 돈벼락 맞습니다",
+      "channelId": "UCIAhkNt6n9-lM48Zf6JYuEA",
+      "publishedAt": "2026-07-24T23:15:22Z",
+      "viewCount": 34157,
+      "viewsPerDay": 1824,
+      "momentum": 1550,
+      "ageDays": 18.7,
+      "format": "롱폼",
+      "likeRate": 3.64,
+      "rankScore": {
+        "total": 65,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "lriC_pI-p30",
+      "title": "2026년 8월13일 띠별 오늘의 운세를 전해드립니다. 재물운 애정운 건강운 직장운 사업운 등 알아보세요 상담 051- 805-4999",
+      "channelId": "UCsCGBHvkCvoYzYgDrrYwNdg",
+      "publishedAt": "2026-08-12T08:23:26Z",
+      "viewCount": 3947,
+      "viewsPerDay": 11412,
+      "momentum": 4666,
+      "ageDays": 0.3,
+      "format": "롱폼",
+      "likeRate": 8.21,
+      "rankScore": {
+        "total": 61,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "T0xr8s4VqPI",
+      "title": "🌟미리보는 2026년 7월 양띠운세🌟절호의 기회!  몸만 챙기고 앞으로 나아가라! 노력한 만큼 몇 배의 보상이 들어온다🔥| 55년생 67년생 79년생 91년생 03년생 |",
+      "channelId": "UC3_o6flFiiJwGIdcp8rJGmA",
+      "publishedAt": "2026-06-26T10:00:11Z",
+      "viewCount": 8943,
+      "viewsPerDay": 189,
+      "momentum": 105,
+      "ageDays": 47.3,
+      "format": "롱폼",
+      "likeRate": 3.57,
+      "rankScore": {
+        "total": 32,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "47RRCe-A8lg",
+      "title": "🐷2026년 8월 돼지띠운세🐷하반기부터 드디어 운이 역할을 해 줄 돼지띠는?! 47년생 59년생 71년생 83년생 95년생 돼지띠 운세#서울점집 장안동 방울보살",
+      "channelId": "UCRmxfagn3ji-JSrNW2rwa-Q",
+      "publishedAt": "2026-08-11T04:12:25Z",
+      "viewCount": 4181,
+      "viewsPerDay": 2750,
+      "momentum": 2070,
+      "ageDays": 1.5,
+      "format": "롱폼",
+      "likeRate": 3.85,
+      "rankScore": {
+        "total": 56,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "5prqyMZZ0pE",
+      "title": "2026년 하반기 띠별 금전운 TOP12 재물운, 행운의 숫자 총정리 #2026운세 #하반기운세 #띠운세 #행운의숫자 #금전운 #재물운 #돈복 #12간지 #띠 #행운 #운세 #사주",
+      "channelId": "UC3jCPIBiBXscaXHegdlHuVw",
+      "publishedAt": "2026-08-11T22:15:01Z",
+      "viewCount": 41768,
+      "viewsPerDay": 54360,
+      "momentum": 32931,
+      "ageDays": 0.8,
+      "format": "쇼츠",
+      "likeRate": 0.48,
+      "rankScore": {
+        "total": 89,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "eu6N-buoBEs",
+      "title": "✨2026년 하반기 토끼띠운세✨\"죽으란 법은 없다!!\" 상상도 못한 큰돈 들어옵니다✨무당이 뽑은 하반기 금전운 최고 대박나는 띠 63년생 75년생 87년생 99년생 토끼띠 운세",
+      "channelId": "UChhByhulmVa6P3bFtjd1nlg",
+      "publishedAt": "2026-08-05T11:00:16Z",
+      "viewCount": 4653,
+      "viewsPerDay": 643,
+      "momentum": 600,
+      "ageDays": 7.2,
+      "format": "롱폼",
+      "likeRate": 2.92,
+      "rankScore": {
+        "total": 39,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "6wS_6eltkJM",
+      "title": "[2026년 8월 운세] 병오년 병신월 일간별 운세 완벽정리!",
+      "channelId": "UCsxDelJKZ_BAzb_aMiRbtug",
+      "publishedAt": "2026-08-03T12:15:24Z",
+      "viewCount": 88023,
+      "viewsPerDay": 9584,
+      "momentum": 8873,
+      "ageDays": 9.2,
+      "format": "롱폼",
+      "likeRate": 4.26,
+      "rankScore": {
+        "total": 86,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "LKXcYmazYh4",
+      "title": "⭐2026년 하반기 닭띠운세⭐X월 평생 먹고 놀 금전 반드시 들어온다!!✨하반기 최고 대박나는 띠 금전,문서운 술술 풀립니다 57년생 69년생 81년생 93년생 병오년 닭띠운세",
+      "channelId": "UCbzkOrese-GTdJqcnblaJEQ",
+      "publishedAt": "2026-08-09T23:00:29Z",
+      "viewCount": 4010,
+      "viewsPerDay": 1465,
+      "momentum": 1239,
+      "ageDays": 2.7,
+      "format": "롱폼",
+      "likeRate": 4.71,
+      "rankScore": {
+        "total": 47,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "VSJoFwFTWjE",
+      "title": "✨2026년 1962년생 65세 하반기 호랑이띠운세✨1962년생 호랑이띠는 하반에 금전,문서,귀인운까지 펑펑 터진다! 62년생 호랑이띠 운명과 병오년 운세 1962년생 65세 운세",
+      "channelId": "UCi5_3sZfbjXV_iZlgTywcIA",
+      "publishedAt": "2026-07-31T10:00:07Z",
+      "viewCount": 16443,
+      "viewsPerDay": 1339,
+      "momentum": 1213,
+      "ageDays": 12.3,
+      "format": "롱폼",
+      "likeRate": 3.72,
+      "rankScore": {
+        "total": 57,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "rkzQ06wkrdk",
+      "title": "🌟2026년 1973년생 53세 소띠 신년운세🌟53년동안 고생 많았다! 올 가을 대운으로 보상받자! 73년생 소띠! 금전 귀인 문서 모두 초대박납니다! 73년생 53세 소띠 운세!",
+      "channelId": "UCDxdq_nzviZJ1VRfgw-QG8w",
+      "publishedAt": "2026-08-01T08:45:53Z",
+      "viewCount": 16,
+      "viewsPerDay": 1,
+      "momentum": 1,
+      "ageDays": 11.3,
+      "format": "롱폼",
+      "likeRate": 0,
+      "rankScore": {
+        "total": 1,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "GNJsLASLrEI",
+      "title": "🚨✨2026년 미리보는 신년운세 뱀띠운세✨ 두 번째 인생역전 시작된다! 금전운·귀인운 폭발! 65년생 77년생 89년생 01년생 평생 최고의 대운",
+      "channelId": "UC4PQlXfsNocUY4xlK_QvYyQ",
+      "publishedAt": "2026-07-27T10:01:01Z",
+      "viewCount": 32,
+      "viewsPerDay": 2,
+      "momentum": 2,
+      "ageDays": 16.3,
+      "format": "롱폼",
+      "likeRate": 3.13,
+      "rankScore": {
+        "total": 3,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "bamY2NKjJ_c",
+      "title": "#shorts  🐰2026 토끼띠 하반기 운세 🐰 _  올해 들어온 살과 하반기 부터 들어오는 살! #사주 #운세 #신점 #신년운세 #하반기운세",
+      "channelId": "UCouW2220s_kw3jzHMsJ0sCQ",
+      "publishedAt": "2026-08-10T08:30:07Z",
+      "viewCount": 1894,
+      "viewsPerDay": 809,
+      "momentum": 667,
+      "ageDays": 2.3,
+      "format": "쇼츠",
+      "likeRate": 1.48,
+      "rankScore": {
+        "total": 34,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "ny9PlIxFksA",
+      "title": "산신무당천상화 라이브 방송#신점 #신년운세 #사업운 #사주 #금전운 #애정운 #궁합 #재회 #산신무당천상화 #양평할매점집 #무료점사 #점사 #점집 #궁합 #2026 #애정운 ",
+      "channelId": "UCHKPWWM_gEMYyCDKWx5MlKA",
+      "publishedAt": "2026-08-12T09:59:29Z",
+      "viewCount": 12797,
+      "viewsPerDay": 45843,
+      "momentum": 16424,
+      "ageDays": 0.3,
+      "format": "롱폼",
+      "likeRate": 0.84,
+      "rankScore": {
+        "total": 77,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "Fvr_GmdCxis",
+      "title": "🌟2026년 1969년생 58세 닭띠 신년운세🌟대박 혹은 패가망신한다! 단 한번도 보지 못한 엄청난 대운이 들어와 말년에 초대박나는 69년생 58세 닭띠 병오년 신년운세!",
+      "channelId": "UCeC9zG_njesM6e2x-8ykWYw",
+      "publishedAt": "2026-08-06T09:00:13Z",
+      "viewCount": 1113,
+      "viewsPerDay": 176,
+      "momentum": 163,
+      "ageDays": 6.3,
+      "format": "롱폼",
+      "likeRate": 4.49,
+      "rankScore": {
+        "total": 19,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "9sUPsNP-54U",
+      "title": "2026년 병오년 신년운세｜쥐띠 100% 대박운세! 60년생·72년생·84년생·96년생 쥐띠 전체 금전운·귀인운·문서운 총정리, X월생이면 무조건 터진다",
+      "channelId": "UCya79zaRBnuI7C_zvZMeaYA",
+      "publishedAt": "2026-07-25T00:45:13Z",
+      "viewCount": 255,
+      "viewsPerDay": 14,
+      "momentum": 12,
+      "ageDays": 18.7,
+      "format": "롱폼",
+      "likeRate": 3.92,
+      "rankScore": {
+        "total": 8,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "QeNKgmn5qWU",
+      "title": "2026년 병오년 신년운세｜1964년생 용띠 63세 대박운세! 조상님이 몰아주는 금전운·재물운·문서운 총정리, 수백억 대운이 터지는 진짜 이유",
+      "channelId": "UCya79zaRBnuI7C_zvZMeaYA",
+      "publishedAt": "2026-07-21T00:51:17Z",
+      "viewCount": 1808,
+      "viewsPerDay": 80,
+      "momentum": 65,
+      "ageDays": 22.7,
+      "format": "롱폼",
+      "likeRate": 4.81,
+      "rankScore": {
+        "total": 20,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "Op1aIRnQHdQ",
+      "title": "🌟 2026년 1969년생 58세 닭띠 신년운세 | 대박이냐, 몰락이냐? 평생 한 번뿐인 대운으로 말년 초대박이 시작된다!",
+      "channelId": "UCh_1L5atxuJE9kqC0QxfGiw",
+      "publishedAt": "2026-07-31T08:34:25Z",
+      "viewCount": 114,
+      "viewsPerDay": 9,
+      "momentum": 8,
+      "ageDays": 12.3,
+      "format": "롱폼",
+      "likeRate": 7.02,
+      "rankScore": {
+        "total": 7,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "McNXvUBF6_4",
+      "title": "산신무당천상화 라이브 방송 #신년운세 #사업운 #사주 #금전운 #애정운 #궁합 #재회 #산신무당천상화 #양평할매점집 #무료점사 #점사 #점집 #궁합 #2026 #애정운 ",
+      "channelId": "UCHKPWWM_gEMYyCDKWx5MlKA",
+      "publishedAt": "2026-08-11T10:12:42Z",
+      "viewCount": 24191,
+      "viewsPerDay": 19048,
+      "momentum": 13667,
+      "ageDays": 1.3,
+      "format": "롱폼",
+      "likeRate": 0.57,
+      "rankScore": {
+        "total": 80,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "D8rKgmG2PqQ",
+      "title": "🌟2026년 1968년생 59세 원숭이띠 신년운세🌟대박 혹은 패가망신한다! 단 한번도 보지 못한 엄청난 대운이 들어와 말년에 초대박나는 68년생 59세 원숭이띠 병오년 신년운세!",
+      "channelId": "UChPQxiBZ5IQLt73ehUYIx9w",
+      "publishedAt": "2026-07-24T09:00:29Z",
+      "viewCount": 4727,
+      "viewsPerDay": 245,
+      "momentum": 207,
+      "ageDays": 19.3,
+      "format": "롱폼",
+      "likeRate": 2.43,
+      "rankScore": {
+        "total": 31,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "3yxjTLiOXuw",
+      "title": "1964년 갑진생 용띠 2026년 신년운세: 마침내 눈물이 황금으로 변합니다! 63세에 찾아올 인생 최대의 대운",
+      "channelId": "UCx-hy_RGsaOoskjwBC2bgJw",
+      "publishedAt": "2026-07-30T09:00:28Z",
+      "viewCount": 1100,
+      "viewsPerDay": 83,
+      "momentum": 74,
+      "ageDays": 13.3,
+      "format": "롱폼",
+      "likeRate": 6.36,
+      "rankScore": {
+        "total": 16,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "rMmUvGaSjN0",
+      "title": "2026년 신년운세 소름 주의⚠️｜60세 양띠(1967년생 정미생) 움직이는 곳마다 돈이 따라오는 대운",
+      "channelId": "UCvkuUjkxxYZQnoSIZ8RUwHg",
+      "publishedAt": "2026-08-03T00:55:12Z",
+      "viewCount": 45,
+      "viewsPerDay": 5,
+      "momentum": 4,
+      "ageDays": 9.7,
+      "format": "롱폼",
+      "likeRate": 8.89,
+      "rankScore": {
+        "total": 4,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "btsj9gjUZyw",
+      "title": "🌟2026년 1966년생 61세 말띠 신년운세🌟대박 혹은 패가망신한다! 단 한번도 보지 못한 엄청난 대운이 들어와 말년에 초대박나는 66년생 61세 말띠 병오년 신년운세!",
+      "channelId": "UChPQxiBZ5IQLt73ehUYIx9w",
+      "publishedAt": "2026-07-31T09:00:08Z",
+      "viewCount": 79,
+      "viewsPerDay": 6,
+      "momentum": 6,
+      "ageDays": 12.3,
+      "format": "롱폼",
+      "likeRate": 7.59,
+      "rankScore": {
+        "total": 6,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "nK1kSE0Oyqo",
+      "title": "[2026년 원숭이띠 9월 운세] 하반기에 인생 바뀌는 ‘큰 일’ 하나 터집니다!",
+      "channelId": "UCdG1UdFchqdcP6KF5wGtoLA",
+      "publishedAt": "2026-08-12T11:15:37Z",
+      "viewCount": 302,
+      "viewsPerDay": 1208,
+      "momentum": 403,
+      "ageDays": 0.3,
+      "format": "롱폼",
+      "likeRate": 9.27,
+      "rankScore": {
+        "total": 23,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "2Xfau78KZVM",
+      "title": "2025년 대박나는 닭띠 신년운세문서,귀인,금전 다 들어와 모든것을 보답받을 대운문 열린다! 닭년에 자식복으로 집안에 경사까지! 57년생 69년생 81년생 93년생 닭띠 운",
+      "channelId": "UCh7Jia7VUD78cU7sWCm1E_Q",
+      "publishedAt": "2026-07-15T01:45:20Z",
+      "viewCount": 108,
+      "viewsPerDay": 4,
+      "momentum": 3,
+      "ageDays": 28.6,
+      "format": "롱폼",
+      "likeRate": 3.7,
+      "rankScore": {
+        "total": 5,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "QBo7O-K6efY",
+      "title": "#2026년8월13일 목요일 운세 #오늘의운세 #띠별운세 총정리 #무료운세 #운세",
+      "channelId": "UCFhrii2jsl5I8r9RaghuNlQ",
+      "publishedAt": "2026-08-12T08:59:38Z",
+      "viewCount": 1173,
+      "viewsPerDay": 3657,
+      "momentum": 1429,
+      "ageDays": 0.3,
+      "format": "롱폼",
+      "likeRate": 10.14,
+      "rankScore": {
+        "total": 41,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "bNKza5gmsIs",
+      "title": "오늘의운세, 8월 13일 ,목요일, 사주,타로,운세,띠별운세,미금,신점,명품,통변  #오늘의운세",
+      "channelId": "UC7lhGYwZf88R8jg4osQSqRQ",
+      "publishedAt": "2026-08-12T09:53:17Z",
+      "viewCount": 1316,
+      "viewsPerDay": 4643,
+      "momentum": 1680,
+      "ageDays": 0.3,
+      "format": "롱폼",
+      "likeRate": 17.86,
+      "rankScore": {
+        "total": 44,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "zrlWmbYrQ4E",
+      "title": "오늘의운세 2026년8월13일 목요일 양띠날 오늘의운세 #오늘의운세 #운세 ",
+      "channelId": "UConqLQysw-ZFrokEp4YMTTA",
+      "publishedAt": "2026-08-12T04:26:00Z",
+      "viewCount": 3113,
+      "viewsPerDay": 6095,
+      "momentum": 3080,
+      "ageDays": 0.5,
+      "format": "롱폼",
+      "likeRate": 16.64,
+      "rankScore": {
+        "total": 57,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "79PBhCXsM7M",
+      "title": "#2026년8월11일 화요일 운세 #오늘의운세 #띠별운세 총정리 #무료운세 #운세",
+      "channelId": "UCFhrii2jsl5I8r9RaghuNlQ",
+      "publishedAt": "2026-08-10T09:00:03Z",
+      "viewCount": 4148,
+      "viewsPerDay": 1788,
+      "momentum": 1471,
+      "ageDays": 2.3,
+      "format": "롱폼",
+      "likeRate": 6.29,
+      "rankScore": {
+        "total": 49,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "0q1MzqmfVxY",
+      "title": "#2026년8월 12일 수요일 운세 #오늘의운세 #띠별운세 총정리 #무료운세 #운세",
+      "channelId": "UCFhrii2jsl5I8r9RaghuNlQ",
+      "publishedAt": "2026-08-11T09:01:27Z",
+      "viewCount": 3111,
+      "viewsPerDay": 2358,
+      "momentum": 1710,
+      "ageDays": 1.3,
+      "format": "롱폼",
+      "likeRate": 6.69,
+      "rankScore": {
+        "total": 51,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "cNoqtee90mc",
+      "title": "[2026년 7월 13일 월요일]오늘의 띠별 운세 총정리! 로또 꿀팁까지!!",
+      "channelId": "UCZjbZcHJ9K95nBhRTq9dAVQ",
+      "publishedAt": "2026-07-12T08:00:24Z",
+      "viewCount": 2219,
+      "viewsPerDay": 71,
+      "momentum": 51,
+      "ageDays": 31.4,
+      "format": "롱폼",
+      "likeRate": 7.53,
+      "rankScore": {
+        "total": 20,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "uBkjmP62tWk",
+      "title": "오늘의운세 2026년8월12일 수요일 말띠날 오늘의운세 #오늘의운세 #운세 ",
+      "channelId": "UConqLQysw-ZFrokEp4YMTTA",
+      "publishedAt": "2026-08-11T03:50:31Z",
+      "viewCount": 4828,
+      "viewsPerDay": 3145,
+      "momentum": 2372,
+      "ageDays": 1.5,
+      "format": "롱폼",
+      "likeRate": 13.21,
+      "rankScore": {
+        "total": 58,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "6urK-4ZEJLs",
+      "title": "8월 12일내일의운세#내일의운세#오늘의운세",
+      "channelId": "UCmd2E7m2v5yEkYti7MoD9ow",
+      "publishedAt": "2026-08-11T03:30:37Z",
+      "viewCount": 1414,
+      "viewsPerDay": 913,
+      "momentum": 690,
+      "ageDays": 1.5,
+      "format": "롱폼",
+      "likeRate": 12.02,
+      "rankScore": {
+        "total": 32,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "X0i9_aWhdWk",
+      "title": "[오늘의 운세] 8월 11일_화요일",
+      "channelId": "UC1vJ7lWoVPU38RFPMwLWdFw",
+      "publishedAt": "2026-08-10T11:24:49Z",
+      "viewCount": 702,
+      "viewsPerDay": 316,
+      "momentum": 258,
+      "ageDays": 2.2,
+      "format": "롱폼",
+      "likeRate": 14.67,
+      "rankScore": {
+        "total": 21,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "Qar6abwnIiw",
+      "title": "오늘의운세, 8월 11일 ,화요일, 사주,타로,운세,띠별운세,미금,신점,명품,통변  #오늘의운세",
+      "channelId": "UC7lhGYwZf88R8jg4osQSqRQ",
+      "publishedAt": "2026-08-10T09:50:22Z",
+      "viewCount": 3280,
+      "viewsPerDay": 1435,
+      "momentum": 1178,
+      "ageDays": 2.3,
+      "format": "롱폼",
+      "likeRate": 10.03,
+      "rankScore": {
+        "total": 45,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "rjxNbrhUCEw",
+      "title": "오늘의운세, 8월 12일 ,수요일, 사주,타로,운세,띠별운세,미금,신점,명품,통변  #오늘의운세",
+      "channelId": "UC7lhGYwZf88R8jg4osQSqRQ",
+      "publishedAt": "2026-08-11T09:33:47Z",
+      "viewCount": 3299,
+      "viewsPerDay": 2544,
+      "momentum": 1836,
+      "ageDays": 1.3,
+      "format": "롱폼",
+      "likeRate": 10,
+      "rankScore": {
+        "total": 53,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "uGY5veG2YnE",
+      "title": "[2026년 8월 08일 토요일]오늘의 띠별 운세 총정리! 로또 꿀팁까지!!",
+      "channelId": "UCZjbZcHJ9K95nBhRTq9dAVQ",
+      "publishedAt": "2026-08-07T08:00:34Z",
+      "viewCount": 2497,
+      "viewsPerDay": 466,
+      "momentum": 426,
+      "ageDays": 5.4,
+      "format": "롱폼",
+      "likeRate": 7.93,
+      "rankScore": {
+        "total": 32,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "wJ63uStwaXE",
+      "title": "2026년 8월13일띠별 오늘의운세 모모도도#shorts 즐겁고행복한하루되세요.#사주상담:010-8956-8253#풍수인테리어#사주상담#작명#개명#상호 #반갑습니다",
+      "channelId": "UC2pr6_Idb9JBa1NHteMXeBg",
+      "publishedAt": "2026-08-12T11:45:08Z",
+      "viewCount": 1425,
+      "viewsPerDay": 5700,
+      "momentum": 1900,
+      "ageDays": 0.3,
+      "format": "롱폼",
+      "likeRate": 8.98,
+      "rankScore": {
+        "total": 48,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "w7FhQKBtVV4",
+      "title": "8월 13일내일의운세#오늘의운세#내일의운세",
+      "channelId": "UCmd2E7m2v5yEkYti7MoD9ow",
+      "publishedAt": "2026-08-12T03:30:29Z",
+      "viewCount": 1208,
+      "viewsPerDay": 2199,
+      "momentum": 1151,
+      "ageDays": 0.5,
+      "format": "롱폼",
+      "likeRate": 12.17,
+      "rankScore": {
+        "total": 37,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "BaP0s8lBSr4",
+      "title": "[2026년 8월 13일 목요일]오늘의 띠별 운세 총정리! 로또 꿀팁까지!!",
+      "channelId": "UCZjbZcHJ9K95nBhRTq9dAVQ",
+      "publishedAt": "2026-08-12T08:00:04Z",
+      "viewCount": 872,
+      "viewsPerDay": 2408,
+      "momentum": 1012,
+      "ageDays": 0.4,
+      "format": "롱폼",
+      "likeRate": 11.58,
+      "rankScore": {
+        "total": 34,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "Zvgg5xrGN24",
+      "title": "띠별운세 믿지마세요 이 0.1% 때문에 안맞으니까 #무속 #무당 #신점 #대구점집",
+      "channelId": "UCPswahHrxtrxoMsRAXG02zg",
+      "publishedAt": "2026-08-12T11:30:08Z",
+      "viewCount": 758,
+      "viewsPerDay": 3032,
+      "momentum": 1011,
+      "ageDays": 0.3,
+      "format": "쇼츠",
+      "likeRate": 0,
+      "rankScore": {
+        "total": 34,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "fmLSwwd-TSo",
+      "title": "🔮 8월 12일 오늘의 띠별 운세",
+      "channelId": "UCNC0SN21Obas3apmXAmvWtA",
+      "publishedAt": "2026-08-12T00:19:12Z",
+      "viewCount": 31006,
+      "viewsPerDay": 45455,
+      "momentum": 26229,
+      "ageDays": 0.7,
+      "format": "쇼츠",
+      "likeRate": 0.34,
+      "rankScore": {
+        "total": 85,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "62_AV29zZsk",
+      "title": "【띠별 운세】고생 끝에 인생 대운이 찾아오는 출생년도🍀 이제부터 운명이 바뀝니다✨  #대운 #행운 #운세 #재물운 #금전운 #귀인운",
+      "channelId": "UCCAgQsZRSi8jRfkcBUxf8kQ",
+      "publishedAt": "2026-08-12T12:25:18Z",
+      "viewCount": 4727,
+      "viewsPerDay": 18908,
+      "momentum": 6303,
+      "ageDays": 0.3,
+      "format": "쇼츠",
+      "likeRate": 3.93,
+      "rankScore": {
+        "total": 64,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "JkD0cznLHQU",
+      "title": "한 번에 지출 걱정 덜어지는 띠 💰🍀 #띠별운세 #풍수 #금전운",
+      "channelId": "UCuyX60UF5m5dZhc7kJc9Wig",
+      "publishedAt": "2026-08-12T05:33:06Z",
+      "viewCount": 18949,
+      "viewsPerDay": 40826,
+      "momentum": 19654,
+      "ageDays": 0.5,
+      "format": "쇼츠",
+      "likeRate": 3.63,
+      "rankScore": {
+        "total": 81,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "SPyTG4P25iQ",
+      "title": "{일일 띠별운세} 8월13일(목)~말.뱀.용.토끼.범.소.쥐.돼지.개.닭.원.양.()()()",
+      "channelId": "UC9T2hWyq0aaK-T7qOL0UyZA",
+      "publishedAt": "2026-08-12T08:00:11Z",
+      "viewCount": 1106,
+      "viewsPerDay": 3055,
+      "momentum": 1283,
+      "ageDays": 0.4,
+      "format": "롱폼",
+      "likeRate": 17.54,
+      "rankScore": {
+        "total": 39,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "MWEalfvY-A0",
+      "title": "8월 집안에 반가운 소식 들어오는 띠 🏠💌 #띠별운세 #집안운 #가족운 #8월운세",
+      "channelId": "UCjOwSo6TC5ZljN4Znsp3o_g",
+      "publishedAt": "2026-08-11T22:30:38Z",
+      "viewCount": 12827,
+      "viewsPerDay": 16933,
+      "momentum": 10200,
+      "ageDays": 0.8,
+      "format": "쇼츠",
+      "likeRate": 3.2,
+      "rankScore": {
+        "total": 74,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "s02DFJe6_Lg",
+      "title": "[오늘의 운세]2026년 8월 12일 띠별운세 - #오늘의 운세 #행운 #띠별운세 #로또 #타로 #점 #오늘 #운세 #사주 #8월 운세 #2026년운세",
+      "channelId": "UCZjbZcHJ9K95nBhRTq9dAVQ",
+      "publishedAt": "2026-08-11T21:00:10Z",
+      "viewCount": 9459,
+      "viewsPerDay": 11531,
+      "momentum": 7164,
+      "ageDays": 0.8,
+      "format": "롱폼",
+      "likeRate": 3.82,
+      "rankScore": {
+        "total": 70,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "M543zT-zdhU",
+      "title": "【띠별 운세】딱 맞는 인연과 기회가 찾아오는 출생년도 24가지✨  #행운 #귀인운 #재물운 #운세 #좋은기회 #쇼츠",
+      "channelId": "UCCAgQsZRSi8jRfkcBUxf8kQ",
+      "publishedAt": "2026-08-10T10:36:27Z",
+      "viewCount": 134844,
+      "viewsPerDay": 59838,
+      "momentum": 48972,
+      "ageDays": 2.3,
+      "format": "쇼츠",
+      "likeRate": 1.69,
+      "rankScore": {
+        "total": 96,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "0N-W48OCTro",
+      "title": "늙을수록 돈복이 더쎄게 붙는 출생년도 #노후돈복 #재물운 #노후자금",
+      "channelId": "UCpaGrfuMKafdl4rwugBLJQw",
+      "publishedAt": "2026-08-12T10:00:08Z",
+      "viewCount": 44555,
+      "viewsPerDay": 159869,
+      "momentum": 57217,
+      "ageDays": 0.3,
+      "format": "쇼츠",
+      "likeRate": 3.46,
+      "rankScore": {
+        "total": 91,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "dGImyYE9Yh4",
+      "title": "8월 12일 오늘의 운세 띠별운세 | 수요일 오늘, 주중의 답답함은 뚫리고 황금 재물복과 귀인운이 터집니다! 💰✨ #오늘의운세",
+      "channelId": "UCFGOVWrGtrrZdjSe2vl6GbQ",
+      "publishedAt": "2026-08-11T22:00:34Z",
+      "viewCount": 11225,
+      "viewsPerDay": 14421,
+      "momentum": 8781,
+      "ageDays": 0.8,
+      "format": "쇼츠",
+      "likeRate": 2.07,
+      "rankScore": {
+        "total": 72,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "NBJzR6_JZrw",
+      "title": "8월 X띠 들어온 복 놓치지 마세요 #천월당 #띠별운세 #쇼츠",
+      "channelId": "UCRrNQ9Ygc93Sd6eiWoIbJew",
+      "publishedAt": "2026-08-12T12:50:27Z",
+      "viewCount": 594,
+      "viewsPerDay": 2376,
+      "momentum": 792,
+      "ageDays": 0.3,
+      "format": "롱폼",
+      "likeRate": 2.19,
+      "rankScore": {
+        "total": 30,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "PCHPEdybo7E",
+      "title": "8월 하늘이 기회 주는 띠 💰🍀 #띠별운세 #풍수 #사주팔자",
+      "channelId": "UCuyX60UF5m5dZhc7kJc9Wig",
+      "publishedAt": "2026-08-08T05:33:19Z",
+      "viewCount": 94353,
+      "viewsPerDay": 21136,
+      "momentum": 19008,
+      "ageDays": 4.5,
+      "format": "쇼츠",
+      "likeRate": 2.37,
+      "rankScore": {
+        "total": 90,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "ZQlBdm7DQUw",
+      "title": "무당도 인정한 귀신같은 직감의 3가지 띠 #만월성 #도산선생 #사주운세 #운세 #사주 #직감좋은띠 #촉좋은띠 #닭띠운세 #뱀띠운세 #돼지띠운세 #띠별운세",
+      "channelId": "UC6rg7gv23DGVYErLHijJ4Gg",
+      "publishedAt": "2026-08-12T11:00:22Z",
+      "viewCount": 8986,
+      "viewsPerDay": 35944,
+      "momentum": 11981,
+      "ageDays": 0.3,
+      "format": "쇼츠",
+      "likeRate": 8.4,
+      "rankScore": {
+        "total": 73,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "AylNFnnBv3A",
+      "title": "🌕8월부터 재물운 들어오는 사주 운세 대운",
+      "channelId": "UCRfMDPvJZkwom9DyqOW5feQ",
+      "publishedAt": "2026-08-12T02:58:21Z",
+      "viewCount": 40624,
+      "viewsPerDay": 71070,
+      "momentum": 37910,
+      "ageDays": 0.6,
+      "format": "쇼츠",
+      "likeRate": 1.43,
+      "rankScore": {
+        "total": 88,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "kwftJ5KqZH4",
+      "title": "돈 들어오고 사람 모이는 대박 징조 10가지 #재물운 #운세",
+      "channelId": "UCbVa4V0hcnscgUFIklIwNEw",
+      "publishedAt": "2026-08-06T22:00:16Z",
+      "viewCount": 161739,
+      "viewsPerDay": 27989,
+      "momentum": 25760,
+      "ageDays": 5.8,
+      "format": "쇼츠",
+      "likeRate": 0.16,
+      "rankScore": {
+        "total": 95,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "RhBT8UB6qxo",
+      "title": "재물운 자식운이 좋아지는 풍수 비방법 금전운과 대운이 터지는 자리공개!",
+      "channelId": "UCmpiTmeMBPnaK6JAS12pe7w",
+      "publishedAt": "2026-08-04T08:01:21Z",
+      "viewCount": 30363,
+      "viewsPerDay": 3631,
+      "momentum": 3376,
+      "ageDays": 8.4,
+      "format": "롱폼",
+      "likeRate": 6.2,
+      "rankScore": {
+        "total": 73,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "8tGrKirmwcE",
+      "title": "2027년 사람 하나 잘 만나 돈길까지 열리는 띠 👥💰 #사람복 #귀인운 #재물운 #띠별운세",
+      "channelId": "UCv1aeYdwFUVptS5hDBGqg7Q",
+      "publishedAt": "2026-08-12T03:45:39Z",
+      "viewCount": 2182,
+      "viewsPerDay": 4050,
+      "momentum": 2101,
+      "ageDays": 0.5,
+      "format": "쇼츠",
+      "likeRate": 1.24,
+      "rankScore": {
+        "total": 52,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "vFOJxyyrCm0",
+      "title": "돈이 들어오는 문이 열릴 때, 당신의 재물운은 어느 정도일까?",
+      "channelId": "UCAaPg5sYBQiozUS0no3TP_g",
+      "publishedAt": "2026-08-12T07:28:03Z",
+      "viewCount": 18365,
+      "viewsPerDay": 47787,
+      "momentum": 20768,
+      "ageDays": 0.4,
+      "format": "쇼츠",
+      "likeRate": 3.8,
+      "rankScore": {
+        "total": 82,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "vcU89A7VZW4",
+      "title": "🌕조상님의 복으로 재물운 시작되는 사주 운세 대운",
+      "channelId": "UCRfMDPvJZkwom9DyqOW5feQ",
+      "publishedAt": "2026-08-12T06:31:31Z",
+      "viewCount": 13563,
+      "viewsPerDay": 32021,
+      "momentum": 14685,
+      "ageDays": 0.4,
+      "format": "쇼츠",
+      "likeRate": 3.24,
+      "rankScore": {
+        "total": 77,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "AjrD8-QW6uI",
+      "title": "🌕올해부터 큰 돈 만질 팔자 금전운 대운 소원성취",
+      "channelId": "UCRfMDPvJZkwom9DyqOW5feQ",
+      "publishedAt": "2026-08-06T11:01:26Z",
+      "viewCount": 188630,
+      "viewsPerDay": 30248,
+      "momentum": 28003,
+      "ageDays": 6.2,
+      "format": "쇼츠",
+      "likeRate": 1.71,
+      "rankScore": {
+        "total": 95,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "bMgk7V4kthw",
+      "title": "🌕이름으로 보는 대박 재물운 점수 운세 사주",
+      "channelId": "UCRfMDPvJZkwom9DyqOW5feQ",
+      "publishedAt": "2026-08-11T03:03:22Z",
+      "viewCount": 83434,
+      "viewsPerDay": 53206,
+      "momentum": 40343,
+      "ageDays": 1.6,
+      "format": "쇼츠",
+      "likeRate": 1.22,
+      "rankScore": {
+        "total": 92,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "lmhwViVb87U",
+      "title": "앞으로 3년 동안 재물운이 계단식으로 상승하는 띠 순위 TOP 12!",
+      "channelId": "UC5tzr-DRv0k7FcNC_NKc6_g",
+      "publishedAt": "2026-08-08T07:54:57Z",
+      "viewCount": 287919,
+      "viewsPerDay": 65951,
+      "momentum": 59174,
+      "ageDays": 4.4,
+      "format": "쇼츠",
+      "likeRate": 0.72,
+      "rankScore": {
+        "total": 99,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "x7xy0FeRf1o",
+      "title": "[2026년 1961년생 소띠 운세] 66세 신축생, 입추 지나면 터지는 돈벼락! 돈줄 열리기 직전 나타나는 3가지 결정적 신호! #소띠운세 #61년생운세",
+      "channelId": "UCUck3jgbSFMwb2cKc3QxwIw",
+      "publishedAt": "2026-08-04T22:00:09Z",
+      "viewCount": 15242,
+      "viewsPerDay": 1959,
+      "momentum": 1826,
+      "ageDays": 7.8,
+      "format": "롱폼",
+      "likeRate": 6.4,
+      "rankScore": {
+        "total": 64,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "NIpl6oxylvk",
+      "title": "🌕생일 끝자리로 받게되는 복이 다릅니다 운세 사주 대운",
+      "channelId": "UCRfMDPvJZkwom9DyqOW5feQ",
+      "publishedAt": "2026-08-11T14:02:11Z",
+      "viewCount": 73317,
+      "viewsPerDay": 66015,
+      "momentum": 45521,
+      "ageDays": 1.1,
+      "format": "쇼츠",
+      "likeRate": 1.48,
+      "rankScore": {
+        "total": 93,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "GQGFb3Fq6lA",
+      "title": "곧 뜻밖의 기쁜 소식을 받게 될 출생년도🍀 행운의 순간이 찾아옵니다✨  #행운 #재물운 #금전운 #대박운 #귀인운 #운세",
+      "channelId": "UCCAgQsZRSi8jRfkcBUxf8kQ",
+      "publishedAt": "2026-08-09T13:15:59Z",
+      "viewCount": 212982,
+      "viewsPerDay": 67771,
+      "momentum": 58468,
+      "ageDays": 3.1,
+      "format": "쇼츠",
+      "likeRate": 1.4,
+      "rankScore": {
+        "total": 98,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "-rjmALuGjbQ",
+      "title": "두뇌가 뛰어난 천상 전문직 사주 #전문직 #직업운 #사주 #직업",
+      "channelId": "UCvMcTcyCSZuJ9FKLIbAx0Ww",
+      "publishedAt": "2026-08-12T05:13:14Z",
+      "viewCount": 1386,
+      "viewsPerDay": 2900,
+      "momentum": 1417,
+      "ageDays": 0.5,
+      "format": "쇼츠",
+      "likeRate": 1.8,
+      "rankScore": {
+        "total": 42,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "O0LHk1xIm6I",
+      "title": "[타로] 8월달 나의 직업운",
+      "channelId": "UCh5iOAmxw1zn9Fd8UTDM3rQ",
+      "publishedAt": "2026-08-10T03:18:35Z",
+      "viewCount": 542,
+      "viewsPerDay": 212,
+      "momentum": 177,
+      "ageDays": 2.6,
+      "format": "롱폼",
+      "likeRate": 11.99,
+      "rankScore": {
+        "total": 17,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "AFiUKS_fglc",
+      "title": "\"직업 선택전 미리 알았더라면..\" 진로가 고민인 분들은 꼭 보세요",
+      "channelId": "UCURAgO0jG3i2QN0iC7Dh8nA",
+      "publishedAt": "2026-07-26T07:47:47Z",
+      "viewCount": 14628,
+      "viewsPerDay": 842,
+      "momentum": 726,
+      "ageDays": 17.4,
+      "format": "롱폼",
+      "likeRate": 4.73,
+      "rankScore": {
+        "total": 49,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "RfrS7sif-xU",
+      "title": "[타로] 💥2026 하반기 강력해지는 운 👉출세운•직업운•재물운•성공운•금전운•합격운 (feat.2026년 길운예측🔮취업운•이직운•귀인운•연애운•투자운🔥신들린듯 다맞춤💥후기폭발✨)",
+      "channelId": "UCKqw6I5dr93y3NfXYHaIpSQ",
+      "publishedAt": "2026-07-23T11:00:07Z",
+      "viewCount": 38006,
+      "viewsPerDay": 1878,
+      "momentum": 1569,
+      "ageDays": 20.2,
+      "format": "롱폼",
+      "likeRate": 8.26,
+      "rankScore": {
+        "total": 66,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "r5X6XxJgW0E",
+      "title": "[타로] 👁️‍🗨️타로로 꿰뚫어보는 나의 타고난 직업팔자🔮 (feat.내 사주팔자 다 까발림😱 내 운명이 말하는 천직•재능📜 돈버는방식💸 적성•진로•직업운•취업운•이직운•합격운✨)",
+      "channelId": "UCKqw6I5dr93y3NfXYHaIpSQ",
+      "publishedAt": "2026-06-30T11:00:32Z",
+      "viewCount": 61179,
+      "viewsPerDay": 1415,
+      "momentum": 848,
+      "ageDays": 43.2,
+      "format": "롱폼",
+      "likeRate": 7.14,
+      "rankScore": {
+        "total": 60,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "hPKD0lvriMM",
+      "title": "관상만 보고 직업 정해주기 - 서울 식물원편",
+      "channelId": "UCLXafJ8yYXeUN_eHai-6Pgw",
+      "publishedAt": "2026-07-31T11:03:52Z",
+      "viewCount": 425321,
+      "viewsPerDay": 34764,
+      "momentum": 31499,
+      "ageDays": 12.2,
+      "format": "롱폼",
+      "likeRate": 1.57,
+      "rankScore": {
+        "total": 97,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "lQn5byGSfoc",
+      "title": "[타로] 😱섬뜩할 정도로 잘 맞는 용한 점ㅣ7월–8월, 신들린 예언🔮 (feat.직업운•금전운•학업운•관계운•연애운•컨디션👉전부 맞아떨어집니다🔥)",
+      "channelId": "UCKqw6I5dr93y3NfXYHaIpSQ",
+      "publishedAt": "2026-06-27T11:00:14Z",
+      "viewCount": 124933,
+      "viewsPerDay": 2702,
+      "momentum": 1533,
+      "ageDays": 46.2,
+      "format": "롱폼",
+      "likeRate": 6.34,
+      "rankScore": {
+        "total": 71,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "01rKj44CmpQ",
+      "title": "재혼운 건강운! 직업운 상속운!",
+      "channelId": "UCX0Oc4zrDWYBmaawAwtZ3Aw",
+      "publishedAt": "2026-08-11T12:02:03Z",
+      "viewCount": 1520,
+      "viewsPerDay": 1273,
+      "momentum": 897,
+      "ageDays": 1.2,
+      "format": "롱폼",
+      "likeRate": 4.21,
+      "rankScore": {
+        "total": 35,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "WF_3MMlOmJA",
+      "title": "직업, 적성, 진로 찾는법? 이 영상 하나만 보셔도 됩니다. (평생직업 1,2편 몰아보기)",
+      "channelId": "UCURAgO0jG3i2QN0iC7Dh8nA",
+      "publishedAt": "2026-06-27T08:17:45Z",
+      "viewCount": 63569,
+      "viewsPerDay": 1372,
+      "momentum": 777,
+      "ageDays": 46.3,
+      "format": "롱폼",
+      "likeRate": 4.84,
+      "rankScore": {
+        "total": 59,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "4RudADZsq3A",
+      "title": "🌈✨[타로]✨🔮직업운 타로! 당신에게 다가오는 기회!📖🔑🌟💫",
+      "channelId": "UCEEUd0ny59LlP-7VgkPkADw",
+      "publishedAt": "2026-06-15T10:43:00Z",
+      "viewCount": 2662,
+      "viewsPerDay": 46,
+      "momentum": 20,
+      "ageDays": 58.2,
+      "format": "롱폼",
+      "likeRate": 15.14,
+      "rankScore": {
+        "total": 19,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "_PskqbSvh1I",
+      "title": "[🏃‍️#달리GO] '사'자 직업의 위력😮 몰표 받은 전문직 VS 0표 맞선남들🔥 #자식방생프로젝트합숙맞선2 #합숙맞선2 #달리 #DALI",
+      "channelId": "UCPx-7AKiN1Z_qEVKhLQ5pAw",
+      "publishedAt": "2026-07-17T03:00:00Z",
+      "viewCount": 86802,
+      "viewsPerDay": 3267,
+      "momentum": 2524,
+      "ageDays": 26.6,
+      "format": "롱폼",
+      "likeRate": 0.41,
+      "rankScore": {
+        "total": 78,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "bRs-pAMI7LU",
+      "title": "직업운 여름 금전/커리어적으로 나에게 일어날 이슈",
+      "channelId": "UC49WT5jLw7RnAlMcNu-N-Zg",
+      "publishedAt": "2026-06-18T09:01:16Z",
+      "viewCount": 129154,
+      "viewsPerDay": 2335,
+      "momentum": 1099,
+      "ageDays": 55.3,
+      "format": "롱폼",
+      "likeRate": 8.28,
+      "rankScore": {
+        "total": 66,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "4eyiF5Oa5Zc",
+      "title": "직업이간호사인이유?#직업운 #사주공부",
+      "channelId": "UCOALahX3HGUtU97X9FIDQFA",
+      "publishedAt": "2026-08-10T21:26:20Z",
+      "viewCount": 1546,
+      "viewsPerDay": 858,
+      "momentum": 672,
+      "ageDays": 1.8,
+      "format": "쇼츠",
+      "likeRate": 0.71,
+      "rankScore": {
+        "total": 33,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "Mne56POrjHI",
+      "title": "당신의 직업을 나쁘게 소개한다면? (5탄)",
+      "channelId": "UCmjjgsm51PYMPf5REDylbSA",
+      "publishedAt": "2026-07-15T10:00:14Z",
+      "viewCount": 2060282,
+      "viewsPerDay": 72857,
+      "momentum": 55033,
+      "ageDays": 28.3,
+      "format": "쇼츠",
+      "likeRate": 1.44,
+      "rankScore": {
+        "total": 98,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "0FOSM37xeRE",
+      "title": "알아두면 평생 도움 되는 직업, 커리어 선택하는 방법 (직업 심리학 기반)",
+      "channelId": "UCURAgO0jG3i2QN0iC7Dh8nA",
+      "publishedAt": "2026-07-09T10:00:56Z",
+      "viewCount": 62424,
+      "viewsPerDay": 1821,
+      "momentum": 1263,
+      "ageDays": 34.3,
+      "format": "롱폼",
+      "likeRate": 7.26,
+      "rankScore": {
+        "total": 65,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "r7ZAPy5GJ5o",
+      "title": "🔴2026년 8월 병신월 일간별 운세 / ❗️나에게 가장 유리한 운을 끌어오는 방법❗️/ 직장운,사업운,연애운",
+      "channelId": "UCx8TMWKz2FFRkz9hxTUI_uA",
+      "publishedAt": "2026-08-12T02:34:38Z",
+      "viewCount": 638,
+      "viewsPerDay": 1085,
+      "momentum": 586,
+      "ageDays": 0.6,
+      "format": "롱폼",
+      "likeRate": 5.96,
+      "rankScore": {
+        "total": 26,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "xYqyAlh7Mkc",
+      "title": "🪭어서오세요 #타로운세 #연애운 #사업운 #금전운",
+      "channelId": "UCBdsQ0TJw-tJx-AVF2xXm7Q",
+      "publishedAt": "2026-08-12T10:45:38Z",
+      "viewCount": 154,
+      "viewsPerDay": 616,
+      "momentum": 205,
+      "ageDays": 0.3,
+      "format": "롱폼",
+      "likeRate": 16.88,
+      "rankScore": {
+        "total": 17,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "yqb8SkPWzfY",
+      "title": "범띠 8월 셋째 주 주간운세(08/17~08/23) 이번 주 '이 귀인'이 돈줄 뚫어주고 역대급 재물운 금전운 승진운 사업운 열어준다! 하반기 최고의 대박 띠 호랑이띠 운세",
+      "channelId": "UCIAhkNt6n9-lM48Zf6JYuEA",
+      "publishedAt": "2026-08-11T08:08:35Z",
+      "viewCount": 6174,
+      "viewsPerDay": 4553,
+      "momentum": 3326,
+      "ageDays": 1.4,
+      "format": "롱폼",
+      "likeRate": 4.7,
+      "rankScore": {
+        "total": 62,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "2U1GdMdx_Ac",
+      "title": "양띠 8월 중순 주간운세(08/10~08/16) 이번주 '이것'을 지니면 상상도 못한 운이 풀립니다. 금전운 활짝 열리고 재물운 귀인운 사업운 승진운 대박나는 양띠운세",
+      "channelId": "UCIAhkNt6n9-lM48Zf6JYuEA",
+      "publishedAt": "2026-08-10T03:03:14Z",
+      "viewCount": 11791,
+      "viewsPerDay": 4591,
+      "momentum": 3843,
+      "ageDays": 2.6,
+      "format": "롱폼",
+      "likeRate": 4.66,
+      "rankScore": {
+        "total": 68,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "gOKDcy3YAlM",
+      "title": "[타로] 😱이 정도면 재물신 접신 수준⚡ 곧 돈보따리 열리는 시기💰 (feat.막힌 돈줄이 뻥 뚫리고 돈복 터진다💥금전운·재물운·대박운·명예운·직업운·투자·사업운)",
+      "channelId": "UCKqw6I5dr93y3NfXYHaIpSQ",
+      "publishedAt": "2026-07-04T11:00:31Z",
+      "viewCount": 36595,
+      "viewsPerDay": 933,
+      "momentum": 598,
+      "ageDays": 39.2,
+      "format": "롱폼",
+      "likeRate": 9.21,
+      "rankScore": {
+        "total": 53,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "M1eHX2nTkZ0",
+      "title": "💥\"서미화\" 민주당 최고위원 후보의 사주만 보고 운세풀이 1편🌈전주 천화보살 #서미화 #김민석 #박선원 #최민희 #한민수 #김용 #임미애 #정청래",
+      "channelId": "UCchs4xzQbmOloLw7RNJsj-g",
+      "publishedAt": "2026-08-12T08:51:50Z",
+      "viewCount": 20490,
+      "viewsPerDay": 62828,
+      "momentum": 24802,
+      "ageDays": 0.3,
+      "format": "쇼츠",
+      "likeRate": 3.69,
+      "rankScore": {
+        "total": 83,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "UXpaNbU3MeE",
+      "title": "2026년 돈벼락 맞을 최고의 생년 .지금 바로 확인하고 가세요!",
+      "channelId": "UCDKApC2jgVI_6Xr1MSborkA",
+      "publishedAt": "2026-08-09T23:00:04Z",
+      "viewCount": 11467,
+      "viewsPerDay": 4190,
+      "momentum": 3542,
+      "ageDays": 2.7,
+      "format": "쇼츠",
+      "likeRate": 3.99,
+      "rankScore": {
+        "total": 67,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "sTMepjaPX80",
+      "title": "[2026년 소띠 하반기 운세] 통장 잔고가 달라집니다! 재물운·사업운 폭발하는 하반기!",
+      "channelId": "UCLghFkjIgxmkWv2tmD8qY9w",
+      "publishedAt": "2026-07-17T08:33:27Z",
+      "viewCount": 22,
+      "viewsPerDay": 1,
+      "momentum": 1,
+      "ageDays": 26.3,
+      "format": "롱폼",
+      "likeRate": 4.55,
+      "rankScore": {
+        "total": 2,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "GjG5quJG9c8",
+      "title": "요즘 너무 잘 풀리는 사람 ‘이것’ 시작하면 위험합니다 ⚠️📈 #운세 #재물운 #사업운 #사주팔자",
+      "channelId": "UCjOwSo6TC5ZljN4Znsp3o_g",
+      "publishedAt": "2026-08-10T05:00:29Z",
+      "viewCount": 12852,
+      "viewsPerDay": 5168,
+      "momentum": 4303,
+      "ageDays": 2.5,
+      "format": "쇼츠",
+      "likeRate": 2.12,
+      "rankScore": {
+        "total": 69,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "IJXR2M1rsu0",
+      "title": "8월 안 되던 장사 갑자기 살아나는 띠 🏪🔥 #띠별운세 #장사운 #사업운 #8월운세",
+      "channelId": "UCjOwSo6TC5ZljN4Znsp3o_g",
+      "publishedAt": "2026-08-11T22:30:16Z",
+      "viewCount": 8661,
+      "viewsPerDay": 11430,
+      "momentum": 6886,
+      "ageDays": 0.8,
+      "format": "쇼츠",
+      "likeRate": 2,
+      "rankScore": {
+        "total": 69,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "0ybmyK99Xmw",
+      "title": "(재물,보호) 호안석 6A 8mm 심플 염주 원석 팔찌 #재물운 #사업운 #부적팔찌",
+      "channelId": "UCxV1P-pXNcHd1aUZdtnfG6w",
+      "publishedAt": "2026-08-11T11:00:28Z",
+      "viewCount": 1622,
+      "viewsPerDay": 1311,
+      "momentum": 934,
+      "ageDays": 1.2,
+      "format": "쇼츠",
+      "likeRate": 0.06,
+      "rankScore": {
+        "total": 37,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "dLERi1vRwZY",
+      "title": "사업운이 빼어나게 좋은 사업가 사주 #사업운 #사업가 #사업 #사주",
+      "channelId": "UCvMcTcyCSZuJ9FKLIbAx0Ww",
+      "publishedAt": "2026-08-11T02:37:57Z",
+      "viewCount": 1892,
+      "viewsPerDay": 1193,
+      "momentum": 907,
+      "ageDays": 1.6,
+      "format": "쇼츠",
+      "likeRate": 1.27,
+      "rankScore": {
+        "total": 38,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "54gFbMldMmM",
+      "title": "\"결혼 축하합니다!\" 2026년 결혼운 대박인 띠분들~?💕 [묘화신당] #용한점집 #유명한점집",
+      "channelId": "UCdXh2gy_0UBPB-MqvPkakaQ",
+      "publishedAt": "2026-07-06T09:00:16Z",
+      "viewCount": 2729,
+      "viewsPerDay": 73,
+      "momentum": 48,
+      "ageDays": 37.3,
+      "format": "롱폼",
+      "likeRate": 0.18,
+      "rankScore": {
+        "total": 22,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "dPqiyq643j0",
+      "title": "무료 라이브 사주상담! #무료사주 #결혼운 #취업운 #연애운 #재회운 #주식운 #재물운 #도화살 #화개살 #사업운",
+      "channelId": "UC7VnljE4fO07DLGhMBgGINA",
+      "publishedAt": "2026-08-12T15:01:56Z",
+      "viewCount": 29,
+      "viewsPerDay": 116,
+      "momentum": 39,
+      "ageDays": 0.3,
+      "format": "롱폼",
+      "likeRate": 131.03,
+      "rankScore": {
+        "total": 8,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "X9_7uG5iFB4",
+      "title": "박서진 임영웅 박지현의 사주를 주고 무당에게 물었다! 재물운을 타고난 사람은? 가장 빨리 결혼운이 드는 사람은? 홍련아씨의 충격적인 공수#박서진#임영웅#박지현",
+      "channelId": "UCGys6LsP7oOmMs1_k_TDa6w",
+      "publishedAt": "2026-08-03T09:00:02Z",
+      "viewCount": 85328,
+      "viewsPerDay": 9155,
+      "momentum": 8470,
+      "ageDays": 9.3,
+      "format": "롱폼",
+      "likeRate": 2.11,
+      "rankScore": {
+        "total": 84,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "n9IZOGyGNPc",
+      "title": "지긋지긋한 고생 끝! 2026년 하반기 재물 대운 터지는 출생연도 & 출생월 조합",
+      "channelId": "UC5tzr-DRv0k7FcNC_NKc6_g",
+      "publishedAt": "2026-08-06T07:21:15Z",
+      "viewCount": 15688,
+      "viewsPerDay": 2455,
+      "momentum": 2277,
+      "ageDays": 6.4,
+      "format": "쇼츠",
+      "likeRate": 1.61,
+      "rankScore": {
+        "total": 67,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "3X8OuU0Vu9M",
+      "title": "2026 하반기~2027년 결혼운 최고인 띠💕 96년생·93년생·87년생·84년생 [황후신당] #용한점집 #유명한점집",
+      "channelId": "UCRDMrdq6ga_LeiCGqu7l4IQ",
+      "publishedAt": "2026-07-21T09:00:00Z",
+      "viewCount": 2658,
+      "viewsPerDay": 119,
+      "momentum": 97,
+      "ageDays": 22.3,
+      "format": "롱폼",
+      "likeRate": 0.45,
+      "rankScore": {
+        "total": 24,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "CvoH1sNhSyE",
+      "title": "[타로/연애운]결혼운💍나랑 같이 살아갈 사람 ♥️외모,직업,관계,싱글,재회,커플,이미지,흐름,관계운,시기/관계상관🙅🏻Pick a card💟Tarot",
+      "channelId": "UCpscT_Y6v94xEjrCNBCpGgw",
+      "publishedAt": "2026-07-14T08:55:06Z",
+      "viewCount": 6260,
+      "viewsPerDay": 213,
+      "momentum": 159,
+      "ageDays": 29.3,
+      "format": "롱폼",
+      "likeRate": 5.56,
+      "rankScore": {
+        "total": 31,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "yR356IDJvFE",
+      "title": "솔로분들 주목! 무당이 말하는 2026년 연애운&결혼운이 좋은 띠는~?💕 [묘화신당] #용한점집 #유명한점집",
+      "channelId": "UCdXh2gy_0UBPB-MqvPkakaQ",
+      "publishedAt": "2026-06-01T09:08:03Z",
+      "viewCount": 2512,
+      "viewsPerDay": 35,
+      "momentum": 10,
+      "ageDays": 72.3,
+      "format": "롱폼",
+      "likeRate": 0.4,
+      "rankScore": {
+        "total": 18,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "VQZDMSMiNEA",
+      "title": "진짜무당천일암채원 ##천일암채원 #무료상담 #신점 #결혼운 #연애운 #궁합#소사동점집 #음원출처(미미네음악)라이브 방송",
+      "channelId": "UCV1NOsHzColxaVW55TqSmKw",
+      "publishedAt": "2026-08-12T14:47:14Z",
+      "viewCount": 179,
+      "viewsPerDay": 716,
+      "momentum": 239,
+      "ageDays": 0.3,
+      "format": "롱폼",
+      "likeRate": 11.17,
+      "rankScore": {
+        "total": 19,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "xeO_yWVYNcQ",
+      "title": "[타로] 나는 결혼을 할 수 있을까? 🔮 결혼하는 타이밍 🔮",
+      "channelId": "UC1F27tUgHXoadhQUBpVma8w",
+      "publishedAt": "2026-07-09T12:00:04Z",
+      "viewCount": 4981,
+      "viewsPerDay": 146,
+      "momentum": 101,
+      "ageDays": 34.2,
+      "format": "롱폼",
+      "likeRate": 5.92,
+      "rankScore": {
+        "total": 29,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "QImtjgsZxGE",
+      "title": "결혼 이야기만 꺼내면 일이 꼬이는 이유｜이때는 결혼운을 다시 봐야 합니다ㅣ굿엔트 GBS",
+      "channelId": "UC6ZFrWgErKxhNsDvIAMWkvg",
+      "publishedAt": "2026-08-10T07:00:16Z",
+      "viewCount": 3,
+      "viewsPerDay": 1,
+      "momentum": 1,
+      "ageDays": 2.4,
+      "format": "롱폼",
+      "likeRate": 33.33,
+      "rankScore": {
+        "total": 1,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "ODtlDHJyGdk",
+      "title": "[타로]👁️ 귀신처럼 꿰뚫어보는❗결국 당신과 사귀게 될 사람🪭그 사람 특징·외모·성격·직업·궁합까지",
+      "channelId": "UC_FWMR8DnzDDYEbjjWr6sUQ",
+      "publishedAt": "2026-08-07T13:00:06Z",
+      "viewCount": 32760,
+      "viewsPerDay": 6357,
+      "momentum": 5794,
+      "ageDays": 5.2,
+      "format": "롱폼",
+      "likeRate": 4.42,
+      "rankScore": {
+        "total": 76,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "EQw-JJtJJhY",
+      "title": "2026년 하반기 '결혼운&연애운' 들어오는 띠 TOP 4💕 [나라신궁 별화선녀] #용한점집 #유명한점집",
+      "channelId": "UCdXh2gy_0UBPB-MqvPkakaQ",
+      "publishedAt": "2026-06-24T09:00:02Z",
+      "viewCount": 2076,
+      "viewsPerDay": 42,
+      "momentum": 23,
+      "ageDays": 49.3,
+      "format": "롱폼",
+      "likeRate": 0.34,
+      "rankScore": {
+        "total": 17,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "vus3yR1dIYA",
+      "title": "[타로/연애운]결혼운(인연운)읽어드릴게요🙏(누구랑! 어떻게! 언제! 싹다 풀었어요😎)",
+      "channelId": "UChl5RQ8On9tJx4gpV5FAlKA",
+      "publishedAt": "2026-06-26T15:49:03Z",
+      "viewCount": 26221,
+      "viewsPerDay": 557,
+      "momentum": 312,
+      "ageDays": 47,
+      "format": "롱폼",
+      "likeRate": 5.55,
+      "rankScore": {
+        "total": 46,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "lWbOPPabzh4",
+      "title": "[타로] 💥나의 운, 내가 바꿀 수 있다⁉️ 👉🏻운 안 풀릴 때 하면 좋은 행동 3가지✨️ (feat.직업운•금전운•학업운•관계운•연애운•컨디션👉전부 맞아떨어집니다🔥)",
+      "channelId": "UCKqw6I5dr93y3NfXYHaIpSQ",
+      "publishedAt": "2026-05-19T11:01:00Z",
+      "viewCount": 12882,
+      "viewsPerDay": 151,
+      "momentum": 22,
+      "ageDays": 85.2,
+      "format": "롱폼",
+      "likeRate": 8.59,
+      "rankScore": {
+        "total": 30,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "o5MPRZMMeRk",
+      "title": "[타로] 💝결혼운💝 \"결혼할 사람을 만나고 싶어요\"🥺🙏🏻",
+      "channelId": "UCjlCTGneA0cx_8Db_kTs8tQ",
+      "publishedAt": "2026-07-09T11:29:14Z",
+      "viewCount": 18759,
+      "viewsPerDay": 548,
+      "momentum": 380,
+      "ageDays": 34.2,
+      "format": "롱폼",
+      "likeRate": 5.15,
+      "rankScore": {
+        "total": 45,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "cJXUMgIeMdM",
+      "title": "[애정|타로] 가을 애정운 ( 관계 흐름, 재회, 새로운 사랑, 속마음, 썸, 짝사랑)",
+      "channelId": "UCyIyz8pIoergMgCuQR8L9bQ",
+      "publishedAt": "2026-08-12T09:29:42Z",
+      "viewCount": 6533,
+      "viewsPerDay": 21789,
+      "momentum": 8168,
+      "ageDays": 0.3,
+      "format": "롱폼",
+      "likeRate": 10.62,
+      "rankScore": {
+        "total": 68,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "6tY-jEjPTe0",
+      "title": "[타로] 꿰뚫어보는 연애 작두 리딩🔔 지금 내 생각하는 사람(외모, 성격, 직업, 속마음, 궁합)",
+      "channelId": "UCN3XU6J-iYxz6GwdRMEPAkQ",
+      "publishedAt": "2026-08-10T11:00:02Z",
+      "viewCount": 13654,
+      "viewsPerDay": 6103,
+      "momentum": 4988,
+      "ageDays": 2.2,
+      "format": "롱폼",
+      "likeRate": 4.13,
+      "rankScore": {
+        "total": 70,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "vjy_d13VLj8",
+      "title": "2026년에는 솔로탈출 할 수 있을까~? 애정운 넘치는 띠는 과연!💕  [묘화신당] #용한점집 #유명한점집",
+      "channelId": "UCdXh2gy_0UBPB-MqvPkakaQ",
+      "publishedAt": "2026-08-07T06:32:32Z",
+      "viewCount": 1095,
+      "viewsPerDay": 202,
+      "momentum": 185,
+      "ageDays": 5.4,
+      "format": "롱폼",
+      "likeRate": 0.37,
+      "rankScore": {
+        "total": 20,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "kK76Sv8elK0",
+      "title": "🌟지금, 하늘이 열렸다!! 🌠미래를 함께할 반쪽이, 리딩 안에 있습니다.❤‍🔥별똥별과 함께 사랑의 기적🌠 애정운 별똥별 개기일식 킴박타로",
+      "channelId": "UCgNkXx4SKkai-F3uQ1Pvgug",
+      "publishedAt": "2026-08-12T13:38:55Z",
+      "viewCount": 1264,
+      "viewsPerDay": 5056,
+      "momentum": 1685,
+      "ageDays": 0.3,
+      "format": "롱폼",
+      "likeRate": 0,
+      "rankScore": {
+        "total": 44,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "GLPfUTD5Ma0",
+      "title": "[타로] 💀용한 점쟁이의 예언👉🏻곧 나에게 펼쳐질 운명예언 3가지 (feat.무서울 정도로 잘 맞는 용한 점🔮신들린듯 다맞춤💥후기폭발✨횡재수,대박운,재물운,귀인운,건강운,연애운💫)",
+      "channelId": "UCKqw6I5dr93y3NfXYHaIpSQ",
+      "publishedAt": "2026-08-11T11:00:14Z",
+      "viewCount": 26456,
+      "viewsPerDay": 21388,
+      "momentum": 15231,
+      "ageDays": 1.2,
+      "format": "롱폼",
+      "likeRate": 9.22,
+      "rankScore": {
+        "total": 82,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "BNeVmFHR_eY",
+      "title": "[타로_연애운]🚨충격 공개🚨이런 것까지 알려줘도 돼요? 곧 나타날 다음 연애 상대 이름🔥 (요즘 나 신경 쓰는 사람VS곧 들이댈 그 사람)",
+      "channelId": "UCfEB2T__PIbXcJNroP7qQIQ",
+      "publishedAt": "2026-08-06T08:00:02Z",
+      "viewCount": 59240,
+      "viewsPerDay": 9311,
+      "momentum": 8633,
+      "ageDays": 6.4,
+      "format": "롱폼",
+      "likeRate": 3.84,
+      "rankScore": {
+        "total": 83,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "HWYoD6x7P8c",
+      "title": "🔥소름팩트 독심술🔥상처받지 마세요🔥 나를 향한 그 사람의 최종결단 / 현재마음 / 지금 얽매여 있는 생각 / 후회할까? / 여러분의 마음 / 바라는점 / 행동력 /관계흐름",
+      "channelId": "UCmGsZI06kBLfq58y0qdHPWg",
+      "publishedAt": "2026-08-11T22:57:58Z",
+      "viewCount": 7468,
+      "viewsPerDay": 10112,
+      "momentum": 6030,
+      "ageDays": 0.7,
+      "format": "롱폼",
+      "likeRate": 7.2,
+      "rankScore": {
+        "total": 67,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "zrdp3tQ-pLI",
+      "title": "[타로] 미친 정확도 연애운 예언 적중🎯 곧 마주하게 될 연애 희소식😍",
+      "channelId": "UCN3XU6J-iYxz6GwdRMEPAkQ",
+      "publishedAt": "2026-08-03T11:00:34Z",
+      "viewCount": 17280,
+      "viewsPerDay": 1871,
+      "momentum": 1732,
+      "ageDays": 9.2,
+      "format": "롱폼",
+      "likeRate": 3.73,
+      "rankScore": {
+        "total": 64,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "Ke0aYtAU1b0",
+      "title": "[애정|타로] 8월 애정운(이름, 속마음, 재회, 새로운 사랑, 관계 흐름)",
+      "channelId": "UCyIyz8pIoergMgCuQR8L9bQ",
+      "publishedAt": "2026-07-30T12:35:17Z",
+      "viewCount": 30053,
+      "viewsPerDay": 2282,
+      "momentum": 2051,
+      "ageDays": 13.2,
+      "format": "롱폼",
+      "likeRate": 3.82,
+      "rankScore": {
+        "total": 68,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "BBa-dI_ucUg",
+      "title": "[타로] 적중률 200% 연애운❤️‍🔥 고민 끝에 하게 될 그 사람의 결심(그 사람 속마음, 앞으로 관계 흐름)",
+      "channelId": "UCN3XU6J-iYxz6GwdRMEPAkQ",
+      "publishedAt": "2026-08-01T11:00:37Z",
+      "viewCount": 8746,
+      "viewsPerDay": 778,
+      "momentum": 711,
+      "ageDays": 11.2,
+      "format": "롱폼",
+      "likeRate": 4.7,
+      "rankScore": {
+        "total": 45,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "Cuqu54Z-jqQ",
+      "title": "8월 솔로 연애운💥역대급 소름 리딩!",
+      "channelId": "UCLdBo9WkZANmWuEZIE1eQtw",
+      "publishedAt": "2026-07-20T13:40:48Z",
+      "viewCount": 105978,
+      "viewsPerDay": 4583,
+      "momentum": 3700,
+      "ageDays": 23.1,
+      "format": "롱폼",
+      "likeRate": 2.28,
+      "rankScore": {
+        "total": 82,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "FNtXA25e8yc",
+      "title": "[타로] 연애운 예언 적중 후기 보장🚨 그 사람이 보는 나의 이미지, 매력, 속마음",
+      "channelId": "UCN3XU6J-iYxz6GwdRMEPAkQ",
+      "publishedAt": "2026-07-30T11:00:14Z",
+      "viewCount": 8566,
+      "viewsPerDay": 647,
+      "momentum": 581,
+      "ageDays": 13.2,
+      "format": "롱폼",
+      "likeRate": 4.63,
+      "rankScore": {
+        "total": 41,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "o6XY52mnfco",
+      "title": "'지예은♥바타' 사주 속 놀라운 궁합 #신점",
+      "channelId": "UCKRFbiW9ZeEUJwSwV5WTzVA",
+      "publishedAt": "2026-08-12T09:00:00Z",
+      "viewCount": 572,
+      "viewsPerDay": 1785,
+      "momentum": 697,
+      "ageDays": 0.3,
+      "format": "롱폼",
+      "likeRate": 4.55,
+      "rankScore": {
+        "total": 29,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "_9DvgN7VMNo",
+      "title": "🌸 신빨 좋은 만신의 이광수❤️이선빈 궁합 이 커플은 결혼하기가 힘들 수 있다!? #천안점집 #벼락신당",
+      "channelId": "UCB1s7X9-MkF1f869O4Jcy8w",
+      "publishedAt": "2026-08-06T09:00:28Z",
+      "viewCount": 6122,
+      "viewsPerDay": 969,
+      "momentum": 898,
+      "ageDays": 6.3,
+      "format": "롱폼",
+      "likeRate": 1.52,
+      "rankScore": {
+        "total": 46,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "3PxlLbNHl7c",
+      "title": "(예언) ”나락 가는 모습이 보여..“ / ‘이정재•임세령’ 사주의 궁합 #신점 #공수",
+      "channelId": "UCoxObGe4F8mt-gWRAX8nMQg",
+      "publishedAt": "2026-08-07T06:56:50Z",
+      "viewCount": 14763,
+      "viewsPerDay": 2731,
+      "momentum": 2500,
+      "ageDays": 5.4,
+      "format": "롱폼",
+      "likeRate": 1.9,
+      "rankScore": {
+        "total": 67,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "ucQwWzrsAwE",
+      "title": "20년 가까이 말하지 않았던 속마음을 타로 궁합 보다가 들켜버렸습니다ㅠ",
+      "channelId": "UCniBqAPwwWIQLbYo4uK2RWg",
+      "publishedAt": "2026-08-12T08:00:30Z",
+      "viewCount": 13267,
+      "viewsPerDay": 36672,
+      "momentum": 15395,
+      "ageDays": 0.4,
+      "format": "롱폼",
+      "likeRate": 3.35,
+      "rankScore": {
+        "total": 77,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "e6kYzvLTPYc",
+      "title": "고추와 함께 먹으면 안되는 최악의 궁합 3가지 #건강정보  #고추 @건강과노하우 사운드사용",
+      "channelId": "UCikZlwVwc5rQcJtr57SEqew",
+      "publishedAt": "2026-08-11T15:00:25Z",
+      "viewCount": 5135,
+      "viewsPerDay": 4798,
+      "momentum": 3270,
+      "ageDays": 1.1,
+      "format": "쇼츠",
+      "likeRate": 2.75,
+      "rankScore": {
+        "total": 61,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "XjndFtNUd50",
+      "title": "헤어지게 된 결정적인 이유.. / '정경호·수영' 사주의 궁합 #용한점집 #유명한점집",
+      "channelId": "UCIDakRwtZhk29JK2STygn5w",
+      "publishedAt": "2026-06-14T06:06:23Z",
+      "viewCount": 33251,
+      "viewsPerDay": 559,
+      "momentum": 239,
+      "ageDays": 59.4,
+      "format": "롱폼",
+      "likeRate": 1.72,
+      "rankScore": {
+        "total": 46,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "TuC8q4e0vuo",
+      "title": "'박위♥송지은' 부부의 사주만 드리고 궁합과 자녀운을 물어봤더니... #신점",
+      "channelId": "UC-m-CWIgM2fFPTrmbUSscrw",
+      "publishedAt": "2026-06-08T09:00:27Z",
+      "viewCount": 38210,
+      "viewsPerDay": 585,
+      "momentum": 213,
+      "ageDays": 65.3,
+      "format": "롱폼",
+      "likeRate": 0.9,
+      "rankScore": {
+        "total": 46,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "ewNhJYl2jbQ",
+      "title": "​\"만나기만 해도 돈벼락\" 12띠별 '천생연분' 황금 궁합",
+      "channelId": "UChOTOGMrAmqfz7x2n9zLTUA",
+      "publishedAt": "2026-08-12T08:08:52Z",
+      "viewCount": 87782,
+      "viewsPerDay": 246602,
+      "momentum": 102553,
+      "ageDays": 0.4,
+      "format": "쇼츠",
+      "likeRate": 0,
+      "rankScore": {
+        "total": 96,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "YzusH2qJtqo",
+      "title": "배우 주상욱♥차예련 부부궁합! 결혼 9년차인 이 부부는 원래 둘이 같이 못살 운명이었다는데? 그럼에도 잘 살 수 있었던 이유는 뭘까? #신점 #사주 #유명한점집",
+      "channelId": "UC_Kh-qgPAZ8QFnGjtytArKQ",
+      "publishedAt": "2026-07-29T09:00:36Z",
+      "viewCount": 536,
+      "viewsPerDay": 37,
+      "momentum": 33,
+      "ageDays": 14.3,
+      "format": "롱폼",
+      "likeRate": 2.99,
+      "rankScore": {
+        "total": 11,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "xTyreKt4Z6E",
+      "title": "사주에서 가장 위험한 궁합은 처음부터 너무 끌리는 사람입니다",
+      "channelId": "UCxw4BLuZSg6syzWES1tYCRw",
+      "publishedAt": "2026-06-28T13:28:49Z",
+      "viewCount": 17336,
+      "viewsPerDay": 384,
+      "momentum": 222,
+      "ageDays": 45.1,
+      "format": "롱폼",
+      "likeRate": 2.34,
+      "rankScore": {
+        "total": 42,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "YgF6NWb8iFc",
+      "title": "연애할 때부터 심상치 않았던 장윤정과 도경완의 궁합 #도경완 #장윤정 #부부",
+      "channelId": "UChQkAdeoyN9ZJRtIlIyFw_w",
+      "publishedAt": "2026-08-12T05:42:38Z",
+      "viewCount": 187723,
+      "viewsPerDay": 410308,
+      "momentum": 196052,
+      "ageDays": 0.5,
+      "format": "쇼츠",
+      "likeRate": 0.92,
+      "rankScore": {
+        "total": 99,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "uF32TW5El-Y",
+      "title": "첫눈에 반해버렸지만 만나면 안되는 궁합",
+      "channelId": "UCVI7JDF296j6JWaNXQwQ8Ag",
+      "publishedAt": "2026-08-07T09:00:24Z",
+      "viewCount": 5862,
+      "viewsPerDay": 1102,
+      "momentum": 1007,
+      "ageDays": 5.3,
+      "format": "쇼츠",
+      "likeRate": 0.97,
+      "rankScore": {
+        "total": 45,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "38Y5ZzeFT5k",
+      "title": "아침식단으로 최고인 달걀과 황금 궁합 음식 3가지 (조합 순서가 핵심) #달걀영양흡수 #아침식단궁합",
+      "channelId": "UCLWUFALXWra4t9kUlCnq5-g",
+      "publishedAt": "2026-08-12T10:17:22Z",
+      "viewCount": 424,
+      "viewsPerDay": 1590,
+      "momentum": 553,
+      "ageDays": 0.3,
+      "format": "쇼츠",
+      "likeRate": 1.18,
+      "rankScore": {
+        "total": 25,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "qhEx-ZMbQMY",
+      "title": "'박위♥송지은' 사주 속 충격적인 부부궁합 #신점",
+      "channelId": "UCKRFbiW9ZeEUJwSwV5WTzVA",
+      "publishedAt": "2026-06-27T09:00:36Z",
+      "viewCount": 43994,
+      "viewsPerDay": 950,
+      "momentum": 538,
+      "ageDays": 46.3,
+      "format": "롱폼",
+      "likeRate": 1.21,
+      "rankScore": {
+        "total": 52,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "zP558MaazS8",
+      "title": "한동훈과 부산의 완벽 궁합!” 조갑제가 밝힌 2028 총선 승리 공식! #한동훈 #조갑제 #총선승리",
+      "channelId": "UCv1THVoi-8Wwc_95wGZAizA",
+      "publishedAt": "2026-08-12T06:30:06Z",
+      "viewCount": 2368,
+      "viewsPerDay": 5578,
+      "momentum": 2561,
+      "ageDays": 0.4,
+      "format": "쇼츠",
+      "likeRate": 13.01,
+      "rankScore": {
+        "total": 54,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "1apD-OYltOo",
+      "title": "[타로] 🚨지금 이 영상이 뜬 이유❗️ 이 영상이 나타났다면 제발 그냥 넘기지 마세요⚠️ (feat.이 메시지 무시하지 마세요🧿절대 우연이 아닙니다🚫금전•일•학업•관계까지 몽땅💥)",
+      "channelId": "UCKqw6I5dr93y3NfXYHaIpSQ",
+      "publishedAt": "2026-08-04T11:00:28Z",
+      "viewCount": 121943,
+      "viewsPerDay": 14805,
+      "momentum": 13770,
+      "ageDays": 8.2,
+      "format": "롱폼",
+      "likeRate": 4.89,
+      "rankScore": {
+        "total": 89,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "5dHnjJBtESY",
+      "title": "재물복이 좋아지는 주방풍수 비방법_금전운 건강운 막는 범인 '냉장고'입니다",
+      "channelId": "UCmpiTmeMBPnaK6JAS12pe7w",
+      "publishedAt": "2026-08-06T01:00:19Z",
+      "viewCount": 77913,
+      "viewsPerDay": 11710,
+      "momentum": 10891,
+      "ageDays": 6.7,
+      "format": "쇼츠",
+      "likeRate": 2.71,
+      "rankScore": {
+        "total": 86,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "LzKQYgcnJy4",
+      "title": "[타로] 😱신점 뺨치는 미래 예언👀 2026년 하반기 운세총운 🌈확인하시겠습니까 (feat. 직업운•재물운•학업운•대인운•연애운•건강운🍀진심으로 기원합니다🙏)",
+      "channelId": "UCKqw6I5dr93y3NfXYHaIpSQ",
+      "publishedAt": "2026-06-13T11:00:39Z",
+      "viewCount": 62952,
+      "viewsPerDay": 1045,
+      "momentum": 437,
+      "ageDays": 60.2,
+      "format": "롱폼",
+      "likeRate": 7.5,
+      "rankScore": {
+        "total": 54,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "jdi7xXK6r4E",
+      "title": "[개띠운세]58년생 개띠, 70세 이후 대박 터지는 시기와 징조 3가지(건강, 자식, 부동산)",
+      "channelId": "UCYoQPaTiabVltTysb6NuMmg",
+      "publishedAt": "2026-08-04T03:00:30Z",
+      "viewCount": 14387,
+      "viewsPerDay": 1679,
+      "momentum": 1559,
+      "ageDays": 8.6,
+      "format": "롱폼",
+      "likeRate": 5.09,
+      "rankScore": {
+        "total": 60,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "qCfHOy6DRvo",
+      "title": "🌟[2026년 1975년생 52세 토끼띠운세] 6월부터 돈방석에 앉습니다!✨ 황금문서 잡고 금전운·귀인운·문서운 초대박!",
+      "channelId": "UCOSQvICUea6XGOlz3lZrErA",
+      "publishedAt": "2026-07-15T08:20:14Z",
+      "viewCount": 2377,
+      "viewsPerDay": 84,
+      "momentum": 63,
+      "ageDays": 28.3,
+      "format": "롱폼",
+      "likeRate": 2.15,
+      "rankScore": {
+        "total": 21,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "joOl4HV17qk",
+      "title": "2026년 08월 13일 쥐띠·소띠·호랑이띠·토끼띠 운세 #띠별운세 #연애운 #금전운 #건강운",
+      "channelId": "UCihdYZKiHf88J0bQFMvYVig",
+      "publishedAt": "2026-08-12T15:13:20Z",
+      "viewCount": 1023,
+      "viewsPerDay": 4092,
+      "momentum": 1364,
+      "ageDays": 0.3,
+      "format": "롱폼",
+      "likeRate": 0.39,
+      "rankScore": {
+        "total": 38,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "u2El2Mjofpo",
+      "title": "[타로] 🔮당신에게 보이는 미래 👉기막히게 정확한 예언🎯 (feat.후기폭발💥신들린 적중률ㅣ시험운•합격운•취업운•직업운•이직운•연락운•연애운•투자운•횡재수•귀인운•건강운🙏🏼)",
+      "channelId": "UCKqw6I5dr93y3NfXYHaIpSQ",
+      "publishedAt": "2026-07-25T11:00:07Z",
+      "viewCount": 44445,
+      "viewsPerDay": 2437,
+      "momentum": 2082,
+      "ageDays": 18.2,
+      "format": "롱폼",
+      "likeRate": 7.33,
+      "rankScore": {
+        "total": 72,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "qRUCTnkAKCQ",
+      "title": "[2026년 병오년 6월,7월 개띠운세] 6월,7월 개띠에게 무조건 찾아오는 변화와 엄청난 기회들은?! 개띠 대박난다?! 58년생 70년생 82년생 94년생 개띠 운세",
+      "channelId": "UCmm_ZoUKfdQnhOlZxWzdngg",
+      "publishedAt": "2026-06-16T09:00:23Z",
+      "viewCount": 11407,
+      "viewsPerDay": 199,
+      "momentum": 89,
+      "ageDays": 57.3,
+      "format": "롱폼",
+      "likeRate": 2.81,
+      "rankScore": {
+        "total": 32,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "hDF89w9EwAU",
+      "title": "당신의 건강 기운이 가장 강해지는 시기, 언제일까요?",
+      "channelId": "UCAaPg5sYBQiozUS0no3TP_g",
+      "publishedAt": "2026-08-08T06:36:01Z",
+      "viewCount": 40870,
+      "viewsPerDay": 9246,
+      "momentum": 8306,
+      "ageDays": 4.4,
+      "format": "쇼츠",
+      "likeRate": 2.3,
+      "rankScore": {
+        "total": 81,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "1S71DSLgS2Y",
+      "title": "2026년 8월 용띠 운세, 판이 커지지만 욕심내면 흔들립니다ㅣ굿엔트 GBS",
+      "channelId": "UCM6gid2jm7Pc7d_wOrDgQQg",
+      "publishedAt": "2026-07-20T09:00:06Z",
+      "viewCount": 22992,
+      "viewsPerDay": 986,
+      "momentum": 794,
+      "ageDays": 23.3,
+      "format": "롱폼",
+      "likeRate": 3.13,
+      "rankScore": {
+        "total": 53,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "YGhROEbrcqI",
+      "title": "2026년 양력 8월 개띠 운세, 돈 부탁과 책임 부담 조심하세요ㅣ굿엔트 GBS",
+      "channelId": "UCM6gid2jm7Pc7d_wOrDgQQg",
+      "publishedAt": "2026-08-07T03:00:06Z",
+      "viewCount": 1352,
+      "viewsPerDay": 243,
+      "momentum": 223,
+      "ageDays": 5.6,
+      "format": "롱폼",
+      "likeRate": 6.21,
+      "rankScore": {
+        "total": 24,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "RvDbwMjzB5s",
+      "title": "\"대운 숫자만 믿고 기다리다가는 좋은 운 놓칩니다!\" 대운 숫자에 속지 마세요,진짜 변화는 '0년 전'부터 시작됩니다 #寅대운 #丑대운 #토끼띠 #을일간",
+      "channelId": "UCZ5bu-1th2r3lZU3xVH9qeQ",
+      "publishedAt": "2026-06-17T01:21:06Z",
+      "viewCount": 1024,
+      "viewsPerDay": 18,
+      "momentum": 8,
+      "ageDays": 56.6,
+      "format": "롱폼",
+      "likeRate": 4.3,
+      "rankScore": {
+        "total": 12,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "eZA-Ah42Fqg",
+      "title": "'이걸' 자주 느낀다면 말년에 대운 터지는 신호입니다",
+      "channelId": "UCt2VfeBf--d4bzJu2cbzuHA",
+      "publishedAt": "2026-08-03T08:00:18Z",
+      "viewCount": 14628,
+      "viewsPerDay": 1563,
+      "momentum": 1445,
+      "ageDays": 9.4,
+      "format": "롱폼",
+      "likeRate": 2.28,
+      "rankScore": {
+        "total": 58,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "-eH2CJACIr4",
+      "title": "이 고비 오면 이 악물고 버텨라 대운이 오는 신호다 Ι 부처님 말씀 Ι 불교 명언 Ι 인생 조언",
+      "channelId": "UClVYZXBtUkebR7oKAqmTZ0w",
+      "publishedAt": "2026-07-13T11:30:17Z",
+      "viewCount": 86801,
+      "viewsPerDay": 2873,
+      "momentum": 2113,
+      "ageDays": 30.2,
+      "format": "롱폼",
+      "likeRate": 4.37,
+      "rankScore": {
+        "total": 77,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "8ObS0rNJEZ4",
+      "title": "(인생 대운) 대운이 들어올때 증상 4가지/ '이것' 모르면 대운 못받습니다!/대운징조",
+      "channelId": "UCITiG5psbmzAUHrzJIYTnBA",
+      "publishedAt": "2026-05-27T08:18:30Z",
+      "viewCount": 46587,
+      "viewsPerDay": 602,
+      "momentum": 141,
+      "ageDays": 77.3,
+      "format": "롱폼",
+      "likeRate": 3.87,
+      "rankScore": {
+        "total": 45,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "c-DEPetGJZM",
+      "title": "\"이 신호를 무시하면 안됩니다\" 대운이 들어오기 전 3가지 신호",
+      "channelId": "UCc-kb2nLN9AwnBZNPUzuKYg",
+      "publishedAt": "2026-08-05T09:00:32Z",
+      "viewCount": 45468,
+      "viewsPerDay": 6211,
+      "momentum": 5794,
+      "ageDays": 7.3,
+      "format": "롱폼",
+      "likeRate": 3.26,
+      "rankScore": {
+        "total": 79,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "SP7yUsw_BBI",
+      "title": "🌕자녀중 이 출생년도 있다면 술술 풀리기시작한다 운세 대운",
+      "channelId": "UCRfMDPvJZkwom9DyqOW5feQ",
+      "publishedAt": "2026-08-12T11:56:23Z",
+      "viewCount": 6867,
+      "viewsPerDay": 27468,
+      "momentum": 9156,
+      "ageDays": 0.3,
+      "format": "쇼츠",
+      "likeRate": 3.51,
+      "rankScore": {
+        "total": 71,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "1x3qM5Kip9I",
+      "title": "막혔던 운이 시원하게 풀리고, 대운이 끊임없이 들어오는 불경(대원사) 🌼 모든 좋은 운과 만사형통을 부르는 불경 🙏 매일 듣는 불교 명상음악",
+      "channelId": "UCjKosdwUWTzsfp877DQWD4Q",
+      "publishedAt": "2026-08-11T21:00:02Z",
+      "viewCount": 732,
+      "viewsPerDay": 892,
+      "momentum": 554,
+      "ageDays": 0.8,
+      "format": "롱폼",
+      "likeRate": 6.97,
+      "rankScore": {
+        "total": 26,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "2bs_ZkH9N_0",
+      "title": "실제로 하는 막힌 대운(大運)을 뻥 뚫어주는 소름 돋는 개운법 3가지",
+      "channelId": "UC5P1v3rL5N8lu6JqXSIeByg",
+      "publishedAt": "2026-08-07T13:00:11Z",
+      "viewCount": 36239,
+      "viewsPerDay": 7032,
+      "momentum": 6410,
+      "ageDays": 5.2,
+      "format": "롱폼",
+      "likeRate": 8.8,
+      "rankScore": {
+        "total": 78,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "FKFmSffU-y8",
+      "title": "미친 대운 터지는 전조 증상",
+      "channelId": "UC7-OcYrWFVgLoRNlvEWpmyQ",
+      "publishedAt": "2026-07-03T09:15:09Z",
+      "viewCount": 85652,
+      "viewsPerDay": 2125,
+      "momentum": 1339,
+      "ageDays": 40.3,
+      "format": "롱폼",
+      "likeRate": 2.05,
+      "rankScore": {
+        "total": 67,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "oxayKq7E56g",
+      "title": "용신대운이 들어오기 직전 반드시 나타나는 3가지 징조 | 사주의신 | 사주심층분석 | 전화상담 | 궁합",
+      "channelId": "UCOCrDoJ2ymUClZRBPuytlzA",
+      "publishedAt": "2026-08-05T21:00:15Z",
+      "viewCount": 2976,
+      "viewsPerDay": 436,
+      "momentum": 407,
+      "ageDays": 6.8,
+      "format": "롱폼",
+      "likeRate": 5.11,
+      "rankScore": {
+        "total": 33,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "QpnrOiD_zfY",
+      "title": "대운 맞고 싶어? 큰 복 들어오기 전 반드시 나타나는 징조 공개합니다!🔥✨[춘천 은불사 유쾌한 스님]",
+      "channelId": "UCwNoQp9K3gdkIXm8jFTOqnw",
+      "publishedAt": "2026-06-30T03:30:37Z",
+      "viewCount": 330,
+      "viewsPerDay": 8,
+      "momentum": 5,
+      "ageDays": 43.5,
+      "format": "롱폼",
+      "likeRate": 3.94,
+      "rankScore": {
+        "total": 8,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "XEd_erMdLWQ",
+      "title": "일반인도 쉽게 알 수 있는 대운의 징조🍀최근 '이런 꿈' 꾸었다면 여러분에게 좋은 운이 들어오고 있다는 대박 신호입니다..!!",
+      "channelId": "UC-m-CWIgM2fFPTrmbUSscrw",
+      "publishedAt": "2026-07-27T09:00:32Z",
+      "viewCount": 3632,
+      "viewsPerDay": 223,
+      "momentum": 194,
+      "ageDays": 16.3,
+      "format": "롱폼",
+      "likeRate": 2.86,
+      "rankScore": {
+        "total": 28,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "VWV8cXORh44",
+      "title": "무당이 바라본 이재명 사주풀이",
+      "channelId": "UCApSs6-gDE-PhmP-DMGcSug",
+      "publishedAt": "2026-08-10T09:00:27Z",
+      "viewCount": 33658,
+      "viewsPerDay": 14507,
+      "momentum": 11935,
+      "ageDays": 2.3,
+      "format": "롱폼",
+      "likeRate": 2.62,
+      "rankScore": {
+        "total": 81,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "aJCwNo0fl50",
+      "title": "이재명 김혜경 부부 사주를 넣자마자 돌아온 소름돋는 첫마디.. 이재명과 관련된 충격적인 점사 내용?! X월 운명의 갈림길이 찾아온다..?! 이재명 김혜경 사주풀이 신점",
+      "channelId": "UCWyQmSLoqd1zUybB2NTXPmw",
+      "publishedAt": "2026-08-06T09:15:34Z",
+      "viewCount": 12025,
+      "viewsPerDay": 1906,
+      "momentum": 1766,
+      "ageDays": 6.3,
+      "format": "롱폼",
+      "likeRate": 3.37,
+      "rankScore": {
+        "total": 60,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "Dva_pzlLfqQ",
+      "title": "무당에게 누구인지 숨기고 이재명 사주만 드려봤더니.. 죽을때까지 고통을 받으며 죽게된다..?! 경악!! 이재명 사주풀이 신점",
+      "channelId": "UCApSs6-gDE-PhmP-DMGcSug",
+      "publishedAt": "2026-08-10T09:00:34Z",
+      "viewCount": 4360,
+      "viewsPerDay": 1879,
+      "momentum": 1546,
+      "ageDays": 2.3,
+      "format": "롱폼",
+      "likeRate": 4.31,
+      "rankScore": {
+        "total": 51,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "6oHxqfoWpZc",
+      "title": "용한 무당들이 입을 모아 말하는 이재명 사주 속 숨겨진 충격적인 비밀..!! 2026년 하반기 큰 재앙이 다가온다..!! 이재명 사주풀이 신점",
+      "channelId": "UCApSs6-gDE-PhmP-DMGcSug",
+      "publishedAt": "2026-08-12T09:00:37Z",
+      "viewCount": 1637,
+      "viewsPerDay": 5115,
+      "momentum": 1996,
+      "ageDays": 0.3,
+      "format": "롱폼",
+      "likeRate": 10.87,
+      "rankScore": {
+        "total": 49,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "8lmQ4ORdKOc",
+      "title": "무당이 사주를 보자마자 표정이 굳었다..!! 이재명 올해 하반기 검은 그림자의 기운이 보인다?! 자리 교체가 되나?! 이재명 사주풀이 신점",
+      "channelId": "UCApSs6-gDE-PhmP-DMGcSug",
+      "publishedAt": "2026-07-24T09:00:33Z",
+      "viewCount": 8311,
+      "viewsPerDay": 430,
+      "momentum": 363,
+      "ageDays": 19.3,
+      "format": "롱폼",
+      "likeRate": 3.72,
+      "rankScore": {
+        "total": 38,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "kTl5AQloWY0",
+      "title": "무당 3명이 이재명 사주를 보자마자 방언이 터졌다  !! 이재명 하반기 피하지 못할 관재가 보인다 ! 이재명 사주 속 숨겨진 비밀   이재명 사주풀이 신점",
+      "channelId": "UCxqinrr6hYCPGm36vVP4Yjg",
+      "publishedAt": "2026-07-26T06:00:19Z",
+      "viewCount": 10308,
+      "viewsPerDay": 591,
+      "momentum": 509,
+      "ageDays": 17.4,
+      "format": "롱폼",
+      "likeRate": 5.19,
+      "rankScore": {
+        "total": 42,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "FmByT9PhzYg",
+      "title": "신점으로 본 한동훈 사주 속 숨겨진 비밀! \" XX년까지 너무 좋은데?!\" / 한동훈 사주풀이",
+      "channelId": "UC6itfnIkmEF21YF8kxpVdrg",
+      "publishedAt": "2026-07-31T08:00:06Z",
+      "viewCount": 25883,
+      "viewsPerDay": 2094,
+      "momentum": 1895,
+      "ageDays": 12.4,
+      "format": "롱폼",
+      "likeRate": 4.84,
+      "rankScore": {
+        "total": 66,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "zVXcYTLaprc",
+      "title": "\"갑작스러운 운명의 변화?!\" 무속인이 말하는 이재명 사주풀이와 다가올 충격 미래",
+      "channelId": "UCxqinrr6hYCPGm36vVP4Yjg",
+      "publishedAt": "2026-08-03T10:00:37Z",
+      "viewCount": 3844,
+      "viewsPerDay": 414,
+      "momentum": 383,
+      "ageDays": 9.3,
+      "format": "롱폼",
+      "likeRate": 3.69,
+      "rankScore": {
+        "total": 33,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "PlYnzVOnfig",
+      "title": "고영욱 성범죄 또다시 저지를까? 고영욱 사주풀이 /사주/운세/역학/철학/주역/사주팔자/관상/풍수지리/육효/철학원/철학관",
+      "channelId": "UCkZT_XwotpM3D9JXQELcKKw",
+      "publishedAt": "2026-08-12T01:30:05Z",
+      "viewCount": 741,
+      "viewsPerDay": 1171,
+      "momentum": 654,
+      "ageDays": 0.6,
+      "format": "롱폼",
+      "likeRate": 4.59,
+      "rankScore": {
+        "total": 28,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "XoChgxdFJUE",
+      "title": "사람이 끊이지 않는다. 서인영의 사주풀이",
+      "channelId": "UCmkjlfg3T38FjlqvQWUIn6Q",
+      "publishedAt": "2026-08-12T02:00:07Z",
+      "viewCount": 1338,
+      "viewsPerDay": 2186,
+      "momentum": 1203,
+      "ageDays": 0.6,
+      "format": "롱폼",
+      "likeRate": 0.45,
+      "rankScore": {
+        "total": 38,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "Bq_dJ-d8ZQE",
+      "title": "영탁 사주풀이 신점 영탁사주만 드리고 어떤지 물었더니   충격적인 결과가 나왔다!! 영탁신점 사주풀이",
+      "channelId": "UCh7Jia7VUD78cU7sWCm1E_Q",
+      "publishedAt": "2026-08-08T01:15:15Z",
+      "viewCount": 6050,
+      "viewsPerDay": 1303,
+      "momentum": 1176,
+      "ageDays": 4.6,
+      "format": "롱폼",
+      "likeRate": 3.74,
+      "rankScore": {
+        "total": 48,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "qcO_vgz3Aio",
+      "title": "가수 '임영웅' 제 2의 전성기! 끝이 보이지 않는 임영웅 사주 속 엄청난 미래.. / 임영웅 사주풀이",
+      "channelId": "UCbnCqNHrFgQvDfEqtSA5y6A",
+      "publishedAt": "2026-06-11T09:00:40Z",
+      "viewCount": 14578,
+      "viewsPerDay": 234,
+      "momentum": 93,
+      "ageDays": 62.3,
+      "format": "롱폼",
+      "likeRate": 5.8,
+      "rankScore": {
+        "total": 35,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "nJKT_ATz2ds",
+      "title": "용하다는 무당들을 찾아가 이재명 아내 '김혜경' 사주를 드리고 어떤사람인지 물어봤습니다.. 김혜경 사주풀이 신점",
+      "channelId": "UCApSs6-gDE-PhmP-DMGcSug",
+      "publishedAt": "2026-08-05T09:00:29Z",
+      "viewCount": 8533,
+      "viewsPerDay": 1166,
+      "momentum": 1087,
+      "ageDays": 7.3,
+      "format": "롱폼",
+      "likeRate": 5.11,
+      "rankScore": {
+        "total": 49,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "Sp_xdlk0xiA",
+      "title": "‘2026년 갑작스런 죽음을 맞이한다’ 경악! 무당에게 이재명 사주를 드리고 내년운세를 물었더니..X월 안으로 탄핵된다?! 대한민국 국운예언 이재명 사주풀이 신점",
+      "channelId": "UCi5x9-uoNcQQz8iGG-nFNnQ",
+      "publishedAt": "2026-06-27T10:23:45Z",
+      "viewCount": 2443,
+      "viewsPerDay": 53,
+      "momentum": 30,
+      "ageDays": 46.3,
+      "format": "롱폼",
+      "likeRate": 5.94,
+      "rankScore": {
+        "total": 19,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "bHponlQhh9g",
+      "title": "삼재 띠에 해당되는 분들 반드시 알아두세요!",
+      "channelId": "UCLs5vaVleurw4zQPyBubdPA",
+      "publishedAt": "2026-05-22T13:30:21Z",
+      "viewCount": 126906,
+      "viewsPerDay": 1545,
+      "momentum": 282,
+      "ageDays": 82.1,
+      "format": "쇼츠",
+      "likeRate": 0.72,
+      "rankScore": {
+        "total": 54,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "Ao8BgQgRmPo",
+      "title": "내 띠는 언제 삼재일까? 2026년 - 2036년 삼재띠 총정리",
+      "channelId": "UCfuX7zYPF2wq3mZ3A5vlgSA",
+      "publishedAt": "2026-07-22T13:55:21Z",
+      "viewCount": 199335,
+      "viewsPerDay": 9440,
+      "momentum": 7807,
+      "ageDays": 21.1,
+      "format": "쇼츠",
+      "likeRate": 0.09,
+      "rankScore": {
+        "total": 87,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "QDUImQQFAUk",
+      "title": "【실화 공포인터뷰】 눌삼재를 조심하세요 (부산 재력가 집안의 비극)ㅣ쌈무이 공포라디오ㅣ쌈더게스트 쏭쩡하우스님ㅣ무서운ㅣ시참ㅣ괴담ㅣ심야",
+      "channelId": "UCsIlEiZosJUAtSfNADFiJSg",
+      "publishedAt": "2026-06-04T09:00:19Z",
+      "viewCount": 56269,
+      "viewsPerDay": 812,
+      "momentum": 260,
+      "ageDays": 69.3,
+      "format": "롱폼",
+      "likeRate": 4.3,
+      "rankScore": {
+        "total": 49,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "7De5MUIvYyA",
+      "title": "들삼재, 눌삼재, 날삼재 삼재마다 다른 예방법!",
+      "channelId": "UCLs5vaVleurw4zQPyBubdPA",
+      "publishedAt": "2026-07-17T09:15:38Z",
+      "viewCount": 55135,
+      "viewsPerDay": 2096,
+      "momentum": 1625,
+      "ageDays": 26.3,
+      "format": "쇼츠",
+      "likeRate": 1,
+      "rankScore": {
+        "total": 69,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "YgCQNOnWR0c",
+      "title": "🙏 삼재의 모든 액운을 씻어내고 복을 지키는 '삼재풀이 무가'ㅣ백불수진언ㅣ소원성취 기도음악ㅣ업장소멸ㅣ관세음보살ㅣ힐링 치유음악",
+      "channelId": "UCrvzocYOoqd2186zkGXV8Bw",
+      "publishedAt": "2026-05-18T06:45:02Z",
+      "viewCount": 1680,
+      "viewsPerDay": 19,
+      "momentum": 3,
+      "ageDays": 86.4,
+      "format": "롱폼",
+      "likeRate": 2.38,
+      "rankScore": {
+        "total": 13,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "TTZlZnE3g08",
+      "title": "🔥 2026년 토끼띠·양띠·돼지띠, 절대 ‘이것’ 하지 마세요! 눌삼재 때 반드시 피해야 할 3가지 행동",
+      "channelId": "UCINnKXNKo44VRmPC_QcuNKg",
+      "publishedAt": "2026-06-25T06:04:11Z",
+      "viewCount": 22,
+      "viewsPerDay": 0,
+      "momentum": 0,
+      "ageDays": 48.4,
+      "format": "롱폼",
+      "likeRate": 0,
+      "rankScore": {
+        "total": 1,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "ZoMYRDXYJPk",
+      "title": "삼재쟁이의 25년 최악의 퇴사썰 | #퇴사 #삼재 #삼재띠 #토끼띠 ",
+      "channelId": "UCGAckJJ10y7WBqRo3KCwKow",
+      "publishedAt": "2026-05-22T13:22:53Z",
+      "viewCount": 179,
+      "viewsPerDay": 2,
+      "momentum": 0,
+      "ageDays": 82.1,
+      "format": "롱폼",
+      "likeRate": 1.68,
+      "rankScore": {
+        "total": 3,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "qZVYr3UeDGw",
+      "title": "2026~2035 삼재 띠 총정리 | 내 띠 언제 조심해야 할까?",
+      "channelId": "UCL5p5u4IoMd4a25LR9Hn13w",
+      "publishedAt": "2026-06-10T13:05:08Z",
+      "viewCount": 143937,
+      "viewsPerDay": 2279,
+      "momentum": 881,
+      "ageDays": 63.2,
+      "format": "쇼츠",
+      "likeRate": 0.14,
+      "rankScore": {
+        "total": 64,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "5eEUKVslluQ",
+      "title": "삼재 풀어야 하는 이유와 안 풀면 벌어지는 일?! 용군TV 이레궁 #점집 #무당 #인천점집 #삼재 #삼재풀기 #삼재해소 #운세 #운 #운막힘",
+      "channelId": "UCW4H5oXqVUYW9V-8uAARCLQ",
+      "publishedAt": "2026-07-16T09:00:31Z",
+      "viewCount": 2581,
+      "viewsPerDay": 94,
+      "momentum": 72,
+      "ageDays": 27.3,
+      "format": "롱폼",
+      "likeRate": 0.35,
+      "rankScore": {
+        "total": 22,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "hO6MtdhD0Uo",
+      "title": "지독한 삼재에 '금기'까지 깨버렸다… \"그딴 걸 왜 믿어?\" 했다가 골로 갈 뻔한 사연ㄷㄷ [#괴담노트] | KBS Joy 260617 방송",
+      "channelId": "UCazYz_x16xgY6VsE8NlEv7A",
+      "publishedAt": "2026-06-25T11:00:32Z",
+      "viewCount": 3700,
+      "viewsPerDay": 77,
+      "momentum": 42,
+      "ageDays": 48.2,
+      "format": "롱폼",
+      "likeRate": 1.84,
+      "rankScore": {
+        "total": 23,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "jZqbHsrvw40",
+      "title": "토끼띠 삼재 변동하지 마세요 고춘자 오방기 점사",
+      "channelId": "UCOd0Gj9G6KpHKdN_xl2eRvA",
+      "publishedAt": "2026-06-29T09:00:24Z",
+      "viewCount": 142879,
+      "viewsPerDay": 3224,
+      "momentum": 1895,
+      "ageDays": 44.3,
+      "format": "롱폼",
+      "likeRate": 0.94,
+      "rankScore": {
+        "total": 76,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "-fv-DzZ_N7s",
+      "title": "🌟2025년 하반기 돼지띠운세🌟삼재 걱정 끝! 59·71·83·95년생 일확천금 돈벼락",
+      "channelId": "UCnc-aek49ovfDnJD7EzSbBg",
+      "publishedAt": "2026-06-30T11:15:03Z",
+      "viewCount": 40,
+      "viewsPerDay": 1,
+      "momentum": 1,
+      "ageDays": 43.2,
+      "format": "롱폼",
+      "likeRate": 2.5,
+      "rankScore": {
+        "total": 2,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "3m3-BvMI9RU",
+      "title": "2026년 하반기 삼재띠 운세 3명! / \"X월부터 운이 술술 풀립니다..!\"✨토끼띠 양띠 돼지띠의 병오년 운명과 평생운세",
+      "channelId": "UCOJKd_nUILWOUKedK9M3hXQ",
+      "publishedAt": "2026-07-09T10:00:28Z",
+      "viewCount": 3964,
+      "viewsPerDay": 116,
+      "momentum": 80,
+      "ageDays": 34.3,
+      "format": "롱폼",
+      "likeRate": 3.53,
+      "rankScore": {
+        "total": 26,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "8oClaul1xbU",
+      "title": "2026년 삼재 해당 띠 완전 분석 — 들삼재·눌삼재·날삼재 차이가 이겁니다",
+      "channelId": "UCFx86VyBuMvzlYtYIFO7Kbg",
+      "publishedAt": "2026-06-02T10:00:40Z",
+      "viewCount": 206,
+      "viewsPerDay": 3,
+      "momentum": 1,
+      "ageDays": 71.3,
+      "format": "롱폼",
+      "likeRate": 3.4,
+      "rankScore": {
+        "total": 4,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "92SMBjKeAnU",
+      "title": "2026년 하반기 토끼띠 운세! 눌삼재가 대박 복삼재로 뒤집힙니다 (금전, 사업, 건강)",
+      "channelId": "UCFGOVWrGtrrZdjSe2vl6GbQ",
+      "publishedAt": "2026-07-24T01:00:17Z",
+      "viewCount": 46,
+      "viewsPerDay": 2,
+      "momentum": 2,
+      "ageDays": 19.7,
+      "format": "롱폼",
+      "likeRate": 6.52,
+      "rankScore": {
+        "total": 4,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    }
+  ],
+  "topPhrases": [
+    {
+      "phrase": "2026년 하반기",
+      "videoCount": 8,
+      "recentCount": 4
+    },
+    {
+      "phrase": "사주풀이 신점",
+      "videoCount": 8,
+      "recentCount": 5
+    },
+    {
+      "phrase": "용한점집 유명한점집",
+      "videoCount": 6,
+      "recentCount": 1
+    },
+    {
+      "phrase": "이재명 사주풀이",
+      "videoCount": 6,
+      "recentCount": 3
+    },
+    {
+      "phrase": "이재명 사주풀이 신점",
+      "videoCount": 5,
+      "recentCount": 2
+    },
+    {
+      "phrase": "2026년 8월",
+      "videoCount": 5,
+      "recentCount": 4
+    },
+    {
+      "phrase": "운세 띠별운세",
+      "videoCount": 5,
+      "recentCount": 5
+    },
+    {
+      "phrase": "운세 사주",
+      "videoCount": 5,
+      "recentCount": 5
+    },
+    {
+      "phrase": "오늘의 띠별 운세",
+      "videoCount": 4,
+      "recentCount": 3
+    },
+    {
+      "phrase": "오늘의 띠별",
+      "videoCount": 4,
+      "recentCount": 3
+    },
+    {
+      "phrase": "8월 12일",
+      "videoCount": 4,
+      "recentCount": 4
+    },
+    {
+      "phrase": "타로 연애운",
+      "videoCount": 4,
+      "recentCount": 2
+    },
+    {
+      "phrase": "사주 운세",
+      "videoCount": 4,
+      "recentCount": 4
+    },
+    {
+      "phrase": "타로 운세",
+      "videoCount": 4,
+      "recentCount": 4
+    },
+    {
+      "phrase": "띠별 운세",
+      "videoCount": 4,
+      "recentCount": 3
+    }
+  ],
+  "topKeywords": [
+    {
+      "keyword": "운세",
+      "videoCount": 47,
+      "recentCount": 40
+    },
+    {
+      "keyword": "2026년",
+      "videoCount": 40,
+      "recentCount": 20
+    },
+    {
+      "keyword": "타로",
+      "videoCount": 28,
+      "recentCount": 16
+    },
+    {
+      "keyword": "8월",
+      "videoCount": 25,
+      "recentCount": 21
+    },
+    {
+      "keyword": "사주",
+      "videoCount": 24,
+      "recentCount": 20
+    },
+    {
+      "keyword": "하반기",
+      "videoCount": 20,
+      "recentCount": 10
+    },
+    {
+      "keyword": "신점",
+      "videoCount": 20,
+      "recentCount": 14
+    },
+    {
+      "keyword": "재물운",
+      "videoCount": 19,
+      "recentCount": 19
+    },
+    {
+      "keyword": "띠별운세",
+      "videoCount": 17,
+      "recentCount": 17
+    },
+    {
+      "keyword": "대운",
+      "videoCount": 16,
+      "recentCount": 11
+    },
+    {
+      "keyword": "궁합",
+      "videoCount": 16,
+      "recentCount": 15
+    },
+    {
+      "keyword": "금전운",
+      "videoCount": 15,
+      "recentCount": 13
+    },
+    {
+      "keyword": "사업운",
+      "videoCount": 13,
+      "recentCount": 13
+    },
+    {
+      "keyword": "사주풀이",
+      "videoCount": 13,
+      "recentCount": 9
+    },
+    {
+      "keyword": "오늘의운세",
+      "videoCount": 12,
+      "recentCount": 12
+    },
+    {
+      "keyword": "연애운",
+      "videoCount": 12,
+      "recentCount": 8
+    },
+    {
+      "keyword": "병오년",
+      "videoCount": 11,
+      "recentCount": 6
+    },
+    {
+      "keyword": "총정리",
+      "videoCount": 11,
+      "recentCount": 6
+    },
+    {
+      "keyword": "신년운세",
+      "videoCount": 10,
+      "recentCount": 8
+    },
+    {
+      "keyword": "대운이",
+      "videoCount": 10,
+      "recentCount": 6
+    }
+  ],
+  "channels": [
+    {
+      "channelId": "UCKqw6I5dr93y3NfXYHaIpSQ",
+      "channelTitle": "타로혜윰",
+      "videoCount": 9,
+      "totalViews": 529391,
+      "avgMarketScore": 64,
+      "bestVideoTitle": "[타로] 😱섬뜩할 정도로 잘 맞는 용한 점ㅣ7월–8월, 신들린 예언🔮 (feat.직업운•금전운•학업운•관계운•연애운•컨디션👉전부 맞아떨어집니다🔥)",
+      "subscriberCount": 66800,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 236,
+      "channelPublishedAt": "2023-02-12T06:25:01.107361Z"
+    },
+    {
+      "channelId": "UCRfMDPvJZkwom9DyqOW5feQ",
+      "channelTitle": "풍수운세_사주 운명 돈복",
+      "videoCount": 6,
+      "totalViews": 406435,
+      "avgMarketScore": 86,
+      "bestVideoTitle": "🌕올해부터 큰 돈 만질 팔자 금전운 대운 소원성취",
+      "subscriberCount": 7800,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 297,
+      "channelPublishedAt": "2023-12-07T23:02:33.819365Z"
+    },
+    {
+      "channelId": "UCApSs6-gDE-PhmP-DMGcSug",
+      "channelTitle": "애국점사",
+      "videoCount": 5,
+      "totalViews": 56499,
+      "avgMarketScore": 54,
+      "bestVideoTitle": "무당이 바라본 이재명 사주풀이",
+      "subscriberCount": 111000,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 347,
+      "channelPublishedAt": "2025-04-03T08:59:19.084492Z"
+    },
+    {
+      "channelId": "UCIAhkNt6n9-lM48Zf6JYuEA",
+      "channelTitle": "별빛사주",
+      "videoCount": 4,
+      "totalViews": 73099,
+      "avgMarketScore": 59,
+      "bestVideoTitle": "2026년 임인생 1962년생 8월 호랑이띠운세🌟말년은 '이 귀인 3명' 덕에 금전운 문서운 귀인운 펑펑 터져 범띠는 돈벼락 맞습니다",
+      "subscriberCount": 17500,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 144,
+      "channelPublishedAt": "2023-02-28T15:08:06.884611Z"
+    },
+    {
+      "channelId": "UCN3XU6J-iYxz6GwdRMEPAkQ",
+      "channelTitle": "보리의 도리타로",
+      "videoCount": 4,
+      "totalViews": 48246,
+      "avgMarketScore": 55,
+      "bestVideoTitle": "[타로] 미친 정확도 연애운 예언 적중🎯 곧 마주하게 될 연애 희소식😍",
+      "subscriberCount": 12200,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 284,
+      "channelPublishedAt": "2024-11-26T09:05:15.668247Z"
+    },
+    {
+      "channelId": "UCZjbZcHJ9K95nBhRTq9dAVQ",
+      "channelTitle": "톡톡운세",
+      "videoCount": 4,
+      "totalViews": 15047,
+      "avgMarketScore": 39,
+      "bestVideoTitle": "[오늘의 운세]2026년 8월 12일 띠별운세 - #오늘의 운세 #행운 #띠별운세 #로또 #타로 #점 #오늘 #운세 #사주 #8월 운세 #2026년운세",
+      "subscriberCount": 9460,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 856,
+      "channelPublishedAt": "2025-03-15T12:09:09.8797Z"
+    },
+    {
+      "channelId": "UCdXh2gy_0UBPB-MqvPkakaQ",
+      "channelTitle": "화무",
+      "videoCount": 4,
+      "totalViews": 8412,
+      "avgMarketScore": 19,
+      "bestVideoTitle": "\"결혼 축하합니다!\" 2026년 결혼운 대박인 띠분들~?💕 [묘화신당] #용한점집 #유명한점집",
+      "subscriberCount": 29500,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 1744,
+      "channelPublishedAt": "2015-11-14T23:45:00Z"
+    },
+    {
+      "channelId": "UCCAgQsZRSi8jRfkcBUxf8kQ",
+      "channelTitle": "心の教科書",
+      "videoCount": 3,
+      "totalViews": 352553,
+      "avgMarketScore": 86,
+      "bestVideoTitle": "곧 뜻밖의 기쁜 소식을 받게 될 출생년도🍀 행운의 순간이 찾아옵니다✨  #행운 #재물운 #금전운 #대박운 #귀인운 #운세",
+      "subscriberCount": 13600,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 236,
+      "channelPublishedAt": "2023-10-07T17:35:22.498589Z"
+    },
+    {
+      "channelId": "UCURAgO0jG3i2QN0iC7Dh8nA",
+      "channelTitle": "브랜디액션",
+      "videoCount": 3,
+      "totalViews": 140621,
+      "avgMarketScore": 58,
+      "bestVideoTitle": "직업, 적성, 진로 찾는법? 이 영상 하나만 보셔도 됩니다. (평생직업 1,2편 몰아보기)",
+      "subscriberCount": 58400,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 182,
+      "channelPublishedAt": "2022-05-26T09:40:43.772453Z"
+    },
+    {
+      "channelId": "UCjOwSo6TC5ZljN4Znsp3o_g",
+      "channelTitle": "정명철학관",
+      "videoCount": 3,
+      "totalViews": 34340,
+      "avgMarketScore": 71,
+      "bestVideoTitle": "요즘 너무 잘 풀리는 사람 ‘이것’ 시작하면 위험합니다 ⚠️📈 #운세 #재물운 #사업운 #사주팔자",
+      "subscriberCount": 50500,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 434,
+      "channelPublishedAt": "2026-01-25T10:30:54.422595Z"
+    }
+  ],
+  "searchSuggestions": [
+    {
+      "query": "2026 운세",
+      "suggestions": [
+        "2026 운세 타로",
+        "2026 운세 소띠",
+        "2026 운세 말띠",
+        "2026 운세 양띠",
+        "2026 운세 용띠",
+        "2026 운세 사주",
+        "2026 운세 뱀띠",
+        "2026 운세 쥐띠",
+        "2026 운세 돼지띠"
+      ]
+    },
+    {
+      "query": "신년운세",
+      "suggestions": [
+        "신년운세 2026",
+        "신년운세 타로",
+        "신년운세 보는 시기",
+        "신년운세 숏박스",
+        "신년운세 2026 양띠",
+        "신년운세 질문",
+        "신년운세 2026 쥐띠",
+        "신년운세 런닝맨",
+        "신년운세 돼지띠"
+      ]
+    },
+    {
+      "query": "오늘의 운세",
+      "suggestions": [
+        "오늘의 운세 타로",
+        "오늘의 운세 김형중",
+        "오늘의 운세와 풍수",
+        "오늘의 운세 노래방",
+        "오늘의 운세 노래",
+        "오늘의 운세 보는법",
+        "오늘의 운세 나비쌤",
+        "오늘의 운세 치즈",
+        "오늘의 운세 소개팅"
+      ]
+    },
+    {
+      "query": "띠별 운세",
+      "suggestions": [
+        "2026 띠별 운세",
+        "2026년 띠별 운세",
+        "2025년 띠별 운세",
+        "올해 띠별 운세",
+        "내년 띠별 운세",
+        "오늘의 띠별 운세",
+        "26년 띠별 운세",
+        "병오년 띠별 운세",
+        "10월 띠별 운세"
+      ]
+    },
+    {
+      "query": "재물운",
+      "suggestions": [
+        "재물운 주파수",
+        "재물운 타로",
+        "재물운 풍수",
+        "재물운 사주",
+        "재물운 불경",
+        "재물운 손금",
+        "재물운 인테리어",
+        "재물운 하트스티커",
+        "재물운 비방"
+      ]
+    },
+    {
+      "query": "직업운",
+      "suggestions": [
+        "직업운 타로",
+        "직업운 사주",
+        "직업운 주파수",
+        "직업운세",
+        "직업운 보는법",
+        "2026년 직업운",
+        "정회도 직업운",
+        "11월 직업운",
+        "10월 직업운"
+      ]
+    },
+    {
+      "query": "사업운",
+      "suggestions": [
+        "사업운타로",
+        "사업운 사주",
+        "사업운 비방",
+        "사업운 주파수",
+        "사업운상승",
+        "사업운영금",
+        "사업운영",
+        "사업운 보는법",
+        "사업운 손금"
+      ]
+    },
+    {
+      "query": "결혼운",
+      "suggestions": [
+        "결혼운 타로",
+        "결혼운 사주",
+        "결혼운 보는법",
+        "결혼운 징조",
+        "결혼운 주파수",
+        "결혼운명",
+        "결혼운 없는 사주",
+        "결혼운이 들어오면",
+        "결혼운세"
+      ]
+    },
+    {
+      "query": "애정운",
+      "suggestions": [
+        "애정운 주파수",
+        "애정운 타로",
+        "애정운 사주",
+        "애정운 비방",
+        "애정운 주파수 수면",
+        "애정운세",
+        "애정운 높이는 방법",
+        "애정운 금전운 주파수",
+        "타로점 애정운"
+      ]
+    },
+    {
+      "query": "궁합",
+      "suggestions": [
+        "궁합 사주",
+        "궁합보는법",
+        "궁합마스터",
+        "궁합 타로",
+        "궁합 영화",
+        "궁합음식",
+        "궁합이 안맞을때",
+        "궁합테스트",
+        "궁합마스터 계수"
+      ]
+    },
+    {
+      "query": "건강운",
+      "suggestions": [
+        "건강운동관리사",
+        "건강운동관리사 필기",
+        "건강운동",
+        "건강운동관리사 취업",
+        "건강운동관리사 실기",
+        "건강운 타로",
+        "건강운동관리사 인강",
+        "건강운동라이프",
+        "건강운동관리사 자격증"
+      ]
+    },
+    {
+      "query": "대운",
+      "suggestions": [
+        "대운을 잡아라",
+        "대운을잡아라마지막회",
+        "대운을 잡아라 ost",
+        "대운수산",
+        "대운동회",
+        "대운징조",
+        "대운만들기",
+        "대운보는법",
+        "대운을잡아라노래"
+      ]
+    },
+    {
+      "query": "사주풀이",
+      "suggestions": [
+        "사주풀이 보는법",
+        "사주풀이 무료",
+        "사주풀이 어플",
+        "사주풀이하는법",
+        "사주풀이 순서",
+        "사주풀이 준철학관",
+        "사주풀이 기초",
+        "사주풀이도우미",
+        "사주풀이 라이브"
+      ]
+    },
+    {
+      "query": "삼재",
+      "suggestions": [
+        "삼재풀이",
+        "삼재띠",
+        "삼재풀이 비용",
+        "삼재 결혼",
+        "삼재풀이 홍수막이",
+        "삼재 피하는 법",
+        "삼재였어요",
+        "삼재부적",
+        "삼대장"
+      ]
+    }
+  ],
+  "limitations": [
+    "외부 영상의 CTR, 노출수, 시청 지속률, 평균 시청 시간은 YouTube 공개 API로 확인할 수 없습니다.",
+    "성과 점수는 조회수, 좋아요, 댓글, 최근성 등 공개 지표 기반 추정치입니다.",
+    "CTR·지속률 지표는 황금후추 내부 YouTube Studio 데이터에서만 확인할 수 있습니다."
+  ],
+  "outperformers": [
+    {
+      "videoId": "lmhwViVb87U",
+      "title": "앞으로 3년 동안 재물운이 계단식으로 상승하는 띠 순위 TOP 12!",
+      "channelTitle": "천하태평",
+      "channelSubscribers": 3230,
+      "viewCount": 287919,
+      "viewsPerDay": 65951,
+      "ageDays": 4.4,
+      "format": "쇼츠",
+      "url": "https://www.youtube.com/watch?v=lmhwViVb87U",
+      "ratio": 89.1
+    },
+    {
+      "videoId": "qcO_vgz3Aio",
+      "title": "가수 '임영웅' 제 2의 전성기! 끝이 보이지 않는 임영웅 사주 속 엄청난 미래.. / 임영웅 사주풀이",
+      "channelTitle": "델루나사주타로 홍대본점",
+      "channelSubscribers": 414,
+      "viewCount": 14578,
+      "viewsPerDay": 234,
+      "ageDays": 62.3,
+      "format": "롱폼",
+      "url": "https://www.youtube.com/watch?v=qcO_vgz3Aio",
+      "ratio": 35.2
+    },
+    {
+      "videoId": "FmByT9PhzYg",
+      "title": "신점으로 본 한동훈 사주 속 숨겨진 비밀! \" XX년까지 너무 좋은데?!\" / 한동훈 사주풀이",
+      "channelTitle": "혜원암 혜원",
+      "channelSubscribers": 749,
+      "viewCount": 25883,
+      "viewsPerDay": 2094,
+      "ageDays": 12.4,
+      "format": "롱폼",
+      "url": "https://www.youtube.com/watch?v=FmByT9PhzYg",
+      "ratio": 34.6
+    },
+    {
+      "videoId": "Ao8BgQgRmPo",
+      "title": "내 띠는 언제 삼재일까? 2026년 - 2036년 삼재띠 총정리",
+      "channelTitle": "황금수첩",
+      "channelSubscribers": 5990,
+      "viewCount": 199335,
+      "viewsPerDay": 9440,
+      "ageDays": 21.1,
+      "format": "쇼츠",
+      "url": "https://www.youtube.com/watch?v=Ao8BgQgRmPo",
+      "ratio": 33.3
+    },
+    {
+      "videoId": "AjrD8-QW6uI",
+      "title": "🌕올해부터 큰 돈 만질 팔자 금전운 대운 소원성취",
+      "channelTitle": "풍수운세_사주 운명 돈복",
+      "channelSubscribers": 7800,
+      "viewCount": 188630,
+      "viewsPerDay": 30248,
+      "ageDays": 6.2,
+      "format": "쇼츠",
+      "url": "https://www.youtube.com/watch?v=AjrD8-QW6uI",
+      "ratio": 24.2
+    },
+    {
+      "videoId": "hDF89w9EwAU",
+      "title": "당신의 건강 기운이 가장 강해지는 시기, 언제일까요?",
+      "channelTitle": "홈런볼TV",
+      "channelSubscribers": 2450,
+      "viewCount": 40870,
+      "viewsPerDay": 9246,
+      "ageDays": 4.4,
+      "format": "쇼츠",
+      "url": "https://www.youtube.com/watch?v=hDF89w9EwAU",
+      "ratio": 16.7
+    },
+    {
+      "videoId": "GQGFb3Fq6lA",
+      "title": "곧 뜻밖의 기쁜 소식을 받게 될 출생년도🍀 행운의 순간이 찾아옵니다✨  #행운 #재물운 #금전운 #대박운 #귀인운 #운세",
+      "channelTitle": "心の教科書",
+      "channelSubscribers": 13600,
+      "viewCount": 212982,
+      "viewsPerDay": 67771,
+      "ageDays": 3.1,
+      "format": "쇼츠",
+      "url": "https://www.youtube.com/watch?v=GQGFb3Fq6lA",
+      "ratio": 15.7
+    },
+    {
+      "videoId": "c-DEPetGJZM",
+      "title": "\"이 신호를 무시하면 안됩니다\" 대운이 들어오기 전 3가지 신호",
+      "channelTitle": "닥터 에이준",
+      "channelSubscribers": 4050,
+      "viewCount": 45468,
+      "viewsPerDay": 6211,
+      "ageDays": 7.3,
+      "format": "롱폼",
+      "url": "https://www.youtube.com/watch?v=c-DEPetGJZM",
+      "ratio": 11.2
+    }
+  ],
+  "commentDemand": {
+    "scannedVideos": 8,
+    "totalComments": 194,
+    "requests": [
+      {
+        "text": "82년윤아년대박타질띠 윤 학인하시고두번두번터치해주세요",
+        "likeCount": 0,
+        "videoTitle": "앞으로 3년 동안 재물운이 계단식으로 상승하는 띠 순위 TOP 12!"
+      }
+    ]
+  },
+  "comparison": {
+    "previousDate": "2026-08-12",
+    "newKeywords": [
+      {
+        "keyword": "오늘의운세",
+        "videoCount": 12,
+        "recentCount": 12
+      },
+      {
+        "keyword": "병오년",
+        "videoCount": 11,
+        "recentCount": 6
+      }
+    ],
+    "strengthenedKeywords": [
+      {
+        "keyword": "운세",
+        "previousVideoCount": 44,
+        "videoCount": 47
+      },
+      {
+        "keyword": "사주",
+        "previousVideoCount": 18,
+        "videoCount": 24
+      },
+      {
+        "keyword": "신점",
+        "previousVideoCount": 14,
+        "videoCount": 20
+      },
+      {
+        "keyword": "띠별운세",
+        "previousVideoCount": 13,
+        "videoCount": 17
+      },
+      {
+        "keyword": "대운",
+        "previousVideoCount": 15,
+        "videoCount": 16
+      },
+      {
+        "keyword": "궁합",
+        "previousVideoCount": 14,
+        "videoCount": 16
+      },
+      {
+        "keyword": "연애운",
+        "previousVideoCount": 11,
+        "videoCount": 12
+      }
+    ],
+    "newPhrases": [
+      {
+        "phrase": "이재명 사주풀이 신점",
+        "videoCount": 5,
+        "recentCount": 2
+      },
+      {
+        "phrase": "운세 띠별운세",
+        "videoCount": 5,
+        "recentCount": 5
+      },
+      {
+        "phrase": "운세 사주",
+        "videoCount": 5,
+        "recentCount": 5
+      },
+      {
+        "phrase": "8월 12일",
+        "videoCount": 4,
+        "recentCount": 4
+      },
+      {
+        "phrase": "타로 연애운",
+        "videoCount": 4,
+        "recentCount": 2
+      },
+      {
+        "phrase": "사주 운세",
+        "videoCount": 4,
+        "recentCount": 4
+      },
+      {
+        "phrase": "타로 운세",
+        "videoCount": 4,
+        "recentCount": 4
+      }
+    ],
+    "newRisingVideos": [
+      {
+        "videoId": "YgF6NWb8iFc",
+        "title": "연애할 때부터 심상치 않았던 장윤정과 도경완의 궁합 #도경완 #장윤정 #부부",
+        "channelTitle": "투데이쇼츠",
+        "viewsPerDay": 410308,
+        "ageDays": 0.5,
+        "format": "쇼츠",
+        "url": "https://www.youtube.com/watch?v=YgF6NWb8iFc"
+      },
+      {
+        "videoId": "lmhwViVb87U",
+        "title": "앞으로 3년 동안 재물운이 계단식으로 상승하는 띠 순위 TOP 12!",
+        "channelTitle": "천하태평",
+        "viewsPerDay": 65951,
+        "ageDays": 4.4,
+        "format": "쇼츠",
+        "url": "https://www.youtube.com/watch?v=lmhwViVb87U"
+      },
+      {
+        "videoId": "NIpl6oxylvk",
+        "title": "🌕생일 끝자리로 받게되는 복이 다릅니다 운세 사주 대운",
+        "channelTitle": "풍수운세_사주 운명 돈복",
+        "viewsPerDay": 66015,
+        "ageDays": 1.1,
+        "format": "쇼츠",
+        "url": "https://www.youtube.com/watch?v=NIpl6oxylvk"
+      },
+      {
+        "videoId": "AylNFnnBv3A",
+        "title": "🌕8월부터 재물운 들어오는 사주 운세 대운",
+        "channelTitle": "풍수운세_사주 운명 돈복",
+        "viewsPerDay": 71070,
+        "ageDays": 0.6,
+        "format": "쇼츠",
+        "url": "https://www.youtube.com/watch?v=AylNFnnBv3A"
+      },
+      {
+        "videoId": "5prqyMZZ0pE",
+        "title": "2026년 하반기 띠별 금전운 TOP12 재물운, 행운의 숫자 총정리 #2026운세 #하반기운세 #띠운세 #행운의숫자 #금전운 #재물운 #돈복 #12간지 #띠 #행운 #운세 #사주",
+        "channelTitle": "아름다운인생",
+        "viewsPerDay": 54360,
+        "ageDays": 0.8,
+        "format": "쇼츠",
+        "url": "https://www.youtube.com/watch?v=5prqyMZZ0pE"
+      }
+    ]
+  },
+  "velocityVideos": [
+    {
+      "videoId": "AjrD8-QW6uI",
+      "title": "🌕올해부터 큰 돈 만질 팔자 금전운 대운 소원성취",
+      "channelTitle": "풍수운세_사주 운명 돈복",
+      "url": "https://www.youtube.com/watch?v=AjrD8-QW6uI",
+      "format": "쇼츠",
+      "viewCount": 188630,
+      "previousViews": 151496,
+      "viewDelta": 37134,
+      "hoursBetween": 21.9,
+      "measuredViewsPerDay": 40708
+    },
+    {
+      "videoId": "bMgk7V4kthw",
+      "title": "🌕이름으로 보는 대박 재물운 점수 운세 사주",
+      "channelTitle": "풍수운세_사주 운명 돈복",
+      "url": "https://www.youtube.com/watch?v=bMgk7V4kthw",
+      "format": "쇼츠",
+      "viewCount": 83434,
+      "previousViews": 59415,
+      "viewDelta": 24019,
+      "hoursBetween": 21.9,
+      "measuredViewsPerDay": 26331
+    },
+    {
+      "videoId": "GQGFb3Fq6lA",
+      "title": "곧 뜻밖의 기쁜 소식을 받게 될 출생년도🍀 행운의 순간이 찾아옵니다✨  #행운 #재물운 #금전운 #대박운 #귀인운 #운세",
+      "channelTitle": "心の教科書",
+      "url": "https://www.youtube.com/watch?v=GQGFb3Fq6lA",
+      "format": "쇼츠",
+      "viewCount": 212982,
+      "previousViews": 195180,
+      "viewDelta": 17802,
+      "hoursBetween": 21.9,
+      "measuredViewsPerDay": 19515
+    },
+    {
+      "videoId": "M543zT-zdhU",
+      "title": "【띠별 운세】딱 맞는 인연과 기회가 찾아오는 출생년도 24가지✨  #행운 #귀인운 #재물운 #운세 #좋은기회 #쇼츠",
+      "channelTitle": "心の教科書",
+      "url": "https://www.youtube.com/watch?v=M543zT-zdhU",
+      "format": "쇼츠",
+      "viewCount": 134844,
+      "previousViews": 117577,
+      "viewDelta": 17267,
+      "hoursBetween": 21.9,
+      "measuredViewsPerDay": 18929
+    },
+    {
+      "videoId": "GLPfUTD5Ma0",
+      "title": "[타로] 💀용한 점쟁이의 예언👉🏻곧 나에게 펼쳐질 운명예언 3가지 (feat.무서울 정도로 잘 맞는 용한 점🔮신들린듯 다맞춤💥후기폭발✨횡재수,대박운,재물운,귀인운,건강운,연애운💫)",
+      "channelTitle": "타로혜윰",
+      "url": "https://www.youtube.com/watch?v=GLPfUTD5Ma0",
+      "format": "롱폼",
+      "viewCount": 26456,
+      "previousViews": 13990,
+      "viewDelta": 12466,
+      "hoursBetween": 21.9,
+      "measuredViewsPerDay": 13666
+    },
+    {
+      "videoId": "Mne56POrjHI",
+      "title": "당신의 직업을 나쁘게 소개한다면? (5탄)",
+      "channelTitle": "김켈리 Kellyfornia",
+      "url": "https://www.youtube.com/watch?v=Mne56POrjHI",
+      "format": "쇼츠",
+      "viewCount": 2060282,
+      "previousViews": 2049014,
+      "viewDelta": 11268,
+      "hoursBetween": 21.9,
+      "measuredViewsPerDay": 12352
+    },
+    {
+      "videoId": "8VZMmnK-jII",
+      "title": "[사주] 2027년까지 연결되는 중요한 2026년 하반기 운세ㅣ특정 오행이 많은 사주들은 각각 운세 흐름이 다 달라요⭐",
+      "channelTitle": "도화도르- 사주팔자 쉽게 풀어주는 남자",
+      "url": "https://www.youtube.com/watch?v=8VZMmnK-jII",
+      "format": "롱폼",
+      "viewCount": 139674,
+      "previousViews": 133120,
+      "viewDelta": 6554,
+      "hoursBetween": 21.9,
+      "measuredViewsPerDay": 7185
+    },
+    {
+      "videoId": "BNeVmFHR_eY",
+      "title": "[타로_연애운]🚨충격 공개🚨이런 것까지 알려줘도 돼요? 곧 나타날 다음 연애 상대 이름🔥 (요즘 나 신경 쓰는 사람VS곧 들이댈 그 사람)",
+      "channelTitle": "타로세끼 Tarot3kki",
+      "url": "https://www.youtube.com/watch?v=BNeVmFHR_eY",
+      "format": "롱폼",
+      "viewCount": 59240,
+      "previousViews": 55133,
+      "viewDelta": 4107,
+      "hoursBetween": 21.9,
+      "measuredViewsPerDay": 4502
+    },
+    {
+      "videoId": "hPKD0lvriMM",
+      "title": "관상만 보고 직업 정해주기 - 서울 식물원편",
+      "channelTitle": "엄지렐라 Umjirella",
+      "url": "https://www.youtube.com/watch?v=hPKD0lvriMM",
+      "format": "롱폼",
+      "viewCount": 425321,
+      "previousViews": 422682,
+      "viewDelta": 2639,
+      "hoursBetween": 21.9,
+      "measuredViewsPerDay": 2893
+    },
+    {
+      "videoId": "-eH2CJACIr4",
+      "title": "이 고비 오면 이 악물고 버텨라 대운이 오는 신호다 Ι 부처님 말씀 Ι 불교 명언 Ι 인생 조언",
+      "channelTitle": "품격있는하루",
+      "url": "https://www.youtube.com/watch?v=-eH2CJACIr4",
+      "format": "롱폼",
+      "viewCount": 86801,
+      "previousViews": 85338,
+      "viewDelta": 1463,
+      "hoursBetween": 21.9,
+      "measuredViewsPerDay": 1604
+    }
+  ]
+}

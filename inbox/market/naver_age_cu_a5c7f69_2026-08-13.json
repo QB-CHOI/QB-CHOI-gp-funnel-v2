@@ -1,0 +1,211 @@
+{
+  "ok": true,
+  "topic": "재테크",
+  "date": "2026-08-13",
+  "generatedAt": "2026-08-12T16:47:55.028Z",
+  "brackets": [
+    "10대",
+    "20대",
+    "30대",
+    "40대",
+    "50대+"
+  ],
+  "profiles": [
+    {
+      "keyword": "배당주",
+      "byAge": {
+        "10대": {
+          "deltaPercent": 1,
+          "level": 70,
+          "recentAvg": 69.9999975
+        },
+        "20대": {
+          "deltaPercent": -26,
+          "level": 57,
+          "recentAvg": 57.442342499999995
+        },
+        "30대": {
+          "deltaPercent": -16,
+          "level": 67,
+          "recentAvg": 66.8902375
+        },
+        "40대": {
+          "deltaPercent": -23,
+          "level": 59,
+          "recentAvg": 59.260284999999996
+        },
+        "50대+": {
+          "deltaPercent": -18,
+          "level": 63,
+          "recentAvg": 62.807517499999996
+        }
+      },
+      "hottestAge": "10대",
+      "hottestDelta": 1
+    },
+    {
+      "keyword": "재테크",
+      "byAge": {
+        "10대": {
+          "deltaPercent": 0,
+          "level": 6,
+          "recentAvg": 5.929645
+        },
+        "20대": {
+          "deltaPercent": 0,
+          "level": 4,
+          "recentAvg": 3.9639625
+        },
+        "30대": {
+          "deltaPercent": 0,
+          "level": 3,
+          "recentAvg": 2.8886175
+        },
+        "40대": {
+          "deltaPercent": 0,
+          "level": 1,
+          "recentAvg": 0.988875
+        },
+        "50대+": {
+          "deltaPercent": 0,
+          "level": 1,
+          "recentAvg": 0.6670024999999999
+        }
+      },
+      "hottestAge": null,
+      "hottestDelta": 0
+    },
+    {
+      "keyword": "주식 투자",
+      "byAge": {
+        "10대": {
+          "deltaPercent": 0,
+          "level": 2,
+          "recentAvg": 1.53266
+        },
+        "20대": {
+          "deltaPercent": 0,
+          "level": 1,
+          "recentAvg": 0.6188425
+        },
+        "30대": {
+          "deltaPercent": 0,
+          "level": 1,
+          "recentAvg": 0.6819000000000001
+        },
+        "40대": {
+          "deltaPercent": 0,
+          "level": 1,
+          "recentAvg": 0.7683425
+        },
+        "50대+": {
+          "deltaPercent": 0,
+          "level": 1,
+          "recentAvg": 0.90027
+        }
+      },
+      "hottestAge": null,
+      "hottestDelta": 0
+    },
+    {
+      "keyword": "적금 금리",
+      "byAge": {
+        "10대": {
+          "deltaPercent": 0,
+          "level": 1,
+          "recentAvg": 0.8291424999999999
+        },
+        "20대": {
+          "deltaPercent": 0,
+          "level": 5,
+          "recentAvg": 4.8098025
+        },
+        "30대": {
+          "deltaPercent": 0,
+          "level": 6,
+          "recentAvg": 6.1986925
+        },
+        "40대": {
+          "deltaPercent": 0,
+          "level": 6,
+          "recentAvg": 5.8112775
+        },
+        "50대+": {
+          "deltaPercent": 0,
+          "level": 5,
+          "recentAvg": 5.492775
+        }
+      },
+      "hottestAge": null,
+      "hottestDelta": 0
+    },
+    {
+      "keyword": "ETF",
+      "byAge": {
+        "10대": {
+          "deltaPercent": -30,
+          "level": 55,
+          "recentAvg": 54.7989925
+        },
+        "20대": {
+          "deltaPercent": -45,
+          "level": 38,
+          "recentAvg": 37.7066775
+        },
+        "30대": {
+          "deltaPercent": -45,
+          "level": 37,
+          "recentAvg": 36.68234
+        },
+        "40대": {
+          "deltaPercent": -46,
+          "level": 35,
+          "recentAvg": 34.69993
+        },
+        "50대+": {
+          "deltaPercent": -35,
+          "level": 44,
+          "recentAvg": 43.683475
+        }
+      },
+      "hottestAge": "10대",
+      "hottestDelta": -30
+    },
+    {
+      "keyword": "연금저축",
+      "byAge": {
+        "10대": {
+          "deltaPercent": 0,
+          "level": 2,
+          "recentAvg": 2.2864275000000003
+        },
+        "20대": {
+          "deltaPercent": 0,
+          "level": 9,
+          "recentAvg": 9.1536775
+        },
+        "30대": {
+          "deltaPercent": -44,
+          "level": 10,
+          "recentAvg": 10.43692
+        },
+        "40대": {
+          "deltaPercent": 0,
+          "level": 9,
+          "recentAvg": 8.50811
+        },
+        "50대+": {
+          "deltaPercent": 0,
+          "level": 7,
+          "recentAvg": 7.1997825
+        }
+      },
+      "hottestAge": "30대",
+      "hottestDelta": -44
+    }
+  ],
+  "limitations": [
+    "데이터랩은 조회별 상대지표(최대=100)라 연령 간 절대 검색량 비교는 불가 — 연령별 추세(상승률) 비교만 유효합니다.",
+    "최근 4주 vs 이전 10주 평균 변화율. 진행 중인 마지막 주는 불완전해 제외하고, 관심도가 낮은(저기반) 키워드는 왜곡을 막기 위해 상승으로 집계하지 않습니다."
+  ]
+}
