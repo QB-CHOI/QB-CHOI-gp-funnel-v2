@@ -1,8 +1,8 @@
 {
   "ok": true,
   "topic": "재테크",
-  "date": "2026-08-14",
-  "generatedAt": "2026-08-13T22:00:12.385Z",
+  "date": "2026-08-15",
+  "generatedAt": "2026-08-15T03:33:51.050Z",
   "seeds": [
     "재테크",
     "주식 투자",
@@ -612,321 +612,321 @@
   "keywords": [
     {
       "keyword": "삼성전자주가",
-      "pcMonthly": 2343300,
-      "mobileMonthly": 32502400,
-      "totalMonthly": 34845700,
+      "pcMonthly": 2311600,
+      "mobileMonthly": 32299700,
+      "totalMonthly": 34611300,
       "competition": "중간",
       "isSeed": false
     },
     {
       "keyword": "SK하이닉스주가",
-      "pcMonthly": 1025200,
-      "mobileMonthly": 9051800,
-      "totalMonthly": 10077000,
+      "pcMonthly": 994800,
+      "mobileMonthly": 8925900,
+      "totalMonthly": 9920700,
       "competition": "중간",
       "isSeed": false
     },
     {
       "keyword": "코스피지수",
-      "pcMonthly": 519700,
-      "mobileMonthly": 4930400,
-      "totalMonthly": 5450100,
+      "pcMonthly": 510100,
+      "mobileMonthly": 4877400,
+      "totalMonthly": 5387500,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "달러환율",
-      "pcMonthly": 620900,
-      "mobileMonthly": 3868000,
-      "totalMonthly": 4488900,
+      "pcMonthly": 612600,
+      "mobileMonthly": 3837800,
+      "totalMonthly": 4450400,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "나스닥선물",
-      "pcMonthly": 477100,
-      "mobileMonthly": 3416300,
-      "totalMonthly": 3893400,
-      "competition": "중간",
-      "isSeed": false
-    },
-    {
-      "keyword": "검색상위종목",
-      "pcMonthly": 17500,
-      "mobileMonthly": 2388800,
-      "totalMonthly": 2406300,
+      "pcMonthly": 468400,
+      "mobileMonthly": 3373800,
+      "totalMonthly": 3842200,
       "competition": "중간",
       "isSeed": false
     },
     {
       "keyword": "현대차주가",
-      "pcMonthly": 167700,
-      "mobileMonthly": 2217000,
-      "totalMonthly": 2384700,
+      "pcMonthly": 169000,
+      "mobileMonthly": 2222300,
+      "totalMonthly": 2391300,
       "competition": "높음",
       "isSeed": false
     },
     {
+      "keyword": "검색상위종목",
+      "pcMonthly": 17000,
+      "mobileMonthly": 2366900,
+      "totalMonthly": 2383900,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
       "keyword": "코스닥",
-      "pcMonthly": 462300,
-      "mobileMonthly": 1874500,
-      "totalMonthly": 2336800,
+      "pcMonthly": 459000,
+      "mobileMonthly": 1869800,
+      "totalMonthly": 2328800,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "일본환율",
-      "pcMonthly": 171800,
+      "pcMonthly": 171300,
       "mobileMonthly": 1594600,
-      "totalMonthly": 1766400,
+      "totalMonthly": 1765900,
       "competition": "중간",
       "isSeed": false
     },
     {
       "keyword": "주식시세",
-      "pcMonthly": 41900,
-      "mobileMonthly": 1477700,
-      "totalMonthly": 1519600,
+      "pcMonthly": 41100,
+      "mobileMonthly": 1463900,
+      "totalMonthly": 1505000,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "주가지수",
-      "pcMonthly": 76200,
-      "mobileMonthly": 1281000,
-      "totalMonthly": 1357200,
+      "pcMonthly": 75000,
+      "mobileMonthly": 1271000,
+      "totalMonthly": 1346000,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "증시",
-      "pcMonthly": 90300,
-      "mobileMonthly": 1132800,
-      "totalMonthly": 1223100,
+      "pcMonthly": 89000,
+      "mobileMonthly": 1123000,
+      "totalMonthly": 1212000,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "유로환율",
-      "pcMonthly": 183900,
+      "pcMonthly": 181500,
       "mobileMonthly": 736500,
-      "totalMonthly": 920400,
+      "totalMonthly": 918000,
       "competition": "중간",
       "isSeed": false
     },
     {
       "keyword": "종합주가지수",
-      "pcMonthly": 41800,
-      "mobileMonthly": 843600,
-      "totalMonthly": 885400,
+      "pcMonthly": 41000,
+      "mobileMonthly": 833800,
+      "totalMonthly": 874800,
       "competition": "중간",
       "isSeed": false
     },
     {
       "keyword": "국내증시",
-      "pcMonthly": 46000,
-      "mobileMonthly": 821100,
-      "totalMonthly": 867100,
+      "pcMonthly": 45700,
+      "mobileMonthly": 815700,
+      "totalMonthly": 861400,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "테슬라주가",
-      "pcMonthly": 56000,
-      "mobileMonthly": 680800,
-      "totalMonthly": 736800,
+      "pcMonthly": 56100,
+      "mobileMonthly": 682100,
+      "totalMonthly": 738200,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "주요증시",
-      "pcMonthly": 12100,
-      "mobileMonthly": 709200,
-      "totalMonthly": 721300,
+      "pcMonthly": 12000,
+      "mobileMonthly": 703700,
+      "totalMonthly": 715700,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "카카오주가",
-      "pcMonthly": 40700,
-      "mobileMonthly": 665500,
-      "totalMonthly": 706200,
+      "pcMonthly": 40400,
+      "mobileMonthly": 664900,
+      "totalMonthly": 705300,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "셀트리온주가",
       "pcMonthly": 30700,
-      "mobileMonthly": 649700,
-      "totalMonthly": 680400,
+      "mobileMonthly": 652400,
+      "totalMonthly": 683100,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "중국환율",
-      "pcMonthly": 103500,
-      "mobileMonthly": 568700,
-      "totalMonthly": 672200,
+      "pcMonthly": 102600,
+      "mobileMonthly": 566600,
+      "totalMonthly": 669200,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "증권",
-      "pcMonthly": 27400,
-      "mobileMonthly": 558000,
-      "totalMonthly": 585400,
+      "pcMonthly": 27000,
+      "mobileMonthly": 553700,
+      "totalMonthly": 580700,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "뉴욕증시",
       "pcMonthly": 16400,
-      "mobileMonthly": 508800,
-      "totalMonthly": 525200,
+      "mobileMonthly": 507700,
+      "totalMonthly": 524100,
       "competition": "중간",
       "isSeed": false
     },
     {
       "keyword": "코스닥지수",
-      "pcMonthly": 50900,
-      "mobileMonthly": 389200,
-      "totalMonthly": 440100,
+      "pcMonthly": 50800,
+      "mobileMonthly": 391800,
+      "totalMonthly": 442600,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "하나카드",
-      "pcMonthly": 283400,
-      "mobileMonthly": 110600,
-      "totalMonthly": 394000,
+      "pcMonthly": 280100,
+      "mobileMonthly": 110400,
+      "totalMonthly": 390500,
       "competition": "중간",
       "isSeed": false
     },
     {
       "keyword": "삼성주가",
-      "pcMonthly": 16700,
-      "mobileMonthly": 308400,
-      "totalMonthly": 325100,
+      "pcMonthly": 16400,
+      "mobileMonthly": 305000,
+      "totalMonthly": 321400,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "KOSPI",
-      "pcMonthly": 251100,
-      "mobileMonthly": 44100,
-      "totalMonthly": 295200,
+      "pcMonthly": 245600,
+      "mobileMonthly": 43400,
+      "totalMonthly": 289000,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "코덱스200",
-      "pcMonthly": 35700,
-      "mobileMonthly": 256100,
-      "totalMonthly": 291800,
+      "pcMonthly": 34800,
+      "mobileMonthly": 252700,
+      "totalMonthly": 287500,
       "competition": "낮음",
       "isSeed": false
     },
     {
       "keyword": "퇴직금계산기",
-      "pcMonthly": 87700,
-      "mobileMonthly": 201000,
-      "totalMonthly": 288700,
+      "pcMonthly": 86500,
+      "mobileMonthly": 199100,
+      "totalMonthly": 285600,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "국민연금",
-      "pcMonthly": 120500,
-      "mobileMonthly": 136400,
-      "totalMonthly": 256900,
+      "pcMonthly": 119600,
+      "mobileMonthly": 135200,
+      "totalMonthly": 254800,
       "competition": "낮음",
       "isSeed": false
     },
     {
       "keyword": "오늘코스피지수",
-      "pcMonthly": 3650,
-      "mobileMonthly": 246600,
-      "totalMonthly": 250250,
+      "pcMonthly": 3590,
+      "mobileMonthly": 244500,
+      "totalMonthly": 248090,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "미국주식",
-      "pcMonthly": 9910,
-      "mobileMonthly": 236000,
-      "totalMonthly": 245910,
+      "pcMonthly": 9840,
+      "mobileMonthly": 235300,
+      "totalMonthly": 245140,
       "competition": "중간",
       "isSeed": false
     },
     {
       "keyword": "SOXL",
-      "pcMonthly": 59700,
-      "mobileMonthly": 174700,
-      "totalMonthly": 234400,
+      "pcMonthly": 58900,
+      "mobileMonthly": 173200,
+      "totalMonthly": 232100,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "오늘주식시세",
-      "pcMonthly": 2220,
-      "mobileMonthly": 216700,
-      "totalMonthly": 218920,
+      "pcMonthly": 2160,
+      "mobileMonthly": 215000,
+      "totalMonthly": 217160,
       "competition": "높음",
       "isSeed": false
     },
     {
-      "keyword": "국내주식",
-      "pcMonthly": 10600,
-      "mobileMonthly": 201800,
-      "totalMonthly": 212400,
-      "competition": "중간",
-      "isSeed": false
-    },
-    {
       "keyword": "적금계산기",
-      "pcMonthly": 46900,
-      "mobileMonthly": 164200,
-      "totalMonthly": 211100,
+      "pcMonthly": 47300,
+      "mobileMonthly": 166100,
+      "totalMonthly": 213400,
       "competition": "중간",
       "isSeed": false
     },
     {
       "keyword": "ISA계좌",
-      "pcMonthly": 42800,
-      "mobileMonthly": 168200,
-      "totalMonthly": 211000,
+      "pcMonthly": 43000,
+      "mobileMonthly": 168600,
+      "totalMonthly": 211600,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "국내주식",
+      "pcMonthly": 10400,
+      "mobileMonthly": 199500,
+      "totalMonthly": 209900,
       "competition": "중간",
       "isSeed": false
     },
     {
       "keyword": "KODEX200",
-      "pcMonthly": 43900,
-      "mobileMonthly": 148500,
-      "totalMonthly": 192400,
+      "pcMonthly": 43000,
+      "mobileMonthly": 146600,
+      "totalMonthly": 189600,
       "competition": "낮음",
       "isSeed": false
     },
     {
       "keyword": "삼성바이오로직스주가",
       "pcMonthly": 10900,
-      "mobileMonthly": 165300,
-      "totalMonthly": 176200,
+      "mobileMonthly": 165000,
+      "totalMonthly": 175900,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "나스닥100선물",
-      "pcMonthly": 23400,
-      "mobileMonthly": 151600,
-      "totalMonthly": 175000,
+      "pcMonthly": 23100,
+      "mobileMonthly": 150700,
+      "totalMonthly": 173800,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "오늘의주식시세",
-      "pcMonthly": 1600,
-      "mobileMonthly": 155600,
-      "totalMonthly": 157200,
+      "pcMonthly": 1610,
+      "mobileMonthly": 154600,
+      "totalMonthly": 156210,
       "competition": "높음",
       "isSeed": false
     }
@@ -934,81 +934,81 @@
   "seedKeywords": [
     {
       "keyword": "ETF",
-      "pcMonthly": 38700,
-      "mobileMonthly": 102600,
-      "totalMonthly": 141300,
+      "pcMonthly": 37700,
+      "mobileMonthly": 100500,
+      "totalMonthly": 138200,
       "competition": "높음",
       "isSeed": true
     },
     {
       "keyword": "파킹통장",
       "pcMonthly": 38400,
-      "mobileMonthly": 98900,
-      "totalMonthly": 137300,
+      "mobileMonthly": 99200,
+      "totalMonthly": 137600,
       "competition": "중간",
       "isSeed": true
     },
     {
       "keyword": "연금저축",
-      "pcMonthly": 7430,
+      "pcMonthly": 7450,
       "mobileMonthly": 25100,
-      "totalMonthly": 32530,
+      "totalMonthly": 32550,
       "competition": "높음",
       "isSeed": true
     },
     {
       "keyword": "적금금리",
-      "pcMonthly": 5640,
-      "mobileMonthly": 16100,
-      "totalMonthly": 21740,
-      "competition": "높음",
-      "isSeed": true
-    },
-    {
-      "keyword": "배당주",
-      "pcMonthly": 2820,
-      "mobileMonthly": 7220,
-      "totalMonthly": 10040,
+      "pcMonthly": 5750,
+      "mobileMonthly": 16500,
+      "totalMonthly": 22250,
       "competition": "높음",
       "isSeed": true
     },
     {
       "keyword": "재테크",
-      "pcMonthly": 3050,
-      "mobileMonthly": 6930,
-      "totalMonthly": 9980,
+      "pcMonthly": 3010,
+      "mobileMonthly": 6940,
+      "totalMonthly": 9950,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "배당주",
+      "pcMonthly": 2800,
+      "mobileMonthly": 7150,
+      "totalMonthly": 9950,
       "competition": "높음",
       "isSeed": true
     },
     {
       "keyword": "주식투자",
-      "pcMonthly": 3460,
-      "mobileMonthly": 2550,
-      "totalMonthly": 6010,
+      "pcMonthly": 3430,
+      "mobileMonthly": 2560,
+      "totalMonthly": 5990,
       "competition": "높음",
       "isSeed": true
     },
     {
       "keyword": "노후준비",
-      "pcMonthly": 940,
+      "pcMonthly": 960,
       "mobileMonthly": 1470,
-      "totalMonthly": 2410,
+      "totalMonthly": 2430,
       "competition": "높음",
       "isSeed": true
     },
     {
       "keyword": "절세",
       "pcMonthly": 320,
-      "mobileMonthly": 770,
-      "totalMonthly": 1090,
+      "mobileMonthly": 760,
+      "totalMonthly": 1080,
       "competition": "낮음",
       "isSeed": true
     },
     {
       "keyword": "종잣돈",
       "pcMonthly": 200,
-      "mobileMonthly": 680,
-      "totalMonthly": 880,
+      "mobileMonthly": 670,
+      "totalMonthly": 870,
       "competition": "낮음",
       "isSeed": true
     }
@@ -1016,161 +1016,161 @@
   "newDiscoveries": [
     {
       "keyword": "삼성전자주가",
-      "pcMonthly": 2343300,
-      "mobileMonthly": 32502400,
-      "totalMonthly": 34845700,
+      "pcMonthly": 2311600,
+      "mobileMonthly": 32299700,
+      "totalMonthly": 34611300,
       "competition": "중간",
       "isSeed": false
     },
     {
       "keyword": "SK하이닉스주가",
-      "pcMonthly": 1025200,
-      "mobileMonthly": 9051800,
-      "totalMonthly": 10077000,
+      "pcMonthly": 994800,
+      "mobileMonthly": 8925900,
+      "totalMonthly": 9920700,
       "competition": "중간",
       "isSeed": false
     },
     {
       "keyword": "코스피지수",
-      "pcMonthly": 519700,
-      "mobileMonthly": 4930400,
-      "totalMonthly": 5450100,
+      "pcMonthly": 510100,
+      "mobileMonthly": 4877400,
+      "totalMonthly": 5387500,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "달러환율",
-      "pcMonthly": 620900,
-      "mobileMonthly": 3868000,
-      "totalMonthly": 4488900,
+      "pcMonthly": 612600,
+      "mobileMonthly": 3837800,
+      "totalMonthly": 4450400,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "나스닥선물",
-      "pcMonthly": 477100,
-      "mobileMonthly": 3416300,
-      "totalMonthly": 3893400,
-      "competition": "중간",
-      "isSeed": false
-    },
-    {
-      "keyword": "검색상위종목",
-      "pcMonthly": 17500,
-      "mobileMonthly": 2388800,
-      "totalMonthly": 2406300,
+      "pcMonthly": 468400,
+      "mobileMonthly": 3373800,
+      "totalMonthly": 3842200,
       "competition": "중간",
       "isSeed": false
     },
     {
       "keyword": "현대차주가",
-      "pcMonthly": 167700,
-      "mobileMonthly": 2217000,
-      "totalMonthly": 2384700,
+      "pcMonthly": 169000,
+      "mobileMonthly": 2222300,
+      "totalMonthly": 2391300,
       "competition": "높음",
       "isSeed": false
     },
     {
+      "keyword": "검색상위종목",
+      "pcMonthly": 17000,
+      "mobileMonthly": 2366900,
+      "totalMonthly": 2383900,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
       "keyword": "코스닥",
-      "pcMonthly": 462300,
-      "mobileMonthly": 1874500,
-      "totalMonthly": 2336800,
+      "pcMonthly": 459000,
+      "mobileMonthly": 1869800,
+      "totalMonthly": 2328800,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "일본환율",
-      "pcMonthly": 171800,
+      "pcMonthly": 171300,
       "mobileMonthly": 1594600,
-      "totalMonthly": 1766400,
+      "totalMonthly": 1765900,
       "competition": "중간",
       "isSeed": false
     },
     {
       "keyword": "주식시세",
-      "pcMonthly": 41900,
-      "mobileMonthly": 1477700,
-      "totalMonthly": 1519600,
+      "pcMonthly": 41100,
+      "mobileMonthly": 1463900,
+      "totalMonthly": 1505000,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "주가지수",
-      "pcMonthly": 76200,
-      "mobileMonthly": 1281000,
-      "totalMonthly": 1357200,
+      "pcMonthly": 75000,
+      "mobileMonthly": 1271000,
+      "totalMonthly": 1346000,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "증시",
-      "pcMonthly": 90300,
-      "mobileMonthly": 1132800,
-      "totalMonthly": 1223100,
+      "pcMonthly": 89000,
+      "mobileMonthly": 1123000,
+      "totalMonthly": 1212000,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "유로환율",
-      "pcMonthly": 183900,
+      "pcMonthly": 181500,
       "mobileMonthly": 736500,
-      "totalMonthly": 920400,
+      "totalMonthly": 918000,
       "competition": "중간",
       "isSeed": false
     },
     {
       "keyword": "종합주가지수",
-      "pcMonthly": 41800,
-      "mobileMonthly": 843600,
-      "totalMonthly": 885400,
+      "pcMonthly": 41000,
+      "mobileMonthly": 833800,
+      "totalMonthly": 874800,
       "competition": "중간",
       "isSeed": false
     },
     {
       "keyword": "국내증시",
-      "pcMonthly": 46000,
-      "mobileMonthly": 821100,
-      "totalMonthly": 867100,
+      "pcMonthly": 45700,
+      "mobileMonthly": 815700,
+      "totalMonthly": 861400,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "테슬라주가",
-      "pcMonthly": 56000,
-      "mobileMonthly": 680800,
-      "totalMonthly": 736800,
+      "pcMonthly": 56100,
+      "mobileMonthly": 682100,
+      "totalMonthly": 738200,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "주요증시",
-      "pcMonthly": 12100,
-      "mobileMonthly": 709200,
-      "totalMonthly": 721300,
+      "pcMonthly": 12000,
+      "mobileMonthly": 703700,
+      "totalMonthly": 715700,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "카카오주가",
-      "pcMonthly": 40700,
-      "mobileMonthly": 665500,
-      "totalMonthly": 706200,
+      "pcMonthly": 40400,
+      "mobileMonthly": 664900,
+      "totalMonthly": 705300,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "셀트리온주가",
       "pcMonthly": 30700,
-      "mobileMonthly": 649700,
-      "totalMonthly": 680400,
+      "mobileMonthly": 652400,
+      "totalMonthly": 683100,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "중국환율",
-      "pcMonthly": 103500,
-      "mobileMonthly": 568700,
-      "totalMonthly": 672200,
+      "pcMonthly": 102600,
+      "mobileMonthly": 566600,
+      "totalMonthly": 669200,
       "competition": "높음",
       "isSeed": false
     }
@@ -1178,42 +1178,90 @@
   "communityDemand": {
     "enough": true,
     "scanned": 1200,
-    "questionCount": 111,
-    "noiseFiltered": 1089,
+    "questionCount": 120,
+    "noiseFiltered": 1080,
     "hotSeeds": [
       {
-        "seed": "적금 금리",
-        "count": 26
-      },
-      {
         "seed": "ETF",
-        "count": 23
-      },
-      {
-        "seed": "연금저축",
-        "count": 23
+        "count": 22
       },
       {
         "seed": "노후준비",
-        "count": 11
+        "count": 22
       },
       {
-        "seed": "절세",
-        "count": 9
+        "seed": "적금 금리",
+        "count": 20
+      },
+      {
+        "seed": "주식 투자",
+        "count": 16
+      },
+      {
+        "seed": "연금저축",
+        "count": 15
       }
     ],
     "posts": [
       {
         "seed": "재테크",
         "kind": "지식iN",
-        "title": "30대 초반, 청년미래적금 말고 또 다른 재테크 방법 있을까요....",
-        "link": "https://kin.naver.com/qna/detail.naver?dirId=40101&docId=494212185&answerNo=9"
+        "title": "사회초년생(미성년자, 만 18세) 재테크?",
+        "link": "https://kin.naver.com/qna/detail.naver?dirId=40101&docId=494747382&answerNo=1"
       },
       {
         "seed": "주식 투자",
         "kind": "지식iN",
-        "title": "주식용어 같은데 이런거도 알려주나요?",
-        "link": "https://kin.naver.com/qna/detail.naver?dirId=40102&docId=492093060&answerNo=12"
+        "title": "미국주식 투자에 유리한 방법은 뭐가있을까요",
+        "link": "https://kin.naver.com/qna/detail.naver?dirId=40102&docId=494736768&answerNo=8"
+      },
+      {
+        "seed": "적금 금리",
+        "kind": "지식iN",
+        "title": "1년 정기예금. 금리. 높은 곳?",
+        "link": "https://kin.naver.com/qna/detail.naver?dirId=40101&docId=492985532&answerNo=4"
+      },
+      {
+        "seed": "ETF",
+        "kind": "지식iN",
+        "title": "etf 노후대비?",
+        "link": "https://kin.naver.com/qna/detail.naver?dirId=40102&docId=494720351&answerNo=10"
+      },
+      {
+        "seed": "연금저축",
+        "kind": "카페",
+        "title": "연금저축은 600다 채우시나요????",
+        "link": "https://cafe.naver.com/dieselmania/47372239"
+      },
+      {
+        "seed": "배당주",
+        "kind": "지식iN",
+        "title": "배당주 포트폴리오는 어떻게 구상해야되나요?",
+        "link": "https://kin.naver.com/qna/detail.naver?dirId=40102&docId=494740968&answerNo=4"
+      },
+      {
+        "seed": "절세",
+        "kind": "카페",
+        "title": "$$세무사가 알려주는 상속,증여 절세의 비밀",
+        "link": "https://cafe.naver.com/greenb0k6k/191770"
+      },
+      {
+        "seed": "노후준비",
+        "kind": "지식iN",
+        "title": "부모님 노후 생활비 자녀 차명 예금, 문제 안 생기나요?",
+        "link": "https://kin.naver.com/qna/detail.naver?dirId=60220&docId=494737956&answerNo=3"
+      },
+      {
+        "seed": "재테크",
+        "kind": "지식iN",
+        "title": "물가 상승 시대, 월급 지키는 재테크는?",
+        "link": "https://kin.naver.com/qna/detail.naver?dirId=40102&docId=489550289&answerNo=17"
+      },
+      {
+        "seed": "주식 투자",
+        "kind": "지식iN",
+        "title": "주식 투자자가 갖춰야 할 기본기는 뭔가요?",
+        "link": "https://kin.naver.com/qna/detail.naver?dirId=40102&docId=392433599&answerNo=6"
       },
       {
         "seed": "적금 금리",
@@ -1223,83 +1271,49 @@
       },
       {
         "seed": "ETF",
-        "kind": "지식iN",
-        "title": "ETF 수익률 산정 방법 좀 알려주세요.",
-        "link": "https://kin.naver.com/qna/detail.naver?dirId=40102&docId=490737007&answerNo=5"
-      },
-      {
-        "seed": "연금저축",
-        "kind": "지식iN",
-        "title": "연금계좌 활용한 절세, 실제로 얼마나 도움이 될까요?",
-        "link": "https://kin.naver.com/qna/detail.naver?dirId=6100402&docId=493595777&answerNo=5"
-      },
-      {
-        "seed": "배당주",
         "kind": "카페",
-        "title": "배당주 투자할 때, 보통주랑 우선주 중 뭘 사야 할까요?",
-        "link": "https://cafe.naver.com/sohwaktip/160"
-      },
-      {
-        "seed": "절세",
-        "kind": "지식iN",
-        "title": "증여세 면제한도 초과 시, 절세 전략으로 뭐가 좋을까요?",
-        "link": "https://kin.naver.com/qna/detail.naver?dirId=601&docId=492878781&answerNo=10"
-      },
-      {
-        "seed": "노후준비",
-        "kind": "지식iN",
-        "title": "신봉선처럼 노후 준비, 어떻게 시작하면 좋을까요?",
-        "link": "https://kin.naver.com/qna/detail.naver?dirId=2011606&docId=494194688&answerNo=3"
-      },
-      {
-        "seed": "재테크",
-        "kind": "지식iN",
-        "title": "직장인이 재테크 해야되는 이유?",
-        "link": "https://kin.naver.com/qna/detail.naver?dirId=40101&docId=371560857&answerNo=6"
-      },
-      {
-        "seed": "주식 투자",
-        "kind": "지식iN",
-        "title": "ETF 투자한다했을때 어떻게 하는게 이득인가요?",
-        "link": "https://kin.naver.com/qna/detail.naver?dirId=40102&docId=487585955&answerNo=8"
-      },
-      {
-        "seed": "적금 금리",
-        "kind": "지식iN",
-        "title": "농협은행 예·적금 상품, 장기적으로 유지할 가치가 있을까....",
-        "link": "https://kin.naver.com/qna/detail.naver?dirId=51002&docId=494720389&answerNo=1"
-      },
-      {
-        "seed": "ETF",
-        "kind": "지식iN",
-        "title": "etf 노후대비?",
-        "link": "https://kin.naver.com/qna/detail.naver?dirId=40102&docId=494720351&answerNo=9"
+        "title": "삼전닉스 2배 ETF, 아무도 안 알려주는 포인트가 따로 있네요",
+        "link": "https://cafe.naver.com/departmentstoremart/4032"
       }
     ]
   },
   "newsSignals": {
-    "scanned": 3,
-    "issueCount": 3,
+    "scanned": 5,
+    "issueCount": 5,
     "articles": [
       {
         "seed": "적금 금리",
-        "title": "전북은행, 최고 연 4.50% 금리…'현대자동차XJB 특판적금' 출시",
-        "link": "https://daily.hankooki.com/news/articleView.html?idxno=1395840",
-        "publishedAt": "2026-08-13T10:32:00.000Z",
+        "title": "\"8%금리·군인 우대\" 은행권 광복 81주년 마케팅 열전",
+        "link": "https://www.ajunews.com/view/20260814143131314",
+        "publishedAt": "2026-08-15T00:02:00.000Z",
         "coverage": 1
       },
       {
         "seed": "적금 금리",
-        "title": "NH농협은행 '파격 적금' 출시 ...\"최고 연 8.15% 금리\"",
-        "link": "https://www.polinews.co.kr/news/articleView.html?idxno=740110",
-        "publishedAt": "2026-08-13T09:03:00.000Z",
+        "title": "김구 탄생 150주년 '특별 금리' 쏜다…은행별 '광복절 혜택' 보니",
+        "link": "https://www.newsway.co.kr/news/view?ud=2026081414155655333",
+        "publishedAt": "2026-08-14T22:00:00.000Z",
         "coverage": 1
       },
       {
         "seed": "적금 금리",
-        "title": "첫 거래·복귀고객 年9% 이자 … 신한銀 고금리 적금 특판 출시",
-        "link": "https://n.news.naver.com/mnews/article/009/0005720823?sid=101",
-        "publishedAt": "2026-08-13T08:48:00.000Z",
+        "title": "최고 연 9% 적금 눈길… 고금리 적금 완판 행진",
+        "link": "https://it.chosun.com/news/articleView.html?idxno=2023092168170",
+        "publishedAt": "2026-08-14T21:10:00.000Z",
+        "coverage": 1
+      },
+      {
+        "seed": "적금 금리",
+        "title": "[금상소]의미 되새기고 혜택도 챙기고⋯광복절 기념 고금리 예·적금 등...",
+        "link": "https://www.etoday.co.kr/news/view/2614712",
+        "publishedAt": "2026-08-14T21:00:00.000Z",
+        "coverage": 1
+      },
+      {
+        "seed": "적금 금리",
+        "title": "금리의 역습…혼합형 주담대 0.5%P 뛰었다",
+        "link": "https://n.news.naver.com/mnews/article/011/0004651919?sid=101",
+        "publishedAt": "2026-08-14T08:49:00.000Z",
         "coverage": 1
       }
     ],

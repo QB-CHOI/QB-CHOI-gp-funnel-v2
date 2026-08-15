@@ -1,8 +1,8 @@
 {
   "ok": true,
   "topic": "부동산",
-  "date": "2026-08-14",
-  "generatedAt": "2026-08-13T22:01:45.049Z",
+  "date": "2026-08-15",
+  "generatedAt": "2026-08-15T03:32:59.008Z",
   "brackets": [
     "10대",
     "20대",
@@ -68,8 +68,8 @@
         },
         "50대+": {
           "deltaPercent": 33,
-          "level": 79,
-          "recentAvg": 79.10155750000001
+          "level": 76,
+          "recentAvg": 75.84269
         }
       },
       "hottestAge": "50대+",
@@ -132,8 +132,8 @@
         },
         "50대+": {
           "deltaPercent": 0,
-          "level": 87,
-          "recentAvg": 86.7187475
+          "level": 83,
+          "recentAvg": 83.1460625
         }
       },
       "hottestAge": "20대",
@@ -164,8 +164,8 @@
         },
         "50대+": {
           "deltaPercent": 2,
-          "level": 53,
-          "recentAvg": 53.4667925
+          "level": 51,
+          "recentAvg": 51.264039999999994
         }
       },
       "hottestAge": "50대+",

@@ -1,8 +1,8 @@
 {
   "ok": true,
   "topic": "사주",
-  "date": "2026-08-14",
-  "generatedAt": "2026-08-13T22:00:45.907Z",
+  "date": "2026-08-15",
+  "generatedAt": "2026-08-15T03:32:29.815Z",
   "brackets": [
     "10대",
     "20대",
@@ -47,9 +47,9 @@
       "keyword": "결혼운",
       "byAge": {
         "10대": {
-          "deltaPercent": -48,
-          "level": 19,
-          "recentAvg": 19.230765
+          "deltaPercent": -28,
+          "level": 25,
+          "recentAvg": 24.999995000000002
         },
         "20대": {
           "deltaPercent": 13,
@@ -94,9 +94,9 @@
           "recentAvg": 13
         },
         "40대": {
-          "deltaPercent": -13,
-          "level": 26,
-          "recentAvg": 26.3157825
+          "deltaPercent": -33,
+          "level": 21,
+          "recentAvg": 21.052625
         },
         "50대+": {
           "deltaPercent": 9,

@@ -1,8 +1,8 @@
 {
   "ok": true,
   "topic": "건강운",
-  "date": "2026-08-14",
-  "generatedAt": "2026-08-13T22:02:45.758Z",
+  "date": "2026-08-15",
+  "generatedAt": "2026-08-15T03:33:27.001Z",
   "brackets": [
     "10대",
     "20대",
@@ -20,9 +20,9 @@
           "recentAvg": 24.999995
         },
         "20대": {
-          "deltaPercent": 20,
-          "level": 17,
-          "recentAvg": 17
+          "deltaPercent": 36,
+          "level": 19,
+          "recentAvg": 19
         },
         "30대": {
           "deltaPercent": 67,
