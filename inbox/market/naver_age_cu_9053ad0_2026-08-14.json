@@ -1,8 +1,8 @@
 {
   "ok": true,
   "topic": "건강운",
-  "date": "2026-08-13",
-  "generatedAt": "2026-08-12T16:46:58.479Z",
+  "date": "2026-08-14",
+  "generatedAt": "2026-08-13T22:02:45.758Z",
   "brackets": [
     "10대",
     "20대",
@@ -48,23 +48,23 @@
       "byAge": {
         "10대": {
           "deltaPercent": 30,
-          "level": 61,
-          "recentAvg": 61.111105
+          "level": 24,
+          "recentAvg": 24.44444
         },
         "20대": {
           "deltaPercent": 16,
-          "level": 81,
-          "recentAvg": 80.9294825
+          "level": 34,
+          "recentAvg": 34.21409
         },
         "30대": {
           "deltaPercent": 26,
-          "level": 82,
-          "recentAvg": 82.2619025
+          "level": 57,
+          "recentAvg": 56.63934
         },
         "40대": {
           "deltaPercent": 22,
-          "level": 97,
-          "recentAvg": 97.02380500000001
+          "level": 91,
+          "recentAvg": 91.23133999999999
         },
         "50대+": {
           "deltaPercent": 7,
@@ -74,6 +74,38 @@
       },
       "hottestAge": "10대",
       "hottestDelta": 30
+    },
+    {
+      "keyword": "체질",
+      "byAge": {
+        "10대": {
+          "deltaPercent": 3,
+          "level": 75,
+          "recentAvg": 75.2777725
+        },
+        "20대": {
+          "deltaPercent": -1,
+          "level": 85,
+          "recentAvg": 84.6883425
+        },
+        "30대": {
+          "deltaPercent": -2,
+          "level": 86,
+          "recentAvg": 85.7377
+        },
+        "40대": {
+          "deltaPercent": 10,
+          "level": 86,
+          "recentAvg": 86.194025
+        },
+        "50대+": {
+          "deltaPercent": 11,
+          "level": 45,
+          "recentAvg": 44.852935
+        }
+      },
+      "hottestAge": "50대+",
+      "hottestDelta": 11
     },
     {
       "keyword": "사주 건강",
@@ -170,6 +202,38 @@
       },
       "hottestAge": null,
       "hottestDelta": 0
+    },
+    {
+      "keyword": "무병장수",
+      "byAge": {
+        "10대": {
+          "deltaPercent": -5,
+          "level": 42,
+          "recentAvg": 41.9444375
+        },
+        "20대": {
+          "deltaPercent": -27,
+          "level": 20,
+          "recentAvg": 20.121945
+        },
+        "30대": {
+          "deltaPercent": -17,
+          "level": 26,
+          "recentAvg": 25.819665
+        },
+        "40대": {
+          "deltaPercent": -32,
+          "level": 37,
+          "recentAvg": 36.7537275
+        },
+        "50대+": {
+          "deltaPercent": -17,
+          "level": 42,
+          "recentAvg": 42.0955825
+        }
+      },
+      "hottestAge": "10대",
+      "hottestDelta": -5
     },
     {
       "keyword": "건강운",

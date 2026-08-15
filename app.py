@@ -31,7 +31,7 @@ from github_store import (
     load_experiments, save_experiment, delete_experiment, load_market_signals,
     load_webinar_schedule, save_webinar, delete_webinar,
     load_refresh_status,
-    load_data_sources, load_stage_timeline,
+    load_data_sources, load_stage_timeline, order_asof, complete_months,
     load_adspend, save_adspend, delete_adspend_row,
     load_content, save_content, delete_content_row,
     load_date_notes, save_date_note,
@@ -858,31 +858,45 @@ def tab_period():
         st.subheader("📈 다음 기간 전망 (런레이트)")
         st.caption("강의 사업은 **개강 시점에 매출이 몰려** 월별 편차가 큽니다. 특정 월을 콕 집어 "
                    "예측하기보다 **최근 3개월 평균(런레이트)** 과 **최근 변동폭**으로 전망합니다. "
-                   "당월(집계 진행 중)은 계산에서 제외합니다.")
+                   "당월과 **주문 명단이 중간에 끊긴 달(부분월)** 은 계산에서 제외합니다.")
         _p = perf.sort_values('month')
-        _pm = _p['month'].tolist()
-        _free = _p['free_signups'].tolist()
-        _rev = _p['revenue'].tolist()
-        # 런레이트(당월 제외 최근 3개월 평균)
-        _complete = _p[_p['month'] < date.today().strftime('%Y-%m')]
+        # 런레이트(부분월·당월 제외 최근 3개월 평균).
+        # 주문 명단이 달 중간에 끊기면 그 달은 실적이 아니라 '덜 담긴 달'이다.
+        _complete = complete_months(_p)
+        # 차트도 같은 기준으로 그린다 — KPI와 차트가 다른 달을 쓰면 숫자가 어긋난다.
+        _pm = _complete['month'].tolist()
+        _free = _complete['free_signups'].tolist()
+        _rev = _complete['revenue'].tolist()
+        _part = _p[~_p['month'].isin(_pm)]
+        if not _part.empty:
+            _pr = _part.iloc[-1]
+            _ao = order_asof()
+            st.caption(f"↳ 제외된 달: **{ganji.ym_label(_pr['month'], with_ganji=False)}** "
+                       f"(매출 {_pr['revenue']/1e8:.2f}억·유료 {int(_pr['paid_orders'])}건) — "
+                       + (f"주문 명단이 **{_ao}까지**만 담겨 있어 덜 채워진 값입니다. "
+                          if _ao else "아직 집계 중인 달입니다. ")
+                       + "실적 하락으로 읽으면 안 됩니다.")
         _rr_free = _complete['free_signups'].tail(3).mean() if len(_complete) >= 3 else 0
         _rr_rev = _complete['revenue'].tail(3).mean() if len(_complete) >= 3 else 0
         _kpi_band([
             ("🆓 무료 모객 런레이트", f"{_rr_free:,.0f}<small>명/월</small>", "최근 3개월 평균"),
-            ("💰 매출 런레이트", f"{_rr_rev/1e8:,.2f}<small>억/월</small>", "당월 제외 3개월"),
+            ("💰 매출 런레이트", f"{_rr_rev/1e8:,.2f}<small>억/월</small>", "완결된 3개월"),
             ("📅 연 환산 페이스", f"{_rr_rev*12/1e8:,.0f}<small>억/년</small>", "개강 일정에 따라 변동"),
         ])
         st.write("")
 
         fc1, fc2 = st.columns(2)
         with fc1:
+            # exclude_last=False: 이미 완결된 달만 넘겼으므로 또 자르면 안 된다
             _ff = runrate_forecast_chart(_pm, _free, '무료 모객', unit='명',
-                                         color='#7C9CBF', periods=2)
+                                         color='#7C9CBF', periods=2,
+                                         exclude_last=False)
             if _ff:
                 st.plotly_chart(_ff, width='stretch', key="prd_fc_free")
         with fc2:
             _fr = runrate_forecast_chart(_pm, _rev, '매출', color='#26A69A',
-                                         periods=2, as_eok=True)
+                                         periods=2, as_eok=True,
+                                         exclude_last=False)
             if _fr:
                 st.plotly_chart(_fr, width='stretch', key="prd_fc_rev")
         st.warning("⚠️ 전망은 **최근 추세 기준 참고치**입니다. 개강·프로모션이 있는 달은 크게 상회하고, "
@@ -1334,7 +1348,9 @@ def _generate_alerts() -> list:
     _pidx = perf.set_index('month') if not perf.empty else pd.DataFrame()
     if not perf.empty:
         _p = perf.sort_values('month')
-        _comp = _p[_p['month'] < this_m]
+        # 부분월(주문 스냅샷이 중간에 끊긴 달)을 '완료월'로 보면 매출이 폭락한 것처럼
+        # 보여 없는 문제를 경고한다 — 실제로 2026-07이 그 상태였다.
+        _comp = complete_months(_p)
         if len(_comp) >= 4:
             _last = _comp.iloc[-1]
             _rr = _comp['revenue'].iloc[-4:-1].mean()
@@ -1343,6 +1359,19 @@ def _generate_alerts() -> list:
                                'msg': f"최근 완료월({ganji.ym_label(_last['month'], with_ganji=False)}) 매출 **{_last['revenue']/1e8:.2f}억**이 "
                                       f"직전 3개월 평균({_rr/1e8:.2f}억)의 60% 미만입니다. "
                                       "개강 공백인지 실적 저하인지 확인하세요."})
+
+    # 2-1) 주문 명단이 오래됨 — 매출·전환·고객·전망이 통째로 옛날 값이 된다.
+    # 다른 데이터와 달리 이건 '조금 오래됨'이 아니라 '최근 실적이 아예 안 보임'이다.
+    _ao_al = order_asof()
+    if _ao_al:
+        _gap = (today - _ao_al).days
+        if _gap >= 14:
+            _sev = 'critical' if _gap >= 30 else 'warning'
+            alerts.append({'sev': _sev, 'title': '주문 명단 갱신 필요',
+                           'msg': f"주문 데이터가 **{_ao_al}까지**입니다(**{_gap}일 경과**). "
+                                  f"{ganji.ym_label(_ao_al.strftime('%Y-%m'), with_ganji=False)} 이후 "
+                                  "매출·유료 전환·고객·지역 분석이 비어 있습니다. "
+                                  "쇼핑몰에서 최신 주문 명단을 내려받아 갱신하세요."})
 
     # 3) 목표 진행 지연 (이번 달)
     tgt = load_targets()
@@ -3847,8 +3876,20 @@ def tab_experiments():
             st.info("월별 성과 데이터가 없어 리포트를 만들 수 없습니다.")
         else:
             _ms = sorted(perf['month'].astype(str).unique())[::-1]
-            _msel2 = st.selectbox("보고할 달", _ms, key="rep_month",
-                                  format_func=lambda m: ganji.ym_label(m, with_ganji=False))
+            # 부분월(주문 명단이 중간에 끊긴 달)이 기본 선택되면 덜 채워진 매출이
+            # 그대로 대표 보고서에 올라간다 — 완결된 달을 기본값으로 둔다.
+            _done = set(complete_months(perf)['month'].astype(str))
+            _dflt = next((i for i, m in enumerate(_ms) if m in _done), 0)
+            _msel2 = st.selectbox(
+                "보고할 달", _ms, index=_dflt, key="rep_month",
+                format_func=lambda m: ganji.ym_label(m, with_ganji=False)
+                + ("" if m in _done else "  ⚠️ 부분 집계"))
+            if _msel2 not in _done:
+                _ao2 = order_asof()
+                st.warning(f"⚠️ **{ganji.ym_label(_msel2, with_ganji=False)}은 아직 덜 채워진 달**입니다"
+                           + (f" — 주문 명단이 {_ao2}까지만 담겨 있습니다. " if _ao2 else ". ")
+                           + "이대로 보고하면 실적이 실제보다 낮게 나갑니다. "
+                           "최신 주문 명단을 받아 갱신한 뒤 보고하세요.")
             _cur = perf[perf['month'].astype(str) == _msel2]
             _i = _ms.index(_msel2)
             _prev_m = _ms[_i + 1] if _i + 1 < len(_ms) else None
@@ -4769,6 +4810,14 @@ def tab_marketing():
         st.caption(f"주문 데이터 기반 월별 성과 ({ganji.ym_label(perf['month'].min(), with_ganji=False)} ~ "
                    f"{ganji.ym_label(perf['month'].max(), with_ganji=False)}, "
                    f"{len(perf)}개월). 개인정보 없는 집계.")
+        _done_ov = set(complete_months(perf)['month'].astype(str))
+        _part_ov = [m for m in perf['month'].astype(str) if m not in _done_ov]
+        if _part_ov:
+            _ao_ov = order_asof()
+            st.caption(f"⚠️ 마지막 막대 **{ganji.ym_label(_part_ov[-1], with_ganji=False)}**은 "
+                       + (f"주문 명단이 **{_ao_ov}까지**만 담긴 부분 집계입니다 — "
+                          if _ao_ov else "아직 집계 중입니다 — ")
+                       + "낮아 보이는 건 실적 하락이 아니라 **덜 담긴 데이터**입니다.")
         _tot_rev = int(perf['revenue'].sum())
         _tot_free = int(perf['free_signups'].sum())
         _tot_paid = int(perf['paid_orders'].sum())
@@ -6619,11 +6668,16 @@ def tab_data():
         _stale = 0
         for _, r in _ds.iterrows():
             _days, _disp = _asof_days(r['as_of'])
+            # 주문 명단은 매일 매출이 쌓이는 데이터라 45일 기준이 너무 느슨하다.
+            # 한 달만 밀려도 '마지막 달이 통째로 부분월'이 되어 매출·전환·전망이
+            # 전부 낮게 나온다(실제로 27일 밀린 채 🟢 최신으로 표시되고 있었다).
+            _live = '강의별_리스트' in str(r['source'])
+            _g, _y = (10, 30) if _live else (45, 120)
             if _days is None:
                 _badge, _col = "—", "#8A93A3"
-            elif _days <= 45:
+            elif _days <= _g:
                 _badge, _col = "🟢 최신", "#2E7D5B"
-            elif _days <= 120:
+            elif _days <= _y:
                 _badge, _col = "🟡 스냅샷", "#B77A1B"
             else:
                 _badge, _col = "🔴 갱신 권장", "#BC4A38"

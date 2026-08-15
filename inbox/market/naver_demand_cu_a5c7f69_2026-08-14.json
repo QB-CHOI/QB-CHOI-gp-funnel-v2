@@ -1,0 +1,1314 @@
+{
+  "ok": true,
+  "topic": "재테크",
+  "date": "2026-08-14",
+  "generatedAt": "2026-08-13T22:00:12.385Z",
+  "seeds": [
+    "재테크",
+    "주식 투자",
+    "적금 금리",
+    "ETF",
+    "연금저축",
+    "배당주",
+    "절세",
+    "노후준비",
+    "종잣돈",
+    "파킹통장"
+  ],
+  "datalabConfigured": true,
+  "searchAdConfigured": true,
+  "trends": [
+    {
+      "keyword": "적금 금리",
+      "deltaPercent": 22,
+      "latestRatio": 6.45421,
+      "monthly": [
+        {
+          "period": "2025-07-01",
+          "ratio": 9.82696
+        },
+        {
+          "period": "2025-08-01",
+          "ratio": 9.87354
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 8.70709
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 8.2039
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 8.17601
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 9.42546
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 12.62239
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 7.31429
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 7.08894
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 5.70861
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 4.8669
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 5.35172
+        },
+        {
+          "period": "2026-07-01",
+          "ratio": 6.45421
+        }
+      ]
+    },
+    {
+      "keyword": "노후준비",
+      "deltaPercent": -1,
+      "latestRatio": 0.96181,
+      "monthly": [
+        {
+          "period": "2025-07-01",
+          "ratio": 1.54668
+        },
+        {
+          "period": "2025-08-01",
+          "ratio": 1.64031
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 1.65814
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 1.48507
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 1.43522
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 1.38982
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 1.61072
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 1.12758
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 1.06152
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 0.99748
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 0.92817
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 0.98978
+        },
+        {
+          "period": "2026-07-01",
+          "ratio": 0.96181
+        }
+      ]
+    },
+    {
+      "keyword": "파킹통장",
+      "deltaPercent": -2,
+      "latestRatio": 50.061,
+      "monthly": [
+        {
+          "period": "2025-07-01",
+          "ratio": 66.85973
+        },
+        {
+          "period": "2025-08-01",
+          "ratio": 69.62601
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 70.09415
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 78.54296
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 65.3179
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 73.27142
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 100
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 77.07369
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 71.9736
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 58.53899
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 49.50004
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 45.03832
+        },
+        {
+          "period": "2026-07-01",
+          "ratio": 50.061
+        }
+      ]
+    },
+    {
+      "keyword": "종잣돈",
+      "deltaPercent": -18,
+      "latestRatio": 0.30885,
+      "monthly": [
+        {
+          "period": "2025-07-01",
+          "ratio": 0.50421
+        },
+        {
+          "period": "2025-08-01",
+          "ratio": 0.46327
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 0.50786
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 0.54109
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 0.52123
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 0.48394
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 0.5642
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 0.47016
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 0.37897
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 0.37815
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 0.36073
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 0.38545
+        },
+        {
+          "period": "2026-07-01",
+          "ratio": 0.30885
+        }
+      ]
+    },
+    {
+      "keyword": "재테크",
+      "deltaPercent": -19,
+      "latestRatio": 2.51595,
+      "monthly": [
+        {
+          "period": "2025-07-01",
+          "ratio": 4.79375
+        },
+        {
+          "period": "2025-08-01",
+          "ratio": 4.99614
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 4.89511
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 5.42815
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 4.18789
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 4.37191
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 5.37763
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 3.75916
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 3.45082
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 3.0936
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 3.36651
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 2.86857
+        },
+        {
+          "period": "2026-07-01",
+          "ratio": 2.51595
+        }
+      ]
+    },
+    {
+      "keyword": "배당주",
+      "deltaPercent": -28,
+      "latestRatio": 3.86874,
+      "monthly": [
+        {
+          "period": "2025-07-01",
+          "ratio": 10.40487
+        },
+        {
+          "period": "2025-08-01",
+          "ratio": 8.34586
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 8.41801
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 10.35704
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 10.12601
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 9.93146
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 8.88777
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 8.76252
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 6.69622
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 6.18715
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 5.398
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 4.57926
+        },
+        {
+          "period": "2026-07-01",
+          "ratio": 3.86874
+        }
+      ]
+    },
+    {
+      "keyword": "ETF",
+      "deltaPercent": -31,
+      "latestRatio": 54.1769,
+      "monthly": [
+        {
+          "period": "2025-07-01",
+          "ratio": 34.92414
+        },
+        {
+          "period": "2025-08-01",
+          "ratio": 35.85999
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 47.93885
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 69.88502
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 55.62447
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 50.16089
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 90.62931
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 85.53213
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 70.68048
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 60.68196
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 100
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 73.75014
+        },
+        {
+          "period": "2026-07-01",
+          "ratio": 54.1769
+        }
+      ]
+    },
+    {
+      "keyword": "연금저축",
+      "deltaPercent": -33,
+      "latestRatio": 11.56976,
+      "monthly": [
+        {
+          "period": "2025-07-01",
+          "ratio": 13.24203
+        },
+        {
+          "period": "2025-08-01",
+          "ratio": 16.27659
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 17.28165
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 21.256
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 19.37872
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 34.50394
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 39.32558
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 28.62967
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 19.05168
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 15.51655
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 20.83383
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 15.26725
+        },
+        {
+          "period": "2026-07-01",
+          "ratio": 11.56976
+        }
+      ]
+    },
+    {
+      "keyword": "절세",
+      "deltaPercent": -33,
+      "latestRatio": 0.39923,
+      "monthly": [
+        {
+          "period": "2025-07-01",
+          "ratio": 0.65742
+        },
+        {
+          "period": "2025-08-01",
+          "ratio": 0.6712
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 0.6712
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 0.74659
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 0.65661
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 0.75591
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 1.16487
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 0.98613
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 0.56946
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 0.56865
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 0.78915
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 0.42315
+        },
+        {
+          "period": "2026-07-01",
+          "ratio": 0.39923
+        }
+      ]
+    },
+    {
+      "keyword": "주식 투자",
+      "deltaPercent": -34,
+      "latestRatio": 2.07475,
+      "monthly": [
+        {
+          "period": "2025-07-01",
+          "ratio": 3.13296
+        },
+        {
+          "period": "2025-08-01",
+          "ratio": 3.45278
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 3.69093
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 4.36108
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 3.6929
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 3.56628
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 4.67304
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 3.86249
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 3.30714
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 2.9017
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 3.65485
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 2.88366
+        },
+        {
+          "period": "2026-07-01",
+          "ratio": 2.07475
+        }
+      ]
+    }
+  ],
+  "keywords": [
+    {
+      "keyword": "삼성전자주가",
+      "pcMonthly": 2343300,
+      "mobileMonthly": 32502400,
+      "totalMonthly": 34845700,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "SK하이닉스주가",
+      "pcMonthly": 1025200,
+      "mobileMonthly": 9051800,
+      "totalMonthly": 10077000,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "코스피지수",
+      "pcMonthly": 519700,
+      "mobileMonthly": 4930400,
+      "totalMonthly": 5450100,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "달러환율",
+      "pcMonthly": 620900,
+      "mobileMonthly": 3868000,
+      "totalMonthly": 4488900,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "나스닥선물",
+      "pcMonthly": 477100,
+      "mobileMonthly": 3416300,
+      "totalMonthly": 3893400,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "검색상위종목",
+      "pcMonthly": 17500,
+      "mobileMonthly": 2388800,
+      "totalMonthly": 2406300,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "현대차주가",
+      "pcMonthly": 167700,
+      "mobileMonthly": 2217000,
+      "totalMonthly": 2384700,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "코스닥",
+      "pcMonthly": 462300,
+      "mobileMonthly": 1874500,
+      "totalMonthly": 2336800,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "일본환율",
+      "pcMonthly": 171800,
+      "mobileMonthly": 1594600,
+      "totalMonthly": 1766400,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "주식시세",
+      "pcMonthly": 41900,
+      "mobileMonthly": 1477700,
+      "totalMonthly": 1519600,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "주가지수",
+      "pcMonthly": 76200,
+      "mobileMonthly": 1281000,
+      "totalMonthly": 1357200,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "증시",
+      "pcMonthly": 90300,
+      "mobileMonthly": 1132800,
+      "totalMonthly": 1223100,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "유로환율",
+      "pcMonthly": 183900,
+      "mobileMonthly": 736500,
+      "totalMonthly": 920400,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "종합주가지수",
+      "pcMonthly": 41800,
+      "mobileMonthly": 843600,
+      "totalMonthly": 885400,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "국내증시",
+      "pcMonthly": 46000,
+      "mobileMonthly": 821100,
+      "totalMonthly": 867100,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "테슬라주가",
+      "pcMonthly": 56000,
+      "mobileMonthly": 680800,
+      "totalMonthly": 736800,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "주요증시",
+      "pcMonthly": 12100,
+      "mobileMonthly": 709200,
+      "totalMonthly": 721300,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "카카오주가",
+      "pcMonthly": 40700,
+      "mobileMonthly": 665500,
+      "totalMonthly": 706200,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "셀트리온주가",
+      "pcMonthly": 30700,
+      "mobileMonthly": 649700,
+      "totalMonthly": 680400,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "중국환율",
+      "pcMonthly": 103500,
+      "mobileMonthly": 568700,
+      "totalMonthly": 672200,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "증권",
+      "pcMonthly": 27400,
+      "mobileMonthly": 558000,
+      "totalMonthly": 585400,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "뉴욕증시",
+      "pcMonthly": 16400,
+      "mobileMonthly": 508800,
+      "totalMonthly": 525200,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "코스닥지수",
+      "pcMonthly": 50900,
+      "mobileMonthly": 389200,
+      "totalMonthly": 440100,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "하나카드",
+      "pcMonthly": 283400,
+      "mobileMonthly": 110600,
+      "totalMonthly": 394000,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "삼성주가",
+      "pcMonthly": 16700,
+      "mobileMonthly": 308400,
+      "totalMonthly": 325100,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "KOSPI",
+      "pcMonthly": 251100,
+      "mobileMonthly": 44100,
+      "totalMonthly": 295200,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "코덱스200",
+      "pcMonthly": 35700,
+      "mobileMonthly": 256100,
+      "totalMonthly": 291800,
+      "competition": "낮음",
+      "isSeed": false
+    },
+    {
+      "keyword": "퇴직금계산기",
+      "pcMonthly": 87700,
+      "mobileMonthly": 201000,
+      "totalMonthly": 288700,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "국민연금",
+      "pcMonthly": 120500,
+      "mobileMonthly": 136400,
+      "totalMonthly": 256900,
+      "competition": "낮음",
+      "isSeed": false
+    },
+    {
+      "keyword": "오늘코스피지수",
+      "pcMonthly": 3650,
+      "mobileMonthly": 246600,
+      "totalMonthly": 250250,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "미국주식",
+      "pcMonthly": 9910,
+      "mobileMonthly": 236000,
+      "totalMonthly": 245910,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "SOXL",
+      "pcMonthly": 59700,
+      "mobileMonthly": 174700,
+      "totalMonthly": 234400,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "오늘주식시세",
+      "pcMonthly": 2220,
+      "mobileMonthly": 216700,
+      "totalMonthly": 218920,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "국내주식",
+      "pcMonthly": 10600,
+      "mobileMonthly": 201800,
+      "totalMonthly": 212400,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "적금계산기",
+      "pcMonthly": 46900,
+      "mobileMonthly": 164200,
+      "totalMonthly": 211100,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "ISA계좌",
+      "pcMonthly": 42800,
+      "mobileMonthly": 168200,
+      "totalMonthly": 211000,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "KODEX200",
+      "pcMonthly": 43900,
+      "mobileMonthly": 148500,
+      "totalMonthly": 192400,
+      "competition": "낮음",
+      "isSeed": false
+    },
+    {
+      "keyword": "삼성바이오로직스주가",
+      "pcMonthly": 10900,
+      "mobileMonthly": 165300,
+      "totalMonthly": 176200,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "나스닥100선물",
+      "pcMonthly": 23400,
+      "mobileMonthly": 151600,
+      "totalMonthly": 175000,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "오늘의주식시세",
+      "pcMonthly": 1600,
+      "mobileMonthly": 155600,
+      "totalMonthly": 157200,
+      "competition": "높음",
+      "isSeed": false
+    }
+  ],
+  "seedKeywords": [
+    {
+      "keyword": "ETF",
+      "pcMonthly": 38700,
+      "mobileMonthly": 102600,
+      "totalMonthly": 141300,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "파킹통장",
+      "pcMonthly": 38400,
+      "mobileMonthly": 98900,
+      "totalMonthly": 137300,
+      "competition": "중간",
+      "isSeed": true
+    },
+    {
+      "keyword": "연금저축",
+      "pcMonthly": 7430,
+      "mobileMonthly": 25100,
+      "totalMonthly": 32530,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "적금금리",
+      "pcMonthly": 5640,
+      "mobileMonthly": 16100,
+      "totalMonthly": 21740,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "배당주",
+      "pcMonthly": 2820,
+      "mobileMonthly": 7220,
+      "totalMonthly": 10040,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "재테크",
+      "pcMonthly": 3050,
+      "mobileMonthly": 6930,
+      "totalMonthly": 9980,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "주식투자",
+      "pcMonthly": 3460,
+      "mobileMonthly": 2550,
+      "totalMonthly": 6010,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "노후준비",
+      "pcMonthly": 940,
+      "mobileMonthly": 1470,
+      "totalMonthly": 2410,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "절세",
+      "pcMonthly": 320,
+      "mobileMonthly": 770,
+      "totalMonthly": 1090,
+      "competition": "낮음",
+      "isSeed": true
+    },
+    {
+      "keyword": "종잣돈",
+      "pcMonthly": 200,
+      "mobileMonthly": 680,
+      "totalMonthly": 880,
+      "competition": "낮음",
+      "isSeed": true
+    }
+  ],
+  "newDiscoveries": [
+    {
+      "keyword": "삼성전자주가",
+      "pcMonthly": 2343300,
+      "mobileMonthly": 32502400,
+      "totalMonthly": 34845700,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "SK하이닉스주가",
+      "pcMonthly": 1025200,
+      "mobileMonthly": 9051800,
+      "totalMonthly": 10077000,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "코스피지수",
+      "pcMonthly": 519700,
+      "mobileMonthly": 4930400,
+      "totalMonthly": 5450100,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "달러환율",
+      "pcMonthly": 620900,
+      "mobileMonthly": 3868000,
+      "totalMonthly": 4488900,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "나스닥선물",
+      "pcMonthly": 477100,
+      "mobileMonthly": 3416300,
+      "totalMonthly": 3893400,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "검색상위종목",
+      "pcMonthly": 17500,
+      "mobileMonthly": 2388800,
+      "totalMonthly": 2406300,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "현대차주가",
+      "pcMonthly": 167700,
+      "mobileMonthly": 2217000,
+      "totalMonthly": 2384700,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "코스닥",
+      "pcMonthly": 462300,
+      "mobileMonthly": 1874500,
+      "totalMonthly": 2336800,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "일본환율",
+      "pcMonthly": 171800,
+      "mobileMonthly": 1594600,
+      "totalMonthly": 1766400,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "주식시세",
+      "pcMonthly": 41900,
+      "mobileMonthly": 1477700,
+      "totalMonthly": 1519600,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "주가지수",
+      "pcMonthly": 76200,
+      "mobileMonthly": 1281000,
+      "totalMonthly": 1357200,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "증시",
+      "pcMonthly": 90300,
+      "mobileMonthly": 1132800,
+      "totalMonthly": 1223100,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "유로환율",
+      "pcMonthly": 183900,
+      "mobileMonthly": 736500,
+      "totalMonthly": 920400,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "종합주가지수",
+      "pcMonthly": 41800,
+      "mobileMonthly": 843600,
+      "totalMonthly": 885400,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "국내증시",
+      "pcMonthly": 46000,
+      "mobileMonthly": 821100,
+      "totalMonthly": 867100,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "테슬라주가",
+      "pcMonthly": 56000,
+      "mobileMonthly": 680800,
+      "totalMonthly": 736800,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "주요증시",
+      "pcMonthly": 12100,
+      "mobileMonthly": 709200,
+      "totalMonthly": 721300,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "카카오주가",
+      "pcMonthly": 40700,
+      "mobileMonthly": 665500,
+      "totalMonthly": 706200,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "셀트리온주가",
+      "pcMonthly": 30700,
+      "mobileMonthly": 649700,
+      "totalMonthly": 680400,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "중국환율",
+      "pcMonthly": 103500,
+      "mobileMonthly": 568700,
+      "totalMonthly": 672200,
+      "competition": "높음",
+      "isSeed": false
+    }
+  ],
+  "communityDemand": {
+    "enough": true,
+    "scanned": 1200,
+    "questionCount": 111,
+    "noiseFiltered": 1089,
+    "hotSeeds": [
+      {
+        "seed": "적금 금리",
+        "count": 26
+      },
+      {
+        "seed": "ETF",
+        "count": 23
+      },
+      {
+        "seed": "연금저축",
+        "count": 23
+      },
+      {
+        "seed": "노후준비",
+        "count": 11
+      },
+      {
+        "seed": "절세",
+        "count": 9
+      }
+    ],
+    "posts": [
+      {
+        "seed": "재테크",
+        "kind": "지식iN",
+        "title": "30대 초반, 청년미래적금 말고 또 다른 재테크 방법 있을까요....",
+        "link": "https://kin.naver.com/qna/detail.naver?dirId=40101&docId=494212185&answerNo=9"
+      },
+      {
+        "seed": "주식 투자",
+        "kind": "지식iN",
+        "title": "주식용어 같은데 이런거도 알려주나요?",
+        "link": "https://kin.naver.com/qna/detail.naver?dirId=40102&docId=492093060&answerNo=12"
+      },
+      {
+        "seed": "적금 금리",
+        "kind": "지식iN",
+        "title": "연 8.15% 예·적금 상품, 가입 조건이 까다롭지 않을까요?",
+        "link": "https://kin.naver.com/qna/detail.naver?dirId=40101&docId=494720384&answerNo=2"
+      },
+      {
+        "seed": "ETF",
+        "kind": "지식iN",
+        "title": "ETF 수익률 산정 방법 좀 알려주세요.",
+        "link": "https://kin.naver.com/qna/detail.naver?dirId=40102&docId=490737007&answerNo=5"
+      },
+      {
+        "seed": "연금저축",
+        "kind": "지식iN",
+        "title": "연금계좌 활용한 절세, 실제로 얼마나 도움이 될까요?",
+        "link": "https://kin.naver.com/qna/detail.naver?dirId=6100402&docId=493595777&answerNo=5"
+      },
+      {
+        "seed": "배당주",
+        "kind": "카페",
+        "title": "배당주 투자할 때, 보통주랑 우선주 중 뭘 사야 할까요?",
+        "link": "https://cafe.naver.com/sohwaktip/160"
+      },
+      {
+        "seed": "절세",
+        "kind": "지식iN",
+        "title": "증여세 면제한도 초과 시, 절세 전략으로 뭐가 좋을까요?",
+        "link": "https://kin.naver.com/qna/detail.naver?dirId=601&docId=492878781&answerNo=10"
+      },
+      {
+        "seed": "노후준비",
+        "kind": "지식iN",
+        "title": "신봉선처럼 노후 준비, 어떻게 시작하면 좋을까요?",
+        "link": "https://kin.naver.com/qna/detail.naver?dirId=2011606&docId=494194688&answerNo=3"
+      },
+      {
+        "seed": "재테크",
+        "kind": "지식iN",
+        "title": "직장인이 재테크 해야되는 이유?",
+        "link": "https://kin.naver.com/qna/detail.naver?dirId=40101&docId=371560857&answerNo=6"
+      },
+      {
+        "seed": "주식 투자",
+        "kind": "지식iN",
+        "title": "ETF 투자한다했을때 어떻게 하는게 이득인가요?",
+        "link": "https://kin.naver.com/qna/detail.naver?dirId=40102&docId=487585955&answerNo=8"
+      },
+      {
+        "seed": "적금 금리",
+        "kind": "지식iN",
+        "title": "농협은행 예·적금 상품, 장기적으로 유지할 가치가 있을까....",
+        "link": "https://kin.naver.com/qna/detail.naver?dirId=51002&docId=494720389&answerNo=1"
+      },
+      {
+        "seed": "ETF",
+        "kind": "지식iN",
+        "title": "etf 노후대비?",
+        "link": "https://kin.naver.com/qna/detail.naver?dirId=40102&docId=494720351&answerNo=9"
+      }
+    ]
+  },
+  "newsSignals": {
+    "scanned": 3,
+    "issueCount": 3,
+    "articles": [
+      {
+        "seed": "적금 금리",
+        "title": "전북은행, 최고 연 4.50% 금리…'현대자동차XJB 특판적금' 출시",
+        "link": "https://daily.hankooki.com/news/articleView.html?idxno=1395840",
+        "publishedAt": "2026-08-13T10:32:00.000Z",
+        "coverage": 1
+      },
+      {
+        "seed": "적금 금리",
+        "title": "NH농협은행 '파격 적금' 출시 ...\"최고 연 8.15% 금리\"",
+        "link": "https://www.polinews.co.kr/news/articleView.html?idxno=740110",
+        "publishedAt": "2026-08-13T09:03:00.000Z",
+        "coverage": 1
+      },
+      {
+        "seed": "적금 금리",
+        "title": "첫 거래·복귀고객 年9% 이자 … 신한銀 고금리 적금 특판 출시",
+        "link": "https://n.news.naver.com/mnews/article/009/0005720823?sid=101",
+        "publishedAt": "2026-08-13T08:48:00.000Z",
+        "coverage": 1
+      }
+    ],
+    "enough": true
+  },
+  "notes": [],
+  "limitations": [
+    "검색량은 네이버 검색 기준이며 유튜브 내 검색량과 다를 수 있습니다.",
+    "데이터랩 트렌드는 절대 검색량이 아니라 기간 내 상대 비율(0~100)입니다.",
+    "월간 검색수 10 미만은 네이버가 '< 10'으로만 제공해 5로 집계합니다."
+  ]
+}

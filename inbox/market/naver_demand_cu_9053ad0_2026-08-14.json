@@ -1,0 +1,1171 @@
+{
+  "ok": true,
+  "topic": "건강운",
+  "date": "2026-08-14",
+  "generatedAt": "2026-08-13T22:02:42.122Z",
+  "seeds": [
+    "건강운",
+    "건강 운세",
+    "사주 건강",
+    "건강 타로",
+    "질병운",
+    "사상체질",
+    "체질",
+    "무병장수",
+    "수명",
+    "건강검진"
+  ],
+  "datalabConfigured": true,
+  "searchAdConfigured": true,
+  "trends": [
+    {
+      "keyword": "사주 건강",
+      "deltaPercent": 55,
+      "latestRatio": 4.43864,
+      "monthly": [
+        {
+          "period": "2025-07-01",
+          "ratio": 15.40469
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 2.87206
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 4.43864
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 8.61618
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 3.13315
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 2.61096
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 2.87206
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 4.43864
+        }
+      ]
+    },
+    {
+      "keyword": "사상체질",
+      "deltaPercent": 14,
+      "latestRatio": 1.62637,
+      "monthly": [
+        {
+          "period": "2025-07-01",
+          "ratio": 1.87377
+        },
+        {
+          "period": "2025-08-01",
+          "ratio": 1.95919
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 1.69176
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 1.50561
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 1.41196
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 1.36012
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 1.41726
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 1.16396
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 1.36189
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 1.4043
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 1.47557
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 1.40312
+        },
+        {
+          "period": "2026-07-01",
+          "ratio": 1.62637
+        }
+      ]
+    },
+    {
+      "keyword": "건강검진",
+      "deltaPercent": 6,
+      "latestRatio": 37.81956,
+      "monthly": [
+        {
+          "period": "2025-07-01",
+          "ratio": 57.04919
+        },
+        {
+          "period": "2025-08-01",
+          "ratio": 55.00282
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 59.13974
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 61.75396
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 80.10591
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 100
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 48.27878
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 37.82662
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 42.24629
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 36.90652
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 34.41188
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 35.82561
+        },
+        {
+          "period": "2026-07-01",
+          "ratio": 37.81956
+        }
+      ]
+    },
+    {
+      "keyword": "건강 운세",
+      "deltaPercent": 4,
+      "latestRatio": 57.44125,
+      "monthly": [
+        {
+          "period": "2025-07-01",
+          "ratio": 81.98433
+        },
+        {
+          "period": "2025-08-01",
+          "ratio": 70.23498
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 82.24543
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 84.85639
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 100
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 92.95039
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 89.03394
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 72.06266
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 69.71279
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 54.56919
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 54.56919
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 56.91906
+        },
+        {
+          "period": "2026-07-01",
+          "ratio": 57.44125
+        }
+      ]
+    },
+    {
+      "keyword": "건강 타로",
+      "deltaPercent": 0,
+      "latestRatio": 1.30548,
+      "monthly": [
+        {
+          "period": "2025-12-01",
+          "ratio": 1.30548
+        }
+      ]
+    },
+    {
+      "keyword": "질병운",
+      "deltaPercent": 0,
+      "latestRatio": 0,
+      "monthly": []
+    },
+    {
+      "keyword": "체질",
+      "deltaPercent": -6,
+      "latestRatio": 2.40039,
+      "monthly": [
+        {
+          "period": "2025-07-01",
+          "ratio": 3.86654
+        },
+        {
+          "period": "2025-08-01",
+          "ratio": 3.73047
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 3.4972
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 3.36584
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 2.92994
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 2.87163
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 2.98532
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 2.46695
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 2.83452
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 2.62953
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 2.66251
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 2.34207
+        },
+        {
+          "period": "2026-07-01",
+          "ratio": 2.40039
+        }
+      ]
+    },
+    {
+      "keyword": "수명",
+      "deltaPercent": -17,
+      "latestRatio": 1.0326,
+      "monthly": [
+        {
+          "period": "2025-07-01",
+          "ratio": 1.77363
+        },
+        {
+          "period": "2025-08-01",
+          "ratio": 2.03341
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 2.05284
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 1.68174
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 1.59456
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 1.43905
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 1.43434
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 1.22994
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 1.38368
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 1.35364
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 1.32536
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 1.05028
+        },
+        {
+          "period": "2026-07-01",
+          "ratio": 1.0326
+        }
+      ]
+    },
+    {
+      "keyword": "무병장수",
+      "deltaPercent": -19,
+      "latestRatio": 0.93718,
+      "monthly": [
+        {
+          "period": "2025-07-01",
+          "ratio": 1.77835
+        },
+        {
+          "period": "2025-08-01",
+          "ratio": 1.657
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 1.78188
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 1.59868
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 1.41019
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 1.59162
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 1.69411
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 1.46085
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 1.41019
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 1.00551
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 1.39487
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 1.05793
+        },
+        {
+          "period": "2026-07-01",
+          "ratio": 0.93718
+        }
+      ]
+    },
+    {
+      "keyword": "건강운",
+      "deltaPercent": -33,
+      "latestRatio": 38.64229,
+      "monthly": [
+        {
+          "period": "2025-07-01",
+          "ratio": 93.47258
+        },
+        {
+          "period": "2025-08-01",
+          "ratio": 82.50652
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 73.62924
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 77.54569
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 87.20626
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 92.68929
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 79.11227
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 72.58485
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 63.44647
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 62.66318
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 57.44125
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 53.2637
+        },
+        {
+          "period": "2026-07-01",
+          "ratio": 38.64229
+        }
+      ]
+    }
+  ],
+  "keywords": [
+    {
+      "keyword": "운세",
+      "pcMonthly": 144500,
+      "mobileMonthly": 1631000,
+      "totalMonthly": 1775500,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "이비인후과",
+      "pcMonthly": 31300,
+      "mobileMonthly": 400400,
+      "totalMonthly": 431700,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "내과",
+      "pcMonthly": 23400,
+      "mobileMonthly": 339800,
+      "totalMonthly": 363200,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "산부인과",
+      "pcMonthly": 9600,
+      "mobileMonthly": 209900,
+      "totalMonthly": 219500,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "소아과",
+      "pcMonthly": 3100,
+      "mobileMonthly": 136800,
+      "totalMonthly": 139900,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "대상포진",
+      "pcMonthly": 15700,
+      "mobileMonthly": 117000,
+      "totalMonthly": 132700,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "병원",
+      "pcMonthly": 9490,
+      "mobileMonthly": 119800,
+      "totalMonthly": 129290,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "대상포진증상",
+      "pcMonthly": 6680,
+      "mobileMonthly": 100700,
+      "totalMonthly": 107380,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "사주",
+      "pcMonthly": 13000,
+      "mobileMonthly": 89300,
+      "totalMonthly": 102300,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "위고비",
+      "pcMonthly": 13300,
+      "mobileMonthly": 71100,
+      "totalMonthly": 84400,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "건강검진",
+      "pcMonthly": 15500,
+      "mobileMonthly": 52900,
+      "totalMonthly": 68400,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "갑상선암증상",
+      "pcMonthly": 4570,
+      "mobileMonthly": 55500,
+      "totalMonthly": 60070,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "당뇨초기증상",
+      "pcMonthly": 4580,
+      "mobileMonthly": 50300,
+      "totalMonthly": 54880,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "갑상선기능저하증",
+      "pcMonthly": 5510,
+      "mobileMonthly": 48000,
+      "totalMonthly": 53510,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "대장암초기증상",
+      "pcMonthly": 3280,
+      "mobileMonthly": 49500,
+      "totalMonthly": 52780,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "정신건강의학과",
+      "pcMonthly": 3800,
+      "mobileMonthly": 48300,
+      "totalMonthly": 52100,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "가정의학과",
+      "pcMonthly": 3210,
+      "mobileMonthly": 46100,
+      "totalMonthly": 49310,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "파킨슨병",
+      "pcMonthly": 5820,
+      "mobileMonthly": 41400,
+      "totalMonthly": 47220,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "응급실",
+      "pcMonthly": 2140,
+      "mobileMonthly": 42900,
+      "totalMonthly": 45040,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "대장내시경전음식",
+      "pcMonthly": 6180,
+      "mobileMonthly": 37500,
+      "totalMonthly": 43680,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "역류성식도염",
+      "pcMonthly": 3650,
+      "mobileMonthly": 38500,
+      "totalMonthly": 42150,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "왼쪽옆구리통증",
+      "pcMonthly": 2370,
+      "mobileMonthly": 38200,
+      "totalMonthly": 40570,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "인터넷사주",
+      "pcMonthly": 4420,
+      "mobileMonthly": 35800,
+      "totalMonthly": 40220,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "국가건강검진",
+      "pcMonthly": 8100,
+      "mobileMonthly": 32100,
+      "totalMonthly": 40200,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "외과",
+      "pcMonthly": 2940,
+      "mobileMonthly": 36900,
+      "totalMonthly": 39840,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "백일해예방접종",
+      "pcMonthly": 4120,
+      "mobileMonthly": 35500,
+      "totalMonthly": 39620,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "한식",
+      "pcMonthly": 2420,
+      "mobileMonthly": 34300,
+      "totalMonthly": 36720,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "통풍",
+      "pcMonthly": 5250,
+      "mobileMonthly": 30400,
+      "totalMonthly": 35650,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "과민성대장증후군",
+      "pcMonthly": 3490,
+      "mobileMonthly": 31700,
+      "totalMonthly": 35190,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "갑상선기능항진증",
+      "pcMonthly": 3330,
+      "mobileMonthly": 30600,
+      "totalMonthly": 33930,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "무료사주",
+      "pcMonthly": 4810,
+      "mobileMonthly": 26700,
+      "totalMonthly": 31510,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "대장내시경",
+      "pcMonthly": 3780,
+      "mobileMonthly": 27500,
+      "totalMonthly": 31280,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "공진단",
+      "pcMonthly": 4770,
+      "mobileMonthly": 25400,
+      "totalMonthly": 30170,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "장염",
+      "pcMonthly": 3420,
+      "mobileMonthly": 26400,
+      "totalMonthly": 29820,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "한방병원",
+      "pcMonthly": 3150,
+      "mobileMonthly": 24000,
+      "totalMonthly": 27150,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "두드러기",
+      "pcMonthly": 2700,
+      "mobileMonthly": 23000,
+      "totalMonthly": 25700,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "자궁경부암검사",
+      "pcMonthly": 2100,
+      "mobileMonthly": 23500,
+      "totalMonthly": 25600,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "심근경색",
+      "pcMonthly": 3760,
+      "mobileMonthly": 21200,
+      "totalMonthly": 24960,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "경옥고",
+      "pcMonthly": 3760,
+      "mobileMonthly": 20900,
+      "totalMonthly": 24660,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "노로바이러스",
+      "pcMonthly": 2820,
+      "mobileMonthly": 20900,
+      "totalMonthly": 23720,
+      "competition": "높음",
+      "isSeed": false
+    }
+  ],
+  "seedKeywords": [
+    {
+      "keyword": "건강검진",
+      "pcMonthly": 15500,
+      "mobileMonthly": 52900,
+      "totalMonthly": 68400,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "체질",
+      "pcMonthly": 630,
+      "mobileMonthly": 3560,
+      "totalMonthly": 4190,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "사상체질",
+      "pcMonthly": 490,
+      "mobileMonthly": 2440,
+      "totalMonthly": 2930,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "수명",
+      "pcMonthly": 450,
+      "mobileMonthly": 1350,
+      "totalMonthly": 1800,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "무병장수",
+      "pcMonthly": 260,
+      "mobileMonthly": 1510,
+      "totalMonthly": 1770,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "건강운",
+      "pcMonthly": 20,
+      "mobileMonthly": 200,
+      "totalMonthly": 220,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "건강운세",
+      "pcMonthly": 10,
+      "mobileMonthly": 180,
+      "totalMonthly": 190,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "사주건강",
+      "pcMonthly": 5,
+      "mobileMonthly": 40,
+      "totalMonthly": 45,
+      "competition": "낮음",
+      "isSeed": true
+    },
+    {
+      "keyword": "건강타로",
+      "pcMonthly": 5,
+      "mobileMonthly": 10,
+      "totalMonthly": 15,
+      "competition": "낮음",
+      "isSeed": true
+    },
+    {
+      "keyword": "질병운",
+      "pcMonthly": 5,
+      "mobileMonthly": 5,
+      "totalMonthly": 10,
+      "competition": "낮음",
+      "isSeed": true
+    }
+  ],
+  "newDiscoveries": [
+    {
+      "keyword": "운세",
+      "pcMonthly": 144500,
+      "mobileMonthly": 1631000,
+      "totalMonthly": 1775500,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "이비인후과",
+      "pcMonthly": 31300,
+      "mobileMonthly": 400400,
+      "totalMonthly": 431700,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "내과",
+      "pcMonthly": 23400,
+      "mobileMonthly": 339800,
+      "totalMonthly": 363200,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "산부인과",
+      "pcMonthly": 9600,
+      "mobileMonthly": 209900,
+      "totalMonthly": 219500,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "소아과",
+      "pcMonthly": 3100,
+      "mobileMonthly": 136800,
+      "totalMonthly": 139900,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "대상포진",
+      "pcMonthly": 15700,
+      "mobileMonthly": 117000,
+      "totalMonthly": 132700,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "병원",
+      "pcMonthly": 9490,
+      "mobileMonthly": 119800,
+      "totalMonthly": 129290,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "대상포진증상",
+      "pcMonthly": 6680,
+      "mobileMonthly": 100700,
+      "totalMonthly": 107380,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "사주",
+      "pcMonthly": 13000,
+      "mobileMonthly": 89300,
+      "totalMonthly": 102300,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "위고비",
+      "pcMonthly": 13300,
+      "mobileMonthly": 71100,
+      "totalMonthly": 84400,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "갑상선암증상",
+      "pcMonthly": 4570,
+      "mobileMonthly": 55500,
+      "totalMonthly": 60070,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "당뇨초기증상",
+      "pcMonthly": 4580,
+      "mobileMonthly": 50300,
+      "totalMonthly": 54880,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "갑상선기능저하증",
+      "pcMonthly": 5510,
+      "mobileMonthly": 48000,
+      "totalMonthly": 53510,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "대장암초기증상",
+      "pcMonthly": 3280,
+      "mobileMonthly": 49500,
+      "totalMonthly": 52780,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "정신건강의학과",
+      "pcMonthly": 3800,
+      "mobileMonthly": 48300,
+      "totalMonthly": 52100,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "가정의학과",
+      "pcMonthly": 3210,
+      "mobileMonthly": 46100,
+      "totalMonthly": 49310,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "파킨슨병",
+      "pcMonthly": 5820,
+      "mobileMonthly": 41400,
+      "totalMonthly": 47220,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "응급실",
+      "pcMonthly": 2140,
+      "mobileMonthly": 42900,
+      "totalMonthly": 45040,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "대장내시경전음식",
+      "pcMonthly": 6180,
+      "mobileMonthly": 37500,
+      "totalMonthly": 43680,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "역류성식도염",
+      "pcMonthly": 3650,
+      "mobileMonthly": 38500,
+      "totalMonthly": 42150,
+      "competition": "높음",
+      "isSeed": false
+    }
+  ],
+  "communityDemand": {
+    "enough": true,
+    "scanned": 1171,
+    "questionCount": 45,
+    "noiseFiltered": 1126,
+    "hotSeeds": [
+      {
+        "seed": "사주 건강",
+        "count": 16
+      },
+      {
+        "seed": "사상체질",
+        "count": 9
+      },
+      {
+        "seed": "체질",
+        "count": 6
+      },
+      {
+        "seed": "건강운",
+        "count": 5
+      },
+      {
+        "seed": "건강 타로",
+        "count": 3
+      }
+    ],
+    "posts": [
+      {
+        "seed": "건강운",
+        "kind": "카페",
+        "title": "올해 건강운이 궁금합니다",
+        "link": "https://cafe.naver.com/lovesaju/688116"
+      },
+      {
+        "seed": "건강 운세",
+        "kind": "카페",
+        "title": "2026 신년운세 바로가기, 새해 운세의 핵심 포인트는?",
+        "link": "https://cafe.naver.com/govern1004/5420"
+      },
+      {
+        "seed": "사주 건강",
+        "kind": "지식iN",
+        "title": "아기 출산택일 사주 괜찮나요?",
+        "link": "https://kin.naver.com/qna/detail.naver?dirId=31504&docId=494729789&answerNo=4"
+      },
+      {
+        "seed": "건강 타로",
+        "kind": "카페",
+        "title": "해바라기 타로 배경화면 효과 궁금하네요",
+        "link": "https://cafe.naver.com/besttarot/1378"
+      },
+      {
+        "seed": "질병운",
+        "kind": "카페",
+        "title": "솔라리턴 운세가 연애운, 질병운 둘 다 겹친다면??",
+        "link": "https://cafe.naver.com/astrologycommunity/28214"
+      },
+      {
+        "seed": "사상체질",
+        "kind": "지식iN",
+        "title": "사상한의원 갱년기 증상 치료 효과가 궁금합니다.",
+        "link": "https://kin.naver.com/qna/detail.naver?dirId=70308&docId=494717896&answerNo=1"
+      },
+      {
+        "seed": "체질",
+        "kind": "카페",
+        "title": "57세인데 항체가 안 생기는 체질... 대상포진 예방접종 꼭 맞아야 할까요?",
+        "link": "https://cafe.naver.com/alwayzfreezone/921703"
+      },
+      {
+        "seed": "무병장수",
+        "kind": "블로그",
+        "title": "발만 봐도 수명이 보인다? 무병장수하는 사람들의 발 특징 3가지와 ....",
+        "link": "https://blog.naver.com/yamsoonhealth/224377688387"
+      },
+      {
+        "seed": "건강운",
+        "kind": "카페",
+        "title": "종격사주 건강운도 보시나요",
+        "link": "https://cafe.naver.com/joonggopone/31524"
+      },
+      {
+        "seed": "사주 건강",
+        "kind": "지식iN",
+        "title": "사주궁금해요 제가 계묘인가 계수일주라는데 경금이라고하....",
+        "link": "https://kin.naver.com/qna/detail.naver?dirId=40602&docId=494731187&answerNo=1"
+      },
+      {
+        "seed": "질병운",
+        "kind": "블로그",
+        "title": "자미두수로 보는 50대 건강운와 질병운, 진짜 심근경색?!",
+        "link": "https://blog.naver.com/honeytarotssam/223582909354"
+      },
+      {
+        "seed": "사상체질",
+        "kind": "카페",
+        "title": "사상체질.특징 때문에 생활이 너무 힘든데 어떡하나요",
+        "link": "https://cafe.naver.com/yongchondown/159833"
+      }
+    ]
+  },
+  "newsSignals": {
+    "scanned": 0,
+    "issueCount": 0,
+    "articles": [],
+    "enough": false
+  },
+  "notes": [],
+  "limitations": [
+    "검색량은 네이버 검색 기준이며 유튜브 내 검색량과 다를 수 있습니다.",
+    "데이터랩 트렌드는 절대 검색량이 아니라 기간 내 상대 비율(0~100)입니다.",
+    "월간 검색수 10 미만은 네이버가 '< 10'으로만 제공해 5로 집계합니다."
+  ]
+}

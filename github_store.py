@@ -1148,6 +1148,44 @@ def load_data_sources() -> pd.DataFrame:
                      ['category', 'dataset', 'source', 'as_of', 'cadence', 'refresh'])
 
 
+@st.cache_data(ttl=600)
+def order_asof():
+    """주문 원본이 담고 있는 마지막 날짜 (없으면 None).
+
+    이 날짜가 '어느 달까지 완결됐나'의 기준이다. 오늘 날짜로 판정하면 안 된다 —
+    주문 명단은 사람이 쇼핑몰에서 내려받아 전달하는 스냅샷이라 며칠~몇 주 뒤처지고,
+    그동안 마지막 달은 '일부만 담긴 달'이 된다. 실제로 2026-07은 7/19까지만 담겨
+    매출이 6,744만원(6월 9.4억)으로 찍혔는데, 이걸 완결된 달로 보고 런레이트를
+    계산해 전망이 10% 낮게 나오고 있었다.
+    """
+    ds = load_data_sources()
+    if ds.empty:
+        return None
+    _r = ds[ds['source'].astype(str).str.contains('강의별_리스트', na=False)]
+    if _r.empty:
+        return None
+    try:
+        return pd.to_datetime(_r['as_of'].iloc[0]).date()
+    except (ValueError, TypeError):
+        return None
+
+
+def complete_months(df: pd.DataFrame, col: str = 'month') -> pd.DataFrame:
+    """분석용으로 쓸 수 있는 '완결된 달'만. (부분월·미래월 제외)
+
+    추이·평균·전망처럼 달끼리 비교하는 계산은 반드시 이걸 거쳐야 한다.
+    화면에 '보여주는' 것까지 지우지는 않는다 — 부분월도 사실이고, 숨기면
+    데이터가 사라진 것처럼 보인다. 대신 부분월임을 라벨로 밝힌다.
+    """
+    if df.empty or col not in df.columns:
+        return df
+    _cut = date.today().strftime('%Y-%m')          # 당월은 언제나 진행 중
+    _asof = order_asof()
+    if _asof:
+        _cut = min(_cut, _asof.strftime('%Y-%m'))  # 주문 스냅샷이 끊긴 달도 부분월
+    return df[df[col].astype(str) < _cut]
+
+
 @st.cache_data(ttl=3600)
 def load_webinar_conversion() -> pd.DataFrame:
     """후킹별 전환 (고유 모객·전환자·전환율·자사 전환·self 비중)."""

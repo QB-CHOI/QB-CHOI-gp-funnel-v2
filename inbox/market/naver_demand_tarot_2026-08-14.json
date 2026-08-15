@@ -1,8 +1,8 @@
 {
   "ok": true,
   "topic": "타로",
-  "date": "2026-08-13",
-  "generatedAt": "2026-08-12T16:43:46.533Z",
+  "date": "2026-08-14",
+  "generatedAt": "2026-08-13T22:01:11.729Z",
   "seeds": [
     "오늘의 타로",
     "이번주 타로",
@@ -438,321 +438,321 @@
   "keywords": [
     {
       "keyword": "오늘의운세",
-      "pcMonthly": 391600,
-      "mobileMonthly": 4919000,
-      "totalMonthly": 5310600,
+      "pcMonthly": 389300,
+      "mobileMonthly": 4904300,
+      "totalMonthly": 5293600,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "띠별운세",
-      "pcMonthly": 113800,
-      "mobileMonthly": 1240600,
-      "totalMonthly": 1354400,
+      "pcMonthly": 112900,
+      "mobileMonthly": 1239200,
+      "totalMonthly": 1352100,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "별자리운세",
-      "pcMonthly": 74900,
-      "mobileMonthly": 735900,
-      "totalMonthly": 810800,
+      "pcMonthly": 74200,
+      "mobileMonthly": 732900,
+      "totalMonthly": 807100,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "오늘운세",
-      "pcMonthly": 48200,
-      "mobileMonthly": 493100,
-      "totalMonthly": 541300,
+      "pcMonthly": 47900,
+      "mobileMonthly": 487500,
+      "totalMonthly": 535400,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "MBTI검사",
-      "pcMonthly": 41100,
-      "mobileMonthly": 493900,
-      "totalMonthly": 535000,
+      "pcMonthly": 30200,
+      "mobileMonthly": 322700,
+      "totalMonthly": 352900,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "사주",
-      "pcMonthly": 13100,
-      "mobileMonthly": 88900,
-      "totalMonthly": 102000,
+      "pcMonthly": 13000,
+      "mobileMonthly": 89300,
+      "totalMonthly": 102300,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "띠별오늘의운세",
-      "pcMonthly": 6250,
-      "mobileMonthly": 80000,
-      "totalMonthly": 86250,
+      "pcMonthly": 6180,
+      "mobileMonthly": 79900,
+      "totalMonthly": 86080,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "개띠운세",
-      "pcMonthly": 10500,
-      "mobileMonthly": 37800,
-      "totalMonthly": 48300,
+      "pcMonthly": 10400,
+      "mobileMonthly": 37000,
+      "totalMonthly": 47400,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "오늘의띠별운세",
       "pcMonthly": 3360,
-      "mobileMonthly": 44200,
-      "totalMonthly": 47560,
+      "mobileMonthly": 42700,
+      "totalMonthly": 46060,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "인터넷사주",
       "pcMonthly": 4420,
-      "mobileMonthly": 35700,
-      "totalMonthly": 40120,
+      "mobileMonthly": 35800,
+      "totalMonthly": 40220,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "무료사주",
-      "pcMonthly": 4790,
-      "mobileMonthly": 26800,
-      "totalMonthly": 31590,
+      "pcMonthly": 4810,
+      "mobileMonthly": 26700,
+      "totalMonthly": 31510,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "물병자리운세",
-      "pcMonthly": 6670,
-      "mobileMonthly": 18100,
-      "totalMonthly": 24770,
-      "competition": "높음",
-      "isSeed": false
-    },
-    {
-      "keyword": "오늘에운세",
-      "pcMonthly": 450,
-      "mobileMonthly": 21800,
-      "totalMonthly": 22250,
+      "pcMonthly": 6560,
+      "mobileMonthly": 17800,
+      "totalMonthly": 24360,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "사자자리운세",
       "pcMonthly": 6250,
-      "mobileMonthly": 15800,
-      "totalMonthly": 22050,
+      "mobileMonthly": 16000,
+      "totalMonthly": 22250,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "오늘에운세",
+      "pcMonthly": 460,
+      "mobileMonthly": 21200,
+      "totalMonthly": 21660,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "심리테스트",
-      "pcMonthly": 4240,
+      "pcMonthly": 4230,
       "mobileMonthly": 15600,
-      "totalMonthly": 19840,
+      "totalMonthly": 19830,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "내일의운세",
-      "pcMonthly": 1820,
-      "mobileMonthly": 18000,
-      "totalMonthly": 19820,
+      "pcMonthly": 1800,
+      "mobileMonthly": 17900,
+      "totalMonthly": 19700,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "천칭자리운세",
-      "pcMonthly": 5350,
-      "mobileMonthly": 11400,
-      "totalMonthly": 16750,
+      "pcMonthly": 5310,
+      "mobileMonthly": 11200,
+      "totalMonthly": 16510,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "타로카드",
+      "pcMonthly": 2140,
+      "mobileMonthly": 10400,
+      "totalMonthly": 12540,
       "competition": "중간",
       "isSeed": false
     },
     {
       "keyword": "연애",
-      "pcMonthly": 2050,
-      "mobileMonthly": 10700,
-      "totalMonthly": 12750,
+      "pcMonthly": 1900,
+      "mobileMonthly": 10000,
+      "totalMonthly": 11900,
       "competition": "높음",
-      "isSeed": false
-    },
-    {
-      "keyword": "타로카드",
-      "pcMonthly": 2200,
-      "mobileMonthly": 10400,
-      "totalMonthly": 12600,
-      "competition": "중간",
       "isSeed": false
     },
     {
       "keyword": "무료사주사이트",
-      "pcMonthly": 1630,
-      "mobileMonthly": 10000,
-      "totalMonthly": 11630,
-      "competition": "높음",
-      "isSeed": false
-    },
-    {
-      "keyword": "무료꿈해몽",
-      "pcMonthly": 890,
-      "mobileMonthly": 10600,
-      "totalMonthly": 11490,
+      "pcMonthly": 1670,
+      "mobileMonthly": 10100,
+      "totalMonthly": 11770,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "연애운",
-      "pcMonthly": 1170,
-      "mobileMonthly": 9420,
-      "totalMonthly": 10590,
+      "pcMonthly": 1180,
+      "mobileMonthly": 9380,
+      "totalMonthly": 10560,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "궁합",
-      "pcMonthly": 1750,
-      "mobileMonthly": 7620,
-      "totalMonthly": 9370,
-      "competition": "높음",
-      "isSeed": false
-    },
-    {
-      "keyword": "복",
-      "pcMonthly": 1250,
-      "mobileMonthly": 7720,
-      "totalMonthly": 8970,
+      "pcMonthly": 1760,
+      "mobileMonthly": 7920,
+      "totalMonthly": 9680,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "무료사주풀이",
-      "pcMonthly": 1300,
-      "mobileMonthly": 7580,
-      "totalMonthly": 8880,
+      "pcMonthly": 1310,
+      "mobileMonthly": 7650,
+      "totalMonthly": 8960,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "사주궁합",
+      "pcMonthly": 930,
+      "mobileMonthly": 7540,
+      "totalMonthly": 8470,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "복",
+      "pcMonthly": 1160,
+      "mobileMonthly": 7310,
+      "totalMonthly": 8470,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "무료궁합",
       "pcMonthly": 1150,
-      "mobileMonthly": 7340,
-      "totalMonthly": 8490,
-      "competition": "높음",
-      "isSeed": false
-    },
-    {
-      "keyword": "사주궁합",
-      "pcMonthly": 940,
-      "mobileMonthly": 7530,
-      "totalMonthly": 8470,
-      "competition": "높음",
-      "isSeed": false
-    },
-    {
-      "keyword": "통찰력",
-      "pcMonthly": 1140,
-      "mobileMonthly": 5520,
-      "totalMonthly": 6660,
+      "mobileMonthly": 7280,
+      "totalMonthly": 8430,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "전화사주",
-      "pcMonthly": 780,
-      "mobileMonthly": 5860,
-      "totalMonthly": 6640,
+      "pcMonthly": 770,
+      "mobileMonthly": 5850,
+      "totalMonthly": 6620,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "무료꿈해몽",
+      "pcMonthly": 490,
+      "mobileMonthly": 5970,
+      "totalMonthly": 6460,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "재회부적",
       "pcMonthly": 300,
-      "mobileMonthly": 6340,
-      "totalMonthly": 6640,
-      "competition": "높음",
-      "isSeed": false
-    },
-    {
-      "keyword": "상문살",
-      "pcMonthly": 590,
-      "mobileMonthly": 5460,
-      "totalMonthly": 6050,
+      "mobileMonthly": 5980,
+      "totalMonthly": 6280,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "무료타로",
-      "pcMonthly": 650,
-      "mobileMonthly": 5370,
-      "totalMonthly": 6020,
+      "pcMonthly": 640,
+      "mobileMonthly": 5110,
+      "totalMonthly": 5750,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "짝사랑",
-      "pcMonthly": 670,
-      "mobileMonthly": 4700,
-      "totalMonthly": 5370,
+      "pcMonthly": 640,
+      "mobileMonthly": 4670,
+      "totalMonthly": 5310,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "전화타로",
-      "pcMonthly": 750,
-      "mobileMonthly": 4440,
-      "totalMonthly": 5190,
+      "pcMonthly": 740,
+      "mobileMonthly": 4490,
+      "totalMonthly": 5230,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "교제",
-      "pcMonthly": 1050,
-      "mobileMonthly": 3690,
-      "totalMonthly": 4740,
+      "pcMonthly": 1070,
+      "mobileMonthly": 3720,
+      "totalMonthly": 4790,
       "competition": "낮음",
       "isSeed": false
     },
     {
       "keyword": "점성술",
-      "pcMonthly": 770,
+      "pcMonthly": 760,
       "mobileMonthly": 3530,
-      "totalMonthly": 4300,
+      "totalMonthly": 4290,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "이별",
       "pcMonthly": 680,
-      "mobileMonthly": 3620,
-      "totalMonthly": 4300,
+      "mobileMonthly": 3580,
+      "totalMonthly": 4260,
       "competition": "높음",
       "isSeed": false
     },
     {
-      "keyword": "심리",
-      "pcMonthly": 770,
-      "mobileMonthly": 3120,
-      "totalMonthly": 3890,
+      "keyword": "통찰력",
+      "pcMonthly": 690,
+      "mobileMonthly": 3140,
+      "totalMonthly": 3830,
       "competition": "높음",
-      "isSeed": false
-    },
-    {
-      "keyword": "미신",
-      "pcMonthly": 560,
-      "mobileMonthly": 3240,
-      "totalMonthly": 3800,
-      "competition": "중간",
       "isSeed": false
     },
     {
       "keyword": "상담",
-      "pcMonthly": 1060,
-      "mobileMonthly": 2610,
-      "totalMonthly": 3670,
+      "pcMonthly": 1010,
+      "mobileMonthly": 2590,
+      "totalMonthly": 3600,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "상문살",
+      "pcMonthly": 340,
+      "mobileMonthly": 3030,
+      "totalMonthly": 3370,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "타로배우기",
+      "pcMonthly": 530,
+      "mobileMonthly": 2840,
+      "totalMonthly": 3370,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "민화도안",
+      "pcMonthly": 530,
+      "mobileMonthly": 2580,
+      "totalMonthly": 3110,
       "competition": "높음",
       "isSeed": false
     }
@@ -761,73 +761,41 @@
     {
       "keyword": "오늘의타로",
       "pcMonthly": 270,
-      "mobileMonthly": 2200,
-      "totalMonthly": 2470,
+      "mobileMonthly": 2220,
+      "totalMonthly": 2490,
       "competition": "높음",
       "isSeed": true
     },
     {
       "keyword": "재회타로",
-      "pcMonthly": 260,
-      "mobileMonthly": 590,
+      "pcMonthly": 270,
+      "mobileMonthly": 580,
       "totalMonthly": 850,
-      "competition": "높음",
-      "isSeed": true
-    },
-    {
-      "keyword": "속마음타로",
-      "pcMonthly": 260,
-      "mobileMonthly": 380,
-      "totalMonthly": 640,
       "competition": "높음",
       "isSeed": true
     },
     {
       "keyword": "연애타로",
       "pcMonthly": 40,
-      "mobileMonthly": 450,
-      "totalMonthly": 490,
+      "mobileMonthly": 430,
+      "totalMonthly": 470,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "속마음타로",
+      "pcMonthly": 160,
+      "mobileMonthly": 230,
+      "totalMonthly": 390,
       "competition": "높음",
       "isSeed": true
     },
     {
       "keyword": "취업타로",
-      "pcMonthly": 40,
-      "mobileMonthly": 60,
-      "totalMonthly": 100,
+      "pcMonthly": 20,
+      "mobileMonthly": 40,
+      "totalMonthly": 60,
       "competition": "중간",
-      "isSeed": true
-    },
-    {
-      "keyword": "선택타로",
-      "pcMonthly": 5,
-      "mobileMonthly": 30,
-      "totalMonthly": 35,
-      "competition": "중간",
-      "isSeed": true
-    },
-    {
-      "keyword": "진로타로",
-      "pcMonthly": 5,
-      "mobileMonthly": 20,
-      "totalMonthly": 25,
-      "competition": "높음",
-      "isSeed": true
-    },
-    {
-      "keyword": "건강타로",
-      "pcMonthly": 5,
-      "mobileMonthly": 20,
-      "totalMonthly": 25,
-      "competition": "낮음",
-      "isSeed": true
-    },
-    {
-      "keyword": "금전타로",
-      "pcMonthly": 5,
-      "mobileMonthly": 10,
-      "totalMonthly": 15,
-      "competition": "높음",
       "isSeed": true
     },
     {
@@ -839,11 +807,43 @@
       "isSeed": true
     },
     {
+      "keyword": "건강타로",
+      "pcMonthly": 5,
+      "mobileMonthly": 10,
+      "totalMonthly": 15,
+      "competition": "낮음",
+      "isSeed": true
+    },
+    {
+      "keyword": "선택타로",
+      "pcMonthly": 5,
+      "mobileMonthly": 10,
+      "totalMonthly": 15,
+      "competition": "중간",
+      "isSeed": true
+    },
+    {
       "keyword": "이번주타로",
       "pcMonthly": 5,
       "mobileMonthly": 5,
       "totalMonthly": 10,
       "competition": "낮음",
+      "isSeed": true
+    },
+    {
+      "keyword": "진로타로",
+      "pcMonthly": 5,
+      "mobileMonthly": 5,
+      "totalMonthly": 10,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "금전타로",
+      "pcMonthly": 5,
+      "mobileMonthly": 5,
+      "totalMonthly": 10,
+      "competition": "높음",
       "isSeed": true
     },
     {
@@ -874,161 +874,161 @@
   "newDiscoveries": [
     {
       "keyword": "오늘의운세",
-      "pcMonthly": 391600,
-      "mobileMonthly": 4919000,
-      "totalMonthly": 5310600,
+      "pcMonthly": 389300,
+      "mobileMonthly": 4904300,
+      "totalMonthly": 5293600,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "띠별운세",
-      "pcMonthly": 113800,
-      "mobileMonthly": 1240600,
-      "totalMonthly": 1354400,
+      "pcMonthly": 112900,
+      "mobileMonthly": 1239200,
+      "totalMonthly": 1352100,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "별자리운세",
-      "pcMonthly": 74900,
-      "mobileMonthly": 735900,
-      "totalMonthly": 810800,
+      "pcMonthly": 74200,
+      "mobileMonthly": 732900,
+      "totalMonthly": 807100,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "오늘운세",
-      "pcMonthly": 48200,
-      "mobileMonthly": 493100,
-      "totalMonthly": 541300,
+      "pcMonthly": 47900,
+      "mobileMonthly": 487500,
+      "totalMonthly": 535400,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "MBTI검사",
-      "pcMonthly": 41100,
-      "mobileMonthly": 493900,
-      "totalMonthly": 535000,
+      "pcMonthly": 30200,
+      "mobileMonthly": 322700,
+      "totalMonthly": 352900,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "사주",
-      "pcMonthly": 13100,
-      "mobileMonthly": 88900,
-      "totalMonthly": 102000,
+      "pcMonthly": 13000,
+      "mobileMonthly": 89300,
+      "totalMonthly": 102300,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "띠별오늘의운세",
-      "pcMonthly": 6250,
-      "mobileMonthly": 80000,
-      "totalMonthly": 86250,
+      "pcMonthly": 6180,
+      "mobileMonthly": 79900,
+      "totalMonthly": 86080,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "개띠운세",
-      "pcMonthly": 10500,
-      "mobileMonthly": 37800,
-      "totalMonthly": 48300,
+      "pcMonthly": 10400,
+      "mobileMonthly": 37000,
+      "totalMonthly": 47400,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "오늘의띠별운세",
       "pcMonthly": 3360,
-      "mobileMonthly": 44200,
-      "totalMonthly": 47560,
+      "mobileMonthly": 42700,
+      "totalMonthly": 46060,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "인터넷사주",
       "pcMonthly": 4420,
-      "mobileMonthly": 35700,
-      "totalMonthly": 40120,
+      "mobileMonthly": 35800,
+      "totalMonthly": 40220,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "무료사주",
-      "pcMonthly": 4790,
-      "mobileMonthly": 26800,
-      "totalMonthly": 31590,
+      "pcMonthly": 4810,
+      "mobileMonthly": 26700,
+      "totalMonthly": 31510,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "물병자리운세",
-      "pcMonthly": 6670,
-      "mobileMonthly": 18100,
-      "totalMonthly": 24770,
-      "competition": "높음",
-      "isSeed": false
-    },
-    {
-      "keyword": "오늘에운세",
-      "pcMonthly": 450,
-      "mobileMonthly": 21800,
-      "totalMonthly": 22250,
+      "pcMonthly": 6560,
+      "mobileMonthly": 17800,
+      "totalMonthly": 24360,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "사자자리운세",
       "pcMonthly": 6250,
-      "mobileMonthly": 15800,
-      "totalMonthly": 22050,
+      "mobileMonthly": 16000,
+      "totalMonthly": 22250,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "오늘에운세",
+      "pcMonthly": 460,
+      "mobileMonthly": 21200,
+      "totalMonthly": 21660,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "심리테스트",
-      "pcMonthly": 4240,
+      "pcMonthly": 4230,
       "mobileMonthly": 15600,
-      "totalMonthly": 19840,
+      "totalMonthly": 19830,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "내일의운세",
-      "pcMonthly": 1820,
-      "mobileMonthly": 18000,
-      "totalMonthly": 19820,
+      "pcMonthly": 1800,
+      "mobileMonthly": 17900,
+      "totalMonthly": 19700,
       "competition": "높음",
       "isSeed": false
     },
     {
       "keyword": "천칭자리운세",
-      "pcMonthly": 5350,
-      "mobileMonthly": 11400,
-      "totalMonthly": 16750,
+      "pcMonthly": 5310,
+      "mobileMonthly": 11200,
+      "totalMonthly": 16510,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "타로카드",
+      "pcMonthly": 2140,
+      "mobileMonthly": 10400,
+      "totalMonthly": 12540,
       "competition": "중간",
       "isSeed": false
     },
     {
       "keyword": "연애",
-      "pcMonthly": 2050,
-      "mobileMonthly": 10700,
-      "totalMonthly": 12750,
+      "pcMonthly": 1900,
+      "mobileMonthly": 10000,
+      "totalMonthly": 11900,
       "competition": "높음",
       "isSeed": false
     },
     {
-      "keyword": "타로카드",
-      "pcMonthly": 2200,
-      "mobileMonthly": 10400,
-      "totalMonthly": 12600,
-      "competition": "중간",
-      "isSeed": false
-    },
-    {
       "keyword": "무료사주사이트",
-      "pcMonthly": 1630,
-      "mobileMonthly": 10000,
-      "totalMonthly": 11630,
+      "pcMonthly": 1670,
+      "mobileMonthly": 10100,
+      "totalMonthly": 11770,
       "competition": "높음",
       "isSeed": false
     }
@@ -1036,36 +1036,36 @@
   "communityDemand": {
     "enough": true,
     "scanned": 1200,
-    "questionCount": 131,
-    "noiseFiltered": 1069,
+    "questionCount": 111,
+    "noiseFiltered": 1089,
     "hotSeeds": [
-      {
-        "seed": "연애 타로",
-        "count": 24
-      },
-      {
-        "seed": "취업 타로",
-        "count": 24
-      },
       {
         "seed": "재회 타로",
         "count": 23
       },
       {
-        "seed": "속마음 타로",
-        "count": 21
+        "seed": "취업 타로",
+        "count": 20
       },
       {
         "seed": "재물 타로",
         "count": 14
+      },
+      {
+        "seed": "연애 타로",
+        "count": 13
+      },
+      {
+        "seed": "속마음 타로",
+        "count": 13
       }
     ],
     "posts": [
       {
         "seed": "오늘의 타로",
         "kind": "지식iN",
-        "title": "타로 카드 둘 중에 뭐 살까요?",
-        "link": "https://kin.naver.com/qna/detail.naver?dirId=31503&docId=494715210&answerNo=1"
+        "title": "타로 합격운 어때요?",
+        "link": "https://kin.naver.com/qna/detail.naver?dirId=31503&docId=494731211&answerNo=4"
       },
       {
         "seed": "이번주 타로",
@@ -1076,8 +1076,8 @@
       {
         "seed": "연애 타로",
         "kind": "지식iN",
-        "title": "좋아한다는 감정이 뭘까요? (고딩 연애 고민상담)",
-        "link": "https://kin.naver.com/qna/detail.naver?dirId=110307&docId=494700739&answerNo=2"
+        "title": "남자고 사주 어떤가요? 바람끼나 성격 연애적으로요",
+        "link": "https://kin.naver.com/qna/detail.naver?dirId=31501&docId=494728053&answerNo=4"
       },
       {
         "seed": "재회 타로",
@@ -1094,8 +1094,8 @@
       {
         "seed": "금전 타로",
         "kind": "지식iN",
-        "title": "타로카드 뜻이 뭘까요?",
-        "link": "https://kin.naver.com/qna/detail.naver?dirId=31503&docId=494653307&answerNo=2"
+        "title": "Ai 돌려서 타로 봐주는곳 사기인가요?",
+        "link": "https://kin.naver.com/qna/detail.naver?dirId=31503&docId=494721319&answerNo=3"
       },
       {
         "seed": "재물 타로",
@@ -1111,9 +1111,9 @@
       },
       {
         "seed": "오늘의 타로",
-        "kind": "카페",
-        "title": "타로 상담을 하면서 기분 좋았던 순간은 언제일까요~",
-        "link": "https://cafe.naver.com/sincelyh/118790"
+        "kind": "지식iN",
+        "title": "타로 자주 많이 보면 안 좋나요?",
+        "link": "https://kin.naver.com/qna/detail.naver?dirId=11080305&docId=494727075&answerNo=3"
       },
       {
         "seed": "이번주 타로",
@@ -1124,8 +1124,8 @@
       {
         "seed": "연애 타로",
         "kind": "지식iN",
-        "title": "연애 이별 고민",
-        "link": "https://kin.naver.com/qna/detail.naver?dirId=60215&docId=494700418&answerNo=4"
+        "title": "타로 볼 때 궁금점!",
+        "link": "https://kin.naver.com/qna/detail.naver?dirId=31503&docId=494687663&answerNo=11"
       },
       {
         "seed": "재회 타로",
