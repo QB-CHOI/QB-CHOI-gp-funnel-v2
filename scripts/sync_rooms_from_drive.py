@@ -55,10 +55,11 @@ PRODUCT_CODES = [
 ]
 
 CAMPAIGNS_COLS = ["room_num", "campaign_name", "product", "cohort", "start_date",
-                  "lecture_start_date", "end_date", "is_current", "memo", "target_count"]
+                  "lecture_start_date", "end_date", "is_current", "memo", "target_count",
+                  "status"]
 # 시트가 권위값인 컬럼. 나머지(end_date·memo·target_count)는 앱 쪽이 권위값이라 보존.
 SYNCED_COLS = ["campaign_name", "product", "cohort",
-               "start_date", "lecture_start_date", "is_current"]
+               "start_date", "lecture_start_date", "is_current", "status"]
 
 
 # rclone으로 원본을 직접 받아오기 위한 좌표.
@@ -131,6 +132,24 @@ def _iso(v):
         return pd.to_datetime(s).date().isoformat()
     except Exception:
         return ""
+
+
+def _status(v):
+    """'참여코드' 열 → 방 상태.
+
+    운영팀이 이 열을 참여코드 자리이자 상태 표시로 함께 쓴다.
+    '대기중'(웨비나 전 모집)·'웨비나종료'(끝남)·그 외는 실제 참여코드(운영 중).
+    개강일이 비어 있어도 '웨비나대기'면 아직 정해지지 않은 게 정상이라,
+    입력 누락 경고와 구분하기 위해 이 값을 함께 받아 둔다.
+    """
+    s = str(v or "").strip()
+    if not s or s == "nan":
+        return ""
+    if "대기" in s:
+        return "웨비나대기"
+    if "종료" in s:
+        return "웨비나종료"
+    return "모집중"
 
 
 def _product(name):
@@ -257,6 +276,8 @@ def parse_rooms(path):
             "start_date": _iso(r[cols["개설일"]]),
             "lecture_start_date": _iso(r[cols["강의 시작일"]]),
             "is_current": not deleted,
+            # 참여코드 열은 선택 — 없으면 빈 값으로 두고 기존 동작을 유지한다.
+            "status": _status(r[cols["참여코드"]]) if "참여코드" in cols else "",
         })
     return pd.DataFrame(rows).drop_duplicates(subset="room_num", keep="last")
 
@@ -267,6 +288,10 @@ def merge(sheet_df, current_df):
     out = current_df.copy()
     if out.empty:
         out = pd.DataFrame(columns=CAMPAIGNS_COLS)
+    # 컬럼이 늘어난 직후(status 신설 등)엔 기존 CSV에 그 열이 없다 — 빈 값으로 채운다.
+    for c in CAMPAIGNS_COLS:
+        if c not in out.columns:
+            out[c] = ""
     out["room_num"] = pd.to_numeric(out["room_num"], errors="coerce").astype("Int64")
 
     known = set(out["room_num"].dropna().astype(int))
@@ -277,7 +302,7 @@ def merge(sheet_df, current_df):
             for c in SYNCED_COLS:
                 old, new = out.at[idx, c], s[c]
                 # 시트가 비어 있으면 기존 값을 지우지 않는다(부분 입력 대비).
-                if c in ("start_date", "lecture_start_date") and not new:
+                if c in ("start_date", "lecture_start_date", "status") and not new:
                     continue
                 if c == "is_current":
                     old = str(old).upper() in ("TRUE", "1", "YES")

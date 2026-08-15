@@ -15,7 +15,7 @@ CAMPAIGNS_PATH = "data/campaigns.csv"
 MEMBERS_COLS   = ['date', 'room_num', 'room_name', 'members', 'prev_members', 'change']
 CAMPAIGNS_COLS = ['room_num', 'campaign_name', 'product', 'cohort',
                   'start_date', 'lecture_start_date', 'end_date',
-                  'is_current', 'memo', 'target_count']
+                  'is_current', 'memo', 'target_count', 'status']
 ROOMS_PATH          = "data/rooms.csv"
 ROOMS_COLS          = ['room_num', 'room_name']
 ARCHIVED_ROOMS_PATH = "data/rooms_archived.csv"
@@ -273,6 +273,10 @@ def load_campaigns() -> pd.DataFrame:
         return df
     df["room_num"]   = pd.to_numeric(df["room_num"], errors="coerce").astype("Int64")
     df["is_current"] = df["is_current"].astype(str).str.upper().isin(["TRUE", "1", "YES"])
+    # status는 나중에 생긴 열이라 동기화 전 CSV에는 없다 — 없으면 빈 값으로 둔다.
+    if "status" not in df.columns:
+        df["status"] = ""
+    df["status"] = df["status"].fillna("").astype(str).str.strip()
     return df
 
 
@@ -301,6 +305,7 @@ def save_campaign(room_num: int, campaign_name: str, product: str,
         "start_date": start_date, "lecture_start_date": lecture_start_date,
         "end_date": "", "is_current": True,
         "memo": memo, "target_count": int(target_count),
+        "status": "",          # 시트 동기화가 채운다(웨비나대기·웨비나종료·모집중)
     }])
     combined = pd.concat([df, new_row], ignore_index=True)
     _write_csv(CAMPAIGNS_PATH, combined, f"캠페인 등록: 채팅방 {room_num} — {campaign_name}")

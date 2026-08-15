@@ -182,6 +182,65 @@ def _parse_order_upload(_bytes: bytes):
     return summary, build_all(o)
 
 
+def _lecture_date_split(cmp_df):
+    """진행 중인 방 중 개강일이 빈 방을 (진짜 누락, 웨비나 대기)로 나눈다.
+
+    개강일은 웨비나가 끝나야 정해진다. 모집만 하고 있는 방(원본 시트 참여코드
+    '대기중')은 아직 값이 없는 게 정상인데, 예전에는 이것까지 '입력 누락'으로
+    경고해 사람이 할 수 있는 일이 없는 알림이 계속 떠 있었다.
+    시트 상태(status)를 함께 받아오므로 이제 둘을 구분한다.
+    """
+    empty = pd.DataFrame()
+    if cmp_df.empty or 'is_current' not in cmp_df.columns:
+        return empty, empty
+    cur = cmp_df[cmp_df['is_current'].astype(str).str.lower().isin(['true', '1', 'yes'])]
+    if cur.empty:
+        return empty, empty
+    nod = cur[cur['lecture_start_date'].isna() |
+              (cur['lecture_start_date'].astype(str).str.strip() == '')]
+    if nod.empty:
+        return empty, empty
+    if 'status' not in nod.columns:      # 동기화 전이면 예전처럼 전부 누락 취급
+        return nod, empty
+    _st = nod['status'].fillna('').astype(str)
+    return nod[_st != '웨비나대기'], nod[_st == '웨비나대기']
+
+
+def _name_list(df, limit=3):
+    """캠페인명 나열 — 넘치면 '외 N건'으로 접는다(건수와 이름 수가 어긋나지 않게)."""
+    names = df['campaign_name'].astype(str).tolist()
+    head = ', '.join(names[:limit])
+    return head + (f" 외 {len(names) - limit}건" if len(names) > limit else "")
+
+
+def _adspend_prorated(d1, d2):
+    """[d1,d2] 기간과 겹치는 **전사 월별 광고비**를 일할 배분해 합산.
+
+    반환: (금액, 입력이 있는 월, 입력이 없는 월).
+    방별 광고비 수기 입력은 계속 비어 있는데 전사 월별 광고비는 실제로 쌓여
+    있어서, '광고비 없음'이라고만 적히면 광고를 안 쓴 것처럼 읽힌다.
+    출처가 다르므로 화면에서 라벨을 구분해 쓴다(리포트 수치에는 섞지 않는다).
+    """
+    adm = load_ad_spend_monthly()
+    t1, t2 = pd.Timestamp(d1), pd.Timestamp(d2)
+    want = [str(p) for p in pd.period_range(t1.to_period('M'), t2.to_period('M'), freq='M')]
+    if adm.empty:
+        return 0, [], want
+    per_month = adm.groupby(adm['month'].astype(str))['spend'].sum()
+    total, have = 0.0, []
+    for m in want:
+        if m not in per_month.index:
+            continue
+        m_start = pd.Timestamp(m + '-01')
+        m_end   = m_start + pd.offsets.MonthEnd(0)
+        days = (min(m_end, t2) - max(m_start, t1)).days + 1
+        if days <= 0:
+            continue
+        total += float(per_month[m]) * days / m_end.day
+        have.append(m)
+    return int(round(total)), have, [m for m in want if m not in have]
+
+
 def _kpi_band(items):
     """리포트형 KPI 밴드 렌더. items: [(label, value_html, sub), ...].
     value_html는 <small> 등 HTML 허용. 카드 CSS(.gp-kpi)는 전역 정의."""
@@ -241,18 +300,16 @@ with st.sidebar:
             st.caption(f"🔥 연속 입력 **{_streak}일**")
 
     # 진행 중인데 개강일이 비어 있는 강의 — 개강 효과 분석에서 통째로 빠진다
-    _cmp_chk = load_campaigns()
-    if not _cmp_chk.empty and 'is_current' in _cmp_chk.columns:
-        _cur_chk = _cmp_chk[_cmp_chk['is_current'].astype(str).str.lower()
-                            .isin(['true', '1', 'yes'])]
-        _no_date = _cur_chk[_cur_chk['lecture_start_date'].isna() |
-                            (_cur_chk['lecture_start_date'].astype(str).str.strip() == '')]
-        if not _no_date.empty:
-            st.warning(
-                f"📅 개강일 미입력 **{len(_no_date)}건**\n\n"
-                + " · ".join(_no_date['campaign_name'].astype(str).head(3))
-                + "\n\n→ ⚙️ 채팅방 설정에서 입력하면 개강 효과 분석에 반영됩니다",
-                icon="⚠️")
+    _miss_ld, _wait_ld = _lecture_date_split(load_campaigns())
+    if not _miss_ld.empty:
+        st.warning(
+            f"📅 개강일 미입력 **{len(_miss_ld)}건**\n\n"
+            + _name_list(_miss_ld)
+            + "\n\n→ ⚙️ 채팅방 설정에서 입력하면 개강 효과 분석에 반영됩니다",
+            icon="⚠️")
+    if not _wait_ld.empty:
+        st.caption(f"🕗 개강 대기 **{len(_wait_ld)}개 방** — {_name_list(_wait_ld)} "
+                   "(웨비나 후 개강일이 자동으로 채워집니다)")
 
     st.divider()
     if st.button("🔄 데이터 새로고침", width='stretch',
@@ -1453,17 +1510,30 @@ def _generate_alerts() -> list:
 
     # 6) 진행 중인데 개강일이 비어 있는 강의
     #    개강일이 없으면 개강 효과·기간별 분석에서 그 기수가 통째로 빠진다.
-    _cmp = load_campaigns()
-    if not _cmp.empty and 'is_current' in _cmp.columns:
-        _cur = _cmp[_cmp['is_current'].astype(str).str.lower().isin(['true', '1', 'yes'])]
-        _nod = _cur[_cur['lecture_start_date'].isna() |
-                    (_cur['lecture_start_date'].astype(str).str.strip() == '')]
-        if not _nod.empty:
+    #    단 웨비나 전(모집만 하는 방)은 개강일이 없는 게 정상이라 제외한다.
+    _nod, _ = _lecture_date_split(load_campaigns())
+    if not _nod.empty:
+        alerts.append({
+            'sev': 'warning', 'title': '개강일 미입력',
+            'msg': f"진행 중인 강의 **{len(_nod)}건**({_name_list(_nod)})의 "
+                   "개강일이 비어 있습니다. 개강 효과·기간별 분석에서 제외되므로 "
+                   "**⚙️ 채팅방 설정**에서 입력하세요."})
+
+    # 7) 이번 달 광고비 미입력 — ROAS·CPL 판정이 통째로 지난달에 멈춘다.
+    #    광고는 지금 돌고 있는데 사이트는 그 사실을 모르는 상태가 된다.
+    _adm = load_ad_spend_monthly()
+    if not _adm.empty:
+        _mon = set(_adm['month'].astype(str))
+        if this_m not in _mon:
+            _last_m = max(_mon)
+            _gap_m = ((today.year - int(_last_m[:4])) * 12 +
+                      (today.month - int(_last_m[5:7])))
             alerts.append({
-                'sev': 'warning', 'title': '개강일 미입력',
-                'msg': f"진행 중인 강의 **{len(_nod)}건**({', '.join(_nod['campaign_name'].astype(str).head(3))})의 "
-                       "개강일이 비어 있습니다. 개강 효과·기간별 분석에서 제외되므로 "
-                       "**⚙️ 채팅방 설정**에서 입력하세요."})
+                'sev': 'warning' if _gap_m >= 2 else 'info', 'title': '이번 달 광고비 미입력',
+                'msg': f"월별 광고비가 **{ganji.ym_label(_last_m, with_ganji=False)}까지**입니다. "
+                       f"{ganji.ym_label(this_m, with_ganji=False)} 광고비가 없으면 ROAS·CPL 판정과 "
+                       "예산 조언이 지난달 기준으로 남습니다. "
+                       "**📢 마케팅 분석 → 월별 광고비**에서 이번 달 총액을 입력하세요."})
     return alerts
 
 
@@ -2787,7 +2857,47 @@ def tab_conversion():
 
     # ── 광고비 ROI 분석 ────────────────────────────────────────
     st.subheader("광고비 ROI 분석")
-    st.caption("채널별 광고비를 입력하면 ROAS·CPA를 자동 계산합니다.")
+
+    # 방별 광고비 수기 입력은 계속 비어 있는데, 통합시트에서 받은 **기수별 광고비**는
+    # 실제로 쌓여 있다. 입력만 기다리며 빈 화면을 두는 대신 지금 운영 중인 방이
+    # 속한 기수의 실적을 먼저 보여준다. 한 기수에 방이 여러 개인 경우가 있어
+    # (타로 4기 = 23·36번방) 기수 단위로 묶어 중복 합산을 막는다.
+    _ca = load_campaign_adspend()
+    if not _ca.empty and campaigns:
+        _cur_keys = {}
+        for _rn, _info in campaigns.items():
+            _k = (str(_info.get('product', '')), str(_info.get('cohort', '')))
+            _cur_keys.setdefault(_k, []).append(_rn)
+        _g = _ca.groupby(['product', 'cohort']).agg(
+            ad=('ad_spend', 'sum'), rev=('live_revenue', 'sum'),
+            live=('live_date', 'max')).reset_index()
+        _rows, _pending = [], []
+        for (_p, _c), _rns in sorted(_cur_keys.items()):
+            _room_lbl = ' · '.join(ROOMS.get(r, f"{r}번") for r in sorted(_rns))
+            _m = _g[(_g['product'] == _p) & (_g['cohort'] == _c)]
+            if _m.empty or int(_m['ad'].iloc[0]) == 0:
+                _pending.append(f"{_p} {_c}({_room_lbl})")
+                continue
+            _ad, _rev = int(_m['ad'].iloc[0]), int(_m['rev'].iloc[0])
+            _rows.append({
+                '강의': f"{_p} {_c}", '채팅방': _room_lbl,
+                '웨비나': str(pd.Timestamp(_m['live'].iloc[0]).date()),
+                '광고비': f"{_ad/1e4:,.0f}만원", '라이브 매출': f"{_rev/1e8:.2f}억",
+                'ROAS': f"{_rev/_ad:.1f}배" if _ad else '—',
+            })
+        if _rows:
+            _asof_ca = _dataset_asof('캠페인별 광고비')
+            st.markdown("**📊 진행 중인 방의 기수 광고 성과 (실데이터)**")
+            st.caption(f"통합시트의 **기수별 광고비·라이브 매출** 기준"
+                       + (f" (자료 기준 {_asof_ca})" if _asof_ca else "")
+                       + ". 같은 기수를 쓰는 방은 한 줄로 묶어 중복 합산을 막았습니다.")
+            st.dataframe(pd.DataFrame(_rows), hide_index=True, width='stretch')
+        if _pending:
+            st.caption("🕗 아직 웨비나 전이라 광고 실적이 없는 방: " + " · ".join(_pending))
+        st.divider()
+
+    st.caption("아래는 채팅방별 **일 단위 광고비**를 수기 입력해 CPM을 보는 보조 영역입니다. "
+               "입력한 방만 그래프에 나타납니다.")
 
     df_adspend = load_adspend()
 
@@ -4945,10 +5055,21 @@ def tab_marketing():
             st.caption("🎓 세로 점선 = 강의 모객 시작월 (개강 캠페인이 매출·유입에 미친 영향 확인용)")
 
         # 월별 광고비 입력
-        with st.expander("✏️ 월별 광고비 입력 — ROAS·CPA 산출용", expanded=(ad_m.empty)):
+        # 선택지를 주문 집계(perf)의 월로만 만들면, 주문 명단이 밀린 동안에는
+        # '이번 달'이 목록에 아예 없어 지금 집행 중인 광고비를 넣을 방법이 사라진다.
+        # 광고비는 주문과 무관하게 매달 나가므로 최근 12개월을 항상 함께 제공한다.
+        _this_m_str = date.today().strftime('%Y-%m')
+        _missing_this = _this_m_str not in set(ad_m['month'].astype(str)) if not ad_m.empty else True
+        with st.expander("✏️ 월별 광고비 입력 — ROAS·CPA 산출용",
+                         expanded=(ad_m.empty or _missing_this)):
             st.caption("광고 플랫폼(메타·구글 등)의 **월별 지출 총액**만 넣으면 전 기간 ROAS가 계산됩니다. "
                        "채널을 나눠 넣어도 됩니다.")
-            _months = perf['month'].tolist()
+            if _missing_this and not ad_m.empty:
+                st.warning(f"⚠️ {ganji.ym_label(_this_m_str, with_ganji=False)} 광고비가 아직 없습니다 — "
+                           "이번 달 ROAS·CPL 판정과 예산 조언이 지난달 기준으로 남습니다.")
+            _recent12 = [str(p) for p in pd.period_range(
+                end=pd.Timestamp(date.today()).to_period('M'), periods=12, freq='M')]
+            _months = sorted(set(perf['month'].astype(str)) | set(_recent12))
             with st.form("ad_spend_form"):
                 ac1, ac2, ac3 = st.columns([1.4, 1, 1.2])
                 with ac1:
@@ -6029,15 +6150,41 @@ def tab_report():
         f"{first_date} 기준" if len(period_dates) > 1 else "단일 날짜",
         delta_color="normal",
     )
-    k3.metric(
-        "광고비 집행",
-        f"{period_spend:,}원" if period_spend > 0 else "없음",
-        f"CPM {round(period_spend/diff):,}원/명" if period_spend > 0 and diff > 0 else None,
-    )
+    # 방별 광고비 수기 입력은 비어 있어도 전사 월별 광고비는 쌓여 있다.
+    # '없음'만 띄우면 광고를 안 돌린 것처럼 읽히므로 출처를 밝혀 대체 표시한다.
+    _co_spend, _co_have, _co_miss = (0, [], [])
+    if period_spend == 0:
+        _co_spend, _co_have, _co_miss = _adspend_prorated(first_date, last_date)
+    if period_spend > 0:
+        k3.metric(
+            "광고비 집행",
+            f"{period_spend:,}원",
+            f"CPM {round(period_spend/diff):,}원/명" if diff > 0 else None,
+        )
+    elif _co_spend > 0:
+        k3.metric(
+            "전사 광고비(기간 안분)",
+            f"{_co_spend:,}원",
+            f"인원 1명당 {round(_co_spend/diff):,}원" if diff > 0 else None,
+            delta_color="off",
+            help="방별 광고비 수기 입력이 없어 **월별 전사 광고비**를 일수로 나눠 배분한 값입니다. "
+                 "이 방들만의 광고비가 아니라 전 상품 합계라 참고용입니다.",
+        )
+    else:
+        k3.metric("광고비 집행", "미입력",
+                  help="📢 마케팅 분석 → ✏️ 월별 광고비 입력에서 총액을 넣으면 채워집니다.")
     k4.metric(
         "수강 전환율",
-        f"{conv_rate}%" if conv_rate > 0 else "데이터 없음",
+        f"{conv_rate}%" if conv_rate > 0 else "방별 입력 없음",
+        help=None if conv_rate > 0 else
+             "채팅방별 신청·수강확정 수기 입력 기준입니다. 전체 무료→유료 전환율은 "
+             "📋 전환 분석 탭에서 주문 실데이터로 보고 있습니다.",
     )
+    if _co_spend > 0 and _co_miss:
+        # 안분값이 일부 월만 덮으면 '광고비가 줄었다'로 오독된다 — 빠진 달을 밝힌다.
+        st.caption("※ 전사 광고비는 "
+                   + " · ".join(ganji.ym_label(m, with_ganji=False) for m in _co_miss)
+                   + " 미입력 — 그 기간은 0원으로 계산돼 실제보다 적게 보입니다.")
 
     # ── 전주/전월 비교 KPI ───────────────────────────────────────
     _period_len = (last_date - first_date).days if hasattr(last_date, '__sub__') else 0
