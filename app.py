@@ -3561,8 +3561,11 @@ def _webinar_baseline(product, camp_ad, base):
     return out
 
 
-def _webinar_advice(ev, pb_map, oh, base, camp_ad=None) -> list:
-    """예정된 웨비나 1건에 대한 모객 방안 추천 (근거 있는 항목만)."""
+def _webinar_advice(ev, pb_map, oh, base, camp_ad=None, others=None) -> list:
+    """예정된 웨비나 1건에 대한 모객 방안 추천 (근거 있는 항목만).
+
+    others: 다른 예정 회차들(같은 주에 몰린 회차를 감지해 역할을 나누기 위함).
+    """
     out = []
     prod = ev['product']
     d = ev['date'].date() if hasattr(ev['date'], 'date') else ev['date']
@@ -3575,6 +3578,32 @@ def _webinar_advice(ev, pb_map, oh, base, camp_ad=None) -> list:
         out.append(("🎣 후킹",
                     f"모객은 **{_vol['topic']}**({_vol['signups']:,}명 실적), "
                     f"마감은 **{_cv['topic']}**(전환 {_cv['conv']:.1f}%)로 이원화"))
+        # 이미 정해진 주제가 검증된 후킹과 다르면, 주제를 바꾸라는 게 아니라
+        # 광고 카피에서 그 각도를 빌려 쓰라고 알려준다.
+        _tp = str(ev.get('topic', '')).strip()
+        if _tp and _tp not in (_vol['topic'], _cv['topic']):
+            out.append(("🔗 주제 연결",
+                        f"등록 주제 **{_tp}**는 실적 데이터에 없는 새 각도입니다. "
+                        f"주제는 그대로 두되 광고 카피에는 검증된 **{_vol['topic']}** "
+                        f"각도(돈·투자 언어)를 섞어 클릭을 확보하고, 랜딩·마감 단계에서 "
+                        f"**{_cv['topic']}**의 표현으로 넘기세요. 새 후킹은 실적이 없으니 "
+                        "기존 후킹 소재와 **함께 돌려** 비교하는 편이 안전합니다."))
+
+    # ①-2 같은 주 연속 회차 — 같은 소재를 두 번 돌리면 서로 잠식한다
+    if others is not None and len(others):
+        _near = []
+        for _, _o in others.iterrows():
+            _od = _o['date'].date() if hasattr(_o['date'], 'date') else _o['date']
+            if _od != d and _o['product'] == prod and abs((_od - d).days) <= 3:
+                _near.append(_od)
+        if _near:
+            _wd = ['월', '화', '수', '목', '금', '토', '일']
+            out.append(("👥 같은 주 회차",
+                        f"{prod} 특강이 **{', '.join(f'{x.month}/{x.day}({_wd[x.weekday()]})' for x in sorted(_near))}"
+                        f"** 에도 있습니다. 같은 소재를 그대로 두 번 돌리면 같은 사람에게 "
+                        "중복 노출돼 예산만 나눠 씁니다. **회차별로 소재·타깃을 갈라** "
+                        "(예: 1회차=검증 후킹·광범위 타깃, 2회차=새 각도·리타깃) "
+                        "어느 쪽이 이기는지 이번에 확인해 두세요."))
 
     # ② 시기 — 그 날짜가 속한 명리월이 이 강의에 유리한가
     sm = ganji.saju_month_of(d)
@@ -3634,16 +3663,36 @@ def _webinar_advice(ev, pb_map, oh, base, camp_ad=None) -> list:
                     f"**약 {_tg*base[1]/1e4:,.0f}만원**이 필요합니다"))
 
     # ④ 준비 일정 (D-day)
+    #
+    # 예전엔 지난 단계를 그냥 지웠다. 그러면 D-5처럼 급한 시점에 남는 게
+    # "D-3 소재 교체 → D-1 리마인드"뿐이라, 가장 도움이 필요할 때 조언이
+    # 가장 빈약해졌다. 지난 단계는 지우지 말고 '안 했으면 지금 당장'으로
+    # 바꿔 보여주고, 남은 날에 맞춰 할 일을 압축해 준다.
     _dd = (d - date.today()).days
     if _dd >= 0:
-        _steps = []
-        if _dd >= 14:
-            _steps.append("D-14 소재 3안 제작(동영상 우선)")
-        if _dd >= 7:
-            _steps.append("D-7 광고 시작·초기 CPL 확인")
-        _steps.append("D-3 저효율 소재 교체")
-        _steps.append("D-1 리마인드 발송")
-        out.append(("🗓 준비", f"**D-{_dd}** · " + " → ".join(_steps)))
+        _plan = [(14, "소재 3안 제작(동영상 우선)"),
+                 (7, "광고 시작·초기 CPL 확인"),
+                 (3, "저효율 소재 교체·예산 재배분"),
+                 (1, "리마인드 발송(문자·채팅방)")]
+        _todo, _late = [], []
+        for _k, _label in _plan:
+            (_todo if _dd >= _k else _late).append(f"D-{_k} {_label}")
+        _t = f"**D-{_dd}**"
+        if _late:
+            _t += ("\n· ⚠️ **이미 지난 단계** — 아직 안 했다면 오늘 한 번에 몰아서: "
+                   + " · ".join(_late))
+        if _todo:
+            _t += "\n· 남은 일정: " + " → ".join(_todo)
+        if _dd <= 7:
+            _t += ("\n· 지금 구간에서 가장 중요한 건 **새로 만드는 것이 아니라 "
+                   "돌고 있는 소재의 CPL 점검**입니다. "
+                   + (f"기준선 {base[1]:,.0f}원을 넘는 소재는 즉시 끄고 "
+                      f"남은 예산을 이긴 소재로 옮기세요." if base else
+                      "리드 단가가 나쁜 소재를 끄고 남은 예산을 이긴 소재로 옮기세요."))
+        if _dd <= 2:
+            _t += ("\n· 마지막 이틀은 **신청자 참석 전환**이 관건입니다 — "
+                   "채팅방·문자 리마인드와 시작 30분 전 알림을 잊지 마세요.")
+        out.append(("🗓 준비", _t))
     return out
 
 
@@ -3753,7 +3802,8 @@ def tab_webinar():
                     f"{_d} ({['월','화','수','목','금','토','일'][_d.weekday()]}) · "
                     f"{e['product']} · {e['topic']}  —  D-{_dd}",
                     expanded=(_dd <= 14)):
-                for _t2, _v in _webinar_advice(e, pb_map, oh, base, camp_ad):
+                for _t2, _v in _webinar_advice(e, pb_map, oh, base, camp_ad,
+                                               others=_up):
                     st.markdown(
                         f'<div style="margin-bottom:7px">'
                         f'<span style="opacity:.6;font-size:12px">{_t2}</span><br>'
