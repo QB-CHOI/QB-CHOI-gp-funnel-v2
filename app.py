@@ -3028,6 +3028,14 @@ def tab_trend():
                                 content_dates=content_dates)
     if fig_line:
         st.plotly_chart(fig_line)
+        # 발행 기록은 있는데 이 구간에 하나도 없으면, 마커가 안 보이는 이유를
+        # 밝힌다(기록이 없어서인지, 기간이 안 겹쳐서인지 구분이 안 됨).
+        if not df_content_trend.empty and not content_dates:
+            _cmax = max(df_content_trend['date'])
+            st.caption(f"콘텐츠 발행 기록 {len(df_content_trend)}건이 있지만 마지막 발행이 "
+                       f"**{_cmax}**라 이 기간과 겹치지 않습니다 — 그래서 발행일 표시가 "
+                       "없습니다. 마스터 시트의 '오카방 업로드 계획'을 다시 채우면 "
+                       "자동으로 반영돼, 발행이 인원 변화로 이어졌는지 볼 수 있습니다.")
 
     # 전체 합계 막대 차트
     fig_total = total_trend_bar(df_filtered)

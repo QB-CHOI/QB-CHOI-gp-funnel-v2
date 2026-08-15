@@ -145,6 +145,92 @@ def _cohort(name):
     return f"{m.group(1)}기" if m else ""
 
 
+CONTENT_SHEET = "오카방 업로드 계획"
+CONTENT_COLS = {2: "사주", 3: "타로", 4: "부동산", 5: "빌딩", 6: "종료방"}
+
+
+def _content_title(text):
+    """발행 문구 → 제목 한 줄. 첫 문장이 곧 후킹이라 그걸 제목으로 쓴다."""
+    s = re.sub(r"https?://\S+", "", str(text))
+    s = s.replace("📌", " ").replace("👉", " ")
+    lines = [re.sub(r"\s+", " ", ln).strip() for ln in s.splitlines()]
+    lines = [ln for ln in lines if len(ln) >= 4]
+    # 인사말로 시작하는 공지는 다음 줄이 실제 내용이다
+    if lines and re.match(r"^안녕하세[요유][,.\s]", lines[0]) and len(lines) > 1:
+        return lines[1][:80]
+    return lines[0][:80] if lines else ""
+
+
+def parse_content(path):
+    """시트 하단 '오카방 업로드 계획' 블록 → 발행 기록 DataFrame.
+
+    날짜(행) × 상품군(열) 격자에 발행 문구가 들어 있다. 문구 끝의 유튜브
+    링크가 실제 콘텐츠이고, 첫 문장이 그날 쓴 후킹이다.
+    """
+    try:
+        raw = pd.read_excel(path, sheet_name=CONTENT_SHEET, header=None)
+    except ValueError:                      # 시트가 없는 버전의 파일
+        return pd.DataFrame(columns=["date", "channel", "content_type",
+                                     "title", "url", "memo"])
+    rows = []
+    for _, r in raw.iterrows():
+        day = _iso(r.get(0))
+        if not day:
+            continue
+        for col, product in CONTENT_COLS.items():
+            cell = r.get(col)
+            if cell is None or pd.isna(cell) or not str(cell).strip():
+                continue
+            m = re.search(r"https?://\S+", str(cell))
+            url = m.group(0).rstrip(")]},.") if m else ""
+            body = str(cell).strip()
+            # 이 칸은 '발행할 문구'와 '기획 메모'가 섞여 있다. 링크가 있거나
+            # 본문이 긴 것만 실제 발행으로 본다 — '블로그 요약', '돈타공 그로스
+            # 구매유도' 같은 짧은 지시 메모까지 발행 기록으로 세면 안 된다.
+            if not url and len(body) < 200:
+                continue
+            title = _content_title(cell)
+            if not title and not url:
+                continue
+            rows.append({
+                "date": day, "channel": "오카방",
+                "content_type": "유튜브 영상" if "youtu" in url else "게시글",
+                "title": title, "url": url, "memo": f"{product} 방 발행",
+            })
+    return pd.DataFrame(rows).sort_values("date").reset_index(drop=True)
+
+
+def merge_content(sheet_df, current_df):
+    """시트 발행 기록을 기존 로그에 더한다. (합쳐진 df, 추가건수)
+
+    앱 폼으로 직접 넣은 기록을 지우지 않도록 **추가만** 한다.
+    같은 날 같은 링크(링크가 없으면 같은 제목)면 이미 있는 것으로 본다.
+    """
+    if sheet_df.empty:
+        return current_df, 0
+
+    def _norm(v):
+        """빈 칸 표기를 하나로 — CSV를 되읽으면 빈 URL이 'nan'으로 돌아온다."""
+        s = str(v).strip()
+        return "" if s.lower() in ("nan", "none", "nat", "<na>") else s
+
+    def _key(r):
+        return (_norm(r.get("date")), _norm(r.get("url")) or _norm(r.get("title")))
+
+    cur = current_df.copy()
+    if not cur.empty:
+        # 로더는 date를 datetime.date로 바꿔 주는데 시트 쪽은 문자열이라,
+        # 그대로 붙이면 정렬에서 타입이 섞여 터진다. ISO 문자열로 통일.
+        cur["date"] = cur["date"].map(_norm)
+
+    seen = {_key(r) for _, r in cur.iterrows()} if not cur.empty else set()
+    fresh = [r for _, r in sheet_df.iterrows() if _key(r) not in seen]
+    if not fresh:
+        return current_df, 0
+    merged = pd.concat([cur, pd.DataFrame(fresh)], ignore_index=True)
+    return merged.sort_values("date").reset_index(drop=True), len(fresh)
+
+
 def parse_rooms(path):
     """시트 상단 오카방 블록 → DataFrame(room_num 기준)."""
     raw = pd.read_excel(path, sheet_name=SHEET_NAME, header=0)
@@ -220,9 +306,25 @@ def run(dry=False):
         return False
     log(f"  · 시트: {os.path.basename(path)}")
 
-    from github_store import load_campaigns, load_rooms, save_rooms_batch, _write_csv
+    from github_store import (load_campaigns, load_rooms, save_rooms_batch,
+                              load_content, _write_csv)
     sheet_df = parse_rooms(path)
     merged, changes = merge(sheet_df, load_campaigns())
+
+    # 콘텐츠 발행 기록 — 같은 시트 하단 블록. 방 목록과 함께 따라온다.
+    content_add = 0
+    try:
+        c_sheet = parse_content(path)
+        c_merged, content_add = merge_content(c_sheet, load_content())
+        if content_add and not dry:
+            _write_csv("data/content_logs.csv", c_merged,
+                       f"data: 오카방 발행 기록 동기화 ({content_add}건)")
+            load_content.clear()
+        if content_add:
+            log(f"  {'· [dry-run]' if dry else '✅'} 콘텐츠 발행 기록 "
+                f"{content_add}건 {'반영 예정' if dry else '추가'} (누적 {len(c_merged)}건)")
+    except Exception as e:              # 콘텐츠는 부가 정보 — 실패해도 방 동기화는 계속
+        log(f"  ⚠️ 콘텐츠 블록 처리 실패({type(e).__name__}) — 방 목록은 계속 진행")
 
     # 일일 입력 화면은 rooms.csv를 돈다. campaigns.csv에만 넣으면 새 방이
     # 입력 목록에 안 떠서 인원이 안 쌓인다 — 진행 중인 방은 여기도 채운다.
@@ -234,7 +336,7 @@ def run(dry=False):
 
     if not changes and not missing:
         log(f"  · 오카방 {len(sheet_df)}개 — 변경 없음")
-        return False
+        return bool(content_add)        # 콘텐츠만 늘어난 경우도 '갱신 있음'
     for c in changes:
         log(f"    · {c}")
     for rn in sorted(missing):
