@@ -32,6 +32,7 @@ from github_store import (
     load_webinar_schedule, save_webinar, delete_webinar,
     load_refresh_status,
     load_data_sources, load_stage_timeline, order_asof, complete_months,
+    save_order_aggregates,
     load_adspend, save_adspend, delete_adspend_row,
     load_content, save_content, delete_content_row,
     load_date_notes, save_date_note,
@@ -144,6 +145,28 @@ div[data-testid="stDataFrame"] td { white-space: nowrap; }
 .gp-dtbl td{padding:7px 8px;border-bottom:1px solid rgba(128,128,128,.15);vertical-align:top}
 </style>
 """, unsafe_allow_html=True)
+
+
+@st.cache_data(ttl=1800, show_spinner=False, max_entries=1)
+def _parse_order_upload(_bytes: bytes):
+    """업로드한 주문 엑셀 → (요약, 집계 17종). 원본 주문 데이터는 반환하지 않는다.
+
+    개인정보(이름·번호)가 담긴 원본은 이 함수 안에서만 존재하고, 밖으로는
+    집계 숫자와 요약만 나간다. 캐시도 1건만 유지한다(max_entries=1).
+    12만 행 파싱에 약 7초 — 위젯이 바뀔 때마다 다시 읽지 않도록 캐시한다.
+    """
+    import io as _io
+    from scripts.refresh_order_aggregates import load_orders, build_all
+    o = load_orders(_io.BytesIO(_bytes))
+    summary = {
+        'rows': len(o),
+        'paid': int((o['pay'] > 0).sum()),
+        'custs': int(o['cust'].nunique()),
+        'revenue': int(o.loc[o['pay'] > 0, 'pay'].sum()),
+        'first': o['d'].min(),
+        'last': o['d'].max(),
+    }
+    return summary, build_all(o)
 
 
 def _kpi_band(items):
@@ -6698,7 +6721,75 @@ def tab_data():
         if _stale:
             st.warning(f"⚠️ 갱신 권장 데이터 **{_stale}종** — 특히 지역(2025-12)·채널 metrics(2025-06)는 "
                        "오래됐습니다. 최신 자료 확보 시 갱신하면 분석 정확도가 올라갑니다.")
-        st.caption("주문 원본 집계 갱신: `python3 scripts/refresh_order_aggregates.py --write` (터미널).")
+        # ── 📥 주문 명단 올리기 ────────────────────────────────
+        # 지금까지 갱신 경로가 '엑셀 받기 → inbox 폴더 복사 → 터미널 명령'이라
+        # 특정 맥에서만 가능했고, 그래서 27일이나 밀린 채 방치됐다. 파일을 여기
+        # 올리면 브라우저에서 바로 끝나게 한다.
+        _ao_up = order_asof()
+        _gap_up = (date.today() - _ao_up).days if _ao_up else None
+        with st.expander("📥 주문 명단 올리기 — 매출·고객·전환 집계 자동 갱신",
+                         expanded=bool(_gap_up and _gap_up >= 14)):
+            st.caption("아임웹 → 강의 → 강의별 집계 → **‘강의별 리스트’ 엑셀**을 받아 그대로 올리면 "
+                       "매출·고객·리텐션·무료특강 등 **주문 기반 집계가 한 번에 갱신**됩니다. "
+                       "터미널도, 담당자 전달도 필요 없습니다.")
+            st.caption("🔒 원본 파일은 **저장하지 않습니다** — 읽어서 집계 숫자만 만들고 버립니다. "
+                       "이름·연락처 같은 개인정보는 어디에도 남지 않습니다.")
+            if _ao_up:
+                st.caption(f"현재 기준일: **{_ao_up}**"
+                           + (f" ({_gap_up}일 경과)" if _gap_up is not None else ""))
+            _up = st.file_uploader("강의별 리스트 엑셀 (.xlsx)", type=['xlsx'], key="ord_up")
+            if _up is not None:
+                try:
+                    with st.spinner("주문 원본을 읽고 집계를 만드는 중…"):
+                        _sm, _out = _parse_order_upload(_up.getvalue())
+                except Exception as e:
+                    _sm = _out = None
+                    st.error(f"파일을 읽지 못했습니다 ({type(e).__name__}). "
+                             "아임웹에서 받은 **‘강의별 리스트’ 원본 엑셀**이 맞는지 확인해 주세요 "
+                             "— 시트 이름(sheet1)이나 컬럼(주문일·상품명·최종결제금액·주문자 이름/번호)이 "
+                             "다르면 읽을 수 없습니다.")
+                if _out:
+                    _newest = _sm['last'].date()
+                    _kpi_band([
+                        ("📦 총 주문", f"{_sm['rows']:,}<small>건</small>", "무료 신청 포함"),
+                        ("🎓 유료 결제", f"{_sm['paid']:,}<small>건</small>", f"고객 {_sm['custs']:,}명"),
+                        ("💰 누적 매출", f"{_sm['revenue']/1e8:,.1f}<small>억원</small>", "유료 결제 합계"),
+                        ("📅 마지막 주문", f"{_newest}", f"시작 {_sm['first'].date()}"),
+                    ])
+                    st.write("")
+                    _mp_new = _out.get('monthly_performance.csv')
+                    if _mp_new is not None and not _mp_new.empty:
+                        st.markdown("**새로 들어올 최근 3개월**")
+                        _pv = _mp_new.tail(3).copy()
+                        _pv['매출'] = (_pv['revenue'] / 1e8).map(lambda v: f"{v:,.2f}억")
+                        st.dataframe(_pv[['month', 'free_signups', 'paid_orders', '매출', 'conv_rate']]
+                                     .rename(columns={'month': '월', 'free_signups': '무료 신청',
+                                                      'paid_orders': '유료 결제', 'conv_rate': '전환율(%)'}),
+                                     hide_index=True)
+                    _ok_new = True
+                    if _ao_up and _newest <= _ao_up:
+                        _ok_new = st.checkbox(
+                            f"⚠️ 이 파일의 마지막 주문({_newest})이 현재 기준일({_ao_up})보다 "
+                            "최신이 아닙니다. 예전 파일을 올린 게 아닌지 확인하세요. "
+                            "그래도 이 파일로 덮어쓰기", key="ord_old_ok")
+                    if st.button("이 파일로 갱신하기", type="primary",
+                                 disabled=not _ok_new, key="ord_apply"):
+                        _pb = st.progress(0.0, text="저장 준비 중…")
+                        _n = len(_out)
+
+                        def _step(i, name):
+                            _pb.progress(i / _n, text=f"{i}/{_n} 저장 중 — {name}")
+                        _done, _tot, _fails = save_order_aggregates(_out, _newest, on_step=_step)
+                        _pb.empty()
+                        if _fails:
+                            st.error(f"{_done}/{_tot}종만 저장됐습니다. 실패: {', '.join(_fails)} "
+                                     "— 잠시 후 다시 시도해 주세요(기준일은 반영하지 않았습니다).")
+                        else:
+                            st.cache_data.clear()
+                            st.success(f"✅ 집계 {_tot}종 갱신 완료 — 기준일 {_newest}. "
+                                       "매출·전환·고객·지역·전망이 모두 최신 주문 기준으로 다시 계산됩니다.")
+                            st.caption("화면을 새로고침하면 반영된 값이 보입니다.")
+        st.caption("터미널에서 갱신: `python3 scripts/refresh_order_aggregates.py --write`")
 
         # ── 📥 자료 수집·갱신 가이드 ──────────────────────────
         with st.expander("📥 자료 수집·갱신 가이드 — 무엇을·어디서·어떻게"):

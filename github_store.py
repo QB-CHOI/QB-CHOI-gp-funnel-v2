@@ -1170,6 +1170,42 @@ def order_asof():
         return None
 
 
+def update_order_asof(asof) -> bool:
+    """주문 원본 기준일을 데이터 레지스트리에 반영.
+
+    order_asof()가 읽는 값이라, 여기가 갱신되지 않으면 새 명단을 올려도
+    사이트는 계속 옛 스냅샷 기준으로 부분월을 판정한다.
+    """
+    ds = load_data_sources()
+    if ds.empty:
+        return False
+    _m = ds['source'].astype(str).str.contains('강의별_리스트', na=False)
+    if not _m.any():
+        return False
+    ds.loc[_m, 'as_of'] = str(asof)
+    _write_csv(DATA_SOURCES_PATH, ds, f"data: 주문 원본 기준일 {asof}")
+    return True
+
+
+def save_order_aggregates(out: dict, asof, on_step=None):
+    """주문 집계 CSV 일괄 저장. (성공수, 전체수, 실패목록) 반환.
+
+    on_step(i, name)으로 진행 상황을 알린다 — 17종을 순차 저장하느라
+    시간이 걸려서, 화면이 멈춘 것처럼 보이면 사용자가 새로고침해 버린다.
+    """
+    fails = []
+    for i, (name, df) in enumerate(out.items(), 1):
+        if on_step:
+            on_step(i, name)
+        try:
+            _write_csv(f"data/{name}", df, f"data: 주문 집계 갱신 ({asof}) — {name}")
+        except Exception as e:                     # 한 건 실패가 나머지를 막지 않게
+            fails.append(f"{name}: {type(e).__name__}")
+    if not fails:
+        update_order_asof(asof)
+    return len(out) - len(fails), len(out), fails
+
+
 def complete_months(df: pd.DataFrame, col: str = 'month') -> pd.DataFrame:
     """분석용으로 쓸 수 있는 '완결된 달'만. (부분월·미래월 제외)
 

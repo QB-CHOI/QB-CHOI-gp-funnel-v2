@@ -26,6 +26,10 @@ import sys
 
 import pandas as pd
 
+# 저장소 루트를 import 경로에 넣는다 — 스크립트를 scripts/에서 실행하면
+# sys.path[0]이 scripts/라 루트의 github_store를 못 찾는다.
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 DATA_REPO = "QB-CHOI/gp-funnel-data"
 PRODUCTS = ["사주", "타로", "부동산", "빌딩"]
 
@@ -105,6 +109,20 @@ def build_all(o: pd.DataFrame) -> dict:
                      "paid_orders": int((g["pay"] > 0).sum()),
                      "free_signups": int((g["pay"] == 0).sum())})
     out["monthly_by_course.csv"] = pd.DataFrame(rows).sort_values(["month", "product"])
+
+    # 1-1) monthly_performance (전 상품 합계 — 런레이트·전망·월간 보고서의 근거)
+    # 원래 '주문 원본에서 안 나온다'고 보고 손으로 관리하던 파일인데, 실제로는
+    # 여기서 정확히 재현된다(2026-06: 무료 4,287·유료 345·매출 9.4억 일치).
+    # 수동 관리로 두면 주문 명단을 갱신해도 이 파일만 옛날 값으로 남아,
+    # 매출 추이와 전망이 통째로 뒤처진다.
+    mp = []
+    for m, g in dd.groupby("month"):
+        _free = int((g["pay"] == 0).sum())
+        _paid = int((g["pay"] > 0).sum())
+        mp.append({"month": m, "free_signups": _free, "paid_orders": _paid,
+                   "revenue": int(g.loc[g["pay"] > 0, "pay"].sum()),
+                   "conv_rate": round(_paid / _free * 100, 2) if _free else 0.0})
+    out["monthly_performance.csv"] = pd.DataFrame(mp).sort_values("month")
 
     # 고객 단위 공통
     g = paid.groupby("cust")
@@ -327,6 +345,14 @@ def main():
         ok += s
         print(f"  {'✅' if s else '🚨'} {name}: {msg}")
     print(f"\n{ok}/{len(out)} 저장 완료")
+    if ok == len(out):
+        # 기준일을 함께 갱신해야 사이트가 '어느 달까지 완결됐나'를 바르게 본다
+        _asof = o["d"].max().date()
+        try:
+            from github_store import update_order_asof
+            print(f"  {'✅' if update_order_asof(_asof) else '⚠️'} 기준일 {_asof} 반영")
+        except Exception as e:
+            print(f"  ⚠️ 기준일 반영 실패({type(e).__name__}) — 데이터 현황에서 수동 확인 필요")
     return 0 if ok == len(out) else 1
 
 
