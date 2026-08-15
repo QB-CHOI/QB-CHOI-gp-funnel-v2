@@ -147,6 +147,19 @@ div[data-testid="stDataFrame"] td { white-space: nowrap; }
 """, unsafe_allow_html=True)
 
 
+def _dataset_asof(keyword: str):
+    """데이터 레지스트리에서 특정 데이터의 기준 시점 문자열. 없으면 None.
+
+    오래된 스냅샷을 현재 값으로 읽으면 판단이 틀어진다(주문 부분월 건과 같은
+    계열). 화면에 기준 시점을 함께 적기 위한 조회용.
+    """
+    _ds = load_data_sources()
+    if _ds.empty:
+        return None
+    _m = _ds[_ds['dataset'].astype(str).str.contains(keyword, na=False)]
+    return str(_m['as_of'].iloc[0]) if not _m.empty else None
+
+
 @st.cache_data(ttl=1800, show_spinner=False, max_entries=1)
 def _parse_order_upload(_bytes: bytes):
     """업로드한 주문 엑셀 → (요약, 집계 17종). 원본 주문 데이터는 반환하지 않는다.
@@ -5579,6 +5592,18 @@ def tab_region():
 
     st.caption("**돈사공 초급반 9~12기 배송지 주소** 기준 (국내 472건 · 개인정보 제외 지역 통계만). "
                "실물 교재를 배송하는 강의라 배송지 = 실제 거주 지역으로, 광고 타깃 지역 판단의 대표 표본입니다.")
+    # 이 데이터는 갱신이 드물어, 기준 시점을 안 적으면 '지금의 지역 분포'로 읽힌다
+    _rg_asof = _dataset_asof('지역 분포')
+    if _rg_asof:
+        try:
+            _rg_mo = (date.today().year - int(_rg_asof[:4])) * 12 + \
+                     (date.today().month - int(_rg_asof[5:7]))
+        except (ValueError, IndexError):
+            _rg_mo = None
+        st.caption(f"⏳ 기준 시점 **{_rg_asof}**"
+                   + (f" (약 {_rg_mo}개월 전)" if _rg_mo and _rg_mo >= 3 else "")
+                   + " — 그 이후 유입된 기수는 반영되지 않았습니다. 최신 배송지 리포트를 "
+                     "받으면 갱신하세요.")
 
     # ── 핵심 지표 (요약 KPI 밴드) ─────────────────────────
     _tot = int(region['signups'].sum())
@@ -6754,7 +6779,11 @@ def tab_data():
             # 전부 낮게 나온다(실제로 27일 밀린 채 🟢 최신으로 표시되고 있었다).
             _live = '강의별_리스트' in str(r['source'])
             _g, _y = (10, 30) if _live else (45, 120)
-            if _days is None:
+            if '미사용' in str(r['dataset']):
+                # 화면이 쓰지 않는 데이터를 '갱신 권장'으로 재촉하면, 자료를
+                # 어렵게 구해 와도 반영될 곳이 없다 — 헛수고를 시키지 않는다.
+                _badge, _col = "⚪ 미사용", "#8A93A3"
+            elif _days is None:
                 _badge, _col = "—", "#8A93A3"
             elif _days <= _g:
                 _badge, _col = "🟢 최신", "#2E7D5B"
