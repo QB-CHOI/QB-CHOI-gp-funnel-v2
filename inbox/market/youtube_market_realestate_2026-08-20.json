@@ -1,0 +1,6457 @@
+{
+  "ok": true,
+  "topic": "부동산",
+  "date": "2026-08-20",
+  "generatedAt": "2026-08-19T23:40:02.628Z",
+  "queries": [
+    "부동산 전망",
+    "집값 전망",
+    "아파트 매매",
+    "전세",
+    "월세",
+    "청약",
+    "분양",
+    "재개발",
+    "재건축",
+    "부동산 투자",
+    "갭투자",
+    "금리 부동산",
+    "경매",
+    "오피스텔"
+  ],
+  "publishedAfter": "2026-05-21T23:39:54.568Z",
+  "quotaCost": 1407,
+  "totalVideos": 194,
+  "shortsCount": 43,
+  "longformCount": 151,
+  "topVideos": [
+    {
+      "videoId": "6y0a3QkhQao",
+      "url": "https://www.youtube.com/watch?v=6y0a3QkhQao",
+      "title": "\"20년 살면 죽을 줄 알았지\" #shorts / KBS",
+      "description": "서울시 장기전세주택이 만기를 앞둔 가운데, 고령 입주민들이 퇴거를 거부하면서 갈등이 불거지고 있습니다. \n\n▣ 제보하기\n◇ 카카오톡 : 'KBS제보' 검색\n◇ 전화 : 02-781-1234\n◇ 홈페이지 : https://goo.gl/4b4WbkG\n◇ 이메일 : kbs1234@kbs.co",
+      "channelId": "UCcQTRi69dsVYHN3exePtZ1A",
+      "channelTitle": "KBS News",
+      "publishedAt": "2026-08-13T06:00:37Z",
+      "thumbnail": "https://i.ytimg.com/vi/6y0a3QkhQao/mqdefault.jpg",
+      "tags": [
+        "KBS",
+        "KBS NEWS",
+        "KBS뉴스",
+        "NEWS",
+        "kbs뉴스",
+        "kbs 뉴스",
+        "kbs news",
+        "kbs",
+        "뉴스",
+        "쇼츠",
+        "shorts"
+      ],
+      "viewCount": 1549818,
+      "likeCount": 15285,
+      "commentCount": 8804,
+      "durationSeconds": 90,
+      "format": "롱폼",
+      "ageDays": 6.7,
+      "viewsPerDay": 230091,
+      "momentum": 214191,
+      "likeRate": 0.99,
+      "commentRate": 0.57,
+      "matchedQueries": [
+        "전세"
+      ],
+      "marketScore": {
+        "total": 86,
+        "parts": {
+          "volume": 25,
+          "velocity": 30,
+          "likeRate": 4,
+          "commentRate": 7,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 99,
+        "parts": {
+          "momentum": 59,
+          "volume": 40
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 3690000
+    },
+    {
+      "videoId": "6MqXpbWZUsU",
+      "url": "https://www.youtube.com/watch?v=6MqXpbWZUsU",
+      "title": "23년동안 월세내자 갑자기 내 집이 생김",
+      "description": "23년동안 월세내자 갑자기 내 집이 생김",
+      "channelId": "UCG0ahKU9wEtCmp_IoJapg9A",
+      "channelTitle": "콩만이",
+      "publishedAt": "2026-08-18T06:00:53Z",
+      "thumbnail": "https://i.ytimg.com/vi/6MqXpbWZUsU/mqdefault.jpg",
+      "tags": [
+        "23년동안",
+        "월세",
+        "호주",
+        "멜버른",
+        "집주인",
+        "내집",
+        "장기전세",
+        "이웃",
+        "기부",
+        "선물",
+        "정원",
+        "세입자"
+      ],
+      "viewCount": 899791,
+      "likeCount": 25954,
+      "commentCount": 639,
+      "durationSeconds": 48,
+      "format": "쇼츠",
+      "ageDays": 1.7,
+      "viewsPerDay": 518462,
+      "momentum": 402501,
+      "likeRate": 2.88,
+      "commentRate": 0.07,
+      "matchedQueries": [
+        "월세"
+      ],
+      "marketScore": {
+        "total": 86,
+        "parts": {
+          "volume": 25,
+          "velocity": 30,
+          "likeRate": 11,
+          "commentRate": 1,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 100,
+        "parts": {
+          "momentum": 60,
+          "volume": 40
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 47300
+    },
+    {
+      "videoId": "0CFEmDTie5Q",
+      "url": "https://www.youtube.com/watch?v=0CFEmDTie5Q",
+      "title": "청약 당첨에도 포기하는 현실",
+      "description": "● 엠빅뉴스 구독 https://www.youtube.com/@mbicnews?sub_confirmation=1\n● 홈페이지 https://imnews.imbc.com/original/mbig/2024.html\n● 페이스북 https://facebook.com/mbicnews\n● 네이버",
+      "channelId": "UCYRrUD5v5j_Ei8sKOo7mhoQ",
+      "channelTitle": "엠빅뉴스",
+      "publishedAt": "2026-08-13T03:36:31Z",
+      "thumbnail": "https://i.ytimg.com/vi/0CFEmDTie5Q/mqdefault.jpg",
+      "tags": [
+        "라디오스타",
+        "라스",
+        "라디오스타976회",
+        "라디오스타최신화",
+        "MBC라디오스타",
+        "MBC예능",
+        "홍현희",
+        "김문정",
+        "이창호",
+        "유호진",
+        "홍현희다이어트",
+        "홍현희10kg감량"
+      ],
+      "viewCount": 751991,
+      "likeCount": 3193,
+      "commentCount": 482,
+      "durationSeconds": 71,
+      "format": "쇼츠",
+      "ageDays": 6.8,
+      "viewsPerDay": 110008,
+      "momentum": 102510,
+      "likeRate": 0.42,
+      "commentRate": 0.06,
+      "matchedQueries": [
+        "청약"
+      ],
+      "marketScore": {
+        "total": 77,
+        "parts": {
+          "volume": 24,
+          "velocity": 30,
+          "likeRate": 2,
+          "commentRate": 1,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 97,
+        "parts": {
+          "momentum": 57,
+          "volume": 40
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 1440000
+    },
+    {
+      "videoId": "7dEu4G0xSRM",
+      "url": "https://www.youtube.com/watch?v=7dEu4G0xSRM",
+      "title": "아들 분양소",
+      "description": "#웃긴영상",
+      "channelId": "UCd8aJPEn_C348Xg7thpc-vA",
+      "channelTitle": "코테고리",
+      "publishedAt": "2026-08-16T09:00:22Z",
+      "thumbnail": "https://i.ytimg.com/vi/7dEu4G0xSRM/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 691714,
+      "likeCount": 14779,
+      "commentCount": 163,
+      "durationSeconds": 88,
+      "format": "롱폼",
+      "ageDays": 3.6,
+      "viewsPerDay": 191565,
+      "momentum": 168265,
+      "likeRate": 2.14,
+      "commentRate": 0.02,
+      "matchedQueries": [
+        "분양"
+      ],
+      "marketScore": {
+        "total": 83,
+        "parts": {
+          "volume": 24,
+          "velocity": 30,
+          "likeRate": 8,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 98,
+        "parts": {
+          "momentum": 59,
+          "volume": 39
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 356000
+    },
+    {
+      "videoId": "8vD7RaJKbso",
+      "url": "https://www.youtube.com/watch?v=8vD7RaJKbso",
+      "title": "2년 전 경매에 나온 포켓몬 카드 현재가",
+      "description": "#0",
+      "channelId": "UCF24NMvY6K0wUUaRR2jscQA",
+      "channelTitle": "일분일초",
+      "publishedAt": "2026-08-15T07:00:38Z",
+      "thumbnail": "https://i.ytimg.com/vi/8vD7RaJKbso/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 601481,
+      "likeCount": 4387,
+      "commentCount": 132,
+      "durationSeconds": 30,
+      "format": "쇼츠",
+      "ageDays": 4.7,
+      "viewsPerDay": 128138,
+      "momentum": 115803,
+      "likeRate": 0.73,
+      "commentRate": 0.02,
+      "matchedQueries": [
+        "경매"
+      ],
+      "marketScore": {
+        "total": 77,
+        "parts": {
+          "volume": 24,
+          "velocity": 30,
+          "likeRate": 3,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 97,
+        "parts": {
+          "momentum": 58,
+          "volume": 39
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 461000
+    },
+    {
+      "videoId": "9cioTCSklig",
+      "url": "https://www.youtube.com/watch?v=9cioTCSklig",
+      "title": "월세 6개월 밀린 청년의 집 문을 따고 들어간 집주인 할아버지 #사연 #드라마 #반전사연 #시니어쇼츠 #쇼츠 #각종유머 #감동 #drama",
+      "description": "😂오늘은 따뜻한 감동으로 행복하게 지내세요 😆\n\n잠깐 쉬는 시간, 지루한 순간에\n가볍게 보기 좋은 2분 감동 영상입니다.\n\n재밌게 보셨다면 👍 좋아요\n웃음이 필요하다면 🔔 구독도 눌러주세요!\n\n#인생교훈 #쇼츠드라마 #1분감동 #감동 #웃긴영상 #짧은영상 #쇼츠 #시니어감동",
+      "channelId": "UCVk5273yXy7kjkIowCcmE2g",
+      "channelTitle": "웃긴이야기",
+      "publishedAt": "2026-08-18T22:00:30Z",
+      "thumbnail": "https://i.ytimg.com/vi/9cioTCSklig/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 529599,
+      "likeCount": 12823,
+      "commentCount": 202,
+      "durationSeconds": 122,
+      "format": "롱폼",
+      "ageDays": 1.1,
+      "viewsPerDay": 495368,
+      "momentum": 337517,
+      "likeRate": 2.42,
+      "commentRate": 0.04,
+      "matchedQueries": [
+        "월세"
+      ],
+      "marketScore": {
+        "total": 83,
+        "parts": {
+          "volume": 24,
+          "velocity": 30,
+          "likeRate": 9,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 99,
+        "parts": {
+          "momentum": 60,
+          "volume": 39
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 73600
+    },
+    {
+      "videoId": "7cPsxE841Yc",
+      "url": "https://www.youtube.com/watch?v=7cPsxE841Yc",
+      "title": "가계 빚 사상 최대 기록에 금리인상까지...폭탄 곧 터지나 [자막뉴스] / YTN",
+      "description": "우리나라의 가계 빚 증가 속도가 점점 빨라지고 있습니다.\n\n국내 가계 부채 잔액은 지난 2024년 말부터 꾸준히 늘어나, 1분기 말엔 1,993조 원으로 사상 최대를 기록했습니다.\n\n그리고 한국은행이 조만간 공개할 2분기 가계 부채 잔액 잠정치는 처음으로 2천조 원을 돌파할 것이 확실시",
+      "channelId": "UChlgI3UHCOnwUGzWzbJ3H5w",
+      "channelTitle": " YTN",
+      "publishedAt": "2026-08-18T06:02:47Z",
+      "thumbnail": "https://i.ytimg.com/vi/7cPsxE841Yc/mqdefault.jpg",
+      "tags": [
+        "source:영상",
+        "type:방송",
+        "genre:경제",
+        "format:기타"
+      ],
+      "viewCount": 472161,
+      "likeCount": 2733,
+      "commentCount": 2637,
+      "durationSeconds": 94,
+      "format": "롱폼",
+      "ageDays": 1.7,
+      "viewsPerDay": 272267,
+      "momentum": 211335,
+      "likeRate": 0.58,
+      "commentRate": 0.56,
+      "matchedQueries": [
+        "금리 부동산"
+      ],
+      "marketScore": {
+        "total": 83,
+        "parts": {
+          "volume": 24,
+          "velocity": 30,
+          "likeRate": 2,
+          "commentRate": 7,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 98,
+        "parts": {
+          "momentum": 59,
+          "volume": 39
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 5400000
+    },
+    {
+      "videoId": "10Ni-flAE4M",
+      "url": "https://www.youtube.com/watch?v=10Ni-flAE4M",
+      "title": "주먹구구식 억지 정책에 고통받는 국민들",
+      "description": "부동산 시장에서 재건축과 재개발은 실제로 주택 공급을 늘릴 수 있을까요? 🏢📈\n\n도시 정비 사업과 주택 공급 매커니즘에 대해 반드시 알아야 할 3가지 핵심 원리를 정리해 드립니다.\n\n1. 재개발과 재건축의 세대수 증감 구조\n도시정비사업은 노후화된 저층 주거지를 고층 고밀도 단지로 탈",
+      "channelId": "UCRVvvZACjpI1-DVCZ6FWBqQ",
+      "channelTitle": "우팡로켓",
+      "publishedAt": "2026-08-16T07:00:38Z",
+      "thumbnail": "https://i.ytimg.com/vi/10Ni-flAE4M/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 469296,
+      "likeCount": 21285,
+      "commentCount": 1263,
+      "durationSeconds": 60,
+      "format": "쇼츠",
+      "ageDays": 3.7,
+      "viewsPerDay": 127042,
+      "momentum": 111897,
+      "likeRate": 4.54,
+      "commentRate": 0.27,
+      "matchedQueries": [
+        "재건축"
+      ],
+      "marketScore": {
+        "total": 92,
+        "parts": {
+          "volume": 24,
+          "velocity": 30,
+          "likeRate": 15,
+          "commentRate": 3,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 97,
+        "parts": {
+          "momentum": 58,
+          "volume": 39
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 27500
+    },
+    {
+      "videoId": "QLGkOXWZwvU",
+      "url": "https://www.youtube.com/watch?v=QLGkOXWZwvU",
+      "title": "집 한 채 있으면 전세대출 막힌다… 거주이전의 자유 침해, 50초 안에 설명하기",
+      "description": "",
+      "channelId": "UC9-FOv67-03WMjbPApziPwQ",
+      "channelTitle": "꽉TV",
+      "publishedAt": "2026-08-14T09:00:20Z",
+      "thumbnail": "https://i.ytimg.com/vi/QLGkOXWZwvU/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 438146,
+      "likeCount": 35545,
+      "commentCount": 1754,
+      "durationSeconds": 63,
+      "format": "쇼츠",
+      "ageDays": 5.6,
+      "viewsPerDay": 78089,
+      "momentum": 71699,
+      "likeRate": 8.11,
+      "commentRate": 0.4,
+      "matchedQueries": [
+        "전세"
+      ],
+      "marketScore": {
+        "total": 94,
+        "parts": {
+          "volume": 24,
+          "velocity": 30,
+          "likeRate": 15,
+          "commentRate": 5,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 94,
+        "parts": {
+          "momentum": 56,
+          "volume": 38
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 1350000
+    },
+    {
+      "videoId": "la-R5j3xHzY",
+      "url": "https://www.youtube.com/watch?v=la-R5j3xHzY",
+      "title": "딸 분양소",
+      "description": "#웃긴영상",
+      "channelId": "UCd8aJPEn_C348Xg7thpc-vA",
+      "channelTitle": "코테고리",
+      "publishedAt": "2026-08-17T09:00:38Z",
+      "thumbnail": "https://i.ytimg.com/vi/la-R5j3xHzY/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 339258,
+      "likeCount": 8417,
+      "commentCount": 104,
+      "durationSeconds": 83,
+      "format": "롱폼",
+      "ageDays": 2.6,
+      "viewsPerDay": 129950,
+      "momentum": 109062,
+      "likeRate": 2.48,
+      "commentRate": 0.03,
+      "matchedQueries": [
+        "분양"
+      ],
+      "marketScore": {
+        "total": 83,
+        "parts": {
+          "volume": 23,
+          "velocity": 30,
+          "likeRate": 9,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 96,
+        "parts": {
+          "momentum": 58,
+          "volume": 38
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 356000
+    },
+    {
+      "videoId": "dEvTLAII22E",
+      "url": "https://www.youtube.com/watch?v=dEvTLAII22E",
+      "title": "청약통장에 2만원, 25만원씩 돈 넣지 마세요 (4가지 케이스 완벽 정리)",
+      "description": "#청약통장 #청약전략 #청약정보 \n\n청약통장에 무작정 돈 넣지 마세요! \n청약통장 2만원, 10만원, 25만원 \n얼마씩 넣어야되는지 딱 정해드릴게요. \n머리아프실 필요없게 \n딱 4가지로 정리해왔습니다 :)\n\n청약통장 정리본 \nhttps://blog.naver.com/jaeunbobos/",
+      "channelId": "UCvq386U571OWVCbznTGSW-A",
+      "channelTitle": "보보스_부르주아 보헤미안",
+      "publishedAt": "2026-06-01T09:58:58Z",
+      "thumbnail": "https://i.ytimg.com/vi/dEvTLAII22E/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 330369,
+      "likeCount": 3112,
+      "commentCount": 296,
+      "durationSeconds": 488,
+      "format": "롱폼",
+      "ageDays": 79.6,
+      "viewsPerDay": 4152,
+      "momentum": 871,
+      "likeRate": 0.94,
+      "commentRate": 0.09,
+      "matchedQueries": [
+        "청약"
+      ],
+      "marketScore": {
+        "total": 56,
+        "parts": {
+          "volume": 23,
+          "velocity": 24,
+          "likeRate": 4,
+          "commentRate": 1,
+          "recency": 4
+        }
+      },
+      "rankScore": {
+        "total": 57,
+        "parts": {
+          "momentum": 19,
+          "volume": 38
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 74300
+    },
+    {
+      "videoId": "SLmhj3md3_4",
+      "url": "https://www.youtube.com/watch?v=SLmhj3md3_4",
+      "title": "대통령은 왜 재건축을 막을까? \"오세훈, 이번에 옳은 소리\"",
+      "description": "#신지호 #윤희석 #보완수사권 #코스피 #주식 #부동산 #한동훈  #이재명 #전영기 \n\n\"매주 수요일 오후 4시\"\n\n📌전영기의 빅샷\n➡️진행: 시사저널 전영기 편집인\n➡️제작: 한동희, 조현진, 백하원PD, 양선영 디자이너\n\n▶시사저널 홈페이지 http://www.sisajournal",
+      "channelId": "UCYo4GYn_GeqRcdkraHe83GQ",
+      "channelTitle": "시사저널 TV",
+      "publishedAt": "2026-08-13T03:54:19Z",
+      "thumbnail": "https://i.ytimg.com/vi/SLmhj3md3_4/mqdefault.jpg",
+      "tags": [
+        "시사저널",
+        "sisajournal",
+        "news",
+        "시사끝짱",
+        "Korea",
+        "Koreanews",
+        "issue",
+        "이슈",
+        "정치",
+        "국회",
+        "정치평론",
+        "평론"
+      ],
+      "viewCount": 312240,
+      "likeCount": 7365,
+      "commentCount": 213,
+      "durationSeconds": 61,
+      "format": "쇼츠",
+      "ageDays": 6.8,
+      "viewsPerDay": 45760,
+      "momentum": 42636,
+      "likeRate": 2.36,
+      "commentRate": 0.07,
+      "matchedQueries": [
+        "재건축"
+      ],
+      "marketScore": {
+        "total": 83,
+        "parts": {
+          "volume": 23,
+          "velocity": 30,
+          "likeRate": 9,
+          "commentRate": 1,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 93,
+        "parts": {
+          "momentum": 55,
+          "volume": 38
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 806000
+    },
+    {
+      "videoId": "-5aruNJPTsk",
+      "url": "https://www.youtube.com/watch?v=-5aruNJPTsk",
+      "title": "9월 30일 종료!! 결국.. 청약 통장 이렇게 됩니다! (무조건 신청하세요)",
+      "description": "청약 통장 개편 이후로 그 동안 정말 많은 분들이 이메일이나 댓글로 이제 어떻게 해야 되냐? 청약 포기해야 되냐? 등등 많은 분들이 물어봐 주셔서 준비해봤는데요. 특히 이렇게 생긴 청약 통장 가지고 계신 분들은 지금 당장 전환하셔야 됩니다. 이제 한 달 밖에 안 남았어요. #9월30일,",
+      "channelId": "UCcWXeluvExN8-eo_5KFfyjw",
+      "channelTitle": "버미쌤",
+      "publishedAt": "2026-07-28T22:00:36Z",
+      "thumbnail": "https://i.ytimg.com/vi/-5aruNJPTsk/mqdefault.jpg",
+      "tags": [
+        "9월30일",
+        "주택청약",
+        "청약",
+        "국민주택",
+        "민영주택",
+        "공공분양",
+        "민간분양",
+        "납입인정금액",
+        "LH주택",
+        "임대주택"
+      ],
+      "viewCount": 306919,
+      "likeCount": 3970,
+      "commentCount": 309,
+      "durationSeconds": 485,
+      "format": "롱폼",
+      "ageDays": 22.1,
+      "viewsPerDay": 13907,
+      "momentum": 11372,
+      "likeRate": 1.29,
+      "commentRate": 0.1,
+      "matchedQueries": [
+        "청약"
+      ],
+      "marketScore": {
+        "total": 73,
+        "parts": {
+          "volume": 23,
+          "velocity": 28,
+          "likeRate": 5,
+          "commentRate": 1,
+          "recency": 17
+        }
+      },
+      "rankScore": {
+        "total": 84,
+        "parts": {
+          "momentum": 46,
+          "volume": 38
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 880000
+    },
+    {
+      "videoId": "LRxQ7uKc6J0",
+      "url": "https://www.youtube.com/watch?v=LRxQ7uKc6J0",
+      "title": "혼자 살려고 구매한 34평 신축아파트 l 송도 아파트 매매",
+      "description": "이 영상은 루헨스의 유료광고를 포함하고 있습니다.\n\n[🎉 자취생 원픽! ‘루헨스 포인트 정수기’ 할인 이벤트]\n초슬림 가성비 정수기 루헨스가 자취남 룸메님들께 드리는 특별한 이벤트 혜택!\n\n💸 자취남 PICK! 루헨스 정수기 특별 프로모션\n 109,000원 👉 92,000원 (15",
+      "channelId": "UCtYHCl8yhhvpWfcvdA_sCVg",
+      "channelTitle": "자취남",
+      "publishedAt": "2026-08-17T03:15:32Z",
+      "thumbnail": "https://i.ytimg.com/vi/LRxQ7uKc6J0/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 265139,
+      "likeCount": 2191,
+      "commentCount": 658,
+      "durationSeconds": 1646,
+      "format": "롱폼",
+      "ageDays": 2.9,
+      "viewsPerDay": 93021,
+      "momentum": 79138,
+      "likeRate": 0.83,
+      "commentRate": 0.25,
+      "matchedQueries": [
+        "아파트 매매"
+      ],
+      "marketScore": {
+        "total": 79,
+        "parts": {
+          "volume": 23,
+          "velocity": 30,
+          "likeRate": 3,
+          "commentRate": 3,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 94,
+        "parts": {
+          "momentum": 57,
+          "volume": 37
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 1000000
+    },
+    {
+      "videoId": "H708lxfful4",
+      "url": "https://www.youtube.com/watch?v=H708lxfful4",
+      "title": "\"월세, 무섭게 오를 겁니다\" / #채널A #shorts #경제시그널",
+      "description": "#부동산 #월세 #전세 #매매 #부동산정책 #경제시그널\n\n💸경제시그널 채널 구독! 좋아요! 알림!💸\n* 본 영상에서 제공되는 정보는 참고사항일 뿐, 투자에 대한 모든 결정은 투자자의 몫입니다.\n\n✔ 경제를 깊이 있게, 경제시그널\n토크, 익스플레인 컨텐츠를 제작하는 경제시그널 콘텐츠 ",
+      "channelId": "UCdErKhSSwQcVSC4PEp6soZQ",
+      "channelTitle": "경제시그널",
+      "publishedAt": "2026-08-05T07:00:12Z",
+      "thumbnail": "https://i.ytimg.com/vi/H708lxfful4/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 261058,
+      "likeCount": 4029,
+      "commentCount": 500,
+      "durationSeconds": 48,
+      "format": "쇼츠",
+      "ageDays": 14.7,
+      "viewsPerDay": 17766,
+      "momentum": 15744,
+      "likeRate": 1.54,
+      "commentRate": 0.19,
+      "matchedQueries": [
+        "월세"
+      ],
+      "marketScore": {
+        "total": 77,
+        "parts": {
+          "volume": 23,
+          "velocity": 28,
+          "likeRate": 6,
+          "commentRate": 2,
+          "recency": 18
+        }
+      },
+      "rankScore": {
+        "total": 87,
+        "parts": {
+          "momentum": 50,
+          "volume": 37
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 24900
+    },
+    {
+      "videoId": "LykpPRxVzis",
+      "url": "https://www.youtube.com/watch?v=LykpPRxVzis",
+      "title": "장기 전세 입주민의 요청사항 ㄷㄷ",
+      "description": "",
+      "channelId": "UCOjvYMLmCYjaG4Z7gwaN5Eg",
+      "channelTitle": "마혁두",
+      "publishedAt": "2026-08-15T02:31:00Z",
+      "thumbnail": "https://i.ytimg.com/vi/LykpPRxVzis/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 259295,
+      "likeCount": 2797,
+      "commentCount": 1168,
+      "durationSeconds": 17,
+      "format": "쇼츠",
+      "ageDays": 4.9,
+      "viewsPerDay": 53121,
+      "momentum": 48185,
+      "likeRate": 1.08,
+      "commentRate": 0.45,
+      "matchedQueries": [
+        "전세"
+      ],
+      "marketScore": {
+        "total": 82,
+        "parts": {
+          "volume": 23,
+          "velocity": 30,
+          "likeRate": 4,
+          "commentRate": 6,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 92,
+        "parts": {
+          "momentum": 55,
+          "volume": 37
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 86700
+    },
+    {
+      "videoId": "ircKYHydzSE",
+      "url": "https://www.youtube.com/watch?v=ircKYHydzSE",
+      "title": "20년 장기전세 당사자 본인 출연..토론하던 전문가 '눈 질끈'",
+      "description": "[뉴스헌터스]\n\n인터뷰를 인용보도할 때는 프로그램명 'SBS 뉴스헌터스'를 정확히 밝혀주시기 바랍니다. 저작권은 SBS에 있습니다.\n\n■ 방송: SBS 뉴스헌터스 월~금 ( 18:50~19:50)\n■ 진행: 김종원, 윤태진 앵커\n■ 대담: 이광훈 (서울시 공공임대 임차인 권익증진위원장)",
+      "channelId": "UCW-F02lN5KYx9iC16Tyakqw",
+      "channelTitle": "뉴스헌터스",
+      "publishedAt": "2026-08-18T13:10:21Z",
+      "thumbnail": "https://i.ytimg.com/vi/ircKYHydzSE/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 237283,
+      "likeCount": 1971,
+      "commentCount": 5290,
+      "durationSeconds": 1166,
+      "format": "롱폼",
+      "ageDays": 1.4,
+      "viewsPerDay": 165094,
+      "momentum": 122484,
+      "likeRate": 0.83,
+      "commentRate": 2.23,
+      "matchedQueries": [
+        "전세"
+      ],
+      "marketScore": {
+        "total": 86,
+        "parts": {
+          "volume": 22,
+          "velocity": 30,
+          "likeRate": 3,
+          "commentRate": 10,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 95,
+        "parts": {
+          "momentum": 58,
+          "volume": 37
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 1530
+    },
+    {
+      "videoId": "1FLUYHHAK7Q",
+      "url": "https://www.youtube.com/watch?v=1FLUYHHAK7Q",
+      "title": "본격적으로 금리 인상 후 벌어질 일.. 주담대 8% 시대 '영끌족 비상' | 인사이트30",
+      "description": "📺프로그램 관련 문의:  dylee2@yna.co.kr\n💼광고/협업 관련 문의:  jtyoon@yna.co.kr\n\n📚 한국은행 부총재 출신 현직 경제학 교수의 '돈 이야기'\nhttps://product.kyobobook.co.kr/detail/S000219349836\n📚 경제학교",
+      "channelId": "UC6kZpTl39-_SqfBrF1-N2oQ",
+      "channelTitle": "연합뉴스경제TV",
+      "publishedAt": "2026-07-17T23:00:32Z",
+      "thumbnail": "https://i.ytimg.com/vi/1FLUYHHAK7Q/mqdefault.jpg",
+      "tags": [
+        "코스피",
+        "코스닥",
+        "나스닥",
+        "2차전지",
+        "배터리",
+        "전기차",
+        "반도체",
+        "삼성전자",
+        "현대",
+        "기아",
+        "주식",
+        "투자"
+      ],
+      "viewCount": 236245,
+      "likeCount": 1789,
+      "commentCount": 1056,
+      "durationSeconds": 1410,
+      "format": "롱폼",
+      "ageDays": 33,
+      "viewsPerDay": 7153,
+      "momentum": 5053,
+      "likeRate": 0.76,
+      "commentRate": 0.45,
+      "matchedQueries": [
+        "금리 부동산"
+      ],
+      "marketScore": {
+        "total": 71,
+        "parts": {
+          "volume": 22,
+          "velocity": 26,
+          "likeRate": 3,
+          "commentRate": 6,
+          "recency": 14
+        }
+      },
+      "rankScore": {
+        "total": 75,
+        "parts": {
+          "momentum": 39,
+          "volume": 36
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 1070000
+    },
+    {
+      "videoId": "2IJyYax9ZsE",
+      "url": "https://www.youtube.com/watch?v=2IJyYax9ZsE",
+      "title": "[긴급 발표] 1주택자 사형선고 떴다? 부동산 끝내기 정책 나왔다. 당장 이것부터 바꾸세요. 세금 폭탄 맞습니다",
+      "description": "*자막설정(CC) 버튼을 누르시면 전체 자막을 함께 시청하실 수 있습니다.\n\n📌 7월 세제개편안 완전 분석과 상속증여세 자산관리 무료강의\nhttps://forms.gle/2LKzBXyMJxTjKTkc7\n\n#부동산세금 #1주택자 #세제개편 \n\n📌개인 자산관리, 상속, 증여, 양도, 자",
+      "channelId": "UCiLdPBP0AeP-Z9CDH4MggYQ",
+      "channelTitle": "재테크는 두꺼비 세무사",
+      "publishedAt": "2026-07-17T02:30:28Z",
+      "thumbnail": "https://i.ytimg.com/vi/2IJyYax9ZsE/mqdefault.jpg",
+      "tags": [
+        "두꺼비세무사",
+        "이장원세무사",
+        "이장원",
+        "이장원 세무사",
+        "두꺼비 세무사",
+        "세무법인 리치",
+        "상속세",
+        "증여세",
+        "상증세",
+        "송파세무사",
+        "잠실세무사",
+        "석촌동세무사"
+      ],
+      "viewCount": 233640,
+      "likeCount": 3345,
+      "commentCount": 1074,
+      "durationSeconds": 1084,
+      "format": "롱폼",
+      "ageDays": 33.9,
+      "viewsPerDay": 6896,
+      "momentum": 4810,
+      "likeRate": 1.43,
+      "commentRate": 0.46,
+      "matchedQueries": [
+        "금리 부동산"
+      ],
+      "marketScore": {
+        "total": 73,
+        "parts": {
+          "volume": 22,
+          "velocity": 26,
+          "likeRate": 5,
+          "commentRate": 6,
+          "recency": 14
+        }
+      },
+      "rankScore": {
+        "total": 74,
+        "parts": {
+          "momentum": 38,
+          "volume": 36
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 258000
+    },
+    {
+      "videoId": "FF3BtEoa13o",
+      "url": "https://www.youtube.com/watch?v=FF3BtEoa13o",
+      "title": "빈 상가 전국 최고‥ 경매 시장도 '찬바람' (2026.08.16/뉴스데스크/MBC충북)",
+      "description": "지역사 채널의 동영상 링크 (https://youtu.be/Zr72cFN60uM?si=f8EgjFCXujCITCou)\n\n#MBC충북 #지역상권 #불황 #상가경매 #임대문의\n#MBC #뉴스 #뉴스데스크 #MBC뉴스 #뉴스투데이\nㅤ\nⓒ MBC & iMBC 무단 전재, 재배포 및 이용(AI학",
+      "channelId": "UCF4Wxdo3inmxP-Y59wXDsFw",
+      "channelTitle": "MBCNEWS",
+      "publishedAt": "2026-08-17T03:00:10Z",
+      "thumbnail": "https://i.ytimg.com/vi/FF3BtEoa13o/mqdefault.jpg",
+      "tags": [
+        "MBC",
+        "MBC뉴스",
+        "뉴스데스크",
+        "newsdesk",
+        "뉴스투데이",
+        "newstoday",
+        "8시뉴스",
+        "아침뉴스",
+        "뉴스",
+        "정오뉴스",
+        "news",
+        "실시간"
+      ],
+      "viewCount": 222510,
+      "likeCount": 1032,
+      "commentCount": 606,
+      "durationSeconds": 123,
+      "format": "롱폼",
+      "ageDays": 2.9,
+      "viewsPerDay": 77774,
+      "momentum": 66204,
+      "likeRate": 0.46,
+      "commentRate": 0.27,
+      "matchedQueries": [
+        "경매"
+      ],
+      "marketScore": {
+        "total": 77,
+        "parts": {
+          "volume": 22,
+          "velocity": 30,
+          "likeRate": 2,
+          "commentRate": 3,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 92,
+        "parts": {
+          "momentum": 56,
+          "volume": 36
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 6200000
+    }
+  ],
+  "topScoredVideos": [
+    {
+      "videoId": "6MqXpbWZUsU",
+      "url": "https://www.youtube.com/watch?v=6MqXpbWZUsU",
+      "title": "23년동안 월세내자 갑자기 내 집이 생김",
+      "description": "23년동안 월세내자 갑자기 내 집이 생김",
+      "channelId": "UCG0ahKU9wEtCmp_IoJapg9A",
+      "channelTitle": "콩만이",
+      "publishedAt": "2026-08-18T06:00:53Z",
+      "thumbnail": "https://i.ytimg.com/vi/6MqXpbWZUsU/mqdefault.jpg",
+      "tags": [
+        "23년동안",
+        "월세",
+        "호주",
+        "멜버른",
+        "집주인",
+        "내집",
+        "장기전세",
+        "이웃",
+        "기부",
+        "선물",
+        "정원",
+        "세입자"
+      ],
+      "viewCount": 899791,
+      "likeCount": 25954,
+      "commentCount": 639,
+      "durationSeconds": 48,
+      "format": "쇼츠",
+      "ageDays": 1.7,
+      "viewsPerDay": 518462,
+      "momentum": 402501,
+      "likeRate": 2.88,
+      "commentRate": 0.07,
+      "matchedQueries": [
+        "월세"
+      ],
+      "marketScore": {
+        "total": 86,
+        "parts": {
+          "volume": 25,
+          "velocity": 30,
+          "likeRate": 11,
+          "commentRate": 1,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 100,
+        "parts": {
+          "momentum": 60,
+          "volume": 40
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 47300
+    },
+    {
+      "videoId": "6y0a3QkhQao",
+      "url": "https://www.youtube.com/watch?v=6y0a3QkhQao",
+      "title": "\"20년 살면 죽을 줄 알았지\" #shorts / KBS",
+      "description": "서울시 장기전세주택이 만기를 앞둔 가운데, 고령 입주민들이 퇴거를 거부하면서 갈등이 불거지고 있습니다. \n\n▣ 제보하기\n◇ 카카오톡 : 'KBS제보' 검색\n◇ 전화 : 02-781-1234\n◇ 홈페이지 : https://goo.gl/4b4WbkG\n◇ 이메일 : kbs1234@kbs.co",
+      "channelId": "UCcQTRi69dsVYHN3exePtZ1A",
+      "channelTitle": "KBS News",
+      "publishedAt": "2026-08-13T06:00:37Z",
+      "thumbnail": "https://i.ytimg.com/vi/6y0a3QkhQao/mqdefault.jpg",
+      "tags": [
+        "KBS",
+        "KBS NEWS",
+        "KBS뉴스",
+        "NEWS",
+        "kbs뉴스",
+        "kbs 뉴스",
+        "kbs news",
+        "kbs",
+        "뉴스",
+        "쇼츠",
+        "shorts"
+      ],
+      "viewCount": 1549818,
+      "likeCount": 15285,
+      "commentCount": 8804,
+      "durationSeconds": 90,
+      "format": "롱폼",
+      "ageDays": 6.7,
+      "viewsPerDay": 230091,
+      "momentum": 214191,
+      "likeRate": 0.99,
+      "commentRate": 0.57,
+      "matchedQueries": [
+        "전세"
+      ],
+      "marketScore": {
+        "total": 86,
+        "parts": {
+          "volume": 25,
+          "velocity": 30,
+          "likeRate": 4,
+          "commentRate": 7,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 99,
+        "parts": {
+          "momentum": 59,
+          "volume": 40
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 3690000
+    },
+    {
+      "videoId": "9cioTCSklig",
+      "url": "https://www.youtube.com/watch?v=9cioTCSklig",
+      "title": "월세 6개월 밀린 청년의 집 문을 따고 들어간 집주인 할아버지 #사연 #드라마 #반전사연 #시니어쇼츠 #쇼츠 #각종유머 #감동 #drama",
+      "description": "😂오늘은 따뜻한 감동으로 행복하게 지내세요 😆\n\n잠깐 쉬는 시간, 지루한 순간에\n가볍게 보기 좋은 2분 감동 영상입니다.\n\n재밌게 보셨다면 👍 좋아요\n웃음이 필요하다면 🔔 구독도 눌러주세요!\n\n#인생교훈 #쇼츠드라마 #1분감동 #감동 #웃긴영상 #짧은영상 #쇼츠 #시니어감동",
+      "channelId": "UCVk5273yXy7kjkIowCcmE2g",
+      "channelTitle": "웃긴이야기",
+      "publishedAt": "2026-08-18T22:00:30Z",
+      "thumbnail": "https://i.ytimg.com/vi/9cioTCSklig/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 529599,
+      "likeCount": 12823,
+      "commentCount": 202,
+      "durationSeconds": 122,
+      "format": "롱폼",
+      "ageDays": 1.1,
+      "viewsPerDay": 495368,
+      "momentum": 337517,
+      "likeRate": 2.42,
+      "commentRate": 0.04,
+      "matchedQueries": [
+        "월세"
+      ],
+      "marketScore": {
+        "total": 83,
+        "parts": {
+          "volume": 24,
+          "velocity": 30,
+          "likeRate": 9,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 99,
+        "parts": {
+          "momentum": 60,
+          "volume": 39
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 73600
+    },
+    {
+      "videoId": "7dEu4G0xSRM",
+      "url": "https://www.youtube.com/watch?v=7dEu4G0xSRM",
+      "title": "아들 분양소",
+      "description": "#웃긴영상",
+      "channelId": "UCd8aJPEn_C348Xg7thpc-vA",
+      "channelTitle": "코테고리",
+      "publishedAt": "2026-08-16T09:00:22Z",
+      "thumbnail": "https://i.ytimg.com/vi/7dEu4G0xSRM/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 691714,
+      "likeCount": 14779,
+      "commentCount": 163,
+      "durationSeconds": 88,
+      "format": "롱폼",
+      "ageDays": 3.6,
+      "viewsPerDay": 191565,
+      "momentum": 168265,
+      "likeRate": 2.14,
+      "commentRate": 0.02,
+      "matchedQueries": [
+        "분양"
+      ],
+      "marketScore": {
+        "total": 83,
+        "parts": {
+          "volume": 24,
+          "velocity": 30,
+          "likeRate": 8,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 98,
+        "parts": {
+          "momentum": 59,
+          "volume": 39
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 356000
+    },
+    {
+      "videoId": "7cPsxE841Yc",
+      "url": "https://www.youtube.com/watch?v=7cPsxE841Yc",
+      "title": "가계 빚 사상 최대 기록에 금리인상까지...폭탄 곧 터지나 [자막뉴스] / YTN",
+      "description": "우리나라의 가계 빚 증가 속도가 점점 빨라지고 있습니다.\n\n국내 가계 부채 잔액은 지난 2024년 말부터 꾸준히 늘어나, 1분기 말엔 1,993조 원으로 사상 최대를 기록했습니다.\n\n그리고 한국은행이 조만간 공개할 2분기 가계 부채 잔액 잠정치는 처음으로 2천조 원을 돌파할 것이 확실시",
+      "channelId": "UChlgI3UHCOnwUGzWzbJ3H5w",
+      "channelTitle": " YTN",
+      "publishedAt": "2026-08-18T06:02:47Z",
+      "thumbnail": "https://i.ytimg.com/vi/7cPsxE841Yc/mqdefault.jpg",
+      "tags": [
+        "source:영상",
+        "type:방송",
+        "genre:경제",
+        "format:기타"
+      ],
+      "viewCount": 472161,
+      "likeCount": 2733,
+      "commentCount": 2637,
+      "durationSeconds": 94,
+      "format": "롱폼",
+      "ageDays": 1.7,
+      "viewsPerDay": 272267,
+      "momentum": 211335,
+      "likeRate": 0.58,
+      "commentRate": 0.56,
+      "matchedQueries": [
+        "금리 부동산"
+      ],
+      "marketScore": {
+        "total": 83,
+        "parts": {
+          "volume": 24,
+          "velocity": 30,
+          "likeRate": 2,
+          "commentRate": 7,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 98,
+        "parts": {
+          "momentum": 59,
+          "volume": 39
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 5400000
+    },
+    {
+      "videoId": "0CFEmDTie5Q",
+      "url": "https://www.youtube.com/watch?v=0CFEmDTie5Q",
+      "title": "청약 당첨에도 포기하는 현실",
+      "description": "● 엠빅뉴스 구독 https://www.youtube.com/@mbicnews?sub_confirmation=1\n● 홈페이지 https://imnews.imbc.com/original/mbig/2024.html\n● 페이스북 https://facebook.com/mbicnews\n● 네이버",
+      "channelId": "UCYRrUD5v5j_Ei8sKOo7mhoQ",
+      "channelTitle": "엠빅뉴스",
+      "publishedAt": "2026-08-13T03:36:31Z",
+      "thumbnail": "https://i.ytimg.com/vi/0CFEmDTie5Q/mqdefault.jpg",
+      "tags": [
+        "라디오스타",
+        "라스",
+        "라디오스타976회",
+        "라디오스타최신화",
+        "MBC라디오스타",
+        "MBC예능",
+        "홍현희",
+        "김문정",
+        "이창호",
+        "유호진",
+        "홍현희다이어트",
+        "홍현희10kg감량"
+      ],
+      "viewCount": 751991,
+      "likeCount": 3193,
+      "commentCount": 482,
+      "durationSeconds": 71,
+      "format": "쇼츠",
+      "ageDays": 6.8,
+      "viewsPerDay": 110008,
+      "momentum": 102510,
+      "likeRate": 0.42,
+      "commentRate": 0.06,
+      "matchedQueries": [
+        "청약"
+      ],
+      "marketScore": {
+        "total": 77,
+        "parts": {
+          "volume": 24,
+          "velocity": 30,
+          "likeRate": 2,
+          "commentRate": 1,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 97,
+        "parts": {
+          "momentum": 57,
+          "volume": 40
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 1440000
+    },
+    {
+      "videoId": "10Ni-flAE4M",
+      "url": "https://www.youtube.com/watch?v=10Ni-flAE4M",
+      "title": "주먹구구식 억지 정책에 고통받는 국민들",
+      "description": "부동산 시장에서 재건축과 재개발은 실제로 주택 공급을 늘릴 수 있을까요? 🏢📈\n\n도시 정비 사업과 주택 공급 매커니즘에 대해 반드시 알아야 할 3가지 핵심 원리를 정리해 드립니다.\n\n1. 재개발과 재건축의 세대수 증감 구조\n도시정비사업은 노후화된 저층 주거지를 고층 고밀도 단지로 탈",
+      "channelId": "UCRVvvZACjpI1-DVCZ6FWBqQ",
+      "channelTitle": "우팡로켓",
+      "publishedAt": "2026-08-16T07:00:38Z",
+      "thumbnail": "https://i.ytimg.com/vi/10Ni-flAE4M/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 469296,
+      "likeCount": 21285,
+      "commentCount": 1263,
+      "durationSeconds": 60,
+      "format": "쇼츠",
+      "ageDays": 3.7,
+      "viewsPerDay": 127042,
+      "momentum": 111897,
+      "likeRate": 4.54,
+      "commentRate": 0.27,
+      "matchedQueries": [
+        "재건축"
+      ],
+      "marketScore": {
+        "total": 92,
+        "parts": {
+          "volume": 24,
+          "velocity": 30,
+          "likeRate": 15,
+          "commentRate": 3,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 97,
+        "parts": {
+          "momentum": 58,
+          "volume": 39
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 27500
+    },
+    {
+      "videoId": "8vD7RaJKbso",
+      "url": "https://www.youtube.com/watch?v=8vD7RaJKbso",
+      "title": "2년 전 경매에 나온 포켓몬 카드 현재가",
+      "description": "#0",
+      "channelId": "UCF24NMvY6K0wUUaRR2jscQA",
+      "channelTitle": "일분일초",
+      "publishedAt": "2026-08-15T07:00:38Z",
+      "thumbnail": "https://i.ytimg.com/vi/8vD7RaJKbso/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 601481,
+      "likeCount": 4387,
+      "commentCount": 132,
+      "durationSeconds": 30,
+      "format": "쇼츠",
+      "ageDays": 4.7,
+      "viewsPerDay": 128138,
+      "momentum": 115803,
+      "likeRate": 0.73,
+      "commentRate": 0.02,
+      "matchedQueries": [
+        "경매"
+      ],
+      "marketScore": {
+        "total": 77,
+        "parts": {
+          "volume": 24,
+          "velocity": 30,
+          "likeRate": 3,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 97,
+        "parts": {
+          "momentum": 58,
+          "volume": 39
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 461000
+    },
+    {
+      "videoId": "la-R5j3xHzY",
+      "url": "https://www.youtube.com/watch?v=la-R5j3xHzY",
+      "title": "딸 분양소",
+      "description": "#웃긴영상",
+      "channelId": "UCd8aJPEn_C348Xg7thpc-vA",
+      "channelTitle": "코테고리",
+      "publishedAt": "2026-08-17T09:00:38Z",
+      "thumbnail": "https://i.ytimg.com/vi/la-R5j3xHzY/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 339258,
+      "likeCount": 8417,
+      "commentCount": 104,
+      "durationSeconds": 83,
+      "format": "롱폼",
+      "ageDays": 2.6,
+      "viewsPerDay": 129950,
+      "momentum": 109062,
+      "likeRate": 2.48,
+      "commentRate": 0.03,
+      "matchedQueries": [
+        "분양"
+      ],
+      "marketScore": {
+        "total": 83,
+        "parts": {
+          "volume": 23,
+          "velocity": 30,
+          "likeRate": 9,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 96,
+        "parts": {
+          "momentum": 58,
+          "volume": 38
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 356000
+    },
+    {
+      "videoId": "ircKYHydzSE",
+      "url": "https://www.youtube.com/watch?v=ircKYHydzSE",
+      "title": "20년 장기전세 당사자 본인 출연..토론하던 전문가 '눈 질끈'",
+      "description": "[뉴스헌터스]\n\n인터뷰를 인용보도할 때는 프로그램명 'SBS 뉴스헌터스'를 정확히 밝혀주시기 바랍니다. 저작권은 SBS에 있습니다.\n\n■ 방송: SBS 뉴스헌터스 월~금 ( 18:50~19:50)\n■ 진행: 김종원, 윤태진 앵커\n■ 대담: 이광훈 (서울시 공공임대 임차인 권익증진위원장)",
+      "channelId": "UCW-F02lN5KYx9iC16Tyakqw",
+      "channelTitle": "뉴스헌터스",
+      "publishedAt": "2026-08-18T13:10:21Z",
+      "thumbnail": "https://i.ytimg.com/vi/ircKYHydzSE/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 237283,
+      "likeCount": 1971,
+      "commentCount": 5290,
+      "durationSeconds": 1166,
+      "format": "롱폼",
+      "ageDays": 1.4,
+      "viewsPerDay": 165094,
+      "momentum": 122484,
+      "likeRate": 0.83,
+      "commentRate": 2.23,
+      "matchedQueries": [
+        "전세"
+      ],
+      "marketScore": {
+        "total": 86,
+        "parts": {
+          "volume": 22,
+          "velocity": 30,
+          "likeRate": 3,
+          "commentRate": 10,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 95,
+        "parts": {
+          "momentum": 58,
+          "volume": 37
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 1530
+    },
+    {
+      "videoId": "LRxQ7uKc6J0",
+      "url": "https://www.youtube.com/watch?v=LRxQ7uKc6J0",
+      "title": "혼자 살려고 구매한 34평 신축아파트 l 송도 아파트 매매",
+      "description": "이 영상은 루헨스의 유료광고를 포함하고 있습니다.\n\n[🎉 자취생 원픽! ‘루헨스 포인트 정수기’ 할인 이벤트]\n초슬림 가성비 정수기 루헨스가 자취남 룸메님들께 드리는 특별한 이벤트 혜택!\n\n💸 자취남 PICK! 루헨스 정수기 특별 프로모션\n 109,000원 👉 92,000원 (15",
+      "channelId": "UCtYHCl8yhhvpWfcvdA_sCVg",
+      "channelTitle": "자취남",
+      "publishedAt": "2026-08-17T03:15:32Z",
+      "thumbnail": "https://i.ytimg.com/vi/LRxQ7uKc6J0/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 265139,
+      "likeCount": 2191,
+      "commentCount": 658,
+      "durationSeconds": 1646,
+      "format": "롱폼",
+      "ageDays": 2.9,
+      "viewsPerDay": 93021,
+      "momentum": 79138,
+      "likeRate": 0.83,
+      "commentRate": 0.25,
+      "matchedQueries": [
+        "아파트 매매"
+      ],
+      "marketScore": {
+        "total": 79,
+        "parts": {
+          "volume": 23,
+          "velocity": 30,
+          "likeRate": 3,
+          "commentRate": 3,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 94,
+        "parts": {
+          "momentum": 57,
+          "volume": 37
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 1000000
+    },
+    {
+      "videoId": "QLGkOXWZwvU",
+      "url": "https://www.youtube.com/watch?v=QLGkOXWZwvU",
+      "title": "집 한 채 있으면 전세대출 막힌다… 거주이전의 자유 침해, 50초 안에 설명하기",
+      "description": "",
+      "channelId": "UC9-FOv67-03WMjbPApziPwQ",
+      "channelTitle": "꽉TV",
+      "publishedAt": "2026-08-14T09:00:20Z",
+      "thumbnail": "https://i.ytimg.com/vi/QLGkOXWZwvU/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 438146,
+      "likeCount": 35545,
+      "commentCount": 1754,
+      "durationSeconds": 63,
+      "format": "쇼츠",
+      "ageDays": 5.6,
+      "viewsPerDay": 78089,
+      "momentum": 71699,
+      "likeRate": 8.11,
+      "commentRate": 0.4,
+      "matchedQueries": [
+        "전세"
+      ],
+      "marketScore": {
+        "total": 94,
+        "parts": {
+          "volume": 24,
+          "velocity": 30,
+          "likeRate": 15,
+          "commentRate": 5,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 94,
+        "parts": {
+          "momentum": 56,
+          "volume": 38
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 1350000
+    },
+    {
+      "videoId": "SLmhj3md3_4",
+      "url": "https://www.youtube.com/watch?v=SLmhj3md3_4",
+      "title": "대통령은 왜 재건축을 막을까? \"오세훈, 이번에 옳은 소리\"",
+      "description": "#신지호 #윤희석 #보완수사권 #코스피 #주식 #부동산 #한동훈  #이재명 #전영기 \n\n\"매주 수요일 오후 4시\"\n\n📌전영기의 빅샷\n➡️진행: 시사저널 전영기 편집인\n➡️제작: 한동희, 조현진, 백하원PD, 양선영 디자이너\n\n▶시사저널 홈페이지 http://www.sisajournal",
+      "channelId": "UCYo4GYn_GeqRcdkraHe83GQ",
+      "channelTitle": "시사저널 TV",
+      "publishedAt": "2026-08-13T03:54:19Z",
+      "thumbnail": "https://i.ytimg.com/vi/SLmhj3md3_4/mqdefault.jpg",
+      "tags": [
+        "시사저널",
+        "sisajournal",
+        "news",
+        "시사끝짱",
+        "Korea",
+        "Koreanews",
+        "issue",
+        "이슈",
+        "정치",
+        "국회",
+        "정치평론",
+        "평론"
+      ],
+      "viewCount": 312240,
+      "likeCount": 7365,
+      "commentCount": 213,
+      "durationSeconds": 61,
+      "format": "쇼츠",
+      "ageDays": 6.8,
+      "viewsPerDay": 45760,
+      "momentum": 42636,
+      "likeRate": 2.36,
+      "commentRate": 0.07,
+      "matchedQueries": [
+        "재건축"
+      ],
+      "marketScore": {
+        "total": 83,
+        "parts": {
+          "volume": 23,
+          "velocity": 30,
+          "likeRate": 9,
+          "commentRate": 1,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 93,
+        "parts": {
+          "momentum": 55,
+          "volume": 38
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 806000
+    },
+    {
+      "videoId": "LykpPRxVzis",
+      "url": "https://www.youtube.com/watch?v=LykpPRxVzis",
+      "title": "장기 전세 입주민의 요청사항 ㄷㄷ",
+      "description": "",
+      "channelId": "UCOjvYMLmCYjaG4Z7gwaN5Eg",
+      "channelTitle": "마혁두",
+      "publishedAt": "2026-08-15T02:31:00Z",
+      "thumbnail": "https://i.ytimg.com/vi/LykpPRxVzis/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 259295,
+      "likeCount": 2797,
+      "commentCount": 1168,
+      "durationSeconds": 17,
+      "format": "쇼츠",
+      "ageDays": 4.9,
+      "viewsPerDay": 53121,
+      "momentum": 48185,
+      "likeRate": 1.08,
+      "commentRate": 0.45,
+      "matchedQueries": [
+        "전세"
+      ],
+      "marketScore": {
+        "total": 82,
+        "parts": {
+          "volume": 23,
+          "velocity": 30,
+          "likeRate": 4,
+          "commentRate": 6,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 92,
+        "parts": {
+          "momentum": 55,
+          "volume": 37
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 86700
+    },
+    {
+      "videoId": "g8GcTQruYnQ",
+      "url": "https://www.youtube.com/watch?v=g8GcTQruYnQ",
+      "title": "재건축 해도 저는 못 사거든요 청년의 현실?",
+      "description": "💕여의도너머와 함께해주세요 (멤버십 구독하기)\nhttps://www.youtube.com/channel/UCIDNr5dMPYQwwklOqJRUvWw/join",
+      "channelId": "UCIDNr5dMPYQwwklOqJRUvWw",
+      "channelTitle": "여의도너머",
+      "publishedAt": "2026-08-17T13:48:00Z",
+      "thumbnail": "https://i.ytimg.com/vi/g8GcTQruYnQ/mqdefault.jpg",
+      "tags": [
+        "다깐다",
+        "다깐다플러스",
+        "여의도너머",
+        "김기욱",
+        "경민정",
+        "황현희",
+        "강성필",
+        "이민찬",
+        "김성열",
+        "이기인",
+        "장예찬",
+        "임세은"
+      ],
+      "viewCount": 200760,
+      "likeCount": 1050,
+      "commentCount": 524,
+      "durationSeconds": 38,
+      "format": "쇼츠",
+      "ageDays": 2.4,
+      "viewsPerDay": 83264,
+      "momentum": 68963,
+      "likeRate": 0.52,
+      "commentRate": 0.26,
+      "matchedQueries": [
+        "재건축"
+      ],
+      "marketScore": {
+        "total": 77,
+        "parts": {
+          "volume": 22,
+          "velocity": 30,
+          "likeRate": 2,
+          "commentRate": 3,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 92,
+        "parts": {
+          "momentum": 56,
+          "volume": 36
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 86100
+    },
+    {
+      "videoId": "FF3BtEoa13o",
+      "url": "https://www.youtube.com/watch?v=FF3BtEoa13o",
+      "title": "빈 상가 전국 최고‥ 경매 시장도 '찬바람' (2026.08.16/뉴스데스크/MBC충북)",
+      "description": "지역사 채널의 동영상 링크 (https://youtu.be/Zr72cFN60uM?si=f8EgjFCXujCITCou)\n\n#MBC충북 #지역상권 #불황 #상가경매 #임대문의\n#MBC #뉴스 #뉴스데스크 #MBC뉴스 #뉴스투데이\nㅤ\nⓒ MBC & iMBC 무단 전재, 재배포 및 이용(AI학",
+      "channelId": "UCF4Wxdo3inmxP-Y59wXDsFw",
+      "channelTitle": "MBCNEWS",
+      "publishedAt": "2026-08-17T03:00:10Z",
+      "thumbnail": "https://i.ytimg.com/vi/FF3BtEoa13o/mqdefault.jpg",
+      "tags": [
+        "MBC",
+        "MBC뉴스",
+        "뉴스데스크",
+        "newsdesk",
+        "뉴스투데이",
+        "newstoday",
+        "8시뉴스",
+        "아침뉴스",
+        "뉴스",
+        "정오뉴스",
+        "news",
+        "실시간"
+      ],
+      "viewCount": 222510,
+      "likeCount": 1032,
+      "commentCount": 606,
+      "durationSeconds": 123,
+      "format": "롱폼",
+      "ageDays": 2.9,
+      "viewsPerDay": 77774,
+      "momentum": 66204,
+      "likeRate": 0.46,
+      "commentRate": 0.27,
+      "matchedQueries": [
+        "경매"
+      ],
+      "marketScore": {
+        "total": 77,
+        "parts": {
+          "volume": 22,
+          "velocity": 30,
+          "likeRate": 2,
+          "commentRate": 3,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 92,
+        "parts": {
+          "momentum": 56,
+          "volume": 36
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 6200000
+    },
+    {
+      "videoId": "o_P15-7ejp0",
+      "url": "https://www.youtube.com/watch?v=o_P15-7ejp0",
+      "title": "전세사기 당한 유튜버 근황",
+      "description": "",
+      "channelId": "UCv2Lw7H0J_cdmW-ufy9UXwg",
+      "channelTitle": "이게맏나",
+      "publishedAt": "2026-08-19T14:04:32Z",
+      "thumbnail": "https://i.ytimg.com/vi/o_P15-7ejp0/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 77325,
+      "likeCount": 708,
+      "commentCount": 25,
+      "durationSeconds": 35,
+      "format": "쇼츠",
+      "ageDays": 0.4,
+      "viewsPerDay": 193490,
+      "momentum": 85952,
+      "likeRate": 0.92,
+      "commentRate": 0.03,
+      "matchedQueries": [
+        "전세"
+      ],
+      "marketScore": {
+        "total": 74,
+        "parts": {
+          "volume": 20,
+          "velocity": 30,
+          "likeRate": 3,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 90,
+        "parts": {
+          "momentum": 57,
+          "volume": 33
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 177000
+    },
+    {
+      "videoId": "80UcwrI1wy4",
+      "url": "https://www.youtube.com/watch?v=80UcwrI1wy4",
+      "title": "현금 9억이 어딨노 | 99층 재건축 실패, 부산의 은마아파트",
+      "description": "강호의발바닥TV에게 커피 한잔을\n주고 싶으신 분들 감사합니다.\n\n월 1회 아메리카노 한잔  \n👉🏻 https://han.gl/NTwaNk",
+      "channelId": "UCafdaMoUgftag08nDFd6X1A",
+      "channelTitle": "강호의발바닥TV",
+      "publishedAt": "2026-08-16T00:55:10Z",
+      "thumbnail": "https://i.ytimg.com/vi/80UcwrI1wy4/mqdefault.jpg",
+      "tags": [
+        "#빈집",
+        "#공실",
+        "#미분양",
+        "#비리",
+        "#인구소멸",
+        "#혈세"
+      ],
+      "viewCount": 147539,
+      "likeCount": 3730,
+      "commentCount": 714,
+      "durationSeconds": 569,
+      "format": "롱폼",
+      "ageDays": 3.9,
+      "viewsPerDay": 37372,
+      "momentum": 33171,
+      "likeRate": 2.53,
+      "commentRate": 0.48,
+      "matchedQueries": [
+        "재건축"
+      ],
+      "marketScore": {
+        "total": 87,
+        "parts": {
+          "volume": 22,
+          "velocity": 30,
+          "likeRate": 9,
+          "commentRate": 6,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 89,
+        "parts": {
+          "momentum": 54,
+          "volume": 35
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 550000
+    },
+    {
+      "videoId": "soNDKnBE7u8",
+      "url": "https://www.youtube.com/watch?v=soNDKnBE7u8",
+      "title": "리조트 같은 24평 아파트 l 중구 아파트 매매",
+      "description": ".\n-하이라이트(00:00)\n-인터뷰(00:43)\n-집구경 시작(04:20)\n\n-화재 긴급대피 마스크(08:32)\nhttps://link.coupang.com/a/gc2euF5br2\n\n-이불 압축팩(13:40)\nhttps://link.coupang.com/a/gc2j5qeXMi\n\n-그랑",
+      "channelId": "UCDBr5TfaSHWVnifL2uy2bEw",
+      "channelTitle": "유부남",
+      "publishedAt": "2026-08-16T03:00:18Z",
+      "thumbnail": "https://i.ytimg.com/vi/soNDKnBE7u8/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 101857,
+      "likeCount": 1016,
+      "commentCount": 104,
+      "durationSeconds": 1733,
+      "format": "롱폼",
+      "ageDays": 3.9,
+      "viewsPerDay": 26382,
+      "momentum": 23357,
+      "likeRate": 1,
+      "commentRate": 0.1,
+      "matchedQueries": [
+        "아파트 매매"
+      ],
+      "marketScore": {
+        "total": 75,
+        "parts": {
+          "volume": 21,
+          "velocity": 29,
+          "likeRate": 4,
+          "commentRate": 1,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 88,
+        "parts": {
+          "momentum": 53,
+          "volume": 35
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 302000
+    },
+    {
+      "videoId": "QHkQKYu7xys",
+      "url": "https://www.youtube.com/watch?v=QHkQKYu7xys",
+      "title": "이미 터졌어야 하는 집값 버블. 왜 안 터지나...",
+      "description": "서울 아파트 버블과 양극화의 참혹한 현실\n\n채널에 가입하여 혜택을 누려보세요.\nhttps://www.youtube.com/channel/UCp8lZRI3NSCXxhn_a_WGVKQ/join\n\n업무 메일 · 광고 · 협찬 · 출연문의 goodmic01@naver.com\n\n#표영호tv #서",
+      "channelId": "UCp8lZRI3NSCXxhn_a_WGVKQ",
+      "channelTitle": "표영호 tv  / 경제적 자유와 행복을 위하여",
+      "publishedAt": "2026-08-16T10:30:35Z",
+      "thumbnail": "https://i.ytimg.com/vi/QHkQKYu7xys/mqdefault.jpg",
+      "tags": [
+        "표영호tv",
+        "부동산",
+        "부동산전망",
+        "아파트값",
+        "오피스텔",
+        "아파트분양",
+        "1인가구",
+        "머니",
+        "지식",
+        "부동산개발",
+        "집값",
+        "집구경"
+      ],
+      "viewCount": 89982,
+      "likeCount": 2378,
+      "commentCount": 697,
+      "durationSeconds": 789,
+      "format": "롱폼",
+      "ageDays": 3.5,
+      "viewsPerDay": 25360,
+      "momentum": 22228,
+      "likeRate": 2.64,
+      "commentRate": 0.77,
+      "matchedQueries": [
+        "집값 전망"
+      ],
+      "marketScore": {
+        "total": 90,
+        "parts": {
+          "volume": 21,
+          "velocity": 29,
+          "likeRate": 10,
+          "commentRate": 10,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 87,
+        "parts": {
+          "momentum": 53,
+          "volume": 34
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 853000
+    }
+  ],
+  "risingVideos": [
+    {
+      "videoId": "6MqXpbWZUsU",
+      "url": "https://www.youtube.com/watch?v=6MqXpbWZUsU",
+      "title": "23년동안 월세내자 갑자기 내 집이 생김",
+      "description": "23년동안 월세내자 갑자기 내 집이 생김",
+      "channelId": "UCG0ahKU9wEtCmp_IoJapg9A",
+      "channelTitle": "콩만이",
+      "publishedAt": "2026-08-18T06:00:53Z",
+      "thumbnail": "https://i.ytimg.com/vi/6MqXpbWZUsU/mqdefault.jpg",
+      "tags": [
+        "23년동안",
+        "월세",
+        "호주",
+        "멜버른",
+        "집주인",
+        "내집",
+        "장기전세",
+        "이웃",
+        "기부",
+        "선물",
+        "정원",
+        "세입자"
+      ],
+      "viewCount": 899791,
+      "likeCount": 25954,
+      "commentCount": 639,
+      "durationSeconds": 48,
+      "format": "쇼츠",
+      "ageDays": 1.7,
+      "viewsPerDay": 518462,
+      "momentum": 402501,
+      "likeRate": 2.88,
+      "commentRate": 0.07,
+      "matchedQueries": [
+        "월세"
+      ],
+      "marketScore": {
+        "total": 86,
+        "parts": {
+          "volume": 25,
+          "velocity": 30,
+          "likeRate": 11,
+          "commentRate": 1,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 100,
+        "parts": {
+          "momentum": 60,
+          "volume": 40
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 47300
+    },
+    {
+      "videoId": "9cioTCSklig",
+      "url": "https://www.youtube.com/watch?v=9cioTCSklig",
+      "title": "월세 6개월 밀린 청년의 집 문을 따고 들어간 집주인 할아버지 #사연 #드라마 #반전사연 #시니어쇼츠 #쇼츠 #각종유머 #감동 #drama",
+      "description": "😂오늘은 따뜻한 감동으로 행복하게 지내세요 😆\n\n잠깐 쉬는 시간, 지루한 순간에\n가볍게 보기 좋은 2분 감동 영상입니다.\n\n재밌게 보셨다면 👍 좋아요\n웃음이 필요하다면 🔔 구독도 눌러주세요!\n\n#인생교훈 #쇼츠드라마 #1분감동 #감동 #웃긴영상 #짧은영상 #쇼츠 #시니어감동",
+      "channelId": "UCVk5273yXy7kjkIowCcmE2g",
+      "channelTitle": "웃긴이야기",
+      "publishedAt": "2026-08-18T22:00:30Z",
+      "thumbnail": "https://i.ytimg.com/vi/9cioTCSklig/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 529599,
+      "likeCount": 12823,
+      "commentCount": 202,
+      "durationSeconds": 122,
+      "format": "롱폼",
+      "ageDays": 1.1,
+      "viewsPerDay": 495368,
+      "momentum": 337517,
+      "likeRate": 2.42,
+      "commentRate": 0.04,
+      "matchedQueries": [
+        "월세"
+      ],
+      "marketScore": {
+        "total": 83,
+        "parts": {
+          "volume": 24,
+          "velocity": 30,
+          "likeRate": 9,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 99,
+        "parts": {
+          "momentum": 60,
+          "volume": 39
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 73600
+    },
+    {
+      "videoId": "6y0a3QkhQao",
+      "url": "https://www.youtube.com/watch?v=6y0a3QkhQao",
+      "title": "\"20년 살면 죽을 줄 알았지\" #shorts / KBS",
+      "description": "서울시 장기전세주택이 만기를 앞둔 가운데, 고령 입주민들이 퇴거를 거부하면서 갈등이 불거지고 있습니다. \n\n▣ 제보하기\n◇ 카카오톡 : 'KBS제보' 검색\n◇ 전화 : 02-781-1234\n◇ 홈페이지 : https://goo.gl/4b4WbkG\n◇ 이메일 : kbs1234@kbs.co",
+      "channelId": "UCcQTRi69dsVYHN3exePtZ1A",
+      "channelTitle": "KBS News",
+      "publishedAt": "2026-08-13T06:00:37Z",
+      "thumbnail": "https://i.ytimg.com/vi/6y0a3QkhQao/mqdefault.jpg",
+      "tags": [
+        "KBS",
+        "KBS NEWS",
+        "KBS뉴스",
+        "NEWS",
+        "kbs뉴스",
+        "kbs 뉴스",
+        "kbs news",
+        "kbs",
+        "뉴스",
+        "쇼츠",
+        "shorts"
+      ],
+      "viewCount": 1549818,
+      "likeCount": 15285,
+      "commentCount": 8804,
+      "durationSeconds": 90,
+      "format": "롱폼",
+      "ageDays": 6.7,
+      "viewsPerDay": 230091,
+      "momentum": 214191,
+      "likeRate": 0.99,
+      "commentRate": 0.57,
+      "matchedQueries": [
+        "전세"
+      ],
+      "marketScore": {
+        "total": 86,
+        "parts": {
+          "volume": 25,
+          "velocity": 30,
+          "likeRate": 4,
+          "commentRate": 7,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 99,
+        "parts": {
+          "momentum": 59,
+          "volume": 40
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 3690000
+    },
+    {
+      "videoId": "7cPsxE841Yc",
+      "url": "https://www.youtube.com/watch?v=7cPsxE841Yc",
+      "title": "가계 빚 사상 최대 기록에 금리인상까지...폭탄 곧 터지나 [자막뉴스] / YTN",
+      "description": "우리나라의 가계 빚 증가 속도가 점점 빨라지고 있습니다.\n\n국내 가계 부채 잔액은 지난 2024년 말부터 꾸준히 늘어나, 1분기 말엔 1,993조 원으로 사상 최대를 기록했습니다.\n\n그리고 한국은행이 조만간 공개할 2분기 가계 부채 잔액 잠정치는 처음으로 2천조 원을 돌파할 것이 확실시",
+      "channelId": "UChlgI3UHCOnwUGzWzbJ3H5w",
+      "channelTitle": " YTN",
+      "publishedAt": "2026-08-18T06:02:47Z",
+      "thumbnail": "https://i.ytimg.com/vi/7cPsxE841Yc/mqdefault.jpg",
+      "tags": [
+        "source:영상",
+        "type:방송",
+        "genre:경제",
+        "format:기타"
+      ],
+      "viewCount": 472161,
+      "likeCount": 2733,
+      "commentCount": 2637,
+      "durationSeconds": 94,
+      "format": "롱폼",
+      "ageDays": 1.7,
+      "viewsPerDay": 272267,
+      "momentum": 211335,
+      "likeRate": 0.58,
+      "commentRate": 0.56,
+      "matchedQueries": [
+        "금리 부동산"
+      ],
+      "marketScore": {
+        "total": 83,
+        "parts": {
+          "volume": 24,
+          "velocity": 30,
+          "likeRate": 2,
+          "commentRate": 7,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 98,
+        "parts": {
+          "momentum": 59,
+          "volume": 39
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 5400000
+    },
+    {
+      "videoId": "7dEu4G0xSRM",
+      "url": "https://www.youtube.com/watch?v=7dEu4G0xSRM",
+      "title": "아들 분양소",
+      "description": "#웃긴영상",
+      "channelId": "UCd8aJPEn_C348Xg7thpc-vA",
+      "channelTitle": "코테고리",
+      "publishedAt": "2026-08-16T09:00:22Z",
+      "thumbnail": "https://i.ytimg.com/vi/7dEu4G0xSRM/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 691714,
+      "likeCount": 14779,
+      "commentCount": 163,
+      "durationSeconds": 88,
+      "format": "롱폼",
+      "ageDays": 3.6,
+      "viewsPerDay": 191565,
+      "momentum": 168265,
+      "likeRate": 2.14,
+      "commentRate": 0.02,
+      "matchedQueries": [
+        "분양"
+      ],
+      "marketScore": {
+        "total": 83,
+        "parts": {
+          "volume": 24,
+          "velocity": 30,
+          "likeRate": 8,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 98,
+        "parts": {
+          "momentum": 59,
+          "volume": 39
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 356000
+    },
+    {
+      "videoId": "ircKYHydzSE",
+      "url": "https://www.youtube.com/watch?v=ircKYHydzSE",
+      "title": "20년 장기전세 당사자 본인 출연..토론하던 전문가 '눈 질끈'",
+      "description": "[뉴스헌터스]\n\n인터뷰를 인용보도할 때는 프로그램명 'SBS 뉴스헌터스'를 정확히 밝혀주시기 바랍니다. 저작권은 SBS에 있습니다.\n\n■ 방송: SBS 뉴스헌터스 월~금 ( 18:50~19:50)\n■ 진행: 김종원, 윤태진 앵커\n■ 대담: 이광훈 (서울시 공공임대 임차인 권익증진위원장)",
+      "channelId": "UCW-F02lN5KYx9iC16Tyakqw",
+      "channelTitle": "뉴스헌터스",
+      "publishedAt": "2026-08-18T13:10:21Z",
+      "thumbnail": "https://i.ytimg.com/vi/ircKYHydzSE/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 237283,
+      "likeCount": 1971,
+      "commentCount": 5290,
+      "durationSeconds": 1166,
+      "format": "롱폼",
+      "ageDays": 1.4,
+      "viewsPerDay": 165094,
+      "momentum": 122484,
+      "likeRate": 0.83,
+      "commentRate": 2.23,
+      "matchedQueries": [
+        "전세"
+      ],
+      "marketScore": {
+        "total": 86,
+        "parts": {
+          "volume": 22,
+          "velocity": 30,
+          "likeRate": 3,
+          "commentRate": 10,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 95,
+        "parts": {
+          "momentum": 58,
+          "volume": 37
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 1530
+    },
+    {
+      "videoId": "8vD7RaJKbso",
+      "url": "https://www.youtube.com/watch?v=8vD7RaJKbso",
+      "title": "2년 전 경매에 나온 포켓몬 카드 현재가",
+      "description": "#0",
+      "channelId": "UCF24NMvY6K0wUUaRR2jscQA",
+      "channelTitle": "일분일초",
+      "publishedAt": "2026-08-15T07:00:38Z",
+      "thumbnail": "https://i.ytimg.com/vi/8vD7RaJKbso/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 601481,
+      "likeCount": 4387,
+      "commentCount": 132,
+      "durationSeconds": 30,
+      "format": "쇼츠",
+      "ageDays": 4.7,
+      "viewsPerDay": 128138,
+      "momentum": 115803,
+      "likeRate": 0.73,
+      "commentRate": 0.02,
+      "matchedQueries": [
+        "경매"
+      ],
+      "marketScore": {
+        "total": 77,
+        "parts": {
+          "volume": 24,
+          "velocity": 30,
+          "likeRate": 3,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 97,
+        "parts": {
+          "momentum": 58,
+          "volume": 39
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 461000
+    },
+    {
+      "videoId": "10Ni-flAE4M",
+      "url": "https://www.youtube.com/watch?v=10Ni-flAE4M",
+      "title": "주먹구구식 억지 정책에 고통받는 국민들",
+      "description": "부동산 시장에서 재건축과 재개발은 실제로 주택 공급을 늘릴 수 있을까요? 🏢📈\n\n도시 정비 사업과 주택 공급 매커니즘에 대해 반드시 알아야 할 3가지 핵심 원리를 정리해 드립니다.\n\n1. 재개발과 재건축의 세대수 증감 구조\n도시정비사업은 노후화된 저층 주거지를 고층 고밀도 단지로 탈",
+      "channelId": "UCRVvvZACjpI1-DVCZ6FWBqQ",
+      "channelTitle": "우팡로켓",
+      "publishedAt": "2026-08-16T07:00:38Z",
+      "thumbnail": "https://i.ytimg.com/vi/10Ni-flAE4M/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 469296,
+      "likeCount": 21285,
+      "commentCount": 1263,
+      "durationSeconds": 60,
+      "format": "쇼츠",
+      "ageDays": 3.7,
+      "viewsPerDay": 127042,
+      "momentum": 111897,
+      "likeRate": 4.54,
+      "commentRate": 0.27,
+      "matchedQueries": [
+        "재건축"
+      ],
+      "marketScore": {
+        "total": 92,
+        "parts": {
+          "volume": 24,
+          "velocity": 30,
+          "likeRate": 15,
+          "commentRate": 3,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 97,
+        "parts": {
+          "momentum": 58,
+          "volume": 39
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 27500
+    },
+    {
+      "videoId": "la-R5j3xHzY",
+      "url": "https://www.youtube.com/watch?v=la-R5j3xHzY",
+      "title": "딸 분양소",
+      "description": "#웃긴영상",
+      "channelId": "UCd8aJPEn_C348Xg7thpc-vA",
+      "channelTitle": "코테고리",
+      "publishedAt": "2026-08-17T09:00:38Z",
+      "thumbnail": "https://i.ytimg.com/vi/la-R5j3xHzY/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 339258,
+      "likeCount": 8417,
+      "commentCount": 104,
+      "durationSeconds": 83,
+      "format": "롱폼",
+      "ageDays": 2.6,
+      "viewsPerDay": 129950,
+      "momentum": 109062,
+      "likeRate": 2.48,
+      "commentRate": 0.03,
+      "matchedQueries": [
+        "분양"
+      ],
+      "marketScore": {
+        "total": 83,
+        "parts": {
+          "volume": 23,
+          "velocity": 30,
+          "likeRate": 9,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 96,
+        "parts": {
+          "momentum": 58,
+          "volume": 38
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 356000
+    },
+    {
+      "videoId": "0CFEmDTie5Q",
+      "url": "https://www.youtube.com/watch?v=0CFEmDTie5Q",
+      "title": "청약 당첨에도 포기하는 현실",
+      "description": "● 엠빅뉴스 구독 https://www.youtube.com/@mbicnews?sub_confirmation=1\n● 홈페이지 https://imnews.imbc.com/original/mbig/2024.html\n● 페이스북 https://facebook.com/mbicnews\n● 네이버",
+      "channelId": "UCYRrUD5v5j_Ei8sKOo7mhoQ",
+      "channelTitle": "엠빅뉴스",
+      "publishedAt": "2026-08-13T03:36:31Z",
+      "thumbnail": "https://i.ytimg.com/vi/0CFEmDTie5Q/mqdefault.jpg",
+      "tags": [
+        "라디오스타",
+        "라스",
+        "라디오스타976회",
+        "라디오스타최신화",
+        "MBC라디오스타",
+        "MBC예능",
+        "홍현희",
+        "김문정",
+        "이창호",
+        "유호진",
+        "홍현희다이어트",
+        "홍현희10kg감량"
+      ],
+      "viewCount": 751991,
+      "likeCount": 3193,
+      "commentCount": 482,
+      "durationSeconds": 71,
+      "format": "쇼츠",
+      "ageDays": 6.8,
+      "viewsPerDay": 110008,
+      "momentum": 102510,
+      "likeRate": 0.42,
+      "commentRate": 0.06,
+      "matchedQueries": [
+        "청약"
+      ],
+      "marketScore": {
+        "total": 77,
+        "parts": {
+          "volume": 24,
+          "velocity": 30,
+          "likeRate": 2,
+          "commentRate": 1,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 97,
+        "parts": {
+          "momentum": 57,
+          "volume": 40
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 1440000
+    }
+  ],
+  "allVideos": [
+    {
+      "videoId": "ErWan_dGnHs",
+      "title": "“집 안 팔고 버티면 다 망합니다” 부동산 시장에 거대한 싸움 시작됐다 | 경읽남과 토론합시다 | 3자토론 김대호x홍춘욱x김광석 [2편]",
+      "channelId": "UC3pfEoxaRDT6hvZZjpHu7Tg",
+      "publishedAt": "2026-08-19T09:05:02Z",
+      "viewCount": 36324,
+      "viewsPerDay": 59781,
+      "momentum": 32795,
+      "ageDays": 0.6,
+      "format": "롱폼",
+      "likeRate": 3.16,
+      "rankScore": {
+        "total": 81,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "Y10GgNBzkNM",
+      "title": "집값 잡으려다 전세가 터진다? 전문가들이 경고한 부동산 정책의 역설 | 경읽남과 토론합시다 | 3자토론 김대호x홍춘욱x김광석 [1편]",
+      "channelId": "UC3pfEoxaRDT6hvZZjpHu7Tg",
+      "publishedAt": "2026-08-18T21:05:21Z",
+      "viewCount": 56520,
+      "viewsPerDay": 51038,
+      "momentum": 35162,
+      "ageDays": 1.1,
+      "format": "롱폼",
+      "likeRate": 2.69,
+      "rankScore": {
+        "total": 85,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "8SnlMdEFvyk",
+      "title": "\"이제 사고 싶어도 못 사요\" 집값 방향 이미 정해졌어요 (김인만 소장 풀버전)",
+      "channelId": "UCq6ieFsTssBj5tDE6JJJiBw",
+      "publishedAt": "2026-08-16T10:00:22Z",
+      "viewCount": 44629,
+      "viewsPerDay": 12504,
+      "momentum": 10968,
+      "ageDays": 3.6,
+      "format": "롱폼",
+      "likeRate": 1.79,
+      "rankScore": {
+        "total": 75,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "81g6WNQ9-Y0",
+      "title": "\"지금이라도 살까요?\" 가격대·상황별 부동산 대응 전략법 (김학렬 대표)",
+      "channelId": "UCGntVCJZW44CxkV3stW1FHg",
+      "publishedAt": "2026-08-19T09:00:14Z",
+      "viewCount": 12963,
+      "viewsPerDay": 21218,
+      "momentum": 11668,
+      "ageDays": 0.6,
+      "format": "롱폼",
+      "likeRate": 1.91,
+      "rankScore": {
+        "total": 66,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "kyUV1QqbPG4",
+      "title": "집권 1년 역대 최고 상승…최대 피해자는 이재명정부 - 김인만 소장 (부동산경제연구소) [성공예감 이대호입니다]｜KBS 260817 방송",
+      "channelId": "UCMLJc_D3jgFcS_48G7i4V0A",
+      "publishedAt": "2026-08-17T02:57:26Z",
+      "viewCount": 35731,
+      "viewsPerDay": 12481,
+      "momentum": 10625,
+      "ageDays": 2.9,
+      "format": "롱폼",
+      "likeRate": 1.24,
+      "rankScore": {
+        "total": 72,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "vcbPvHCJqAU",
+      "title": "뉴스엔 안 나오는 서울 경기도 부동산 집값 현재 분위기. ( 나무좋아 )",
+      "channelId": "UCDjaj6eENGMvgIXfeRErPmA",
+      "publishedAt": "2026-08-18T03:30:23Z",
+      "viewCount": 39017,
+      "viewsPerDay": 21205,
+      "momentum": 16674,
+      "ageDays": 1.8,
+      "format": "롱폼",
+      "likeRate": 1.79,
+      "rankScore": {
+        "total": 79,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "zAf3RfYMhfI",
+      "title": "27년 집값 시나리오! '돈의 이동' 시작된다 #제네시스박 #세제개편안",
+      "channelId": "UCHmXGmj6JA-4iQ1UFMC7LYw",
+      "publishedAt": "2026-08-13T23:00:08Z",
+      "viewCount": 76214,
+      "viewsPerDay": 12644,
+      "momentum": 11675,
+      "ageDays": 6,
+      "format": "쇼츠",
+      "likeRate": 1.01,
+      "rankScore": {
+        "total": 80,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "NkGIGuAvBec",
+      "title": "\"부동산 추가 대책 또 나온다 한달 뒤 집값 큰일났습니다 필수시청 하세요 (이장원 세무사, 심형석 교수, 염지훈 세무사, 메디테라 / 부동산 특집 )",
+      "channelId": "UCbOIEn95Rvnk97KRtSFqvbQ",
+      "publishedAt": "2026-08-15T11:00:13Z",
+      "viewCount": 25229,
+      "viewsPerDay": 5572,
+      "momentum": 5018,
+      "ageDays": 4.5,
+      "format": "롱폼",
+      "likeRate": 2.41,
+      "rankScore": {
+        "total": 63,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "x1lyxXfaILc",
+      "title": "재산세를 올리면 반발하는 이유? #부동산전망 #집값 #재산세 #서동기박사",
+      "channelId": "UC30N_JhDVyXBxVLsCnWuf-Q",
+      "publishedAt": "2026-08-14T08:00:14Z",
+      "viewCount": 10220,
+      "viewsPerDay": 1808,
+      "momentum": 1661,
+      "ageDays": 5.7,
+      "format": "쇼츠",
+      "likeRate": 1.81,
+      "rankScore": {
+        "total": 45,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "oasv3dhcF1E",
+      "title": "\"솔직히 너무 걱정됩니다\" 정부만 모르는 심각한 부동산 상황 (제네시스박 1부)",
+      "channelId": "UCq6ieFsTssBj5tDE6JJJiBw",
+      "publishedAt": "2026-08-19T10:00:24Z",
+      "viewCount": 6146,
+      "viewsPerDay": 10798,
+      "momentum": 5748,
+      "ageDays": 0.6,
+      "format": "롱폼",
+      "likeRate": 2.1,
+      "rankScore": {
+        "total": 54,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "wklJ_fsRcF0",
+      "title": "\"28년부터 집값 뒤집어진다?\" 언론의 새빨간 거짓말이다. 절대 속아 넘어가지 마세요 | 김시덕 박사 1부",
+      "channelId": "UCiLdPBP0AeP-Z9CDH4MggYQ",
+      "publishedAt": "2026-08-14T10:00:32Z",
+      "viewCount": 38397,
+      "viewsPerDay": 6895,
+      "momentum": 6327,
+      "ageDays": 5.6,
+      "format": "롱폼",
+      "likeRate": 1.98,
+      "rankScore": {
+        "total": 69,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "6hzTS4opaBc",
+      "title": "세제개편안 발표! 앞으로 부동산 전망은?",
+      "channelId": "UCcloDgiDqz8twby7zvG-USg",
+      "publishedAt": "2026-08-04T22:30:06Z",
+      "viewCount": 19267,
+      "viewsPerDay": 1280,
+      "momentum": 1131,
+      "ageDays": 15,
+      "format": "롱폼",
+      "likeRate": 1.96,
+      "rankScore": {
+        "total": 44,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "qKR1ssvIjpw",
+      "title": "세금이 무서워서 잠도 안 옵니다 ㅠ (박은정 감평사, 유찬영 세무사 몰아보기)",
+      "channelId": "UCp8lZRI3NSCXxhn_a_WGVKQ",
+      "publishedAt": "2026-08-15T00:30:04Z",
+      "viewCount": 65759,
+      "viewsPerDay": 13244,
+      "momentum": 12032,
+      "ageDays": 5,
+      "format": "롱폼",
+      "likeRate": 2.84,
+      "rankScore": {
+        "total": 80,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "VVjJjVeyPbo",
+      "title": "\"지금부터 집값 거꾸로 된다\" 부동산 시장에 퍼진 놀라운 소문, 충격적인 세제개편안 등장했다 (김제경 박사 / 통합본 1부)",
+      "channelId": "UC8ZsXVGlzhQHZeZ1A3F0x5A",
+      "publishedAt": "2026-08-15T10:30:24Z",
+      "viewCount": 22188,
+      "viewsPerDay": 4878,
+      "momentum": 4395,
+      "ageDays": 4.5,
+      "format": "롱폼",
+      "likeRate": 2.57,
+      "rankScore": {
+        "total": 61,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "1wLew0AW1s4",
+      "title": "부동산 대책 이건 정부가 실수한 겁니다(ft.표영호 대표 1부)",
+      "channelId": "UCznImSIaxZR7fdLCICLdgaQ",
+      "publishedAt": "2026-08-12T11:09:43Z",
+      "viewCount": 14016,
+      "viewsPerDay": 1864,
+      "momentum": 1738,
+      "ageDays": 7.5,
+      "format": "롱폼",
+      "likeRate": 2.37,
+      "rankScore": {
+        "total": 47,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "QHkQKYu7xys",
+      "title": "이미 터졌어야 하는 집값 버블. 왜 안 터지나...",
+      "channelId": "UCp8lZRI3NSCXxhn_a_WGVKQ",
+      "publishedAt": "2026-08-16T10:30:35Z",
+      "viewCount": 89982,
+      "viewsPerDay": 25360,
+      "momentum": 22228,
+      "ageDays": 3.5,
+      "format": "롱폼",
+      "likeRate": 2.64,
+      "rankScore": {
+        "total": 87,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "Dm-A_pMSdeQ",
+      "title": "집값 잡겠다고 칼 빼들었더니… 평생 살던 집에서 쫓겨나게 생겼습니다. (박은정 감정평가사, 유찬영 세무사)",
+      "channelId": "UCp8lZRI3NSCXxhn_a_WGVKQ",
+      "publishedAt": "2026-08-09T12:30:07Z",
+      "viewCount": 50650,
+      "viewsPerDay": 4840,
+      "momentum": 4445,
+      "ageDays": 10.5,
+      "format": "롱폼",
+      "likeRate": 2.69,
+      "rankScore": {
+        "total": 67,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "_tGGrkHYeXc",
+      "title": "이 정책 이미 검토 끝났어요. 발표만 해도 집값 폭락할 겁니다. 함부로 집 사지 마세요 | 서동기 박사 3부 #돈쭐남 #김경필",
+      "channelId": "UCriq8I8GEESkQq0svX19oCw",
+      "publishedAt": "2026-06-30T07:00:27Z",
+      "viewCount": 21680,
+      "viewsPerDay": 428,
+      "momentum": 222,
+      "ageDays": 50.7,
+      "format": "롱폼",
+      "likeRate": 1.72,
+      "rankScore": {
+        "total": 31,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "R1lDax8i1jk",
+      "title": "서울 부동산 완전히 돌아섰다 세제개편 후 집값 충격 전망(홍춘욱 박사 1부)",
+      "channelId": "UCq6ieFsTssBj5tDE6JJJiBw",
+      "publishedAt": "2026-08-14T11:00:39Z",
+      "viewCount": 78796,
+      "viewsPerDay": 14256,
+      "momentum": 13073,
+      "ageDays": 5.5,
+      "format": "롱폼",
+      "likeRate": 1.63,
+      "rankScore": {
+        "total": 81,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "xTb0SXAxpz4",
+      "title": "수도권 집값 가장 많이 오를 지역, '여기' 아파트 무섭게 오를 겁니다 (빠숑 김학렬 소장)",
+      "channelId": "UCvil4OAt-zShzkKHsg9EQAw",
+      "publishedAt": "2026-08-10T08:45:39Z",
+      "viewCount": 56314,
+      "viewsPerDay": 5853,
+      "momentum": 5406,
+      "ageDays": 9.6,
+      "format": "롱폼",
+      "likeRate": 1.57,
+      "rankScore": {
+        "total": 71,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "MTbIzKJnpBg",
+      "title": "[갓생쇼] 세제 개편이 뒤흔든 부동산 시장, 어디로 가나?｜서울 15억~20억 아파트 절반이 '신고가'···집값 상승세 확산 with 김인만 부동산연구소장｜KBS 260811 방송",
+      "channelId": "UCMLJc_D3jgFcS_48G7i4V0A",
+      "publishedAt": "2026-08-11T05:05:18Z",
+      "viewCount": 47054,
+      "viewsPerDay": 5363,
+      "momentum": 4976,
+      "ageDays": 8.8,
+      "format": "롱폼",
+      "likeRate": 1.08,
+      "rankScore": {
+        "total": 69,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "nxK-oNUhzx0",
+      "title": "2027~2028년 집값 폭락 옵니다 (8·3 세제개편안 세금 종부세·보유세·양도세 중과·장특공제 폐지. 강남 서울 아파트 다주택자·주택임대사업자·상생임대주택) 이경민 부동산 강의",
+      "channelId": "UCUPVXTwjAERAB4Og7czjPcw",
+      "publishedAt": "2026-08-18T09:50:23Z",
+      "viewCount": 8261,
+      "viewsPerDay": 5241,
+      "momentum": 3979,
+      "ageDays": 1.6,
+      "format": "롱폼",
+      "likeRate": 3.21,
+      "rankScore": {
+        "total": 52,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "bg5qBXhVY28",
+      "title": "\"버티면 패가망신한다\" 1주택자도 초비상 걸렸다. 정말 안타깝지만 집값 이렇게 됩니다 | 한문도 교수 1부",
+      "channelId": "UCiLdPBP0AeP-Z9CDH4MggYQ",
+      "publishedAt": "2026-08-11T10:00:15Z",
+      "viewCount": 13370,
+      "viewsPerDay": 1560,
+      "momentum": 1449,
+      "ageDays": 8.6,
+      "format": "롱폼",
+      "likeRate": 2.29,
+      "rankScore": {
+        "total": 44,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "8JZi0g4PP-g",
+      "title": "\"뉴스에는 안 나옵니다\" 서울 집값 대폭락 임박했다. 일본보다 끔찍한 일 닥친다. 대공황급 위기 포착됐어요 | 엘리엇 2부",
+      "channelId": "UCr8tO6DbPIaZw6R5nSNq07A",
+      "publishedAt": "2026-07-19T02:00:00Z",
+      "viewCount": 83548,
+      "viewsPerDay": 2619,
+      "momentum": 1880,
+      "ageDays": 31.9,
+      "format": "롱폼",
+      "likeRate": 2.68,
+      "rankScore": {
+        "total": 62,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "2W8TfKe_jic",
+      "title": "전세·매매 동반 상승…여름 비수기에도 꺾이지 않는 부동산 [9시 뉴스] / KBS  2026.07.16.",
+      "channelId": "UCcQTRi69dsVYHN3exePtZ1A",
+      "publishedAt": "2026-07-16T12:40:26Z",
+      "viewCount": 25863,
+      "viewsPerDay": 751,
+      "momentum": 519,
+      "ageDays": 34.5,
+      "format": "롱폼",
+      "likeRate": 0.87,
+      "rankScore": {
+        "total": 40,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "ONwbxmKdL9g",
+      "title": "아파트 매매한 2030 청년들 '역대 최다' #shorts #부동산 #아파트 #아파트매매 #부럽다 #서울아파트 #아파트가격 #전세",
+      "channelId": "UC8WLOh6UrALDSQ6ZmPjXJ9A",
+      "publishedAt": "2026-08-19T04:35:23Z",
+      "viewCount": 1372,
+      "viewsPerDay": 1726,
+      "momentum": 1060,
+      "ageDays": 0.8,
+      "format": "롱폼",
+      "likeRate": 1.38,
+      "rankScore": {
+        "total": 26,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "LRxQ7uKc6J0",
+      "title": "혼자 살려고 구매한 34평 신축아파트 l 송도 아파트 매매",
+      "channelId": "UCtYHCl8yhhvpWfcvdA_sCVg",
+      "publishedAt": "2026-08-17T03:15:32Z",
+      "viewCount": 265139,
+      "viewsPerDay": 93021,
+      "momentum": 79138,
+      "ageDays": 2.9,
+      "format": "롱폼",
+      "likeRate": 0.83,
+      "rankScore": {
+        "total": 94,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "66o1SjavV5A",
+      "title": "[화순 아파트 매매] 광주 10분 거리! 탁 트인 맨 앞동 남향, 화순읍 청미래아파트 35평(7층) 매물 소개",
+      "channelId": "UC7xH4uKnwO8qAWXFPgjDa_Q",
+      "publishedAt": "2026-06-26T06:15:33Z",
+      "viewCount": 400,
+      "viewsPerDay": 7,
+      "momentum": 3,
+      "ageDays": 54.7,
+      "format": "롱폼",
+      "likeRate": 1.25,
+      "rankScore": {
+        "total": 3,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "Om0MXqUARXI",
+      "title": "광명에서 제일 저렴하다는 아파트! 잔여분 땡처리로 저렴하게 분양한다. 떠오르는 도시 광명(넘버.8031번)[광명신축아파트][광명아파트분양][광명아파트매매]",
+      "channelId": "UC-epG-gZ8PUhlTUaQLyByiw",
+      "publishedAt": "2026-06-08T09:00:24Z",
+      "viewCount": 8577,
+      "viewsPerDay": 118,
+      "momentum": 34,
+      "ageDays": 72.6,
+      "format": "롱폼",
+      "likeRate": 0.66,
+      "rankScore": {
+        "total": 20,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "soNDKnBE7u8",
+      "title": "리조트 같은 24평 아파트 l 중구 아파트 매매",
+      "channelId": "UCDBr5TfaSHWVnifL2uy2bEw",
+      "publishedAt": "2026-08-16T03:00:18Z",
+      "viewCount": 101857,
+      "viewsPerDay": 26382,
+      "momentum": 23357,
+      "ageDays": 3.9,
+      "format": "롱폼",
+      "likeRate": 1,
+      "rankScore": {
+        "total": 88,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "MECHfRPvsK0",
+      "title": "12억 돌파했던 서울 아파트, 2026년 현재 매매가는? 벼락거지가 된 무주택자들의 절규 | KBS 시사기획 창 20211205 방송",
+      "channelId": "UC4LW3sOslC14Vn5bcoNUBkg",
+      "publishedAt": "2026-08-11T10:15:14Z",
+      "viewCount": 41756,
+      "viewsPerDay": 4879,
+      "momentum": 4531,
+      "ageDays": 8.6,
+      "format": "롱폼",
+      "likeRate": 1.2,
+      "rankScore": {
+        "total": 66,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "Feh_3fJS2cw",
+      "title": "이렇게 빨리 폭락할 줄 예상 못해, 1주택 급몰락!!",
+      "channelId": "UCHNwpYjtV8qc_HJlOfnDcAg",
+      "publishedAt": "2026-08-13T15:15:35Z",
+      "viewCount": 19023,
+      "viewsPerDay": 2996,
+      "momentum": 2777,
+      "ageDays": 6.4,
+      "format": "롱폼",
+      "likeRate": 5.05,
+      "rankScore": {
+        "total": 53,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "wNKuo4i9Vhg",
+      "title": "아파트 매매 처음부터 잔금까지 총정리ㅣ 처음 집 사는 분이라면 꼭 보세요",
+      "channelId": "UCoMdn5_lWMx1R8HQYWpXFCQ",
+      "publishedAt": "2026-08-06T04:54:14Z",
+      "viewCount": 100,
+      "viewsPerDay": 7,
+      "momentum": 6,
+      "ageDays": 13.8,
+      "format": "롱폼",
+      "likeRate": 3,
+      "rankScore": {
+        "total": 2,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "OcaSAE6fKKw",
+      "title": "군산 조촌동 전망좋은 센트럴파크 아파트 매매",
+      "channelId": "UChUh0Q1aw3QsIWcZZQJmS9w",
+      "publishedAt": "2026-08-19T08:56:48Z",
+      "viewCount": 267,
+      "viewsPerDay": 435,
+      "momentum": 240,
+      "ageDays": 0.6,
+      "format": "롱폼",
+      "likeRate": 3,
+      "rankScore": {
+        "total": 9,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "IV9W_x6x3rE",
+      "title": "파주시에서 가장 싼 30평대 최저가 아파트는? 파주 부동산 매매 전망 문산읍 당동리 조리읍 봉일천리",
+      "channelId": "UCy6PdeEdBp4IdictH4rFTmQ",
+      "publishedAt": "2026-06-01T22:15:39Z",
+      "viewCount": 392,
+      "viewsPerDay": 5,
+      "momentum": 1,
+      "ageDays": 79.1,
+      "format": "롱폼",
+      "likeRate": 1.53,
+      "rankScore": {
+        "total": 2,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "4pICu6DzEsQ",
+      "title": "당진아파트 매매 **대덕초옆 당진시티프라디움2차/ 다락방&테라스 있는 복층/ 막힘없는 뻥뷰/즉시입주/당진아파트전세/당진아파트월세/당진빌라매매/당진부동산/당진주택매매/당진아파트",
+      "channelId": "UCawCwXf462qAI3OR4nsa9uQ",
+      "publishedAt": "2026-07-16T06:04:07Z",
+      "viewCount": 798,
+      "viewsPerDay": 23,
+      "momentum": 16,
+      "ageDays": 34.7,
+      "format": "롱폼",
+      "likeRate": 0,
+      "rankScore": {
+        "total": 7,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "EY3Eo5AHIO4",
+      "title": "인천 계양구 작전동 2억대 24평 아파트 2탄 [NO.215] #인천빌라매매 #계양구빌라매매 #인천신축빌라",
+      "channelId": "UC5ecxAa4_c5yIz3SM_eGaGA",
+      "publishedAt": "2026-08-18T09:00:06Z",
+      "viewCount": 3344,
+      "viewsPerDay": 2076,
+      "momentum": 1584,
+      "ageDays": 1.6,
+      "format": "롱폼",
+      "likeRate": 3.11,
+      "rankScore": {
+        "total": 35,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "3cRR0J5z2z8",
+      "title": "저렴한아파트매매/올수리한 아파트매매/투자용아파트매매/음성군 음성읍 무지개아파트 저층 저렴하게 매매,",
+      "channelId": "UCRTKZFleXwln_EZ8SuAve4Q",
+      "publishedAt": "2026-08-09T00:00:38Z",
+      "viewCount": 195,
+      "viewsPerDay": 18,
+      "momentum": 16,
+      "ageDays": 11,
+      "format": "롱폼",
+      "likeRate": 1.54,
+      "rankScore": {
+        "total": 4,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "baiYr3U4O7E",
+      "title": "서초·강남 아파트 매매가격 하락‥서울 전체 상승폭은 둔화 (2026.08.13/뉴스데스크/MBC)",
+      "channelId": "UCF4Wxdo3inmxP-Y59wXDsFw",
+      "publishedAt": "2026-08-13T11:00:43Z",
+      "viewCount": 2314,
+      "viewsPerDay": 355,
+      "momentum": 329,
+      "ageDays": 6.5,
+      "format": "쇼츠",
+      "likeRate": 1.69,
+      "rankScore": {
+        "total": 19,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "nfodtx2Q9V0",
+      "title": "전세가 사라지면 결국 이걸 사게 됩니다 #부동산투자 #전세자금 #월세계약 #아파트매매 #송희구",
+      "channelId": "UCupslRq5jW95UGzPjOZz0FA",
+      "publishedAt": "2026-08-17T05:00:36Z",
+      "viewCount": 47689,
+      "viewsPerDay": 17171,
+      "momentum": 14551,
+      "ageDays": 2.8,
+      "format": "쇼츠",
+      "likeRate": 1.01,
+      "rankScore": {
+        "total": 79,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "6y0a3QkhQao",
+      "title": "\"20년 살면 죽을 줄 알았지\" #shorts / KBS",
+      "channelId": "UCcQTRi69dsVYHN3exePtZ1A",
+      "publishedAt": "2026-08-13T06:00:37Z",
+      "viewCount": 1549818,
+      "viewsPerDay": 230091,
+      "momentum": 214191,
+      "ageDays": 6.7,
+      "format": "롱폼",
+      "likeRate": 0.99,
+      "rankScore": {
+        "total": 99,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "ircKYHydzSE",
+      "title": "20년 장기전세 당사자 본인 출연..토론하던 전문가 '눈 질끈'",
+      "channelId": "UCW-F02lN5KYx9iC16Tyakqw",
+      "publishedAt": "2026-08-18T13:10:21Z",
+      "viewCount": 237283,
+      "viewsPerDay": 165094,
+      "momentum": 122484,
+      "ageDays": 1.4,
+      "format": "롱폼",
+      "likeRate": 0.83,
+      "rankScore": {
+        "total": 95,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "RyNs7o8fzEE",
+      "title": "20년 장기 전세 임차인 \"20년 만기? 근거 있나요??\"",
+      "channelId": "UCW-F02lN5KYx9iC16Tyakqw",
+      "publishedAt": "2026-08-18T15:03:44Z",
+      "viewCount": 31577,
+      "viewsPerDay": 23244,
+      "momentum": 16990,
+      "ageDays": 1.4,
+      "format": "롱폼",
+      "likeRate": 0.68,
+      "rankScore": {
+        "total": 77,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "3Q5g9l-iGEc",
+      "title": "[전세 전쟁] 집주인이 바뀌면 갱신요구권도 뒤집힙니다 (충격 반전)",
+      "channelId": "UCWjQzn0xZeMWyftbCDjPy2A",
+      "publishedAt": "2026-08-19T09:00:01Z",
+      "viewCount": 32000,
+      "viewsPerDay": 52364,
+      "momentum": 28800,
+      "ageDays": 0.6,
+      "format": "쇼츠",
+      "likeRate": 0.3,
+      "rankScore": {
+        "total": 79,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "6taoDltiD5s",
+      "title": "[8.13대책 뜯어보기]내년 전세 가격이 걱정되는 이유",
+      "channelId": "UCD9vzSxZ69pjcnf8hgCQXVQ",
+      "publishedAt": "2026-08-19T03:00:12Z",
+      "viewCount": 10717,
+      "viewsPerDay": 12448,
+      "momentum": 7874,
+      "ageDays": 0.9,
+      "format": "쇼츠",
+      "likeRate": 0.62,
+      "rankScore": {
+        "total": 61,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "diuewGvDVl4",
+      "title": "내년부터 전세대출 전면 금지되는 1주택자들 잔혹한 전세대출 규제의 실체",
+      "channelId": "UCSKrKPxIu0XXLY34rD7UlxQ",
+      "publishedAt": "2026-08-19T01:30:32Z",
+      "viewCount": 5088,
+      "viewsPerDay": 5511,
+      "momentum": 3575,
+      "ageDays": 0.9,
+      "format": "쇼츠",
+      "likeRate": 4.52,
+      "rankScore": {
+        "total": 47,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "LykpPRxVzis",
+      "title": "장기 전세 입주민의 요청사항 ㄷㄷ",
+      "channelId": "UCOjvYMLmCYjaG4Z7gwaN5Eg",
+      "publishedAt": "2026-08-15T02:31:00Z",
+      "viewCount": 259295,
+      "viewsPerDay": 53121,
+      "momentum": 48185,
+      "ageDays": 4.9,
+      "format": "쇼츠",
+      "likeRate": 1.08,
+      "rankScore": {
+        "total": 92,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "vzwnZaZfeuM",
+      "title": "20년 거주 끝나자 난리 난 장기전세",
+      "channelId": "UCVKnSXDVzLoP3mZy0wxF50A",
+      "publishedAt": "2026-08-18T06:51:13Z",
+      "viewCount": 25749,
+      "viewsPerDay": 15142,
+      "momentum": 11701,
+      "ageDays": 1.7,
+      "format": "쇼츠",
+      "likeRate": 0.61,
+      "rankScore": {
+        "total": 71,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "wG8xenLLqfs",
+      "title": "이 4가지 모르면 깡통전세 당합니다",
+      "channelId": "UC6rtxkkiZgfxEuFD0Qd3U5g",
+      "publishedAt": "2026-08-19T23:00:20Z",
+      "viewCount": 319,
+      "viewsPerDay": 1276,
+      "momentum": 425,
+      "ageDays": 0.3,
+      "format": "쇼츠",
+      "likeRate": 0,
+      "rankScore": {
+        "total": 15,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "JvwB8kYJjVY",
+      "title": "전월세 계약전후 누구책임?? #shorts #오늘의현장#전세#월세#h7#덴버#부동산계약#부동산#인테리어",
+      "channelId": "UCAxip2TTOJ6wkoArVTLmPTw",
+      "publishedAt": "2026-08-19T08:40:15Z",
+      "viewCount": 8410,
+      "viewsPerDay": 13460,
+      "momentum": 7477,
+      "ageDays": 0.6,
+      "format": "쇼츠",
+      "likeRate": 2.06,
+      "rankScore": {
+        "total": 58,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "bKYb5ywClw0",
+      "title": "세입자 내보내야 하는데, 나도 전세퇴거자금대출 될까요?",
+      "channelId": "UCd7cldJelUP_HWuTDCTf_-A",
+      "publishedAt": "2026-08-16T06:00:15Z",
+      "viewCount": 19208,
+      "viewsPerDay": 5141,
+      "momentum": 4535,
+      "ageDays": 3.7,
+      "format": "롱폼",
+      "likeRate": 2.17,
+      "rankScore": {
+        "total": 60,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "QLGkOXWZwvU",
+      "title": "집 한 채 있으면 전세대출 막힌다… 거주이전의 자유 침해, 50초 안에 설명하기",
+      "channelId": "UC9-FOv67-03WMjbPApziPwQ",
+      "publishedAt": "2026-08-14T09:00:20Z",
+      "viewCount": 438146,
+      "viewsPerDay": 78089,
+      "momentum": 71699,
+      "ageDays": 5.6,
+      "format": "쇼츠",
+      "likeRate": 8.11,
+      "rankScore": {
+        "total": 94,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "cuRxX8A-N_U",
+      "title": "[이슈빡] 코스피, 추세전환 언제? / [이슈저격] 20년 장기전세…퇴거 갈등 - 8.18 (화) 뉴스헌터스",
+      "channelId": "UCkinYTS9IHqOEwR1Sze2JTw",
+      "publishedAt": "2026-08-18T10:52:32Z",
+      "viewCount": 3387,
+      "viewsPerDay": 2209,
+      "momentum": 1666,
+      "ageDays": 1.5,
+      "format": "롱폼",
+      "likeRate": 0.94,
+      "rankScore": {
+        "total": 37,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "o_P15-7ejp0",
+      "title": "전세사기 당한 유튜버 근황",
+      "channelId": "UCv2Lw7H0J_cdmW-ufy9UXwg",
+      "publishedAt": "2026-08-19T14:04:32Z",
+      "viewCount": 77325,
+      "viewsPerDay": 193490,
+      "momentum": 85952,
+      "ageDays": 0.4,
+      "format": "쇼츠",
+      "likeRate": 0.92,
+      "rankScore": {
+        "total": 90,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "JQU-9nsQ7Qo",
+      "title": "[경제읽기] 코스피, 하락 전환…'전세의 월세화' 가속화 / 연합뉴스TV (YonhapnewsTV)",
+      "channelId": "UCTHCOPwqNfZ0uiKOvFyhGwg",
+      "publishedAt": "2026-08-18T04:12:48Z",
+      "viewCount": 24462,
+      "viewsPerDay": 13511,
+      "momentum": 10587,
+      "ageDays": 1.8,
+      "format": "롱폼",
+      "likeRate": 0.98,
+      "rankScore": {
+        "total": 69,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "me7Da349Cq0",
+      "title": "#시골집 #촌집  시골 월세, 없는 게 아니다 집주인이 숨긴 이유 3가지 #착한부동산",
+      "channelId": "UCrdaTzEGXGgvzQI7fbBkfhQ",
+      "publishedAt": "2026-08-18T08:44:36Z",
+      "viewCount": 20106,
+      "viewsPerDay": 12397,
+      "momentum": 9476,
+      "ageDays": 1.6,
+      "format": "쇼츠",
+      "likeRate": 0.52,
+      "rankScore": {
+        "total": 67,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "BvoB6va97Tw",
+      "title": "40대 1평짜리 월세 사는 벤츠 카푸어",
+      "channelId": "UCknfGXdai7ZaDhs3Frhtb6A",
+      "publishedAt": "2026-08-19T10:53:22Z",
+      "viewCount": 9923,
+      "viewsPerDay": 18639,
+      "momentum": 9612,
+      "ageDays": 0.5,
+      "format": "쇼츠",
+      "likeRate": 0.36,
+      "rankScore": {
+        "total": 61,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "gYEc73lyr7c",
+      "title": "\"월급 받아 집주인 먹여 살릴 판\" 아파트 월세 160만 원 넘었다… / KNN",
+      "channelId": "UC1ifSsWUG241rRfK0ezYCgA",
+      "publishedAt": "2026-08-19T09:30:36Z",
+      "viewCount": 1594,
+      "viewsPerDay": 2702,
+      "momentum": 1463,
+      "ageDays": 0.6,
+      "format": "쇼츠",
+      "likeRate": 0.69,
+      "rankScore": {
+        "total": 31,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "6MqXpbWZUsU",
+      "title": "23년동안 월세내자 갑자기 내 집이 생김",
+      "channelId": "UCG0ahKU9wEtCmp_IoJapg9A",
+      "publishedAt": "2026-08-18T06:00:53Z",
+      "viewCount": 899791,
+      "viewsPerDay": 518462,
+      "momentum": 402501,
+      "ageDays": 1.7,
+      "format": "쇼츠",
+      "likeRate": 2.88,
+      "rankScore": {
+        "total": 100,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "tHUSfSeWSk0",
+      "title": "월세도 못 내던 친구에게 남겨진 3천만 원",
+      "channelId": "UCrQl34COdk_duYz9iSvI_tw",
+      "publishedAt": "2026-08-19T09:00:35Z",
+      "viewCount": 53024,
+      "viewsPerDay": 86824,
+      "momentum": 47739,
+      "ageDays": 0.6,
+      "format": "롱폼",
+      "likeRate": 2.79,
+      "rankScore": {
+        "total": 86,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "t3w0NUhZMFw",
+      "title": "소득·자산 안 봅니다! 청년·신혼부부·고령자 월세 6만원부터 가능!  총 260명 모집 방 2개 월세 8만원대까지 가능! 정관8 행복주택 예비입주자 모집",
+      "channelId": "UCLJieOlbAeWn2qn8kjNo29w",
+      "publishedAt": "2026-08-18T10:15:06Z",
+      "viewCount": 7071,
+      "viewsPerDay": 4536,
+      "momentum": 3434,
+      "ageDays": 1.6,
+      "format": "롱폼",
+      "likeRate": 2.84,
+      "rankScore": {
+        "total": 48,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "9cioTCSklig",
+      "title": "월세 6개월 밀린 청년의 집 문을 따고 들어간 집주인 할아버지 #사연 #드라마 #반전사연 #시니어쇼츠 #쇼츠 #각종유머 #감동 #drama",
+      "channelId": "UCVk5273yXy7kjkIowCcmE2g",
+      "publishedAt": "2026-08-18T22:00:30Z",
+      "viewCount": 529599,
+      "viewsPerDay": 495368,
+      "momentum": 337517,
+      "ageDays": 1.1,
+      "format": "롱폼",
+      "likeRate": 2.42,
+      "rankScore": {
+        "total": 99,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "K2CgziciGSI",
+      "title": "“세입자는 전세로 살고, 집주인은 월세 받는다?”…정부 신탁사업 뜯어보니 [잇슈 머니] / KBS  2026.08.14.",
+      "channelId": "UCcQTRi69dsVYHN3exePtZ1A",
+      "publishedAt": "2026-08-14T05:05:23Z",
+      "viewCount": 6372,
+      "viewsPerDay": 1104,
+      "momentum": 1016,
+      "ageDays": 5.8,
+      "format": "롱폼",
+      "likeRate": 0.64,
+      "rankScore": {
+        "total": 35,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "9g3iF_mrsAE",
+      "title": "월세 밀려놓고 집 워터파크로 만든 임차인",
+      "channelId": "UCODl2Lpet8CUe3TFjrKe_9g",
+      "publishedAt": "2026-08-19T23:00:20Z",
+      "viewCount": 12096,
+      "viewsPerDay": 48384,
+      "momentum": 16128,
+      "ageDays": 0.3,
+      "format": "쇼츠",
+      "likeRate": 1.65,
+      "rankScore": {
+        "total": 69,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "ENQ4Vm7JsyQ",
+      "title": "월세 치솟나...비거주 1주택 전세대출 막히고 증세 / YTN",
+      "channelId": "UChlgI3UHCOnwUGzWzbJ3H5w",
+      "publishedAt": "2026-08-14T20:32:01Z",
+      "viewCount": 6473,
+      "viewsPerDay": 1262,
+      "momentum": 1150,
+      "ageDays": 5.1,
+      "format": "롱폼",
+      "likeRate": 0.57,
+      "rankScore": {
+        "total": 36,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "H708lxfful4",
+      "title": "\"월세, 무섭게 오를 겁니다\" / #채널A #shorts #경제시그널",
+      "channelId": "UCdErKhSSwQcVSC4PEp6soZQ",
+      "publishedAt": "2026-08-05T07:00:12Z",
+      "viewCount": 261058,
+      "viewsPerDay": 17766,
+      "momentum": 15744,
+      "ageDays": 14.7,
+      "format": "쇼츠",
+      "likeRate": 1.54,
+      "rankScore": {
+        "total": 87,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "CLIT45XY8GU",
+      "title": "‘월세 시대’ 오면 벌어지는 일 [모아봤스] / 스브스뉴스",
+      "channelId": "UCQabORQKQRHP-iUqe-xIFvg",
+      "publishedAt": "2026-07-11T02:30:38Z",
+      "viewCount": 122659,
+      "viewsPerDay": 3076,
+      "momentum": 1952,
+      "ageDays": 39.9,
+      "format": "롱폼",
+      "likeRate": 0.79,
+      "rankScore": {
+        "total": 64,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "r6sisZo07UA",
+      "title": "2027년 공공분양 일정 총정리! 3기신도시 청약 이것만 보세요!",
+      "channelId": "UCcloDgiDqz8twby7zvG-USg",
+      "publishedAt": "2026-08-19T22:30:24Z",
+      "viewCount": 927,
+      "viewsPerDay": 3708,
+      "momentum": 1236,
+      "ageDays": 0.3,
+      "format": "롱폼",
+      "likeRate": 4.64,
+      "rankScore": {
+        "total": 27,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "6ubcpoQGlR8",
+      "title": "\"5년 기다렸더니 빚더미\"…분양가 3억 올려버린 공공분양의 배신ㅣ현장의온도",
+      "channelId": "UCFhF5oooL5ugxHKvTxBD75Q",
+      "publishedAt": "2026-08-17T09:00:10Z",
+      "viewCount": 53667,
+      "viewsPerDay": 20554,
+      "momentum": 17251,
+      "ageDays": 2.6,
+      "format": "롱폼",
+      "likeRate": 1.12,
+      "rankScore": {
+        "total": 83,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "MkYovdnvx_0",
+      "title": "청약 이렇게 넣으면 100% 후회합니다! 청약 전 꼭 확인하세요 !!! #부천상동역롯데캐슬시그니처 #부천아파트 #부천청약 #청약주의 #청약정보 #자금계획 #분양정보",
+      "channelId": "UCTtTYp3py6YybXWaK2dYgAw",
+      "publishedAt": "2026-08-19T22:00:30Z",
+      "viewCount": 450,
+      "viewsPerDay": 1800,
+      "momentum": 600,
+      "ageDays": 0.3,
+      "format": "쇼츠",
+      "likeRate": 0.67,
+      "rankScore": {
+        "total": 19,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "T4fOc_ziCAM",
+      "title": "청약 당첨됐는데 돈이 없다면...? [월용이 3부]",
+      "channelId": "UC2QeHNJFfuQWB4cy3M-745g",
+      "publishedAt": "2025-11-24T10:00:46Z",
+      "viewCount": 38673,
+      "viewsPerDay": 144,
+      "momentum": 14,
+      "ageDays": 268.6,
+      "format": "롱폼",
+      "likeRate": 1.12,
+      "rankScore": {
+        "total": 31,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "TU70cxShLX8",
+      "title": "[#한국토지주택공사 | LH청약캘린더] 3기 신도시부터 수도권 노른자위까지! 놓치면 후회할 LH 공공분양 핵심 총정리 #공공분양 #청약일정",
+      "channelId": "UCzCH27zxNFmbzultWL4u-bw",
+      "publishedAt": "2026-07-01T09:00:30Z",
+      "viewCount": 34391,
+      "viewsPerDay": 693,
+      "momentum": 368,
+      "ageDays": 49.6,
+      "format": "롱폼",
+      "likeRate": 1.81,
+      "rankScore": {
+        "total": 39,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "Aom4vu2MaFE",
+      "title": "[8/20] 클로봇, 센서뷰 실권주 2일차 실시간 청약경쟁률 LIVE",
+      "channelId": "UCPHt56f4p6wVsPIDttxXZ2g",
+      "publishedAt": "2026-08-19T22:59:09Z",
+      "viewCount": 247,
+      "viewsPerDay": 988,
+      "momentum": 329,
+      "ageDays": 0.3,
+      "format": "롱폼",
+      "likeRate": 6.07,
+      "rankScore": {
+        "total": 12,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "0CFEmDTie5Q",
+      "title": "청약 당첨에도 포기하는 현실",
+      "channelId": "UCYRrUD5v5j_Ei8sKOo7mhoQ",
+      "publishedAt": "2026-08-13T03:36:31Z",
+      "viewCount": 751991,
+      "viewsPerDay": 110008,
+      "momentum": 102510,
+      "ageDays": 6.8,
+      "format": "쇼츠",
+      "likeRate": 0.42,
+      "rankScore": {
+        "total": 97,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "NTzFO1bYWVw",
+      "title": "이번 달 8월에 '이곳' 안 넣으면 이제는 청약 끝입니다 |2026년 하반기 청약 총 정리 (분양가, 입지, 시세차익) ",
+      "channelId": "UCPwp8tLr5gxsW8gF6DIE0wg",
+      "publishedAt": "2026-08-08T10:11:48Z",
+      "viewCount": 4470,
+      "viewsPerDay": 387,
+      "momentum": 352,
+      "ageDays": 11.6,
+      "format": "롱폼",
+      "likeRate": 0.85,
+      "rankScore": {
+        "total": 22,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "LIwaP8zgsRI",
+      "title": "사회초년생을 위한 청약 참교육①👊 | 흥청망청",
+      "channelId": "UCAVdqlngIAxHtwlCA2hjv3A",
+      "publishedAt": "2022-08-15T09:30:07Z",
+      "viewCount": 202625,
+      "viewsPerDay": 138,
+      "momentum": 14,
+      "ageDays": 1465.6,
+      "format": "롱폼",
+      "likeRate": 2.13,
+      "rankScore": {
+        "total": 39,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "dEvTLAII22E",
+      "title": "청약통장에 2만원, 25만원씩 돈 넣지 마세요 (4가지 케이스 완벽 정리)",
+      "channelId": "UCvq386U571OWVCbznTGSW-A",
+      "publishedAt": "2026-06-01T09:58:58Z",
+      "viewCount": 330369,
+      "viewsPerDay": 4152,
+      "momentum": 871,
+      "ageDays": 79.6,
+      "format": "롱폼",
+      "likeRate": 0.94,
+      "rankScore": {
+        "total": 57,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "mRmpWfOjcdo",
+      "title": "정부가 없애기 전 마지막 로또 청약, 9만 명 몰린 진짜 이유",
+      "channelId": "UCEJ0xvBgD9nZB-n4ZEA0DVA",
+      "publishedAt": "2026-08-19T03:25:01Z",
+      "viewCount": 6226,
+      "viewsPerDay": 7379,
+      "momentum": 4633,
+      "ageDays": 0.8,
+      "format": "쇼츠",
+      "likeRate": 1.09,
+      "rankScore": {
+        "total": 52,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "_sXMqRmAgig",
+      "title": "[8/19] 클로봇, 센서뷰 실권주 1일차 실시간 청약경쟁률 LIVE",
+      "channelId": "UCPHt56f4p6wVsPIDttxXZ2g",
+      "publishedAt": "2026-08-19T07:37:43Z",
+      "viewCount": 3357,
+      "viewsPerDay": 5024,
+      "momentum": 2874,
+      "ageDays": 0.7,
+      "format": "롱폼",
+      "likeRate": 2.71,
+      "rankScore": {
+        "total": 41,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "-5aruNJPTsk",
+      "title": "9월 30일 종료!! 결국.. 청약 통장 이렇게 됩니다! (무조건 신청하세요)",
+      "channelId": "UCcWXeluvExN8-eo_5KFfyjw",
+      "publishedAt": "2026-07-28T22:00:36Z",
+      "viewCount": 306919,
+      "viewsPerDay": 13907,
+      "momentum": 11372,
+      "ageDays": 22.1,
+      "format": "롱폼",
+      "likeRate": 1.29,
+      "rankScore": {
+        "total": 84,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "qyFl0ORbFDA",
+      "title": "펜트하우스급 청약 포기.. #라디오스타",
+      "channelId": "UCExLc_PM3kDogai56jyZEtg",
+      "publishedAt": "2026-08-15T05:00:06Z",
+      "viewCount": 86259,
+      "viewsPerDay": 18054,
+      "momentum": 16344,
+      "ageDays": 4.8,
+      "format": "롱폼",
+      "likeRate": 0.34,
+      "rankScore": {
+        "total": 85,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "Y8ZQkNdkAR8",
+      "title": "\"청약 당첨? 어차피 못 해요\"..'상대적 박탈감' 진짜 문제는 / 뉴스딱 / SBS 모닝와이드 2부",
+      "channelId": "UCkinYTS9IHqOEwR1Sze2JTw",
+      "publishedAt": "2026-07-27T00:59:09Z",
+      "viewCount": 11644,
+      "viewsPerDay": 486,
+      "momentum": 389,
+      "ageDays": 23.9,
+      "format": "롱폼",
+      "likeRate": 0.43,
+      "rankScore": {
+        "total": 30,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "a6YMbAtkadw",
+      "title": "대구강아지분양개키우는남자 라이브 방송",
+      "channelId": "UCu2riuvMWvQ28Mz8slIz8aw",
+      "publishedAt": "2026-08-19T06:24:41Z",
+      "viewCount": 17060,
+      "viewsPerDay": 23728,
+      "momentum": 13995,
+      "ageDays": 0.7,
+      "format": "롱폼",
+      "likeRate": 1.06,
+      "rankScore": {
+        "total": 70,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "7dEu4G0xSRM",
+      "title": "아들 분양소",
+      "channelId": "UCd8aJPEn_C348Xg7thpc-vA",
+      "publishedAt": "2026-08-16T09:00:22Z",
+      "viewCount": 691714,
+      "viewsPerDay": 191565,
+      "momentum": 168265,
+      "ageDays": 3.6,
+      "format": "롱폼",
+      "likeRate": 2.14,
+      "rankScore": {
+        "total": 98,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "KvlW5gfR0as",
+      "title": "서울 아파트 분양 핵심 단지 3곳, 수도권 무순위 청약 단지 4곳, 아파트 분양일정 최신화",
+      "channelId": "UCnGVpo1psITaqsHZVDRhvVg",
+      "publishedAt": "2026-08-02T22:06:58Z",
+      "viewCount": 398,
+      "viewsPerDay": 23,
+      "momentum": 20,
+      "ageDays": 17.1,
+      "format": "롱폼",
+      "likeRate": 1.76,
+      "rankScore": {
+        "total": 6,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "Yk9catqsQqE",
+      "title": "염소값 폭락, 지금이 좋은 염소 구매 찬스?! | 염소 분양",
+      "channelId": "UCe1esOAokd_YsRbj9YSboWA",
+      "publishedAt": "2026-08-18T10:30:14Z",
+      "viewCount": 1816,
+      "viewsPerDay": 1173,
+      "momentum": 887,
+      "ageDays": 1.5,
+      "format": "롱폼",
+      "likeRate": 3.36,
+      "rankScore": {
+        "total": 27,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "aNCU13-AgCo",
+      "title": "강아지분양 라이브❤️전국어디든분양가능❤️라이브 실시간 상담❤️ #강아지분양 #라이브 #강아지 #강아지입양 #dog #추천 #고양이 #고양이분양 #cat",
+      "channelId": "UCw56jKqUUEC1ZobTnyGhYxQ",
+      "publishedAt": "2026-08-19T13:47:17Z",
+      "viewCount": 6079,
+      "viewsPerDay": 14769,
+      "momentum": 6668,
+      "ageDays": 0.4,
+      "format": "롱폼",
+      "likeRate": 2.98,
+      "rankScore": {
+        "total": 54,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "YuFc1Wxk1xM",
+      "title": "대놓고 5천 할인분양, 경기도 초역세권 힐스테이트 줍줍",
+      "channelId": "UCzXtaeY4EfSnSB9_3gYnqdw",
+      "publishedAt": "2026-08-10T00:30:29Z",
+      "viewCount": 5688,
+      "viewsPerDay": 571,
+      "momentum": 526,
+      "ageDays": 10,
+      "format": "롱폼",
+      "likeRate": 1.25,
+      "rankScore": {
+        "total": 28,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "la-R5j3xHzY",
+      "title": "딸 분양소",
+      "channelId": "UCd8aJPEn_C348Xg7thpc-vA",
+      "publishedAt": "2026-08-17T09:00:38Z",
+      "viewCount": 339258,
+      "viewsPerDay": 129950,
+      "momentum": 109062,
+      "ageDays": 2.6,
+      "format": "롱폼",
+      "likeRate": 2.48,
+      "rankScore": {
+        "total": 96,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "T-ZgZUKCNu4",
+      "title": "강아지분양💟실시간 라이브 분양 상담💟힐링방송  #강아지분양 #강아지 #고양이 #고양이분양 #추천 #dog #강아지입양 #라이브 #cat #puppy",
+      "channelId": "UCKMLZo4fDrF9bq09hJhJjaQ",
+      "publishedAt": "2026-08-19T14:32:48Z",
+      "viewCount": 6628,
+      "viewsPerDay": 17442,
+      "momentum": 7532,
+      "ageDays": 0.4,
+      "format": "롱폼",
+      "likeRate": 1.99,
+      "rankScore": {
+        "total": 58,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "PZualKT-4ZI",
+      "title": "소사역 3,600여세대 분양물량 풀리면서 덩달아 상승 곡선 탑승 중인 역세권 신축아파트⭐푸르지오 생활권 28평형 도시형아파트 급매 -8천만원 할인(No.8095)[부천신축분양]",
+      "channelId": "UCR_gnqIFTMeyE5PSJdECVNg",
+      "publishedAt": "2026-07-30T10:00:34Z",
+      "viewCount": 1876,
+      "viewsPerDay": 91,
+      "momentum": 76,
+      "ageDays": 20.6,
+      "format": "롱폼",
+      "likeRate": 1.23,
+      "rankScore": {
+        "total": 13,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "QTOCXwJTchE",
+      "title": "강아지 분양 라이브 말티푸 분양 #강아지분양#고양이분양#강아지분양라이브#말티푸분양#비숑분양#몰키분양#푸들분양#두들분양#셀티분양#말티즈분양#폼스키분양#강아지라방#스타독스",
+      "channelId": "UC_75dYEtZJpEJwjgmvC1LHw",
+      "publishedAt": "2026-08-17T04:01:21Z",
+      "viewCount": 7981,
+      "viewsPerDay": 2832,
+      "momentum": 2405,
+      "ageDays": 2.8,
+      "format": "롱폼",
+      "likeRate": 1.43,
+      "rankScore": {
+        "total": 45,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "1pMQFchfmUE",
+      "title": "[단독] “10년 거주에 시세 80% 분양?”…민간임대아파트 모집 논란 [부산]",
+      "channelId": "UCQeRytUmPXlZN-tgmDnCM2w",
+      "publishedAt": "2026-08-11T08:33:15Z",
+      "viewCount": 3733,
+      "viewsPerDay": 433,
+      "momentum": 402,
+      "ageDays": 8.6,
+      "format": "롱폼",
+      "likeRate": 0.29,
+      "rankScore": {
+        "total": 22,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "RugyWzpQFm8",
+      "title": "8.13대책 ㅣ 27년 3기신도시 분양은??",
+      "channelId": "UC2ep2OtTJtUf9ZJzOK_v3Pg",
+      "publishedAt": "2026-08-13T22:30:21Z",
+      "viewCount": 8607,
+      "viewsPerDay": 1423,
+      "momentum": 1314,
+      "ageDays": 6,
+      "format": "롱폼",
+      "likeRate": 1.41,
+      "rankScore": {
+        "total": 40,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "8O7X-mcrajY",
+      "title": "5년전 가격 입주포기분 재분양, 서울 힐스테이트 3룸",
+      "channelId": "UCzXtaeY4EfSnSB9_3gYnqdw",
+      "publishedAt": "2026-07-07T00:30:13Z",
+      "viewCount": 7199,
+      "viewsPerDay": 164,
+      "momentum": 97,
+      "ageDays": 44,
+      "format": "롱폼",
+      "likeRate": 1.31,
+      "rankScore": {
+        "total": 22,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "4DKXe40e7qc",
+      "title": "90%가 모르는 재개발 대지지분의 진실 [재발공명]",
+      "channelId": "UC6okjYYSgkBwU_pdDUOK_kA",
+      "publishedAt": "2026-08-18T07:30:32Z",
+      "viewCount": 29797,
+      "viewsPerDay": 17808,
+      "momentum": 13711,
+      "ageDays": 1.7,
+      "format": "롱폼",
+      "likeRate": 2.6,
+      "rankScore": {
+        "total": 73,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "VusFfrmu1ws",
+      "title": "\"집값 바꾸는 진짜 개발호재는 따로 있다\" 서울 재건축·재개발 투자할 때 꼭 봐야 할 것 I 김제경 박사",
+      "channelId": "UCzwT19hkdAkZIil8WdgzdgA",
+      "publishedAt": "2026-08-18T07:00:20Z",
+      "viewCount": 2086,
+      "viewsPerDay": 1231,
+      "momentum": 951,
+      "ageDays": 1.7,
+      "format": "롱폼",
+      "likeRate": 1.1,
+      "rankScore": {
+        "total": 28,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "7YO8z8OGRkM",
+      "title": "재개발 현금 8억 넘는 곳 투자 하지 마세요!! #재개발 #재건축 #리모델링 #성남재개발 #수원재개발 #광명재개발 #재개발투자",
+      "channelId": "UCExUdRQ4cFUv_H4jVCQmzeg",
+      "publishedAt": "2026-08-10T10:00:29Z",
+      "viewCount": 421,
+      "viewsPerDay": 44,
+      "momentum": 41,
+      "ageDays": 9.6,
+      "format": "롱폼",
+      "likeRate": 0.95,
+      "rankScore": {
+        "total": 8,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "e-hSatqkwLo",
+      "title": "이재명 정부의 부동산 규제, 재개발 투자가 답이다! [조선일보 부동산트렌드쇼2026]",
+      "channelId": "UC9meL6XNNckzlleWelmO9tQ",
+      "publishedAt": "2026-08-19T09:30:05Z",
+      "viewCount": 6037,
+      "viewsPerDay": 10228,
+      "momentum": 5537,
+      "ageDays": 0.6,
+      "format": "롱폼",
+      "likeRate": 4.03,
+      "rankScore": {
+        "total": 53,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "j30jlchOkeQ",
+      "title": "서울 아파트 저평가 지역 top10 + 재개발 틈새 투자처 분석(오늘이 마지막)",
+      "channelId": "UCm6pbg_dXWOrTggt9zCECAQ",
+      "publishedAt": "2026-08-13T05:00:06Z",
+      "viewCount": 28593,
+      "viewsPerDay": 4219,
+      "momentum": 3929,
+      "ageDays": 6.8,
+      "format": "롱폼",
+      "likeRate": 1.74,
+      "rankScore": {
+        "total": 60,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "FfIi1pu7bmc",
+      "title": "부동산 규제에도 돈 되는 곳은 있다! 지금 주목할 재개발 투자처 3곳 [260819 부동산 고민 무엇이든 물어보세요]",
+      "channelId": "UC2_iKYWKetnvJPCac1rMU3w",
+      "publishedAt": "2026-08-19T06:54:54Z",
+      "viewCount": 754,
+      "viewsPerDay": 1080,
+      "momentum": 629,
+      "ageDays": 0.7,
+      "format": "롱폼",
+      "likeRate": 3.18,
+      "rankScore": {
+        "total": 20,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "0ZEvByecZT0",
+      "title": "낡은 서울 빌라가 돈 되는 이유, 서울재개발 10개 구역 직접 확인했습니다 | 서울 재개발 몰아보기",
+      "channelId": "UCwZzWtI-uwoYSDaubTx7Tzw",
+      "publishedAt": "2026-08-07T11:01:07Z",
+      "viewCount": 36349,
+      "viewsPerDay": 2902,
+      "momentum": 2623,
+      "ageDays": 12.5,
+      "format": "롱폼",
+      "likeRate": 2.18,
+      "rankScore": {
+        "total": 57,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "a-tfWQDXg90",
+      "title": "[재개발 임장] 용산구 후암동, 이해관계가 가장 단순한 곳을 찾아라! (후암동 재개발 구역 9곳 전수조사 딱 '이곳'만 추천하는 이유!)",
+      "channelId": "UC3aUXL2JPIj0MN1p9whYU6Q",
+      "publishedAt": "2026-08-14T07:43:48Z",
+      "viewCount": 4083,
+      "viewsPerDay": 721,
+      "momentum": 662,
+      "ageDays": 5.7,
+      "format": "롱폼",
+      "likeRate": 3.28,
+      "rankScore": {
+        "total": 27,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "9p6SzeQNAWA",
+      "title": "자금조달계획서 없이 재개발 투자하는 유일한 방법!",
+      "channelId": "UC7-9PpiH2LjKwcEG8u0WB3w",
+      "publishedAt": "2026-08-19T09:04:07Z",
+      "viewCount": 985,
+      "viewsPerDay": 1619,
+      "momentum": 889,
+      "ageDays": 0.6,
+      "format": "롱폼",
+      "likeRate": 2.74,
+      "rankScore": {
+        "total": 24,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "6YLo-lJ_qpc",
+      "title": "비싼 아파트 vs 위험한 재개발, 당신이라면?",
+      "channelId": "UClTQXZEsDAma4xH1l_NvmgA",
+      "publishedAt": "2026-08-19T03:45:08Z",
+      "viewCount": 1621,
+      "viewsPerDay": 1954,
+      "momentum": 1219,
+      "ageDays": 0.8,
+      "format": "쇼츠",
+      "likeRate": 0.12,
+      "rankScore": {
+        "total": 29,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "vXF6mPtH58o",
+      "title": "아파트만 내 집 마련이냐? 재개발 빌라도 알짜배기 내 집이다!, 상담문의 02-522-5757 차원부동산투자연구소",
+      "channelId": "UCcpU7r9JDeKJDv-L3OIb3MA",
+      "publishedAt": "2026-08-19T22:00:05Z",
+      "viewCount": 630,
+      "viewsPerDay": 2520,
+      "momentum": 840,
+      "ageDays": 0.3,
+      "format": "쇼츠",
+      "likeRate": 0.48,
+      "rankScore": {
+        "total": 22,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "K8v3GCvD9KE",
+      "title": "용산 원효로3가 재개발, 주택수 제외 마지막 단 2세대 남았습니다..",
+      "channelId": "UCTyZ66ZtleXZiUU_1JuMPaQ",
+      "publishedAt": "2026-08-10T07:36:21Z",
+      "viewCount": 4682,
+      "viewsPerDay": 484,
+      "momentum": 447,
+      "ageDays": 9.7,
+      "format": "롱폼",
+      "likeRate": 1.79,
+      "rankScore": {
+        "total": 25,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "8AfxyEZ4B7A",
+      "title": "정부가 재개발 제대로 밀어주기 시작했습니다",
+      "channelId": "UClTQXZEsDAma4xH1l_NvmgA",
+      "publishedAt": "2026-08-19T08:30:23Z",
+      "viewCount": 1599,
+      "viewsPerDay": 2531,
+      "momentum": 1413,
+      "ageDays": 0.6,
+      "format": "쇼츠",
+      "likeRate": 0.19,
+      "rankScore": {
+        "total": 31,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "Zy7jX7b32yo",
+      "title": "같은 지역에 최저가 내돈 3억대 투자하는 법! 용산 재개발 주택수 제외 선착순 급매",
+      "channelId": "UCTyZ66ZtleXZiUU_1JuMPaQ",
+      "publishedAt": "2026-08-11T01:38:44Z",
+      "viewCount": 4619,
+      "viewsPerDay": 518,
+      "momentum": 480,
+      "ageDays": 8.9,
+      "format": "롱폼",
+      "likeRate": 1.78,
+      "rankScore": {
+        "total": 25,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "tyj_6dTDP3U",
+      "title": "'영끌' 했지만 강남·용산은 빠져‥대신 재건축·재개발 지원으로 (2026.08.13/뉴스데스크/MBC)",
+      "channelId": "UCF4Wxdo3inmxP-Y59wXDsFw",
+      "publishedAt": "2026-08-13T10:53:01Z",
+      "viewCount": 11730,
+      "viewsPerDay": 1796,
+      "momentum": 1668,
+      "ageDays": 6.5,
+      "format": "롱폼",
+      "likeRate": 0.82,
+      "rankScore": {
+        "total": 45,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "g8GcTQruYnQ",
+      "title": "재건축 해도 저는 못 사거든요 청년의 현실?",
+      "channelId": "UCIDNr5dMPYQwwklOqJRUvWw",
+      "publishedAt": "2026-08-17T13:48:00Z",
+      "viewCount": 200760,
+      "viewsPerDay": 83264,
+      "momentum": 68963,
+      "ageDays": 2.4,
+      "format": "쇼츠",
+      "likeRate": 0.52,
+      "rankScore": {
+        "total": 92,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "10Ni-flAE4M",
+      "title": "주먹구구식 억지 정책에 고통받는 국민들",
+      "channelId": "UCRVvvZACjpI1-DVCZ6FWBqQ",
+      "publishedAt": "2026-08-16T07:00:38Z",
+      "viewCount": 469296,
+      "viewsPerDay": 127042,
+      "momentum": 111897,
+      "ageDays": 3.7,
+      "format": "쇼츠",
+      "likeRate": 4.54,
+      "rankScore": {
+        "total": 97,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "p2nqCx8TEgA",
+      "title": "[재개발 구역 교회] 1. 재개발과 재건축의 차이 #재개발조합 #교회소송 #종교시설보상 #재개발교회 #종교부지 #알박기 #재건축 #부대시설 #복리시설",
+      "channelId": "UCze8Q7fDe10-1kUYWQCs4ew",
+      "publishedAt": "2026-08-19T21:30:34Z",
+      "viewCount": 871,
+      "viewsPerDay": 3484,
+      "momentum": 1161,
+      "ageDays": 0.3,
+      "format": "쇼츠",
+      "likeRate": 0.23,
+      "rankScore": {
+        "total": 27,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "nyR-wzUPnoA",
+      "title": "'얼죽신' 시대, 재건축 안 하면 신축만 계속 터집니다",
+      "channelId": "UCx7tcHOxncHiyflRNqwICwA",
+      "publishedAt": "2026-08-17T03:00:18Z",
+      "viewCount": 2174,
+      "viewsPerDay": 760,
+      "momentum": 647,
+      "ageDays": 2.9,
+      "format": "롱폼",
+      "likeRate": 2.62,
+      "rankScore": {
+        "total": 24,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "iHbcZ2KxXTg",
+      "title": "와~ 재건축 작살났네 '가격 파탄', 집주인들 쇼크!!",
+      "channelId": "UCHNwpYjtV8qc_HJlOfnDcAg",
+      "publishedAt": "2026-08-17T10:15:39Z",
+      "viewCount": 21635,
+      "viewsPerDay": 8456,
+      "momentum": 7074,
+      "ageDays": 2.6,
+      "format": "롱폼",
+      "likeRate": 4.71,
+      "rankScore": {
+        "total": 65,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "SLmhj3md3_4",
+      "title": "대통령은 왜 재건축을 막을까? \"오세훈, 이번에 옳은 소리\"",
+      "channelId": "UCYo4GYn_GeqRcdkraHe83GQ",
+      "publishedAt": "2026-08-13T03:54:19Z",
+      "viewCount": 312240,
+      "viewsPerDay": 45760,
+      "momentum": 42636,
+      "ageDays": 6.8,
+      "format": "쇼츠",
+      "likeRate": 2.36,
+      "rankScore": {
+        "total": 93,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "4wcLQ3uiH80",
+      "title": "안전진단이 이제 '재건축진단'입니다 | 20~30년 vs 40년 #shorts",
+      "channelId": "UC9Swrb_QkoO0hwbvAQQxBGA",
+      "publishedAt": "2026-08-17T10:00:37Z",
+      "viewCount": 1473,
+      "viewsPerDay": 573,
+      "momentum": 480,
+      "ageDays": 2.6,
+      "format": "쇼츠",
+      "likeRate": 0.48,
+      "rankScore": {
+        "total": 19,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "-izIZgwD9ug",
+      "title": "李 \"재개발해도 가구수 줄던데?\" 아무것도 모르는 대통령! #재개발 #재건축 #부동산 #김성열 #shorts",
+      "channelId": "UCUR6YCiTLs1JrTVpIBb3OUA",
+      "publishedAt": "2026-08-14T07:08:05Z",
+      "viewCount": 31738,
+      "viewsPerDay": 5579,
+      "momentum": 5128,
+      "ageDays": 5.7,
+      "format": "쇼츠",
+      "likeRate": 4.31,
+      "rankScore": {
+        "total": 65,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "1X6sv6yYGHs",
+      "title": "오세훈 \"재건축 규제 풀자\"…이재명 \"집값 폭등 안 돼\"",
+      "channelId": "UCDFWMahPq2LjyPn_d7J8jhA",
+      "publishedAt": "2026-08-19T05:45:10Z",
+      "viewCount": 1901,
+      "viewsPerDay": 2547,
+      "momentum": 1525,
+      "ageDays": 0.7,
+      "format": "쇼츠",
+      "likeRate": 0.74,
+      "rankScore": {
+        "total": 33,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "9SYmuJavTsQ",
+      "title": "재건축 단지는 더 비상...요즘 강남 아파트 시장 분위기 [자막뉴스]  / YTN",
+      "channelId": "UChlgI3UHCOnwUGzWzbJ3H5w",
+      "publishedAt": "2026-08-19T03:15:39Z",
+      "viewCount": 15729,
+      "viewsPerDay": 18499,
+      "momentum": 11649,
+      "ageDays": 0.9,
+      "format": "롱폼",
+      "likeRate": 0.77,
+      "rankScore": {
+        "total": 67,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "R1wpC0Rleus",
+      "title": "재개발 조합원 돈 얼마나 드는거냥 #Shorts #재개발 #지식정보",
+      "channelId": "UCm8qcPNkGDqFeH60EHT6Svw",
+      "publishedAt": "2026-07-23T22:00:16Z",
+      "viewCount": 1373,
+      "viewsPerDay": 51,
+      "momentum": 39,
+      "ageDays": 27.1,
+      "format": "쇼츠",
+      "likeRate": 1.09,
+      "rankScore": {
+        "total": 10,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "gj9HydnNeNI",
+      "title": "정부 비아파트 지원에 청년들이 머뭇대는 2가지 이유",
+      "channelId": "UC3va5U9NULz5A3K2ZlZQHYg",
+      "publishedAt": "2026-08-18T05:08:13Z",
+      "viewCount": 1030,
+      "viewsPerDay": 581,
+      "momentum": 453,
+      "ageDays": 1.8,
+      "format": "쇼츠",
+      "likeRate": 0.39,
+      "rankScore": {
+        "total": 19,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "XUtEGJeHZe0",
+      "title": "재건축이라고 다 오를까? 놓치면 위험한 5가지 조건",
+      "channelId": "UC8fLp2MqsnYqcNwpG-jzyFg",
+      "publishedAt": "2026-08-18T10:00:17Z",
+      "viewCount": 15314,
+      "viewsPerDay": 9759,
+      "momentum": 7401,
+      "ageDays": 1.6,
+      "format": "롱폼",
+      "likeRate": 1.15,
+      "rankScore": {
+        "total": 62,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "80UcwrI1wy4",
+      "title": "현금 9억이 어딨노 | 99층 재건축 실패, 부산의 은마아파트",
+      "channelId": "UCafdaMoUgftag08nDFd6X1A",
+      "publishedAt": "2026-08-16T00:55:10Z",
+      "viewCount": 147539,
+      "viewsPerDay": 37372,
+      "momentum": 33171,
+      "ageDays": 3.9,
+      "format": "롱폼",
+      "likeRate": 2.53,
+      "rankScore": {
+        "total": 89,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "X4NFN2ZNPk0",
+      "title": "'아무것도 안 했는데 3,500만원 벌었어요' 부동산 투자는 이렇게 해야 합니다",
+      "channelId": "UCz4CFx4eeELZNReE_Wyit4g",
+      "publishedAt": "2026-08-19T09:00:38Z",
+      "viewCount": 4450,
+      "viewsPerDay": 7287,
+      "momentum": 4007,
+      "ageDays": 0.6,
+      "format": "롱폼",
+      "likeRate": 2.16,
+      "rankScore": {
+        "total": 47,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "8R0JitdnlMc",
+      "title": "8.3 세제개편 이후, 부동산 투자 판이 바뀝니다 | 투미부동산 김제경 박사 1편",
+      "channelId": "UCCTOzFObhmZoMkJVQKgAQJQ",
+      "publishedAt": "2026-08-14T11:00:35Z",
+      "viewCount": 21626,
+      "viewsPerDay": 3913,
+      "momentum": 3588,
+      "ageDays": 5.5,
+      "format": "롱폼",
+      "likeRate": 1.94,
+      "rankScore": {
+        "total": 57,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "7bT5bXAKBFY",
+      "title": "서울 월세가 162만 원입니다!",
+      "channelId": "UCKosTo5bqKm4v264z2zDnFQ",
+      "publishedAt": "2026-08-19T21:38:30Z",
+      "viewCount": 2198,
+      "viewsPerDay": 8792,
+      "momentum": 2931,
+      "ageDays": 0.3,
+      "format": "롱폼",
+      "likeRate": 8.51,
+      "rankScore": {
+        "total": 40,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "RmX4J00xBwM",
+      "title": "정부 부동산 규제의 진짜 목적은 따로 있습니다",
+      "channelId": "UCcO3WDALk4_1jJfDRv5Ykyw",
+      "publishedAt": "2026-08-17T02:00:03Z",
+      "viewCount": 8890,
+      "viewsPerDay": 3063,
+      "momentum": 2613,
+      "ageDays": 2.9,
+      "format": "롱폼",
+      "likeRate": 2.33,
+      "rankScore": {
+        "total": 47,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "6c1Wm8n-Nv8",
+      "title": "\"근데 대부분 이걸 간과해요\" 지금 저평가된 수도권 지역 3곳 알려드릴게요 (김시덕 2부)",
+      "channelId": "UCDSj40X9FFUAnx1nv7gQhcA",
+      "publishedAt": "2026-08-10T22:00:16Z",
+      "viewCount": 35958,
+      "viewsPerDay": 3965,
+      "momentum": 3673,
+      "ageDays": 9.1,
+      "format": "롱폼",
+      "likeRate": 1.26,
+      "rankScore": {
+        "total": 62,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "A2sLRajLWoo",
+      "title": "포모에서 포기로 가는 요즘 30대 상황... \"주식, 부동산 투자 이제 그만하고 싶어요\" (#구해줘월급 Ep.5)",
+      "channelId": "UCDSj40X9FFUAnx1nv7gQhcA",
+      "publishedAt": "2026-08-16T23:00:01Z",
+      "viewCount": 74974,
+      "viewsPerDay": 24762,
+      "momentum": 21253,
+      "ageDays": 3,
+      "format": "롱폼",
+      "likeRate": 1.23,
+      "rankScore": {
+        "total": 84,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "5758qplzHV0",
+      "title": "5년 만에 78.8% 뚝, 심상치 않은 빌라 시장",
+      "channelId": "UCcO3WDALk4_1jJfDRv5Ykyw",
+      "publishedAt": "2026-08-10T03:06:34Z",
+      "viewCount": 31415,
+      "viewsPerDay": 3187,
+      "momentum": 2939,
+      "ageDays": 9.9,
+      "format": "롱폼",
+      "likeRate": 1.11,
+      "rankScore": {
+        "total": 58,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "9-OTP-ZBlks",
+      "title": "'빌라 투자는 이렇게 하는 겁니다' 알려줘도 아무도 안 해서 맨날 저만 돈 버네요",
+      "channelId": "UCz4CFx4eeELZNReE_Wyit4g",
+      "publishedAt": "2026-08-04T09:00:38Z",
+      "viewCount": 14367,
+      "viewsPerDay": 920,
+      "momentum": 808,
+      "ageDays": 15.6,
+      "format": "롱폼",
+      "likeRate": 1.74,
+      "rankScore": {
+        "total": 38,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "EyYxTP0Tik0",
+      "title": "대한민국 상위 1%가 사는 청담동 하이엔드 오피스텔",
+      "channelId": "UCvVdyIjSEmPGtQlZG9X4H4Q",
+      "publishedAt": "2026-08-18T10:00:23Z",
+      "viewCount": 20100,
+      "viewsPerDay": 12809,
+      "momentum": 9714,
+      "ageDays": 1.6,
+      "format": "쇼츠",
+      "likeRate": 0.25,
+      "rankScore": {
+        "total": 67,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "7_P8XFlscL8",
+      "title": "서울 경기도 아파트 여기 보세요, 내년부터 정말 무섭게 오를 겁니다 [김제경 박사 4부]",
+      "channelId": "UC2QeHNJFfuQWB4cy3M-745g",
+      "publishedAt": "2026-08-09T11:00:22Z",
+      "viewCount": 195148,
+      "viewsPerDay": 18537,
+      "momentum": 17018,
+      "ageDays": 10.5,
+      "format": "롱폼",
+      "likeRate": 0.99,
+      "rankScore": {
+        "total": 87,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "LKclYDUNtUw",
+      "title": "14억에 분양 받았는데 2억이 됐다...",
+      "channelId": "UCvVdyIjSEmPGtQlZG9X4H4Q",
+      "publishedAt": "2026-08-19T10:30:16Z",
+      "viewCount": 30472,
+      "viewsPerDay": 55562,
+      "momentum": 29064,
+      "ageDays": 0.5,
+      "format": "쇼츠",
+      "likeRate": 0.23,
+      "rankScore": {
+        "total": 78,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "cDRYEHFMLYQ",
+      "title": "대한민국 부동산 가격을 작살낸 인물은",
+      "channelId": "UC1BL3q2-Qi_8vI7yjP-cqEw",
+      "publishedAt": "2026-08-15T22:00:11Z",
+      "viewCount": 40005,
+      "viewsPerDay": 9831,
+      "momentum": 8755,
+      "ageDays": 4.1,
+      "format": "쇼츠",
+      "likeRate": 1.97,
+      "rankScore": {
+        "total": 73,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "LfI2c9l3ACI",
+      "title": "갭투자 잡으려다 10만 세입자 잡는 ‘웃픈’ 규제?",
+      "channelId": "UCAdyUuXIXGgDbtBb3rICRVQ",
+      "publishedAt": "2026-08-19T01:00:03Z",
+      "viewCount": 1384,
+      "viewsPerDay": 1465,
+      "momentum": 958,
+      "ageDays": 0.9,
+      "format": "쇼츠",
+      "likeRate": 1.01,
+      "rankScore": {
+        "total": 26,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "BfCs3gnbYU4",
+      "title": "\"이럴 줄 알았으면 안 팔았지!\" 오락가락 실거주 의무 유예에 다주택자 불만 폭발",
+      "channelId": "UC_pRKRffGwlBvdW31dBU0HQ",
+      "publishedAt": "2026-08-11T00:45:01Z",
+      "viewCount": 2660,
+      "viewsPerDay": 297,
+      "momentum": 275,
+      "ageDays": 9,
+      "format": "롱폼",
+      "likeRate": 0.98,
+      "rankScore": {
+        "total": 17,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "KOhuvFR9AUE",
+      "title": "가진 돈이 적다면? 갭투자로 첫 집 마련하는 현실적인 방법",
+      "channelId": "UC5WOMHb5hqula6LVc08cW4A",
+      "publishedAt": "2026-07-22T04:27:15Z",
+      "viewCount": 178,
+      "viewsPerDay": 6,
+      "momentum": 5,
+      "ageDays": 28.8,
+      "format": "롱폼",
+      "likeRate": 2.25,
+      "rankScore": {
+        "total": 3,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "MMIKK6CmtPE",
+      "title": "'갭투자' 아파트는 팔아도 양도세 한 푼 안 깎아준다 / JTBC 뉴스룸",
+      "channelId": "UCsU-I-vHLiaMfV_ceaYz5rQ",
+      "publishedAt": "2026-08-03T10:47:10Z",
+      "viewCount": 78062,
+      "viewsPerDay": 4721,
+      "momentum": 4107,
+      "ageDays": 16.5,
+      "format": "롱폼",
+      "likeRate": 0.84,
+      "rankScore": {
+        "total": 69,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "2h3nWSGGfUQ",
+      "title": "무주택자의 갭 투자를 허용하기로 했었는데",
+      "channelId": "UCekWkOr_M-mtjC3hwGcrqrQ",
+      "publishedAt": "2026-08-11T11:30:07Z",
+      "viewCount": 15092,
+      "viewsPerDay": 1774,
+      "momentum": 1648,
+      "ageDays": 8.5,
+      "format": "쇼츠",
+      "likeRate": 2.45,
+      "rankScore": {
+        "total": 46,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "hKDOMnEyEMw",
+      "title": "부동산 갭투자 수익률 100%에 세금까지 깎아주는 기막힌 꼼수 폭로",
+      "channelId": "UCvaAZJEr3udjcg_J3AqCkKA",
+      "publishedAt": "2026-08-14T03:30:01Z",
+      "viewCount": 8531,
+      "viewsPerDay": 1461,
+      "momentum": 1346,
+      "ageDays": 5.8,
+      "format": "쇼츠",
+      "likeRate": 1.15,
+      "rankScore": {
+        "total": 40,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "w_VgxzQJ4Eg",
+      "title": "갭투자 꼼수, 결국 철퇴",
+      "channelId": "UCRihsjuXgxE5TLhu_HfKuGQ",
+      "publishedAt": "2026-08-06T03:00:06Z",
+      "viewCount": 9561,
+      "viewsPerDay": 690,
+      "momentum": 616,
+      "ageDays": 13.9,
+      "format": "쇼츠",
+      "likeRate": 3.84,
+      "rankScore": {
+        "total": 33,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "fmjw_ekScPY",
+      "title": "수천만원 손해봅니다 - 부동산 아파트 갭투자 주의사항",
+      "channelId": "UC5WOMHb5hqula6LVc08cW4A",
+      "publishedAt": "2026-07-28T12:37:36Z",
+      "viewCount": 347,
+      "viewsPerDay": 15,
+      "momentum": 13,
+      "ageDays": 22.5,
+      "format": "롱폼",
+      "likeRate": 2.88,
+      "rankScore": {
+        "total": 4,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "QEiBhCG2VGE",
+      "title": "본인들은 갭투자했으면서 왜 우리는 못하게 합니까?",
+      "channelId": "UCIDNr5dMPYQwwklOqJRUvWw",
+      "publishedAt": "2026-08-15T10:00:37Z",
+      "viewCount": 79408,
+      "viewsPerDay": 17380,
+      "momentum": 15665,
+      "ageDays": 4.6,
+      "format": "쇼츠",
+      "likeRate": 1.18,
+      "rankScore": {
+        "total": 83,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "y_Pu6usNXtw",
+      "title": "갭투자 다시 풀렸다 — 정부가 말 안 한 진짜 이유 [2026 부동산 긴급분석]",
+      "channelId": "UCSP02rTihCWVcpJwOM6ZMvw",
+      "publishedAt": "2026-05-30T10:00:33Z",
+      "viewCount": 79,
+      "viewsPerDay": 1,
+      "momentum": 0,
+      "ageDays": 81.6,
+      "format": "롱폼",
+      "likeRate": 1.27,
+      "rankScore": {
+        "total": 0,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "icxN2sUBPX0",
+      "title": "3억으로 순자산 10억 만들기 부동산 아파트 갭투자로 대한민국 상위 10% 이내 진입할 수 있습니다",
+      "channelId": "UCT6dxaDterwtPwN7yOzIUhg",
+      "publishedAt": "2026-05-30T04:27:21Z",
+      "viewCount": 1476,
+      "viewsPerDay": 18,
+      "momentum": 3,
+      "ageDays": 81.8,
+      "format": "롱폼",
+      "likeRate": 1.69,
+      "rankScore": {
+        "total": 7,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "nISYk5K7BCg",
+      "title": "[8.13부동산종합대책] 김제경 \"'비거주' 전세대출 금지, 소급적용되는 꼴..10.15대책 이후, 서울 갭투자 이미 금지\"_260814",
+      "channelId": "UCWv9hNM-8pNa7K8yMrXokYQ",
+      "publishedAt": "2026-08-14T02:40:34Z",
+      "viewCount": 3446,
+      "viewsPerDay": 587,
+      "momentum": 541,
+      "ageDays": 5.9,
+      "format": "롱폼",
+      "likeRate": 1.04,
+      "rankScore": {
+        "total": 25,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "8386W9Whdio",
+      "title": "“갭투자 막으려다 선의의 피해자 생긴다”…이억원 답변은?",
+      "channelId": "UCHBvfByzuzamrZiL398jopQ",
+      "publishedAt": "2026-07-27T09:09:15Z",
+      "viewCount": 11657,
+      "viewsPerDay": 494,
+      "momentum": 396,
+      "ageDays": 23.6,
+      "format": "롱폼",
+      "likeRate": 1.4,
+      "rankScore": {
+        "total": 30,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "xO1dY8Ip7tQ",
+      "title": "[앵커리포트] 대출 30조 늘리고 갭투자 차단…핀셋 효과 거둘까 / 연합뉴스TV (YonhapnewsTV)",
+      "channelId": "UCTHCOPwqNfZ0uiKOvFyhGwg",
+      "publishedAt": "2026-08-13T09:46:02Z",
+      "viewCount": 222,
+      "viewsPerDay": 34,
+      "momentum": 31,
+      "ageDays": 6.6,
+      "format": "롱폼",
+      "likeRate": 0.9,
+      "rankScore": {
+        "total": 5,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "riRNCZbdoCk",
+      "title": "대출투자 vs 갭투자, 내 집 마련 전략 비교분석 #무주택자 #내집마련 #갭투자 #대출한도 #규제지역 #토지거래허가구역 #재개발재건축 #조합설립인가 #청약 #부동산투자",
+      "channelId": "UCJZzAW8qo2MlZVjuj94dHyw",
+      "publishedAt": "2026-08-02T22:00:21Z",
+      "viewCount": 55,
+      "viewsPerDay": 3,
+      "momentum": 3,
+      "ageDays": 17.1,
+      "format": "롱폼",
+      "likeRate": 0,
+      "rankScore": {
+        "total": 1,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "irvYMQvScnw",
+      "title": "금리가 오르면 부동산 시장에 벌어지는 일 | 흥청망청",
+      "channelId": "UCAVdqlngIAxHtwlCA2hjv3A",
+      "publishedAt": "2026-07-11T13:00:29Z",
+      "viewCount": 50514,
+      "viewsPerDay": 1281,
+      "momentum": 819,
+      "ageDays": 39.4,
+      "format": "롱폼",
+      "likeRate": 1.29,
+      "rankScore": {
+        "total": 49,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "7cPsxE841Yc",
+      "title": "가계 빚 사상 최대 기록에 금리인상까지...폭탄 곧 터지나 [자막뉴스] / YTN",
+      "channelId": "UChlgI3UHCOnwUGzWzbJ3H5w",
+      "publishedAt": "2026-08-18T06:02:47Z",
+      "viewCount": 472161,
+      "viewsPerDay": 272267,
+      "momentum": 211335,
+      "ageDays": 1.7,
+      "format": "롱폼",
+      "likeRate": 0.58,
+      "rankScore": {
+        "total": 98,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "6bg5E_n5a8E",
+      "title": "\"14억 아파트가 7억으로\" 8월 세금·금리 3중 폭탄 터졌다! 서울·수도권 -50% 광속 추락 실태",
+      "channelId": "UCezxmXsTndncmUVsyyoLM6A",
+      "publishedAt": "2026-08-02T11:31:41Z",
+      "viewCount": 5904,
+      "viewsPerDay": 337,
+      "momentum": 290,
+      "ageDays": 17.5,
+      "format": "롱폼",
+      "likeRate": 3.69,
+      "rankScore": {
+        "total": 23,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "D4DqbQCt1UM",
+      "title": "\"앞으로 피바람 분다\" 부동산 곧 초비상 걸린다. 하반기 상상 못할 집값 올겁니다 | 플팩 강연옥 대표 풀버전 #돈쭐남 #김경필",
+      "channelId": "UCriq8I8GEESkQq0svX19oCw",
+      "publishedAt": "2026-06-14T07:00:03Z",
+      "viewCount": 41460,
+      "viewsPerDay": 622,
+      "momentum": 217,
+      "ageDays": 66.7,
+      "format": "롱폼",
+      "likeRate": 1.64,
+      "rankScore": {
+        "total": 37,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "2_EsN_enlHU",
+      "title": "7월 금리 오르면 집값은 이렇게 됩니다",
+      "channelId": "UCCTOzFObhmZoMkJVQKgAQJQ",
+      "publishedAt": "2026-06-09T11:00:25Z",
+      "viewCount": 70057,
+      "viewsPerDay": 979,
+      "momentum": 290,
+      "ageDays": 71.5,
+      "format": "롱폼",
+      "likeRate": 1.24,
+      "rankScore": {
+        "total": 42,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "61PA9DSA3Ts",
+      "title": "[집중진단] 단 하루만 살아도 전세대출 허용?…'비거주 1주택' 전세대출 예외 조건은?",
+      "channelId": "UCbMjg2EvXs_RUGW-KrdM3pw",
+      "publishedAt": "2026-08-18T11:11:34Z",
+      "viewCount": 18250,
+      "viewsPerDay": 12009,
+      "momentum": 9036,
+      "ageDays": 1.5,
+      "format": "롱폼",
+      "likeRate": 1,
+      "rankScore": {
+        "total": 65,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "KOcO0g3qyQc",
+      "title": "결국 하나은행 터졌다 '부동산 난리', 전세 아수라장!!",
+      "channelId": "UCHNwpYjtV8qc_HJlOfnDcAg",
+      "publishedAt": "2026-08-07T15:15:12Z",
+      "viewCount": 19977,
+      "viewsPerDay": 1617,
+      "momentum": 1464,
+      "ageDays": 12.4,
+      "format": "롱폼",
+      "likeRate": 4.81,
+      "rankScore": {
+        "total": 47,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "2IJyYax9ZsE",
+      "title": "[긴급 발표] 1주택자 사형선고 떴다? 부동산 끝내기 정책 나왔다. 당장 이것부터 바꾸세요. 세금 폭탄 맞습니다",
+      "channelId": "UCiLdPBP0AeP-Z9CDH4MggYQ",
+      "publishedAt": "2026-07-17T02:30:28Z",
+      "viewCount": 233640,
+      "viewsPerDay": 6896,
+      "momentum": 4810,
+      "ageDays": 33.9,
+      "format": "롱폼",
+      "likeRate": 1.43,
+      "rankScore": {
+        "total": 74,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "1FLUYHHAK7Q",
+      "title": "본격적으로 금리 인상 후 벌어질 일.. 주담대 8% 시대 '영끌족 비상' | 인사이트30",
+      "channelId": "UC6kZpTl39-_SqfBrF1-N2oQ",
+      "publishedAt": "2026-07-17T23:00:32Z",
+      "viewCount": 236245,
+      "viewsPerDay": 7153,
+      "momentum": 5053,
+      "ageDays": 33,
+      "format": "롱폼",
+      "likeRate": 0.76,
+      "rankScore": {
+        "total": 75,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "UvvIrAW5QRw",
+      "title": "\"사형선고 내려졌다\" 7월 금리인상 확정? 당장 부동산 싹 정리하세요 | 플팩 강연옥 대표 2부 #돈쭐남 #김경필",
+      "channelId": "UCriq8I8GEESkQq0svX19oCw",
+      "publishedAt": "2026-06-10T09:00:38Z",
+      "viewCount": 18495,
+      "viewsPerDay": 262,
+      "momentum": 80,
+      "ageDays": 70.6,
+      "format": "롱폼",
+      "likeRate": 1.36,
+      "rankScore": {
+        "total": 27,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "nTs6xRuH4fY",
+      "title": "대출금리 8% 부동산 하락 신호일까요?",
+      "channelId": "UCVIB6JMy4MW5b8yl4TA04YA",
+      "publishedAt": "2026-07-26T10:00:39Z",
+      "viewCount": 4897,
+      "viewsPerDay": 199,
+      "momentum": 158,
+      "ageDays": 24.6,
+      "format": "롱폼",
+      "likeRate": 1.35,
+      "rankScore": {
+        "total": 19,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "iXElekh_7Jw",
+      "title": "(속보) 드디어 금리 인상... 부동산, 주식 어떻게 될까?",
+      "channelId": "UCaWi2foADm_lKAKnmeQwLSA",
+      "publishedAt": "2026-07-16T08:14:54Z",
+      "viewCount": 160254,
+      "viewsPerDay": 4626,
+      "momentum": 3190,
+      "ageDays": 34.6,
+      "format": "롱폼",
+      "likeRate": 3.59,
+      "rankScore": {
+        "total": 68,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "j4t9LHcU8kw",
+      "title": "심상치 않은 금리인상 압박, 하반기 집값 초토화 되는 이유ㅣ심형석 6부 [후랭이TV]",
+      "channelId": "UChnfOZtjny0KBSVkfS9nwsg",
+      "publishedAt": "2026-06-25T08:30:35Z",
+      "viewCount": 20346,
+      "viewsPerDay": 366,
+      "momentum": 171,
+      "ageDays": 55.6,
+      "format": "롱폼",
+      "likeRate": 1.98,
+      "rankScore": {
+        "total": 30,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "6jPxTO9ycdY",
+      "title": "드디어 한은이 금리인상했고. 코스피는 개떡락 쳐맞고, 유나으리는 운동을 시작한다.",
+      "channelId": "UCWstEH0k34aMAMPb5cJ9okw",
+      "publishedAt": "2026-07-16T09:41:16Z",
+      "viewCount": 62337,
+      "viewsPerDay": 1803,
+      "momentum": 1244,
+      "ageDays": 34.6,
+      "format": "롱폼",
+      "likeRate": 3.69,
+      "rankScore": {
+        "total": 56,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "DJ_H4AexlyE",
+      "title": "경매 초보일 때 실제로 쓰고 입찰까지 했던 무료 경매 사이트",
+      "channelId": "UCVEAZLCBiZ_i069INZUBhJg",
+      "publishedAt": "2026-08-18T11:00:11Z",
+      "viewCount": 4755,
+      "viewsPerDay": 3113,
+      "momentum": 2345,
+      "ageDays": 1.5,
+      "format": "롱폼",
+      "likeRate": 2.82,
+      "rankScore": {
+        "total": 42,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "Sn_oN2-ohfs",
+      "title": "경매 낙찰자 3명이 집을 뺏긴 이유 | 수원 영통구 아파트",
+      "channelId": "UCVEAZLCBiZ_i069INZUBhJg",
+      "publishedAt": "2026-08-08T11:00:22Z",
+      "viewCount": 36681,
+      "viewsPerDay": 3182,
+      "momentum": 2900,
+      "ageDays": 11.5,
+      "format": "롱폼",
+      "likeRate": 1.07,
+      "rankScore": {
+        "total": 60,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "YiSHGDqxhSE",
+      "title": "현장경매관 도깨비경매장👹 / 水요일 2026.08.19",
+      "channelId": "UC-s_P2faPNf4yUG5mID9Nkw",
+      "publishedAt": "2026-08-19T10:35:49Z",
+      "viewCount": 13076,
+      "viewsPerDay": 24011,
+      "momentum": 12518,
+      "ageDays": 0.5,
+      "format": "롱폼",
+      "likeRate": 0.61,
+      "rankScore": {
+        "total": 67,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "WtKzKZgrYaE",
+      "title": "\"경매 나온집\" 돈 내기전 집 안을 꼭 보세요, 이럴수가 생각한거랑 다르네..",
+      "channelId": "UCHqC-54BfjJkOgCsf1Q39dg",
+      "publishedAt": "2026-07-22T08:00:08Z",
+      "viewCount": 9615,
+      "viewsPerDay": 336,
+      "momentum": 252,
+      "ageDays": 28.7,
+      "format": "롱폼",
+      "likeRate": 2.16,
+      "rankScore": {
+        "total": 26,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "FF3BtEoa13o",
+      "title": "빈 상가 전국 최고‥ 경매 시장도 '찬바람' (2026.08.16/뉴스데스크/MBC충북)",
+      "channelId": "UCF4Wxdo3inmxP-Y59wXDsFw",
+      "publishedAt": "2026-08-17T03:00:10Z",
+      "viewCount": 222510,
+      "viewsPerDay": 77774,
+      "momentum": 66204,
+      "ageDays": 2.9,
+      "format": "롱폼",
+      "likeRate": 0.46,
+      "rankScore": {
+        "total": 92,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "28awEolmrjA",
+      "title": "※실제상황※ 연락두절이던 점유자 드디어 마주쳤습니다. 그런데 하는 말이...? | 부동산 경매 명도 현장 공개",
+      "channelId": "UCz4CFx4eeELZNReE_Wyit4g",
+      "publishedAt": "2026-08-12T09:00:15Z",
+      "viewCount": 23556,
+      "viewsPerDay": 3095,
+      "momentum": 2885,
+      "ageDays": 7.6,
+      "format": "롱폼",
+      "likeRate": 0.8,
+      "rankScore": {
+        "total": 55,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "2bPisePCJ3A",
+      "title": "매물부족 G80 전기차 경매시세 8월달 2대 정보",
+      "channelId": "UC59TKsJC21iBnAjIUwgmyRw",
+      "publishedAt": "2026-08-19T11:00:30Z",
+      "viewCount": 3301,
+      "viewsPerDay": 6259,
+      "momentum": 3213,
+      "ageDays": 0.5,
+      "format": "롱폼",
+      "likeRate": 1.18,
+      "rankScore": {
+        "total": 42,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "Iri5WxOmBP8",
+      "title": "상가경매 “아무도 몰랐던 낙찰가 적중의 진실”지금 현금 1억 있다면 저는 '여기' 투자할 겁니다|왕초보무료특강|밀착케어상가과외|경매입찰가|수원망포동상가",
+      "channelId": "UCmDBkGyVLKeNndxx6QarZqw",
+      "publishedAt": "2026-08-15T11:00:12Z",
+      "viewCount": 4697,
+      "viewsPerDay": 1037,
+      "momentum": 934,
+      "ageDays": 4.5,
+      "format": "롱폼",
+      "likeRate": 1.28,
+      "rankScore": {
+        "total": 32,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "oe3S0kVARRI",
+      "title": "경매 대출, 큰일 났습니다. 대출을 안 해줍니다.",
+      "channelId": "UC4kTwXMRky7RYxtk21-NL9g",
+      "publishedAt": "2026-07-22T13:15:05Z",
+      "viewCount": 15953,
+      "viewsPerDay": 561,
+      "momentum": 423,
+      "ageDays": 28.4,
+      "format": "롱폼",
+      "likeRate": 2.05,
+      "rankScore": {
+        "total": 34,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "TXCfXOqz63A",
+      "title": "보증금 20억? 경매가 8억! 서울 신축 역세권 다가구경매 ",
+      "channelId": "UCgd2z0cxYQTvQubLiP6c6vw",
+      "publishedAt": "2026-08-11T09:55:31Z",
+      "viewCount": 9836,
+      "viewsPerDay": 1147,
+      "momentum": 1066,
+      "ageDays": 8.6,
+      "format": "롱폼",
+      "likeRate": 0,
+      "rankScore": {
+        "total": 39,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "nZEsWTmPn0A",
+      "title": "신축 4년차에 경매에 나온 이유 | 월평동 다중주택",
+      "channelId": "UCx0EiTDndwWh4P5_fpZPgIg",
+      "publishedAt": "2026-08-11T21:00:37Z",
+      "viewCount": 2130,
+      "viewsPerDay": 263,
+      "momentum": 244,
+      "ageDays": 8.1,
+      "format": "롱폼",
+      "likeRate": 1.83,
+      "rankScore": {
+        "total": 16,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "VEWEzHD3Pmw",
+      "title": "\"최저가 실화?\" 대한민국 1등 서초구 반포동, 70평때 고급 주택 경매나왔다? 그것도 유찰..",
+      "channelId": "UCHqC-54BfjJkOgCsf1Q39dg",
+      "publishedAt": "2026-08-18T08:00:04Z",
+      "viewCount": 15135,
+      "viewsPerDay": 9158,
+      "momentum": 7031,
+      "ageDays": 1.7,
+      "format": "롱폼",
+      "likeRate": 1.99,
+      "rankScore": {
+        "total": 61,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "FaT32qBhPEc",
+      "title": "김포 6억 새 전원주택이 2억대…마당·차고 다 갖춘 집이 반값에 나왔습니다 [단독주택 경매]",
+      "channelId": "UCWxsrnXxaZGyZPBoLWodjJg",
+      "publishedAt": "2026-08-10T01:30:33Z",
+      "viewCount": 40067,
+      "viewsPerDay": 4038,
+      "momentum": 3722,
+      "ageDays": 9.9,
+      "format": "롱폼",
+      "likeRate": 0.79,
+      "rankScore": {
+        "total": 64,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "8vD7RaJKbso",
+      "title": "2년 전 경매에 나온 포켓몬 카드 현재가",
+      "channelId": "UCF24NMvY6K0wUUaRR2jscQA",
+      "publishedAt": "2026-08-15T07:00:38Z",
+      "viewCount": 601481,
+      "viewsPerDay": 128138,
+      "momentum": 115803,
+      "ageDays": 4.7,
+      "format": "쇼츠",
+      "likeRate": 0.73,
+      "rankScore": {
+        "total": 97,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "rkIhGdB7D-k",
+      "title": "\"서초구 -50%하락\" 역세권 고급빌라 경매.. 결국 분양가 반토막 폭락, 지금이 기회!",
+      "channelId": "UCHqC-54BfjJkOgCsf1Q39dg",
+      "publishedAt": "2026-08-10T08:00:21Z",
+      "viewCount": 36916,
+      "viewsPerDay": 3824,
+      "momentum": 3531,
+      "ageDays": 9.7,
+      "format": "롱폼",
+      "likeRate": 1.91,
+      "rankScore": {
+        "total": 62,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "IlEUwrDUQXA",
+      "title": "'결혼 페널티' 없애고‥빌라·오피스텔 대출 지원 (2026.08.14/뉴스투데이/MBC)",
+      "channelId": "UCF4Wxdo3inmxP-Y59wXDsFw",
+      "publishedAt": "2026-08-13T21:36:11Z",
+      "viewCount": 4895,
+      "viewsPerDay": 804,
+      "momentum": 743,
+      "ageDays": 6.1,
+      "format": "롱폼",
+      "likeRate": 0.63,
+      "rankScore": {
+        "total": 30,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "HbyrqyGZKSY",
+      "title": "정부가 80% 빌려준다는 오피스텔, 들어가면 인생 꼬입니다",
+      "channelId": "UC95-faDNGR69NTcQQNdo4WA",
+      "publishedAt": "2026-08-17T06:42:40Z",
+      "viewCount": 2301,
+      "viewsPerDay": 850,
+      "momentum": 718,
+      "ageDays": 2.7,
+      "format": "롱폼",
+      "likeRate": 1.65,
+      "rankScore": {
+        "total": 26,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "DPwvKaf7Gz0",
+      "title": "나인원 한남 관리비보다 비싼 요즘 강남 하이엔드 오피스텔... 과연 살만 할까?",
+      "channelId": "UCKR3cXHN4kCRbD9Eaa-ROpQ",
+      "publishedAt": "2026-08-09T08:00:35Z",
+      "viewCount": 45473,
+      "viewsPerDay": 4269,
+      "momentum": 3916,
+      "ageDays": 10.7,
+      "format": "롱폼",
+      "likeRate": 1.3,
+      "rankScore": {
+        "total": 65,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "LFptjSmIVRk",
+      "title": "결혼 페널티 없애고‥빌라·오피스텔 구매시 대출 지원 (2026.08.13/뉴스데스크/MBC)",
+      "channelId": "UCF4Wxdo3inmxP-Y59wXDsFw",
+      "publishedAt": "2026-08-13T10:59:04Z",
+      "viewCount": 4586,
+      "viewsPerDay": 702,
+      "momentum": 652,
+      "ageDays": 6.5,
+      "format": "롱폼",
+      "likeRate": 0.92,
+      "rankScore": {
+        "total": 28,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "aJ6fG3QizFE",
+      "title": "“이러다 영원히 집 못 살 것 같아요” 오피스텔이라도 사도 되나요? [상남자들]",
+      "channelId": "UC2QeHNJFfuQWB4cy3M-745g",
+      "publishedAt": "2026-08-14T08:00:18Z",
+      "viewCount": 88968,
+      "viewsPerDay": 15739,
+      "momentum": 14460,
+      "ageDays": 5.7,
+      "format": "롱폼",
+      "likeRate": 0.92,
+      "rankScore": {
+        "total": 83,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "P0swQ1vFfhQ",
+      "title": "'전월세 잡겠다' 오피스텔·빌라 총동원…실행력이 관건 / JTBC 아침&",
+      "channelId": "UCsU-I-vHLiaMfV_ceaYz5rQ",
+      "publishedAt": "2026-08-13T23:26:09Z",
+      "viewCount": 4649,
+      "viewsPerDay": 774,
+      "momentum": 714,
+      "ageDays": 6,
+      "format": "롱폼",
+      "likeRate": 0.56,
+      "rankScore": {
+        "total": 28,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "DiHforsEd14",
+      "title": "“아파트보다 안전하다더니…” 노후 대비로 산 오피스텔을 지금 팔지 못하는 진짜 이유",
+      "channelId": "UC6Qf2Sz4pn3Ox_lW87o2AQQ",
+      "publishedAt": "2026-08-19T02:13:51Z",
+      "viewCount": 454,
+      "viewsPerDay": 508,
+      "momentum": 326,
+      "ageDays": 0.9,
+      "format": "롱폼",
+      "likeRate": 69.38,
+      "rankScore": {
+        "total": 13,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "BRV9mWmpHAk",
+      "title": "신축 오피스텔의 소름 돋는 정체, 내가 잠든 침대가 과거 수술대였다?    #sbsplus #신빨토크쇼 #귀묘한이야기  #천율신궁",
+      "channelId": "UC0_UY6l8pPg6yKApXb7neag",
+      "publishedAt": "2026-08-19T03:30:24Z",
+      "viewCount": 2976,
+      "viewsPerDay": 3543,
+      "momentum": 2221,
+      "ageDays": 0.8,
+      "format": "롱폼",
+      "likeRate": 2.42,
+      "rankScore": {
+        "total": 38,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "mKbpCPd2_kw",
+      "title": "아파트 비싸지자 '오피스텔'로…서울 전셋값 4년만 최고 / 연합뉴스TV (YonhapnewsTV)",
+      "channelId": "UCTHCOPwqNfZ0uiKOvFyhGwg",
+      "publishedAt": "2026-07-15T09:57:48Z",
+      "viewCount": 3288,
+      "viewsPerDay": 92,
+      "momentum": 63,
+      "ageDays": 35.6,
+      "format": "롱폼",
+      "likeRate": 0.61,
+      "rankScore": {
+        "total": 14,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "EOwvzRzuw0M",
+      "title": "오피스텔보다 저렴해서 고른 14평 아파트 l 중랑구 아파트 월세",
+      "channelId": "UCtYHCl8yhhvpWfcvdA_sCVg",
+      "publishedAt": "2026-08-09T01:30:15Z",
+      "viewCount": 93000,
+      "viewsPerDay": 8514,
+      "momentum": 7794,
+      "ageDays": 10.9,
+      "format": "롱폼",
+      "likeRate": 0.98,
+      "rankScore": {
+        "total": 77,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "3ZSX6Rj44kc",
+      "title": "오피스텔, 나중에 사고 먼저 파세요 | 채널 제네시스박",
+      "channelId": "UCHOPWa8g36QPHB00JmdZluw",
+      "publishedAt": "2026-06-25T11:00:32Z",
+      "viewCount": 7875,
+      "viewsPerDay": 142,
+      "momentum": 66,
+      "ageDays": 55.5,
+      "format": "롱폼",
+      "likeRate": 2.59,
+      "rankScore": {
+        "total": 21,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "xjirkXf1EH8",
+      "title": "\"월세 145만 원 포기 못하겠어요\" 오피스텔 계속 들고 갈까요",
+      "channelId": "UC2QeHNJFfuQWB4cy3M-745g",
+      "publishedAt": "2026-07-26T08:00:12Z",
+      "viewCount": 63183,
+      "viewsPerDay": 2563,
+      "momentum": 2030,
+      "ageDays": 24.7,
+      "format": "롱폼",
+      "likeRate": 1.11,
+      "rankScore": {
+        "total": 61,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "U5go9RqTfFU",
+      "title": "\"서울 신축 42채가 1억대?\" 서울 강서구 화곡동 신축 오피스텔 42채가 무더기로 나왔습니다. 1억대 신축, 받아도 될까? | 파이팅팔콘 경매 공매 물건 추천",
+      "channelId": "UCvVdyIjSEmPGtQlZG9X4H4Q",
+      "publishedAt": "2026-08-05T13:05:02Z",
+      "viewCount": 28073,
+      "viewsPerDay": 1944,
+      "momentum": 1727,
+      "ageDays": 14.4,
+      "format": "롱폼",
+      "likeRate": 1.36,
+      "rankScore": {
+        "total": 53,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "e5r2Mn2RZmc",
+      "title": "#롯데넥스티엘오피스텔,#넥스티엘C1블록#검단신도시#아라역초역세권",
+      "channelId": "UCBmmcWrpnh7WegVps9MkdVQ",
+      "publishedAt": "2026-08-02T08:00:16Z",
+      "viewCount": 1759,
+      "viewsPerDay": 100,
+      "momentum": 86,
+      "ageDays": 17.7,
+      "format": "롱폼",
+      "likeRate": 1.36,
+      "rankScore": {
+        "total": 13,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    }
+  ],
+  "topPhrases": [
+    {
+      "phrase": "아파트 매매",
+      "videoCount": 5,
+      "recentCount": 4
+    },
+    {
+      "phrase": "김제경 박사",
+      "videoCount": 4,
+      "recentCount": 4
+    },
+    {
+      "phrase": "서울 아파트",
+      "videoCount": 4,
+      "recentCount": 3
+    },
+    {
+      "phrase": "2026.08.13 뉴스데스크 MBC",
+      "videoCount": 3,
+      "recentCount": 3
+    },
+    {
+      "phrase": "연합뉴스TV YonhapnewsTV",
+      "videoCount": 3,
+      "recentCount": 2
+    },
+    {
+      "phrase": "2026.08.13 뉴스데스크",
+      "videoCount": 3,
+      "recentCount": 3
+    },
+    {
+      "phrase": "무섭게 오를 겁니다",
+      "videoCount": 3,
+      "recentCount": 2
+    },
+    {
+      "phrase": "뉴스데스크 MBC",
+      "videoCount": 3,
+      "recentCount": 3
+    },
+    {
+      "phrase": "부동산 시장에",
+      "videoCount": 3,
+      "recentCount": 2
+    },
+    {
+      "phrase": "돈쭐남 김경필",
+      "videoCount": 3,
+      "recentCount": 0
+    },
+    {
+      "phrase": "부동산 아파트",
+      "videoCount": 3,
+      "recentCount": 1
+    },
+    {
+      "phrase": "무섭게 오를",
+      "videoCount": 3,
+      "recentCount": 2
+    },
+    {
+      "phrase": "오를 겁니다",
+      "videoCount": 3,
+      "recentCount": 2
+    },
+    {
+      "phrase": "토론합시다 3자토론 김대호x홍춘욱x김광석",
+      "videoCount": 2,
+      "recentCount": 2
+    },
+    {
+      "phrase": "결혼 페널티 없애고‥빌라·오피스텔",
+      "videoCount": 2,
+      "recentCount": 2
+    }
+  ],
+  "topKeywords": [
+    {
+      "keyword": "부동산",
+      "videoCount": 36,
+      "recentCount": 24
+    },
+    {
+      "keyword": "아파트",
+      "videoCount": 24,
+      "recentCount": 18
+    },
+    {
+      "keyword": "집값",
+      "videoCount": 20,
+      "recentCount": 16
+    },
+    {
+      "keyword": "서울",
+      "videoCount": 16,
+      "recentCount": 11
+    },
+    {
+      "keyword": "재개발",
+      "videoCount": 16,
+      "recentCount": 15
+    },
+    {
+      "keyword": "월세",
+      "videoCount": 13,
+      "recentCount": 10
+    },
+    {
+      "keyword": "청약",
+      "videoCount": 12,
+      "recentCount": 6
+    },
+    {
+      "keyword": "이유",
+      "videoCount": 11,
+      "recentCount": 10
+    },
+    {
+      "keyword": "재건축",
+      "videoCount": 9,
+      "recentCount": 9
+    },
+    {
+      "keyword": "갭투자",
+      "videoCount": 9,
+      "recentCount": 4
+    },
+    {
+      "keyword": "매매",
+      "videoCount": 8,
+      "recentCount": 5
+    },
+    {
+      "keyword": "경매",
+      "videoCount": 8,
+      "recentCount": 5
+    },
+    {
+      "keyword": "박사",
+      "videoCount": 7,
+      "recentCount": 6
+    },
+    {
+      "keyword": "전세",
+      "videoCount": 7,
+      "recentCount": 7
+    },
+    {
+      "keyword": "겁니다",
+      "videoCount": 6,
+      "recentCount": 4
+    },
+    {
+      "keyword": "분양",
+      "videoCount": 6,
+      "recentCount": 5
+    },
+    {
+      "keyword": "오피스텔",
+      "videoCount": 6,
+      "recentCount": 2
+    },
+    {
+      "keyword": "김제경",
+      "videoCount": 5,
+      "recentCount": 5
+    },
+    {
+      "keyword": "정부가",
+      "videoCount": 5,
+      "recentCount": 4
+    },
+    {
+      "keyword": "전세대출",
+      "videoCount": 5,
+      "recentCount": 5
+    }
+  ],
+  "channels": [
+    {
+      "channelId": "UCF4Wxdo3inmxP-Y59wXDsFw",
+      "channelTitle": "MBCNEWS",
+      "videoCount": 5,
+      "totalViews": 246035,
+      "avgMarketScore": 43,
+      "bestVideoTitle": "빈 상가 전국 최고‥ 경매 시장도 '찬바람' (2026.08.16/뉴스데스크/MBC충북)",
+      "subscriberCount": 6200000,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 398634,
+      "channelPublishedAt": "2006-11-05T21:58:51Z"
+    },
+    {
+      "channelId": "UC2QeHNJFfuQWB4cy3M-745g",
+      "channelTitle": "부읽남TV_내집마련부터건물주까지",
+      "videoCount": 4,
+      "totalViews": 385972,
+      "avgMarketScore": 66,
+      "bestVideoTitle": "서울 경기도 아파트 여기 보세요, 내년부터 정말 무섭게 오를 겁니다 [김제경 박사 4부]",
+      "subscriberCount": 1820000,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 5028,
+      "channelPublishedAt": "2016-02-18T04:35:49Z"
+    },
+    {
+      "channelId": "UCcQTRi69dsVYHN3exePtZ1A",
+      "channelTitle": "KBS News",
+      "videoCount": 3,
+      "totalViews": 1582053,
+      "avgMarketScore": 58,
+      "bestVideoTitle": "\"20년 살면 죽을 줄 알았지\" #shorts / KBS",
+      "subscriberCount": 3690000,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 468125,
+      "channelPublishedAt": "2013-08-06T12:47:09Z"
+    },
+    {
+      "channelId": "UChlgI3UHCOnwUGzWzbJ3H5w",
+      "channelTitle": " YTN",
+      "videoCount": 3,
+      "totalViews": 494363,
+      "avgMarketScore": 67,
+      "bestVideoTitle": "가계 빚 사상 최대 기록에 금리인상까지...폭탄 곧 터지나 [자막뉴스] / YTN",
+      "subscriberCount": 5400000,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 977642,
+      "channelPublishedAt": "2013-05-23T07:07:42Z"
+    },
+    {
+      "channelId": "UCiLdPBP0AeP-Z9CDH4MggYQ",
+      "channelTitle": "재테크는 두꺼비 세무사",
+      "videoCount": 3,
+      "totalViews": 285407,
+      "avgMarketScore": 62,
+      "bestVideoTitle": "[긴급 발표] 1주택자 사형선고 떴다? 부동산 끝내기 정책 나왔다. 당장 이것부터 바꾸세요. 세금 폭탄 맞습니다",
+      "subscriberCount": 258000,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 864,
+      "channelPublishedAt": "2013-06-19T05:58:00Z"
+    },
+    {
+      "channelId": "UCp8lZRI3NSCXxhn_a_WGVKQ",
+      "channelTitle": "표영호 tv  / 경제적 자유와 행복을 위하여",
+      "videoCount": 3,
+      "totalViews": 206391,
+      "avgMarketScore": 78,
+      "bestVideoTitle": "이미 터졌어야 하는 집값 버블. 왜 안 터지나...",
+      "subscriberCount": 853000,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 2372,
+      "channelPublishedAt": "2021-09-16T07:33:24.865608Z"
+    },
+    {
+      "channelId": "UCq6ieFsTssBj5tDE6JJJiBw",
+      "channelTitle": "머니판다 - 돈에 대한 모든 것을 판다",
+      "videoCount": 3,
+      "totalViews": 129571,
+      "avgMarketScore": 70,
+      "bestVideoTitle": "서울 부동산 완전히 돌아섰다 세제개편 후 집값 충격 전망(홍춘욱 박사 1부)",
+      "subscriberCount": 89200,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 768,
+      "channelPublishedAt": "2020-12-27T17:01:45.486108Z"
+    },
+    {
+      "channelId": "UCriq8I8GEESkQq0svX19oCw",
+      "channelTitle": "부티플 - 부의 배수를 높여라",
+      "videoCount": 3,
+      "totalViews": 81635,
+      "avgMarketScore": 32,
+      "bestVideoTitle": "\"앞으로 피바람 분다\" 부동산 곧 초비상 걸린다. 하반기 상상 못할 집값 올겁니다 | 플팩 강연옥 대표 풀버전 #돈쭐남 #김경필",
+      "subscriberCount": 1200000,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 5191,
+      "channelPublishedAt": "2022-03-04T02:49:40.554017Z"
+    },
+    {
+      "channelId": "UCvVdyIjSEmPGtQlZG9X4H4Q",
+      "channelTitle": "파이팅팔콘 (부동산파일럿)",
+      "videoCount": 3,
+      "totalViews": 78645,
+      "avgMarketScore": 66,
+      "bestVideoTitle": "14억에 분양 받았는데 2억이 됐다...",
+      "subscriberCount": 106000,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 713,
+      "channelPublishedAt": "2019-04-10T13:18:40Z"
+    },
+    {
+      "channelId": "UCHqC-54BfjJkOgCsf1Q39dg",
+      "channelTitle": "대장TV",
+      "videoCount": 3,
+      "totalViews": 61666,
+      "avgMarketScore": 50,
+      "bestVideoTitle": "\"서초구 -50%하락\" 역세권 고급빌라 경매.. 결국 분양가 반토막 폭락, 지금이 기회!",
+      "subscriberCount": 352000,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 1275,
+      "channelPublishedAt": "2019-02-13T06:18:30Z"
+    }
+  ],
+  "searchSuggestions": [
+    {
+      "query": "부동산 전망",
+      "suggestions": [
+        "부동산 전망 2026",
+        "부동산 전망 이광수",
+        "부동산 전망 2025",
+        "부동산 전망 김경민",
+        "부동산 전망 한문도",
+        "부동산 전망 무속인",
+        "부동산 전망 김기원",
+        "부동산 전망 렘군",
+        "부동산 전망 김인만"
+      ]
+    },
+    {
+      "query": "집값 전망",
+      "suggestions": [
+        "집값 전망 2026",
+        "집값 전망 2025",
+        "부동산 집값 전망",
+        "서울 집값 전망",
+        "대출규제 집값 전망",
+        "부산 집값 전망",
+        "대구 집값 전망",
+        "송도 집값 전망",
+        "대전 집값 전망"
+      ]
+    },
+    {
+      "query": "아파트 매매",
+      "suggestions": [
+        "아파트 매매 절차",
+        "아파트 매매 대출",
+        "아파트 매매 체크리스트",
+        "아파트 매매시 주의사항",
+        "아파트 매매 시기",
+        "아파트 매매사기",
+        "아파트 매매시 체크리스트",
+        "아파트 매매 특약사항",
+        "아파트 매매 법무사 비용"
+      ]
+    },
+    {
+      "query": "전세",
+      "suggestions": [
+        "전세사기",
+        "전세대출",
+        "전세대출 규제",
+        "전세자금대출",
+        "전세연 아나운서",
+        "전세사기 브이로그",
+        "전세퇴거자금대출",
+        "전세보증보험",
+        "전세기"
+      ]
+    },
+    {
+      "query": "월세",
+      "suggestions": [
+        "월세받는사람들",
+        "월세 세액공제",
+        "월세 환급 방법",
+        "월세사기",
+        "월세 세액공제 홈택스 신청방법",
+        "월세지원금",
+        "월세 계약시 주의사항",
+        "월세가 밀렸어",
+        "월세모닝콜"
+      ]
+    },
+    {
+      "query": "청약",
+      "suggestions": [
+        "청약통장",
+        "청약통장 해지",
+        "청약통장 추천",
+        "청약 당첨",
+        "청약일정",
+        "청약통장 25만원",
+        "청약 25만원",
+        "청약저축",
+        "청약 대출"
+      ]
+    },
+    {
+      "query": "분양",
+      "suggestions": [
+        "분양상담사",
+        "분양권 매매",
+        "분양사기",
+        "분양권 전매 제한",
+        "분양통",
+        "분양상담사 현실",
+        "분양권 양도소득세",
+        "분양권",
+        "분양권 양도세"
+      ]
+    },
+    {
+      "query": "재개발",
+      "suggestions": [
+        "재개발 빌라 투자",
+        "재개발 분담금",
+        "재개발 투자",
+        "재개발 재건축",
+        "재개발 빌라",
+        "재개발 절차",
+        "재개발임대주택",
+        "재개발 입주권",
+        "재개발 대지지분"
+      ]
+    },
+    {
+      "query": "재건축",
+      "suggestions": [
+        "재건축 분담금",
+        "재건축 아파트",
+        "재건축절차",
+        "재건축 재개발",
+        "재건축 아파트 투자",
+        "재건축 아파트 추천",
+        "재건축 현금청산",
+        "재건축 분담금 계산",
+        "재건축초과이익환수제"
+      ]
+    },
+    {
+      "query": "부동산 투자",
+      "suggestions": [
+        "부동산 투자 기초",
+        "부동산 투자 실패 사례",
+        "부동산 투자 공부",
+        "부동산 투자 책 추천",
+        "부동산 투자 세미나",
+        "부동산 투자 실패",
+        "부동산 투자 방법",
+        "부동산 투자 전략",
+        "부동산 투자 전망"
+      ]
+    },
+    {
+      "query": "갭투자",
+      "suggestions": [
+        "갭투자 방법",
+        "갭투자 대출",
+        "갭투자 뜻",
+        "갭투자 전세 못구하면",
+        "갭투자란",
+        "갭투자 실패",
+        "갭투자 실거주",
+        "갭투자 주담대",
+        "갭투자 유망지역"
+      ]
+    },
+    {
+      "query": "금리 부동산",
+      "suggestions": [
+        "금리 부동산 관계",
+        "금리 부동산 전망",
+        "환율 금리 부동산",
+        "일본 금리 부동산",
+        "주담대 금리 부동산",
+        "한국 금리 부동산",
+        "미국 금리 부동산",
+        "부동산 대출 금리",
+        "미미 부동산 금리"
+      ]
+    },
+    {
+      "query": "경매",
+      "suggestions": [
+        "경매물건",
+        "경매물건추천",
+        "경매강의",
+        "경매초보",
+        "경매장",
+        "경매 대출",
+        "경매대마왕",
+        "경매장 실시간",
+        "경매가 알고 싶다"
+      ]
+    },
+    {
+      "query": "오피스텔",
+      "suggestions": [
+        "오피스텔 인테리어",
+        "오피스텔 투자",
+        "오피스텔 룸투어",
+        "오피스텔 꾸미기",
+        "오피스텔 월세",
+        "오피스텔 매매 실거주",
+        "오피스텔 전세",
+        "오피스텔 주택수 제외",
+        "오피스텔 원룸 인테리어",
+        "오피스텔 노래"
+      ]
+    }
+  ],
+  "limitations": [
+    "외부 영상의 CTR, 노출수, 시청 지속률, 평균 시청 시간은 YouTube 공개 API로 확인할 수 없습니다.",
+    "성과 점수는 조회수, 좋아요, 댓글, 최근성 등 공개 지표 기반 추정치입니다.",
+    "CTR·지속률 지표는 황금후추 내부 YouTube Studio 데이터에서만 확인할 수 있습니다."
+  ],
+  "outperformers": [
+    {
+      "videoId": "ircKYHydzSE",
+      "title": "20년 장기전세 당사자 본인 출연..토론하던 전문가 '눈 질끈'",
+      "channelTitle": "뉴스헌터스",
+      "channelSubscribers": 1530,
+      "viewCount": 237283,
+      "viewsPerDay": 165094,
+      "ageDays": 1.4,
+      "format": "롱폼",
+      "url": "https://www.youtube.com/watch?v=ircKYHydzSE",
+      "ratio": 155.1
+    },
+    {
+      "videoId": "cDRYEHFMLYQ",
+      "title": "대한민국 부동산 가격을 작살낸 인물은",
+      "channelTitle": "이쪽저쪽",
+      "channelSubscribers": 420,
+      "viewCount": 40005,
+      "viewsPerDay": 9831,
+      "ageDays": 4.1,
+      "format": "쇼츠",
+      "url": "https://www.youtube.com/watch?v=cDRYEHFMLYQ",
+      "ratio": 95.3
+    },
+    {
+      "videoId": "-izIZgwD9ug",
+      "title": "李 \"재개발해도 가구수 줄던데?\" 아무것도 모르는 대통령! #재개발 #재건축 #부동산 #김성열 #shorts",
+      "channelTitle": "김성열TV",
+      "channelSubscribers": 1040,
+      "viewCount": 31738,
+      "viewsPerDay": 5579,
+      "ageDays": 5.7,
+      "format": "쇼츠",
+      "url": "https://www.youtube.com/watch?v=-izIZgwD9ug",
+      "ratio": 30.5
+    },
+    {
+      "videoId": "RyNs7o8fzEE",
+      "title": "20년 장기 전세 임차인 \"20년 만기? 근거 있나요??\"",
+      "channelTitle": "뉴스헌터스",
+      "channelSubscribers": 1530,
+      "viewCount": 31577,
+      "viewsPerDay": 23244,
+      "ageDays": 1.4,
+      "format": "롱폼",
+      "url": "https://www.youtube.com/watch?v=RyNs7o8fzEE",
+      "ratio": 20.6
+    },
+    {
+      "videoId": "6MqXpbWZUsU",
+      "title": "23년동안 월세내자 갑자기 내 집이 생김",
+      "channelTitle": "콩만이",
+      "channelSubscribers": 47300,
+      "viewCount": 899791,
+      "viewsPerDay": 518462,
+      "ageDays": 1.7,
+      "format": "쇼츠",
+      "url": "https://www.youtube.com/watch?v=6MqXpbWZUsU",
+      "ratio": 19
+    },
+    {
+      "videoId": "10Ni-flAE4M",
+      "title": "주먹구구식 억지 정책에 고통받는 국민들",
+      "channelTitle": "우팡로켓",
+      "channelSubscribers": 27500,
+      "viewCount": 469296,
+      "viewsPerDay": 127042,
+      "ageDays": 3.7,
+      "format": "쇼츠",
+      "url": "https://www.youtube.com/watch?v=10Ni-flAE4M",
+      "ratio": 17.1
+    },
+    {
+      "videoId": "H708lxfful4",
+      "title": "\"월세, 무섭게 오를 겁니다\" / #채널A #shorts #경제시그널",
+      "channelTitle": "경제시그널",
+      "channelSubscribers": 24900,
+      "viewCount": 261058,
+      "viewsPerDay": 17766,
+      "ageDays": 14.7,
+      "format": "쇼츠",
+      "url": "https://www.youtube.com/watch?v=H708lxfful4",
+      "ratio": 10.5
+    },
+    {
+      "videoId": "9cioTCSklig",
+      "title": "월세 6개월 밀린 청년의 집 문을 따고 들어간 집주인 할아버지 #사연 #드라마 #반전사연 #시니어쇼츠 #쇼츠 #각종유머 #감동 #drama",
+      "channelTitle": "웃긴이야기",
+      "channelSubscribers": 73600,
+      "viewCount": 529599,
+      "viewsPerDay": 495368,
+      "ageDays": 1.1,
+      "format": "롱폼",
+      "url": "https://www.youtube.com/watch?v=9cioTCSklig",
+      "ratio": 7.2
+    }
+  ],
+  "commentDemand": {
+    "scannedVideos": 8,
+    "totalComments": 372,
+    "requests": [
+      {
+        "text": "딸 분양소도 만들어주실수 있나요??",
+        "likeCount": 1,
+        "videoTitle": "아들 분양소"
+      },
+      {
+        "text": "정말코테고리님초창기부터보던 평범한Ro블록스입니다. 코테고리님정말너무잘생겼고 성대모사잘하고분장잘하고목소리좋고 아이디어도너무좋고 라임도좋으시고••••••• 아무튼너무제최애채널이에요❤ 사랑합니다 끝말있기도재미있었고 1+1…",
+        "likeCount": 0,
+        "videoTitle": "아들 분양소"
+      },
+      {
+        "text": "이거 다음화도 만들어주실수있나요?",
+        "likeCount": 0,
+        "videoTitle": "아들 분양소"
+      }
+    ]
+  },
+  "comparison": {
+    "previousDate": "2026-08-19",
+    "newKeywords": [
+      {
+        "keyword": "정부가",
+        "videoCount": 5,
+        "recentCount": 4
+      },
+      {
+        "keyword": "전세대출",
+        "videoCount": 5,
+        "recentCount": 5
+      }
+    ],
+    "strengthenedKeywords": [
+      {
+        "keyword": "부동산",
+        "previousVideoCount": 25,
+        "videoCount": 36
+      },
+      {
+        "keyword": "집값",
+        "previousVideoCount": 17,
+        "videoCount": 20
+      },
+      {
+        "keyword": "재개발",
+        "previousVideoCount": 9,
+        "videoCount": 16
+      },
+      {
+        "keyword": "월세",
+        "previousVideoCount": 9,
+        "videoCount": 13
+      },
+      {
+        "keyword": "청약",
+        "previousVideoCount": 10,
+        "videoCount": 12
+      },
+      {
+        "keyword": "이유",
+        "previousVideoCount": 7,
+        "videoCount": 11
+      },
+      {
+        "keyword": "매매",
+        "previousVideoCount": 6,
+        "videoCount": 8
+      }
+    ],
+    "newPhrases": [
+      {
+        "phrase": "부동산 시장에",
+        "videoCount": 3,
+        "recentCount": 2
+      },
+      {
+        "phrase": "돈쭐남 김경필",
+        "videoCount": 3,
+        "recentCount": 0
+      },
+      {
+        "phrase": "부동산 아파트",
+        "videoCount": 3,
+        "recentCount": 1
+      },
+      {
+        "phrase": "토론합시다 3자토론 김대호x홍춘욱x김광석",
+        "videoCount": 2,
+        "recentCount": 2
+      }
+    ],
+    "newRisingVideos": [
+      {
+        "videoId": "9cioTCSklig",
+        "title": "월세 6개월 밀린 청년의 집 문을 따고 들어간 집주인 할아버지 #사연 #드라마 #반전사연 #시니어쇼츠 #쇼츠 #각종유머 #감동 #drama",
+        "channelTitle": "웃긴이야기",
+        "viewsPerDay": 495368,
+        "ageDays": 1.1,
+        "format": "롱폼",
+        "url": "https://www.youtube.com/watch?v=9cioTCSklig"
+      },
+      {
+        "videoId": "7cPsxE841Yc",
+        "title": "가계 빚 사상 최대 기록에 금리인상까지...폭탄 곧 터지나 [자막뉴스] / YTN",
+        "channelTitle": " YTN",
+        "viewsPerDay": 272267,
+        "ageDays": 1.7,
+        "format": "롱폼",
+        "url": "https://www.youtube.com/watch?v=7cPsxE841Yc"
+      },
+      {
+        "videoId": "ircKYHydzSE",
+        "title": "20년 장기전세 당사자 본인 출연..토론하던 전문가 '눈 질끈'",
+        "channelTitle": "뉴스헌터스",
+        "viewsPerDay": 165094,
+        "ageDays": 1.4,
+        "format": "롱폼",
+        "url": "https://www.youtube.com/watch?v=ircKYHydzSE"
+      },
+      {
+        "videoId": "8vD7RaJKbso",
+        "title": "2년 전 경매에 나온 포켓몬 카드 현재가",
+        "channelTitle": "일분일초",
+        "viewsPerDay": 128138,
+        "ageDays": 4.7,
+        "format": "쇼츠",
+        "url": "https://www.youtube.com/watch?v=8vD7RaJKbso"
+      },
+      {
+        "videoId": "10Ni-flAE4M",
+        "title": "주먹구구식 억지 정책에 고통받는 국민들",
+        "channelTitle": "우팡로켓",
+        "viewsPerDay": 127042,
+        "ageDays": 3.7,
+        "format": "쇼츠",
+        "url": "https://www.youtube.com/watch?v=10Ni-flAE4M"
+      }
+    ]
+  },
+  "velocityVideos": [
+    {
+      "videoId": "6MqXpbWZUsU",
+      "title": "23년동안 월세내자 갑자기 내 집이 생김",
+      "channelTitle": "콩만이",
+      "url": "https://www.youtube.com/watch?v=6MqXpbWZUsU",
+      "format": "쇼츠",
+      "viewCount": 899791,
+      "previousViews": 578160,
+      "viewDelta": 321631,
+      "hoursBetween": 24.9,
+      "measuredViewsPerDay": 309938
+    },
+    {
+      "videoId": "6y0a3QkhQao",
+      "title": "\"20년 살면 죽을 줄 알았지\" #shorts / KBS",
+      "channelTitle": "KBS News",
+      "url": "https://www.youtube.com/watch?v=6y0a3QkhQao",
+      "format": "롱폼",
+      "viewCount": 1549818,
+      "previousViews": 1437002,
+      "viewDelta": 112816,
+      "hoursBetween": 24.9,
+      "measuredViewsPerDay": 108714
+    },
+    {
+      "videoId": "7dEu4G0xSRM",
+      "title": "아들 분양소",
+      "channelTitle": "코테고리",
+      "url": "https://www.youtube.com/watch?v=7dEu4G0xSRM",
+      "format": "롱폼",
+      "viewCount": 691714,
+      "previousViews": 588305,
+      "viewDelta": 103409,
+      "hoursBetween": 24.9,
+      "measuredViewsPerDay": 99649
+    },
+    {
+      "videoId": "la-R5j3xHzY",
+      "title": "딸 분양소",
+      "channelTitle": "코테고리",
+      "url": "https://www.youtube.com/watch?v=la-R5j3xHzY",
+      "format": "롱폼",
+      "viewCount": 339258,
+      "previousViews": 236438,
+      "viewDelta": 102820,
+      "hoursBetween": 24.9,
+      "measuredViewsPerDay": 99082
+    },
+    {
+      "videoId": "LRxQ7uKc6J0",
+      "title": "혼자 살려고 구매한 34평 신축아파트 l 송도 아파트 매매",
+      "channelTitle": "자취남",
+      "url": "https://www.youtube.com/watch?v=LRxQ7uKc6J0",
+      "format": "롱폼",
+      "viewCount": 265139,
+      "previousViews": 226855,
+      "viewDelta": 38284,
+      "hoursBetween": 24.9,
+      "measuredViewsPerDay": 36892
+    },
+    {
+      "videoId": "FF3BtEoa13o",
+      "title": "빈 상가 전국 최고‥ 경매 시장도 '찬바람' (2026.08.16/뉴스데스크/MBC충북)",
+      "channelTitle": "MBCNEWS",
+      "url": "https://www.youtube.com/watch?v=FF3BtEoa13o",
+      "format": "롱폼",
+      "viewCount": 222510,
+      "previousViews": 198793,
+      "viewDelta": 23717,
+      "hoursBetween": 24.9,
+      "measuredViewsPerDay": 22855
+    },
+    {
+      "videoId": "SLmhj3md3_4",
+      "title": "대통령은 왜 재건축을 막을까? \"오세훈, 이번에 옳은 소리\"",
+      "channelTitle": "시사저널 TV",
+      "url": "https://www.youtube.com/watch?v=SLmhj3md3_4",
+      "format": "쇼츠",
+      "viewCount": 312240,
+      "previousViews": 301507,
+      "viewDelta": 10733,
+      "hoursBetween": 24.9,
+      "measuredViewsPerDay": 10343
+    },
+    {
+      "videoId": "QLGkOXWZwvU",
+      "title": "집 한 채 있으면 전세대출 막힌다… 거주이전의 자유 침해, 50초 안에 설명하기",
+      "channelTitle": "꽉TV",
+      "url": "https://www.youtube.com/watch?v=QLGkOXWZwvU",
+      "format": "쇼츠",
+      "viewCount": 438146,
+      "previousViews": 428277,
+      "viewDelta": 9869,
+      "hoursBetween": 24.9,
+      "measuredViewsPerDay": 9510
+    },
+    {
+      "videoId": "soNDKnBE7u8",
+      "title": "리조트 같은 24평 아파트 l 중구 아파트 매매",
+      "channelTitle": "유부남",
+      "url": "https://www.youtube.com/watch?v=soNDKnBE7u8",
+      "format": "롱폼",
+      "viewCount": 101857,
+      "previousViews": 95755,
+      "viewDelta": 6102,
+      "hoursBetween": 24.9,
+      "measuredViewsPerDay": 5880
+    },
+    {
+      "videoId": "80UcwrI1wy4",
+      "title": "현금 9억이 어딨노 | 99층 재건축 실패, 부산의 은마아파트",
+      "channelTitle": "강호의발바닥TV",
+      "url": "https://www.youtube.com/watch?v=80UcwrI1wy4",
+      "format": "롱폼",
+      "viewCount": 147539,
+      "previousViews": 141984,
+      "viewDelta": 5555,
+      "hoursBetween": 24.9,
+      "measuredViewsPerDay": 5353
+    }
+  ]
+}

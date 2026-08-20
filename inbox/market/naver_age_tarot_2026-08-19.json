@@ -1,8 +1,8 @@
 {
   "ok": true,
   "topic": "타로",
-  "date": "2026-08-15",
-  "generatedAt": "2026-08-15T00:55:29.974Z",
+  "date": "2026-08-19",
+  "generatedAt": "2026-08-18T23:50:42.464Z",
   "brackets": [
     "10대",
     "20대",
@@ -15,33 +15,33 @@
       "keyword": "재회 타로",
       "byAge": {
         "10대": {
-          "deltaPercent": -8,
-          "level": 23,
-          "recentAvg": 22.826079999999997
+          "deltaPercent": 9,
+          "level": 24,
+          "recentAvg": 24.456514999999996
         },
         "20대": {
-          "deltaPercent": -14,
-          "level": 60,
-          "recentAvg": 59.782602499999996
+          "deltaPercent": -10,
+          "level": 61,
+          "recentAvg": 60.6521675
         },
         "30대": {
-          "deltaPercent": -16,
-          "level": 63,
-          "recentAvg": 63.2352875
+          "deltaPercent": -20,
+          "level": 61,
+          "recentAvg": 60.66175749999999
         },
         "40대": {
-          "deltaPercent": -31,
-          "level": 10,
-          "recentAvg": 10.282255
+          "deltaPercent": -16,
+          "level": 12,
+          "recentAvg": 11.693545
         },
         "50대+": {
-          "deltaPercent": 152,
+          "deltaPercent": 214,
           "level": 15,
-          "recentAvg": 14.912275000000001
+          "recentAvg": 15.497072500000002
         }
       },
       "hottestAge": "50대+",
-      "hottestDelta": 152
+      "hottestDelta": 214
     },
     {
       "keyword": "속마음 타로",
@@ -54,90 +54,90 @@
         "20대": {
           "deltaPercent": 0,
           "level": 8,
-          "recentAvg": 8.260864999999999
+          "recentAvg": 8.478255
         },
         "30대": {
-          "deltaPercent": 42,
+          "deltaPercent": 39,
           "level": 41,
           "recentAvg": 40.8088175
         },
         "40대": {
-          "deltaPercent": 23,
-          "level": 10,
-          "recentAvg": 10.4838625
+          "deltaPercent": 58,
+          "level": 14,
+          "recentAvg": 14.31451
         },
         "50대+": {
           "deltaPercent": 0,
           "level": 8,
-          "recentAvg": 8.1871275
+          "recentAvg": 8.04093
         }
       },
-      "hottestAge": "30대",
-      "hottestDelta": 42
-    },
-    {
-      "keyword": "오늘의 타로",
-      "byAge": {
-        "10대": {
-          "deltaPercent": 10,
-          "level": 76,
-          "recentAvg": 76.086955
-        },
-        "20대": {
-          "deltaPercent": -11,
-          "level": 61,
-          "recentAvg": 61.0869525
-        },
-        "30대": {
-          "deltaPercent": -9,
-          "level": 76,
-          "recentAvg": 76.102935
-        },
-        "40대": {
-          "deltaPercent": -10,
-          "level": 72,
-          "recentAvg": 71.9758
-        },
-        "50대+": {
-          "deltaPercent": 5,
-          "level": 83,
-          "recentAvg": 82.748535
-        }
-      },
-      "hottestAge": "10대",
-      "hottestDelta": 10
+      "hottestAge": "40대",
+      "hottestDelta": 58
     },
     {
       "keyword": "연애 타로",
       "byAge": {
         "10대": {
-          "deltaPercent": -8,
-          "level": 49,
-          "recentAvg": 49.456517500000004
+          "deltaPercent": -12,
+          "level": 47,
+          "recentAvg": 46.7391275
         },
         "20대": {
-          "deltaPercent": 1,
-          "level": 39,
-          "recentAvg": 38.6956475
+          "deltaPercent": -1,
+          "level": 38,
+          "recentAvg": 38.0434725
         },
         "30대": {
-          "deltaPercent": 1,
-          "level": 26,
-          "recentAvg": 26.470585
+          "deltaPercent": 14,
+          "level": 28,
+          "recentAvg": 27.573525000000004
         },
         "40대": {
           "deltaPercent": 0,
-          "level": 4,
-          "recentAvg": 4.0322525
+          "level": 5,
+          "recentAvg": 4.6370925
         },
         "50대+": {
           "deltaPercent": 0,
           "level": 2,
-          "recentAvg": 2.485375
+          "recentAvg": 2.339175
         }
       },
-      "hottestAge": "20대",
-      "hottestDelta": 1
+      "hottestAge": "30대",
+      "hottestDelta": 14
+    },
+    {
+      "keyword": "오늘의 타로",
+      "byAge": {
+        "10대": {
+          "deltaPercent": -2,
+          "level": 69,
+          "recentAvg": 69.0217375
+        },
+        "20대": {
+          "deltaPercent": -8,
+          "level": 62,
+          "recentAvg": 62.173907500000006
+        },
+        "30대": {
+          "deltaPercent": -1,
+          "level": 79,
+          "recentAvg": 79.4117575
+        },
+        "40대": {
+          "deltaPercent": -8,
+          "level": 72,
+          "recentAvg": 72.1774125
+        },
+        "50대+": {
+          "deltaPercent": 6,
+          "level": 83,
+          "recentAvg": 82.8947325
+        }
+      },
+      "hottestAge": "50대+",
+      "hottestDelta": 6
     },
     {
       "keyword": "이번주 타로",
