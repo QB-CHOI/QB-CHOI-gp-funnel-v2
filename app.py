@@ -459,52 +459,60 @@ def _run_auth() -> bool:
 
 # ── 메인 ─────────────────────────────────────────────────────────
 
+def _safe_tab(fn, label):
+    """탭 하나가 터져도 나머지 탭은 살린다.
+
+    Streamlit은 스크립트를 위에서 아래로 한 번에 실행하므로, 탭 하나에서 예외가
+    나면 **그 아래 탭은 아예 그려지지 않는다**(3탭 중 2번을 터뜨리면 3번이 빈
+    화면인 것을 실제로 확인했다). 종합 보고가 첫 탭이라 거기서 한 번 터지면
+    사이트 전체가 빈 화면이 된다 — 데이터가 갱신 중이거나 형태가 바뀌면 충분히
+    생길 수 있는 일이고, 그때 다른 탭까지 못 보는 건 과한 대가다.
+
+    st.exception()으로 남기는 이유 — verify_app.py가 `at.exception`으로 배포 전
+    검증을 한다. 조용히 삼키면 터진 코드가 검증을 통과해 버린다. 화면에서는 그
+    탭만 실패로 보이고 검증에서는 여전히 잡히도록, 둘 다 만족시킨다.
+    """
+    try:
+        fn()
+    except Exception as e:            # 어떤 예외든 사이트 전체를 죽이면 안 된다
+        st.error(f"⚠️ **{label}** 탭을 그리는 중 오류가 났습니다. "
+                 "다른 탭은 정상이니 그쪽을 먼저 보세요.\n\n"
+                 "데이터가 갱신되는 중이면 잠시 뒤 새로고침으로 풀립니다. "
+                 "계속되면 아래 내용을 그대로 전달해 주세요.")
+        st.exception(e)
+
+
+# 탭 순서 = 화면 순서. 라벨과 함수를 한 줄에 두어 어긋나지 않게 한다.
+TABS = [
+    ("🧭 종합 보고", "tab_overview"),
+    ("📸 오늘 입력", "tab_input"),
+    ("📊 현황", "tab_dashboard"),
+    ("📋 전환 분석", "tab_conversion"),
+    ("📈 추이 그래프", "tab_trend"),
+    ("🎓 강의 분석", "tab_lecture_analysis"),
+    ("🔎 강의별 상세", "tab_course_detail"),
+    ("📅 기간별 분석", "tab_period"),
+    ("👥 고객 분석", "tab_customer"),
+    ("📢 마케팅 분석", "tab_marketing"),
+    ("📍 지역 분석", "tab_region"),
+    ("🗓️ 웨비나 일정", "tab_webinar"),
+    ("🧪 실험 일지", "tab_experiments"),
+    ("📑 경영진 보고", "tab_report"),
+    ("⚙️ 채팅방 설정", "tab_campaign"),
+    ("🗂️ 데이터 관리", "tab_data"),
+]
+
+
 def main():
     if not _run_auth():
         return
 
     st.title("📊 황금후추 강의 분석")
 
-    (tab_ov, tab1, tab2, tab3, tab4, tab5, tab_drill, tab_prd, tab_cust, tab9, tab10,
-     tab_wb, tab_exp, tab6, tab7, tab8) = st.tabs([
-        "🧭 종합 보고", "📸 오늘 입력", "📊 현황", "📋 전환 분석", "📈 추이 그래프",
-        "🎓 강의 분석", "🔎 강의별 상세", "📅 기간별 분석", "👥 고객 분석",
-        "📢 마케팅 분석", "📍 지역 분석", "🗓️ 웨비나 일정", "🧪 실험 일지",
-        "📑 경영진 보고", "⚙️ 채팅방 설정", "🗂️ 데이터 관리",
-    ])
-
-    with tab_ov:
-        tab_overview()
-    with tab1:
-        tab_input()
-    with tab2:
-        tab_dashboard()
-    with tab3:
-        tab_conversion()
-    with tab4:
-        tab_trend()
-    with tab5:
-        tab_lecture_analysis()
-    with tab_drill:
-        tab_course_detail()
-    with tab_prd:
-        tab_period()
-    with tab_cust:
-        tab_customer()
-    with tab9:
-        tab_marketing()
-    with tab10:
-        tab_region()
-    with tab_wb:
-        tab_webinar()
-    with tab_exp:
-        tab_experiments()
-    with tab6:
-        tab_report()
-    with tab7:
-        tab_campaign()
-    with tab8:
-        tab_data()
+    _tabs = st.tabs([_label for _label, _ in TABS])
+    for _slot, (_label, _fname) in zip(_tabs, TABS):
+        with _slot:
+            _safe_tab(globals()[_fname], _label)
 
 
 # ── 탭: 고객 분석 (LTV·재구매·교차판매) ───────────────────────────
@@ -555,18 +563,18 @@ def tab_customer():
     with d1:
         _f = cust_repeat_donut(rep)
         if _f:
-            st.plotly_chart(_f, width='stretch', key="cust_repeat")
+            st.plotly_chart(_f, key="cust_repeat")
     with d2:
         _f = cust_ltv_bar(ltv)
         if _f:
-            st.plotly_chart(_f, width='stretch', key="cust_ltv")
+            st.plotly_chart(_f, key="cust_ltv")
 
     # ── 상품군별 재구매율·LTV ───────────────────────────
     st.divider()
     st.subheader("상품군별 재구매율 · 평균 LTV")
     _f = cust_product_repeat_chart(pr)
     if _f:
-        st.plotly_chart(_f, width='stretch', key="cust_prod")
+        st.plotly_chart(_f, key="cust_prod")
     if not pr.empty:
         _hr = pr.loc[pr['repeat_rate'].idxmax()]
         _lr = pr.loc[pr['repeat_rate'].idxmin()]
@@ -581,7 +589,7 @@ def tab_customer():
         st.subheader("교차판매 (강의 간 이동)")
         _f = cross_sell_heatmap(xs)
         if _f:
-            st.plotly_chart(_f, width='stretch', key="cust_cross")
+            st.plotly_chart(_f, key="cust_cross")
         _top = xs.sort_values('rate', ascending=False).iloc[0]
         st.info(f"💡 **{_top['from']} 구매자의 {_top['rate']:.0f}%가 {_top['to']}도 구매** — "
                 f"가장 강한 교차판매 경로입니다. {_top['from']} 고객에게 {_top['to']}를 "
@@ -593,7 +601,7 @@ def tab_customer():
         st.subheader("월별 신규 vs 재구매 매출")
         _f = monthly_new_repeat_chart(mnr)
         if _f:
-            st.plotly_chart(_f, width='stretch', key="cust_monthly")
+            st.plotly_chart(_f, key="cust_monthly")
         st.caption("파랑=신규 고객 첫 결제, 골드=기존 고객 재구매. 재구매 비중이 높아지는 달일수록 "
                    "고객 자산이 축적되고 있다는 신호입니다.")
 
@@ -609,11 +617,11 @@ def tab_customer():
         with rt1:
             _f = repeat_timing_chart(timing)
             if _f:
-                st.plotly_chart(_f, width='stretch', key="cust_timing")
+                st.plotly_chart(_f, key="cust_timing")
         with rt2:
             _f = retention_curve_chart(curve)
             if _f:
-                st.plotly_chart(_f, width='stretch', key="cust_ret_curve")
+                st.plotly_chart(_f, key="cust_ret_curve")
         # 타이밍 인사이트
         if not timing.empty:
             _tt = int(timing['customers'].sum())
@@ -626,7 +634,7 @@ def tab_customer():
         if not matrix.empty:
             _f = retention_heatmap(matrix)
             if _f:
-                st.plotly_chart(_f, width='stretch', key="cust_ret_heat")
+                st.plotly_chart(_f, key="cust_ret_heat")
             st.caption("가입월(세로)별로 첫 구매 후 경과월(가로)에 재구매한 비율. "
                        "진한 칸이 많은 가입월 = 충성도 높은 코호트.")
 
@@ -643,11 +651,11 @@ def tab_customer():
         with pc1:
             _f = product_retention_curve_chart(p_ret)
             if _f:
-                st.plotly_chart(_f, width='stretch', key="cust_p_curve")
+                st.plotly_chart(_f, key="cust_p_curve")
         with pc2:
             _f = nextbuy_chart(p_nb)
             if _f:
-                st.plotly_chart(_f, width='stretch', key="cust_p_nextbuy")
+                st.plotly_chart(_f, key="cust_p_nextbuy")
 
         # 강의 선택 → 타이밍 상세
         if not p_time.empty:
@@ -657,7 +665,7 @@ def tab_customer():
             _pt = p_time[p_time['product'] == _psel][['bucket', 'customers']]
             _f = repeat_timing_chart(_pt)
             if _f:
-                st.plotly_chart(_f, width='stretch', key="cust_p_timing")
+                st.plotly_chart(_f, key="cust_p_timing")
 
         # 업셀 vs 교차판매 전략 인사이트
         if not p_nb.empty:
@@ -683,7 +691,7 @@ def tab_customer():
             with xc1:
                 _f = crosssell_path_heatmap(xpath)
                 if _f:
-                    st.plotly_chart(_f, width='stretch', key="cust_xpath")
+                    st.plotly_chart(_f, key="cust_xpath")
             with xc2:
                 # 강의별 1순위 추천 표
                 _recs = []
@@ -797,15 +805,15 @@ def tab_period():
         with _ok1:
             _f1 = ohaeng_chart(_oh, 'stem')
             if _f1:
-                st.plotly_chart(_f1, width='stretch', key="oh_stem")
+                st.plotly_chart(_f1, key="oh_stem")
         with _ok2:
             _f2 = ohaeng_chart(_oh, 'branch')
             if _f2:
-                st.plotly_chart(_f2, width='stretch', key="oh_branch")
+                st.plotly_chart(_f2, key="oh_branch")
 
         _ft = ohaeng_timeline_chart(_oh)
         if _ft:
-            st.plotly_chart(_ft, width='stretch', key="oh_timeline")
+            st.plotly_chart(_ft, key="oh_timeline")
 
         # 오행별 요약표 + 해석
         _rows = ""
@@ -874,7 +882,7 @@ def tab_period():
     st.subheader("월별 × 강의별 매출 히트맵")
     fig_h = monthly_course_heatmap(mbc)
     if fig_h:
-        st.plotly_chart(fig_h, width='stretch', key="prd_heat")
+        st.plotly_chart(fig_h, key="prd_heat")
     st.caption("색이 진한 칸 = 그 달 그 강의 매출이 큼. 강의별 개강월에 매출이 집중되는 패턴을 확인하세요.")
 
     # ── 월별 매출 구성 + 광고비 ──────────────────────────
@@ -882,7 +890,7 @@ def tab_period():
     st.subheader("월별 매출 구성 · 광고비 추이")
     fig_s = monthly_course_stack(mbc, ad_m if not ad_m.empty else None)
     if fig_s:
-        st.plotly_chart(fig_s, width='stretch', key="prd_stack")
+        st.plotly_chart(fig_s, key="prd_stack")
 
     # ── 특정 월 드릴다운 ─────────────────────────────────
     st.divider()
@@ -909,12 +917,15 @@ def tab_period():
 
     # 그 달의 상품군 구성표
     _cd = _cur.sort_values('paid_revenue', ascending=False)
+    # 0으로 나누기를 막을 때 pd.NA를 쓰면 정수 열이 object dtype으로 바뀌고,
+    # 그 상태의 fillna는 pandas가 곧 동작을 바꾸겠다고 예고한 자리다(FutureWarning).
+    # NaN을 쓰면 float dtype 그대로라 결과는 같고 경고도 없다 — 코드 전체 동일 적용.
     _cd_disp = pd.DataFrame({
         '상품군': _cd['product'],
         '매출': _cd['paid_revenue'].apply(lambda x: f"{x/1e8:,.2f}억" if x >= 1e7 else f"{x/1e4:,.0f}만"),
         '유료주문': _cd['paid_orders'].apply(lambda x: f"{x:,}건"),
         '무료신청': _cd['free_signups'].apply(lambda x: f"{x:,}명"),
-        '객단가': (_cd['paid_revenue'] / _cd['paid_orders'].replace(0, pd.NA)).fillna(0).apply(
+        '객단가': (_cd['paid_revenue'] / _cd['paid_orders'].replace(0, float('nan'))).fillna(0).apply(
             lambda x: f"{x/1e4:,.0f}만"),
     })
     st.dataframe(_cd_disp, hide_index=True, width='stretch')
@@ -964,13 +975,13 @@ def tab_period():
                                          color='#7C9CBF', periods=2,
                                          exclude_last=False)
             if _ff:
-                st.plotly_chart(_ff, width='stretch', key="prd_fc_free")
+                st.plotly_chart(_ff, key="prd_fc_free")
         with fc2:
             _fr = runrate_forecast_chart(_pm, _rev, '매출', color='#26A69A',
                                          periods=2, as_eok=True,
                                          exclude_last=False)
             if _fr:
-                st.plotly_chart(_fr, width='stretch', key="prd_fc_rev")
+                st.plotly_chart(_fr, key="prd_fc_rev")
         st.warning("⚠️ 전망은 **최근 추세 기준 참고치**입니다. 개강·프로모션이 있는 달은 크게 상회하고, "
                    "없는 달은 하회합니다. 확정 예측이 아니라 예산·목표 설정의 기준선으로 활용하세요.")
 
@@ -1164,11 +1175,11 @@ def tab_period():
             with gg1:
                 _f = target_vs_actual_chart(_rev_df, '매출', as_eok=True)
                 if _f:
-                    st.plotly_chart(_f, width='stretch', key="tgt_rev")
+                    st.plotly_chart(_f, key="tgt_rev")
             with gg2:
                 _f = target_vs_actual_chart(_free_df, '무료 모객')
                 if _f:
-                    st.plotly_chart(_f, width='stretch', key="tgt_free")
+                    st.plotly_chart(_f, key="tgt_free")
             # 달성 요약
             _done = _rev_df[(_rev_df['month'] < _this_month) & (_rev_df['target'] > 0)]
             if not _done.empty:
@@ -1237,7 +1248,7 @@ def tab_course_detail():
     st.subheader("기수별 매출 · 수강생")
     fig_c = cohort_revenue_chart(cohort_rev, prod)
     if fig_c:
-        st.plotly_chart(fig_c, width='stretch', key="drill_cohort")
+        st.plotly_chart(fig_c, key="drill_cohort")
 
     # ── 유료 단계 전환 (사주/타로/부동산) ─────────────────
     _st = stage[stage['product'] == prod] if not stage.empty else pd.DataFrame()
@@ -1255,7 +1266,7 @@ def tab_course_detail():
             _ft = stage_timeline_chart(_stl_p, prod)
             if _ft:
                 st.markdown("**🗓️ 단계-강의 타임라인 — 기수는 번호대로 1:1 진행되지 않습니다**")
-                st.plotly_chart(_ft, width='stretch', key="drill_stage_timeline")
+                st.plotly_chart(_ft, key="drill_stage_timeline")
                 # 병합/이월 자동 감지: 심화 기수 수 > 기초 기수 수 등, 시점 역전
                 _merge_note = []
                 _b = _stl_p[_stl_p['stage'] == '기초'].copy()
@@ -1291,7 +1302,7 @@ def tab_course_detail():
             _csel = st.selectbox("기수 선택", options=_cohs, index=_idx, key="drill_stage_coh")
             _sf = stage_funnel_chart(stage, prod, _csel, STAGE_ORDER)
             if _sf:
-                st.plotly_chart(_sf, width='stretch', key="drill_stage_funnel")
+                st.plotly_chart(_sf, key="drill_stage_funnel")
             else:
                 _filled = (_st.loc[_st['cohort'] == _csel, _have].fillna(0) > 0).sum(axis=1).max()
                 st.info(f"**{_csel}**는 아직 채워진 단계가 {int(_filled)}개뿐이라 퍼널을 그릴 수 "
@@ -1300,7 +1311,7 @@ def tab_course_detail():
         with sc2:
             _mx = cohort_stage_matrix_chart(stage, prod, STAGE_ORDER)
             if _mx:
-                st.plotly_chart(_mx, width='stretch', key="drill_stage_matrix")
+                st.plotly_chart(_mx, key="drill_stage_matrix")
         st.caption("⚠️ 위 퍼널·매트릭스의 기수 라벨은 리포트 기준으로 정렬된 값입니다. 심화 인원이 "
                    "기초보다 많은 기수(>100% 전환)는 **여러 기초 기수가 한 심화로 병합**된 경우입니다 "
                    "— 정확한 개강 구분은 위 타임라인을 참고하세요.")
@@ -1327,7 +1338,7 @@ def tab_course_detail():
         st.subheader(f"광고 효율 (기수별) — {prod}")
         fig_ad = cohort_ad_roi_chart(camp, prod)
         if fig_ad:
-            st.plotly_chart(fig_ad, width='stretch', key="drill_ad")
+            st.plotly_chart(fig_ad, key="drill_ad")
 
         # 광고 효율 변동 원인 분석 — 요청 3
         _diag = ad_efficiency_diagnosis(camp, prod)
@@ -1378,7 +1389,7 @@ def tab_course_detail():
         _figm.update_layout(title=f'{prod} 월별 매출 (주문 기준)', height=320,
                             margin=dict(t=50, b=50, l=20, r=20),
                             xaxis=dict(tickangle=-45), yaxis=dict(title='매출(원)'))
-        st.plotly_chart(_figm, width='stretch', key="drill_monthly")
+        st.plotly_chart(_figm, key="drill_monthly")
 
 
 # ── 탭: 종합 보고 (전략 대시보드) ─────────────────────────────────
@@ -1391,12 +1402,12 @@ def _product_master_table():
         return pd.DataFrame()
     m = cs.copy()
     # 전환율·객단가는 매출과 동일 기준인 '세트 수강생(students)'을 분모로 사용(기준 정합)
-    m['전환율'] = (m['students'] / m['free'].replace(0, pd.NA) * 100).round(1).fillna(0)
-    m['객단가'] = (m['revenue'] / m['students'].replace(0, pd.NA)).fillna(0).astype(int)
+    m['전환율'] = (m['students'] / m['free'].replace(0, float('nan')) * 100).round(1).fillna(0)
+    m['객단가'] = (m['revenue'] / m['students'].replace(0, float('nan'))).fillna(0).astype(int)
     if not camp.empty:
         ad = camp.groupby('product').agg(ad=('ad_spend', 'sum'),
                                          lrev=('live_revenue', 'sum')).reset_index()
-        ad['광고ROAS'] = (ad['lrev'] / ad['ad'].replace(0, pd.NA)).round(1).fillna(0)
+        ad['광고ROAS'] = (ad['lrev'] / ad['ad'].replace(0, float('nan'))).round(1).fillna(0)
         m = m.merge(ad[['product', 'ad', '광고ROAS']], on='product', how='left')
     else:
         m['ad'] = 0
@@ -1771,7 +1782,7 @@ def tab_overview():
     if not _mbc.empty:
         _fh = monthly_course_heatmap(_mbc, months=12)
         if _fh:
-            st.plotly_chart(_fh, width='stretch', key="ov_heat")
+            st.plotly_chart(_fh, key="ov_heat")
             st.caption("최근 12개월 강의별 매출 집중 시점. 상세는 **📅 기간별 분석**·**🔎 강의별 상세** 탭 참고.")
 
     # ── 상품군 통합 요약표 ──────────────────────────────
@@ -1807,7 +1818,7 @@ def tab_overview():
                     + (f"효율이 낮은 **{_worst_ad['product']}({_worst_ad['광고ROAS']:.1f}배)**는 소재·타깃 개선 후 재배분."
                        if _worst_ad is not None else ""))
     _cvbest = cs.copy()
-    _cvbest['cv'] = _cvbest['students'] / _cvbest['free'].replace(0, pd.NA)
+    _cvbest['cv'] = _cvbest['students'] / _cvbest['free'].replace(0, float('nan'))
     _cvbest = _cvbest.dropna(subset=['cv'])
     if not _cvbest.empty:
         _cb = _cvbest.loc[_cvbest['cv'].idxmax()]
@@ -2589,7 +2600,7 @@ def tab_conversion():
                 st.plotly_chart(_fp, key="conv_prod_rate")
         # 최고 전환 상품 인사이트
         _cc = _csum.copy()
-        _cc['cv'] = _cc['students'] / _cc['free'].replace(0, pd.NA)
+        _cc['cv'] = _cc['students'] / _cc['free'].replace(0, float('nan'))
         _cc = _cc.dropna(subset=['cv'])
         if not _cc.empty:
             _bp = _cc.loc[_cc['cv'].idxmax()]
@@ -3104,7 +3115,7 @@ def tab_lecture_analysis():
         ])
         _fig_rf = room_funnel_chart(_rf)
         if _fig_rf:
-            st.plotly_chart(_fig_rf, width='stretch', key="lec_room_funnel")
+            st.plotly_chart(_fig_rf, key="lec_room_funnel")
 
         _rows_rf = "".join(
             f'<tr><td><b>{r["label"]}</b></td>'
@@ -4640,8 +4651,8 @@ def _strategy_conclusion() -> dict:
 
     # ── 상품 포트폴리오: 전환율·객단가·광고 ROAS로 역할 규정 ──────
     c = cs.copy()
-    c['cv'] = (c['students'] / c['free'].replace(0, pd.NA) * 100)
-    c['aov'] = (c['revenue'] / c['students'].replace(0, pd.NA))
+    c['cv'] = (c['students'] / c['free'].replace(0, float('nan')) * 100)
+    c['aov'] = (c['revenue'] / c['students'].replace(0, float('nan')))
     roas, adshare, adspend = {}, {}, {}
     if not camp.empty and {'product', 'ad_spend', 'live_revenue'} <= set(camp.columns):
         k = camp.groupby('product').agg(ad=('ad_spend', 'sum'), rev=('live_revenue', 'sum'))
@@ -4840,7 +4851,7 @@ def _strategy_briefing() -> list:
     # 3) 전환 강점 상품 + 고객단가 (매출 기준과 정합: students 사용)
     if not cs.empty:
         cc = cs.copy()
-        cc['cv'] = cc['students'] / cc['free'].replace(0, pd.NA)
+        cc['cv'] = cc['students'] / cc['free'].replace(0, float('nan'))
         cc = cc.dropna(subset=['cv'])
         if not cc.empty:
             _bv = cc.loc[cc['cv'].idxmax()]
@@ -4848,7 +4859,7 @@ def _strategy_briefing() -> list:
                           f"**{_bv['product']}** 무료→유료 전환 **{_bv['cv']*100:.1f}%**로 최고 → "
                           "무료 모객을 늘릴수록 유료 성과가 가장 잘 따라오는 상품입니다."))
         c2 = cs.copy()
-        c2['aov'] = c2['revenue'] / c2['students'].replace(0, pd.NA)
+        c2['aov'] = c2['revenue'] / c2['students'].replace(0, float('nan'))
         c2 = c2.dropna(subset=['aov'])
         if not c2.empty:
             _hp = c2.loc[c2['aov'].idxmax()]
@@ -5003,7 +5014,7 @@ def tab_marketing():
                 _mm = _sp.merge(perf[['month', 'free_signups', 'revenue']], on='month', how='inner')
                 _mm = _mm[_mm['spend'] >= 5e6].copy()
                 if len(_mm) >= 4:
-                    _mm['cpa'] = _mm['spend'] / _mm['free_signups'].replace(0, pd.NA)
+                    _mm['cpa'] = _mm['spend'] / _mm['free_signups'].replace(0, float('nan'))
                     _mm['roas'] = _mm['revenue'] / _mm['spend']
                     _corr_lead = _mm['spend'].corr(_mm['free_signups'])
                     _corr_roas = _mm['spend'].corr(_mm['roas'])
@@ -5247,8 +5258,8 @@ def tab_marketing():
         with cm2:
             # 상품군별 요약표 — 세트 수강생 기준(매출과 정합), 0 나눔 가드
             cs = course_sum.copy().sort_values('revenue', ascending=False)
-            cs['전환율'] = (cs['students'] / cs['free'].replace(0, pd.NA) * 100).round(1).fillna(0)
-            cs['객단가'] = (cs['revenue'] / cs['students'].replace(0, pd.NA)).round(0).fillna(0).astype(int)
+            cs['전환율'] = (cs['students'] / cs['free'].replace(0, float('nan')) * 100).round(1).fillna(0)
+            cs['객단가'] = (cs['revenue'] / cs['students'].replace(0, float('nan'))).round(0).fillna(0).astype(int)
             cs_disp = pd.DataFrame({
                 '상품군': cs['product'],
                 '누적매출': cs['revenue'].apply(lambda x: f"{x/1e8:,.2f}억"),

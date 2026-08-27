@@ -1966,7 +1966,7 @@ def product_conversion_rate_chart(course_sum: pd.DataFrame):
     d = course_sum.copy()
     # 매출과 동일 기준인 세트 수강생(students)으로 전환율 계산
     _num = d['students'] if 'students' in d.columns else d['paid']
-    d['cv'] = (_num / d['free'].replace(0, pd.NA) * 100).fillna(0)
+    d['cv'] = (_num / d['free'].replace(0, float('nan')) * 100).fillna(0)
     d['_num'] = _num
     d = d.sort_values('cv')
     colors = [_PRODUCT_COLOR.get(p, '#5B8FF9') for p in d['product']]
@@ -2800,7 +2800,7 @@ def monthly_lead_cpa_chart(ad_df, perf_df, min_spend=5e6):
     m = m[m['spend'] >= min_spend]
     if m.empty:
         return None
-    m['cpa'] = m['spend'] / m['free_signups'].replace(0, pd.NA)
+    m['cpa'] = m['spend'] / m['free_signups'].replace(0, float('nan'))
     fig = go.Figure()
     fig.add_trace(go.Bar(x=m['month'], y=m['free_signups'], name='무료 모객',
                          marker_color='#7C9CBF', opacity=0.85,
