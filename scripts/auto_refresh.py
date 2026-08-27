@@ -6,6 +6,7 @@
   2) 주문 집계   : 새 '강의별_리스트*.xlsx'가 있을 때만 15종 재생성
   3) 오행 집계   : 위 2)가 돌았을 때만 함께 갱신
   4) 오카방 방목록: '오카방의 모든 것.xlsx' → campaigns.csv  (매일 자동)
+  5) 알림 발송   : 위험·주의 알림을 슬랙으로                 (바뀔 때 + 하루 1회)
 
 설계 원칙
   · **내용이 같으면 푸시하지 않는다** — 매일 도는 작업이라 동일 커밋이
@@ -16,6 +17,9 @@
     4)는 **로컬에 내려온 사본**을 읽는다 — 드라이브 데스크톱을 깔면 그 경로가
     자동으로 잡히고, 그 전까지는 inbox/에 둔 사본을 쓴다.
   · 실패해도 조용히 죽지 않고 로그에 남긴다(launchd는 화면이 없다).
+  · **알림은 사람이 사이트를 열지 않아도 도착해야 한다.** 판정은 화면과
+    똑같이 alerts.generate_alerts()를 쓰되, 하루 3회 도는 작업이라
+    같은 내용을 세 번 보내면 알림 자체를 무시하게 되므로 억제한다.
 
 실행:
     python3 scripts/auto_refresh.py            # 전체
@@ -222,6 +226,73 @@ def refresh_rooms(dry):
         return False
 
 
+# ── 5) 알림 발송 ─────────────────────────────────────────────
+def _webhook():
+    """슬랙 웹훅 주소 — 앱과 같은 자리(.streamlit/secrets.toml)에서 읽는다."""
+    try:
+        import streamlit as st
+        return st.secrets.get("slack_webhook_url", "")
+    except Exception:
+        return ""
+
+
+def send_alerts(dry):
+    """위험·주의 알림을 슬랙으로. 상태 문자열을 돌려준다(사이트에 그대로 표시).
+
+    이 단계가 생긴 이유: 알림 판정은 정확했는데 **아무도 사이트를 열지 않아**
+    주문 명단이 27일 → 32일까지 밀렸다. 경고가 화면 안에만 있으면 없는 것과
+    같다. 대신 하루 3회 그대로 밀면 곧 무시하게 되므로 두 경우만 보낸다.
+
+      · 알림 구성이 바뀐 때 — 새 경고가 생겼거나 해결됐을 때 즉시
+      · 🔴 위험이 남아 있는 날 — 하루 한 번만 다시 알림
+
+    정보(🔵)는 보내지 않는다. 매일 뜨는 안내라 알림으로는 소음이다.
+    """
+    log("⑤ 알림 점검")
+    hook = _webhook()
+    if not hook:
+        log("  · 슬랙 웹훅 미설정 — 건너뜀 (.streamlit/secrets.toml의 slack_webhook_url)")
+        return "미설정"
+    try:
+        from alerts import alert_signature, generate_alerts, slack_message
+        from github_store import send_slack_alert
+        items = [a for a in generate_alerts() if a["sev"] in ("critical", "warning")]
+    except Exception as e:
+        log(f"  ⚠️ 알림 판정 실패: {type(e).__name__}: {e}")
+        log(traceback.format_exc(limit=2))
+        return "실패"
+
+    sig = alert_signature(items)
+    st = _state()
+    today = datetime.now().strftime("%Y-%m-%d")
+    n_crit = sum(1 for a in items if a["sev"] == "critical")
+    log(f"  · 위험 {n_crit} · 주의 {len(items) - n_crit}")
+
+    if not items:
+        if not dry:
+            st["alert_sig"] = ""
+            _save_state(st)
+        log("  · 보낼 알림 없음")
+        return "없음"
+
+    changed = sig != st.get("alert_sig", "")
+    daily = bool(n_crit) and st.get("alert_sent_on", "") != today
+    if not (changed or daily):
+        log("  · 같은 알림 — 오늘 이미 보냄, 건너뜀")
+        return "억제"
+
+    why = "구성 변경" if changed else "위험 잔존 일일 알림"
+    if dry:
+        log(f"  · [dry-run] 슬랙 발송 예정 ({why}, {len(items)}건)")
+        return f"발송예정 {len(items)}건"
+    send_slack_alert(hook, slack_message(items))
+    st["alert_sig"] = sig
+    st["alert_sent_on"] = today
+    _save_state(st)
+    log(f"  ✅ 슬랙 발송 ({why}, {len(items)}건)")
+    return f"발송 {len(items)}건"
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true", help="확인만, 쓰지 않음")
@@ -238,6 +309,15 @@ def main():
             log(traceback.format_exc(limit=3))
             results.append(False)
 
+    # 알림은 데이터를 다 갱신한 뒤에 판정한다 — 방금 올라간 값이 반영돼야
+    # '오래됐다'는 경고가 해소된 걸 그 자리에서 알 수 있다.
+    try:
+        alert_status = send_alerts(a.dry_run)
+    except Exception as e:
+        log(f"  ⚠️ 알림 예외: {e}")
+        log(traceback.format_exc(limit=3))
+        alert_status = "실패"
+
     st = _state()
     st["last_run"] = datetime.now().isoformat(timespec="seconds")
     st["last_changed"] = any(results)
@@ -253,6 +333,7 @@ def main():
                 "order_aggregates": "갱신" if results[1] else "변경없음/실패",
                 "rooms": "갱신" if results[2] else "변경없음/실패",
                 "changed": "예" if any(results) else "아니오",
+                "alerts": alert_status,
             }]), f"chore: 자동 갱신 상태 {st['last_run']}")
         except Exception as e:
             log(f"  ⚠️ 상태 기록 실패: {e}")

@@ -39,6 +39,12 @@ from github_store import (
     send_slack_alert,
     PRODUCT_OPTIONS, CHANNEL_OPTIONS, CONTENT_TYPE_OPTIONS,
 )
+from alerts import (
+    generate_alerts as _generate_alerts,
+    lecture_date_split as _lecture_date_split,
+    name_list as _name_list,
+    slack_message,
+)
 from charts import (
     trend_line_chart, change_bar_chart, total_trend_bar,
     product_bar_chart, weekly_comparison_chart, cohort_trend_chart,
@@ -180,37 +186,6 @@ def _parse_order_upload(_bytes: bytes):
         'last': o['d'].max(),
     }
     return summary, build_all(o)
-
-
-def _lecture_date_split(cmp_df):
-    """진행 중인 방 중 개강일이 빈 방을 (진짜 누락, 웨비나 대기)로 나눈다.
-
-    개강일은 웨비나가 끝나야 정해진다. 모집만 하고 있는 방(원본 시트 참여코드
-    '대기중')은 아직 값이 없는 게 정상인데, 예전에는 이것까지 '입력 누락'으로
-    경고해 사람이 할 수 있는 일이 없는 알림이 계속 떠 있었다.
-    시트 상태(status)를 함께 받아오므로 이제 둘을 구분한다.
-    """
-    empty = pd.DataFrame()
-    if cmp_df.empty or 'is_current' not in cmp_df.columns:
-        return empty, empty
-    cur = cmp_df[cmp_df['is_current'].astype(str).str.lower().isin(['true', '1', 'yes'])]
-    if cur.empty:
-        return empty, empty
-    nod = cur[cur['lecture_start_date'].isna() |
-              (cur['lecture_start_date'].astype(str).str.strip() == '')]
-    if nod.empty:
-        return empty, empty
-    if 'status' not in nod.columns:      # 동기화 전이면 예전처럼 전부 누락 취급
-        return nod, empty
-    _st = nod['status'].fillna('').astype(str)
-    return nod[_st != '웨비나대기'], nod[_st == '웨비나대기']
-
-
-def _name_list(df, limit=3):
-    """캠페인명 나열 — 넘치면 '외 N건'으로 접는다(건수와 이름 수가 어긋나지 않게)."""
-    names = df['campaign_name'].astype(str).tolist()
-    head = ', '.join(names[:limit])
-    return head + (f" 외 {len(names) - limit}건" if len(names) > limit else "")
 
 
 def _adspend_prorated(d1, d2):
@@ -1404,139 +1379,6 @@ def tab_course_detail():
 
 # ── 탭: 종합 보고 (전략 대시보드) ─────────────────────────────────
 
-def _generate_alerts() -> list:
-    """기존 데이터를 종합 판정해 이상 신호를 반환. {sev, title, msg}."""
-    import calendar
-    alerts = []
-    today = date.today()
-    this_m = today.strftime('%Y-%m')
-
-    # 1) 총원 급락 (동일 방 자연 감소, 방 종료 착시 제거)
-    df = load_all()
-    if not df.empty:
-        _dates = sorted(df['date'].astype(str).unique())
-        if len(_dates) >= 2:
-            _latest = _dates[-1]
-            _target = str((pd.Timestamp(_latest) - pd.Timedelta(days=7)).date())
-            _cand = [d for d in _dates if d <= _target]
-            if _cand:
-                _prev = _cand[-1]
-                _ls = df[df['date'].astype(str) == _latest].set_index('room_num')['members']
-                _ps = df[df['date'].astype(str) == _prev].set_index('room_num')['members']
-                _common = _ls.index.intersection(_ps.index)
-                if len(_common):
-                    _pv = int(_ps[_common].sum())
-                    _ch = int(_ls[_common].sum()) - _pv
-                    _pct = _ch / _pv * 100 if _pv else 0
-                    if _pct <= -10:
-                        alerts.append({'sev': 'critical', 'title': '총원 급락',
-                                       'msg': f"최근 7일 동일 방 총원이 **{_pct:.1f}%({_ch:,}명)** 감소. "
-                                              "콘텐츠·소통 점검과 이탈 원인 진단이 필요합니다."})
-                    elif _pct <= -5:
-                        alerts.append({'sev': 'warning', 'title': '총원 감소',
-                                       'msg': f"최근 7일 동일 방 총원 **{_pct:.1f}%({_ch:,}명)** 감소 추세."})
-
-    # 2) 매출 둔화 (최근 완료월 vs 직전 3개월 평균)
-    perf = load_monthly_performance()
-    _pidx = perf.set_index('month') if not perf.empty else pd.DataFrame()
-    if not perf.empty:
-        _p = perf.sort_values('month')
-        # 부분월(주문 스냅샷이 중간에 끊긴 달)을 '완료월'로 보면 매출이 폭락한 것처럼
-        # 보여 없는 문제를 경고한다 — 실제로 2026-07이 그 상태였다.
-        _comp = complete_months(_p)
-        if len(_comp) >= 4:
-            _last = _comp.iloc[-1]
-            _rr = _comp['revenue'].iloc[-4:-1].mean()
-            if _rr and int(_last['revenue']) < _rr * 0.6:
-                alerts.append({'sev': 'warning', 'title': '매출 둔화',
-                               'msg': f"최근 완료월({ganji.ym_label(_last['month'], with_ganji=False)}) 매출 **{_last['revenue']/1e8:.2f}억**이 "
-                                      f"직전 3개월 평균({_rr/1e8:.2f}억)의 60% 미만입니다. "
-                                      "개강 공백인지 실적 저하인지 확인하세요."})
-
-    # 2-1) 주문 명단이 오래됨 — 매출·전환·고객·전망이 통째로 옛날 값이 된다.
-    # 다른 데이터와 달리 이건 '조금 오래됨'이 아니라 '최근 실적이 아예 안 보임'이다.
-    _ao_al = order_asof()
-    if _ao_al:
-        _gap = (today - _ao_al).days
-        if _gap >= 14:
-            _sev = 'critical' if _gap >= 30 else 'warning'
-            alerts.append({'sev': _sev, 'title': '주문 명단 갱신 필요',
-                           'msg': f"주문 데이터가 **{_ao_al}까지**입니다(**{_gap}일 경과**). "
-                                  f"{ganji.ym_label(_ao_al.strftime('%Y-%m'), with_ganji=False)} 이후 "
-                                  "매출·유료 전환·고객·지역 분석이 비어 있습니다. "
-                                  "쇼핑몰에서 최신 주문 명단을 내려받아 갱신하세요."})
-
-    # 3) 목표 진행 지연 (이번 달)
-    tgt = load_targets()
-    if not tgt.empty and not _pidx.empty:
-        _tm = tgt[tgt['month'].astype(str) == this_m]
-        if not _tm.empty and this_m in _pidx.index:
-            _t = _tm.iloc[0]
-            if int(_t['revenue_target']) > 0:
-                _act = int(_pidx.loc[this_m, 'revenue'])
-                _dim = calendar.monthrange(today.year, today.month)[1]
-                _elapsed = today.day / _dim
-                _prog = _act / int(_t['revenue_target'])
-                if _prog < _elapsed - 0.15:
-                    alerts.append({'sev': 'warning', 'title': '목표 진행 지연',
-                                   'msg': f"{this_m} 매출 목표 진행률 **{_prog*100:.0f}%**가 "
-                                          f"경과일({_elapsed*100:.0f}%)보다 뒤처집니다. "
-                                          "남은 기간 프로모션·광고 조정을 검토하세요."})
-
-    # 4) 광고 저효율 기수 (3천만+ 집행, ROAS<2)
-    camp = load_campaign_adspend()
-    if not camp.empty:
-        _g = camp.groupby(['product', 'cohort']).agg(
-            ad=('ad_spend', 'sum'), rev=('live_revenue', 'sum')).reset_index()
-        _g = _g[_g['ad'] >= 3e7].copy()
-        if not _g.empty:
-            _g['roas'] = _g['rev'] / _g['ad']
-            _low = _g[_g['roas'] < 2].sort_values('roas')
-            if not _low.empty:
-                _r = _low.iloc[0]
-                alerts.append({'sev': 'warning', 'title': '광고 저효율 기수',
-                               'msg': f"**{_r['product']} {_r['cohort']}** 광고 ROAS **{_r['roas']:.1f}배**"
-                                      f"(광고비 {_r['ad']/1e8:.2f}억)로 낮습니다. 소재·타깃·랜딩 재점검 대상."})
-
-    # 5) 데이터 미입력 (최근 3일)
-    if not df.empty:
-        _recent3 = [(today - timedelta(days=i)).strftime('%Y-%m-%d') for i in range(3)]
-        _entered = set(df['date'].astype(str))
-        _missing = [d for d in _recent3 if d not in _entered]
-        if len(_missing) >= 2:
-            alerts.append({'sev': 'info', 'title': '데이터 미입력',
-                           'msg': f"최근 3일 중 **{len(_missing)}일** 인원이 미입력입니다. "
-                                  "정확한 추세·전망을 위해 입력을 권장합니다."})
-
-    # 6) 진행 중인데 개강일이 비어 있는 강의
-    #    개강일이 없으면 개강 효과·기간별 분석에서 그 기수가 통째로 빠진다.
-    #    단 웨비나 전(모집만 하는 방)은 개강일이 없는 게 정상이라 제외한다.
-    _nod, _ = _lecture_date_split(load_campaigns())
-    if not _nod.empty:
-        alerts.append({
-            'sev': 'warning', 'title': '개강일 미입력',
-            'msg': f"진행 중인 강의 **{len(_nod)}건**({_name_list(_nod)})의 "
-                   "개강일이 비어 있습니다. 개강 효과·기간별 분석에서 제외되므로 "
-                   "**⚙️ 채팅방 설정**에서 입력하세요."})
-
-    # 7) 이번 달 광고비 미입력 — ROAS·CPL 판정이 통째로 지난달에 멈춘다.
-    #    광고는 지금 돌고 있는데 사이트는 그 사실을 모르는 상태가 된다.
-    _adm = load_ad_spend_monthly()
-    if not _adm.empty:
-        _mon = set(_adm['month'].astype(str))
-        if this_m not in _mon:
-            _last_m = max(_mon)
-            _gap_m = ((today.year - int(_last_m[:4])) * 12 +
-                      (today.month - int(_last_m[5:7])))
-            alerts.append({
-                'sev': 'warning' if _gap_m >= 2 else 'info', 'title': '이번 달 광고비 미입력',
-                'msg': f"월별 광고비가 **{ganji.ym_label(_last_m, with_ganji=False)}까지**입니다. "
-                       f"{ganji.ym_label(this_m, with_ganji=False)} 광고비가 없으면 ROAS·CPL 판정과 "
-                       "예산 조언이 지난달 기준으로 남습니다. "
-                       "**📢 마케팅 분석 → 월별 광고비**에서 이번 달 총액을 입력하세요."})
-    return alerts
-
-
 def _product_master_table():
     """상품군 통합 요약: 매출·유료·무료·전환율·객단가 + 광고비·광고ROAS."""
     cs = load_course_summary()
@@ -1609,22 +1451,18 @@ def tab_overview():
                 _slack = st.secrets.get("slack_webhook_url", "")
             except Exception:
                 _slack = ""
-            _sev_ic = {'critical': '🔴', 'warning': '🟡', 'info': '🔵'}
             if _slack:
                 if st.button("🔔 이 알림 슬랙으로 전송", key="alert_slack",
                              help="현재 알림을 팀 슬랙 채널로 보냅니다"):
-                    def _strip(t):
-                        return t.replace('**', '*')  # 슬랙 볼드
-                    _lines = [f"{_sev_ic.get(a['sev'], '•')} *{a['title']}* — {_strip(a['msg'])}"
-                              for a in _alerts]
-                    send_slack_alert(
-                        _slack,
-                        f"📊 *황금후추 강의 분석 — 이상 알림* ({date.today()})\n"
-                        + "\n".join(_lines))
+                    send_slack_alert(_slack, slack_message(_alerts))
                     st.success("슬랙으로 전송했습니다.")
+                st.caption("🔔 🔴 위험 알림은 자동 갱신(하루 3회)이 하루 한 번 "
+                           "슬랙으로 자동 발송합니다 — 사이트를 열지 않아도 전달됩니다.")
             else:
-                st.caption("🔔 팀 슬랙으로 자동 전송하려면 Streamlit Secrets에 "
-                           "`slack_webhook_url`을 추가하세요(설정 후 버튼이 나타납니다).")
+                st.caption("🔔 팀 슬랙으로 알림을 받으려면 `slack_webhook_url`을 두 곳에 "
+                           "넣으세요 — **Streamlit Cloud → Settings → Secrets**(이 화면의 전송 "
+                           "버튼용)와 **갱신용 맥의 `.streamlit/secrets.toml`**(하루 3회 자동 "
+                           "발송용). 자동 발송이 있어야 사이트를 안 열어도 위험 알림이 옵니다.")
 
     cs = load_course_summary()
     if cs.empty:
@@ -6885,6 +6723,8 @@ def tab_data():
         # 'rooms'는 나중에 추가된 컬럼이라 옛 기록엔 없다 — 있을 때만 붙인다.
         if str(_r0.get('rooms', '')).strip():
             _msg += f" · 방목록 {_r0['rooms']}"
+        if str(_r0.get('alerts', '')).strip():
+            _msg += f" · 슬랙 알림 {_r0['alerts']}"
         if _hrs is not None and _hrs > 36:
             st.warning(f"⚠️ 자동 갱신이 {_hrs/24:.0f}일째 돌지 않았습니다 — {_msg}")
         else:
@@ -7054,7 +6894,9 @@ def tab_data():
                  "갱신본을 전달 → 경쟁사 벤치마크 갱신."),
                 ("🔔 슬랙 알림 (선택)",
                  "슬랙 → 채널에 **Incoming Webhook URL 발급**",
-                 "Streamlit Cloud → 앱 Settings → Secrets에 `slack_webhook_url = \"...\"` 추가."),
+                 "Streamlit Cloud → Settings → Secrets **와** 갱신용 맥의 "
+                 "`.streamlit/secrets.toml`에 `slack_webhook_url = \"...\"` 추가 "
+                 "(뒤쪽이 있어야 하루 3회 자동 발송)."),
             ]
             _gh = ""
             for _t, _where, _how in _guide:
