@@ -39,10 +39,17 @@ from datetime import datetime
 import pandas as pd
 
 # 여기서 쓰는 라이브러리(github_store)가 streamlit을 끌어오는데, 화면 없이 돌면
-# 매 호출마다 "missing ScriptRunContext!"를 경고로 찍는다. 무해하지만 로그의
-# 99%가 이 줄이라 정작 진짜 오류가 묻힌다(err.log가 493KB까지 불었다).
-# streamlit을 import하기 전에 미리 잠재운다.
-logging.getLogger("streamlit").setLevel(logging.ERROR)
+# "missing ScriptRunContext!"·"No runtime found"를 매 호출마다 경고로 찍는다.
+# 무해하지만 로그의 99%가 이 줄이라 정작 진짜 오류가 묻힌다(err.log 493KB).
+#
+# 부모 로거만 낮추면 안 된다 — streamlit은 자기 로거마다 레벨을 직접 걸어서
+# 부모 설정이 덮인다(실제로 78줄이 그대로 남았다). 등록된 로거 전부와 앞으로
+# 만들어질 로거까지 함께 낮추는 streamlit.logger.set_log_level을 쓴다.
+try:
+    import streamlit.logger as _st_logger
+    _st_logger.set_log_level("error")
+except Exception:                       # streamlit 내부 구조가 바뀌어도 죽지 않게
+    logging.getLogger("streamlit").setLevel(logging.ERROR)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
