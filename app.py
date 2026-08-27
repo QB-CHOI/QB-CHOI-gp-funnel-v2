@@ -1454,8 +1454,10 @@ def tab_overview():
             if _slack:
                 if st.button("🔔 이 알림 슬랙으로 전송", key="alert_slack",
                              help="현재 알림을 팀 슬랙 채널로 보냅니다"):
-                    send_slack_alert(_slack, slack_message(_alerts))
-                    st.success("슬랙으로 전송했습니다.")
+                    if send_slack_alert(_slack, slack_message(_alerts)):
+                        st.success("슬랙으로 전송했습니다.")
+                    else:
+                        st.error("슬랙 전송에 실패했습니다 — 웹훅 주소를 확인하세요.")
                 st.caption("🔔 🔴 위험 알림은 자동 갱신(하루 3회)이 하루 한 번 "
                            "슬랙으로 자동 발송합니다 — 사이트를 열지 않아도 전달됩니다.")
             else:
@@ -6723,8 +6725,9 @@ def tab_data():
         # 'rooms'는 나중에 추가된 컬럼이라 옛 기록엔 없다 — 있을 때만 붙인다.
         if str(_r0.get('rooms', '')).strip():
             _msg += f" · 방목록 {_r0['rooms']}"
-        if str(_r0.get('alerts', '')).strip():
-            _msg += f" · 슬랙 알림 {_r0['alerts']}"
+        _al_st = str(_r0.get('alerts', '')).strip()
+        if _al_st:
+            _msg += f" · 슬랙 알림 {_al_st}"
         if _hrs is not None and _hrs > 36:
             st.warning(f"⚠️ 자동 갱신이 {_hrs/24:.0f}일째 돌지 않았습니다 — {_msg}")
         else:
@@ -6732,6 +6735,14 @@ def tab_data():
         st.caption("하루 3회(09:10·14:10·20:10) + 맥 켤 때 자동 실행. "
                    "주문 엑셀과 `오카방의 모든 것.xlsx`는 `gp-funnel-v2/inbox/`에 "
                    "넣어두면 자동 반영됩니다.")
+        # 알림 자동 발송은 이 맥에서 도는 작업이라, 사이트(Cloud) 설정이 아니라
+        # 맥의 secrets.toml을 봐야 한다. 꺼져 있으면 사이트를 안 여는 동안
+        # 🔴 경고가 아무에게도 전달되지 않으므로 여기서 밝혀 둔다.
+        if _al_st in ("미설정", "실패", "전송실패"):
+            st.caption(f"🔔 위험 알림 자동 발송이 **{_al_st}** 상태입니다 — "
+                       "맥의 `gp-funnel-v2/.streamlit/secrets.toml`에 "
+                       "`slack_webhook_url`을 넣으면 사이트를 열지 않아도 "
+                       "🔴 경고가 슬랙으로 도착합니다.")
 
     # ── 📅 데이터 현황 (신선도) ───────────────────────────────
     _ds = load_data_sources()

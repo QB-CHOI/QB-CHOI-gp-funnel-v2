@@ -285,7 +285,10 @@ def send_alerts(dry):
     if dry:
         log(f"  · [dry-run] 슬랙 발송 예정 ({why}, {len(items)}건)")
         return f"발송예정 {len(items)}건"
-    send_slack_alert(hook, slack_message(items))
+    if not send_slack_alert(hook, slack_message(items)):
+        # 보낸 걸로 기록하면 안 된다 — 다음 실행이 '이미 보냄'으로 건너뛴다.
+        log("  ⚠️ 슬랙 전송 실패 — 웹훅 주소를 확인하세요")
+        return "전송실패"
     st["alert_sig"] = sig
     st["alert_sent_on"] = today
     _save_state(st)

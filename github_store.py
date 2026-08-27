@@ -1017,7 +1017,7 @@ def load_refresh_status() -> pd.DataFrame:
     """
     return _read_csv(REFRESH_STATUS_PATH,
                      ['last_run', 'market_signals', 'order_aggregates',
-                      'rooms', 'changed'])
+                      'rooms', 'changed', 'alerts'])
 
 
 @st.cache_data(ttl=1800)
@@ -1261,14 +1261,20 @@ def load_date_notes() -> pd.DataFrame:
     return df
 
 
-def send_slack_alert(webhook_url: str, message: str):
-    """Slack Incoming Webhook 알림 전송. 실패해도 조용히 무시."""
+def send_slack_alert(webhook_url: str, message: str) -> bool:
+    """Slack Incoming Webhook 알림 전송. 성공 여부를 돌려준다.
+
+    예전에는 실패를 통째로 삼켰다. 그런데 이 알림은 '아무도 안 보고 있을 때'를
+    위한 장치라, 조용히 실패하면 장치가 없는 것과 똑같아진다(웹훅 주소가
+    만료돼도 아무도 모른다). 부르는 쪽이 실패를 표시할 수 있게 돌려준다.
+    """
     if not webhook_url:
-        return
+        return False
     try:
-        requests.post(webhook_url, json={"text": message}, timeout=5)
+        res = requests.post(webhook_url, json={"text": message}, timeout=5)
+        return res.ok
     except Exception:
-        pass
+        return False
 
 
 def save_date_note(date_str: str, memo: str):
