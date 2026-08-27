@@ -30,6 +30,7 @@ import glob
 import hashlib
 import io
 import json
+import logging
 import os
 import sys
 import traceback
@@ -37,10 +38,22 @@ from datetime import datetime
 
 import pandas as pd
 
+# 여기서 쓰는 라이브러리(github_store)가 streamlit을 끌어오는데, 화면 없이 돌면
+# 매 호출마다 "missing ScriptRunContext!"를 경고로 찍는다. 무해하지만 로그의
+# 99%가 이 줄이라 정작 진짜 오류가 묻힌다(err.log가 493KB까지 불었다).
+# streamlit을 import하기 전에 미리 잠재운다.
+logging.getLogger("streamlit").setLevel(logging.ERROR)
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
 
 STATE_PATH = os.path.join(ROOT, ".auto_refresh_state.json")
+
+# launchd가 stdout·stderr을 여기로 흘린다. 아무도 지우지 않으므로 스스로 줄인다.
+LOG_PATHS = [os.path.expanduser("~/Library/Logs/gp-funnel-refresh.log"),
+             os.path.expanduser("~/Library/Logs/gp-funnel-refresh.err.log")]
+LOG_MAX = 2 * 1024 * 1024      # 2MB 넘으면 최근 부분만 남긴다
+LOG_KEEP = 200 * 1024
 
 # 주문 엑셀을 찾는 위치(순서대로). inbox가 먼저인 이유:
 # macOS는 Downloads·Documents·Desktop을 TCC로 보호해서 launchd가 읽지 못한다.
@@ -84,6 +97,28 @@ FDA_HELP = (
 
 def log(msg):
     print(f"[{datetime.now():%Y-%m-%d %H:%M:%S}] {msg}", flush=True)
+
+
+def trim_logs():
+    """로그가 너무 커지면 최근 부분만 남기고 자른다.
+
+    launchd가 append 모드로 잡고 있는 파일이라 이름을 바꾸면 열린 fd가 새 파일을
+    따라가 버린다. 제자리에서 truncate하는 것만 안전하다.
+    """
+    for p in LOG_PATHS:
+        try:
+            if os.path.getsize(p) <= LOG_MAX:
+                continue
+            with open(p, encoding="utf-8", errors="replace") as f:
+                f.seek(max(0, os.path.getsize(p) - LOG_KEEP))
+                tail = f.read()
+            os.truncate(p, 0)
+            with open(p, "a", encoding="utf-8") as f:
+                f.write(f"[{datetime.now():%Y-%m-%d %H:%M:%S}] "
+                        f"--- 이전 기록을 잘라냈습니다(최근 {LOG_KEEP // 1024}KB만 보존) ---\n")
+                f.write(tail[tail.find("\n") + 1:])
+        except OSError:
+            pass          # 로그 정리 실패로 본 작업을 멈추지는 않는다
 
 
 def _state():
@@ -297,6 +332,7 @@ def send_alerts(dry):
 
 
 def main():
+    trim_logs()
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true", help="확인만, 쓰지 않음")
     a = ap.parse_args()

@@ -1,6 +1,8 @@
 [server]
 headless = true
-enableCORS = false
+# enableCORS는 두지 않는다 — enableXsrfProtection(기본 true)과 함께 쓰면
+# Streamlit이 어차피 true로 되돌리면서 실행할 때마다 12줄짜리 경고를 찍는다.
+# 즉 동작은 그대로인데 로그만 더럽히던 설정이었다.
 
 [theme]
 primaryColor = "#1565c0"
