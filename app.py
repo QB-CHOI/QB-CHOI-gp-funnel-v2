@@ -32,6 +32,7 @@ from github_store import (
     load_webinar_schedule, save_webinar, delete_webinar,
     load_refresh_status,
     load_data_sources, load_stage_timeline, order_asof, complete_months,
+    warm_cache,
     save_order_aggregates,
     load_adspend, save_adspend, delete_adspend_row,
     load_content, save_content, delete_content_row,
@@ -508,6 +509,11 @@ def main():
         return
 
     st.title("📊 황금후추 강의 분석")
+
+    # 탭을 그리기 전에 필요한 CSV를 동시에 받아 둔다. 순서대로 받으면 왕복
+    # 지연이 그대로 쌓여 첫 화면이 19초 걸렸다(재렌더는 1.4초였다).
+    # 캐시가 이미 차 있으면 전부 즉시 반환이라 비용이 없다.
+    warm_cache()
 
     _tabs = st.tabs([_label for _label, _ in TABS])
     for _slot, (_label, _fname) in zip(_tabs, TABS):
