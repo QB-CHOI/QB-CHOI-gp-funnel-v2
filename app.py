@@ -5421,7 +5421,20 @@ def tab_marketing():
         return
 
     d0, d1 = df['date'].min(), df['date'].max()
-    st.caption(f"채널 metrics 기간: **{d0} ~ {d1}** — 채널별 일 단위 상세 (외부 시트 이관)")
+    # 지역 분포(v4.74)와 같은 이유 — 기간만 적혀 있으면 얼마나 지난 값인지
+    # 읽히지 않는다. 아래 KPI가 광고비·ROAS·CPA라 현재값으로 오독되기 쉽다.
+    _cm_age = None
+    try:
+        _cm_d = pd.to_datetime(d1).date()
+        _cm_age = (date.today().year - _cm_d.year) * 12 + (date.today().month - _cm_d.month)
+    except (ValueError, TypeError):
+        pass
+    st.caption(f"채널 metrics 기간: **{d0} ~ {d1}** — 채널별 일 단위 상세 (외부 시트 이관)"
+               + (f" · **{_cm_age}개월 전 자료**" if _cm_age else ""))
+    if _cm_age and _cm_age >= 3:
+        st.warning(f"⚠️ 아래 채널별 수치는 **{str(d0)[:7]} 한 달치**({_cm_age}개월 전)입니다. "
+                   "지금의 채널 성과가 아니라 그때의 기록이므로, 현재 예산 배분 근거로는 "
+                   "쓰지 마세요. 최신 채널 시트를 확보하면 그대로 갱신됩니다.", icon="🕰️")
 
     # ── KPI ──────────────────────────────────────────────
     # 총계는 '전체'(집계행)를 권위값으로, 광고비는 채널 실집행(메타)만 사용
@@ -6769,7 +6782,7 @@ def tab_data():
                 return None, a
 
         _rows_html = ""
-        _stale = 0
+        _stale_rows = []
         for _, r in _ds.iterrows():
             _days, _disp = _asof_days(r['as_of'])
             # 주문 명단은 매일 매출이 쌓이는 데이터라 45일 기준이 너무 느슨하다.
@@ -6780,6 +6793,9 @@ def tab_data():
             if '미사용' in str(r['dataset']):
                 # 화면이 쓰지 않는 데이터를 '갱신 권장'으로 재촉하면, 자료를
                 # 어렵게 구해 와도 반영될 곳이 없다 — 헛수고를 시키지 않는다.
+                # 단 **정말 안 쓰는 데이터에만** 붙여야 한다. 채널 metrics에
+                # 잘못 붙어, 마케팅 탭이 2025-06 숫자로 ROAS·CPA를 그리는 동안
+                # 이 표는 "갱신 안 해도 된다"고 안내하던 적이 있다(v4.76에서 정정).
                 _badge, _col = "⚪ 미사용", "#8A93A3"
             elif _days is None:
                 _badge, _col = "—", "#8A93A3"
@@ -6789,7 +6805,7 @@ def tab_data():
                 _badge, _col = "🟡 스냅샷", "#B77A1B"
             else:
                 _badge, _col = "🔴 갱신 권장", "#BC4A38"
-                _stale += 1
+                _stale_rows.append(f"{str(r['dataset']).split('(')[0].strip()}({_disp})")
             _age = f"{_days}일 전" if isinstance(_days, int) else ""
             _rows_html += (
                 f'<tr><td style="opacity:.6">{r["category"]}</td>'
@@ -6803,9 +6819,12 @@ def tab_data():
             '<th>구분</th><th>데이터 · 출처</th><th>기준 시점</th><th>상태</th><th>갱신 방법</th></tr></thead>'
             f'<tbody>{_rows_html}</tbody></table>',
             unsafe_allow_html=True)
-        if _stale:
-            st.warning(f"⚠️ 갱신 권장 데이터 **{_stale}종** — 특히 지역(2025-12)·채널 metrics(2025-06)는 "
-                       "오래됐습니다. 최신 자료 확보 시 갱신하면 분석 정확도가 올라갑니다.")
+        # 목록을 손으로 적어 두면 판정과 어긋난다 — 실제로 배지는 ⚪ 미사용인데
+        # 문구는 "채널 metrics가 오래됐다"고 지목하고 있었다. 판정에서 만든다.
+        if _stale_rows:
+            st.warning(f"⚠️ 갱신 권장 데이터 **{len(_stale_rows)}종** — "
+                       + " · ".join(_stale_rows)
+                       + "\n\n최신 자료를 확보해 갱신하면 분석 정확도가 올라갑니다.")
         # ── 📥 주문 명단 올리기 ────────────────────────────────
         # 지금까지 갱신 경로가 '엑셀 받기 → inbox 폴더 복사 → 터미널 명령'이라
         # 특정 맥에서만 가능했고, 그래서 27일이나 밀린 채 방치됐다. 파일을 여기
