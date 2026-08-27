@@ -283,8 +283,12 @@ with st.sidebar:
             + "\n\n→ ⚙️ 채팅방 설정에서 입력하면 개강 효과 분석에 반영됩니다",
             icon="⚠️")
     if not _wait_ld.empty:
+        # 며칠째 대기인지가 빠지면 '정상'과 '넉 달째 방치'가 같아 보인다.
+        _wd_days = pd.to_datetime(_wait_ld['start_date'], errors='coerce')
+        _wd_max = (pd.Timestamp(date.today()) - _wd_days).dt.days.max()
         st.caption(f"🕗 개강 대기 **{len(_wait_ld)}개 방** — {_name_list(_wait_ld)} "
-                   "(웨비나 후 개강일이 자동으로 채워집니다)")
+                   + (f"· 최장 {int(_wd_max)}일째 " if pd.notna(_wd_max) else "")
+                   + "(웨비나 후 개강일이 자동으로 채워집니다)")
 
     st.divider()
     if st.button("🔄 데이터 새로고침", width='stretch',
@@ -3760,6 +3764,27 @@ def tab_webinar():
     # ── 예정 웨비나별 추천 ───────────────────────────────
     st.divider()
     _up = ws[ws['date'].dt.date >= _t] if not ws.empty else pd.DataFrame()
+
+    # 시트에서 '대기중'으로 받아온 모집방 중 일정이 안 잡힌 것 — 원본 시트에는
+    # 웨비나 날짜 칸이 아예 없어서(개설일·강의 시작일뿐) 자동으로 채울 수 없다.
+    # 그런데 일정을 등록하지 않으면 아래 회차별 모객 방안이 통째로 안 나온다.
+    _, _wait_rooms = _lecture_date_split(load_campaigns())
+    _up_prod = set(_up['product'].astype(str)) if not _up.empty else set()
+    _need_wb = (_wait_rooms[~_wait_rooms['product'].astype(str).isin(_up_prod)]
+                if not _wait_rooms.empty else pd.DataFrame())
+    if not _need_wb.empty:
+        _nl = []
+        for _, _r in _need_wb.iterrows():
+            _sd = pd.to_datetime(_r['start_date'], errors='coerce')
+            _nl.append(f"**{_r['campaign_name']}**"
+                       + (f"(개설 후 {(_t - _sd.date()).days}일)"
+                          if pd.notna(_sd) else ""))
+        st.info(f"🗓️ 모집 중인데 웨비나 일정이 등록되지 않은 방 **{len(_need_wb)}개** — "
+                + " · ".join(_nl)
+                + "\n\n원본 시트에 웨비나 날짜 칸이 없어 자동으로 채우지 못합니다. "
+                  "아래 **➕ 웨비나 일정 추가**에 날짜만 넣으면 이 회차의 후킹·예산·"
+                  "준비 일정 추천이 바로 나옵니다.")
+
     if _up.empty:
         st.info("예정된 웨비나가 없습니다. 아래에서 일정을 추가하면 "
                 "회차별 모객 방안을 추천해 드립니다.")
@@ -3819,9 +3844,29 @@ def tab_webinar():
                     delete_webinar(e['id'])
                     st.rerun()
 
+    # ── 지난 회차 정리 ───────────────────────────────────
+    # 날짜가 지나면 '예정'인 채로 목록에서 그냥 사라진다. 실제로 8/20·8/21 사주
+    # 특강이 '예정'으로 남아 있는데 화면에는 "예정된 웨비나가 없습니다"만 떴다.
+    # 끝난 회차를 닫아 둬야 달력·목록이 사실과 맞는다.
+    _past_wb = (ws[(ws['date'].dt.date < _t)
+                   & (ws['status'].astype(str) != '완료')]
+                if not ws.empty else pd.DataFrame())
+    if not _past_wb.empty:
+        st.divider()
+        st.warning(f"🔚 날짜가 지났는데 '예정'으로 남아 있는 회차 **{len(_past_wb)}건**"
+                   " — 완료로 닫으면 달력에 흐리게 표시되고 목록이 사실과 맞습니다.")
+        for _, _pe in _past_wb.sort_values('date').iterrows():
+            _pc1, _pc2 = st.columns([5, 1])
+            _pc1.markdown(f"**{_pe['date'].date()}** · {_pe['product']} · {_pe['topic']}")
+            if _pc2.button("완료 처리", key=f"wb_done_{_pe['id']}", width='stretch'):
+                save_webinar({**_pe.to_dict(),
+                              'date': str(_pe['date'].date()), 'status': '완료'})
+                st.rerun()
+
     # ── 일정 등록 ────────────────────────────────────────
     st.divider()
-    with st.expander("➕ 웨비나 일정 추가", expanded=ws.empty):
+    with st.expander("➕ 웨비나 일정 추가",
+                     expanded=bool(ws.empty or not _need_wb.empty)):
         # 과거 이력으로 기본값 제안
         _hint = ""
         if not camp_ad.empty:
@@ -3839,7 +3884,15 @@ def tab_webinar():
         with st.form("wb_new"):
             w1, w2 = st.columns(2)
             with w1:
-                _wp = st.selectbox("강의", ['사주', '타로', '부동산', '빌딩'])
+                # 일정이 빠진 대기방이 있으면 그 강의를 미리 골라 둔다 —
+                # 무엇을 등록해야 하는지 위에서 이미 알려 준 상태다.
+                _wp_opts = ['사주', '타로', '부동산', '빌딩']
+                _wp_idx = 0
+                if not _need_wb.empty:
+                    _p0 = str(_need_wb.iloc[0]['product'])
+                    if _p0 in _wp_opts:
+                        _wp_idx = _wp_opts.index(_p0)
+                _wp = st.selectbox("강의", _wp_opts, index=_wp_idx)
                 _wd2 = st.date_input("웨비나 날짜", value=_t + timedelta(days=14))
                 _wst = st.selectbox("상태", ['예정', '완료'])
             with w2:

@@ -55,6 +55,29 @@ def name_list(df, limit=3):
     return head + (f" 외 {len(names) - limit}건" if len(names) > limit else "")
 
 
+def open_to_live_days(cmp_df, camp_ad, q=0.9):
+    """개설일 → 웨비나(라이브)까지 걸린 일수의 q분위. 표본이 모자라면 None.
+
+    '모집만 하고 웨비나를 안 여는 방'을 언제부터 이상으로 볼지 손으로 정하면
+    근거가 없다. 실제로 열렸던 회차들이 얼마나 걸렸는지에서 선을 긋는다.
+    """
+    if cmp_df.empty or camp_ad.empty:
+        return None
+    if not {'product', 'cohort', 'start_date'} <= set(cmp_df.columns):
+        return None
+    a = cmp_df[['product', 'cohort', 'start_date']].copy()
+    b = camp_ad[['product', 'cohort', 'live_date']].copy()
+    a['start_date'] = pd.to_datetime(a['start_date'], errors='coerce')
+    b['live_date'] = pd.to_datetime(b['live_date'], errors='coerce')
+    m = a.merge(b, on=['product', 'cohort'], how='inner').dropna(
+        subset=['start_date', 'live_date'])
+    if m.empty:
+        return None
+    g = (m['live_date'] - m['start_date']).dt.days
+    g = g[(g >= 0) & (g <= 400)]
+    return int(g.quantile(q)) if len(g) >= 5 else None
+
+
 def generate_alerts() -> list:
     """기존 데이터를 종합 판정해 이상 신호를 반환. {sev, title, msg}."""
     alerts = []
@@ -161,7 +184,8 @@ def generate_alerts() -> list:
     # 6) 진행 중인데 개강일이 비어 있는 강의
     #    개강일이 없으면 개강 효과·기간별 분석에서 그 기수가 통째로 빠진다.
     #    단 웨비나 전(모집만 하는 방)은 개강일이 없는 게 정상이라 제외한다.
-    _nod, _ = lecture_date_split(load_campaigns())
+    _cmp = load_campaigns()
+    _nod, _wait = lecture_date_split(_cmp)
     if not _nod.empty:
         alerts.append({
             'sev': 'warning', 'title': '개강일 미입력',
@@ -184,6 +208,26 @@ def generate_alerts() -> list:
                        f"{ganji.ym_label(this_m, with_ganji=False)} 광고비가 없으면 ROAS·CPL 판정과 "
                        "예산 조언이 지난달 기준으로 남습니다. "
                        "**📢 마케팅 분석 → 월별 광고비**에서 이번 달 총액을 입력하세요."})
+
+    # 8) 웨비나 없이 오래 열려 있는 모집방
+    #    개강일 미입력 경고에서 '웨비나대기'를 빼면서(v4.75) 이 방들은 화면에
+    #    캡션 한 줄로만 남았다. 그런데 넉 달째 모집만 하는 방은 그 자체로 신호다 —
+    #    일정이 밀렸거나, 접은 방인데 시트가 안 닫혔거나 둘 중 하나다.
+    if not _wait.empty and 'start_date' in _wait.columns:
+        _limit = open_to_live_days(_cmp, camp) or 120
+        _w = _wait.copy()
+        _w['_sd'] = pd.to_datetime(_w['start_date'], errors='coerce')
+        _w['_days'] = (pd.Timestamp(today) - _w['_sd']).dt.days
+        _old = _w.dropna(subset=['_days'])
+        _old = _old[_old['_days'] > _limit].sort_values('_days', ascending=False)
+        if not _old.empty:
+            alerts.append({
+                'sev': 'warning', 'title': '웨비나 없는 장기 모집방',
+                'msg': f"**{name_list(_old)}** — 가장 오래된 방이 개설 후 "
+                       f"**{int(_old.iloc[0]['_days'])}일째** 웨비나 전입니다"
+                       f"(과거 회차 90%는 {_limit}일 안에 진행). "
+                       "일정이 잡혔으면 **🗓️ 웨비나 일정**에 등록하고, 접은 방이면 "
+                       "**⚙️ 채팅방 설정**에서 운영 종료 처리하세요."})
     return alerts
 
 
