@@ -336,6 +336,39 @@ def test_alert_delivery_without_webhook():
          al.generate_alerts) = _orig
 
 
+# ── 9) 지역 조언에 기준 시점이 붙어 있는가 (v4.85) ──────────────
+def test_region_advice_carries_asof():
+    """8개월 된 배송지 스냅샷으로 '광고 예산을 여기 쓰세요'라고 말하면 안 된다.
+
+    v4.85: 지역 분포는 주문 명단이 아니라 **배송지 리포트**(2025-12)에서 오는
+    별도 자료다. v4.74가 지역 분포 탭에만 기준 시점을 붙였고, 같은 데이터로
+    광고 예산 배정을 지시하는 세 곳(종합 보고 KPI·전략 브리핑·소재 브리프)은
+    빠져 있어 '지금의 지역 분포'로 읽혔다. 돈 쓰는 결정에 직접 붙는 문구다.
+    """
+    import os
+    import re
+    src = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'app.py')).read()
+    lines = src.splitlines()
+
+    # 지역 데이터를 읽는 자리마다 근처에 기준 시점 표기가 있어야 한다.
+    uses = [i for i, l in enumerate(lines) if 'load_region_signups()' in l]
+    check("지역 데이터 사용처를 찾았다", len(uses) >= 3, True,
+          "사용처가 줄었다면 이 검사도 함께 손봐야 한다")
+    for i in uses:
+        near = "\n".join(lines[i:i + 120])
+        check(f"지역 조언에 기준 시점 (line {i + 1})",
+              ('_asof_tag(' in near) or ('_dataset_asof(' in near), True,
+              "언제 것인지 없으면 8개월 전 분포를 현재로 읽는다")
+
+    # 주문 업로드 성공 메시지가 '지역까지 갱신됐다'고 말하면 거짓이다.
+    # 성공 문구만 본다 — 바로 뒤 캡션은 '지역은 안 바뀐다'는 설명이라 제외
+    _succ = re.search(r'집계 \{_tot\}종 갱신 완료(.*?)st\.caption', src, re.S)
+    check("업로드 성공 메시지를 찾았다", bool(_succ), True, "문구가 바뀌면 검사도 갱신")
+    if _succ:
+        check("성공 메시지가 지역을 포함하지 않는다", '지역' in _succ.group(0), False,
+              "지역은 배송지 리포트에서 오므로 주문 업로드로 갱신되지 않는다")
+
+
 TESTS = [
     ("부분월 판정 (v4.70)", test_complete_months),
     ("웨비나 대기 분리 (v4.75)", test_lecture_date_split),
@@ -345,6 +378,7 @@ TESTS = [
     ("절기 기준 월주 (v4.49)", test_ganji_jeolgi),
     ("읽기 실패 → 쓰기 차단 (v4.83)", test_read_write_guard),
     ("웹훅 없이도 알림 발송 (v4.84)", test_alert_delivery_without_webhook),
+    ("지역 조언 기준 시점 (v4.85)", test_region_advice_carries_asof),
 ]
 
 

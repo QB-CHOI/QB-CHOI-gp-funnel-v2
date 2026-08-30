@@ -1289,7 +1289,7 @@ def update_order_asof(asof) -> bool:
 def save_order_aggregates(out: dict, asof, on_step=None):
     """주문 집계 CSV 일괄 저장. (성공수, 전체수, 실패목록) 반환.
 
-    on_step(i, name)으로 진행 상황을 알린다 — 17종을 순차 저장하느라
+    on_step(i, name)으로 진행 상황을 알린다 — 16종을 순차 저장하느라
     시간이 걸려서, 화면이 멈춘 것처럼 보이면 사용자가 새로고침해 버린다.
     """
     fails = []

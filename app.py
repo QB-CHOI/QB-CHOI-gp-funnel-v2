@@ -167,9 +167,27 @@ def _dataset_asof(keyword: str):
     return str(_m['as_of'].iloc[0]) if not _m.empty else None
 
 
+def _asof_tag(keyword: str, unit: str = "개월") -> str:
+    """'(2025-12 기준 · 약 8개월 전)' 같은 꼬리표. 없으면 빈 문자열.
+
+    v4.74가 지역 분포 **탭에만** 기준 시점을 붙였는데, 같은 데이터로 광고
+    예산 배정을 지시하는 곳이 세 군데 더 있었다(종합 보고 KPI·전략 브리핑·
+    소재 브리프). 거기서는 8개월 전 스냅샷이 '지금의 지역 분포'로 읽혔다.
+    판정을 한 곳에 두어 다시 어긋나지 않게 한다.
+    """
+    _a = _dataset_asof(keyword)
+    if not _a:
+        return ""
+    try:
+        _mo = (date.today().year - int(_a[:4])) * 12 + (date.today().month - int(_a[5:7]))
+    except (ValueError, IndexError):
+        _mo = None
+    return f"({_a} 기준" + (f" · 약 {_mo}{unit} 전)" if _mo and _mo >= 3 else ")")
+
+
 @st.cache_data(ttl=1800, show_spinner=False, max_entries=1)
 def _parse_order_upload(_bytes: bytes):
-    """업로드한 주문 엑셀 → (요약, 집계 17종). 원본 주문 데이터는 반환하지 않는다.
+    """업로드한 주문 엑셀 → (요약, 집계 16종). 원본 주문 데이터는 반환하지 않는다.
 
     개인정보(이름·번호)가 담긴 원본은 이 함수 안에서만 존재하고, 밖으로는
     집계 숫자와 요약만 나간다. 캐시도 1건만 유지한다(max_entries=1).
@@ -1540,7 +1558,8 @@ def tab_overview():
         ("🎓 유료 수강생", f"{tot_students:,}<small>명</small>", f"결제 {int(cs['paid'].sum()):,}건"),
         ("🔄 무료→유료 전환", f"{conv:.1f}<small>%</small>", "수강생 ÷ 무료"),
         ("📈 누적 ROAS", _roas_v, "매출 ÷ 광고비"),
-        ("📍 수도권 집중도", (f"{cap_pct:.0f}<small>%</small>" if cap_pct else "—"), "배송지 기준"),
+        ("📍 수도권 집중도", (f"{cap_pct:.0f}<small>%</small>" if cap_pct else "—"),
+         ("배송지 기준 " + _asof_tag('지역 분포')).strip()),
         ("🏆 광고 최고효율", _ad_eff, "라이브 첫전환 기준"),
         ("👑 매출 1위 상품", f"{_top_rev['product']} {_top_rev['revenue']/1e8:.1f}<small>억</small>", "상품군 매출"),
     ]
@@ -1833,7 +1852,8 @@ def tab_overview():
                     "유료 성과 직결 — 무료 특강 물량 확대 1순위.")
     if cap_pct:
         _pts.append(f"**지역 타깃**: 수도권 집중도 **{cap_pct:.0f}%** — 광고 예산을 서울·경기·인천에 우선 배정, "
-                    "부산·경남 영남권을 보조 타깃으로.")
+                    "부산·경남 영남권을 보조 타깃으로. "
+                    f"※ 배송지 리포트 {_asof_tag('지역 분포')} — 이후 기수는 미반영.")
     _hi_aov = m.sort_values('객단가', ascending=False).iloc[0] if not m.empty else None
     if _hi_aov is not None:
         _pts.append(f"**고가 라인**: 객단가 최고 **{_hi_aov['product']}({_hi_aov['객단가']/1e4:,.0f}만원)**는 "
@@ -4292,7 +4312,8 @@ def tab_experiments():
                 _cap = int(region[region['region'].isin(CAPITAL_REGIONS)]['signups'].sum())
                 if _tot:
                     _tg.append(f"지역: **수도권 {_cap/_tot*100:.0f}%** 집중 "
-                               f"(서울·경기·인천 우선, 예산 여유 시 광역시 확장)")
+                               f"(서울·경기·인천 우선, 예산 여유 시 광역시 확장) "
+                               f"— 배송지 {_asof_tag('지역 분포')}")
             if b['hooks'] and b['hooks'][0].get('self_share'):
                 _sh = b['hooks'][0]['self_share']
                 _tg.append("성격: **자기완결형** — 특강→해당 강의 구매로 바로 이어짐"
@@ -4883,7 +4904,8 @@ def _strategy_briefing() -> list:
         if _tot:
             items.append(("📍", "지역 광고 집중",
                           f"수도권 집중도 **{_cap/_tot*100:.0f}%**(서울·경기·인천). 광고 예산을 "
-                          f"수도권에 우선 배정하고, 비수도권은 **{_tl}** 등 영남권을 보조 타깃으로 운영하세요."))
+                          f"수도권에 우선 배정하고, 비수도권은 **{_tl}** 등 영남권을 보조 타깃으로 운영하세요. "
+                          f"※ 배송지 리포트 {_asof_tag('지역 분포')}."))
 
     # 5) 재구매·LTV (고객 자산)
     _mnr = load_cust_monthly_new_repeat()
@@ -6966,7 +6988,10 @@ def tab_data():
                         else:
                             st.cache_data.clear()
                             st.success(f"✅ 집계 {_tot}종 갱신 완료 — 기준일 {_newest}. "
-                                       "매출·전환·고객·지역·전망이 모두 최신 주문 기준으로 다시 계산됩니다.")
+                                       "매출·전환·고객·리텐션·전망이 모두 최신 주문 기준으로 "
+                                       "다시 계산됩니다.")
+                            st.caption("※ 지역 분포는 주문 명단이 아니라 **배송지 리포트**에서 "
+                                       "오는 별도 자료라 이 갱신으로 바뀌지 않습니다.")
                             st.caption("화면을 새로고침하면 반영된 값이 보입니다.")
         st.caption("터미널에서 갱신: `python3 scripts/refresh_order_aggregates.py --write`")
 
