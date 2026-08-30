@@ -1,12 +1,18 @@
 import base64
 import inspect
 import io
+import sys
+import time
 from concurrent.futures import ThreadPoolExecutor
 from datetime import date
 
 import pandas as pd
 import requests
 import streamlit as st
+
+# 일시적 실패(연결 끊김·5xx·호출 한도) 재시도 사이 대기(초). 회귀 검사는
+# 실패 응답을 일부러 만들어 내므로 여기를 0으로 낮춰 0.7초 안에 끝낸다.
+_RETRY_WAIT = 1.5
 
 # 매 요청마다 새 TLS 연결을 맺으면 왕복이 그만큼 늘어난다(실측 건당 425ms →
 # 연결 재사용 310ms). 로더가 46종이라 이 차이가 첫 로딩에서 크게 벌어진다.
@@ -150,62 +156,112 @@ def _headers() -> dict:
 
 # ── GitHub 파일 읽기/쓰기 ────────────────────────────────────────
 
-def _read_csv(path: str, columns: list) -> pd.DataFrame:
-    url = f"https://api.github.com/repos/{DATA_REPO}/contents/{path}"
+
+class RemoteReadError(RuntimeError):
+    """원격 CSV를 **읽지 못했다**. '파일이 비어 있다'와 절대 섞이면 안 된다.
+
+    이 구분이 없어서 실제로 데이터가 날아갔다(2026-08-22 rooms.csv 별칭 8개,
+    2026-08-29 campaigns.csv 종료 방 5행). 저장 경로가 전부 '읽고 → 합치고 →
+    통째로 쓰기'라서, 읽기가 한 번 실패해 빈 표가 돌아오면 그 위에 새 데이터만
+    얹혀 원본이 교체된다. 실패는 예외로 알려 쓰기까지 가지 못하게 한다.
+    """
+
+
+def _report(kind: str, msg: str, icon: str = "⚠️"):
+    """화면과 로그 **양쪽에** 남긴다.
+
+    launchd 자동 갱신에는 화면이 없다. st.error()는 그 경우 아무 데도 출력되지
+    않아서, 위 두 사고가 로그에 흔적조차 남기지 않았다 — 3주 뒤 CSV 이력을
+    뒤져서야 발견했다. stderr로도 내보내 자동 갱신 로그에 반드시 남게 한다.
+    """
+    print(f"[github_store] {msg}", file=sys.stderr, flush=True)
     try:
-        res = _SESSION.get(url, headers=_headers(), timeout=20)
-    except requests.exceptions.RequestException as e:
-        st.error(f"⚠️ GitHub 연결 오류: {e}", icon="🔌")
-        return pd.DataFrame(columns=columns)
-
-    if res.status_code == 404:
-        return pd.DataFrame(columns=columns)
-
-    if res.status_code == 401:
-        st.error(
-            "❌ GitHub 토큰 인증 실패 (401). 토큰이 만료되었을 수 있습니다.\n\n"
-            "**해결 방법:** Streamlit Cloud → Settings → Secrets에서 `github_token` 값을 새 토큰으로 교체하세요.",
-            icon="🔑",
-        )
-        return pd.DataFrame(columns=columns)
-
-    if res.status_code == 403:
-        st.error(
-            "❌ GitHub API 권한 오류 (403). 토큰 권한 또는 API 호출 한도를 확인하세요.",
-            icon="🚫",
-        )
-        return pd.DataFrame(columns=columns)
-
-    if not res.ok:
-        st.warning(f"⚠️ GitHub API 오류 [{res.status_code}] — 경로: {path}", icon="⚠️")
-        return pd.DataFrame(columns=columns)
-
-    content = base64.b64decode(res.json()["content"]).decode("utf-8")
-    return pd.read_csv(io.StringIO(content))
+        getattr(st, kind)(msg, icon=icon)
+    except Exception:                  # 화면 없는 실행(bare) — 로그만으로 충분
+        pass
 
 
-def _write_csv(path: str, df: pd.DataFrame, message: str, _retries: int = 3):
-    """CSV를 GitHub에 저장. SHA 충돌(409) 시 최대 3회 자동 재시도."""
-    import time
+def _read_csv(path: str, columns: list) -> pd.DataFrame:
+    """원격 CSV를 읽는다. 없으면 빈 표, **못 읽으면 RemoteReadError**.
+
+    일시적 실패(연결 끊김·5xx·호출 한도)는 대부분 잠깐이라 3회까지 다시 시도한
+    뒤에 포기한다. 404만 '아직 없는 파일'로 보고 빈 표를 돌려준다.
+    """
+    url = f"https://api.github.com/repos/{DATA_REPO}/contents/{path}"
+    last = ""
+    for attempt in range(3):
+        if attempt:
+            time.sleep(_RETRY_WAIT * attempt)
+        try:
+            res = _SESSION.get(url, headers=_headers(), timeout=20)
+        except requests.exceptions.RequestException as e:
+            last = f"연결 오류: {type(e).__name__}"
+            continue
+
+        if res.status_code == 404:     # 아직 만들어지지 않은 파일 — 정상
+            return pd.DataFrame(columns=columns)
+
+        if res.ok:
+            try:
+                content = base64.b64decode(res.json()["content"]).decode("utf-8")
+            except Exception as e:
+                last = f"응답 해석 실패: {type(e).__name__}"
+                continue
+            if not content.strip():
+                return pd.DataFrame(columns=columns)
+            try:
+                return pd.read_csv(io.StringIO(content))
+            except Exception as e:     # 내용이 깨졌다면 재시도해도 같다
+                raise RemoteReadError(f"{path} 내용을 표로 읽지 못했습니다: {e}") from e
+
+        if res.status_code == 401:
+            raise RemoteReadError(
+                f"GitHub 토큰 인증 실패 (401) — {path}. 토큰이 만료되었을 수 있습니다. "
+                "Streamlit Cloud → Settings → Secrets 의 github_token 을 교체하세요.")
+
+        last = f"HTTP {res.status_code}"
+        if res.status_code not in (403, 429) and res.status_code < 500:
+            break                      # 재시도해도 달라지지 않는 오류
+
+    raise RemoteReadError(f"{path} 를 읽지 못했습니다 ({last}).")
+
+
+def _write_csv(path: str, df: pd.DataFrame, message: str, _retries: int = 3,
+               allow_shrink: bool = False):
+    """CSV를 GitHub에 저장. SHA 충돌(409) 시 최대 3회 자동 재시도.
+
+    **행이 줄어드는 저장은 기본적으로 거부한다.** 저장 경로 27곳이 모두 '읽고 →
+    합치고 → 통째로 쓰기'라, 중간의 읽기가 어긋나면 남은 것만 남기고 원본을
+    교체해 버린다(2026-08-29 campaigns.csv 16행 → 11행). 사람이 지운 것이라면
+    호출하는 쪽이 allow_shrink=True로 **의도를 밝히게** 한다 — 그러면 사고는
+    막히고 진짜 삭제는 그대로 된다.
+
+    sha를 얻으려고 어차피 GET을 하므로 기존 행 수는 그 응답에서 함께 센다.
+    왕복이 늘지 않는다.
+    """
+    import time as _time
     url       = f"https://api.github.com/repos/{DATA_REPO}/contents/{path}"
     csv_bytes = df.to_csv(index=False).encode("utf-8")
     content   = base64.b64encode(csv_bytes).decode("utf-8")
 
     for attempt in range(_retries):
         # 매 시도마다 최신 SHA를 가져와야 409 충돌을 피할 수 있음
-        res_get = requests.get(url, headers=_headers(), timeout=20)
+        res_get = _SESSION.get(url, headers=_headers(), timeout=20)
         sha = res_get.json().get("sha", "") if res_get.status_code == 200 else ""
+
+        if sha and not allow_shrink:
+            _guard_shrink(path, res_get, df)
 
         payload = {"message": message, "content": content}
         if sha:
             payload["sha"] = sha
 
-        res = requests.put(url, headers=_headers(), json=payload, timeout=30)
+        res = _SESSION.put(url, headers=_headers(), json=payload, timeout=30)
         if res.ok:
             return
 
         if res.status_code == 409 and attempt < _retries - 1:
-            time.sleep(1.5 * (attempt + 1))  # 점진적 대기 후 재시도
+            _time.sleep(_RETRY_WAIT * (attempt + 1))  # 점진적 대기 후 재시도
             continue
 
         try:
@@ -213,6 +269,25 @@ def _write_csv(path: str, df: pd.DataFrame, message: str, _retries: int = 3):
         except Exception:
             err_msg = res.text[:200]
         raise RuntimeError(f"GitHub 저장 실패 [{res.status_code}]: {err_msg}")
+
+
+def _guard_shrink(path: str, res_get, df: pd.DataFrame):
+    """저장하려는 표가 원격본보다 짧으면 막는다."""
+    try:
+        cur = base64.b64decode(res_get.json()["content"]).decode("utf-8")
+        n_old = len(pd.read_csv(io.StringIO(cur))) if cur.strip() else 0
+    except Exception:
+        return                          # 셀 수 없으면 통과 — 저장을 막지는 않는다
+
+    if len(df) >= n_old:
+        return
+
+    msg = (f"❌ 저장을 멈췄습니다 — {path} 가 {n_old}행에서 {len(df)}행으로 "
+           f"줄어듭니다. 데이터를 읽어오지 못한 채 덮어쓰는 상황일 수 있어 "
+           f"원본을 지키는 쪽을 택했습니다. 정말 지우는 작업이라면 삭제 기능을 "
+           f"쓰세요.")
+    _report("error", msg, icon="🛑")
+    raise RuntimeError(msg)
 
 
 # ── 인원 데이터 ───────────────────────────────────────────────────
@@ -269,7 +344,7 @@ def save_daily(date_str: str, room_data: list):
 def delete_date(date_str: str):
     df = load_all()
     df = df[df["date"].astype(str) != date_str]
-    _write_csv(MEMBERS_PATH, df, f"{date_str} 데이터 삭제")
+    _write_csv(MEMBERS_PATH, df, f"{date_str} 데이터 삭제", allow_shrink=True)
     load_all.clear()
 
 
@@ -379,7 +454,7 @@ def delete_enrollment(product: str, cohort: str):
     mask = (df['product'].astype(str) == str(product)) & \
            (df['cohort'].astype(str) == str(cohort))
     df = df[~mask]
-    _write_csv(ENROLLMENTS_PATH, df, f"유료 등록 삭제: {product} {cohort}")
+    _write_csv(ENROLLMENTS_PATH, df, f"유료 등록 삭제: {product} {cohort}", allow_shrink=True)
     load_enrollments.clear()
 
 
@@ -406,11 +481,20 @@ def save_room(room_num: int, room_name: str):
 
 
 def save_rooms_batch(new_rooms: dict):
-    """신규 채팅방 여러 개를 API 1회 호출로 일괄 등록."""
+    """신규 채팅방 여러 개를 API 1회 호출로 일괄 등록.
+
+    **이미 있는 방은 건드리지 않는다.** 여기 들어오는 이름은 '채팅방 37' 같은
+    기본값인데, 목록에는 사람이 붙인 별칭('채팅방 37 (부동산2)')이 들어 있다.
+    2026-08-22에 이 함수가 별칭 8개를 전부 기본값으로 되돌렸다 — 방 목록을
+    읽어오지 못해 '전부 신규'로 보인 탓이었다. 신규 등록은 말 그대로 신규만.
+    """
     df = _read_csv(ROOMS_PATH, ROOMS_COLS)
     if not df.empty:
         df['room_num'] = pd.to_numeric(df['room_num'], errors='coerce').astype('Int64')
-        df = df[~df['room_num'].isin(new_rooms.keys())]
+        exist = set(df['room_num'].dropna().astype(int))
+        new_rooms = {rn: nm for rn, nm in new_rooms.items() if int(rn) not in exist}
+        if not new_rooms:
+            return
     new_rows = pd.DataFrame([{'room_num': rn, 'room_name': name}
                               for rn, name in new_rooms.items()])
     combined = pd.concat([df, new_rows], ignore_index=True).sort_values('room_num')
@@ -425,7 +509,7 @@ def delete_room(room_num: int):
         return
     df['room_num'] = pd.to_numeric(df['room_num'], errors='coerce').astype('Int64')
     df = df[df['room_num'] != room_num]
-    _write_csv(ROOMS_PATH, df, f"채팅방 {room_num} 삭제")
+    _write_csv(ROOMS_PATH, df, f"채팅방 {room_num} 삭제", allow_shrink=True)
     load_rooms.clear()
 
 
@@ -463,7 +547,7 @@ def archive_room(room_num: int, room_name: str, final_members: int,
     if not df_rooms.empty:
         df_rooms['room_num'] = pd.to_numeric(df_rooms['room_num'], errors='coerce').astype('Int64')
         df_rooms = df_rooms[df_rooms['room_num'] != room_num]
-        _write_csv(ROOMS_PATH, df_rooms, f"채팅방 {room_num} 활성 목록 제거")
+        _write_csv(ROOMS_PATH, df_rooms, f"채팅방 {room_num} 활성 목록 제거", allow_shrink=True)
 
     load_rooms.clear()
     load_archived_rooms.clear()
@@ -492,7 +576,7 @@ def restore_room(room_num: int):
     room_name = str(row.iloc[0]['room_name'])
     save_room(int(room_num), room_name)
     df_arch = df_arch[df_arch['room_num'] != room_num]
-    _write_csv(ARCHIVED_ROOMS_PATH, df_arch, f"채팅방 {room_num} 복원")
+    _write_csv(ARCHIVED_ROOMS_PATH, df_arch, f"채팅방 {room_num} 복원", allow_shrink=True)
     load_rooms.clear()
     load_archived_rooms.clear()
 
@@ -557,7 +641,7 @@ def delete_conversion_row(row_idx: int):
         return
     real_idx = int(sorted_df.iloc[row_idx]['index'])
     df = df.drop(index=real_idx).reset_index(drop=True)
-    _write_csv(CONVERSIONS_PATH, df, f"전환 데이터 삭제 (row {row_idx})")
+    _write_csv(CONVERSIONS_PATH, df, f"전환 데이터 삭제 (row {row_idx})", allow_shrink=True)
     load_conversions.clear()
     get_latest_conversions.clear()
 
@@ -614,7 +698,7 @@ def delete_adspend_row(row_idx: int):
         return
     real_idx = int(sorted_df.iloc[row_idx]['index'])
     df = df.drop(index=real_idx).reset_index(drop=True)
-    _write_csv(ADSPEND_PATH, df, f"광고비 데이터 삭제 (row {row_idx})")
+    _write_csv(ADSPEND_PATH, df, f"광고비 데이터 삭제 (row {row_idx})", allow_shrink=True)
     load_adspend.clear()
 
 
@@ -647,7 +731,7 @@ def delete_content_row(row_idx: int):
     if df.empty or row_idx < 0 or row_idx >= len(df):
         return
     df = df.drop(index=row_idx).reset_index(drop=True)
-    _write_csv(CONTENT_PATH, df, f"콘텐츠 기록 삭제 (row {row_idx})")
+    _write_csv(CONTENT_PATH, df, f"콘텐츠 기록 삭제 (row {row_idx})", allow_shrink=True)
     load_content.clear()
 
 
@@ -1079,7 +1163,8 @@ def delete_webinar(wid: str):
     if df.empty:
         return
     _write_csv(WEBINAR_SCHEDULE_PATH,
-               df[df['id'].astype(str) != str(wid)], f"웨비나 일정 삭제: {wid}")
+               df[df['id'].astype(str) != str(wid)], f"웨비나 일정 삭제: {wid}",
+               allow_shrink=True)
     load_webinar_schedule.clear()
 
 
@@ -1118,7 +1203,7 @@ def delete_experiment(exp_id: str):
     if df.empty:
         return
     df = df[df['id'].astype(str) != str(exp_id)]
-    _write_csv(EXPERIMENTS_PATH, df, f"실험 일지 삭제: {exp_id}")
+    _write_csv(EXPERIMENTS_PATH, df, f"실험 일지 삭제: {exp_id}", allow_shrink=True)
     load_experiments.clear()
 
 
@@ -1212,7 +1297,8 @@ def save_order_aggregates(out: dict, asof, on_step=None):
         if on_step:
             on_step(i, name)
         try:
-            _write_csv(f"data/{name}", df, f"data: 주문 집계 갱신 ({asof}) — {name}")
+            _write_csv(f"data/{name}", df, f"data: 주문 집계 갱신 ({asof}) — {name}",
+                       allow_shrink=True)
         except Exception as e:                     # 한 건 실패가 나머지를 막지 않게
             fails.append(f"{name}: {type(e).__name__}")
     if not fails:

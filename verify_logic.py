@@ -15,10 +15,19 @@ v4.75). 데이터가 바뀌면 재현되지도 않는다.
 
 원격 데이터를 읽지 않는다. 읽어야 하는 함수(order_asof)는 값을 갈아 끼운다.
 """
+import logging
 import sys
 from datetime import date
 
 import pandas as pd
+
+# github_store가 streamlit을 끌어오는데 화면 없이 돌면 "No runtime found"를 매
+# 호출마다 찍는다 — 검사 결과 7줄이 경고 46줄에 묻힌다(v4.79와 같은 처리).
+try:
+    import streamlit.logger as _st_logger
+    _st_logger.set_log_level("error")
+except Exception:
+    logging.getLogger("streamlit").setLevel(logging.ERROR)
 
 FAILS = []
 PASSED = 0
@@ -185,6 +194,94 @@ def test_ganji_jeolgi():
     check("2026 년주", ganji.year_ganji(2026), '丙午', "년주는 입춘 기준")
 
 
+# ── 7) 읽기 실패를 쓰기로 흘려보내지 않기 (v4.83) ────────────────
+def test_read_write_guard():
+    """원격 CSV를 **못 읽은 것**을 '비어 있다'로 보면 원본이 통째로 날아간다.
+
+    v4.83: 저장 경로 27곳이 모두 '읽고 → 합치고 → 통째로 쓰기'인데,
+    _read_csv가 연결 오류·401·403·5xx를 전부 404(빈 파일)와 같은 빈 표로
+    돌려주고 있었다. 실제로 두 번 터졌다 — 2026-08-22 rooms.csv의 사람이 붙인
+    별칭 8개가 기본값으로 되돌아갔고, 2026-08-29 campaigns.csv가 16행에서
+    11행으로 줄어 종료된 방 5개(돈빌공 5기·돈사공 11기 계열)가 사라졌다.
+    화면 없는 자동 갱신이라 st.error()는 아무 데도 안 찍혀 흔적조차 없었다.
+    """
+    import base64
+    import requests
+    import github_store as gs
+
+    class Res:
+        def __init__(self, code, payload=None):
+            self.status_code = code; self._p = payload or {}
+        @property
+        def ok(self): return 200 <= self.status_code < 300
+        def json(self): return self._p
+
+    _get, _put, _read = gs._SESSION.get, gs._SESSION.put, gs._read_csv
+    gs._RETRY_WAIT = 0          # 실패를 일부러 만들어 내는 검사 — 기다릴 이유가 없다
+    try:
+        # 실패와 '아직 없는 파일'은 반드시 달라야 한다
+        gs._SESSION.get = lambda *a, **k: Res(404)
+        check("404는 빈 표", gs._read_csv("x.csv", ["a"]).empty, True,
+              "아직 만들어지지 않은 파일 — 이건 정상이라 빈 표가 맞다")
+
+        for code in (500, 403, 401):
+            gs._SESSION.get = lambda *a, _c=code, **k: Res(_c)
+            raised = False
+            try:
+                gs._read_csv("x.csv", ["a"])
+            except gs.RemoteReadError:
+                raised = True
+            check(f"HTTP {code}는 예외", raised, True,
+                  "못 읽은 것을 빈 표로 돌려주면 그 위에 덮어써져 원본이 사라진다")
+
+        def boom(*a, **k): raise requests.exceptions.ConnectionError("끊김")
+        gs._SESSION.get = boom
+        raised = False
+        try:
+            gs._read_csv("x.csv", ["a"])
+        except gs.RemoteReadError:
+            raised = True
+        check("연결 끊김은 예외", raised, True, "위와 같은 이유")
+
+        # 행이 줄어드는 저장은 의도를 밝힌 경우에만
+        cur = base64.b64encode(b"room_num,room_name\n1,a\n2,b\n3,c\n").decode()
+        gs._SESSION.get = lambda *a, **k: Res(200, {"sha": "x", "content": cur})
+        puts = []
+        gs._SESSION.put = lambda *a, **k: (puts.append(1), Res(200))[1]
+
+        shrunk = pd.DataFrame([{"room_num": 1, "room_name": "a"}])
+        blocked = False
+        try:
+            gs._write_csv("data/rooms.csv", shrunk, "축소")
+        except RuntimeError:
+            blocked = True
+        check("3행 → 1행 저장은 거부", blocked, True,
+              "campaigns.csv가 16행에서 11행으로 줄어든 그 경로")
+        check("거부되면 PUT을 보내지 않는다", puts, [],
+              "막았다면서 실제로 보내면 아무 의미가 없다")
+
+        puts.clear()
+        gs._write_csv("data/rooms.csv", shrunk, "의도된 삭제", allow_shrink=True)
+        check("allow_shrink면 삭제는 그대로", len(puts), 1,
+              "사고는 막되 사람이 지우는 기능은 살아 있어야 한다")
+
+        puts.clear()
+        grown = pd.DataFrame([{"room_num": i, "room_name": "x"} for i in range(1, 5)])
+        gs._write_csv("data/rooms.csv", grown, "추가")
+        check("행이 늘면 통과", len(puts), 1, "정상 저장까지 막으면 안 된다")
+
+        # 자동 등록이 사람이 붙인 별칭을 덮어쓰면 안 된다
+        gs._read_csv = lambda p, c: pd.DataFrame(
+            [{"room_num": 37, "room_name": "채팅방 37 (부동산2)"}])
+        puts.clear()
+        gs.save_rooms_batch({37: "채팅방 37"})
+        check("이미 있는 방은 저장 자체를 안 한다", puts, [],
+              "들어오는 이름은 기본값 — 별칭 8개가 이렇게 날아갔다")
+    finally:
+        gs._SESSION.get, gs._SESSION.put, gs._read_csv = _get, _put, _read
+        gs._RETRY_WAIT = 1.5
+
+
 TESTS = [
     ("부분월 판정 (v4.70)", test_complete_months),
     ("웨비나 대기 분리 (v4.75)", test_lecture_date_split),
@@ -192,6 +289,7 @@ TESTS = [
     ("대기 기준선 (v4.78)", test_open_to_live_days),
     ("알림 억제 (v4.76)", test_alert_signature),
     ("절기 기준 월주 (v4.49)", test_ganji_jeolgi),
+    ("읽기 실패 → 쓰기 차단 (v4.83)", test_read_write_guard),
 ]
 
 
