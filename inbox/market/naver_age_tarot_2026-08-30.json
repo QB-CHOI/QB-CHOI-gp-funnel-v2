@@ -1,8 +1,8 @@
 {
   "ok": true,
   "topic": "타로",
-  "date": "2026-08-27",
-  "generatedAt": "2026-08-26T22:00:21.728Z",
+  "date": "2026-08-30",
+  "generatedAt": "2026-08-29T22:48:26.757Z",
   "brackets": [
     "10대",
     "20대",
@@ -15,9 +15,9 @@
       "keyword": "재회 타로",
       "byAge": {
         "10대": {
-          "deltaPercent": 7,
-          "level": 24,
-          "recentAvg": 24.456514999999996
+          "deltaPercent": 22,
+          "level": 26,
+          "recentAvg": 26.086949999999998
         },
         "20대": {
           "deltaPercent": -18,
@@ -101,7 +101,7 @@
         "50대+": {
           "deltaPercent": 0,
           "level": 2,
-          "recentAvg": 1.6081824999999998
+          "recentAvg": 1.6081825
         }
       },
       "hottestAge": "30대",

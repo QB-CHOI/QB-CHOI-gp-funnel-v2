@@ -1,0 +1,4819 @@
+{
+  "ok": true,
+  "topic": "여행",
+  "date": "2026-08-13",
+  "generatedAt": "2026-08-12T16:49:36.278Z",
+  "queries": [
+    "국내여행",
+    "해외여행",
+    "제주도 여행",
+    "일본 여행",
+    "여행 코스",
+    "캠핑"
+  ],
+  "publishedAfter": "2026-05-14T16:49:33.171Z",
+  "quotaCost": 604,
+  "totalVideos": 88,
+  "shortsCount": 16,
+  "longformCount": 72,
+  "topVideos": [
+    {
+      "videoId": "5X-7Env4phc",
+      "url": "https://www.youtube.com/watch?v=5X-7Env4phc",
+      "title": "[EN] 여행지는 돌림판에, 길은 지도책에 맡겨 둔 4형제의 NO내비 국도 여행｜풍향중 EP.1｜2026 썸머로드 시리즈 #유재석 #이성민 #지석진 #양세찬",
+      "description": "고속도로는 못 타고 국도로만 가야 하는데, 내비도 없이 의지할 건 지도책뿐…! 아니 근데 잠깐, 우리 여행지는 어디..야? ⬆️ 영상에서 확인 ⬆️\n\n📢 뜬뜬 교통 안내 방송입니다 ⚠️\n본 영상은 내비 없이 국도만 달리는 4형제의 길바닥 여정을 담고 있습니다. 주행 중 잦은 경로 이탈",
+      "channelId": "UCDNvRZRgvkBTUkQzFoT_8rA",
+      "channelTitle": "뜬뜬 DdeunDdeun",
+      "publishedAt": "2026-08-01T00:00:07Z",
+      "thumbnail": "https://i.ytimg.com/vi/5X-7Env4phc/mqdefault.jpg",
+      "tags": [
+        "뜬뜬",
+        "핑계고",
+        "핑계고 여행",
+        "유재석",
+        "이성민",
+        "지석진",
+        "어쩔 수가 없다",
+        "양세찬",
+        "쑥쑥",
+        "여행 예능",
+        "틀어놓기 좋은",
+        "틀어두기 좋은"
+      ],
+      "viewCount": 7613976,
+      "likeCount": 77366,
+      "commentCount": 6092,
+      "durationSeconds": 6912,
+      "format": "롱폼",
+      "ageDays": 11.7,
+      "viewsPerDay": 650710,
+      "momentum": 592157,
+      "likeRate": 1.02,
+      "commentRate": 0.08,
+      "matchedQueries": [
+        "국내여행"
+      ],
+      "marketScore": {
+        "total": 79,
+        "parts": {
+          "volume": 25,
+          "velocity": 30,
+          "likeRate": 4,
+          "commentRate": 1,
+          "recency": 19
+        }
+      },
+      "rankScore": {
+        "total": 100,
+        "parts": {
+          "momentum": 60,
+          "volume": 40
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 3320000
+    },
+    {
+      "videoId": "-QTwHbLKpb8",
+      "url": "https://www.youtube.com/watch?v=-QTwHbLKpb8",
+      "title": "삼남매의 제주도 여행",
+      "description": "제주 오기 전부터 꼭 가보고 싶었던 고국수🍜\n대표 메뉴인 고기국수를 먹어봤는데, 진한 육수와 푸짐한 고기가 왜 많은 사람들이 찾는지 알겠습니다.\n한 그릇 비우고 나니 제주 여행 첫 끼로 왜 추천하는지 제대로 이해했습니다.\n다음 제주 여행에도 다시 찾게 될 것 같은 고국수, 기대 이상입",
+      "channelId": "UC1Rz7a_DWtsE9cQwSyElE0Q",
+      "channelTitle": "인생84",
+      "publishedAt": "2026-07-10T09:00:26Z",
+      "thumbnail": "https://i.ytimg.com/vi/-QTwHbLKpb8/mqdefault.jpg",
+      "tags": [
+        "기안84",
+        "기안팔사",
+        "기안",
+        "김희민",
+        "복학왕",
+        "패션왕",
+        "나혼자산다",
+        "태어난김에세계일주",
+        "기안장",
+        "나혼산",
+        "회춘",
+        "노병가"
+      ],
+      "viewCount": 2807679,
+      "likeCount": 35846,
+      "commentCount": 1606,
+      "durationSeconds": 1511,
+      "format": "롱폼",
+      "ageDays": 33.3,
+      "viewsPerDay": 84249,
+      "momentum": 59252,
+      "likeRate": 1.28,
+      "commentRate": 0.06,
+      "matchedQueries": [
+        "제주도 여행"
+      ],
+      "marketScore": {
+        "total": 75,
+        "parts": {
+          "volume": 25,
+          "velocity": 30,
+          "likeRate": 5,
+          "commentRate": 1,
+          "recency": 14
+        }
+      },
+      "rankScore": {
+        "total": 89,
+        "parts": {
+          "momentum": 49,
+          "volume": 40
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 1700000
+    },
+    {
+      "videoId": "jpgUBs6h8QQ",
+      "url": "https://www.youtube.com/watch?v=jpgUBs6h8QQ",
+      "title": "일본 여행 다녀온 한국인들이 착각하는 일본의 실제 현실..?!ㅣ국경없는 수다 EP.112",
+      "description": "오늘 영국에서 온 피터, 일본에서 온 나나세, 쿠미, 마리코를 만났습니다!\n한국인들이 자주 찾는 일본, 그런데 이제 예전처럼 맘 편히 여행 가지 못할 수도 있다고요..?\n일본에 무슨 변화가 생긴 걸까요?\n\n00:00 하이라이트\n02:20 이제 일본 여행가기 힘들어졌다는 이유?!\n08:4",
+      "channelId": "UC9HNi_aAXBgpI2zhibOAfAA",
+      "channelTitle": "어썸코리아 Awesome Korea",
+      "publishedAt": "2026-07-04T01:30:28Z",
+      "thumbnail": "https://i.ytimg.com/vi/jpgUBs6h8QQ/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 1100145,
+      "likeCount": 14919,
+      "commentCount": 1960,
+      "durationSeconds": 2064,
+      "format": "롱폼",
+      "ageDays": 39.6,
+      "viewsPerDay": 27755,
+      "momentum": 17685,
+      "likeRate": 1.36,
+      "commentRate": 0.18,
+      "matchedQueries": [
+        "일본 여행"
+      ],
+      "marketScore": {
+        "total": 75,
+        "parts": {
+          "volume": 25,
+          "velocity": 30,
+          "likeRate": 5,
+          "commentRate": 2,
+          "recency": 13
+        }
+      },
+      "rankScore": {
+        "total": 80,
+        "parts": {
+          "momentum": 41,
+          "volume": 39
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 1280000
+    },
+    {
+      "videoId": "eEIRy1iLZH0",
+      "url": "https://www.youtube.com/watch?v=eEIRy1iLZH0",
+      "title": "요즘 외국인들이 한국여행에 빠진 진짜 이유",
+      "description": "안녕하세요 히시월드입니다.\n요즘 곳곳에서 외국인들과 많이 마주치시나요?\n해외에서 가장 많이 방문하는 국가 1위가 한국인 나라가 있다는데요.\n그 이유를 찾아 한번 여행해 보겠습니다.\n\nMusic by 브금대통령\n우당탕탕 - https://www.youtube.com/watch?v=2TPu",
+      "channelId": "UCpTHynfy1gohB-sUQovQI0Q",
+      "channelTitle": "히시월드",
+      "publishedAt": "2026-05-17T11:10:00Z",
+      "thumbnail": "https://i.ytimg.com/vi/eEIRy1iLZH0/mqdefault.jpg",
+      "tags": [
+        "여행 유튜버",
+        "해외여행",
+        "여행 유튜브",
+        "해외여행 브이로그",
+        "여행브이로그"
+      ],
+      "viewCount": 977495,
+      "likeCount": 16578,
+      "commentCount": 1726,
+      "durationSeconds": 2008,
+      "format": "롱폼",
+      "ageDays": 87.2,
+      "viewsPerDay": 11205,
+      "momentum": 1425,
+      "likeRate": 1.7,
+      "commentRate": 0.18,
+      "matchedQueries": [
+        "여행 코스"
+      ],
+      "marketScore": {
+        "total": 63,
+        "parts": {
+          "volume": 25,
+          "velocity": 27,
+          "likeRate": 6,
+          "commentRate": 2,
+          "recency": 3
+        }
+      },
+      "rankScore": {
+        "total": 49,
+        "parts": {
+          "momentum": 10,
+          "volume": 39
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 190000
+    },
+    {
+      "videoId": "-O4FBd28Axw",
+      "url": "https://www.youtube.com/watch?v=-O4FBd28Axw",
+      "title": "해외여행 갔다와서 가장 먼저 찾은 한국음식",
+      "description": "",
+      "channelId": "UCzelf3qtV8AdUXeoybhARsA",
+      "channelTitle": "요건 인정이지",
+      "publishedAt": "2026-08-11T10:08:03Z",
+      "thumbnail": "https://i.ytimg.com/vi/-O4FBd28Axw/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 963532,
+      "likeCount": 14041,
+      "commentCount": 645,
+      "durationSeconds": 35,
+      "format": "쇼츠",
+      "ageDays": 1.3,
+      "viewsPerDay": 753438,
+      "momentum": 541661,
+      "likeRate": 1.46,
+      "commentRate": 0.07,
+      "matchedQueries": [
+        "해외여행"
+      ],
+      "marketScore": {
+        "total": 81,
+        "parts": {
+          "volume": 25,
+          "velocity": 30,
+          "likeRate": 5,
+          "commentRate": 1,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 97,
+        "parts": {
+          "momentum": 59,
+          "volume": 38
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 162000
+    },
+    {
+      "videoId": "f_-5ZRgLYoI",
+      "url": "https://www.youtube.com/watch?v=f_-5ZRgLYoI",
+      "title": "희비 갈린 국내 대표 관광지 \"제주보단 부산이지\" 무슨 일? / KNN",
+      "description": "#knn뉴스 #제주 #부산\n\n같은 국내 대표 관광지인데 분위기가 심상치 않습니다.\n\n\n\n제보\n카톡 : 'KNN' 친구추가\n메일 : knnstorynews@gmail.com\n          adknn@knn.co.kr\n\n홈페이지 www.knn.co.kr\n검색 : KNN",
+      "channelId": "UC1ifSsWUG241rRfK0ezYCgA",
+      "channelTitle": "KNN NEWS",
+      "publishedAt": "2026-08-07T10:00:05Z",
+      "thumbnail": "https://i.ytimg.com/vi/f_-5ZRgLYoI/mqdefault.jpg",
+      "tags": [
+        "knn뉴스",
+        "e뉴스",
+        "국내",
+        "대표",
+        "관광지",
+        "관광객",
+        "외국인",
+        "방문",
+        "도시",
+        "지역",
+        "관광",
+        "여행"
+      ],
+      "viewCount": 882673,
+      "likeCount": 4451,
+      "commentCount": 3218,
+      "durationSeconds": 136,
+      "format": "롱폼",
+      "ageDays": 5.3,
+      "viewsPerDay": 167034,
+      "momentum": 152596,
+      "likeRate": 0.5,
+      "commentRate": 0.36,
+      "matchedQueries": [
+        "제주도 여행"
+      ],
+      "marketScore": {
+        "total": 81,
+        "parts": {
+          "volume": 25,
+          "velocity": 30,
+          "likeRate": 2,
+          "commentRate": 5,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 96,
+        "parts": {
+          "momentum": 58,
+          "volume": 38
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 1300000
+    },
+    {
+      "videoId": "MzQmvKtjqL4",
+      "url": "https://www.youtube.com/watch?v=MzQmvKtjqL4",
+      "title": "친구들이랑 밤 새고 일본가서 폭염 처@맞는 브이로그",
+      "description": "[선착순 특가] 제 애착 가방인  '패리티 럭색'!!!!!!\n너무 많이들 좋아해주셔서\n할인기간 추가 연장했습니다!!!!! 👉 https://m.site.naver.com/2dDcb\n\n🔥[EVENT 1]\n- 세트 구매 시, 추가 할인!\n- 모든 구성 무료 배송!\n\n🎁[EVENT 2]",
+      "channelId": "UC0JzvO3F90Bur0_B2VfvUIQ",
+      "channelTitle": "이자반",
+      "publishedAt": "2026-08-02T10:00:02Z",
+      "thumbnail": "https://i.ytimg.com/vi/MzQmvKtjqL4/mqdefault.jpg",
+      "tags": [
+        "이자반",
+        "일본",
+        "이자반 일본",
+        "일본여행",
+        "도쿄",
+        "도쿄여행",
+        "도쿄맛집",
+        "일본브이로그",
+        "일본여행브이로그",
+        "브이로그",
+        "vlog",
+        "japan"
+      ],
+      "viewCount": 723150,
+      "likeCount": 11327,
+      "commentCount": 1225,
+      "durationSeconds": 1898,
+      "format": "롱폼",
+      "ageDays": 10.3,
+      "viewsPerDay": 70315,
+      "momentum": 64661,
+      "likeRate": 1.57,
+      "commentRate": 0.17,
+      "matchedQueries": [
+        "일본 여행"
+      ],
+      "marketScore": {
+        "total": 82,
+        "parts": {
+          "volume": 24,
+          "velocity": 30,
+          "likeRate": 6,
+          "commentRate": 2,
+          "recency": 19
+        }
+      },
+      "rankScore": {
+        "total": 88,
+        "parts": {
+          "momentum": 51,
+          "volume": 37
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 413000
+    },
+    {
+      "videoId": "2jtzzEdiz6A",
+      "url": "https://www.youtube.com/watch?v=2jtzzEdiz6A",
+      "title": "결국 못 참고 또 왔습니다.. 모두가 한국인을 미친듯이 반겨주는 아름다운 남미 외딴 섬",
+      "description": "인스타: https://www.instagram.com/jaehocance/\n비즈니스 문의: jaehlee36@gmail.com",
+      "channelId": "UC602PUDJWt8AKCx3CFjJtTA",
+      "channelTitle": "재호캉스",
+      "publishedAt": "2026-08-07T11:18:45Z",
+      "thumbnail": "https://i.ytimg.com/vi/2jtzzEdiz6A/mqdefault.jpg",
+      "tags": [
+        "세계여행",
+        "해외여행",
+        "여행유튜브",
+        "여행유튜버",
+        "제호캉스",
+        "베네수엘라 여행",
+        "카라카스 여행",
+        "베네수엘라 지진",
+        "베네주엘라",
+        "베네수엘라 마두로",
+        "베네수엘라 모로코이",
+        "베네수엘라 외딴섬"
+      ],
+      "viewCount": 695524,
+      "likeCount": 9579,
+      "commentCount": 518,
+      "durationSeconds": 3470,
+      "format": "롱폼",
+      "ageDays": 5.2,
+      "viewsPerDay": 132994,
+      "momentum": 121388,
+      "likeRate": 1.38,
+      "commentRate": 0.07,
+      "matchedQueries": [
+        "해외여행"
+      ],
+      "marketScore": {
+        "total": 80,
+        "parts": {
+          "volume": 24,
+          "velocity": 30,
+          "likeRate": 5,
+          "commentRate": 1,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 94,
+        "parts": {
+          "momentum": 57,
+          "volume": 37
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 402000
+    },
+    {
+      "videoId": "EJD93qLJjzU",
+      "url": "https://www.youtube.com/watch?v=EJD93qLJjzU",
+      "title": "연차없이 떠나는 해외여행, 시즌2 첫 여행지 공개 I 곽범 I 연차없이 어떡행2 EP.0",
+      "description": "직장인 실험쥐 곽범이 돌아왔다✈️\n그런데 연차없이 어디를 간다고...?\n\n자극적이고 짜릿한 곽범의 연차없는 해외 여행기,\n연차없이 어떡행 시즌2\n8/13일(목) 오후 7시 출발합니다!\n\n#연차없이어떡행 #곽범\n#NoPTO #Trip #Kwakbeom\n\n【Original Content b",
+      "channelId": "UCmva1CD0owDo2nul7CJT_Sw",
+      "channelTitle": "때때때 TTT",
+      "publishedAt": "2026-08-06T10:00:00Z",
+      "thumbnail": "https://i.ytimg.com/vi/EJD93qLJjzU/mqdefault.jpg",
+      "tags": [
+        "연차없이 어떡행",
+        "어떡행",
+        "연차",
+        "곽범",
+        "개그맨 곽범",
+        "여행"
+      ],
+      "viewCount": 563634,
+      "likeCount": 3504,
+      "commentCount": 340,
+      "durationSeconds": 57,
+      "format": "쇼츠",
+      "ageDays": 6.3,
+      "viewsPerDay": 89687,
+      "momentum": 83077,
+      "likeRate": 0.62,
+      "commentRate": 0.06,
+      "matchedQueries": [
+        "해외여행"
+      ],
+      "marketScore": {
+        "total": 77,
+        "parts": {
+          "volume": 24,
+          "velocity": 30,
+          "likeRate": 2,
+          "commentRate": 1,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 89,
+        "parts": {
+          "momentum": 53,
+          "volume": 36
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 267000
+    },
+    {
+      "videoId": "ln_roMgng3k",
+      "url": "https://www.youtube.com/watch?v=ln_roMgng3k",
+      "title": "제주도에~서 누가 돌아왔~게🤪 (ft.여행만 가면 억까 당하는 가족, 제주도민 맛집 추천, 제주도 맛집 탐방)",
+      "description": "안녕 혜충이들‼️\n째뜽네는 완전체로 제주도에 3박 4일 다녀왔어요 🌴✈️\n\n저희 집 유일한 날씨요정 승유 덕분인지\n분명 비 소식이 가득했던 제주도였는데도\n여행 내내 날씨는 정말 좋았거든요?\n\n그런데 말이죠… 진짜 날씨만 좋았습니다... ☠️\n\n그 외에는 세상 억울한 억까란 억까는\n전부",
+      "channelId": "UCu4X3ZAoq6nToNJNNoQuICA",
+      "channelTitle": "혜진쓰 Hyejin's",
+      "publishedAt": "2026-07-18T05:00:34Z",
+      "thumbnail": "https://i.ytimg.com/vi/ln_roMgng3k/mqdefault.jpg",
+      "tags": [
+        "혜진쓰",
+        "혜진쓰 브이로그",
+        "Hyejin's",
+        "Vlog",
+        "부부일상",
+        "혜진",
+        "hey jini baby",
+        "pregnant vlog",
+        "헤이지니 결혼",
+        "헤이지니 출산",
+        "헤이지니 임신",
+        "육아"
+      ],
+      "viewCount": 475050,
+      "likeCount": 6391,
+      "commentCount": 376,
+      "durationSeconds": 1554,
+      "format": "롱폼",
+      "ageDays": 25.5,
+      "viewsPerDay": 18635,
+      "momentum": 14603,
+      "likeRate": 1.35,
+      "commentRate": 0.08,
+      "matchedQueries": [
+        "제주도 여행"
+      ],
+      "marketScore": {
+        "total": 74,
+        "parts": {
+          "volume": 24,
+          "velocity": 28,
+          "likeRate": 5,
+          "commentRate": 1,
+          "recency": 16
+        }
+      },
+      "rankScore": {
+        "total": 75,
+        "parts": {
+          "momentum": 39,
+          "volume": 36
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 977000
+    },
+    {
+      "videoId": "iFLL-5caXfI",
+      "url": "https://www.youtube.com/watch?v=iFLL-5caXfI",
+      "title": "하루 만원에 돈 걱정 없이 여행할 수 있는 미얀마 입국기",
+      "description": "미얀마 첫번째 영상입니다!\n\n\n\n➖\n#여행유튜버 #미얀마 #해외여행 \n➖\n📸 Instagram : https://www.instagram.com/sanghyuk1ee/\n📝 Blog : https://blog.naver.com/sanghyuk1ee\n➖\n📷 Camera\nFujifilm",
+      "channelId": "UC69z_1ZtKQjG5fa-_sKBBfg",
+      "channelTitle": "상가의 안녕히살아보기",
+      "publishedAt": "2026-08-08T00:00:26Z",
+      "thumbnail": "https://i.ytimg.com/vi/iFLL-5caXfI/mqdefault.jpg",
+      "tags": [
+        "여행유튜브",
+        "세계여행",
+        "오지여행",
+        "해외여행",
+        "여행유튜버",
+        "중남미여행",
+        "남미여행"
+      ],
+      "viewCount": 470562,
+      "likeCount": 11184,
+      "commentCount": 683,
+      "durationSeconds": 2713,
+      "format": "롱폼",
+      "ageDays": 4.7,
+      "viewsPerDay": 100102,
+      "momentum": 90479,
+      "likeRate": 2.38,
+      "commentRate": 0.15,
+      "matchedQueries": [
+        "해외여행"
+      ],
+      "marketScore": {
+        "total": 84,
+        "parts": {
+          "volume": 24,
+          "velocity": 30,
+          "likeRate": 9,
+          "commentRate": 2,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 89,
+        "parts": {
+          "momentum": 54,
+          "volume": 35
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 421000
+    },
+    {
+      "videoId": "Z9SsmK2YgVU",
+      "url": "https://www.youtube.com/watch?v=Z9SsmK2YgVU",
+      "title": "서양인들에게 유명하지만 한국인은 잘 모르는 동남아 최고의 휴양지",
+      "description": "4년 전에 갔다가 너무 좋아서 꼭 한번 다시 오고싶다고 했었는데\n결국 다시 방문했습니다.\n예전에 제가 느꼈던 그 후리후리함은 많이 사라졌지만\n결국 모든 건 변하고 발전하는 게 세상의 이치인 것 같습니다.\n감사합니다.\n\n\n\n카메라 : DJI 오즈모 액션4, iPhone 17pro\n편집 프",
+      "channelId": "UCxU8QX7IRRIW0VLuoWWoxbw",
+      "channelTitle": "여행가 제이 [Traveler JAY]",
+      "publishedAt": "2026-08-07T08:00:22Z",
+      "thumbnail": "https://i.ytimg.com/vi/Z9SsmK2YgVU/mqdefault.jpg",
+      "tags": [
+        "브이로그",
+        "vlog",
+        "휴식",
+        "휴가",
+        "여행",
+        "세계여행",
+        "해외 정착",
+        "필리핀",
+        "시아르가오",
+        "휴양지",
+        "피서",
+        "서핑"
+      ],
+      "viewCount": 464354,
+      "likeCount": 6610,
+      "commentCount": 312,
+      "durationSeconds": 1571,
+      "format": "롱폼",
+      "ageDays": 5.4,
+      "viewsPerDay": 86512,
+      "momentum": 79140,
+      "likeRate": 1.42,
+      "commentRate": 0.07,
+      "matchedQueries": [
+        "해외여행"
+      ],
+      "marketScore": {
+        "total": 80,
+        "parts": {
+          "volume": 24,
+          "velocity": 30,
+          "likeRate": 5,
+          "commentRate": 1,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 87,
+        "parts": {
+          "momentum": 52,
+          "volume": 35
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 818000
+    },
+    {
+      "videoId": "XlH6wpHVILk",
+      "url": "https://www.youtube.com/watch?v=XlH6wpHVILk",
+      "title": "🚞 표값 1만 원! 드디어 재개통된 국내 유일 오지 '특급열차' 타고 떠나는 당일치기 기차여행",
+      "description": "오늘은 약 3년 간의 재정비 끝에 드디어 새롭게 재개통한 국내 유일의 오지 산악 열차를 타고 당일치기 기차 여행을 다녀왔습니다.\n\n대한민국에 존재하는 약 40여 개의 기차 노선들 중에서 오직 한 기차만 운행하는 특별한 노선.\n\n그럼 한번 떠나볼까요?\n\n[유튜브 아이콘]\nhttps://w",
+      "channelId": "UCeIY89g3KZ6e0HinaOiMHcg",
+      "channelTitle": "걷는 여행 Walk Travel",
+      "publishedAt": "2026-05-27T11:10:07Z",
+      "thumbnail": "https://i.ytimg.com/vi/XlH6wpHVILk/mqdefault.jpg",
+      "tags": [
+        "걷는여행",
+        "국내여행",
+        "기차여행"
+      ],
+      "viewCount": 429360,
+      "likeCount": 6606,
+      "commentCount": 213,
+      "durationSeconds": 2032,
+      "format": "롱폼",
+      "ageDays": 77.2,
+      "viewsPerDay": 5559,
+      "momentum": 1307,
+      "likeRate": 1.54,
+      "commentRate": 0.05,
+      "matchedQueries": [
+        "국내여행"
+      ],
+      "marketScore": {
+        "total": 60,
+        "parts": {
+          "volume": 23,
+          "velocity": 25,
+          "likeRate": 6,
+          "commentRate": 1,
+          "recency": 5
+        }
+      },
+      "rankScore": {
+        "total": 42,
+        "parts": {
+          "momentum": 8,
+          "volume": 34
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 226000
+    },
+    {
+      "videoId": "jqUXWwRRZ4Y",
+      "url": "https://www.youtube.com/watch?v=jqUXWwRRZ4Y",
+      "title": "뭐지?? 배고파서 일본 식당에 들어가자, 한국인을 본 일본인 반응",
+      "description": "지난번 교토식당에서 식사를 마친 후 지친 몸을 이끌고 다시 오사카로 올라온 두 사람.  밤이 깊고 저녁을 먹으러 한국인과 중국인이 식당에 가려고 하자, 생각지도 못했던 난관에 부딪히게 되는데요. 과연 이번에 오사카에서는 어떤 일이 일어났을지 지금 확인해 보세요! \n\n#오사카여행 #일본여",
+      "channelId": "UCg3YdmrYGa2O1IySuWvBT0w",
+      "channelTitle": "CKOONY",
+      "publishedAt": "2026-08-08T08:38:43Z",
+      "thumbnail": "https://i.ytimg.com/vi/jqUXWwRRZ4Y/mqdefault.jpg",
+      "tags": [
+        "외국인",
+        "외국인반응",
+        "한국",
+        "외국인 채널",
+        "외국인 반응 채널",
+        "외국인채널",
+        "외국인 먹방",
+        "해외",
+        "먹방",
+        "리액션",
+        "일본인 반응",
+        "일본"
+      ],
+      "viewCount": 411903,
+      "likeCount": 11331,
+      "commentCount": 970,
+      "durationSeconds": 1262,
+      "format": "롱폼",
+      "ageDays": 4.3,
+      "viewsPerDay": 94889,
+      "momentum": 85088,
+      "likeRate": 2.75,
+      "commentRate": 0.24,
+      "matchedQueries": [
+        "일본 여행"
+      ],
+      "marketScore": {
+        "total": 87,
+        "parts": {
+          "volume": 23,
+          "velocity": 30,
+          "likeRate": 10,
+          "commentRate": 3,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 88,
+        "parts": {
+          "momentum": 54,
+          "volume": 34
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 672000
+    },
+    {
+      "videoId": "SeLOndN5EFM",
+      "url": "https://www.youtube.com/watch?v=SeLOndN5EFM",
+      "title": "더 이상 \"그냥 친구\"가 아닌 일본 여사친과 오사카 여행",
+      "description": "#여행 #여행유튜버 #세계여행 \n\n일본 오사카에서 \n카나미와 함께하는 마지막 여행이 너무 아쉽지만\n스스로에게 부끄럽지 않은 \n각자의 삶을 열심히 살아가아 가다보면\n분명 또 언젠가 \n웃으며 회포를 풀어 가는 \n다음의 만남이 있을거라 생각합니다..ㅎ\n\n🌎Contact\nhttps://ins",
+      "channelId": "UChFf1JrHBdsy3LS3m9cX89Q",
+      "channelTitle": "시도 sido",
+      "publishedAt": "2026-08-09T10:00:03Z",
+      "thumbnail": "https://i.ytimg.com/vi/SeLOndN5EFM/mqdefault.jpg",
+      "tags": [
+        "여행",
+        "여행유튜버",
+        "세계여행",
+        "세계여행 유튜버",
+        "일본",
+        "일본 여행",
+        "일본 여사친",
+        "일본 여자",
+        "오사카",
+        "오사카 여행",
+        "해외여행",
+        "여행 브이로그"
+      ],
+      "viewCount": 361873,
+      "likeCount": 11829,
+      "commentCount": 1214,
+      "durationSeconds": 1336,
+      "format": "롱폼",
+      "ageDays": 3.3,
+      "viewsPerDay": 110179,
+      "momentum": 95622,
+      "likeRate": 3.27,
+      "commentRate": 0.34,
+      "matchedQueries": [
+        "일본 여행"
+      ],
+      "marketScore": {
+        "total": 90,
+        "parts": {
+          "volume": 23,
+          "velocity": 30,
+          "likeRate": 12,
+          "commentRate": 4,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 89,
+        "parts": {
+          "momentum": 55,
+          "volume": 34
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 262000
+    },
+    {
+      "videoId": "E3i7q2K-lOQ",
+      "url": "https://www.youtube.com/watch?v=E3i7q2K-lOQ",
+      "title": "도쿄에서 처음 만난 일본 그녀와 불현듯 떠난 1박2일 여행 - 세계여행[170]",
+      "description": "#세계여행 #해외여행 #일본 #여행유튜버 \n\n안녕하세요.\n오늘은 일본 도쿄에서 하코네를 다녀왔습니다. \n시청 감사합니다.\n\n카메라 : DJI 오즈모 액션 5 Pro, iPhone 16 Pro \n편집 : Final Cut Pro\n음원 : Artlist\n인스타그램 : jayyytravel\n",
+      "channelId": "UCAYdHI5iTnTFYu-hbIqj7PQ",
+      "channelTitle": "제여비",
+      "publishedAt": "2026-06-21T02:50:28Z",
+      "thumbnail": "https://i.ytimg.com/vi/E3i7q2K-lOQ/mqdefault.jpg",
+      "tags": [
+        "여행유튜버",
+        "세계여행",
+        "해외여행",
+        "일본",
+        "하코네"
+      ],
+      "viewCount": 358355,
+      "likeCount": 5557,
+      "commentCount": 352,
+      "durationSeconds": 1574,
+      "format": "롱폼",
+      "ageDays": 52.6,
+      "viewsPerDay": 6815,
+      "momentum": 3406,
+      "likeRate": 1.55,
+      "commentRate": 0.1,
+      "matchedQueries": [
+        "일본 여행"
+      ],
+      "marketScore": {
+        "total": 66,
+        "parts": {
+          "volume": 23,
+          "velocity": 26,
+          "likeRate": 6,
+          "commentRate": 1,
+          "recency": 10
+        }
+      },
+      "rankScore": {
+        "total": 51,
+        "parts": {
+          "momentum": 18,
+          "volume": 33
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 126000
+    },
+    {
+      "videoId": "OkYjXAlzwUE",
+      "url": "https://www.youtube.com/watch?v=OkYjXAlzwUE",
+      "title": "일본여행 고수들은 전부 이렇게 합니다ㄷㄷ",
+      "description": "",
+      "channelId": "UCao4qHQPcLZSRbRdsrrFRYw",
+      "channelTitle": "짤컷",
+      "publishedAt": "2026-08-12T08:00:00Z",
+      "thumbnail": "https://i.ytimg.com/vi/OkYjXAlzwUE/mqdefault.jpg",
+      "tags": [
+        "꿀팁",
+        "일본",
+        "여행"
+      ],
+      "viewCount": 322786,
+      "likeCount": 6346,
+      "commentCount": 87,
+      "durationSeconds": 37,
+      "format": "쇼츠",
+      "ageDays": 0.4,
+      "viewsPerDay": 877682,
+      "momentum": 371971,
+      "likeRate": 1.97,
+      "commentRate": 0.03,
+      "matchedQueries": [
+        "일본 여행"
+      ],
+      "marketScore": {
+        "total": 81,
+        "parts": {
+          "volume": 23,
+          "velocity": 30,
+          "likeRate": 7,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 92,
+        "parts": {
+          "momentum": 59,
+          "volume": 33
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 2120000
+    },
+    {
+      "videoId": "rDeESouB_cs",
+      "url": "https://www.youtube.com/watch?v=rDeESouB_cs",
+      "title": "갑자기 쏟아진 집중호우… 캠핑카로 계곡 노지캠핑 중 긴급대피했습니다",
+      "description": "#캠핑카 #노지캠핑 #우중캠핑 \n─────────────────────\n📧협업 문의 : showddary_suya@naver.com\n💌후원하기 : 하나은행 마수연 151-910341-53707\n─────────────────────",
+      "channelId": "UCLaSjyJOedN2kONlILF_1Jw",
+      "channelTitle": "쑈따리 Showddary",
+      "publishedAt": "2026-08-08T09:00:08Z",
+      "thumbnail": "https://i.ytimg.com/vi/rDeESouB_cs/mqdefault.jpg",
+      "tags": [
+        "캠핑카",
+        "우중캠핑",
+        "폭우캠핑",
+        "차박",
+        "노지캠핑",
+        "노지차박",
+        "경기도노지",
+        "계곡노지",
+        "계곡캠핑",
+        "캠핑브이로그"
+      ],
+      "viewCount": 294862,
+      "likeCount": 4878,
+      "commentCount": 311,
+      "durationSeconds": 1548,
+      "format": "롱폼",
+      "ageDays": 4.3,
+      "viewsPerDay": 68160,
+      "momentum": 61098,
+      "likeRate": 1.65,
+      "commentRate": 0.11,
+      "matchedQueries": [
+        "캠핑"
+      ],
+      "marketScore": {
+        "total": 80,
+        "parts": {
+          "volume": 23,
+          "velocity": 30,
+          "likeRate": 6,
+          "commentRate": 1,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 82,
+        "parts": {
+          "momentum": 50,
+          "volume": 32
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 135000
+    },
+    {
+      "videoId": "7sgnIrOgsRo",
+      "url": "https://www.youtube.com/watch?v=7sgnIrOgsRo",
+      "title": "8월 8일에 전구간 개통된 세계 최초 5개섬 해상트레킹 /국내여행 추천 /여름여행지 /군산여행 /섬여행 추천 #8월국내여행지추천 #국내여행 #여름여행지",
+      "description": "#고군산군도섬잇길 #군산여행 #섬여행 #섬여행추천 #섬여행가볼만한곳 #군산섬여행 #서해여행 #군산가볼만한곳 #전북여행 #전북가볼만한곳 #섬트레킹 #걷기좋은길 #둘레길가볼만한곳 #트레킹명소 #koreatravelguide",
+      "channelId": "UCZsg1rkojx4OXb30xjtTRww",
+      "channelTitle": "Jay쌤여행TV",
+      "publishedAt": "2026-08-08T11:00:05Z",
+      "thumbnail": "https://i.ytimg.com/vi/7sgnIrOgsRo/mqdefault.jpg",
+      "tags": [
+        "군산 여행코스",
+        "고군산군도 섬잇길"
+      ],
+      "viewCount": 281509,
+      "likeCount": 2986,
+      "commentCount": 345,
+      "durationSeconds": 61,
+      "format": "쇼츠",
+      "ageDays": 4.2,
+      "viewsPerDay": 66351,
+      "momentum": 59356,
+      "likeRate": 1.06,
+      "commentRate": 0.12,
+      "matchedQueries": [
+        "국내여행"
+      ],
+      "marketScore": {
+        "total": 78,
+        "parts": {
+          "volume": 23,
+          "velocity": 30,
+          "likeRate": 4,
+          "commentRate": 2,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 82,
+        "parts": {
+          "momentum": 50,
+          "volume": 32
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 55600
+    },
+    {
+      "videoId": "syhNUAFYXcQ",
+      "url": "https://www.youtube.com/watch?v=syhNUAFYXcQ",
+      "title": "\"8월 8일, 대한민국에 이런 길이 태어났습니다 (세계 최고의 트레킹 코스?)\"",
+      "description": "8월 8일, 대한민국에 세계 어디에도 없는 트레킹 코스가 태어났습니다.\n\n배를 타지 않으면 갈 수 없는 섬, 고군산군도.\n장자도에서 배를 타고 방축도에 도착해\n방축도 → 광대도 → 명도 → 보농도 → 말도까지\n다섯 개의 섬을 해상 인도교로 건너는 길이 오늘 임시 개통했습니다.\n\n가는 길",
+      "channelId": "UCJ7Yi_qOky-oDSB3CBiHhXA",
+      "channelTitle": "김영수TV-여행과 산행",
+      "publishedAt": "2026-08-10T10:00:31Z",
+      "thumbnail": "https://i.ytimg.com/vi/syhNUAFYXcQ/mqdefault.jpg",
+      "tags": [
+        "고군산 섬잇길",
+        "고군산섬잇길",
+        "군산 고군산 섬잇길",
+        "군산여행",
+        "군산 가볼만한곳",
+        "군산여행코스",
+        "고군산군도",
+        "고군산군도 여행",
+        "고군산군도 트레킹",
+        "섬잇길",
+        "섬트레킹",
+        "섬여행"
+      ],
+      "viewCount": 281022,
+      "likeCount": 4841,
+      "commentCount": 243,
+      "durationSeconds": 1133,
+      "format": "롱폼",
+      "ageDays": 2.3,
+      "viewsPerDay": 123035,
+      "momentum": 100939,
+      "likeRate": 1.72,
+      "commentRate": 0.09,
+      "matchedQueries": [
+        "여행 코스"
+      ],
+      "marketScore": {
+        "total": 80,
+        "parts": {
+          "volume": 23,
+          "velocity": 30,
+          "likeRate": 6,
+          "commentRate": 1,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 87,
+        "parts": {
+          "momentum": 56,
+          "volume": 31
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 249000
+    }
+  ],
+  "topScoredVideos": [
+    {
+      "videoId": "5X-7Env4phc",
+      "url": "https://www.youtube.com/watch?v=5X-7Env4phc",
+      "title": "[EN] 여행지는 돌림판에, 길은 지도책에 맡겨 둔 4형제의 NO내비 국도 여행｜풍향중 EP.1｜2026 썸머로드 시리즈 #유재석 #이성민 #지석진 #양세찬",
+      "description": "고속도로는 못 타고 국도로만 가야 하는데, 내비도 없이 의지할 건 지도책뿐…! 아니 근데 잠깐, 우리 여행지는 어디..야? ⬆️ 영상에서 확인 ⬆️\n\n📢 뜬뜬 교통 안내 방송입니다 ⚠️\n본 영상은 내비 없이 국도만 달리는 4형제의 길바닥 여정을 담고 있습니다. 주행 중 잦은 경로 이탈",
+      "channelId": "UCDNvRZRgvkBTUkQzFoT_8rA",
+      "channelTitle": "뜬뜬 DdeunDdeun",
+      "publishedAt": "2026-08-01T00:00:07Z",
+      "thumbnail": "https://i.ytimg.com/vi/5X-7Env4phc/mqdefault.jpg",
+      "tags": [
+        "뜬뜬",
+        "핑계고",
+        "핑계고 여행",
+        "유재석",
+        "이성민",
+        "지석진",
+        "어쩔 수가 없다",
+        "양세찬",
+        "쑥쑥",
+        "여행 예능",
+        "틀어놓기 좋은",
+        "틀어두기 좋은"
+      ],
+      "viewCount": 7613976,
+      "likeCount": 77366,
+      "commentCount": 6092,
+      "durationSeconds": 6912,
+      "format": "롱폼",
+      "ageDays": 11.7,
+      "viewsPerDay": 650710,
+      "momentum": 592157,
+      "likeRate": 1.02,
+      "commentRate": 0.08,
+      "matchedQueries": [
+        "국내여행"
+      ],
+      "marketScore": {
+        "total": 79,
+        "parts": {
+          "volume": 25,
+          "velocity": 30,
+          "likeRate": 4,
+          "commentRate": 1,
+          "recency": 19
+        }
+      },
+      "rankScore": {
+        "total": 100,
+        "parts": {
+          "momentum": 60,
+          "volume": 40
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 3320000
+    },
+    {
+      "videoId": "-O4FBd28Axw",
+      "url": "https://www.youtube.com/watch?v=-O4FBd28Axw",
+      "title": "해외여행 갔다와서 가장 먼저 찾은 한국음식",
+      "description": "",
+      "channelId": "UCzelf3qtV8AdUXeoybhARsA",
+      "channelTitle": "요건 인정이지",
+      "publishedAt": "2026-08-11T10:08:03Z",
+      "thumbnail": "https://i.ytimg.com/vi/-O4FBd28Axw/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 963532,
+      "likeCount": 14041,
+      "commentCount": 645,
+      "durationSeconds": 35,
+      "format": "쇼츠",
+      "ageDays": 1.3,
+      "viewsPerDay": 753438,
+      "momentum": 541661,
+      "likeRate": 1.46,
+      "commentRate": 0.07,
+      "matchedQueries": [
+        "해외여행"
+      ],
+      "marketScore": {
+        "total": 81,
+        "parts": {
+          "volume": 25,
+          "velocity": 30,
+          "likeRate": 5,
+          "commentRate": 1,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 97,
+        "parts": {
+          "momentum": 59,
+          "volume": 38
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 162000
+    },
+    {
+      "videoId": "f_-5ZRgLYoI",
+      "url": "https://www.youtube.com/watch?v=f_-5ZRgLYoI",
+      "title": "희비 갈린 국내 대표 관광지 \"제주보단 부산이지\" 무슨 일? / KNN",
+      "description": "#knn뉴스 #제주 #부산\n\n같은 국내 대표 관광지인데 분위기가 심상치 않습니다.\n\n\n\n제보\n카톡 : 'KNN' 친구추가\n메일 : knnstorynews@gmail.com\n          adknn@knn.co.kr\n\n홈페이지 www.knn.co.kr\n검색 : KNN",
+      "channelId": "UC1ifSsWUG241rRfK0ezYCgA",
+      "channelTitle": "KNN NEWS",
+      "publishedAt": "2026-08-07T10:00:05Z",
+      "thumbnail": "https://i.ytimg.com/vi/f_-5ZRgLYoI/mqdefault.jpg",
+      "tags": [
+        "knn뉴스",
+        "e뉴스",
+        "국내",
+        "대표",
+        "관광지",
+        "관광객",
+        "외국인",
+        "방문",
+        "도시",
+        "지역",
+        "관광",
+        "여행"
+      ],
+      "viewCount": 882673,
+      "likeCount": 4451,
+      "commentCount": 3218,
+      "durationSeconds": 136,
+      "format": "롱폼",
+      "ageDays": 5.3,
+      "viewsPerDay": 167034,
+      "momentum": 152596,
+      "likeRate": 0.5,
+      "commentRate": 0.36,
+      "matchedQueries": [
+        "제주도 여행"
+      ],
+      "marketScore": {
+        "total": 81,
+        "parts": {
+          "volume": 25,
+          "velocity": 30,
+          "likeRate": 2,
+          "commentRate": 5,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 96,
+        "parts": {
+          "momentum": 58,
+          "volume": 38
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 1300000
+    },
+    {
+      "videoId": "2jtzzEdiz6A",
+      "url": "https://www.youtube.com/watch?v=2jtzzEdiz6A",
+      "title": "결국 못 참고 또 왔습니다.. 모두가 한국인을 미친듯이 반겨주는 아름다운 남미 외딴 섬",
+      "description": "인스타: https://www.instagram.com/jaehocance/\n비즈니스 문의: jaehlee36@gmail.com",
+      "channelId": "UC602PUDJWt8AKCx3CFjJtTA",
+      "channelTitle": "재호캉스",
+      "publishedAt": "2026-08-07T11:18:45Z",
+      "thumbnail": "https://i.ytimg.com/vi/2jtzzEdiz6A/mqdefault.jpg",
+      "tags": [
+        "세계여행",
+        "해외여행",
+        "여행유튜브",
+        "여행유튜버",
+        "제호캉스",
+        "베네수엘라 여행",
+        "카라카스 여행",
+        "베네수엘라 지진",
+        "베네주엘라",
+        "베네수엘라 마두로",
+        "베네수엘라 모로코이",
+        "베네수엘라 외딴섬"
+      ],
+      "viewCount": 695524,
+      "likeCount": 9579,
+      "commentCount": 518,
+      "durationSeconds": 3470,
+      "format": "롱폼",
+      "ageDays": 5.2,
+      "viewsPerDay": 132994,
+      "momentum": 121388,
+      "likeRate": 1.38,
+      "commentRate": 0.07,
+      "matchedQueries": [
+        "해외여행"
+      ],
+      "marketScore": {
+        "total": 80,
+        "parts": {
+          "volume": 24,
+          "velocity": 30,
+          "likeRate": 5,
+          "commentRate": 1,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 94,
+        "parts": {
+          "momentum": 57,
+          "volume": 37
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 402000
+    },
+    {
+      "videoId": "OkYjXAlzwUE",
+      "url": "https://www.youtube.com/watch?v=OkYjXAlzwUE",
+      "title": "일본여행 고수들은 전부 이렇게 합니다ㄷㄷ",
+      "description": "",
+      "channelId": "UCao4qHQPcLZSRbRdsrrFRYw",
+      "channelTitle": "짤컷",
+      "publishedAt": "2026-08-12T08:00:00Z",
+      "thumbnail": "https://i.ytimg.com/vi/OkYjXAlzwUE/mqdefault.jpg",
+      "tags": [
+        "꿀팁",
+        "일본",
+        "여행"
+      ],
+      "viewCount": 322786,
+      "likeCount": 6346,
+      "commentCount": 87,
+      "durationSeconds": 37,
+      "format": "쇼츠",
+      "ageDays": 0.4,
+      "viewsPerDay": 877682,
+      "momentum": 371971,
+      "likeRate": 1.97,
+      "commentRate": 0.03,
+      "matchedQueries": [
+        "일본 여행"
+      ],
+      "marketScore": {
+        "total": 81,
+        "parts": {
+          "volume": 23,
+          "velocity": 30,
+          "likeRate": 7,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 92,
+        "parts": {
+          "momentum": 59,
+          "volume": 33
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 2120000
+    },
+    {
+      "videoId": "EJD93qLJjzU",
+      "url": "https://www.youtube.com/watch?v=EJD93qLJjzU",
+      "title": "연차없이 떠나는 해외여행, 시즌2 첫 여행지 공개 I 곽범 I 연차없이 어떡행2 EP.0",
+      "description": "직장인 실험쥐 곽범이 돌아왔다✈️\n그런데 연차없이 어디를 간다고...?\n\n자극적이고 짜릿한 곽범의 연차없는 해외 여행기,\n연차없이 어떡행 시즌2\n8/13일(목) 오후 7시 출발합니다!\n\n#연차없이어떡행 #곽범\n#NoPTO #Trip #Kwakbeom\n\n【Original Content b",
+      "channelId": "UCmva1CD0owDo2nul7CJT_Sw",
+      "channelTitle": "때때때 TTT",
+      "publishedAt": "2026-08-06T10:00:00Z",
+      "thumbnail": "https://i.ytimg.com/vi/EJD93qLJjzU/mqdefault.jpg",
+      "tags": [
+        "연차없이 어떡행",
+        "어떡행",
+        "연차",
+        "곽범",
+        "개그맨 곽범",
+        "여행"
+      ],
+      "viewCount": 563634,
+      "likeCount": 3504,
+      "commentCount": 340,
+      "durationSeconds": 57,
+      "format": "쇼츠",
+      "ageDays": 6.3,
+      "viewsPerDay": 89687,
+      "momentum": 83077,
+      "likeRate": 0.62,
+      "commentRate": 0.06,
+      "matchedQueries": [
+        "해외여행"
+      ],
+      "marketScore": {
+        "total": 77,
+        "parts": {
+          "volume": 24,
+          "velocity": 30,
+          "likeRate": 2,
+          "commentRate": 1,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 89,
+        "parts": {
+          "momentum": 53,
+          "volume": 36
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 267000
+    },
+    {
+      "videoId": "iFLL-5caXfI",
+      "url": "https://www.youtube.com/watch?v=iFLL-5caXfI",
+      "title": "하루 만원에 돈 걱정 없이 여행할 수 있는 미얀마 입국기",
+      "description": "미얀마 첫번째 영상입니다!\n\n\n\n➖\n#여행유튜버 #미얀마 #해외여행 \n➖\n📸 Instagram : https://www.instagram.com/sanghyuk1ee/\n📝 Blog : https://blog.naver.com/sanghyuk1ee\n➖\n📷 Camera\nFujifilm",
+      "channelId": "UC69z_1ZtKQjG5fa-_sKBBfg",
+      "channelTitle": "상가의 안녕히살아보기",
+      "publishedAt": "2026-08-08T00:00:26Z",
+      "thumbnail": "https://i.ytimg.com/vi/iFLL-5caXfI/mqdefault.jpg",
+      "tags": [
+        "여행유튜브",
+        "세계여행",
+        "오지여행",
+        "해외여행",
+        "여행유튜버",
+        "중남미여행",
+        "남미여행"
+      ],
+      "viewCount": 470562,
+      "likeCount": 11184,
+      "commentCount": 683,
+      "durationSeconds": 2713,
+      "format": "롱폼",
+      "ageDays": 4.7,
+      "viewsPerDay": 100102,
+      "momentum": 90479,
+      "likeRate": 2.38,
+      "commentRate": 0.15,
+      "matchedQueries": [
+        "해외여행"
+      ],
+      "marketScore": {
+        "total": 84,
+        "parts": {
+          "volume": 24,
+          "velocity": 30,
+          "likeRate": 9,
+          "commentRate": 2,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 89,
+        "parts": {
+          "momentum": 54,
+          "volume": 35
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 421000
+    },
+    {
+      "videoId": "-QTwHbLKpb8",
+      "url": "https://www.youtube.com/watch?v=-QTwHbLKpb8",
+      "title": "삼남매의 제주도 여행",
+      "description": "제주 오기 전부터 꼭 가보고 싶었던 고국수🍜\n대표 메뉴인 고기국수를 먹어봤는데, 진한 육수와 푸짐한 고기가 왜 많은 사람들이 찾는지 알겠습니다.\n한 그릇 비우고 나니 제주 여행 첫 끼로 왜 추천하는지 제대로 이해했습니다.\n다음 제주 여행에도 다시 찾게 될 것 같은 고국수, 기대 이상입",
+      "channelId": "UC1Rz7a_DWtsE9cQwSyElE0Q",
+      "channelTitle": "인생84",
+      "publishedAt": "2026-07-10T09:00:26Z",
+      "thumbnail": "https://i.ytimg.com/vi/-QTwHbLKpb8/mqdefault.jpg",
+      "tags": [
+        "기안84",
+        "기안팔사",
+        "기안",
+        "김희민",
+        "복학왕",
+        "패션왕",
+        "나혼자산다",
+        "태어난김에세계일주",
+        "기안장",
+        "나혼산",
+        "회춘",
+        "노병가"
+      ],
+      "viewCount": 2807679,
+      "likeCount": 35846,
+      "commentCount": 1606,
+      "durationSeconds": 1511,
+      "format": "롱폼",
+      "ageDays": 33.3,
+      "viewsPerDay": 84249,
+      "momentum": 59252,
+      "likeRate": 1.28,
+      "commentRate": 0.06,
+      "matchedQueries": [
+        "제주도 여행"
+      ],
+      "marketScore": {
+        "total": 75,
+        "parts": {
+          "volume": 25,
+          "velocity": 30,
+          "likeRate": 5,
+          "commentRate": 1,
+          "recency": 14
+        }
+      },
+      "rankScore": {
+        "total": 89,
+        "parts": {
+          "momentum": 49,
+          "volume": 40
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 1700000
+    },
+    {
+      "videoId": "SeLOndN5EFM",
+      "url": "https://www.youtube.com/watch?v=SeLOndN5EFM",
+      "title": "더 이상 \"그냥 친구\"가 아닌 일본 여사친과 오사카 여행",
+      "description": "#여행 #여행유튜버 #세계여행 \n\n일본 오사카에서 \n카나미와 함께하는 마지막 여행이 너무 아쉽지만\n스스로에게 부끄럽지 않은 \n각자의 삶을 열심히 살아가아 가다보면\n분명 또 언젠가 \n웃으며 회포를 풀어 가는 \n다음의 만남이 있을거라 생각합니다..ㅎ\n\n🌎Contact\nhttps://ins",
+      "channelId": "UChFf1JrHBdsy3LS3m9cX89Q",
+      "channelTitle": "시도 sido",
+      "publishedAt": "2026-08-09T10:00:03Z",
+      "thumbnail": "https://i.ytimg.com/vi/SeLOndN5EFM/mqdefault.jpg",
+      "tags": [
+        "여행",
+        "여행유튜버",
+        "세계여행",
+        "세계여행 유튜버",
+        "일본",
+        "일본 여행",
+        "일본 여사친",
+        "일본 여자",
+        "오사카",
+        "오사카 여행",
+        "해외여행",
+        "여행 브이로그"
+      ],
+      "viewCount": 361873,
+      "likeCount": 11829,
+      "commentCount": 1214,
+      "durationSeconds": 1336,
+      "format": "롱폼",
+      "ageDays": 3.3,
+      "viewsPerDay": 110179,
+      "momentum": 95622,
+      "likeRate": 3.27,
+      "commentRate": 0.34,
+      "matchedQueries": [
+        "일본 여행"
+      ],
+      "marketScore": {
+        "total": 90,
+        "parts": {
+          "volume": 23,
+          "velocity": 30,
+          "likeRate": 12,
+          "commentRate": 4,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 89,
+        "parts": {
+          "momentum": 55,
+          "volume": 34
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 262000
+    },
+    {
+      "videoId": "jqUXWwRRZ4Y",
+      "url": "https://www.youtube.com/watch?v=jqUXWwRRZ4Y",
+      "title": "뭐지?? 배고파서 일본 식당에 들어가자, 한국인을 본 일본인 반응",
+      "description": "지난번 교토식당에서 식사를 마친 후 지친 몸을 이끌고 다시 오사카로 올라온 두 사람.  밤이 깊고 저녁을 먹으러 한국인과 중국인이 식당에 가려고 하자, 생각지도 못했던 난관에 부딪히게 되는데요. 과연 이번에 오사카에서는 어떤 일이 일어났을지 지금 확인해 보세요! \n\n#오사카여행 #일본여",
+      "channelId": "UCg3YdmrYGa2O1IySuWvBT0w",
+      "channelTitle": "CKOONY",
+      "publishedAt": "2026-08-08T08:38:43Z",
+      "thumbnail": "https://i.ytimg.com/vi/jqUXWwRRZ4Y/mqdefault.jpg",
+      "tags": [
+        "외국인",
+        "외국인반응",
+        "한국",
+        "외국인 채널",
+        "외국인 반응 채널",
+        "외국인채널",
+        "외국인 먹방",
+        "해외",
+        "먹방",
+        "리액션",
+        "일본인 반응",
+        "일본"
+      ],
+      "viewCount": 411903,
+      "likeCount": 11331,
+      "commentCount": 970,
+      "durationSeconds": 1262,
+      "format": "롱폼",
+      "ageDays": 4.3,
+      "viewsPerDay": 94889,
+      "momentum": 85088,
+      "likeRate": 2.75,
+      "commentRate": 0.24,
+      "matchedQueries": [
+        "일본 여행"
+      ],
+      "marketScore": {
+        "total": 87,
+        "parts": {
+          "volume": 23,
+          "velocity": 30,
+          "likeRate": 10,
+          "commentRate": 3,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 88,
+        "parts": {
+          "momentum": 54,
+          "volume": 34
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 672000
+    },
+    {
+      "videoId": "MzQmvKtjqL4",
+      "url": "https://www.youtube.com/watch?v=MzQmvKtjqL4",
+      "title": "친구들이랑 밤 새고 일본가서 폭염 처@맞는 브이로그",
+      "description": "[선착순 특가] 제 애착 가방인  '패리티 럭색'!!!!!!\n너무 많이들 좋아해주셔서\n할인기간 추가 연장했습니다!!!!! 👉 https://m.site.naver.com/2dDcb\n\n🔥[EVENT 1]\n- 세트 구매 시, 추가 할인!\n- 모든 구성 무료 배송!\n\n🎁[EVENT 2]",
+      "channelId": "UC0JzvO3F90Bur0_B2VfvUIQ",
+      "channelTitle": "이자반",
+      "publishedAt": "2026-08-02T10:00:02Z",
+      "thumbnail": "https://i.ytimg.com/vi/MzQmvKtjqL4/mqdefault.jpg",
+      "tags": [
+        "이자반",
+        "일본",
+        "이자반 일본",
+        "일본여행",
+        "도쿄",
+        "도쿄여행",
+        "도쿄맛집",
+        "일본브이로그",
+        "일본여행브이로그",
+        "브이로그",
+        "vlog",
+        "japan"
+      ],
+      "viewCount": 723150,
+      "likeCount": 11327,
+      "commentCount": 1225,
+      "durationSeconds": 1898,
+      "format": "롱폼",
+      "ageDays": 10.3,
+      "viewsPerDay": 70315,
+      "momentum": 64661,
+      "likeRate": 1.57,
+      "commentRate": 0.17,
+      "matchedQueries": [
+        "일본 여행"
+      ],
+      "marketScore": {
+        "total": 82,
+        "parts": {
+          "volume": 24,
+          "velocity": 30,
+          "likeRate": 6,
+          "commentRate": 2,
+          "recency": 19
+        }
+      },
+      "rankScore": {
+        "total": 88,
+        "parts": {
+          "momentum": 51,
+          "volume": 37
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 413000
+    },
+    {
+      "videoId": "Z9SsmK2YgVU",
+      "url": "https://www.youtube.com/watch?v=Z9SsmK2YgVU",
+      "title": "서양인들에게 유명하지만 한국인은 잘 모르는 동남아 최고의 휴양지",
+      "description": "4년 전에 갔다가 너무 좋아서 꼭 한번 다시 오고싶다고 했었는데\n결국 다시 방문했습니다.\n예전에 제가 느꼈던 그 후리후리함은 많이 사라졌지만\n결국 모든 건 변하고 발전하는 게 세상의 이치인 것 같습니다.\n감사합니다.\n\n\n\n카메라 : DJI 오즈모 액션4, iPhone 17pro\n편집 프",
+      "channelId": "UCxU8QX7IRRIW0VLuoWWoxbw",
+      "channelTitle": "여행가 제이 [Traveler JAY]",
+      "publishedAt": "2026-08-07T08:00:22Z",
+      "thumbnail": "https://i.ytimg.com/vi/Z9SsmK2YgVU/mqdefault.jpg",
+      "tags": [
+        "브이로그",
+        "vlog",
+        "휴식",
+        "휴가",
+        "여행",
+        "세계여행",
+        "해외 정착",
+        "필리핀",
+        "시아르가오",
+        "휴양지",
+        "피서",
+        "서핑"
+      ],
+      "viewCount": 464354,
+      "likeCount": 6610,
+      "commentCount": 312,
+      "durationSeconds": 1571,
+      "format": "롱폼",
+      "ageDays": 5.4,
+      "viewsPerDay": 86512,
+      "momentum": 79140,
+      "likeRate": 1.42,
+      "commentRate": 0.07,
+      "matchedQueries": [
+        "해외여행"
+      ],
+      "marketScore": {
+        "total": 80,
+        "parts": {
+          "volume": 24,
+          "velocity": 30,
+          "likeRate": 5,
+          "commentRate": 1,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 87,
+        "parts": {
+          "momentum": 52,
+          "volume": 35
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 818000
+    },
+    {
+      "videoId": "IWHir0mYfQ8",
+      "url": "https://www.youtube.com/watch?v=IWHir0mYfQ8",
+      "title": "오키나와에서 느끼는 한국에 대한 관심 현상황",
+      "description": "안녕하세요. 일본 오키나와 나고에 왔습니다.\n\n#오키나와여행 #일본여행 #여행브이로그 \n\n✔️촬영 카메라 : 오즈모 포켓3, 오즈모 액션5, 아이폰16\n✔️음원 : Artlist, 브금대통령(BGM president)\nhttps://bit.ly/jebeop\nhttps://youtu.be",
+      "channelId": "UCpI2EG2cSDzov_OeJp9bR3g",
+      "channelTitle": "김제법",
+      "publishedAt": "2026-08-11T10:45:27Z",
+      "thumbnail": "https://i.ytimg.com/vi/IWHir0mYfQ8/mqdefault.jpg",
+      "tags": [
+        "여행 브이로그",
+        "여행 유튜버",
+        "여행유튜브",
+        "여행유튜버",
+        "일본어공부",
+        "일본 브이로그",
+        "일본 혼자 여행",
+        "혼자 여행",
+        "세계 여행",
+        "일본 혼자",
+        "일본 이자카야",
+        "일본 현지 이자카야"
+      ],
+      "viewCount": 231026,
+      "likeCount": 5497,
+      "commentCount": 596,
+      "durationSeconds": 1522,
+      "format": "롱폼",
+      "ageDays": 1.3,
+      "viewsPerDay": 184397,
+      "momentum": 131798,
+      "likeRate": 2.38,
+      "commentRate": 0.26,
+      "matchedQueries": [
+        "일본 여행"
+      ],
+      "marketScore": {
+        "total": 85,
+        "parts": {
+          "volume": 22,
+          "velocity": 30,
+          "likeRate": 9,
+          "commentRate": 3,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 87,
+        "parts": {
+          "momentum": 57,
+          "volume": 30
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 211000
+    },
+    {
+      "videoId": "syhNUAFYXcQ",
+      "url": "https://www.youtube.com/watch?v=syhNUAFYXcQ",
+      "title": "\"8월 8일, 대한민국에 이런 길이 태어났습니다 (세계 최고의 트레킹 코스?)\"",
+      "description": "8월 8일, 대한민국에 세계 어디에도 없는 트레킹 코스가 태어났습니다.\n\n배를 타지 않으면 갈 수 없는 섬, 고군산군도.\n장자도에서 배를 타고 방축도에 도착해\n방축도 → 광대도 → 명도 → 보농도 → 말도까지\n다섯 개의 섬을 해상 인도교로 건너는 길이 오늘 임시 개통했습니다.\n\n가는 길",
+      "channelId": "UCJ7Yi_qOky-oDSB3CBiHhXA",
+      "channelTitle": "김영수TV-여행과 산행",
+      "publishedAt": "2026-08-10T10:00:31Z",
+      "thumbnail": "https://i.ytimg.com/vi/syhNUAFYXcQ/mqdefault.jpg",
+      "tags": [
+        "고군산 섬잇길",
+        "고군산섬잇길",
+        "군산 고군산 섬잇길",
+        "군산여행",
+        "군산 가볼만한곳",
+        "군산여행코스",
+        "고군산군도",
+        "고군산군도 여행",
+        "고군산군도 트레킹",
+        "섬잇길",
+        "섬트레킹",
+        "섬여행"
+      ],
+      "viewCount": 281022,
+      "likeCount": 4841,
+      "commentCount": 243,
+      "durationSeconds": 1133,
+      "format": "롱폼",
+      "ageDays": 2.3,
+      "viewsPerDay": 123035,
+      "momentum": 100939,
+      "likeRate": 1.72,
+      "commentRate": 0.09,
+      "matchedQueries": [
+        "여행 코스"
+      ],
+      "marketScore": {
+        "total": 80,
+        "parts": {
+          "volume": 23,
+          "velocity": 30,
+          "likeRate": 6,
+          "commentRate": 1,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 87,
+        "parts": {
+          "momentum": 56,
+          "volume": 31
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 249000
+    },
+    {
+      "videoId": "7sgnIrOgsRo",
+      "url": "https://www.youtube.com/watch?v=7sgnIrOgsRo",
+      "title": "8월 8일에 전구간 개통된 세계 최초 5개섬 해상트레킹 /국내여행 추천 /여름여행지 /군산여행 /섬여행 추천 #8월국내여행지추천 #국내여행 #여름여행지",
+      "description": "#고군산군도섬잇길 #군산여행 #섬여행 #섬여행추천 #섬여행가볼만한곳 #군산섬여행 #서해여행 #군산가볼만한곳 #전북여행 #전북가볼만한곳 #섬트레킹 #걷기좋은길 #둘레길가볼만한곳 #트레킹명소 #koreatravelguide",
+      "channelId": "UCZsg1rkojx4OXb30xjtTRww",
+      "channelTitle": "Jay쌤여행TV",
+      "publishedAt": "2026-08-08T11:00:05Z",
+      "thumbnail": "https://i.ytimg.com/vi/7sgnIrOgsRo/mqdefault.jpg",
+      "tags": [
+        "군산 여행코스",
+        "고군산군도 섬잇길"
+      ],
+      "viewCount": 281509,
+      "likeCount": 2986,
+      "commentCount": 345,
+      "durationSeconds": 61,
+      "format": "쇼츠",
+      "ageDays": 4.2,
+      "viewsPerDay": 66351,
+      "momentum": 59356,
+      "likeRate": 1.06,
+      "commentRate": 0.12,
+      "matchedQueries": [
+        "국내여행"
+      ],
+      "marketScore": {
+        "total": 78,
+        "parts": {
+          "volume": 23,
+          "velocity": 30,
+          "likeRate": 4,
+          "commentRate": 2,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 82,
+        "parts": {
+          "momentum": 50,
+          "volume": 32
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 55600
+    },
+    {
+      "videoId": "rDeESouB_cs",
+      "url": "https://www.youtube.com/watch?v=rDeESouB_cs",
+      "title": "갑자기 쏟아진 집중호우… 캠핑카로 계곡 노지캠핑 중 긴급대피했습니다",
+      "description": "#캠핑카 #노지캠핑 #우중캠핑 \n─────────────────────\n📧협업 문의 : showddary_suya@naver.com\n💌후원하기 : 하나은행 마수연 151-910341-53707\n─────────────────────",
+      "channelId": "UCLaSjyJOedN2kONlILF_1Jw",
+      "channelTitle": "쑈따리 Showddary",
+      "publishedAt": "2026-08-08T09:00:08Z",
+      "thumbnail": "https://i.ytimg.com/vi/rDeESouB_cs/mqdefault.jpg",
+      "tags": [
+        "캠핑카",
+        "우중캠핑",
+        "폭우캠핑",
+        "차박",
+        "노지캠핑",
+        "노지차박",
+        "경기도노지",
+        "계곡노지",
+        "계곡캠핑",
+        "캠핑브이로그"
+      ],
+      "viewCount": 294862,
+      "likeCount": 4878,
+      "commentCount": 311,
+      "durationSeconds": 1548,
+      "format": "롱폼",
+      "ageDays": 4.3,
+      "viewsPerDay": 68160,
+      "momentum": 61098,
+      "likeRate": 1.65,
+      "commentRate": 0.11,
+      "matchedQueries": [
+        "캠핑"
+      ],
+      "marketScore": {
+        "total": 80,
+        "parts": {
+          "volume": 23,
+          "velocity": 30,
+          "likeRate": 6,
+          "commentRate": 1,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 82,
+        "parts": {
+          "momentum": 50,
+          "volume": 32
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 135000
+    },
+    {
+      "videoId": "1_anpSDHvNw",
+      "url": "https://www.youtube.com/watch?v=1_anpSDHvNw",
+      "title": "모캠 철수 같이 해요☀️⛺️ 🛵 #슈퍼커브 #모토캠핑 #브이로그#motocamping #supercub",
+      "description": "",
+      "channelId": "UCiUEPXcGqogRaiPpqwKK6NQ",
+      "channelTitle": "민초MINCHO",
+      "publishedAt": "2026-08-10T11:35:24Z",
+      "thumbnail": "https://i.ytimg.com/vi/1_anpSDHvNw/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 192176,
+      "likeCount": 857,
+      "commentCount": 108,
+      "durationSeconds": 136,
+      "format": "롱폼",
+      "ageDays": 2.2,
+      "viewsPerDay": 86636,
+      "momentum": 70700,
+      "likeRate": 0.45,
+      "commentRate": 0.06,
+      "matchedQueries": [
+        "캠핑"
+      ],
+      "marketScore": {
+        "total": 74,
+        "parts": {
+          "volume": 22,
+          "velocity": 30,
+          "likeRate": 2,
+          "commentRate": 1,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 81,
+        "parts": {
+          "momentum": 52,
+          "volume": 29
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 100000
+    },
+    {
+      "videoId": "jpgUBs6h8QQ",
+      "url": "https://www.youtube.com/watch?v=jpgUBs6h8QQ",
+      "title": "일본 여행 다녀온 한국인들이 착각하는 일본의 실제 현실..?!ㅣ국경없는 수다 EP.112",
+      "description": "오늘 영국에서 온 피터, 일본에서 온 나나세, 쿠미, 마리코를 만났습니다!\n한국인들이 자주 찾는 일본, 그런데 이제 예전처럼 맘 편히 여행 가지 못할 수도 있다고요..?\n일본에 무슨 변화가 생긴 걸까요?\n\n00:00 하이라이트\n02:20 이제 일본 여행가기 힘들어졌다는 이유?!\n08:4",
+      "channelId": "UC9HNi_aAXBgpI2zhibOAfAA",
+      "channelTitle": "어썸코리아 Awesome Korea",
+      "publishedAt": "2026-07-04T01:30:28Z",
+      "thumbnail": "https://i.ytimg.com/vi/jpgUBs6h8QQ/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 1100145,
+      "likeCount": 14919,
+      "commentCount": 1960,
+      "durationSeconds": 2064,
+      "format": "롱폼",
+      "ageDays": 39.6,
+      "viewsPerDay": 27755,
+      "momentum": 17685,
+      "likeRate": 1.36,
+      "commentRate": 0.18,
+      "matchedQueries": [
+        "일본 여행"
+      ],
+      "marketScore": {
+        "total": 75,
+        "parts": {
+          "volume": 25,
+          "velocity": 30,
+          "likeRate": 5,
+          "commentRate": 2,
+          "recency": 13
+        }
+      },
+      "rankScore": {
+        "total": 80,
+        "parts": {
+          "momentum": 41,
+          "volume": 39
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 1280000
+    },
+    {
+      "videoId": "jCymAz3FiW4",
+      "url": "https://www.youtube.com/watch?v=jCymAz3FiW4",
+      "title": "목포는 도시 전체가 맛집이당껭... #전라도여행 #국내여행 #여행룩",
+      "description": "",
+      "channelId": "UCt-l2yhviDXG3oWiWjeHaFw",
+      "channelTitle": "루피타 Lupita",
+      "publishedAt": "2026-08-07T06:43:53Z",
+      "thumbnail": "https://i.ytimg.com/vi/jCymAz3FiW4/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 254269,
+      "likeCount": 2491,
+      "commentCount": 71,
+      "durationSeconds": 88,
+      "format": "롱폼",
+      "ageDays": 5.4,
+      "viewsPerDay": 46908,
+      "momentum": 42946,
+      "likeRate": 0.98,
+      "commentRate": 0.03,
+      "matchedQueries": [
+        "국내여행"
+      ],
+      "marketScore": {
+        "total": 77,
+        "parts": {
+          "volume": 23,
+          "velocity": 30,
+          "likeRate": 4,
+          "commentRate": 0,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 79,
+        "parts": {
+          "momentum": 48,
+          "volume": 31
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 277000
+    },
+    {
+      "videoId": "GOB26nljYnU",
+      "url": "https://www.youtube.com/watch?v=GOB26nljYnU",
+      "title": "전단지 한 장에 이끌려 간 곳... 알고 보니 오픈 두 달 된 히로시마 대박집",
+      "description": "💌 면상구제 x 씨커트💌\n✔️구매링크 : https://getvenusshop.co.kr/shop_view?idx=589\n\n한국인 99%는 존재조차 모르는 1200년 역사의 깊은 산속 비밀 온천, \n유노야마 온천에 다녀왔습니다.\n북적이는 관광지를 벗어나 세월의 흔적을 그대로 간직한 ",
+      "channelId": "UCHgPjCdx8y9boMapE73iqCg",
+      "channelTitle": "면상구제",
+      "publishedAt": "2026-08-08T10:00:28Z",
+      "thumbnail": "https://i.ytimg.com/vi/GOB26nljYnU/mqdefault.jpg",
+      "tags": [
+        "히로시마맛집",
+        "히로시마여행",
+        "일본자동차여행",
+        "일본렌터카여행",
+        "일본소도시여행",
+        "일본시골여행",
+        "일본온천여행",
+        "히로시마온천"
+      ],
+      "viewCount": 191377,
+      "likeCount": 5105,
+      "commentCount": 973,
+      "durationSeconds": 2756,
+      "format": "롱폼",
+      "ageDays": 4.3,
+      "viewsPerDay": 44671,
+      "momentum": 40003,
+      "likeRate": 2.67,
+      "commentRate": 0.51,
+      "matchedQueries": [
+        "일본 여행"
+      ],
+      "marketScore": {
+        "total": 88,
+        "parts": {
+          "volume": 22,
+          "velocity": 30,
+          "likeRate": 10,
+          "commentRate": 6,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 77,
+        "parts": {
+          "momentum": 48,
+          "volume": 29
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 306000
+    }
+  ],
+  "risingVideos": [
+    {
+      "videoId": "5X-7Env4phc",
+      "url": "https://www.youtube.com/watch?v=5X-7Env4phc",
+      "title": "[EN] 여행지는 돌림판에, 길은 지도책에 맡겨 둔 4형제의 NO내비 국도 여행｜풍향중 EP.1｜2026 썸머로드 시리즈 #유재석 #이성민 #지석진 #양세찬",
+      "description": "고속도로는 못 타고 국도로만 가야 하는데, 내비도 없이 의지할 건 지도책뿐…! 아니 근데 잠깐, 우리 여행지는 어디..야? ⬆️ 영상에서 확인 ⬆️\n\n📢 뜬뜬 교통 안내 방송입니다 ⚠️\n본 영상은 내비 없이 국도만 달리는 4형제의 길바닥 여정을 담고 있습니다. 주행 중 잦은 경로 이탈",
+      "channelId": "UCDNvRZRgvkBTUkQzFoT_8rA",
+      "channelTitle": "뜬뜬 DdeunDdeun",
+      "publishedAt": "2026-08-01T00:00:07Z",
+      "thumbnail": "https://i.ytimg.com/vi/5X-7Env4phc/mqdefault.jpg",
+      "tags": [
+        "뜬뜬",
+        "핑계고",
+        "핑계고 여행",
+        "유재석",
+        "이성민",
+        "지석진",
+        "어쩔 수가 없다",
+        "양세찬",
+        "쑥쑥",
+        "여행 예능",
+        "틀어놓기 좋은",
+        "틀어두기 좋은"
+      ],
+      "viewCount": 7613976,
+      "likeCount": 77366,
+      "commentCount": 6092,
+      "durationSeconds": 6912,
+      "format": "롱폼",
+      "ageDays": 11.7,
+      "viewsPerDay": 650710,
+      "momentum": 592157,
+      "likeRate": 1.02,
+      "commentRate": 0.08,
+      "matchedQueries": [
+        "국내여행"
+      ],
+      "marketScore": {
+        "total": 79,
+        "parts": {
+          "volume": 25,
+          "velocity": 30,
+          "likeRate": 4,
+          "commentRate": 1,
+          "recency": 19
+        }
+      },
+      "rankScore": {
+        "total": 100,
+        "parts": {
+          "momentum": 60,
+          "volume": 40
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 3320000
+    },
+    {
+      "videoId": "-O4FBd28Axw",
+      "url": "https://www.youtube.com/watch?v=-O4FBd28Axw",
+      "title": "해외여행 갔다와서 가장 먼저 찾은 한국음식",
+      "description": "",
+      "channelId": "UCzelf3qtV8AdUXeoybhARsA",
+      "channelTitle": "요건 인정이지",
+      "publishedAt": "2026-08-11T10:08:03Z",
+      "thumbnail": "https://i.ytimg.com/vi/-O4FBd28Axw/mqdefault.jpg",
+      "tags": [],
+      "viewCount": 963532,
+      "likeCount": 14041,
+      "commentCount": 645,
+      "durationSeconds": 35,
+      "format": "쇼츠",
+      "ageDays": 1.3,
+      "viewsPerDay": 753438,
+      "momentum": 541661,
+      "likeRate": 1.46,
+      "commentRate": 0.07,
+      "matchedQueries": [
+        "해외여행"
+      ],
+      "marketScore": {
+        "total": 81,
+        "parts": {
+          "volume": 25,
+          "velocity": 30,
+          "likeRate": 5,
+          "commentRate": 1,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 97,
+        "parts": {
+          "momentum": 59,
+          "volume": 38
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 162000
+    },
+    {
+      "videoId": "f_-5ZRgLYoI",
+      "url": "https://www.youtube.com/watch?v=f_-5ZRgLYoI",
+      "title": "희비 갈린 국내 대표 관광지 \"제주보단 부산이지\" 무슨 일? / KNN",
+      "description": "#knn뉴스 #제주 #부산\n\n같은 국내 대표 관광지인데 분위기가 심상치 않습니다.\n\n\n\n제보\n카톡 : 'KNN' 친구추가\n메일 : knnstorynews@gmail.com\n          adknn@knn.co.kr\n\n홈페이지 www.knn.co.kr\n검색 : KNN",
+      "channelId": "UC1ifSsWUG241rRfK0ezYCgA",
+      "channelTitle": "KNN NEWS",
+      "publishedAt": "2026-08-07T10:00:05Z",
+      "thumbnail": "https://i.ytimg.com/vi/f_-5ZRgLYoI/mqdefault.jpg",
+      "tags": [
+        "knn뉴스",
+        "e뉴스",
+        "국내",
+        "대표",
+        "관광지",
+        "관광객",
+        "외국인",
+        "방문",
+        "도시",
+        "지역",
+        "관광",
+        "여행"
+      ],
+      "viewCount": 882673,
+      "likeCount": 4451,
+      "commentCount": 3218,
+      "durationSeconds": 136,
+      "format": "롱폼",
+      "ageDays": 5.3,
+      "viewsPerDay": 167034,
+      "momentum": 152596,
+      "likeRate": 0.5,
+      "commentRate": 0.36,
+      "matchedQueries": [
+        "제주도 여행"
+      ],
+      "marketScore": {
+        "total": 81,
+        "parts": {
+          "volume": 25,
+          "velocity": 30,
+          "likeRate": 2,
+          "commentRate": 5,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 96,
+        "parts": {
+          "momentum": 58,
+          "volume": 38
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 1300000
+    },
+    {
+      "videoId": "IWHir0mYfQ8",
+      "url": "https://www.youtube.com/watch?v=IWHir0mYfQ8",
+      "title": "오키나와에서 느끼는 한국에 대한 관심 현상황",
+      "description": "안녕하세요. 일본 오키나와 나고에 왔습니다.\n\n#오키나와여행 #일본여행 #여행브이로그 \n\n✔️촬영 카메라 : 오즈모 포켓3, 오즈모 액션5, 아이폰16\n✔️음원 : Artlist, 브금대통령(BGM president)\nhttps://bit.ly/jebeop\nhttps://youtu.be",
+      "channelId": "UCpI2EG2cSDzov_OeJp9bR3g",
+      "channelTitle": "김제법",
+      "publishedAt": "2026-08-11T10:45:27Z",
+      "thumbnail": "https://i.ytimg.com/vi/IWHir0mYfQ8/mqdefault.jpg",
+      "tags": [
+        "여행 브이로그",
+        "여행 유튜버",
+        "여행유튜브",
+        "여행유튜버",
+        "일본어공부",
+        "일본 브이로그",
+        "일본 혼자 여행",
+        "혼자 여행",
+        "세계 여행",
+        "일본 혼자",
+        "일본 이자카야",
+        "일본 현지 이자카야"
+      ],
+      "viewCount": 231026,
+      "likeCount": 5497,
+      "commentCount": 596,
+      "durationSeconds": 1522,
+      "format": "롱폼",
+      "ageDays": 1.3,
+      "viewsPerDay": 184397,
+      "momentum": 131798,
+      "likeRate": 2.38,
+      "commentRate": 0.26,
+      "matchedQueries": [
+        "일본 여행"
+      ],
+      "marketScore": {
+        "total": 85,
+        "parts": {
+          "volume": 22,
+          "velocity": 30,
+          "likeRate": 9,
+          "commentRate": 3,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 87,
+        "parts": {
+          "momentum": 57,
+          "volume": 30
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 211000
+    },
+    {
+      "videoId": "2jtzzEdiz6A",
+      "url": "https://www.youtube.com/watch?v=2jtzzEdiz6A",
+      "title": "결국 못 참고 또 왔습니다.. 모두가 한국인을 미친듯이 반겨주는 아름다운 남미 외딴 섬",
+      "description": "인스타: https://www.instagram.com/jaehocance/\n비즈니스 문의: jaehlee36@gmail.com",
+      "channelId": "UC602PUDJWt8AKCx3CFjJtTA",
+      "channelTitle": "재호캉스",
+      "publishedAt": "2026-08-07T11:18:45Z",
+      "thumbnail": "https://i.ytimg.com/vi/2jtzzEdiz6A/mqdefault.jpg",
+      "tags": [
+        "세계여행",
+        "해외여행",
+        "여행유튜브",
+        "여행유튜버",
+        "제호캉스",
+        "베네수엘라 여행",
+        "카라카스 여행",
+        "베네수엘라 지진",
+        "베네주엘라",
+        "베네수엘라 마두로",
+        "베네수엘라 모로코이",
+        "베네수엘라 외딴섬"
+      ],
+      "viewCount": 695524,
+      "likeCount": 9579,
+      "commentCount": 518,
+      "durationSeconds": 3470,
+      "format": "롱폼",
+      "ageDays": 5.2,
+      "viewsPerDay": 132994,
+      "momentum": 121388,
+      "likeRate": 1.38,
+      "commentRate": 0.07,
+      "matchedQueries": [
+        "해외여행"
+      ],
+      "marketScore": {
+        "total": 80,
+        "parts": {
+          "volume": 24,
+          "velocity": 30,
+          "likeRate": 5,
+          "commentRate": 1,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 94,
+        "parts": {
+          "momentum": 57,
+          "volume": 37
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 402000
+    },
+    {
+      "videoId": "syhNUAFYXcQ",
+      "url": "https://www.youtube.com/watch?v=syhNUAFYXcQ",
+      "title": "\"8월 8일, 대한민국에 이런 길이 태어났습니다 (세계 최고의 트레킹 코스?)\"",
+      "description": "8월 8일, 대한민국에 세계 어디에도 없는 트레킹 코스가 태어났습니다.\n\n배를 타지 않으면 갈 수 없는 섬, 고군산군도.\n장자도에서 배를 타고 방축도에 도착해\n방축도 → 광대도 → 명도 → 보농도 → 말도까지\n다섯 개의 섬을 해상 인도교로 건너는 길이 오늘 임시 개통했습니다.\n\n가는 길",
+      "channelId": "UCJ7Yi_qOky-oDSB3CBiHhXA",
+      "channelTitle": "김영수TV-여행과 산행",
+      "publishedAt": "2026-08-10T10:00:31Z",
+      "thumbnail": "https://i.ytimg.com/vi/syhNUAFYXcQ/mqdefault.jpg",
+      "tags": [
+        "고군산 섬잇길",
+        "고군산섬잇길",
+        "군산 고군산 섬잇길",
+        "군산여행",
+        "군산 가볼만한곳",
+        "군산여행코스",
+        "고군산군도",
+        "고군산군도 여행",
+        "고군산군도 트레킹",
+        "섬잇길",
+        "섬트레킹",
+        "섬여행"
+      ],
+      "viewCount": 281022,
+      "likeCount": 4841,
+      "commentCount": 243,
+      "durationSeconds": 1133,
+      "format": "롱폼",
+      "ageDays": 2.3,
+      "viewsPerDay": 123035,
+      "momentum": 100939,
+      "likeRate": 1.72,
+      "commentRate": 0.09,
+      "matchedQueries": [
+        "여행 코스"
+      ],
+      "marketScore": {
+        "total": 80,
+        "parts": {
+          "volume": 23,
+          "velocity": 30,
+          "likeRate": 6,
+          "commentRate": 1,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 87,
+        "parts": {
+          "momentum": 56,
+          "volume": 31
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 249000
+    },
+    {
+      "videoId": "SeLOndN5EFM",
+      "url": "https://www.youtube.com/watch?v=SeLOndN5EFM",
+      "title": "더 이상 \"그냥 친구\"가 아닌 일본 여사친과 오사카 여행",
+      "description": "#여행 #여행유튜버 #세계여행 \n\n일본 오사카에서 \n카나미와 함께하는 마지막 여행이 너무 아쉽지만\n스스로에게 부끄럽지 않은 \n각자의 삶을 열심히 살아가아 가다보면\n분명 또 언젠가 \n웃으며 회포를 풀어 가는 \n다음의 만남이 있을거라 생각합니다..ㅎ\n\n🌎Contact\nhttps://ins",
+      "channelId": "UChFf1JrHBdsy3LS3m9cX89Q",
+      "channelTitle": "시도 sido",
+      "publishedAt": "2026-08-09T10:00:03Z",
+      "thumbnail": "https://i.ytimg.com/vi/SeLOndN5EFM/mqdefault.jpg",
+      "tags": [
+        "여행",
+        "여행유튜버",
+        "세계여행",
+        "세계여행 유튜버",
+        "일본",
+        "일본 여행",
+        "일본 여사친",
+        "일본 여자",
+        "오사카",
+        "오사카 여행",
+        "해외여행",
+        "여행 브이로그"
+      ],
+      "viewCount": 361873,
+      "likeCount": 11829,
+      "commentCount": 1214,
+      "durationSeconds": 1336,
+      "format": "롱폼",
+      "ageDays": 3.3,
+      "viewsPerDay": 110179,
+      "momentum": 95622,
+      "likeRate": 3.27,
+      "commentRate": 0.34,
+      "matchedQueries": [
+        "일본 여행"
+      ],
+      "marketScore": {
+        "total": 90,
+        "parts": {
+          "volume": 23,
+          "velocity": 30,
+          "likeRate": 12,
+          "commentRate": 4,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 89,
+        "parts": {
+          "momentum": 55,
+          "volume": 34
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 262000
+    },
+    {
+      "videoId": "iFLL-5caXfI",
+      "url": "https://www.youtube.com/watch?v=iFLL-5caXfI",
+      "title": "하루 만원에 돈 걱정 없이 여행할 수 있는 미얀마 입국기",
+      "description": "미얀마 첫번째 영상입니다!\n\n\n\n➖\n#여행유튜버 #미얀마 #해외여행 \n➖\n📸 Instagram : https://www.instagram.com/sanghyuk1ee/\n📝 Blog : https://blog.naver.com/sanghyuk1ee\n➖\n📷 Camera\nFujifilm",
+      "channelId": "UC69z_1ZtKQjG5fa-_sKBBfg",
+      "channelTitle": "상가의 안녕히살아보기",
+      "publishedAt": "2026-08-08T00:00:26Z",
+      "thumbnail": "https://i.ytimg.com/vi/iFLL-5caXfI/mqdefault.jpg",
+      "tags": [
+        "여행유튜브",
+        "세계여행",
+        "오지여행",
+        "해외여행",
+        "여행유튜버",
+        "중남미여행",
+        "남미여행"
+      ],
+      "viewCount": 470562,
+      "likeCount": 11184,
+      "commentCount": 683,
+      "durationSeconds": 2713,
+      "format": "롱폼",
+      "ageDays": 4.7,
+      "viewsPerDay": 100102,
+      "momentum": 90479,
+      "likeRate": 2.38,
+      "commentRate": 0.15,
+      "matchedQueries": [
+        "해외여행"
+      ],
+      "marketScore": {
+        "total": 84,
+        "parts": {
+          "volume": 24,
+          "velocity": 30,
+          "likeRate": 9,
+          "commentRate": 2,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 89,
+        "parts": {
+          "momentum": 54,
+          "volume": 35
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 421000
+    },
+    {
+      "videoId": "jqUXWwRRZ4Y",
+      "url": "https://www.youtube.com/watch?v=jqUXWwRRZ4Y",
+      "title": "뭐지?? 배고파서 일본 식당에 들어가자, 한국인을 본 일본인 반응",
+      "description": "지난번 교토식당에서 식사를 마친 후 지친 몸을 이끌고 다시 오사카로 올라온 두 사람.  밤이 깊고 저녁을 먹으러 한국인과 중국인이 식당에 가려고 하자, 생각지도 못했던 난관에 부딪히게 되는데요. 과연 이번에 오사카에서는 어떤 일이 일어났을지 지금 확인해 보세요! \n\n#오사카여행 #일본여",
+      "channelId": "UCg3YdmrYGa2O1IySuWvBT0w",
+      "channelTitle": "CKOONY",
+      "publishedAt": "2026-08-08T08:38:43Z",
+      "thumbnail": "https://i.ytimg.com/vi/jqUXWwRRZ4Y/mqdefault.jpg",
+      "tags": [
+        "외국인",
+        "외국인반응",
+        "한국",
+        "외국인 채널",
+        "외국인 반응 채널",
+        "외국인채널",
+        "외국인 먹방",
+        "해외",
+        "먹방",
+        "리액션",
+        "일본인 반응",
+        "일본"
+      ],
+      "viewCount": 411903,
+      "likeCount": 11331,
+      "commentCount": 970,
+      "durationSeconds": 1262,
+      "format": "롱폼",
+      "ageDays": 4.3,
+      "viewsPerDay": 94889,
+      "momentum": 85088,
+      "likeRate": 2.75,
+      "commentRate": 0.24,
+      "matchedQueries": [
+        "일본 여행"
+      ],
+      "marketScore": {
+        "total": 87,
+        "parts": {
+          "volume": 23,
+          "velocity": 30,
+          "likeRate": 10,
+          "commentRate": 3,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 88,
+        "parts": {
+          "momentum": 54,
+          "volume": 34
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 672000
+    },
+    {
+      "videoId": "EJD93qLJjzU",
+      "url": "https://www.youtube.com/watch?v=EJD93qLJjzU",
+      "title": "연차없이 떠나는 해외여행, 시즌2 첫 여행지 공개 I 곽범 I 연차없이 어떡행2 EP.0",
+      "description": "직장인 실험쥐 곽범이 돌아왔다✈️\n그런데 연차없이 어디를 간다고...?\n\n자극적이고 짜릿한 곽범의 연차없는 해외 여행기,\n연차없이 어떡행 시즌2\n8/13일(목) 오후 7시 출발합니다!\n\n#연차없이어떡행 #곽범\n#NoPTO #Trip #Kwakbeom\n\n【Original Content b",
+      "channelId": "UCmva1CD0owDo2nul7CJT_Sw",
+      "channelTitle": "때때때 TTT",
+      "publishedAt": "2026-08-06T10:00:00Z",
+      "thumbnail": "https://i.ytimg.com/vi/EJD93qLJjzU/mqdefault.jpg",
+      "tags": [
+        "연차없이 어떡행",
+        "어떡행",
+        "연차",
+        "곽범",
+        "개그맨 곽범",
+        "여행"
+      ],
+      "viewCount": 563634,
+      "likeCount": 3504,
+      "commentCount": 340,
+      "durationSeconds": 57,
+      "format": "쇼츠",
+      "ageDays": 6.3,
+      "viewsPerDay": 89687,
+      "momentum": 83077,
+      "likeRate": 0.62,
+      "commentRate": 0.06,
+      "matchedQueries": [
+        "해외여행"
+      ],
+      "marketScore": {
+        "total": 77,
+        "parts": {
+          "volume": 24,
+          "velocity": 30,
+          "likeRate": 2,
+          "commentRate": 1,
+          "recency": 20
+        }
+      },
+      "rankScore": {
+        "total": 89,
+        "parts": {
+          "momentum": 53,
+          "volume": 36
+        },
+        "model": "market-rank-2026.08.12-v2",
+        "basis": "주제 내 백분위 (모멘텀 60 + 누적조회 40)"
+      },
+      "channelSubscribers": 267000
+    }
+  ],
+  "allVideos": [
+    {
+      "videoId": "S9VJYOS2rv4",
+      "title": "혼자 떠난 국내여행! 전주! 남친 사귀고 싶다! 💕ㅣ 잼잼은 꿀잼 EP.8",
+      "channelId": "UCZKMRPNfdc2TSMH7u0T63Ng",
+      "publishedAt": "2026-08-12T08:00:27Z",
+      "viewCount": 1720,
+      "viewsPerDay": 4681,
+      "momentum": 1983,
+      "ageDays": 0.4,
+      "format": "롱폼",
+      "likeRate": 20,
+      "rankScore": {
+        "total": 16,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "Zdm_h0-w1SQ",
+      "title": "❄️여름에도 시원한 평창 대관령 여행지 3곳 / 강원도 국내여행 가볼만한곳 1박2일 당일치기",
+      "channelId": "UCgfQlzdYhPWRRS05Ld99HwQ",
+      "publishedAt": "2026-08-10T12:55:53Z",
+      "viewCount": 14231,
+      "viewsPerDay": 6581,
+      "momentum": 5345,
+      "ageDays": 2.2,
+      "format": "롱폼",
+      "likeRate": 1.43,
+      "rankScore": {
+        "total": 34,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "vOidvLZNHEM",
+      "title": "여름휴가는? 안동으로🌊 | 안동여행, 안동수페스타, 국내여행, 우정여행, 국내여행지 추천, 여름휴가, 안동찜닭, 1박 2일 여행, korea, travel, Andong",
+      "channelId": "UCnlXnWEF0Dga2gvmARDZ7dQ",
+      "publishedAt": "2026-08-07T09:00:40Z",
+      "viewCount": 566,
+      "viewsPerDay": 106,
+      "momentum": 97,
+      "ageDays": 5.3,
+      "format": "롱폼",
+      "likeRate": 3.36,
+      "rankScore": {
+        "total": 3,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "5X-7Env4phc",
+      "title": "[EN] 여행지는 돌림판에, 길은 지도책에 맡겨 둔 4형제의 NO내비 국도 여행｜풍향중 EP.1｜2026 썸머로드 시리즈 #유재석 #이성민 #지석진 #양세찬",
+      "channelId": "UCDNvRZRgvkBTUkQzFoT_8rA",
+      "publishedAt": "2026-08-01T00:00:07Z",
+      "viewCount": 7613976,
+      "viewsPerDay": 650710,
+      "momentum": 592157,
+      "ageDays": 11.7,
+      "format": "롱폼",
+      "likeRate": 1.02,
+      "rankScore": {
+        "total": 100,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "jCymAz3FiW4",
+      "title": "목포는 도시 전체가 맛집이당껭... #전라도여행 #국내여행 #여행룩",
+      "channelId": "UCt-l2yhviDXG3oWiWjeHaFw",
+      "publishedAt": "2026-08-07T06:43:53Z",
+      "viewCount": 254269,
+      "viewsPerDay": 46908,
+      "momentum": 42946,
+      "ageDays": 5.4,
+      "format": "롱폼",
+      "likeRate": 0.98,
+      "rankScore": {
+        "total": 79,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "RkUsovFDIP4",
+      "title": "놓치면 후회할 마지막 봄 여행지 국내 여행 BEST #여행추천 #국내여행",
+      "channelId": "UCnnGuEaug4fxZOPM5uE2CgA",
+      "publishedAt": "2026-05-23T10:36:06Z",
+      "viewCount": 8797,
+      "viewsPerDay": 108,
+      "momentum": 21,
+      "ageDays": 81.3,
+      "format": "롱폼",
+      "likeRate": 1.75,
+      "rankScore": {
+        "total": 10,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "XlH6wpHVILk",
+      "title": "🚞 표값 1만 원! 드디어 재개통된 국내 유일 오지 '특급열차' 타고 떠나는 당일치기 기차여행",
+      "channelId": "UCeIY89g3KZ6e0HinaOiMHcg",
+      "publishedAt": "2026-05-27T11:10:07Z",
+      "viewCount": 429360,
+      "viewsPerDay": 5559,
+      "momentum": 1307,
+      "ageDays": 77.2,
+      "format": "롱폼",
+      "likeRate": 1.54,
+      "rankScore": {
+        "total": 42,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "6-vN0t9ARww",
+      "title": "부산 도착하자마자 2주 살기 선언한 외국인의 찐반응 #한국여행 #해외반응 #해외감동",
+      "channelId": "UCMcTfELbMahHC94JYUlsDTA",
+      "publishedAt": "2026-08-08T11:30:27Z",
+      "viewCount": 137714,
+      "viewsPerDay": 32621,
+      "momentum": 29167,
+      "ageDays": 4.2,
+      "format": "쇼츠",
+      "likeRate": 0.9,
+      "rankScore": {
+        "total": 73,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "7sgnIrOgsRo",
+      "title": "8월 8일에 전구간 개통된 세계 최초 5개섬 해상트레킹 /국내여행 추천 /여름여행지 /군산여행 /섬여행 추천 #8월국내여행지추천 #국내여행 #여름여행지",
+      "channelId": "UCZsg1rkojx4OXb30xjtTRww",
+      "publishedAt": "2026-08-08T11:00:05Z",
+      "viewCount": 281509,
+      "viewsPerDay": 66351,
+      "momentum": 59356,
+      "ageDays": 4.2,
+      "format": "쇼츠",
+      "likeRate": 1.06,
+      "rankScore": {
+        "total": 82,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "D8cSffhtu5w",
+      "title": "청말로 주아~🍅 나혼자 당일치기 청주 여행VLOG | 화제의 트위터 코스 가봄 | 혼여가 좋은 이유 | 쫄쫄호떡, 원조로열닭발, 해호미, 홉후드, 봉용불고기,안셈, 소품샵투어",
+      "channelId": "UCZN8KXIefDEhkuK8KRgAqhA",
+      "publishedAt": "2026-08-09T11:30:03Z",
+      "viewCount": 9355,
+      "viewsPerDay": 2904,
+      "momentum": 2513,
+      "ageDays": 3.2,
+      "format": "롱폼",
+      "likeRate": 2.16,
+      "rankScore": {
+        "total": 25,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "LsWBKcVcQac",
+      "title": "죽기 전에 꼭 가봐야 할 국내 여행지 10곳.①              #국내여행 #시니어여행 #인생여행지",
+      "channelId": "UCSCDuAk2anY738M9VcnpexA",
+      "publishedAt": "2026-08-11T00:30:09Z",
+      "viewCount": 5984,
+      "viewsPerDay": 3562,
+      "momentum": 2745,
+      "ageDays": 1.7,
+      "format": "쇼츠",
+      "likeRate": 0.22,
+      "rankScore": {
+        "total": 24,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "iqdn2asiKNE",
+      "title": "처음 가본 태안 민어도🌊 물 빠지니 이런 풍경이! #태안여행 #국내여행 #융그미찰칵일상",
+      "channelId": "UC2pZgOZoYh7qEefmSGNxnwA",
+      "publishedAt": "2026-08-12T10:00:13Z",
+      "viewCount": 1257,
+      "viewsPerDay": 4422,
+      "momentum": 1603,
+      "ageDays": 0.3,
+      "format": "쇼츠",
+      "likeRate": 0.64,
+      "rankScore": {
+        "total": 13,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "5pj69dH19C8",
+      "title": "국내에서 가장 아름다운 6월 여행지🔥",
+      "channelId": "UCr7K1Fp0EcaCcKi_DbTqPHg",
+      "publishedAt": "2026-05-29T10:00:24Z",
+      "viewCount": 89342,
+      "viewsPerDay": 1187,
+      "momentum": 304,
+      "ageDays": 75.3,
+      "format": "쇼츠",
+      "likeRate": 0.35,
+      "rankScore": {
+        "total": 28,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "YZLIwHT7r9I",
+      "title": "죽기 전에 가봐야 할 스릴만점 해안절벽 트레킹 /8월 국내여행지 추천 /섬트레킹 /완도여행 /금당도 #8월국내여행지추천 #국내여행 #섬여행",
+      "channelId": "UCZsg1rkojx4OXb30xjtTRww",
+      "publishedAt": "2026-08-10T11:00:27Z",
+      "viewCount": 20899,
+      "viewsPerDay": 9320,
+      "momentum": 7621,
+      "ageDays": 2.2,
+      "format": "쇼츠",
+      "likeRate": 0.9,
+      "rankScore": {
+        "total": 44,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "Cxd-vnipWvM",
+      "title": "이 가격이면 특실 탄다? 안 탄다? 🤔 #여행브이로그 #국내여행 #KTX #기차여행 #코레일",
+      "channelId": "UCG2e4G6JGQsiVFGYmVD_rAw",
+      "publishedAt": "2026-08-06T12:04:34Z",
+      "viewCount": 92987,
+      "viewsPerDay": 15003,
+      "momentum": 13883,
+      "ageDays": 6.2,
+      "format": "롱폼",
+      "likeRate": 1.18,
+      "rankScore": {
+        "total": 62,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "4w3sHiUey-U",
+      "title": "[손민수네] 첫 해외여행 도전 STEP 1. 여권 사진 찍기에 도전하는 강단이들 [슈퍼맨이 돌아왔다/The Return of Superman] | KBS 260812 방송",
+      "channelId": "UCK1sVuXaDvJeNwl9noN5nOA",
+      "publishedAt": "2026-08-12T13:03:39Z",
+      "viewCount": 4373,
+      "viewsPerDay": 17492,
+      "momentum": 5831,
+      "ageDays": 0.3,
+      "format": "롱폼",
+      "likeRate": 3.48,
+      "rankScore": {
+        "total": 31,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "EJD93qLJjzU",
+      "title": "연차없이 떠나는 해외여행, 시즌2 첫 여행지 공개 I 곽범 I 연차없이 어떡행2 EP.0",
+      "channelId": "UCmva1CD0owDo2nul7CJT_Sw",
+      "publishedAt": "2026-08-06T10:00:00Z",
+      "viewCount": 563634,
+      "viewsPerDay": 89687,
+      "momentum": 83077,
+      "ageDays": 6.3,
+      "format": "쇼츠",
+      "likeRate": 0.62,
+      "rankScore": {
+        "total": 89,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "uf00AwVNwhA",
+      "title": "필수 여행영어 100문장 | 해외여행 가기 전 꼭 알아야 할 영어회화 | 공항, 비행기, 입국심사, 호텔, 식당, 쇼핑",
+      "channelId": "UC5tkGLO0GpglCOtkY_GJGpA",
+      "publishedAt": "2026-06-14T21:00:36Z",
+      "viewCount": 53231,
+      "viewsPerDay": 905,
+      "momentum": 392,
+      "ageDays": 58.8,
+      "format": "롱폼",
+      "likeRate": 1.9,
+      "rankScore": {
+        "total": 25,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "-O4FBd28Axw",
+      "title": "해외여행 갔다와서 가장 먼저 찾은 한국음식",
+      "channelId": "UCzelf3qtV8AdUXeoybhARsA",
+      "publishedAt": "2026-08-11T10:08:03Z",
+      "viewCount": 963532,
+      "viewsPerDay": 753438,
+      "momentum": 541661,
+      "ageDays": 1.3,
+      "format": "쇼츠",
+      "likeRate": 1.46,
+      "rankScore": {
+        "total": 97,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "2jtzzEdiz6A",
+      "title": "결국 못 참고 또 왔습니다.. 모두가 한국인을 미친듯이 반겨주는 아름다운 남미 외딴 섬",
+      "channelId": "UC602PUDJWt8AKCx3CFjJtTA",
+      "publishedAt": "2026-08-07T11:18:45Z",
+      "viewCount": 695524,
+      "viewsPerDay": 132994,
+      "momentum": 121388,
+      "ageDays": 5.2,
+      "format": "롱폼",
+      "likeRate": 1.38,
+      "rankScore": {
+        "total": 94,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "iFLL-5caXfI",
+      "title": "하루 만원에 돈 걱정 없이 여행할 수 있는 미얀마 입국기",
+      "channelId": "UC69z_1ZtKQjG5fa-_sKBBfg",
+      "publishedAt": "2026-08-08T00:00:26Z",
+      "viewCount": 470562,
+      "viewsPerDay": 100102,
+      "momentum": 90479,
+      "ageDays": 4.7,
+      "format": "롱폼",
+      "likeRate": 2.38,
+      "rankScore": {
+        "total": 89,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "a6q8xx73cZk",
+      "title": "주진우 1인당 1억5천 해외여행?",
+      "channelId": "UC8u3lbyW8mysZLeQkkLfdYw",
+      "publishedAt": "2026-08-10T23:45:38Z",
+      "viewCount": 5828,
+      "viewsPerDay": 3406,
+      "momentum": 2636,
+      "ageDays": 1.7,
+      "format": "쇼츠",
+      "likeRate": 13.9,
+      "rankScore": {
+        "total": 23,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "FsPIuyRoNTs",
+      "title": "해외여행 필수 패턴! \"15개 200문장\" 여행영어 이걸로 끝내세요 [통합편] 무적의 만능 패턴! 영어반복듣기 | 영어흘려듣기 | 패턴영어 | 왕초보영어회화",
+      "channelId": "UC3NRgqFNR51OU7-kckFWVrA",
+      "publishedAt": "2026-08-02T21:00:19Z",
+      "viewCount": 14679,
+      "viewsPerDay": 1494,
+      "momentum": 1378,
+      "ageDays": 9.8,
+      "format": "롱폼",
+      "likeRate": 2.91,
+      "rankScore": {
+        "total": 21,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "7_ZasQEw9rk",
+      "title": "다낭에서 호치민까지 이어진 꿈같은 여행 [베트남-7]",
+      "channelId": "UCt38QQMf2n1HP1LcCl0VXOA",
+      "publishedAt": "2026-08-08T01:48:30Z",
+      "viewCount": 75326,
+      "viewsPerDay": 16284,
+      "momentum": 14696,
+      "ageDays": 4.6,
+      "format": "롱폼",
+      "likeRate": 2.26,
+      "rankScore": {
+        "total": 62,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "Z9SsmK2YgVU",
+      "title": "서양인들에게 유명하지만 한국인은 잘 모르는 동남아 최고의 휴양지",
+      "channelId": "UCxU8QX7IRRIW0VLuoWWoxbw",
+      "publishedAt": "2026-08-07T08:00:22Z",
+      "viewCount": 464354,
+      "viewsPerDay": 86512,
+      "momentum": 79140,
+      "ageDays": 5.4,
+      "format": "롱폼",
+      "likeRate": 1.42,
+      "rankScore": {
+        "total": 87,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "b4lA37oC0Ak",
+      "title": "해외여행 부럽지 않은 동남아 감성",
+      "channelId": "UC223G1Qi7_WWZqN6gtxCtSw",
+      "publishedAt": "2026-08-09T10:31:56Z",
+      "viewCount": 22906,
+      "viewsPerDay": 7022,
+      "momentum": 6088,
+      "ageDays": 3.3,
+      "format": "쇼츠",
+      "likeRate": 1.82,
+      "rankScore": {
+        "total": 40,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "dRFkvsslB0Q",
+      "title": "해외여행 시켜줬더니 틱톡 찍자는 X ㅣ 베트남 여행 ep.2 (with 봉팔)",
+      "channelId": "UCppkVVjeO7IyztmRyX1v48w",
+      "publishedAt": "2026-08-10T15:17:38Z",
+      "viewCount": 20375,
+      "viewsPerDay": 9872,
+      "momentum": 7947,
+      "ageDays": 2.1,
+      "format": "롱폼",
+      "likeRate": 0.88,
+      "rankScore": {
+        "total": 43,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "4ZTtnzokctA",
+      "title": "남사친과의 해외여행을 통보한 사야...!? 형탁과 사야의 이별 썰💔 | #신랑수업 77회",
+      "channelId": "UC2wEx1iKCgXNliHYNDxIh2A",
+      "publishedAt": "2026-08-11T06:00:34Z",
+      "viewCount": 17234,
+      "viewsPerDay": 11880,
+      "momentum": 8835,
+      "ageDays": 1.5,
+      "format": "롱폼",
+      "likeRate": 1.45,
+      "rankScore": {
+        "total": 45,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "ehf4CwPxts0",
+      "title": "남자끼리 해외여행 가면 안되는 이유",
+      "channelId": "UCrpoE9e2-eWcj8AYvwYdebw",
+      "publishedAt": "2026-08-12T10:22:31Z",
+      "viewCount": 4082,
+      "viewsPerDay": 15186,
+      "momentum": 5310,
+      "ageDays": 0.3,
+      "format": "쇼츠",
+      "likeRate": 2.47,
+      "rankScore": {
+        "total": 26,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "SBbQCsxcRpk",
+      "title": "“여보! 우리 애 괜찮은거 맞아?” 요즘 미국 부모들 한국에 기겁하는 이유 // 외국 엄마들이 보면 위험한 영상",
+      "channelId": "UCWBhajLdX4Go7KHzDWyBHXw",
+      "publishedAt": "2026-08-07T09:28:54Z",
+      "viewCount": 140721,
+      "viewsPerDay": 26521,
+      "momentum": 24237,
+      "ageDays": 5.3,
+      "format": "롱폼",
+      "likeRate": 2.02,
+      "rankScore": {
+        "total": 70,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "LoL2cWMdnuA",
+      "title": "후회없는 제주도 여행 브이로그🐠 문의폭주 숙소, 오픈런 빵맛집, 스노클링 해수욕장까지🩵제주 동쪽~서쪽 여행코스 추천!",
+      "channelId": "UCPLo-rNY1rmknNRQ9m0P6AA",
+      "publishedAt": "2026-08-10T12:00:02Z",
+      "viewCount": 8527,
+      "viewsPerDay": 3874,
+      "momentum": 3157,
+      "ageDays": 2.2,
+      "format": "롱폼",
+      "likeRate": 2.52,
+      "rankScore": {
+        "total": 25,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "B4h6L6kYm1g",
+      "title": "제주도 칠순 여행에서 시어머니가 한 말이 충격입니다",
+      "channelId": "UCNf8cY9OaeROUGwzrbXL9jQ",
+      "publishedAt": "2026-08-11T10:00:21Z",
+      "viewCount": 44414,
+      "viewsPerDay": 34585,
+      "momentum": 24893,
+      "ageDays": 1.3,
+      "format": "롱폼",
+      "likeRate": 1.81,
+      "rankScore": {
+        "total": 63,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "7TsUOCEYoZk",
+      "title": "(광고❌) 2026년 최신ver. 실패없는 제주도 맛집 12곳 모음🍚 + 네이버지도 80곳 공유🗺️",
+      "channelId": "UCMqtYS_xJ63LjWEiPX6LcEA",
+      "publishedAt": "2026-08-09T11:25:09Z",
+      "viewCount": 24946,
+      "viewsPerDay": 7734,
+      "momentum": 6696,
+      "ageDays": 3.2,
+      "format": "롱폼",
+      "likeRate": 2.03,
+      "rankScore": {
+        "total": 43,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "6FIE-e4by9M",
+      "title": "유가 폭등으로 난리 난 제주도 여행 근황",
+      "channelId": "UCHpIHu4LzmNuD8bsE6mZLSA",
+      "publishedAt": "2026-08-06T08:00:21Z",
+      "viewCount": 71159,
+      "viewsPerDay": 11175,
+      "momentum": 10362,
+      "ageDays": 6.4,
+      "format": "롱폼",
+      "likeRate": 2.03,
+      "rankScore": {
+        "total": 56,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "f_-5ZRgLYoI",
+      "title": "희비 갈린 국내 대표 관광지 \"제주보단 부산이지\" 무슨 일? / KNN",
+      "channelId": "UC1ifSsWUG241rRfK0ezYCgA",
+      "publishedAt": "2026-08-07T10:00:05Z",
+      "viewCount": 882673,
+      "viewsPerDay": 167034,
+      "momentum": 152596,
+      "ageDays": 5.3,
+      "format": "롱폼",
+      "likeRate": 0.5,
+      "rankScore": {
+        "total": 96,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "9LvSH9y50WY",
+      "title": "제주도 맛집 찾아 떠나는 4박5일 제주여행 호캉스 브이로그 (1편) 파르나스 호텔 제주, 롯데호텔 제주, 우진해장국, 팔복만두, 픽업카페, 보름숲, 번네식당, 중문수두리보말칼국수",
+      "channelId": "UC-29MTaefkPm1Kdr_qfnckg",
+      "publishedAt": "2026-08-06T03:00:23Z",
+      "viewCount": 57252,
+      "viewsPerDay": 8706,
+      "momentum": 8091,
+      "ageDays": 6.6,
+      "format": "롱폼",
+      "likeRate": 0.99,
+      "rankScore": {
+        "total": 51,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "iAp9rkzFWmU",
+      "title": "요청 많았던!☀️ 제주여행 브이로그✈️🫧ㅣ도민 흑돼지 맛집ㅣ가성비 갈치구이 식당ㅣ복숭아눈꽃빙수..🍑ㅣ오픈런 빵맛집🏃🏻‍♀️ㅣ과일모찌 맛집ㅣ스노쿨링 해수욕장ㅣ김녕바다ㅣ함덕해수욕장",
+      "channelId": "UC7_5wc5eeOXpt_WDheHgSjw",
+      "publishedAt": "2026-08-07T10:10:07Z",
+      "viewCount": 40530,
+      "viewsPerDay": 7680,
+      "momentum": 7015,
+      "ageDays": 5.3,
+      "format": "롱폼",
+      "likeRate": 1.7,
+      "rankScore": {
+        "total": 46,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "f43P5N_FcuE",
+      "title": "여름 제주여행 이대로 가면 대성공🍉서쪽+동쪽 2박3일 코스🐴 (흑돼지맛집.숙소추천.조천수산.사려니숲길.LP카페.소품샵.협재해수욕장.웨딩스냅스팟)",
+      "channelId": "UCMqtYS_xJ63LjWEiPX6LcEA",
+      "publishedAt": "2026-07-19T09:48:53Z",
+      "viewCount": 37638,
+      "viewsPerDay": 1549,
+      "momentum": 1233,
+      "ageDays": 24.3,
+      "format": "롱폼",
+      "likeRate": 1.25,
+      "rankScore": {
+        "total": 25,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "hn2ZUgvdaXY",
+      "title": "제주도 여름 최고의 여행지는 여기입니다! 10년차 제주도민이 추천하는 제주 2박3일 여름 여행코스 (남쪽 서귀포편)",
+      "channelId": "UCmp61ap5-dkuBBaIjfrYdVQ",
+      "publishedAt": "2026-08-09T03:00:08Z",
+      "viewCount": 26506,
+      "viewsPerDay": 7412,
+      "momentum": 6503,
+      "ageDays": 3.6,
+      "format": "롱폼",
+      "likeRate": 2.53,
+      "rankScore": {
+        "total": 42,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "J8qOadoNZAA",
+      "title": "𝐕𝐥𝐨𝐠 제주 도민과 함께한🍊2박3일 제주 여행 브이로그🪴 웨이팅 없는 동쪽 코스•제주도민 맛집•숙소 추천•김녕해수욕장•해녀의부엌",
+      "channelId": "UCebvWUEocNKNhwv7JKaoWQQ",
+      "publishedAt": "2026-08-05T09:00:14Z",
+      "viewCount": 2922,
+      "viewsPerDay": 399,
+      "momentum": 372,
+      "ageDays": 7.3,
+      "format": "롱폼",
+      "likeRate": 1.06,
+      "rankScore": {
+        "total": 8,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "ch-SRrOSN1Q",
+      "title": "제주도 21번 간 부부가 고른 2026 실패없는 제주 가볼만한곳 코스 TOP 20 I 여행지 추천",
+      "channelId": "UCGqKmvUW3nZ2GvWSGWLb8Ww",
+      "publishedAt": "2026-07-03T12:17:57Z",
+      "viewCount": 1436,
+      "viewsPerDay": 36,
+      "momentum": 23,
+      "ageDays": 40.2,
+      "format": "롱폼",
+      "likeRate": 1.18,
+      "rankScore": {
+        "total": 3,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "-QTwHbLKpb8",
+      "title": "삼남매의 제주도 여행",
+      "channelId": "UC1Rz7a_DWtsE9cQwSyElE0Q",
+      "publishedAt": "2026-07-10T09:00:26Z",
+      "viewCount": 2807679,
+      "viewsPerDay": 84249,
+      "momentum": 59252,
+      "ageDays": 33.3,
+      "format": "롱폼",
+      "likeRate": 1.28,
+      "rankScore": {
+        "total": 89,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "yVeHv3qzbNc",
+      "title": "[서기로그] 핫플은 안가는 이게 30대 제주도 수학여행 (제주 복권 명당은 감)",
+      "channelId": "UCuajy72PSiVFbLHUrZXW3OA",
+      "publishedAt": "2026-08-06T09:15:00Z",
+      "viewCount": 56505,
+      "viewsPerDay": 8947,
+      "momentum": 8290,
+      "ageDays": 6.3,
+      "format": "롱폼",
+      "likeRate": 1.15,
+      "rankScore": {
+        "total": 52,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "ToCMQV_2JMI",
+      "title": "제주도 신라호텔 브이로그🌴 4박5일 제주신라 아이랑 200% 즐기기✨ 애월·서귀포 신상 핫플, 카페, 맛집까지 싹 다 다녀왔어요!",
+      "channelId": "UCPV-ljQQruNo28I5JFElyAA",
+      "publishedAt": "2026-08-04T12:16:36Z",
+      "viewCount": 12703,
+      "viewsPerDay": 1551,
+      "momentum": 1443,
+      "ageDays": 8.2,
+      "format": "롱폼",
+      "likeRate": 1.76,
+      "rankScore": {
+        "total": 21,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "ln_roMgng3k",
+      "title": "제주도에~서 누가 돌아왔~게🤪 (ft.여행만 가면 억까 당하는 가족, 제주도민 맛집 추천, 제주도 맛집 탐방)",
+      "channelId": "UCu4X3ZAoq6nToNJNNoQuICA",
+      "publishedAt": "2026-07-18T05:00:34Z",
+      "viewCount": 475050,
+      "viewsPerDay": 18635,
+      "momentum": 14603,
+      "ageDays": 25.5,
+      "format": "롱폼",
+      "likeRate": 1.35,
+      "rankScore": {
+        "total": 75,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "IWHir0mYfQ8",
+      "title": "오키나와에서 느끼는 한국에 대한 관심 현상황",
+      "channelId": "UCpI2EG2cSDzov_OeJp9bR3g",
+      "publishedAt": "2026-08-11T10:45:27Z",
+      "viewCount": 231026,
+      "viewsPerDay": 184397,
+      "momentum": 131798,
+      "ageDays": 1.3,
+      "format": "롱폼",
+      "likeRate": 2.38,
+      "rankScore": {
+        "total": 87,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "jqUXWwRRZ4Y",
+      "title": "뭐지?? 배고파서 일본 식당에 들어가자, 한국인을 본 일본인 반응",
+      "channelId": "UCg3YdmrYGa2O1IySuWvBT0w",
+      "publishedAt": "2026-08-08T08:38:43Z",
+      "viewCount": 411903,
+      "viewsPerDay": 94889,
+      "momentum": 85088,
+      "ageDays": 4.3,
+      "format": "롱폼",
+      "likeRate": 2.75,
+      "rankScore": {
+        "total": 88,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "OkYjXAlzwUE",
+      "title": "일본여행 고수들은 전부 이렇게 합니다ㄷㄷ",
+      "channelId": "UCao4qHQPcLZSRbRdsrrFRYw",
+      "publishedAt": "2026-08-12T08:00:00Z",
+      "viewCount": 322786,
+      "viewsPerDay": 877682,
+      "momentum": 371971,
+      "ageDays": 0.4,
+      "format": "쇼츠",
+      "likeRate": 1.97,
+      "rankScore": {
+        "total": 92,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "qFH8yck3PPM",
+      "title": "일본 시골 게스트하우스에서 만난 이상형 [히로시마下]",
+      "channelId": "UCcxE4dSfM--ld6kzFoZ6VrA",
+      "publishedAt": "2026-08-05T10:30:05Z",
+      "viewCount": 146226,
+      "viewsPerDay": 20131,
+      "momentum": 18781,
+      "ageDays": 7.3,
+      "format": "롱폼",
+      "likeRate": 1.51,
+      "rankScore": {
+        "total": 70,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "Y51YYT2QISA",
+      "title": "후지산이 눈앞에..🗻 이런 일본 여행은 처음이야 I 온천 료칸부터 숲속 글램핑까지 | 카이 하코네 & 호시노야 후지🌿",
+      "channelId": "UCFsSyiKOtZD7YNt8uXHRlzg",
+      "publishedAt": "2026-08-09T14:00:33Z",
+      "viewCount": 18236,
+      "viewsPerDay": 5850,
+      "momentum": 5041,
+      "ageDays": 3.1,
+      "format": "롱폼",
+      "likeRate": 2.42,
+      "rankScore": {
+        "total": 34,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "SeLOndN5EFM",
+      "title": "더 이상 \"그냥 친구\"가 아닌 일본 여사친과 오사카 여행",
+      "channelId": "UChFf1JrHBdsy3LS3m9cX89Q",
+      "publishedAt": "2026-08-09T10:00:03Z",
+      "viewCount": 361873,
+      "viewsPerDay": 110179,
+      "momentum": 95622,
+      "ageDays": 3.3,
+      "format": "롱폼",
+      "likeRate": 3.27,
+      "rankScore": {
+        "total": 89,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "GOB26nljYnU",
+      "title": "전단지 한 장에 이끌려 간 곳... 알고 보니 오픈 두 달 된 히로시마 대박집",
+      "channelId": "UCHgPjCdx8y9boMapE73iqCg",
+      "publishedAt": "2026-08-08T10:00:28Z",
+      "viewCount": 191377,
+      "viewsPerDay": 44671,
+      "momentum": 40003,
+      "ageDays": 4.3,
+      "format": "롱폼",
+      "likeRate": 2.67,
+      "rankScore": {
+        "total": 77,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "luzFlLZqLPQ",
+      "title": "자리 없어서 못 들어 간다는 일본인 알바에게 한국인이 묻자; #shorts",
+      "channelId": "UCg3YdmrYGa2O1IySuWvBT0w",
+      "publishedAt": "2026-08-12T09:00:16Z",
+      "viewCount": 4423,
+      "viewsPerDay": 13571,
+      "momentum": 5355,
+      "ageDays": 0.3,
+      "format": "쇼츠",
+      "likeRate": 2.65,
+      "rankScore": {
+        "total": 28,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "tji4XObTxV8",
+      "title": "일본 소도시 여행중 만난 시골 소녀",
+      "channelId": "UCRQLLQZT83SmHT0KfzhG_7A",
+      "publishedAt": "2026-08-04T11:05:50Z",
+      "viewCount": 161520,
+      "viewsPerDay": 19605,
+      "momentum": 18234,
+      "ageDays": 8.2,
+      "format": "롱폼",
+      "likeRate": 2.07,
+      "rankScore": {
+        "total": 69,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "haNogIEX8mg",
+      "title": "일본 여행 가서 사오면 호구된다는 제품",
+      "channelId": "UC5GVjOaF9CwOnMLvjI_BFMQ",
+      "publishedAt": "2026-08-05T21:00:24Z",
+      "viewCount": 89788,
+      "viewsPerDay": 13154,
+      "momentum": 12256,
+      "ageDays": 6.8,
+      "format": "쇼츠",
+      "likeRate": 0.68,
+      "rankScore": {
+        "total": 60,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "pqc0mJ9vlj0",
+      "title": "넷이서 가는 첫 일본여행",
+      "channelId": "UCg6N52snDwhatFhprYkVuOQ",
+      "publishedAt": "2026-06-06T03:00:32Z",
+      "viewCount": 245071,
+      "viewsPerDay": 3627,
+      "momentum": 1230,
+      "ageDays": 67.6,
+      "format": "롱폼",
+      "likeRate": 1.1,
+      "rankScore": {
+        "total": 37,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "MzQmvKtjqL4",
+      "title": "친구들이랑 밤 새고 일본가서 폭염 처@맞는 브이로그",
+      "channelId": "UC0JzvO3F90Bur0_B2VfvUIQ",
+      "publishedAt": "2026-08-02T10:00:02Z",
+      "viewCount": 723150,
+      "viewsPerDay": 70315,
+      "momentum": 64661,
+      "ageDays": 10.3,
+      "format": "롱폼",
+      "likeRate": 1.57,
+      "rankScore": {
+        "total": 88,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "E3i7q2K-lOQ",
+      "title": "도쿄에서 처음 만난 일본 그녀와 불현듯 떠난 1박2일 여행 - 세계여행[170]",
+      "channelId": "UCAYdHI5iTnTFYu-hbIqj7PQ",
+      "publishedAt": "2026-06-21T02:50:28Z",
+      "viewCount": 358355,
+      "viewsPerDay": 6815,
+      "momentum": 3406,
+      "ageDays": 52.6,
+      "format": "롱폼",
+      "likeRate": 1.55,
+      "rankScore": {
+        "total": 51,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "jpgUBs6h8QQ",
+      "title": "일본 여행 다녀온 한국인들이 착각하는 일본의 실제 현실..?!ㅣ국경없는 수다 EP.112",
+      "channelId": "UC9HNi_aAXBgpI2zhibOAfAA",
+      "publishedAt": "2026-07-04T01:30:28Z",
+      "viewCount": 1100145,
+      "viewsPerDay": 27755,
+      "momentum": 17685,
+      "ageDays": 39.6,
+      "format": "롱폼",
+      "likeRate": 1.36,
+      "rankScore": {
+        "total": 80,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "ctAG8SSHxe0",
+      "title": "혼자 떠난 도쿄 여행 vlog 최신 현지인 맛집, 쇼핑, 느좋 동네 풉니다🗼",
+      "channelId": "UCnSxZRyyhueEfQ-A6kZTk-w",
+      "publishedAt": "2026-07-22T09:32:33Z",
+      "viewCount": 210576,
+      "viewsPerDay": 9885,
+      "momentum": 8156,
+      "ageDays": 21.3,
+      "format": "롱폼",
+      "likeRate": 2.1,
+      "rankScore": {
+        "total": 61,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "XOtuXk6sQBc",
+      "title": "이탈리아 돌로미티 여행코스 쪽집게 일타강사 모셨습니다 👩‍🏫 렌트카/슈퍼썸머패스/숙소/트레킹 코스까지 완벽 총정리!",
+      "channelId": "UC98aniwMMryBGhwOsvmsqQQ",
+      "publishedAt": "2026-08-10T10:05:46Z",
+      "viewCount": 6032,
+      "viewsPerDay": 2645,
+      "momentum": 2169,
+      "ageDays": 2.3,
+      "format": "롱폼",
+      "likeRate": 3.18,
+      "rankScore": {
+        "total": 22,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "syhNUAFYXcQ",
+      "title": "\"8월 8일, 대한민국에 이런 길이 태어났습니다 (세계 최고의 트레킹 코스?)\"",
+      "channelId": "UCJ7Yi_qOky-oDSB3CBiHhXA",
+      "publishedAt": "2026-08-10T10:00:31Z",
+      "viewCount": 281022,
+      "viewsPerDay": 123035,
+      "momentum": 100939,
+      "ageDays": 2.3,
+      "format": "롱폼",
+      "likeRate": 1.72,
+      "rankScore": {
+        "total": 87,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "27s4KLIkP5Y",
+      "title": "여행사 사장님이 알리지 말라던 유럽 신혼여행 코스 TOP 5",
+      "channelId": "UCTD4xCbpjFoy6NwIEYCCykA",
+      "publishedAt": "2026-07-17T01:15:02Z",
+      "viewCount": 5655,
+      "viewsPerDay": 212,
+      "momentum": 164,
+      "ageDays": 26.6,
+      "format": "롱폼",
+      "likeRate": 0.97,
+      "rankScore": {
+        "total": 9,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "hdXJRmFiWRk",
+      "title": "100% 만족하는 서울여행코스 BEST 4/이대원 회고전 전시회/몰라서 못 가는 서울여행코스/덕수궁배롱나무/정동길 맛집 정든다락/ 숨은 서울명소 서울시청 하늘전망대",
+      "channelId": "UCNoJ58lZmGFlvWyIgLqZAVw",
+      "publishedAt": "2026-08-10T03:23:10Z",
+      "viewCount": 2146,
+      "viewsPerDay": 838,
+      "momentum": 701,
+      "ageDays": 2.6,
+      "format": "롱폼",
+      "likeRate": 3.08,
+      "rankScore": {
+        "total": 8,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "eEIRy1iLZH0",
+      "title": "요즘 외국인들이 한국여행에 빠진 진짜 이유",
+      "channelId": "UCpTHynfy1gohB-sUQovQI0Q",
+      "publishedAt": "2026-05-17T11:10:00Z",
+      "viewCount": 977495,
+      "viewsPerDay": 11205,
+      "momentum": 1425,
+      "ageDays": 87.2,
+      "format": "롱폼",
+      "likeRate": 1.7,
+      "rankScore": {
+        "total": 49,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "_hzLfo5H0dc",
+      "title": "최신판 다낭 여행 대가족여행 총경비💸 vs N회차코스 (🇻🇳숙소추천ㅣ태교여행ㅣ맛집할인 꿀팁)",
+      "channelId": "UCxeNfP1Xm6SfWYnrS080L1Q",
+      "publishedAt": "2026-08-06T08:45:10Z",
+      "viewCount": 13410,
+      "viewsPerDay": 2116,
+      "momentum": 1962,
+      "ageDays": 6.3,
+      "format": "롱폼",
+      "likeRate": 1.57,
+      "rankScore": {
+        "total": 24,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "mpdDTVPo9WQ",
+      "title": "남해 현지인이 알려주는 1박 2일 필수 여행 코스(찐맛집&비밀여행지 공개)",
+      "channelId": "UCmzRFfJqj6-SsTs_xbDO40A",
+      "publishedAt": "2026-07-10T09:00:06Z",
+      "viewCount": 86229,
+      "viewsPerDay": 2587,
+      "momentum": 1820,
+      "ageDays": 33.3,
+      "format": "롱폼",
+      "likeRate": 3.86,
+      "rankScore": {
+        "total": 35,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "2D61p6vXxbQ",
+      "title": "대전 여행 코스 11곳, 땀 안 흘리고 다니는 법",
+      "channelId": "UCUijz41J3PLzd52MGhSXwYg",
+      "publishedAt": "2026-08-06T00:22:32Z",
+      "viewCount": 41062,
+      "viewsPerDay": 6142,
+      "momentum": 5715,
+      "ageDays": 6.7,
+      "format": "쇼츠",
+      "likeRate": 1.37,
+      "rankScore": {
+        "total": 43,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "rCSAddv5Xqg",
+      "title": "강릉 1박2일 여행 코스 추천🍀 먹고, 쉬고, 행복했던 힐링 여행, 강릉 대표맛집, 감성 카페, 소품샵 🍎",
+      "channelId": "UCXPbGJTbh93oEVA7j0SikUQ",
+      "publishedAt": "2026-05-26T08:52:29Z",
+      "viewCount": 4999,
+      "viewsPerDay": 64,
+      "momentum": 14,
+      "ageDays": 78.3,
+      "format": "롱폼",
+      "likeRate": 0.94,
+      "rankScore": {
+        "total": 6,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "mmeaATlfNqY",
+      "title": "속초 2박 3일 여행코스 총정리 | 3세대 5인 가족 맛집·카페·숙소 추천 Sokcho 2-Day 3-Night Family Trip",
+      "channelId": "UCbuwynGF4FZuPsx1R-1zMKg",
+      "publishedAt": "2026-07-22T12:10:09Z",
+      "viewCount": 495,
+      "viewsPerDay": 23,
+      "momentum": 19,
+      "ageDays": 21.2,
+      "format": "롱폼",
+      "likeRate": 2.63,
+      "rankScore": {
+        "total": 1,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "QisuPPH5r0o",
+      "title": "외국인들의 한국 여행 루트가 바뀌었다…서울 말고 여기가 요즘 뜨는 이유",
+      "channelId": "UCJymjv6IDHQGiOQB_wrHwjA",
+      "publishedAt": "2026-07-27T10:02:28Z",
+      "viewCount": 82600,
+      "viewsPerDay": 5073,
+      "momentum": 4425,
+      "ageDays": 16.3,
+      "format": "롱폼",
+      "likeRate": 4.31,
+      "rankScore": {
+        "total": 43,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "L8fP7ljsVPQ",
+      "title": "나트랑 4박 6일 여행경비·코스 총정리 (4인 가족 359만 원)",
+      "channelId": "UCXZDc9GAzBVRaz1QUImNJhg",
+      "publishedAt": "2026-08-07T10:30:08Z",
+      "viewCount": 63678,
+      "viewsPerDay": 12098,
+      "momentum": 11048,
+      "ageDays": 5.3,
+      "format": "롱폼",
+      "likeRate": 1.06,
+      "rankScore": {
+        "total": 56,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "teUlr76YpA4",
+      "title": "강원도 여행, 진짜 좋았던 곳만 골랐습니다🏞️ 8월 추천 코스 총정리",
+      "channelId": "UCGANJALK9GV5ysLWXe6-rSA",
+      "publishedAt": "2026-07-26T01:21:17Z",
+      "viewCount": 31362,
+      "viewsPerDay": 1777,
+      "momentum": 1528,
+      "ageDays": 17.6,
+      "format": "롱폼",
+      "likeRate": 0.83,
+      "rankScore": {
+        "total": 27,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "VDHK-JaCRn8",
+      "title": "40도에 굳이 캠핑하는 사람이 여기 있습니다🔥 | 플랜포티 피콧 야전침대 | 구독자 이벤트🎁",
+      "channelId": "UCOjDozSGgpycJ-yFh_BxQng",
+      "publishedAt": "2026-08-12T11:00:04Z",
+      "viewCount": 4191,
+      "viewsPerDay": 16764,
+      "momentum": 5588,
+      "ageDays": 0.3,
+      "format": "롱폼",
+      "likeRate": 8.71,
+      "rankScore": {
+        "total": 28,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "N45BZVqu_uA",
+      "title": "[전국 톡톡] 수십억 들인 캠핑장‥'붐' 꺼지자 운영 중단까지 (2026.08.11/뉴스투데이/MBC)",
+      "channelId": "UCF4Wxdo3inmxP-Y59wXDsFw",
+      "publishedAt": "2026-08-10T21:39:01Z",
+      "viewCount": 61139,
+      "viewsPerDay": 33985,
+      "momentum": 26594,
+      "ageDays": 1.8,
+      "format": "롱폼",
+      "likeRate": 0.43,
+      "rankScore": {
+        "total": 66,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "7MCHmHfYLAQ",
+      "title": "검은 텐트 vs 흰 텐트…한여름 캠핑에서 드러난 차이",
+      "channelId": "UC5LH7klGjZq1kpFW0vnO04w",
+      "publishedAt": "2026-08-12T10:55:35Z",
+      "viewCount": 4913,
+      "viewsPerDay": 19652,
+      "momentum": 6551,
+      "ageDays": 0.3,
+      "format": "롱폼",
+      "likeRate": 4.25,
+      "rankScore": {
+        "total": 34,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "Nej9qyF2Prk",
+      "title": "퇴직금 쏟아붓고 만든 캠핑장 창업, 역대급 계곡에서 폭망",
+      "channelId": "UCafdaMoUgftag08nDFd6X1A",
+      "publishedAt": "2026-08-09T05:43:33Z",
+      "viewCount": 108342,
+      "viewsPerDay": 31290,
+      "momentum": 27342,
+      "ageDays": 3.5,
+      "format": "롱폼",
+      "likeRate": 2.61,
+      "rankScore": {
+        "total": 71,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "R6J5hfhAxJU",
+      "title": "캠핑 사이트는 텅텅.. 수영장은 외부 손님.. 캠핑장계의 에르메스라던 그곳 상황 | 진천 더빌리지 캠핑장",
+      "channelId": "UCEcyV7-8HD-EYxQN0BooKvw",
+      "publishedAt": "2026-08-09T10:30:06Z",
+      "viewCount": 35395,
+      "viewsPerDay": 10846,
+      "momentum": 9405,
+      "ageDays": 3.3,
+      "format": "롱폼",
+      "likeRate": 1.17,
+      "rankScore": {
+        "total": 50,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "6kkgnIoHGMg",
+      "title": "여름 캠핑 끝… 팬히터로 살아남았습니다...🫠",
+      "channelId": "UCoc4GqwXn6ORvfZXu2JFJlg",
+      "publishedAt": "2026-08-10T08:39:20Z",
+      "viewCount": 36282,
+      "viewsPerDay": 15502,
+      "momentum": 12773,
+      "ageDays": 2.3,
+      "format": "롱폼",
+      "likeRate": 1.77,
+      "rankScore": {
+        "total": 54,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "1_anpSDHvNw",
+      "title": "모캠 철수 같이 해요☀️⛺️ 🛵 #슈퍼커브 #모토캠핑 #브이로그#motocamping #supercub",
+      "channelId": "UCiUEPXcGqogRaiPpqwKK6NQ",
+      "publishedAt": "2026-08-10T11:35:24Z",
+      "viewCount": 192176,
+      "viewsPerDay": 86636,
+      "momentum": 70700,
+      "ageDays": 2.2,
+      "format": "롱폼",
+      "likeRate": 0.45,
+      "rankScore": {
+        "total": 81,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "Hq3rTYyz-r4",
+      "title": "휴게소 저녁 해결, 차안 휴식, 출발?",
+      "channelId": "UCUURqlkZ6lKSGIloXr9ewHw",
+      "publishedAt": "2026-08-12T12:06:56Z",
+      "viewCount": 3921,
+      "viewsPerDay": 15684,
+      "momentum": 5228,
+      "ageDays": 0.3,
+      "format": "쇼츠",
+      "likeRate": 1.89,
+      "rankScore": {
+        "total": 24,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "cTx5WV5ZJ9k",
+      "title": "[ㅇㅈㅋㅍ] 낭만과 광기는 한 끗 차이 💥😱",
+      "channelId": "UCTje2o0ghAAJApcLiCRACxg",
+      "publishedAt": "2026-08-07T08:00:29Z",
+      "viewCount": 113286,
+      "viewsPerDay": 21106,
+      "momentum": 19308,
+      "ageDays": 5.4,
+      "format": "롱폼",
+      "likeRate": 1.27,
+      "rankScore": {
+        "total": 69,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "Nc7TgRH7B5w",
+      "title": "The Most Important Thing a Camping YouTuber Learned from Summer Camping",
+      "channelId": "UCqmLZjKRqttIhZrImRuOwaw",
+      "publishedAt": "2026-08-08T10:00:01Z",
+      "viewCount": 67199,
+      "viewsPerDay": 15684,
+      "momentum": 14045,
+      "ageDays": 4.3,
+      "format": "롱폼",
+      "likeRate": 2.91,
+      "rankScore": {
+        "total": 60,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "fVnCeCDEzkw",
+      "title": "45도 폭염특보에 캠핑을 하면 어떻게 될까?",
+      "channelId": "UCWlwaqMam9GueCmnwT1VYDA",
+      "publishedAt": "2026-08-09T12:00:23Z",
+      "viewCount": 124198,
+      "viewsPerDay": 38802,
+      "momentum": 33559,
+      "ageDays": 3.2,
+      "format": "롱폼",
+      "likeRate": 2.33,
+      "rankScore": {
+        "total": 73,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "9k_CJUlPJ7Y",
+      "title": "정말 제대로 만든 내구성!디자인!가격!모두 잡은 퍼팩트 체류쉼터 발견했습니다!! #세컨하우스#캠핑#캠핑카#모듈러주택#농촌체류형쉼터#농막#이동주택#리모델링#부동산#체류형쉼터",
+      "channelId": "UCPll9ZfV8mThBCT1qKTeQZQ",
+      "publishedAt": "2026-08-11T01:36:51Z",
+      "viewCount": 8796,
+      "viewsPerDay": 5384,
+      "momentum": 4122,
+      "ageDays": 1.6,
+      "format": "롱폼",
+      "likeRate": 1.74,
+      "rankScore": {
+        "total": 28,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "P76gaWVN90k",
+      "title": "🔥폭염 속 타프에 우레탄창 설치하고 캠핑용 에어컨 틀면 시원할까? (sub. 대충 살자 의자에서 자는 김선찌처럼) • 국물 닭발 • 광양 진틀 펜션 캠핑장 ",
+      "channelId": "UCoOJbajm-0lX4FESqo2VQUg",
+      "publishedAt": "2026-08-10T11:00:29Z",
+      "viewCount": 40783,
+      "viewsPerDay": 18187,
+      "momentum": 14871,
+      "ageDays": 2.2,
+      "format": "롱폼",
+      "likeRate": 3.89,
+      "rankScore": {
+        "total": 58,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "iticsE-7OCU",
+      "title": "이거 하려고 알리본사에 다녀왔습니다! | 초가성비 캠핑템 11개 낋여왔어요",
+      "channelId": "UC3IjHB7Fkpcu1IYIWELkYUA",
+      "publishedAt": "2026-08-10T11:00:33Z",
+      "viewCount": 10695,
+      "viewsPerDay": 4769,
+      "momentum": 3900,
+      "ageDays": 2.2,
+      "format": "롱폼",
+      "likeRate": 2.29,
+      "rankScore": {
+        "total": 29,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    },
+    {
+      "videoId": "rDeESouB_cs",
+      "title": "갑자기 쏟아진 집중호우… 캠핑카로 계곡 노지캠핑 중 긴급대피했습니다",
+      "channelId": "UCLaSjyJOedN2kONlILF_1Jw",
+      "publishedAt": "2026-08-08T09:00:08Z",
+      "viewCount": 294862,
+      "viewsPerDay": 68160,
+      "momentum": 61098,
+      "ageDays": 4.3,
+      "format": "롱폼",
+      "likeRate": 1.65,
+      "rankScore": {
+        "total": 82,
+        "model": "market-rank-2026.08.12-v2"
+      }
+    }
+  ],
+  "topPhrases": [
+    {
+      "phrase": "제주도 여행",
+      "videoCount": 3,
+      "recentCount": 2
+    },
+    {
+      "phrase": "제주도 맛집",
+      "videoCount": 3,
+      "recentCount": 2
+    },
+    {
+      "phrase": "여행 코스",
+      "videoCount": 3,
+      "recentCount": 1
+    },
+    {
+      "phrase": "8월국내여행지추천 국내여행",
+      "videoCount": 2,
+      "recentCount": 2
+    },
+    {
+      "phrase": "죽기 전에 가봐야",
+      "videoCount": 2,
+      "recentCount": 2
+    },
+    {
+      "phrase": "국내여행지 추천",
+      "videoCount": 2,
+      "recentCount": 2
+    },
+    {
+      "phrase": "1박2일 여행",
+      "videoCount": 2,
+      "recentCount": 0
+    },
+    {
+      "phrase": "전에 가봐야",
+      "videoCount": 2,
+      "recentCount": 2
+    },
+    {
+      "phrase": "코스 TOP",
+      "videoCount": 2,
+      "recentCount": 0
+    },
+    {
+      "phrase": "혼자 떠난",
+      "videoCount": 2,
+      "recentCount": 1
+    },
+    {
+      "phrase": "1박 2일",
+      "videoCount": 2,
+      "recentCount": 1
+    },
+    {
+      "phrase": "죽기 전에",
+      "videoCount": 2,
+      "recentCount": 2
+    },
+    {
+      "phrase": "일본 여행",
+      "videoCount": 2,
+      "recentCount": 1
+    }
+  ],
+  "topKeywords": [
+    {
+      "keyword": "여행",
+      "videoCount": 19,
+      "recentCount": 10
+    },
+    {
+      "keyword": "제주도",
+      "videoCount": 11,
+      "recentCount": 8
+    },
+    {
+      "keyword": "국내여행",
+      "videoCount": 10,
+      "recentCount": 9
+    },
+    {
+      "keyword": "해외여행",
+      "videoCount": 9,
+      "recentCount": 8
+    },
+    {
+      "keyword": "추천",
+      "videoCount": 8,
+      "recentCount": 4
+    },
+    {
+      "keyword": "코스",
+      "videoCount": 8,
+      "recentCount": 3
+    },
+    {
+      "keyword": "일본",
+      "videoCount": 8,
+      "recentCount": 6
+    },
+    {
+      "keyword": "여행지",
+      "videoCount": 5,
+      "recentCount": 3
+    },
+    {
+      "keyword": "이유",
+      "videoCount": 5,
+      "recentCount": 3
+    },
+    {
+      "keyword": "맛집",
+      "videoCount": 5,
+      "recentCount": 3
+    },
+    {
+      "keyword": "제주",
+      "videoCount": 5,
+      "recentCount": 4
+    },
+    {
+      "keyword": "국내",
+      "videoCount": 4,
+      "recentCount": 2
+    },
+    {
+      "keyword": "8월",
+      "videoCount": 4,
+      "recentCount": 3
+    },
+    {
+      "keyword": "총정리",
+      "videoCount": 4,
+      "recentCount": 2
+    },
+    {
+      "keyword": "떠난",
+      "videoCount": 3,
+      "recentCount": 1
+    },
+    {
+      "keyword": "1박2일",
+      "videoCount": 3,
+      "recentCount": 1
+    },
+    {
+      "keyword": "당일치기",
+      "videoCount": 3,
+      "recentCount": 2
+    },
+    {
+      "keyword": "떠나는",
+      "videoCount": 3,
+      "recentCount": 2
+    },
+    {
+      "keyword": "이런",
+      "videoCount": 3,
+      "recentCount": 3
+    },
+    {
+      "keyword": "트레킹",
+      "videoCount": 3,
+      "recentCount": 3
+    }
+  ],
+  "channels": [
+    {
+      "channelId": "UCg3YdmrYGa2O1IySuWvBT0w",
+      "channelTitle": "CKOONY",
+      "videoCount": 2,
+      "totalViews": 416326,
+      "avgMarketScore": 58,
+      "bestVideoTitle": "뭐지?? 배고파서 일본 식당에 들어가자, 한국인을 본 일본인 반응",
+      "subscriberCount": 672000,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 2218,
+      "channelPublishedAt": "2010-03-10T05:21:24Z"
+    },
+    {
+      "channelId": "UCZsg1rkojx4OXb30xjtTRww",
+      "channelTitle": "Jay쌤여행TV",
+      "videoCount": 2,
+      "totalViews": 302408,
+      "avgMarketScore": 63,
+      "bestVideoTitle": "8월 8일에 전구간 개통된 세계 최초 5개섬 해상트레킹 /국내여행 추천 /여름여행지 /군산여행 /섬여행 추천 #8월국내여행지추천 #국내여행 #여름여행지",
+      "subscriberCount": 55600,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 462,
+      "channelPublishedAt": "2020-01-06T14:59:12.496629Z"
+    },
+    {
+      "channelId": "UCMqtYS_xJ63LjWEiPX6LcEA",
+      "channelTitle": "소희맨션 soheemansion",
+      "videoCount": 2,
+      "totalViews": 62584,
+      "avgMarketScore": 34,
+      "bestVideoTitle": "여름 제주여행 이대로 가면 대성공🍉서쪽+동쪽 2박3일 코스🐴 (흑돼지맛집.숙소추천.조천수산.사려니숲길.LP카페.소품샵.협재해수욕장.웨딩스냅스팟)",
+      "subscriberCount": 49700,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 428,
+      "channelPublishedAt": "2019-01-11T02:17:04Z"
+    },
+    {
+      "channelId": "UCDNvRZRgvkBTUkQzFoT_8rA",
+      "channelTitle": "뜬뜬 DdeunDdeun",
+      "videoCount": 1,
+      "totalViews": 7613976,
+      "avgMarketScore": 100,
+      "bestVideoTitle": "[EN] 여행지는 돌림판에, 길은 지도책에 맡겨 둔 4형제의 NO내비 국도 여행｜풍향중 EP.1｜2026 썸머로드 시리즈 #유재석 #이성민 #지석진 #양세찬",
+      "subscriberCount": 3320000,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 435,
+      "channelPublishedAt": "2022-10-04T07:24:23.973864Z"
+    },
+    {
+      "channelId": "UC1Rz7a_DWtsE9cQwSyElE0Q",
+      "channelTitle": "인생84",
+      "videoCount": 1,
+      "totalViews": 2807679,
+      "avgMarketScore": 89,
+      "bestVideoTitle": "삼남매의 제주도 여행",
+      "subscriberCount": 1700000,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 491,
+      "channelPublishedAt": "2020-07-15T08:12:12.152457Z"
+    },
+    {
+      "channelId": "UC9HNi_aAXBgpI2zhibOAfAA",
+      "channelTitle": "어썸코리아 Awesome Korea",
+      "videoCount": 1,
+      "totalViews": 1100145,
+      "avgMarketScore": 80,
+      "bestVideoTitle": "일본 여행 다녀온 한국인들이 착각하는 일본의 실제 현실..?!ㅣ국경없는 수다 EP.112",
+      "subscriberCount": 1280000,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 2235,
+      "channelPublishedAt": "2013-11-12T12:40:56Z"
+    },
+    {
+      "channelId": "UCpTHynfy1gohB-sUQovQI0Q",
+      "channelTitle": "히시월드",
+      "videoCount": 1,
+      "totalViews": 977495,
+      "avgMarketScore": 49,
+      "bestVideoTitle": "요즘 외국인들이 한국여행에 빠진 진짜 이유",
+      "subscriberCount": 190000,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 180,
+      "channelPublishedAt": "2012-06-16T13:15:51Z"
+    },
+    {
+      "channelId": "UCzelf3qtV8AdUXeoybhARsA",
+      "channelTitle": "요건 인정이지",
+      "videoCount": 1,
+      "totalViews": 963532,
+      "avgMarketScore": 97,
+      "bestVideoTitle": "해외여행 갔다와서 가장 먼저 찾은 한국음식",
+      "subscriberCount": 162000,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 432,
+      "channelPublishedAt": "2024-06-05T10:12:46.032613Z"
+    },
+    {
+      "channelId": "UC1ifSsWUG241rRfK0ezYCgA",
+      "channelTitle": "KNN NEWS",
+      "videoCount": 1,
+      "totalViews": 882673,
+      "avgMarketScore": 96,
+      "bestVideoTitle": "희비 갈린 국내 대표 관광지 \"제주보단 부산이지\" 무슨 일? / KNN",
+      "subscriberCount": 1300000,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 199104,
+      "channelPublishedAt": "2013-01-17T06:56:30Z"
+    },
+    {
+      "channelId": "UC0JzvO3F90Bur0_B2VfvUIQ",
+      "channelTitle": "이자반",
+      "videoCount": 1,
+      "totalViews": 723150,
+      "avgMarketScore": 88,
+      "bestVideoTitle": "친구들이랑 밤 새고 일본가서 폭염 처@맞는 브이로그",
+      "subscriberCount": 413000,
+      "hiddenSubscriberCount": false,
+      "totalVideoCount": 242,
+      "channelPublishedAt": "2023-06-18T14:55:40.727193Z"
+    }
+  ],
+  "searchSuggestions": [
+    {
+      "query": "국내여행",
+      "suggestions": [
+        "국내여행 브이로그",
+        "국내여행 추천",
+        "국내여행지추천",
+        "국내여행지",
+        "국내여행 유튜버",
+        "국내여행 혼자",
+        "국내여행 짐싸기",
+        "국내여행지추천 겨울",
+        "국내여행 1박2일"
+      ]
+    },
+    {
+      "query": "해외여행",
+      "suggestions": [
+        "해외여행 유튜버",
+        "해외여행 준비물",
+        "해외여행 브이로그",
+        "해외여행지 추천",
+        "해외여행 영어",
+        "해외여행 카드",
+        "해외여행 보조배터리",
+        "해외여행 준비물 체크리스트",
+        "해외여행 필수품"
+      ]
+    },
+    {
+      "query": "제주도 여행",
+      "suggestions": [
+        "제주도 여행 브이로그",
+        "제주도 여행 노래",
+        "제주도 여행코스",
+        "제주도 여행 추천",
+        "제주도 여행 코디",
+        "제주도 여행지",
+        "제주도 여행 플레이리스트",
+        "제주도 여행 짐싸기",
+        "제주도 여행 준비물"
+      ]
+    },
+    {
+      "query": "일본 여행",
+      "suggestions": [
+        "일본 여행 브이로그",
+        "일본 여행지 추천",
+        "일본 여행 유튜버",
+        "일본 여행 준비물",
+        "일본 여행 회화",
+        "일본 여행 코디",
+        "일본 여행 추천",
+        "일본 여행지",
+        "일본 여행 노래"
+      ]
+    },
+    {
+      "query": "여행 코스",
+      "suggestions": [
+        "여행 코스 추천",
+        "여행 코스 어플",
+        "여행 코스트코",
+        "여행 코스 짜기 어플",
+        "오사카 여행 코스",
+        "도쿄 여행 코스",
+        "제주도 동쪽 여행 코스",
+        "교토 여행 코스",
+        "후쿠오카 여행 코스"
+      ]
+    },
+    {
+      "query": "캠핑",
+      "suggestions": [
+        "캠핑카",
+        "캠핑카여행",
+        "캠핑요리",
+        "캠핑카 중고",
+        "캠핑 브이로그",
+        "캠핑장",
+        "캠핑한끼",
+        "캠핑카 세계여행",
+        "캠핑쥐"
+      ]
+    }
+  ],
+  "limitations": [
+    "외부 영상의 CTR, 노출수, 시청 지속률, 평균 시청 시간은 YouTube 공개 API로 확인할 수 없습니다.",
+    "성과 점수는 조회수, 좋아요, 댓글, 최근성 등 공개 지표 기반 추정치입니다.",
+    "CTR·지속률 지표는 황금후추 내부 YouTube Studio 데이터에서만 확인할 수 있습니다."
+  ],
+  "outperformers": [
+    {
+      "videoId": "haNogIEX8mg",
+      "title": "일본 여행 가서 사오면 호구된다는 제품",
+      "channelTitle": "이거하나",
+      "channelSubscribers": 1240,
+      "viewCount": 89788,
+      "viewsPerDay": 13154,
+      "ageDays": 6.8,
+      "format": "쇼츠",
+      "url": "https://www.youtube.com/watch?v=haNogIEX8mg",
+      "ratio": 72.4
+    },
+    {
+      "videoId": "6-vN0t9ARww",
+      "title": "부산 도착하자마자 2주 살기 선언한 외국인의 찐반응 #한국여행 #해외반응 #해외감동",
+      "channelTitle": "꿀잼충전소",
+      "channelSubscribers": 4340,
+      "viewCount": 137714,
+      "viewsPerDay": 32621,
+      "ageDays": 4.2,
+      "format": "쇼츠",
+      "url": "https://www.youtube.com/watch?v=6-vN0t9ARww",
+      "ratio": 31.7
+    },
+    {
+      "videoId": "B4h6L6kYm1g",
+      "title": "제주도 칠순 여행에서 시어머니가 한 말이 충격입니다",
+      "channelTitle": "보통날의 이야기",
+      "channelSubscribers": 2670,
+      "viewCount": 44414,
+      "viewsPerDay": 34585,
+      "ageDays": 1.3,
+      "format": "롱폼",
+      "url": "https://www.youtube.com/watch?v=B4h6L6kYm1g",
+      "ratio": 16.6
+    },
+    {
+      "videoId": "2D61p6vXxbQ",
+      "title": "대전 여행 코스 11곳, 땀 안 흘리고 다니는 법",
+      "channelTitle": "빵모닝",
+      "channelSubscribers": 2910,
+      "viewCount": 41062,
+      "viewsPerDay": 6142,
+      "ageDays": 6.7,
+      "format": "쇼츠",
+      "url": "https://www.youtube.com/watch?v=2D61p6vXxbQ",
+      "ratio": 14.1
+    },
+    {
+      "videoId": "cTx5WV5ZJ9k",
+      "title": "[ㅇㅈㅋㅍ] 낭만과 광기는 한 끗 차이 💥😱",
+      "channelTitle": "헤이 김대호",
+      "channelSubscribers": 9300,
+      "viewCount": 113286,
+      "viewsPerDay": 21106,
+      "ageDays": 5.4,
+      "format": "롱폼",
+      "url": "https://www.youtube.com/watch?v=cTx5WV5ZJ9k",
+      "ratio": 12.2
+    },
+    {
+      "videoId": "L8fP7ljsVPQ",
+      "title": "나트랑 4박 6일 여행경비·코스 총정리 (4인 가족 359만 원)",
+      "channelTitle": "시수패밀리",
+      "channelSubscribers": 9960,
+      "viewCount": 63678,
+      "viewsPerDay": 12098,
+      "ageDays": 5.3,
+      "format": "롱폼",
+      "url": "https://www.youtube.com/watch?v=L8fP7ljsVPQ",
+      "ratio": 6.4
+    },
+    {
+      "videoId": "qFH8yck3PPM",
+      "title": "일본 시골 게스트하우스에서 만난 이상형 [히로시마下]",
+      "channelTitle": "채고니까 채거니",
+      "channelSubscribers": 23200,
+      "viewCount": 146226,
+      "viewsPerDay": 20131,
+      "ageDays": 7.3,
+      "format": "롱폼",
+      "url": "https://www.youtube.com/watch?v=qFH8yck3PPM",
+      "ratio": 6.3
+    },
+    {
+      "videoId": "ctAG8SSHxe0",
+      "title": "혼자 떠난 도쿄 여행 vlog 최신 현지인 맛집, 쇼핑, 느좋 동네 풉니다🗼",
+      "channelTitle": "윤티피",
+      "channelSubscribers": 33600,
+      "viewCount": 210576,
+      "viewsPerDay": 9885,
+      "ageDays": 21.3,
+      "format": "롱폼",
+      "url": "https://www.youtube.com/watch?v=ctAG8SSHxe0",
+      "ratio": 6.3
+    }
+  ],
+  "commentDemand": {
+    "scannedVideos": 8,
+    "totalComments": 400,
+    "requests": [
+      {
+        "text": "아니 45분짜리였어 ..? 난 왜케 짧게 끝낫지 생각했는데 너무 재밋게 본탓인가 ... 좀 더 길게 만들어주시죠",
+        "likeCount": 5,
+        "videoTitle": "하루 만원에 돈 걱정 없이 여행할 수 있는 미얀마 입국기"
+      }
+    ]
+  },
+  "comparison": {
+    "previousDate": "2026-08-12",
+    "newKeywords": [
+      {
+        "keyword": "맛집",
+        "videoCount": 5,
+        "recentCount": 3
+      },
+      {
+        "keyword": "국내",
+        "videoCount": 4,
+        "recentCount": 2
+      },
+      {
+        "keyword": "떠난",
+        "videoCount": 3,
+        "recentCount": 1
+      },
+      {
+        "keyword": "1박2일",
+        "videoCount": 3,
+        "recentCount": 1
+      },
+      {
+        "keyword": "이런",
+        "videoCount": 3,
+        "recentCount": 3
+      },
+      {
+        "keyword": "트레킹",
+        "videoCount": 3,
+        "recentCount": 3
+      }
+    ],
+    "strengthenedKeywords": [
+      {
+        "keyword": "여행",
+        "previousVideoCount": 16,
+        "videoCount": 19
+      },
+      {
+        "keyword": "제주도",
+        "previousVideoCount": 10,
+        "videoCount": 11
+      },
+      {
+        "keyword": "국내여행",
+        "previousVideoCount": 9,
+        "videoCount": 10
+      },
+      {
+        "keyword": "해외여행",
+        "previousVideoCount": 8,
+        "videoCount": 9
+      },
+      {
+        "keyword": "일본",
+        "previousVideoCount": 7,
+        "videoCount": 8
+      }
+    ],
+    "newPhrases": [
+      {
+        "phrase": "죽기 전에 가봐야",
+        "videoCount": 2,
+        "recentCount": 2
+      },
+      {
+        "phrase": "1박2일 여행",
+        "videoCount": 2,
+        "recentCount": 0
+      },
+      {
+        "phrase": "혼자 떠난",
+        "videoCount": 2,
+        "recentCount": 1
+      },
+      {
+        "phrase": "1박 2일",
+        "videoCount": 2,
+        "recentCount": 1
+      },
+      {
+        "phrase": "죽기 전에",
+        "videoCount": 2,
+        "recentCount": 2
+      },
+      {
+        "phrase": "일본 여행",
+        "videoCount": 2,
+        "recentCount": 1
+      }
+    ],
+    "newRisingVideos": [
+      {
+        "videoId": "-O4FBd28Axw",
+        "title": "해외여행 갔다와서 가장 먼저 찾은 한국음식",
+        "channelTitle": "요건 인정이지",
+        "viewsPerDay": 753438,
+        "ageDays": 1.3,
+        "format": "쇼츠",
+        "url": "https://www.youtube.com/watch?v=-O4FBd28Axw"
+      },
+      {
+        "videoId": "f_-5ZRgLYoI",
+        "title": "희비 갈린 국내 대표 관광지 \"제주보단 부산이지\" 무슨 일? / KNN",
+        "channelTitle": "KNN NEWS",
+        "viewsPerDay": 167034,
+        "ageDays": 5.3,
+        "format": "롱폼",
+        "url": "https://www.youtube.com/watch?v=f_-5ZRgLYoI"
+      }
+    ]
+  },
+  "velocityVideos": [
+    {
+      "videoId": "5X-7Env4phc",
+      "title": "[EN] 여행지는 돌림판에, 길은 지도책에 맡겨 둔 4형제의 NO내비 국도 여행｜풍향중 EP.1｜2026 썸머로드 시리즈 #유재석 #이성민 #지석진 #양세찬",
+      "channelTitle": "뜬뜬 DdeunDdeun",
+      "url": "https://www.youtube.com/watch?v=5X-7Env4phc",
+      "format": "롱폼",
+      "viewCount": 7613976,
+      "previousViews": 7568102,
+      "viewDelta": 45874,
+      "hoursBetween": 5.5,
+      "measuredViewsPerDay": 201145
+    },
+    {
+      "videoId": "IWHir0mYfQ8",
+      "title": "오키나와에서 느끼는 한국에 대한 관심 현상황",
+      "channelTitle": "김제법",
+      "url": "https://www.youtube.com/watch?v=IWHir0mYfQ8",
+      "format": "롱폼",
+      "viewCount": 231026,
+      "previousViews": 191855,
+      "viewDelta": 39171,
+      "hoursBetween": 5.5,
+      "measuredViewsPerDay": 171754
+    },
+    {
+      "videoId": "syhNUAFYXcQ",
+      "title": "\"8월 8일, 대한민국에 이런 길이 태어났습니다 (세계 최고의 트레킹 코스?)\"",
+      "channelTitle": "김영수TV-여행과 산행",
+      "url": "https://www.youtube.com/watch?v=syhNUAFYXcQ",
+      "format": "롱폼",
+      "viewCount": 281022,
+      "previousViews": 247157,
+      "viewDelta": 33865,
+      "hoursBetween": 5.5,
+      "measuredViewsPerDay": 148489
+    },
+    {
+      "videoId": "2jtzzEdiz6A",
+      "title": "결국 못 참고 또 왔습니다.. 모두가 한국인을 미친듯이 반겨주는 아름다운 남미 외딴 섬",
+      "channelTitle": "재호캉스",
+      "url": "https://www.youtube.com/watch?v=2jtzzEdiz6A",
+      "format": "롱폼",
+      "viewCount": 695524,
+      "previousViews": 674483,
+      "viewDelta": 21041,
+      "hoursBetween": 5.5,
+      "measuredViewsPerDay": 92259
+    },
+    {
+      "videoId": "7sgnIrOgsRo",
+      "title": "8월 8일에 전구간 개통된 세계 최초 5개섬 해상트레킹 /국내여행 추천 /여름여행지 /군산여행 /섬여행 추천 #8월국내여행지추천 #국내여행 #여름여행지",
+      "channelTitle": "Jay쌤여행TV",
+      "url": "https://www.youtube.com/watch?v=7sgnIrOgsRo",
+      "format": "쇼츠",
+      "viewCount": 281509,
+      "previousViews": 264244,
+      "viewDelta": 17265,
+      "hoursBetween": 5.5,
+      "measuredViewsPerDay": 75702
+    },
+    {
+      "videoId": "iFLL-5caXfI",
+      "title": "하루 만원에 돈 걱정 없이 여행할 수 있는 미얀마 입국기",
+      "channelTitle": "상가의 안녕히살아보기",
+      "url": "https://www.youtube.com/watch?v=iFLL-5caXfI",
+      "format": "롱폼",
+      "viewCount": 470562,
+      "previousViews": 461862,
+      "viewDelta": 8700,
+      "hoursBetween": 5.5,
+      "measuredViewsPerDay": 38147
+    },
+    {
+      "videoId": "jCymAz3FiW4",
+      "title": "목포는 도시 전체가 맛집이당껭... #전라도여행 #국내여행 #여행룩",
+      "channelTitle": "루피타 Lupita",
+      "url": "https://www.youtube.com/watch?v=jCymAz3FiW4",
+      "format": "롱폼",
+      "viewCount": 254269,
+      "previousViews": 246785,
+      "viewDelta": 7484,
+      "hoursBetween": 5.5,
+      "measuredViewsPerDay": 32815
+    },
+    {
+      "videoId": "fVnCeCDEzkw",
+      "title": "45도 폭염특보에 캠핑을 하면 어떻게 될까?",
+      "channelTitle": "도토리TV Dotori TV",
+      "url": "https://www.youtube.com/watch?v=fVnCeCDEzkw",
+      "format": "롱폼",
+      "viewCount": 124198,
+      "previousViews": 118659,
+      "viewDelta": 5539,
+      "hoursBetween": 5.5,
+      "measuredViewsPerDay": 24287
+    },
+    {
+      "videoId": "Z9SsmK2YgVU",
+      "title": "서양인들에게 유명하지만 한국인은 잘 모르는 동남아 최고의 휴양지",
+      "channelTitle": "여행가 제이 [Traveler JAY]",
+      "url": "https://www.youtube.com/watch?v=Z9SsmK2YgVU",
+      "format": "롱폼",
+      "viewCount": 464354,
+      "previousViews": 459400,
+      "viewDelta": 4954,
+      "hoursBetween": 5.5,
+      "measuredViewsPerDay": 21722
+    },
+    {
+      "videoId": "SeLOndN5EFM",
+      "title": "더 이상 \"그냥 친구\"가 아닌 일본 여사친과 오사카 여행",
+      "channelTitle": "시도 sido",
+      "url": "https://www.youtube.com/watch?v=SeLOndN5EFM",
+      "format": "롱폼",
+      "viewCount": 361873,
+      "previousViews": 357277,
+      "viewDelta": 4596,
+      "hoursBetween": 5.5,
+      "measuredViewsPerDay": 20152
+    }
+  ]
+}

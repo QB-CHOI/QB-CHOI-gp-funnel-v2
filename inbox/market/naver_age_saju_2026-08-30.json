@@ -1,8 +1,8 @@
 {
   "ok": true,
   "topic": "사주",
-  "date": "2026-08-27",
-  "generatedAt": "2026-08-26T22:01:21.708Z",
+  "date": "2026-08-30",
+  "generatedAt": "2026-08-29T23:49:50.412Z",
   "brackets": [
     "10대",
     "20대",
@@ -62,9 +62,9 @@
           "recentAvg": 23
         },
         "40대": {
-          "deltaPercent": -21,
-          "level": 18,
-          "recentAvg": 18.4210475
+          "deltaPercent": 0,
+          "level": 22,
+          "recentAvg": 22.368415000000002
         },
         "50대+": {
           "deltaPercent": -52,

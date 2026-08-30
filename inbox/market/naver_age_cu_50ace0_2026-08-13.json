@@ -1,0 +1,211 @@
+{
+  "ok": true,
+  "topic": "여행",
+  "date": "2026-08-13",
+  "generatedAt": "2026-08-12T16:49:50.008Z",
+  "brackets": [
+    "10대",
+    "20대",
+    "30대",
+    "40대",
+    "50대+"
+  ],
+  "profiles": [
+    {
+      "keyword": "해외여행",
+      "byAge": {
+        "10대": {
+          "deltaPercent": 13,
+          "level": 27,
+          "recentAvg": 26.731790000000004
+        },
+        "20대": {
+          "deltaPercent": -3,
+          "level": 26,
+          "recentAvg": 26.476237500000003
+        },
+        "30대": {
+          "deltaPercent": 1,
+          "level": 18,
+          "recentAvg": 18.0242325
+        },
+        "40대": {
+          "deltaPercent": 20,
+          "level": 17,
+          "recentAvg": 17.4681525
+        },
+        "50대+": {
+          "deltaPercent": 34,
+          "level": 23,
+          "recentAvg": 23.23192
+        }
+      },
+      "hottestAge": "50대+",
+      "hottestDelta": 34
+    },
+    {
+      "keyword": "캠핑",
+      "byAge": {
+        "10대": {
+          "deltaPercent": 34,
+          "level": 85,
+          "recentAvg": 85.2409625
+        },
+        "20대": {
+          "deltaPercent": -18,
+          "level": 65,
+          "recentAvg": 64.9285675
+        },
+        "30대": {
+          "deltaPercent": -26,
+          "level": 49,
+          "recentAvg": 49.132417499999995
+        },
+        "40대": {
+          "deltaPercent": -19,
+          "level": 52,
+          "recentAvg": 51.920695
+        },
+        "50대+": {
+          "deltaPercent": -2,
+          "level": 74,
+          "recentAvg": 74.40558999999999
+        }
+      },
+      "hottestAge": "10대",
+      "hottestDelta": 34
+    },
+    {
+      "keyword": "국내여행",
+      "byAge": {
+        "10대": {
+          "deltaPercent": 27,
+          "level": 22,
+          "recentAvg": 21.802835
+        },
+        "20대": {
+          "deltaPercent": -1,
+          "level": 42,
+          "recentAvg": 41.6575075
+        },
+        "30대": {
+          "deltaPercent": 2,
+          "level": 28,
+          "recentAvg": 28.03457
+        },
+        "40대": {
+          "deltaPercent": 5,
+          "level": 14,
+          "recentAvg": 13.581710000000001
+        },
+        "50대+": {
+          "deltaPercent": 12,
+          "level": 15,
+          "recentAvg": 14.867564999999999
+        }
+      },
+      "hottestAge": "10대",
+      "hottestDelta": 27
+    },
+    {
+      "keyword": "제주도 여행",
+      "byAge": {
+        "10대": {
+          "deltaPercent": 14,
+          "level": 15,
+          "recentAvg": 14.520425
+        },
+        "20대": {
+          "deltaPercent": 5,
+          "level": 38,
+          "recentAvg": 38.368575
+        },
+        "30대": {
+          "deltaPercent": 2,
+          "level": 39,
+          "recentAvg": 38.7448275
+        },
+        "40대": {
+          "deltaPercent": 7,
+          "level": 31,
+          "recentAvg": 30.921909999999997
+        },
+        "50대+": {
+          "deltaPercent": -4,
+          "level": 22,
+          "recentAvg": 21.939864999999998
+        }
+      },
+      "hottestAge": "10대",
+      "hottestDelta": 14
+    },
+    {
+      "keyword": "일본 여행",
+      "byAge": {
+        "10대": {
+          "deltaPercent": -3,
+          "level": 88,
+          "recentAvg": 88.3658925
+        },
+        "20대": {
+          "deltaPercent": -4,
+          "level": 85,
+          "recentAvg": 84.77752749999999
+        },
+        "30대": {
+          "deltaPercent": 6,
+          "level": 84,
+          "recentAvg": 84.37616999999999
+        },
+        "40대": {
+          "deltaPercent": 7,
+          "level": 90,
+          "recentAvg": 90.11129
+        },
+        "50대+": {
+          "deltaPercent": 11,
+          "level": 86,
+          "recentAvg": 85.787395
+        }
+      },
+      "hottestAge": "50대+",
+      "hottestDelta": 11
+    },
+    {
+      "keyword": "여행 코스",
+      "byAge": {
+        "10대": {
+          "deltaPercent": 0,
+          "level": 1,
+          "recentAvg": 0.88809
+        },
+        "20대": {
+          "deltaPercent": 0,
+          "level": 0,
+          "recentAvg": 0.288375
+        },
+        "30대": {
+          "deltaPercent": 0,
+          "level": 0,
+          "recentAvg": 0.197285
+        },
+        "40대": {
+          "deltaPercent": 0,
+          "level": 0,
+          "recentAvg": 0.18152250000000003
+        },
+        "50대+": {
+          "deltaPercent": 0,
+          "level": 0,
+          "recentAvg": 0.14673750000000002
+        }
+      },
+      "hottestAge": null,
+      "hottestDelta": 0
+    }
+  ],
+  "limitations": [
+    "데이터랩은 조회별 상대지표(최대=100)라 연령 간 절대 검색량 비교는 불가 — 연령별 추세(상승률) 비교만 유효합니다.",
+    "최근 4주 vs 이전 10주 평균 변화율. 진행 중인 마지막 주는 불완전해 제외하고, 관심도가 낮은(저기반) 키워드는 왜곡을 막기 위해 상승으로 집계하지 않습니다."
+  ]
+}

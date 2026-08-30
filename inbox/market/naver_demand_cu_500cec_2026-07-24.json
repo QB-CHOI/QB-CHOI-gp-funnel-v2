@@ -1,0 +1,952 @@
+{
+  "ok": true,
+  "topic": "웹툰",
+  "date": "2026-07-24",
+  "generatedAt": "2026-07-24T08:37:24.196Z",
+  "seeds": [
+    "웹툰 추천",
+    "인기 웹툰",
+    "웹툰 원작",
+    "네이버 웹툰",
+    "무료 웹툰"
+  ],
+  "datalabConfigured": true,
+  "searchAdConfigured": true,
+  "trends": [
+    {
+      "keyword": "웹툰 원작",
+      "deltaPercent": 88,
+      "latestRatio": 0.01078,
+      "monthly": [
+        {
+          "period": "2025-06-01",
+          "ratio": 0.02338
+        },
+        {
+          "period": "2025-07-01",
+          "ratio": 0.02192
+        },
+        {
+          "period": "2025-08-01",
+          "ratio": 0.01653
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 0.00884
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 0.00574
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 0.00713
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 0.00684
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 0.00681
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 0.006
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 0.00846
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 0.00319
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 0.00552
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 0.01078
+        }
+      ]
+    },
+    {
+      "keyword": "무료 웹툰",
+      "deltaPercent": 20,
+      "latestRatio": 0.4287,
+      "monthly": [
+        {
+          "period": "2025-06-01",
+          "ratio": 0.36705
+        },
+        {
+          "period": "2025-07-01",
+          "ratio": 0.37686
+        },
+        {
+          "period": "2025-08-01",
+          "ratio": 0.3987
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 0.37864
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 0.36104
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 0.37173
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 0.31935
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 0.33776
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 0.27323
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 0.29267
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 0.34793
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 0.43167
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 0.4287
+        }
+      ]
+    },
+    {
+      "keyword": "네이버 웹툰",
+      "deltaPercent": 6,
+      "latestRatio": 99.73838,
+      "monthly": [
+        {
+          "period": "2025-06-01",
+          "ratio": 88.78262
+        },
+        {
+          "period": "2025-07-01",
+          "ratio": 94.45911
+        },
+        {
+          "period": "2025-08-01",
+          "ratio": 100
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 91.9088
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 93.05077
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 88.81356
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 91.01332
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 94.8458
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 91.15215
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 93.76447
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 91.67538
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 96.11143
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 99.73838
+        }
+      ]
+    },
+    {
+      "keyword": "웹툰 추천",
+      "deltaPercent": -1,
+      "latestRatio": 0.33711,
+      "monthly": [
+        {
+          "period": "2025-06-01",
+          "ratio": 0.52215
+        },
+        {
+          "period": "2025-07-01",
+          "ratio": 0.56046
+        },
+        {
+          "period": "2025-08-01",
+          "ratio": 0.55626
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 0.48676
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 0.47811
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 0.42979
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 0.43919
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 0.47058
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 0.39621
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 0.37787
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 0.31786
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 0.32981
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 0.33711
+        }
+      ]
+    },
+    {
+      "keyword": "인기 웹툰",
+      "deltaPercent": -4,
+      "latestRatio": 0.05483,
+      "monthly": [
+        {
+          "period": "2025-06-01",
+          "ratio": 0.06232
+        },
+        {
+          "period": "2025-07-01",
+          "ratio": 0.06959
+        },
+        {
+          "period": "2025-08-01",
+          "ratio": 0.06852
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 0.05451
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 0.04689
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 0.04973
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 0.04718
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 0.05034
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 0.04769
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 0.06022
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 0.05209
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 0.05967
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 0.05483
+        }
+      ]
+    }
+  ],
+  "keywords": [
+    {
+      "keyword": "웹툰",
+      "pcMonthly": 136700,
+      "mobileMonthly": 1167700,
+      "totalMonthly": 1304400,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "카카오웹툰",
+      "pcMonthly": 30200,
+      "mobileMonthly": 195200,
+      "totalMonthly": 225400,
+      "competition": "낮음",
+      "isSeed": false
+    },
+    {
+      "keyword": "수영",
+      "pcMonthly": 8220,
+      "mobileMonthly": 49500,
+      "totalMonthly": 57720,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "웹소설",
+      "pcMonthly": 6090,
+      "mobileMonthly": 39100,
+      "totalMonthly": 45190,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "요일별웹툰",
+      "pcMonthly": 6210,
+      "mobileMonthly": 35100,
+      "totalMonthly": 41310,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "만화방",
+      "pcMonthly": 1750,
+      "mobileMonthly": 24300,
+      "totalMonthly": 26050,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "추천완결웹툰",
+      "pcMonthly": 3610,
+      "mobileMonthly": 17200,
+      "totalMonthly": 20810,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "신작웹툰",
+      "pcMonthly": 1800,
+      "mobileMonthly": 15000,
+      "totalMonthly": 16800,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "성한찬란",
+      "pcMonthly": 1440,
+      "mobileMonthly": 12800,
+      "totalMonthly": 14240,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "문화상품권사용처",
+      "pcMonthly": 2470,
+      "mobileMonthly": 11700,
+      "totalMonthly": 14170,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "전자책",
+      "pcMonthly": 4050,
+      "mobileMonthly": 10100,
+      "totalMonthly": 14150,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "월요웹툰",
+      "pcMonthly": 1650,
+      "mobileMonthly": 12300,
+      "totalMonthly": 13950,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "무료웹툰",
+      "pcMonthly": 1360,
+      "mobileMonthly": 11000,
+      "totalMonthly": 12360,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "소설추천",
+      "pcMonthly": 2010,
+      "mobileMonthly": 9700,
+      "totalMonthly": 11710,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "웹툰추천",
+      "pcMonthly": 2340,
+      "mobileMonthly": 8520,
+      "totalMonthly": 10860,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "소설책추천",
+      "pcMonthly": 1460,
+      "mobileMonthly": 7760,
+      "totalMonthly": 9220,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "무료만화",
+      "pcMonthly": 3170,
+      "mobileMonthly": 4950,
+      "totalMonthly": 8120,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "무료웹툰사이트",
+      "pcMonthly": 860,
+      "mobileMonthly": 7140,
+      "totalMonthly": 8000,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "E북",
+      "pcMonthly": 2110,
+      "mobileMonthly": 5710,
+      "totalMonthly": 7820,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "손자병법",
+      "pcMonthly": 1570,
+      "mobileMonthly": 6080,
+      "totalMonthly": 7650,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "일일툰",
+      "pcMonthly": 2110,
+      "mobileMonthly": 5390,
+      "totalMonthly": 7500,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "한승원",
+      "pcMonthly": 730,
+      "mobileMonthly": 6100,
+      "totalMonthly": 6830,
+      "competition": "낮음",
+      "isSeed": false
+    },
+    {
+      "keyword": "이북",
+      "pcMonthly": 1620,
+      "mobileMonthly": 5160,
+      "totalMonthly": 6780,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "나혼자만레벨업웹툰",
+      "pcMonthly": 1040,
+      "mobileMonthly": 5570,
+      "totalMonthly": 6610,
+      "competition": "낮음",
+      "isSeed": false
+    },
+    {
+      "keyword": "EBOOK",
+      "pcMonthly": 1750,
+      "mobileMonthly": 4590,
+      "totalMonthly": 6340,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "만화갤러리",
+      "pcMonthly": 840,
+      "mobileMonthly": 5450,
+      "totalMonthly": 6290,
+      "competition": "낮음",
+      "isSeed": false
+    },
+    {
+      "keyword": "만화책",
+      "pcMonthly": 1290,
+      "mobileMonthly": 4600,
+      "totalMonthly": 5890,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "로맨스웹툰",
+      "pcMonthly": 300,
+      "mobileMonthly": 4560,
+      "totalMonthly": 4860,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "만화책추천",
+      "pcMonthly": 520,
+      "mobileMonthly": 3900,
+      "totalMonthly": 4420,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "완결웹툰추천",
+      "pcMonthly": 980,
+      "mobileMonthly": 3180,
+      "totalMonthly": 4160,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "소설책",
+      "pcMonthly": 750,
+      "mobileMonthly": 3100,
+      "totalMonthly": 3850,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "웹튼",
+      "pcMonthly": 150,
+      "mobileMonthly": 3650,
+      "totalMonthly": 3800,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "로맨스소설",
+      "pcMonthly": 410,
+      "mobileMonthly": 3280,
+      "totalMonthly": 3690,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "김성모",
+      "pcMonthly": 720,
+      "mobileMonthly": 2490,
+      "totalMonthly": 3210,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "웹툰순위",
+      "pcMonthly": 830,
+      "mobileMonthly": 2330,
+      "totalMonthly": 3160,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "죽기전에꼭봐야할웹툰",
+      "pcMonthly": 450,
+      "mobileMonthly": 2700,
+      "totalMonthly": 3150,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "옛날만화",
+      "pcMonthly": 460,
+      "mobileMonthly": 2680,
+      "totalMonthly": 3140,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "웹툰사이트",
+      "pcMonthly": 340,
+      "mobileMonthly": 2710,
+      "totalMonthly": 3050,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "웹소설추천",
+      "pcMonthly": 710,
+      "mobileMonthly": 2320,
+      "totalMonthly": 3030,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "로판웹툰추천",
+      "pcMonthly": 270,
+      "mobileMonthly": 2690,
+      "totalMonthly": 2960,
+      "competition": "높음",
+      "isSeed": false
+    }
+  ],
+  "seedKeywords": [
+    {
+      "keyword": "무료웹툰",
+      "pcMonthly": 1360,
+      "mobileMonthly": 11000,
+      "totalMonthly": 12360,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "웹툰추천",
+      "pcMonthly": 2340,
+      "mobileMonthly": 8520,
+      "totalMonthly": 10860,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "인기웹툰",
+      "pcMonthly": 650,
+      "mobileMonthly": 1410,
+      "totalMonthly": 2060,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "네이버웹툰",
+      "pcMonthly": 40,
+      "mobileMonthly": 620,
+      "totalMonthly": 660,
+      "competition": "낮음",
+      "isSeed": true
+    },
+    {
+      "keyword": "웹툰원작",
+      "pcMonthly": 70,
+      "mobileMonthly": 250,
+      "totalMonthly": 320,
+      "competition": "높음",
+      "isSeed": true
+    }
+  ],
+  "newDiscoveries": [
+    {
+      "keyword": "웹툰",
+      "pcMonthly": 136700,
+      "mobileMonthly": 1167700,
+      "totalMonthly": 1304400,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "카카오웹툰",
+      "pcMonthly": 30200,
+      "mobileMonthly": 195200,
+      "totalMonthly": 225400,
+      "competition": "낮음",
+      "isSeed": false
+    },
+    {
+      "keyword": "수영",
+      "pcMonthly": 8220,
+      "mobileMonthly": 49500,
+      "totalMonthly": 57720,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "웹소설",
+      "pcMonthly": 6090,
+      "mobileMonthly": 39100,
+      "totalMonthly": 45190,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "요일별웹툰",
+      "pcMonthly": 6210,
+      "mobileMonthly": 35100,
+      "totalMonthly": 41310,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "만화방",
+      "pcMonthly": 1750,
+      "mobileMonthly": 24300,
+      "totalMonthly": 26050,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "추천완결웹툰",
+      "pcMonthly": 3610,
+      "mobileMonthly": 17200,
+      "totalMonthly": 20810,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "신작웹툰",
+      "pcMonthly": 1800,
+      "mobileMonthly": 15000,
+      "totalMonthly": 16800,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "성한찬란",
+      "pcMonthly": 1440,
+      "mobileMonthly": 12800,
+      "totalMonthly": 14240,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "문화상품권사용처",
+      "pcMonthly": 2470,
+      "mobileMonthly": 11700,
+      "totalMonthly": 14170,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "전자책",
+      "pcMonthly": 4050,
+      "mobileMonthly": 10100,
+      "totalMonthly": 14150,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "월요웹툰",
+      "pcMonthly": 1650,
+      "mobileMonthly": 12300,
+      "totalMonthly": 13950,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "소설추천",
+      "pcMonthly": 2010,
+      "mobileMonthly": 9700,
+      "totalMonthly": 11710,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "소설책추천",
+      "pcMonthly": 1460,
+      "mobileMonthly": 7760,
+      "totalMonthly": 9220,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "무료만화",
+      "pcMonthly": 3170,
+      "mobileMonthly": 4950,
+      "totalMonthly": 8120,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "무료웹툰사이트",
+      "pcMonthly": 860,
+      "mobileMonthly": 7140,
+      "totalMonthly": 8000,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "E북",
+      "pcMonthly": 2110,
+      "mobileMonthly": 5710,
+      "totalMonthly": 7820,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "손자병법",
+      "pcMonthly": 1570,
+      "mobileMonthly": 6080,
+      "totalMonthly": 7650,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "일일툰",
+      "pcMonthly": 2110,
+      "mobileMonthly": 5390,
+      "totalMonthly": 7500,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "한승원",
+      "pcMonthly": 730,
+      "mobileMonthly": 6100,
+      "totalMonthly": 6830,
+      "competition": "낮음",
+      "isSeed": false
+    }
+  ],
+  "communityDemand": {
+    "enough": true,
+    "scanned": 750,
+    "questionCount": 51,
+    "noiseFiltered": 699,
+    "hotSeeds": [
+      {
+        "seed": "웹툰 추천",
+        "count": 12
+      },
+      {
+        "seed": "웹툰 원작",
+        "count": 12
+      },
+      {
+        "seed": "네이버 웹툰",
+        "count": 12
+      },
+      {
+        "seed": "인기 웹툰",
+        "count": 11
+      },
+      {
+        "seed": "무료 웹툰",
+        "count": 4
+      }
+    ],
+    "posts": [
+      {
+        "seed": "웹툰 추천",
+        "kind": "지식iN",
+        "title": "이벤트 많은 이더리움거래소 사이트 추천 ...?",
+        "link": "https://kin.naver.com/qna/detail.naver?d1id=5&dirId=50601&docId=428504724&qb=7Ju57YiwIOy2lOyynA==&enc=utf8"
+      },
+      {
+        "seed": "인기 웹툰",
+        "kind": "지식iN",
+        "title": "'김부장'의 인기 비결, 시청자 반응은 어땠나요?",
+        "link": "https://kin.naver.com/qna/detail.naver?d1id=3&dirId=3010101&docId=494442201&qb=7J246riwIOybue2IsA==&enc=utf8"
+      },
+      {
+        "seed": "웹툰 원작",
+        "kind": "지식iN",
+        "title": "김부장 드라마 웹툰 몇화까지 내용인가요?",
+        "link": "https://kin.naver.com/qna/detail.naver?d1id=3&dirId=30511&docId=494428898&qb=7Ju57YiwIOybkOyekQ==&enc=utf8"
+      },
+      {
+        "seed": "네이버 웹툰",
+        "kind": "지식iN",
+        "title": "웹툰 제목 좀 알려주세요",
+        "link": "https://kin.naver.com/qna/detail.naver?d1id=3&dirId=30511&docId=494387301&qb=64Sk7J2067KEIOybue2IsA==&enc=utf8"
+      },
+      {
+        "seed": "무료 웹툰",
+        "kind": "지식iN",
+        "title": "웹툰학과가 있는 대학교는 어떤 곳들이 있나요?",
+        "link": "https://kin.naver.com/qna/detail.naver?d1id=3&dirId=30511&docId=489061787&qb=66y066OMIOybue2IsA==&enc=utf8"
+      },
+      {
+        "seed": "웹툰 추천",
+        "kind": "지식iN",
+        "title": "먼치킨? 웹툰 추천",
+        "link": "https://kin.naver.com/qna/detail.naver?d1id=1&dirId=1060109&docId=491691567&qb=7Ju57YiwIOy2lOyynA==&enc=utf8"
+      },
+      {
+        "seed": "인기 웹툰",
+        "kind": "지식iN",
+        "title": "요즘 패션계에서 북부대공 스타일, 인기 있나요?",
+        "link": "https://kin.naver.com/qna/detail.naver?d1id=8&dirId=804&docId=494411941&qb=7J246riwIOybue2IsA==&enc=utf8"
+      },
+      {
+        "seed": "웹툰 원작",
+        "kind": "지식iN",
+        "title": "드라마 김부장, 웹툰과 다른 결말 가능성 있나요?",
+        "link": "https://kin.naver.com/qna/detail.naver?d1id=3&dirId=30511&docId=494228950&qb=7Ju57YiwIOybkOyekQ==&enc=utf8"
+      },
+      {
+        "seed": "네이버 웹툰",
+        "kind": "지식iN",
+        "title": "네이버웹툰에 윈드브레이커 어디감?",
+        "link": "https://kin.naver.com/qna/detail.naver?d1id=1&dirId=1060109&docId=494411532&qb=64Sk7J2067KEIOybue2IsA==&enc=utf8"
+      },
+      {
+        "seed": "무료 웹툰",
+        "kind": "지식iN",
+        "title": "요즘에 볼만한 웹툰 없나요?",
+        "link": "https://kin.naver.com/qna/detail.naver?d1id=3&dirId=30511&docId=494344212&qb=66y066OMIOybue2IsA==&enc=utf8"
+      },
+      {
+        "seed": "웹툰 추천",
+        "kind": "지식iN",
+        "title": "그림그리기에 적합한 장비 추천해주실 수 있나요?",
+        "link": "https://kin.naver.com/qna/detail.naver?d1id=3&dirId=31201&docId=494428908&qb=7Ju57YiwIOy2lOyynA==&enc=utf8"
+      },
+      {
+        "seed": "인기 웹툰",
+        "kind": "지식iN",
+        "title": "지금 김부장과참교육이 세계에서 인기가 있나요?",
+        "link": "https://kin.naver.com/qna/detail.naver?d1id=8&dirId=814&docId=494363888&qb=7J246riwIOybue2IsA==&enc=utf8"
+      }
+    ]
+  },
+  "newsSignals": {
+    "scanned": 0,
+    "issueCount": 0,
+    "articles": [],
+    "enough": false
+  },
+  "notes": [],
+  "limitations": [
+    "검색량은 네이버 검색 기준이며 유튜브 내 검색량과 다를 수 있습니다.",
+    "데이터랩 트렌드는 절대 검색량이 아니라 기간 내 상대 비율(0~100)입니다.",
+    "월간 검색수 10 미만은 네이버가 '< 10'으로만 제공해 5로 집계합니다."
+  ]
+}
