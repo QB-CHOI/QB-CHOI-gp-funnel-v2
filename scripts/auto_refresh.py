@@ -32,8 +32,10 @@ import io
 import json
 import logging
 import os
+import subprocess
 import sys
 import traceback
+import warnings
 from datetime import datetime
 
 import pandas as pd
@@ -50,6 +52,11 @@ try:
     _st_logger.set_log_level("error")
 except Exception:                       # streamlit 내부 구조가 바뀌어도 죽지 않게
     logging.getLogger("streamlit").setLevel(logging.ERROR)
+
+# urllib3의 LibreSSL 경고도 실행마다 여러 줄 찍힌다(누적 95줄). 시스템 파이썬을
+# 쓰는 한 없앨 수 없는 환경 경고인데, v4.83부터 **진짜 실패**가 stderr로 오므로
+# (github_store._report) 그 신호가 이 줄들에 묻히면 안 된다.
+warnings.filterwarnings("ignore", message=".*OpenSSL.*")
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
@@ -278,8 +285,25 @@ def _webhook():
         return ""
 
 
+def _notify_mac(title: str, body: str) -> bool:
+    """맥 알림 센터로 띄운다 — 슬랙이 없을 때의 대체 경로.
+
+    이 작업은 마케터의 맥에서 launchd로 도니 알림을 띄울 자리가 이미 있다.
+    슬랙 웹훅이 준비될 때까지 위험 경고가 아무 데도 도달하지 않는 것보다는
+    화면 오른쪽 위에라도 뜨는 편이 낫다.
+    """
+    body = body.replace('"', "'")[:230]     # 알림은 길면 잘린다 — 앞부분만
+    try:
+        return subprocess.run(
+            ["osascript", "-e",
+             f'display notification "{body}" with title "{title}"'],
+            capture_output=True, timeout=10).returncode == 0
+    except Exception:
+        return False
+
+
 def send_alerts(dry):
-    """위험·주의 알림을 슬랙으로. 상태 문자열을 돌려준다(사이트에 그대로 표시).
+    """위험·주의 알림을 사람에게. 상태 문자열을 돌려준다(사이트에 그대로 표시).
 
     이 단계가 생긴 이유: 알림 판정은 정확했는데 **아무도 사이트를 열지 않아**
     주문 명단이 27일 → 32일까지 밀렸다. 경고가 화면 안에만 있으면 없는 것과
@@ -289,12 +313,18 @@ def send_alerts(dry):
       · 🔴 위험이 남아 있는 날 — 하루 한 번만 다시 알림
 
     정보(🔵)는 보내지 않는다. 매일 뜨는 안내라 알림으로는 소음이다.
+
+    **웹훅이 없어도 판정은 한다.** 예전에는 웹훅이 비어 있으면 여기서 바로
+    빠져나가서, 슬랙을 설정하지 않은 넉 달 동안 알림이 **한 번도** 나가지
+    않았고 로그에 무엇이 걸렸는지조차 남지 않았다. 지금은 판정을 먼저 하고,
+    슬랙이 있으면 슬랙으로·없으면 맥 알림으로 보낸다. 어느 쪽이든 무엇을
+    보냈는지 로그에 남긴다.
     """
     log("⑤ 알림 점검")
     hook = _webhook()
     if not hook:
-        log("  · 슬랙 웹훅 미설정 — 건너뜀 (.streamlit/secrets.toml의 slack_webhook_url)")
-        return "미설정"
+        log("  · 슬랙 웹훅 미설정 — 맥 알림으로 대신 보냅니다 "
+            "(.streamlit/secrets.toml에 slack_webhook_url을 넣으면 슬랙으로)")
     try:
         from alerts import alert_signature, generate_alerts, slack_message
         from github_store import send_slack_alert
@@ -324,17 +354,29 @@ def send_alerts(dry):
         return "억제"
 
     why = "구성 변경" if changed else "위험 잔존 일일 알림"
+    ch = "슬랙" if hook else "맥 알림"
+    for a in items:                     # 무엇이 걸렸는지 로그에 남긴다
+        log(f"    · {'🔴' if a['sev'] == 'critical' else '🟡'} {a.get('title', a)}")
     if dry:
-        log(f"  · [dry-run] 슬랙 발송 예정 ({why}, {len(items)}건)")
+        log(f"  · [dry-run] {ch} 발송 예정 ({why}, {len(items)}건)")
         return f"발송예정 {len(items)}건"
-    if not send_slack_alert(hook, slack_message(items)):
+
+    if hook:
+        sent = send_slack_alert(hook, slack_message(items))
+    else:
+        head = f"🔴 위험 {n_crit}건" if n_crit else f"🟡 주의 {len(items)}건"
+        sent = _notify_mac(
+            f"황금후추 강의 분석 — {head}",
+            " · ".join(str(a.get("title", "")) for a in items))
+    if not sent:
         # 보낸 걸로 기록하면 안 된다 — 다음 실행이 '이미 보냄'으로 건너뛴다.
-        log("  ⚠️ 슬랙 전송 실패 — 웹훅 주소를 확인하세요")
+        log(f"  ⚠️ {ch} 전송 실패"
+            + (" — 웹훅 주소를 확인하세요" if hook else ""))
         return "전송실패"
     st["alert_sig"] = sig
     st["alert_sent_on"] = today
     _save_state(st)
-    log(f"  ✅ 슬랙 발송 ({why}, {len(items)}건)")
+    log(f"  ✅ {ch} 발송 ({why}, {len(items)}건)")
     return f"발송 {len(items)}건"
 
 

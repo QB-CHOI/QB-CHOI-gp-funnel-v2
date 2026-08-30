@@ -282,6 +282,60 @@ def test_read_write_guard():
         gs._RETRY_WAIT = 1.5
 
 
+# ── 8) 웹훅이 없어도 알림은 사람에게 간다 (v4.84) ────────────────
+def test_alert_delivery_without_webhook():
+    """슬랙을 설정하지 않았다고 알림을 통째로 건너뛰면 안 된다.
+
+    v4.84: `send_alerts`가 웹훅이 비면 **판정도 하지 않고** 바로 빠져나갔다.
+    그래서 v4.76이 만든 '사이트를 열지 않아도 도착하는 알림'이 넉 달 동안
+    한 번도 나가지 않았고, 무엇이 걸렸는지 로그에도 안 남았다(하루 3회
+    '슬랙 웹훅 미설정 — 건너뜀'만 반복). 웹훅이 없으면 맥 알림으로 보낸다.
+    """
+    import os
+    import sys as _sys
+    _here = os.path.dirname(os.path.abspath(__file__))
+    if _here not in _sys.path:
+        _sys.path.insert(0, _here)
+    _sp = os.path.join(_here, "scripts")
+    if _sp not in _sys.path:
+        _sys.path.insert(0, _sp)
+
+    import alerts as al
+    import auto_refresh as ar
+
+    items = [{'sev': 'critical', 'title': '주문 명단 갱신 필요', 'msg': 'x'},
+             {'sev': 'warning',  'title': '광고 저효율 기수',   'msg': 'y'}]
+    sent, logs, state = [], [], {}
+    _orig = (ar._webhook, ar._notify_mac, ar.log, ar._state, ar._save_state,
+             al.generate_alerts)
+    try:
+        ar._webhook     = lambda: ""                 # 슬랙 미설정 상태
+        ar._notify_mac  = lambda t, b: (sent.append((t, b)), True)[1]
+        ar.log          = logs.append
+        ar._state       = lambda: state
+        ar._save_state  = lambda s: state.update(s)
+        al.generate_alerts = lambda: items
+
+        status = ar.send_alerts(dry=False)
+        check("웹훅 없어도 발송한다", len(sent), 1,
+              "'미설정 — 건너뜀'으로 끝나면 알림은 없는 것과 같다")
+        check("위험 건수를 제목에 담는다", "위험 1건" in sent[0][0], True,
+              "제목만 보고 급한지 판단할 수 있어야 한다")
+        check("결과 문자열", status, "발송 2건", "사이트 데이터 관리 탭에 그대로 표시된다")
+        check("무엇이 걸렸는지 로그에 남긴다",
+              sum(1 for l in logs if '주문 명단 갱신 필요' in str(l)), 1,
+              "발송 여부만 남기면 나중에 무엇이 문제였는지 알 수 없다")
+
+        # 같은 알림을 하루에 두 번 밀지 않는다(v4.76 억제 규칙이 살아 있는가)
+        sent.clear()
+        check("같은 알림은 하루 한 번", ar.send_alerts(dry=False), "억제",
+              "하루 3회 도는 작업이라 그대로 밀면 곧 무시하게 된다")
+        check("억제됐으면 실제로 안 보낸다", sent, [], "위와 같은 이유")
+    finally:
+        (ar._webhook, ar._notify_mac, ar.log, ar._state, ar._save_state,
+         al.generate_alerts) = _orig
+
+
 TESTS = [
     ("부분월 판정 (v4.70)", test_complete_months),
     ("웨비나 대기 분리 (v4.75)", test_lecture_date_split),
@@ -290,6 +344,7 @@ TESTS = [
     ("알림 억제 (v4.76)", test_alert_signature),
     ("절기 기준 월주 (v4.49)", test_ganji_jeolgi),
     ("읽기 실패 → 쓰기 차단 (v4.83)", test_read_write_guard),
+    ("웹훅 없이도 알림 발송 (v4.84)", test_alert_delivery_without_webhook),
 ]
 
 

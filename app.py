@@ -1482,10 +1482,11 @@ def tab_overview():
                 st.caption("🔔 🔴 위험 알림은 자동 갱신(하루 3회)이 하루 한 번 "
                            "슬랙으로 자동 발송합니다 — 사이트를 열지 않아도 전달됩니다.")
             else:
-                st.caption("🔔 팀 슬랙으로 알림을 받으려면 `slack_webhook_url`을 두 곳에 "
-                           "넣으세요 — **Streamlit Cloud → Settings → Secrets**(이 화면의 전송 "
-                           "버튼용)와 **갱신용 맥의 `.streamlit/secrets.toml`**(하루 3회 자동 "
-                           "발송용). 자동 발송이 있어야 사이트를 안 열어도 위험 알림이 옵니다.")
+                st.caption("🔔 지금은 🔴 위험 알림이 **갱신용 맥의 알림 센터로** 갑니다 "
+                           "(하루 3회 자동). 팀 슬랙으로 받으려면 `slack_webhook_url`을 "
+                           "두 곳에 넣으세요 — **Streamlit Cloud → Settings → Secrets**"
+                           "(이 화면의 전송 버튼용)와 **갱신용 맥의 "
+                           "`.streamlit/secrets.toml`**(자동 발송용).")
 
     cs = load_course_summary()
     if cs.empty:
@@ -6821,11 +6822,15 @@ def tab_data():
         # 알림 자동 발송은 이 맥에서 도는 작업이라, 사이트(Cloud) 설정이 아니라
         # 맥의 secrets.toml을 봐야 한다. 꺼져 있으면 사이트를 안 여는 동안
         # 🔴 경고가 아무에게도 전달되지 않으므로 여기서 밝혀 둔다.
-        if _al_st in ("미설정", "실패", "전송실패"):
-            st.caption(f"🔔 위험 알림 자동 발송이 **{_al_st}** 상태입니다 — "
+        if _al_st == "미설정":
+            st.caption("🔔 슬랙 웹훅이 없어 위험 알림을 **맥 알림으로** 보내고 "
+                       "있습니다 — 갱신용 맥을 켜 둔 동안에는 도착합니다. "
                        "맥의 `gp-funnel-v2/.streamlit/secrets.toml`에 "
-                       "`slack_webhook_url`을 넣으면 사이트를 열지 않아도 "
-                       "🔴 경고가 슬랙으로 도착합니다.")
+                       "`slack_webhook_url`을 넣으면 팀 슬랙으로 바뀝니다.")
+        elif _al_st in ("실패", "전송실패"):
+            st.caption(f"🔔 위험 알림 자동 발송이 **{_al_st}** 상태입니다 — "
+                       "웹훅 주소를 확인하세요. 고치기 전까지는 🔴 경고가 "
+                       "사이트 밖으로 나가지 않습니다.")
 
     # ── 📅 데이터 현황 (신선도) ───────────────────────────────
     _ds = load_data_sources()
@@ -6995,8 +7000,8 @@ def tab_data():
                 ("🔔 슬랙 알림 (선택)",
                  "슬랙 → 채널에 **Incoming Webhook URL 발급**",
                  "Streamlit Cloud → Settings → Secrets **와** 갱신용 맥의 "
-                 "`.streamlit/secrets.toml`에 `slack_webhook_url = \"...\"` 추가 "
-                 "(뒤쪽이 있어야 하루 3회 자동 발송)."),
+                 "`.streamlit/secrets.toml`에 `slack_webhook_url = \"...\"` 추가. "
+                 "넣지 않아도 위험 알림은 갱신용 맥의 알림 센터로 갑니다."),
             ]
             _gh = ""
             for _t, _where, _how in _guide:
