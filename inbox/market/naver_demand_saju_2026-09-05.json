@@ -1,0 +1,1564 @@
+{
+  "ok": true,
+  "topic": "사주",
+  "date": "2026-09-05",
+  "generatedAt": "2026-09-04T23:51:31.537Z",
+  "seeds": [
+    "2026 운세",
+    "신년운세",
+    "오늘의 운세",
+    "띠별 운세",
+    "재물운",
+    "직업운",
+    "사업운",
+    "결혼운",
+    "애정운",
+    "궁합",
+    "건강운",
+    "대운",
+    "사주풀이",
+    "삼재"
+  ],
+  "datalabConfigured": true,
+  "searchAdConfigured": true,
+  "trends": [
+    {
+      "keyword": "직업운",
+      "deltaPercent": 293,
+      "latestRatio": 6.3625,
+      "monthly": [
+        {
+          "period": "2025-08-01",
+          "ratio": 2.70018
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 2.09497
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 1.59838
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 1.4432
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 1.76908
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 2.00186
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 1.66045
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 1.59838
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 1.21818
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 0.92333
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 1.17939
+        },
+        {
+          "period": "2026-07-01",
+          "ratio": 2.7545
+        },
+        {
+          "period": "2026-08-01",
+          "ratio": 6.3625
+        }
+      ]
+    },
+    {
+      "keyword": "사업운",
+      "deltaPercent": 29,
+      "latestRatio": 1.12507,
+      "monthly": [
+        {
+          "period": "2025-08-01",
+          "ratio": 2.30446
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 2.11824
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 2.23463
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 2.00186
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 1.01644
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 1.45096
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 1.31129
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 1.84667
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 1.18715
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 0.90782
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 0.91558
+        },
+        {
+          "period": "2026-07-01",
+          "ratio": 0.79143
+        },
+        {
+          "period": "2026-08-01",
+          "ratio": 1.12507
+        }
+      ]
+    },
+    {
+      "keyword": "애정운",
+      "deltaPercent": 28,
+      "latestRatio": 13.88112,
+      "monthly": [
+        {
+          "period": "2025-08-01",
+          "ratio": 16.527
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 15.50279
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 14.26132
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 15.09155
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 15.20018
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 13.81905
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 10.31191
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 12.82588
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 12.67846
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 11.5301
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 10.21104
+        },
+        {
+          "period": "2026-07-01",
+          "ratio": 10.88609
+        },
+        {
+          "period": "2026-08-01",
+          "ratio": 13.88112
+        }
+      ]
+    },
+    {
+      "keyword": "사주풀이",
+      "deltaPercent": 23,
+      "latestRatio": 13.66855,
+      "monthly": [
+        {
+          "period": "2025-08-01",
+          "ratio": 15.18693
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 13.42931
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 12.92668
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 14.77455
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 16.41675
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 16.60982
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 21.62247
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 15.04527
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 12.81755
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 11.35268
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 10.84586
+        },
+        {
+          "period": "2026-07-01",
+          "ratio": 11.11239
+        },
+        {
+          "period": "2026-08-01",
+          "ratio": 13.66855
+        }
+      ]
+    },
+    {
+      "keyword": "대운",
+      "deltaPercent": 17,
+      "latestRatio": 1.79645,
+      "monthly": [
+        {
+          "period": "2025-08-01",
+          "ratio": 3.87936
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 3.31063
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 2.93497
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 2.58974
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 2.93602
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 2.74924
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 2.18365
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 2.09131
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 1.83632
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 1.5635
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 1.55405
+        },
+        {
+          "period": "2026-07-01",
+          "ratio": 1.49319
+        },
+        {
+          "period": "2026-08-01",
+          "ratio": 1.79645
+        }
+      ]
+    },
+    {
+      "keyword": "건강운",
+      "deltaPercent": 11,
+      "latestRatio": 0.22245,
+      "monthly": [
+        {
+          "period": "2025-08-01",
+          "ratio": 0.33158
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 0.29591
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 0.31165
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 0.35047
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 0.37251
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 0.31794
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 0.29171
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 0.25498
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 0.25183
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 0.23085
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 0.21406
+        },
+        {
+          "period": "2026-07-01",
+          "ratio": 0.1553
+        },
+        {
+          "period": "2026-08-01",
+          "ratio": 0.22245
+        }
+      ]
+    },
+    {
+      "keyword": "재물운",
+      "deltaPercent": 10,
+      "latestRatio": 0.04042,
+      "monthly": [
+        {
+          "period": "2025-08-01",
+          "ratio": 0.05201
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 0.04686
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 0.03904
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 0.03906
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 0.04062
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 0.05528
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 0.03994
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 0.03405
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 0.03242
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 0.03644
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 0.03677
+        },
+        {
+          "period": "2026-07-01",
+          "ratio": 0.03699
+        },
+        {
+          "period": "2026-08-01",
+          "ratio": 0.04042
+        }
+      ]
+    },
+    {
+      "keyword": "궁합",
+      "deltaPercent": 9,
+      "latestRatio": 77.98727,
+      "monthly": [
+        {
+          "period": "2025-08-01",
+          "ratio": 100
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 93.17194
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 96.42302
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 75.72936
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 95.71694
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 89.96741
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 83.90751
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 94.97982
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 73.87492
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 70.12725
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 73.4404
+        },
+        {
+          "period": "2026-07-01",
+          "ratio": 71.33767
+        },
+        {
+          "period": "2026-08-01",
+          "ratio": 77.98727
+        }
+      ]
+    },
+    {
+      "keyword": "삼재",
+      "deltaPercent": 1,
+      "latestRatio": 23.03906,
+      "monthly": [
+        {
+          "period": "2025-08-01",
+          "ratio": 45.06028
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 37.77269
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 36.81255
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 46.71402
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 100
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 69.99024
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 39.76117
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 27.34341
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 21.59833
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 22.64871
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 20.89318
+        },
+        {
+          "period": "2026-07-01",
+          "ratio": 24.76416
+        },
+        {
+          "period": "2026-08-01",
+          "ratio": 23.03906
+        }
+      ]
+    },
+    {
+      "keyword": "띠별 운세",
+      "deltaPercent": -3,
+      "latestRatio": 22.74249,
+      "monthly": [
+        {
+          "period": "2025-08-01",
+          "ratio": 23.32862
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 24.25708
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 23.25006
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 23.93613
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 25.71537
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 26.6485
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 22.06423
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 25.44083
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 24.78879
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 23.44583
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 23.53237
+        },
+        {
+          "period": "2026-07-01",
+          "ratio": 23.16625
+        },
+        {
+          "period": "2026-08-01",
+          "ratio": 22.74249
+        }
+      ]
+    },
+    {
+      "keyword": "결혼운",
+      "deltaPercent": -5,
+      "latestRatio": 3.95716,
+      "monthly": [
+        {
+          "period": "2025-08-01",
+          "ratio": 8.23246
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 7.3324
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 6.96772
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 6.06765
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 6.64959
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 6.88237
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 5.84264
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 5.35381
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 4.85723
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 4.15114
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 4.12011
+        },
+        {
+          "period": "2026-07-01",
+          "ratio": 4.25977
+        },
+        {
+          "period": "2026-08-01",
+          "ratio": 3.95716
+        }
+      ]
+    },
+    {
+      "keyword": "오늘의 운세",
+      "deltaPercent": -6,
+      "latestRatio": 87.78377,
+      "monthly": [
+        {
+          "period": "2025-08-01",
+          "ratio": 94.79078
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 99.08755
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 92.41032
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 93.3807
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 100
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 95.2591
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 83.5299
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 96.80043
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 99.33828
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 92.39584
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 94.91938
+        },
+        {
+          "period": "2026-07-01",
+          "ratio": 92.59248
+        },
+        {
+          "period": "2026-08-01",
+          "ratio": 87.78377
+        }
+      ]
+    },
+    {
+      "keyword": "신년운세",
+      "deltaPercent": -15,
+      "latestRatio": 0.05078,
+      "monthly": [
+        {
+          "period": "2025-08-01",
+          "ratio": 0.08461
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 0.10772
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 0.25605
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 3.66473
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 15.25576
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 18.08301
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 8.50657
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 0.20579
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 0.07087
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 0.07066
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 0.05665
+        },
+        {
+          "period": "2026-07-01",
+          "ratio": 0.05102
+        },
+        {
+          "period": "2026-08-01",
+          "ratio": 0.05078
+        }
+      ]
+    },
+    {
+      "keyword": "2026 운세",
+      "deltaPercent": -28,
+      "latestRatio": 0.02004,
+      "monthly": [
+        {
+          "period": "2025-08-01",
+          "ratio": 0.01077
+        },
+        {
+          "period": "2025-09-01",
+          "ratio": 0.02709
+        },
+        {
+          "period": "2025-10-01",
+          "ratio": 0.06282
+        },
+        {
+          "period": "2025-11-01",
+          "ratio": 0.26264
+        },
+        {
+          "period": "2025-12-01",
+          "ratio": 0.26169
+        },
+        {
+          "period": "2026-01-01",
+          "ratio": 0.18736
+        },
+        {
+          "period": "2026-02-01",
+          "ratio": 0.07269
+        },
+        {
+          "period": "2026-03-01",
+          "ratio": 0.0802
+        },
+        {
+          "period": "2026-04-01",
+          "ratio": 0.04452
+        },
+        {
+          "period": "2026-05-01",
+          "ratio": 0.03244
+        },
+        {
+          "period": "2026-06-01",
+          "ratio": 0.02674
+        },
+        {
+          "period": "2026-07-01",
+          "ratio": 0.02459
+        },
+        {
+          "period": "2026-08-01",
+          "ratio": 0.02004
+        }
+      ]
+    }
+  ],
+  "keywords": [
+    {
+      "keyword": "오늘의운세",
+      "pcMonthly": 398100,
+      "mobileMonthly": 4974000,
+      "totalMonthly": 5372100,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "운세",
+      "pcMonthly": 147000,
+      "mobileMonthly": 1669000,
+      "totalMonthly": 1816000,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "띠별운세",
+      "pcMonthly": 118900,
+      "mobileMonthly": 1257200,
+      "totalMonthly": 1376100,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "별자리운세",
+      "pcMonthly": 77700,
+      "mobileMonthly": 745600,
+      "totalMonthly": 823300,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "오늘운세",
+      "pcMonthly": 57800,
+      "mobileMonthly": 498000,
+      "totalMonthly": 555800,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "사주",
+      "pcMonthly": 15500,
+      "mobileMonthly": 104300,
+      "totalMonthly": 119800,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "손없는날",
+      "pcMonthly": 17800,
+      "mobileMonthly": 87300,
+      "totalMonthly": 105100,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "띠별오늘의운세",
+      "pcMonthly": 6000,
+      "mobileMonthly": 79600,
+      "totalMonthly": 85600,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "오늘띠별운세",
+      "pcMonthly": 5480,
+      "mobileMonthly": 53600,
+      "totalMonthly": 59080,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "쥐띠운세",
+      "pcMonthly": 12900,
+      "mobileMonthly": 39000,
+      "totalMonthly": 51900,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "돼지띠운세",
+      "pcMonthly": 12500,
+      "mobileMonthly": 39300,
+      "totalMonthly": 51800,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "용띠운세",
+      "pcMonthly": 11900,
+      "mobileMonthly": 39800,
+      "totalMonthly": 51700,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "닭띠운세",
+      "pcMonthly": 10900,
+      "mobileMonthly": 40000,
+      "totalMonthly": 50900,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "원숭이띠운세",
+      "pcMonthly": 11400,
+      "mobileMonthly": 38600,
+      "totalMonthly": 50000,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "토끼띠운세",
+      "pcMonthly": 12300,
+      "mobileMonthly": 37600,
+      "totalMonthly": 49900,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "말띠운세",
+      "pcMonthly": 11500,
+      "mobileMonthly": 38000,
+      "totalMonthly": 49500,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "소띠운세",
+      "pcMonthly": 11600,
+      "mobileMonthly": 36900,
+      "totalMonthly": 48500,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "개띠운세",
+      "pcMonthly": 10800,
+      "mobileMonthly": 37500,
+      "totalMonthly": 48300,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "뱀띠운세",
+      "pcMonthly": 11900,
+      "mobileMonthly": 36400,
+      "totalMonthly": 48300,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "인터넷사주",
+      "pcMonthly": 5400,
+      "mobileMonthly": 42600,
+      "totalMonthly": 48000,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "오늘의띠별운세",
+      "pcMonthly": 3520,
+      "mobileMonthly": 43900,
+      "totalMonthly": 47420,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "양띠운세",
+      "pcMonthly": 11000,
+      "mobileMonthly": 33900,
+      "totalMonthly": 44900,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "꿈해몽풀이",
+      "pcMonthly": 1350,
+      "mobileMonthly": 34800,
+      "totalMonthly": 36150,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "무료사주",
+      "pcMonthly": 5450,
+      "mobileMonthly": 30600,
+      "totalMonthly": 36050,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "식전영상",
+      "pcMonthly": 11000,
+      "mobileMonthly": 14100,
+      "totalMonthly": 25100,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "원숭이띠",
+      "pcMonthly": 2070,
+      "mobileMonthly": 22500,
+      "totalMonthly": 24570,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "물고기자리운세",
+      "pcMonthly": 7770,
+      "mobileMonthly": 16700,
+      "totalMonthly": 24470,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "생년월일운세",
+      "pcMonthly": 3300,
+      "mobileMonthly": 21100,
+      "totalMonthly": 24400,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "물병자리운세",
+      "pcMonthly": 6800,
+      "mobileMonthly": 17100,
+      "totalMonthly": 23900,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "만세력사이트",
+      "pcMonthly": 3200,
+      "mobileMonthly": 20300,
+      "totalMonthly": 23500,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "MBTI궁합",
+      "pcMonthly": 2450,
+      "mobileMonthly": 20900,
+      "totalMonthly": 23350,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "삼재",
+      "pcMonthly": 3720,
+      "mobileMonthly": 19400,
+      "totalMonthly": 23120,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "처녀자리운세",
+      "pcMonthly": 6600,
+      "mobileMonthly": 16000,
+      "totalMonthly": 22600,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "내일운세",
+      "pcMonthly": 1340,
+      "mobileMonthly": 21100,
+      "totalMonthly": 22440,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "전갈자리운세",
+      "pcMonthly": 6820,
+      "mobileMonthly": 15400,
+      "totalMonthly": 22220,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "돼지띠",
+      "pcMonthly": 1990,
+      "mobileMonthly": 20000,
+      "totalMonthly": 21990,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "결혼",
+      "pcMonthly": 3310,
+      "mobileMonthly": 18500,
+      "totalMonthly": 21810,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "오늘에운세",
+      "pcMonthly": 470,
+      "mobileMonthly": 21200,
+      "totalMonthly": 21670,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "사자자리운세",
+      "pcMonthly": 6140,
+      "mobileMonthly": 15000,
+      "totalMonthly": 21140,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "내일의운세",
+      "pcMonthly": 1800,
+      "mobileMonthly": 18800,
+      "totalMonthly": 20600,
+      "competition": "높음",
+      "isSeed": false
+    }
+  ],
+  "seedKeywords": [
+    {
+      "keyword": "오늘의운세",
+      "pcMonthly": 398100,
+      "mobileMonthly": 4974000,
+      "totalMonthly": 5372100,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "띠별운세",
+      "pcMonthly": 118900,
+      "mobileMonthly": 1257200,
+      "totalMonthly": 1376100,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "삼재",
+      "pcMonthly": 3720,
+      "mobileMonthly": 19400,
+      "totalMonthly": 23120,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "사주풀이",
+      "pcMonthly": 2770,
+      "mobileMonthly": 10400,
+      "totalMonthly": 13170,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "궁합",
+      "pcMonthly": 1880,
+      "mobileMonthly": 8040,
+      "totalMonthly": 9920,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "신년운세",
+      "pcMonthly": 1150,
+      "mobileMonthly": 1940,
+      "totalMonthly": 3090,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "재물운",
+      "pcMonthly": 930,
+      "mobileMonthly": 1660,
+      "totalMonthly": 2590,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "애정운",
+      "pcMonthly": 750,
+      "mobileMonthly": 1010,
+      "totalMonthly": 1760,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "대운",
+      "pcMonthly": 240,
+      "mobileMonthly": 1500,
+      "totalMonthly": 1740,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "2026운세",
+      "pcMonthly": 150,
+      "mobileMonthly": 1080,
+      "totalMonthly": 1230,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "직업운",
+      "pcMonthly": 630,
+      "mobileMonthly": 190,
+      "totalMonthly": 820,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "결혼운",
+      "pcMonthly": 150,
+      "mobileMonthly": 490,
+      "totalMonthly": 640,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "사업운",
+      "pcMonthly": 60,
+      "mobileMonthly": 170,
+      "totalMonthly": 230,
+      "competition": "높음",
+      "isSeed": true
+    },
+    {
+      "keyword": "건강운",
+      "pcMonthly": 10,
+      "mobileMonthly": 210,
+      "totalMonthly": 220,
+      "competition": "높음",
+      "isSeed": true
+    }
+  ],
+  "newDiscoveries": [
+    {
+      "keyword": "운세",
+      "pcMonthly": 147000,
+      "mobileMonthly": 1669000,
+      "totalMonthly": 1816000,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "별자리운세",
+      "pcMonthly": 77700,
+      "mobileMonthly": 745600,
+      "totalMonthly": 823300,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "오늘운세",
+      "pcMonthly": 57800,
+      "mobileMonthly": 498000,
+      "totalMonthly": 555800,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "사주",
+      "pcMonthly": 15500,
+      "mobileMonthly": 104300,
+      "totalMonthly": 119800,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "손없는날",
+      "pcMonthly": 17800,
+      "mobileMonthly": 87300,
+      "totalMonthly": 105100,
+      "competition": "중간",
+      "isSeed": false
+    },
+    {
+      "keyword": "띠별오늘의운세",
+      "pcMonthly": 6000,
+      "mobileMonthly": 79600,
+      "totalMonthly": 85600,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "오늘띠별운세",
+      "pcMonthly": 5480,
+      "mobileMonthly": 53600,
+      "totalMonthly": 59080,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "쥐띠운세",
+      "pcMonthly": 12900,
+      "mobileMonthly": 39000,
+      "totalMonthly": 51900,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "돼지띠운세",
+      "pcMonthly": 12500,
+      "mobileMonthly": 39300,
+      "totalMonthly": 51800,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "용띠운세",
+      "pcMonthly": 11900,
+      "mobileMonthly": 39800,
+      "totalMonthly": 51700,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "닭띠운세",
+      "pcMonthly": 10900,
+      "mobileMonthly": 40000,
+      "totalMonthly": 50900,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "원숭이띠운세",
+      "pcMonthly": 11400,
+      "mobileMonthly": 38600,
+      "totalMonthly": 50000,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "토끼띠운세",
+      "pcMonthly": 12300,
+      "mobileMonthly": 37600,
+      "totalMonthly": 49900,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "말띠운세",
+      "pcMonthly": 11500,
+      "mobileMonthly": 38000,
+      "totalMonthly": 49500,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "소띠운세",
+      "pcMonthly": 11600,
+      "mobileMonthly": 36900,
+      "totalMonthly": 48500,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "개띠운세",
+      "pcMonthly": 10800,
+      "mobileMonthly": 37500,
+      "totalMonthly": 48300,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "뱀띠운세",
+      "pcMonthly": 11900,
+      "mobileMonthly": 36400,
+      "totalMonthly": 48300,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "인터넷사주",
+      "pcMonthly": 5400,
+      "mobileMonthly": 42600,
+      "totalMonthly": 48000,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "오늘의띠별운세",
+      "pcMonthly": 3520,
+      "mobileMonthly": 43900,
+      "totalMonthly": 47420,
+      "competition": "높음",
+      "isSeed": false
+    },
+    {
+      "keyword": "양띠운세",
+      "pcMonthly": 11000,
+      "mobileMonthly": 33900,
+      "totalMonthly": 44900,
+      "competition": "높음",
+      "isSeed": false
+    }
+  ],
+  "communityDemand": {
+    "enough": true,
+    "scanned": 1100,
+    "questionCount": 84,
+    "noiseFiltered": 1016,
+    "hotSeeds": [
+      {
+        "seed": "결혼운",
+        "count": 33
+      },
+      {
+        "seed": "신년운세",
+        "count": 14
+      },
+      {
+        "seed": "직업운",
+        "count": 10
+      },
+      {
+        "seed": "재물운",
+        "count": 7
+      },
+      {
+        "seed": "2026 운세",
+        "count": 6
+      }
+    ],
+    "posts": [
+      {
+        "seed": "2026 운세",
+        "kind": "카페",
+        "title": "9월 5일 쌓아온 신용이 하루 만에 값을 하는 이 띠는? 오늘의 띠별 운세 총정....",
+        "link": "https://cafe.naver.com/praetorians/397587"
+      },
+      {
+        "seed": "신년운세",
+        "kind": "지식iN",
+        "title": "신년사주 알려주세요~",
+        "link": "https://kin.naver.com/qna/detail.naver?dirId=31501&docId=490479287&answerNo=10"
+      },
+      {
+        "seed": "오늘의 운세",
+        "kind": "카페",
+        "title": "오늘의 운세, 정말 궁금한데… 무심코 봤다가 생긴 일",
+        "link": "https://cafe.naver.com/issuemoamoa/690"
+      },
+      {
+        "seed": "띠별 운세",
+        "kind": "지식iN",
+        "title": "이직 운세 궁금합니다 ..!",
+        "link": "https://kin.naver.com/qna/detail.naver?dirId=31504&docId=494899604&answerNo=13"
+      },
+      {
+        "seed": "재물운",
+        "kind": "카페",
+        "title": "재물운 직업운 궁금합니다 어떤 직업해여 될지",
+        "link": "https://cafe.naver.com/lovesaju/690698"
+      },
+      {
+        "seed": "직업운",
+        "kind": "카페",
+        "title": "직업운 잘 보는 곳 있을까요~~??",
+        "link": "https://cafe.naver.com/bamsaju/347336"
+      },
+      {
+        "seed": "사업운",
+        "kind": "카페",
+        "title": "사업운, 재물복이 있나요",
+        "link": "https://cafe.naver.com/saju1379/191428"
+      },
+      {
+        "seed": "결혼운",
+        "kind": "지식iN",
+        "title": "결혼운 궁금합니다",
+        "link": "https://kin.naver.com/qna/detail.naver?dirId=31501&docId=495033883&answerNo=4"
+      },
+      {
+        "seed": "2026 운세",
+        "kind": "카페",
+        "title": "2026년 9월 4일 오늘의 운세 오.. 이 띠는 보면 좋을듯 ? 98년생 ?",
+        "link": "https://cafe.naver.com/btsdtoto/183742"
+      },
+      {
+        "seed": "신년운세",
+        "kind": "지식iN",
+        "title": "82년 개띠 신년운세가 궁금 하네요~^-^",
+        "link": "https://kin.naver.com/qna/detail.naver?dirId=31501&docId=490901066&answerNo=12"
+      },
+      {
+        "seed": "띠별 운세",
+        "kind": "카페",
+        "title": "9월 4일 남들이 손해라 여긴 자리에서 이문 남기는 '이 띠'는? | 오늘의 띠별 ....",
+        "link": "https://cafe.naver.com/praetorians/397555"
+      },
+      {
+        "seed": "재물운",
+        "kind": "카페",
+        "title": "재물운 좋다는데 통장은 왜 조용할까요 ㅋㅋ",
+        "link": "https://cafe.naver.com/lifehackingstudy/119806"
+      }
+    ]
+  },
+  "newsSignals": {
+    "scanned": 0,
+    "issueCount": 0,
+    "articles": [],
+    "enough": false
+  },
+  "notes": [],
+  "limitations": [
+    "검색량은 네이버 검색 기준이며 유튜브 내 검색량과 다를 수 있습니다.",
+    "데이터랩 트렌드는 절대 검색량이 아니라 기간 내 상대 비율(0~100)입니다.",
+    "월간 검색수 10 미만은 네이버가 '< 10'으로만 제공해 5로 집계합니다."
+  ]
+}
